@@ -4,26 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TheOracle.Core;
 
 namespace TheOracle.IronSworn
 {
 	public class ActionCommand : ModuleBase<SocketCommandContext>
 	{
-		[Command("Action")]
+		[Command("Action", ignoreExtraArgs: true)]
 		[Summary("Performs an Iron Sworn action roll")]
 		[Alias("act")]
-		public async Task Action()
+		public async Task Action([Summary("Modifier for the action roll")] int Modifier = 0)
 		{
-			EmbedBuilder embedBuilder = new EmbedBuilder();
-
-			foreach (CommandInfo command in CommandHandlerRegister.Handler.Commands)
-			{
-				// Get the command Summary attribute information
-				string embedFieldText = command.Summary ?? "No description available\n";
-
-			}
-
-			await ReplyAsync("Here's a list of commands and their description: ", false, embedBuilder.Build());
+			var roll = new IronSwornRoll(Modifier);
+			await ReplyAsync(roll.ToString());
 		}
 	}
 }
