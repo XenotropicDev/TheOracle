@@ -12,7 +12,7 @@ namespace TheOracle.IronSworn
     public class PlanetCommands : ModuleBase<SocketCommandContext>
     {
         [Command("GeneratePlanet", ignoreExtraArgs: true)]
-        [Summary("Creates a template post for a new Starforged planet")]
+        [Summary("Creates a template post for a new Starforged planet\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms")]
         [Alias("Planet")]
         public async Task GeneratePlanet(string PlanetName = "")
         {
@@ -51,7 +51,7 @@ namespace TheOracle.IronSworn
             var oldEmbed = message.Embeds.FirstOrDefault();
 
             int currentLooks = oldEmbed.Fields.Count(field => field.Name == "Closer Look");
-            if (currentLooks > 3) //TODO move this to a property of the planet?
+            if (currentLooks >= 3) //TODO move this to a property of the planet?
             {
                 var userReaction = message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
                 var botReaction = message.RemoveReactionAsync(reaction.Emote, message.Author);
@@ -72,7 +72,10 @@ namespace TheOracle.IronSworn
                 msg.Content = string.Empty;
                 msg.Embed = embedBuilder.Build();
             });
+            currentLooks++;
             message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+            if (currentLooks >= 3) message.RemoveReactionAsync(reaction.Emote, message.Author);
+
         }
 
         private static int PlanetFieldOrder(string fieldName)
@@ -81,8 +84,8 @@ namespace TheOracle.IronSworn
             if (fieldName.Contains("Atmosphere")) return 2;
             if (fieldName == "Life") return 3;
             if (fieldName == "Terminus Settlements") return 4;
-            if (fieldName == "Outlands  Settlements") return 5;
-            if (fieldName == "Expanse  Settlements") return 6;
+            if (fieldName == "Outlands Settlements") return 5;
+            if (fieldName == "Expanse Settlements") return 6;
             if (fieldName.Contains("Observation 1")) return 7;
             if (fieldName.Contains("Observation 2")) return 8;
             if (fieldName.Contains("Observation 3")) return 9;
