@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using TheOracle.IronSworn;
 
 namespace TheOracle.Core
 {
-    class OracleTable
+    public class OracleTable
     {
+        public string Name { get; set; }
+        public List<StandardOracle> Oracles { get; set; }
     }
 }

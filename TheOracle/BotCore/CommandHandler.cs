@@ -1,22 +1,16 @@
 ﻿using Discord.Commands;
 using Discord.WebSocket;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace TheOracle
 {
-    public static class CommandHandlerRegister
-    {
-        public static CommandHandler Handler { get; set; } = null;
-    }
-
     public class CommandHandler
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;
+        private IServiceProvider _service = null;
 
         public CommandHandler(DiscordSocketClient client, CommandService commands)
         {
@@ -24,15 +18,12 @@ namespace TheOracle
             _client = client;
         }
 
-        public IEnumerable<CommandInfo> Commands { get => _commands.Commands; }
-
-        public async Task InstallCommandsAsync()
+        public async Task InstallCommandsAsync(IServiceProvider service = null)
         {
-            // Hook the MessageReceived event into our command handler
+            _service = service;
             _client.MessageReceived += HandleCommandAsync;
 
-            await _commands.AddModulesAsync(assembly: Assembly.GetEntryAssembly(),
-                                            services: null);
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _service);
         }
 
         private async Task HandleCommandAsync(SocketMessage messageParam)
@@ -61,14 +52,12 @@ namespace TheOracle
             var result = await _commands.ExecuteAsync(
                 context: context,
                 argPos: argPos,
-                services: null);
+                services: _service);
 
-            // Optionally, we may inform the user if the command fails
-            // to be executed; however, this may not always be desired,
-            // as it may clog up the request queue should a user spam a
-            // command.
-            // if (!result.IsSuccess)
-            // await context.Channel.SendMessageAsync(result.ErrorReason);
+            // Inform the user if the command fails to be executed; 
+            // however, this may not always be desired, as it may clog up the request queue should a user spam a command.
+            if (!result.IsSuccess) 
+                await context.Channel.SendMessageAsync(result.ErrorReason);
         }
     }
 }

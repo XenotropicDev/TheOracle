@@ -1,8 +1,10 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
 using TheOracle.IronSworn;
@@ -14,38 +16,34 @@ namespace TheOracle
         public static void Main(string[] args)
         => new Program().MainAsync().GetAwaiter().GetResult();
 
-        private DiscordSocketClient _client;
 
         public async Task MainAsync()
         {
-            var _config = new DiscordSocketConfig { MessageCacheSize = 100 };
-            _client = new DiscordSocketClient(_config);
+            using (var services = ConfigureServices())
+            {
+                var client = services.GetRequiredService<DiscordSocketClient>();
 
-            _client.Log += Log;
+                client.Log += LogAsync;
+                services.GetRequiredService<CommandService>().Log += LogAsync;
 
-            await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordToken"));
-            await _client.StartAsync();
+                await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordToken"));
+                await client.StartAsync();
 
-            CommandService cs = new CommandService();
-            CommandHandler ch = new CommandHandler(_client, cs);
+                await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);
 
-            CommandHandlerRegister.Handler = ch;
+                client.ReactionAdded += ReactionAdded;
 
-            await ch.InstallCommandsAsync();
-
-            _client.ReactionAdded += ReactionAdded;
-
-            // Block this task until the program is closed.
-            await Task.Delay(-1);
+                await Task.Delay(Timeout.Infinite);
+            }
         }
 
-        //TODO find some way to allow reactions to be added per assembly
+        //TODO find some way to allow reactions to be added per assembly, or at least use the event pattern
         private Task ReactionAdded(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
             if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return Task.CompletedTask;
 
             var message = userMessage.GetOrDownloadAsync().Result;
-            if (message.Author.Id != _client.CurrentUser.Id) return Task.CompletedTask; //TODO make sure this will work if we ever move to a sharded bot
+            //if (message.Author.Id != BotUserId) return Task.CompletedTask; //TODO make sure this will work if we ever move to a sharded bot
 
             if (reaction.Emote.Name == "🔍") PlanetCommands.CloserLook(message, channel, reaction);
             if (reaction.Emote.Name == "\U0001F996") PlanetCommands.Life(message, channel, reaction);
@@ -53,10 +51,23 @@ namespace TheOracle
             return Task.CompletedTask;
         }
 
-        private Task Log(LogMessage msg)
+        private Task LogAsync(LogMessage msg)
         {
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
+        }
+
+        private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
+        {
+            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100 };
+            client = client ?? new DiscordSocketClient(clientConfig);
+            command = command ?? new CommandService();
+            return new ServiceCollection()
+                .AddSingleton(client)
+                .AddSingleton(command)
+                .AddSingleton(new CommandHandler(client, command))
+                .AddSingleton<OracleService>()
+                .BuildServiceProvider();
         }
     }
 }

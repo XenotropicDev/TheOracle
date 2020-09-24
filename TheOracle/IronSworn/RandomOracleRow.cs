@@ -8,11 +8,11 @@ namespace TheOracle.Core
 {
     public static class RandomOracleRow
     {
-        public static T GetRandomRow<T>(this IEnumerable<T> source, Random random = default) where T : IOracleChance
+        public static T GetRandomRow<T>(this IEnumerable<T> source, Random random = default) where T : IOracleEntry
         {
             if (source.Count() == 0) return default;
             if (random == default) random = BotRandom.Instance;
-            return source.OrderBy(item => item.Chance).First(item => item.Chance >= random.Next(1, 100));
+            return source.OrderBy(item => item.Chance).First(item => item.Chance >= random.Next(1, item.d));
         }
 
         public static void Shuffle<T>(this IList<T> list, Random random = default)

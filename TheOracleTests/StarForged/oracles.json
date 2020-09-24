@@ -1,0 +1,408 @@
+[
+  {
+    "$type": "TheOracle.IronSworn.StandardOracle, TheOracle",
+    "Name": "Action",
+    "Oracles": [
+      {
+        "Chance": 1,
+        "Description": "Scheme"
+      },
+      {
+        "Chance": 2,
+        "Description": "Clash"
+      },
+      {
+        "Chance": 3,
+        "Description": "Weaken"
+      },
+      {
+        "Chance": 4,
+        "Description": "Initiate"
+      },
+      {
+        "Chance": 5,
+        "Description": "Create"
+      },
+      {
+        "Chance": 6,
+        "Description": "Swear"
+      },
+      {
+        "Chance": 7,
+        "Description": "Avenge"
+      },
+      {
+        "Chance": 8,
+        "Description": "Guard"
+      },
+      {
+        "Chance": 9,
+        "Description": "Defeat"
+      },
+      {
+        "Chance": 10,
+        "Description": "Control"
+      },
+      {
+        "Chance": 11,
+        "Description": "Break"
+      },
+      {
+        "Chance": 12,
+        "Description": "Risk"
+      },
+      {
+        "Chance": 13,
+        "Description": "Surrender"
+      },
+      {
+        "Chance": 14,
+        "Description": "Inspect"
+      },
+      {
+        "Chance": 15,
+        "Description": "Raid"
+      },
+      {
+        "Chance": 16,
+        "Description": "Evade"
+      },
+      {
+        "Chance": 17,
+        "Description": "Assault"
+      },
+      {
+        "Chance": 18,
+        "Description": "Deflect"
+      },
+      {
+        "Chance": 19,
+        "Description": "Threaten"
+      },
+      {
+        "Chance": 20,
+        "Description": "Attack"
+      },
+      {
+        "Chance": 21,
+        "Description": "Leave"
+      },
+      {
+        "Chance": 22,
+        "Description": "Preserve"
+      },
+      {
+        "Chance": 23,
+        "Description": "Manipulate"
+      },
+      {
+        "Chance": 24,
+        "Description": "Remove"
+      },
+      {
+        "Chance": 25,
+        "Description": "Eliminate"
+      },
+      {
+        "Chance": 26,
+        "Description": "Withdraw"
+      },
+      {
+        "Chance": 27,
+        "Description": "Abandon"
+      },
+      {
+        "Chance": 28,
+        "Description": "Investigate"
+      },
+      {
+        "Chance": 29,
+        "Description": "Hold"
+      },
+      {
+        "Chance": 30,
+        "Description": "Focus"
+      },
+      {
+        "Chance": 31,
+        "Description": "Uncover"
+      },
+      {
+        "Chance": 32,
+        "Description": "Breach"
+      },
+      {
+        "Chance": 33,
+        "Description": "Aid"
+      },
+      {
+        "Chance": 34,
+        "Description": "Uphold"
+      },
+      {
+        "Chance": 35,
+        "Description": "Falter"
+      },
+      {
+        "Chance": 36,
+        "Description": "Suppress"
+      },
+      {
+        "Chance": 37,
+        "Description": "Hunt"
+      },
+      {
+        "Chance": 38,
+        "Description": "Share"
+      },
+      {
+        "Chance": 39,
+        "Description": "Destroy"
+      },
+      {
+        "Chance": 40,
+        "Description": "Avoid"
+      },
+      {
+        "Chance": 41,
+        "Description": "Reject"
+      },
+      {
+        "Chance": 42,
+        "Description": "Demand"
+      },
+      {
+        "Chance": 43,
+        "Description": "Explore"
+      },
+      {
+        "Chance": 44,
+        "Description": "Bolster"
+      },
+      {
+        "Chance": 45,
+        "Description": "Seize"
+      },
+      {
+        "Chance": 46,
+        "Description": "Mourn"
+      },
+      {
+        "Chance": 47,
+        "Description": "Reveal"
+      },
+      {
+        "Chance": 48,
+        "Description": "Gather"
+      },
+      {
+        "Chance": 49,
+        "Description": "Defy"
+      },
+      {
+        "Chance": 50,
+        "Description": "Transform"
+      },
+      {
+        "Chance": 51,
+        "Description": "Persevere"
+      },
+      {
+        "Chance": 52,
+        "Description": "Serve"
+      },
+      {
+        "Chance": 53,
+        "Description": "Begin"
+      },
+      {
+        "Chance": 54,
+        "Description": "Move"
+      },
+      {
+        "Chance": 55,
+        "Description": "Coordinate"
+      },
+      {
+        "Chance": 56,
+        "Description": "Resist"
+      },
+      {
+        "Chance": 57,
+        "Description": "Await"
+      },
+      {
+        "Chance": 58,
+        "Description": "Impress"
+      },
+      {
+        "Chance": 59,
+        "Description": "Take"
+      },
+      {
+        "Chance": 60,
+        "Description": "Oppose"
+      },
+      {
+        "Chance": 61,
+        "Description": "Capture"
+      },
+      {
+        "Chance": 62,
+        "Description": "Overwhelm"
+      },
+      {
+        "Chance": 63,
+        "Description": "Challenge"
+      },
+      {
+        "Chance": 64,
+        "Description": "Acquire"
+      },
+      {
+        "Chance": 65,
+        "Description": "Protect"
+      },
+      {
+        "Chance": 66,
+        "Description": "Finish"
+      },
+      {
+        "Chance": 67,
+        "Description": "Strengthen"
+      },
+      {
+        "Chance": 68,
+        "Description": "Restore"
+      },
+      {
+        "Chance": 69,
+        "Description": "Advance"
+      },
+      {
+        "Chance": 70,
+        "Description": "Command"
+      },
+      {
+        "Chance": 71,
+        "Description": "Refuse"
+      },
+      {
+        "Chance": 72,
+        "Description": "Find"
+      },
+      {
+        "Chance": 73,
+        "Description": "Deliver"
+      },
+      {
+        "Chance": 74,
+        "Description": "Hide"
+      },
+      {
+        "Chance": 75,
+        "Description": "Fortify"
+      },
+      {
+        "Chance": 76,
+        "Description": "Betray"
+      },
+      {
+        "Chance": 77,
+        "Description": "Secure"
+      },
+      {
+        "Chance": 78,
+        "Description": "Arrive"
+      },
+      {
+        "Chance": 79,
+        "Description": "Affect"
+      },
+      {
+        "Chance": 80,
+        "Description": "Change"
+      },
+      {
+        "Chance": 81,
+        "Description": "Defend"
+      },
+      {
+        "Chance": 82,
+        "Description": "Debate"
+      },
+      {
+        "Chance": 83,
+        "Description": "Support"
+      },
+      {
+        "Chance": 84,
+        "Description": "Follow"
+      },
+      {
+        "Chance": 85,
+        "Description": "Construct"
+      },
+      {
+        "Chance": 86,
+        "Description": "Locate"
+      },
+      {
+        "Chance": 87,
+        "Description": "Endure"
+      },
+      {
+        "Chance": 88,
+        "Description": "Release"
+      },
+      {
+        "Chance": 89,
+        "Description": "Lose"
+      },
+      {
+        "Chance": 90,
+        "Description": "Reduce"
+      },
+      {
+        "Chance": 91,
+        "Description": "Escalate"
+      },
+      {
+        "Chance": 92,
+        "Description": "Distract"
+      },
+      {
+        "Chance": 93,
+        "Description": "Journey"
+      },
+      {
+        "Chance": 94,
+        "Description": "Escort"
+      },
+      {
+        "Chance": 95,
+        "Description": "Learn"
+      },
+      {
+        "Chance": 96,
+        "Description": "Communicate"
+      },
+      {
+        "Chance": 97,
+        "Description": "Depart"
+      },
+      {
+        "Chance": 98,
+        "Description": "Search"
+      },
+      {
+        "Chance": 99,
+        "Description": "Charge"
+      },
+      {
+        "Chance": 100,
+        "Description": "Summon"
+      }
+    ]
+  }
+]

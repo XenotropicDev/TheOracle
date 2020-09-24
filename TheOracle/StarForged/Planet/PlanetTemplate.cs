@@ -9,7 +9,7 @@ using TheOracle.Core;
 
 namespace TheOracle.StarForged
 {
-    public class PlanetTemplate : IOracleChance
+    public class PlanetTemplate : IOracleEntry
     {
         public string PlanetType { get; set; }
         public int Chance { get; set; }
@@ -23,6 +23,8 @@ namespace TheOracle.StarForged
         public List<Biome> PossibleBiomes { get; set; } = new List<Biome>();
         public List<Life> PossibleLife { get; set; } = new List<Life>();
         public List<CloserLook> CloserLooks { get; set; } = new List<CloserLook>();
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
 
         public static List<PlanetTemplate> GetPlanetTemplates()
         {
@@ -31,7 +33,7 @@ namespace TheOracle.StarForged
             var cachedPlanets = cache.GetOrCreate("PlanetTemplates", entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromSeconds(10);
-                string json = File.ReadAllText("StarForged\\MultiplePlanets.json");
+                string json = File.ReadAllText("StarForged\\Planet\\PlanetTemplates.json");
                 return JsonConvert.DeserializeObject<List<PlanetTemplate>>(json);
             });
 
@@ -39,10 +41,12 @@ namespace TheOracle.StarForged
         }
     }
 
-    public class Atmosphere : IOracleChance
+    public class Atmosphere : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
     }
 
     public class PossibleSettlements
@@ -60,28 +64,36 @@ namespace TheOracle.StarForged
     }
     
 
-    public class Terminus : IOracleChance
+    public class Terminus : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
     }
 
-    public class Outlands : IOracleChance
+    public class Outlands : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
     }
 
-    public class Expanse : IOracleChance
+    public class Expanse : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
     }
 
-    public class SpaceObservation : IOracleChance
+    public class SpaceObservation : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
 
     }
 
@@ -91,10 +103,12 @@ namespace TheOracle.StarForged
         public int Amount { get; set; }
     }
 
-    public class Biome : IOracleChance
+    public class Biome : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
 
         internal static List<Biome> GetFromTemplate(PlanetTemplate template, Random planetRandom = null)
         {
@@ -126,29 +140,19 @@ namespace TheOracle.StarForged
         }
     }
 
-    public class Life : IOracleChance
+    public class Life : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
     }
 
-    public class CloserLook : IOracleChance
+    public class CloserLook : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-
-        //internal static List<CloserLook> GetFromTemplate(PlanetTemplate template, Random planetRandom = null)
-        //{
-        //    if (planetRandom == null) planetRandom = BotRandom.Instance;
-        //    List<CloserLook> Looks = new List<CloserLook>();
-        //    int BiomesToGenerate = template.CloserLooks.GetRandomRow(planetRandom);
-
-
-        //    if (template.PossibleBiomes.Count <= 1 || BiomesToGenerate <= template.PossibleBiomes.Count)
-        //    {
-        //        Looks.AddRange(template.PossibleBiomes);
-        //        return Looks;
-        //    }
-        //}
+        public int d { get; set; } = 100;
+        public OracleType type { get; set; } = OracleType.standard;
     }
 }
