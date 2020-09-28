@@ -15,8 +15,10 @@ namespace TheOracle.Core
             OracleList = new List<OracleTable>();
             
             //TODO change this to load more dynamically?
-            var oracleData = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("IronSworn\\oracles.json"));
-            OracleList.AddRange(oracleData);
+            var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("IronSworn\\oracles.json"));
+            var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("StarForged\\StarforgedOracles.json"));
+            OracleList.AddRange(ironSworn);
+            OracleList.AddRange(starForged);
         }
     }
 }

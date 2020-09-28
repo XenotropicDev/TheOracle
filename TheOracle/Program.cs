@@ -60,8 +60,8 @@ namespace TheOracle
         private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
         {
             var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100 };
-            client = client ?? new DiscordSocketClient(clientConfig);
-            command = command ?? new CommandService();
+            client ??= new DiscordSocketClient(clientConfig);
+            command ??= new CommandService();
             return new ServiceCollection()
                 .AddSingleton(client)
                 .AddSingleton(command)

@@ -23,8 +23,6 @@ namespace TheOracle.StarForged
         public List<Biome> PossibleBiomes { get; set; } = new List<Biome>();
         public List<Life> PossibleLife { get; set; } = new List<Life>();
         public List<CloserLook> CloserLooks { get; set; } = new List<CloserLook>();
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
 
         public static List<PlanetTemplate> GetPlanetTemplates()
         {
@@ -45,8 +43,7 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
     }
 
     public class PossibleSettlements
@@ -68,32 +65,28 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
     }
 
     public class Outlands : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
     }
 
     public class Expanse : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
     }
 
     public class SpaceObservation : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
 
     }
 
@@ -107,8 +100,7 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
 
         internal static List<Biome> GetFromTemplate(PlanetTemplate template, Random planetRandom = null)
         {
@@ -144,15 +136,13 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
     }
 
     public class CloserLook : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-        public int d { get; set; } = 100;
-        public OracleType type { get; set; } = OracleType.standard;
+
     }
 }
