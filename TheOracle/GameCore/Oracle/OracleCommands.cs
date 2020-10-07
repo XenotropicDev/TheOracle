@@ -51,7 +51,12 @@ namespace TheOracle.IronSworn
             foreach (var oracle in _oracleService.OracleList)
             {
                 //string sample = string.Join(", ", oracle.Oracles.Take(1).Select(o => o.Description));
-                reply += $"**{oracle.Name}**, ";
+                string aliases = string.Empty;
+                if (oracle.Aliases != null)
+                {
+                    aliases = $"{string.Join(", ", oracle.Aliases)}, ";
+                }
+                reply += $"**{oracle.Name}**, {aliases}";
             }
             reply = reply.Remove(reply.LastIndexOf(", "));
 
