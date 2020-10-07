@@ -541,6 +541,7 @@
 {
     "Name": "Settlement Location",
     "Game": "Starforged",
+    "Aliases":["Settlement Loc", "SFSL", "SLoc"],
     "Oracles": [
         { "Chance": 40, "Description": "Planetside"},
         { "Chance": 75, "Description": "Orbital"},
@@ -632,7 +633,7 @@
 {
     "Name": "Settlement Authority",
     "Game": "Starforged",
-    "Aliases": ["sa"],
+    "Aliases": ["sa", "Authority"],
     "Oracles": [
         { "Chance": 15, "Description": "None / lawless"},
         { "Chance": 30, "Description": "Ineffectual"},
