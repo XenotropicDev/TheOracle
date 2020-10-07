@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
+using TheOracle.GameCore.RulesReference;
 using TheOracle.IronSworn;
 
 namespace TheOracle
@@ -42,9 +43,17 @@ namespace TheOracle
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);
 
                 client.ReactionAdded += ReactionAdded;
+                client.JoinedGuild += LogGuildJoin;
 
                 await Task.Delay(Timeout.Infinite);
             }
+        }
+
+        private Task LogGuildJoin(SocketGuild arg)
+        {
+            LogMessage msg = new LogMessage(LogSeverity.Info, "", $"The bot has been added to a new guild: {arg.Name}");
+            LogAsync(msg);
+            return Task.CompletedTask;
         }
 
         //TODO find some way to allow reactions to be added per assembly, or at least use the event pattern
@@ -77,6 +86,7 @@ namespace TheOracle
                 .AddSingleton(command)
                 .AddSingleton(new CommandHandler(client, command))
                 .AddSingleton<OracleService>()
+                .AddSingleton<RuleService>()
                 .BuildServiceProvider();
         }
     }
