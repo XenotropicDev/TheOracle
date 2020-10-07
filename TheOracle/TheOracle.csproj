@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="IronSworn\GameRules.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="IronSworn\oracles.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -25,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="GameCore\InitiativeTracker\" />
-    <Folder Include="GameCore\RulesReference\" />
   </ItemGroup>
 
 </Project>
