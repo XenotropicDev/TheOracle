@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,15 @@ namespace TheOracle.IronSworn
 
             OracleRoller roller = new OracleRoller(_oracleService, game);
 
-            await ReplyAsync(roller.RollTable(oracleTable));
+            try
+            {
+                await ReplyAsync("", false, roller.RollAsEmbed(oracleTable).Build());
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"{Context.User} triggered an ArgumentException: {ex.Message}");
+                await ReplyAsync(ex.Message);
+            }
         }
 
         [Command("OracleList", ignoreExtraArgs: false)]

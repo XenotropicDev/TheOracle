@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Discord;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ namespace TheOracle.GameCore.Oracle
             public string TableName { get; set; }
             public StandardOracle Result { get; set; }
             public int Depth { get; set; }
+            public bool ShouldInline { get; set; }
         }
 
         public OracleService OracleService { get; }
@@ -27,7 +29,7 @@ namespace TheOracle.GameCore.Oracle
             Game = game;
         }
 
-        public string RollTable(string tableName)
+        public string RollAsString(string tableName)
         {
             RollResultList = new List<RollResult>();
 
@@ -45,9 +47,26 @@ namespace TheOracle.GameCore.Oracle
             return reply;
         }
 
+        public EmbedBuilder RollAsEmbed(string tableName)
+        {
+            RollResultList = new List<RollResult>();
+
+            RollFacade(tableName);
+
+            string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
+
+            EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}Oracle Result__");
+            foreach (var item in RollResultList)
+            {
+                embed.AddField($"Oracle Table {item.TableName} [{item.Roll}]", item.Result.Description);
+            }
+            return embed;
+        }
+
         private void RollFacade(string table, int depth = 0)
         {
             table = table.Trim();
+
             var TablesToRoll = ParseOracleTables(table);
 
             if (TablesToRoll.Count == 0)
@@ -112,20 +131,30 @@ namespace TheOracle.GameCore.Oracle
             if (match.Success)
             {
                 var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
-                result = OracleService.OracleList.Where(o => splits.Contains(o.Name) && (Game == GameName.None || Game == o.Game)).ToList();
+                foreach (var item in splits)
+                {
+                    result.AddRange(OracleService.OracleList.Where(o => MatchTableAlias(o, item) && (Game == GameName.None || Game == o.Game)).ToList());
+                }
             }
             else
             {
                 result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
             }
 
-            if (result.Count > 1) throw new ArgumentException("Too many tables with that name, please specify a game");
+            if (result.GroupBy(t => t.Game).Where(grp => grp.Count() > 1).Select(grp => grp.Key).Count() > 1)
+            {
+                string games = string.Empty;
+                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
+                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
+                throw new ArgumentException($"Too many tables with that name, please specify a game: {games}");
+            }
+
             return result;
         }
 
-        private bool MatchTableAlias(OracleTable valueToCheck, string tableAlias)
+        private bool MatchTableAlias(OracleTable valueToCheck, string table)
         {
-            return valueToCheck.Name == tableAlias || valueToCheck.Aliases?.Contains(tableAlias) == true;
+            return valueToCheck.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || valueToCheck.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
         }
 
         private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)

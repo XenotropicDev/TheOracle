@@ -15,6 +15,11 @@ namespace TheOracle.Core
         {
             OracleList = new List<OracleTable>();
 
+            foreach (var file in new DirectoryInfo("IronSworn\\").GetFiles("oracles.??.json"))
+            {
+
+            }
+            
             if (File.Exists("IronSworn\\oracles.json"))
             {
                 var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("IronSworn\\oracles.json"));
