@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using TheOracle.Core;
 using TheOracle.IronSworn;
@@ -31,13 +30,13 @@ namespace TheOracle.GameCore.Oracle
         public string RollTable(string tableName)
         {
             RollResultList = new List<RollResult>();
-            
+
             RollFacade(tableName);
 
             string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
 
             string reply = string.Empty;
-            foreach(var item in RollResultList)
+            foreach (var item in RollResultList)
             {
                 string padding = new string('\t', item.Depth);
                 if (item.TableName?.Length > 0) reply += $"{padding}Rolling the {gameName}oracle for {item.TableName}\n";
@@ -60,9 +59,8 @@ namespace TheOracle.GameCore.Oracle
             {
                 int roll = BotRandom.Instance.Next(1, oracleTable.d);
                 var oracleResult = oracleTable.Oracles.LookupOracle(roll);
-                RollResultList.Add(new RollResult {Roll = roll, Result = oracleResult, TableName = oracleTable.Name, Depth = depth });
+                RollResultList.Add(new RollResult { Roll = roll, Result = oracleResult, TableName = oracleTable.Name, Depth = depth });
 
-                
                 //Check if we have any nested oracles
                 if (oracleResult.Oracles != null)
                 {
@@ -94,10 +92,10 @@ namespace TheOracle.GameCore.Oracle
             //Todo fix it so the JSON can tell us what size die to roll
             int roll = rnd.Next(1, 100);
             var innerRow = oracleResult.Oracles.LookupOracle(roll);
-            
+
             if (innerRow == null) return;
 
-            RollResultList.Add(new RollResult {Roll = roll, Result = innerRow, Depth = depth });
+            RollResultList.Add(new RollResult { Roll = roll, Result = innerRow, Depth = depth });
 
             if (innerRow.Oracles != null)
             {
@@ -105,24 +103,29 @@ namespace TheOracle.GameCore.Oracle
             }
         }
 
-        private List<OracleTable> ParseOracleTables(string value)
+        private List<OracleTable> ParseOracleTables(string tableName)
         {
             var result = new List<OracleTable>();
 
             // Match [table1/table2] style entries
-            var match = Regex.Match(value, @"\[.*\]");
+            var match = Regex.Match(tableName, @"\[.*\]");
             if (match.Success)
             {
-                var splits = value.Replace("[", "").Replace("]", "").Split('/');
+                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
                 result = OracleService.OracleList.Where(o => splits.Contains(o.Name) && (Game == GameName.None || Game == o.Game)).ToList();
             }
             else
             {
-                result = OracleService.OracleList.Where(o => o.Name.Equals(value, StringComparison.OrdinalIgnoreCase) && (Game == GameName.None || Game == o.Game)).ToList();
+                result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
             }
 
             if (result.Count > 1) throw new ArgumentException("Too many tables with that name, please specify a game");
             return result;
+        }
+
+        private bool MatchTableAlias(OracleTable valueToCheck, string tableAlias)
+        {
+            return valueToCheck.Name == tableAlias || valueToCheck.Aliases?.Contains(tableAlias) == true;
         }
 
         private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
