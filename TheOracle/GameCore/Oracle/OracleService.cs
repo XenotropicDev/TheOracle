@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using TheOracle.IronSworn;
 
 namespace TheOracle.Core
@@ -15,12 +14,17 @@ namespace TheOracle.Core
         public OracleService()
         {
             OracleList = new List<OracleTable>();
-            
-            //TODO change this to load more dynamically?
-            var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("IronSworn\\oracles.json"));
-            var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("StarForged\\StarforgedOracles.json"));
-            OracleList.AddRange(ironSworn);
-            OracleList.AddRange(starForged);
+
+            if (File.Exists("IronSworn\\oracles.json"))
+            {
+                var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("IronSworn\\oracles.json"));
+                OracleList.AddRange(ironSworn);
+            }
+            if (File.Exists("StarForged\\StarforgedOracles.json"))
+            {
+                var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("StarForged\\StarforgedOracles.json"));
+                OracleList.AddRange(starForged);
+            }
         }
 
         public IOracleEntry RandomRow(string TableName, GameName game = GameName.None, Random rand = null)
