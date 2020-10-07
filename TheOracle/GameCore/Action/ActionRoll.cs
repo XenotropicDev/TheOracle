@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 
 namespace TheOracle.Core
 {
-    public class IronSwornRoll
+    public class ActionRoll
     {
         public int ActionDie { get; set; }
         public int PlayerModifier { get; set; }
@@ -12,7 +12,7 @@ namespace TheOracle.Core
 
         public int ActionScore { get => ActionDie + PlayerModifier; }
 
-        public IronSwornRoll(int playerModifier = 0, int? actionDie = null)
+        public ActionRoll(int playerModifier = 0, int? actionDie = null)
         {
             ChallengeDie1 = BotRandom.Instance.Next(1, 10);
             ChallengeDie2 = BotRandom.Instance.Next(1, 10);

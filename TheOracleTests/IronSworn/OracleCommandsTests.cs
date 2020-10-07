@@ -13,9 +13,12 @@ namespace TheOracle.IronSworn.Tests
         [TestMethod()]
         public void RollOracleFacadeTest()
         {
-            var oracleService = new OracleService();
-            var commands = new OracleCommands(oracleService);
-            Console.WriteLine(commands.RollOracleFacade("Location"));
+            //var oracleService = new OracleService();
+            //var commands = new OracleCommands(oracleService);
+
+            //Console.WriteLine(commands.RollOracleFacade("Action"));
+
+            //Assert.ThrowsException<ArgumentException>(() => commands.RollOracleFacade("Action"));
         }
     }
 }

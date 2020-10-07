@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TheOracle.IronSworn
 {
@@ -8,5 +6,7 @@ namespace TheOracle.IronSworn
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public string Prompt { get; set; }
+        public List<StandardOracle> Oracles { get; set; }
     }
 }

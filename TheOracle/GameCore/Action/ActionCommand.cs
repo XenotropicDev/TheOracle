@@ -15,7 +15,7 @@ namespace TheOracle.IronSworn
 		[Alias("act")]
 		public async Task Action([Summary("Modifier for the action roll")] int Modifier = 0)
 		{
-			var roll = new IronSwornRoll(Modifier);
+			var roll = new ActionRoll(Modifier);
 			await ReplyAsync(roll.ToString());
 		}
 	}

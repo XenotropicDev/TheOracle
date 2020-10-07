@@ -2,7 +2,10 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +29,14 @@ namespace TheOracle
                 client.Log += LogAsync;
                 services.GetRequiredService<CommandService>().Log += LogAsync;
 
-                await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordToken"));
+                string? token = Environment.GetEnvironmentVariable("DiscordToken");
+                if (token == null)
+                {
+                    JObject jsonToken = JObject.Parse(File.ReadAllText("token.json"));
+                    token = (string)jsonToken.SelectToken("DiscordToken");
+                }
+
+                await client.LoginAsync(TokenType.Bot, token);
                 await client.StartAsync();
 
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);

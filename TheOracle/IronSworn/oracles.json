@@ -1,6 +1,7 @@
 [{
     "Name": "Action",
     "Game": "Ironsworn",
+    "Aliases": ["actions"],
     "Oracles": [
         { "Chance": 1, "Description": "Scheme"},
         { "Chance": 2, "Description": "Clash"},
@@ -107,6 +108,7 @@
 {
     "Name": "Theme",
     "Game": "Ironsworn",
+    "Aliases": ["themes"],
     "Oracles":[
         { "Chance": 1, "Description": "Risk"},
         { "Chance": 2, "Description": "Ability"},
@@ -212,6 +214,8 @@
 },
 {
     "Name": "Region",
+    "Game": "Ironsworn",
+    "Aliases": ["regions"],
     "Oracles":[
         { "Chance": 12, "Description": "Barrier Islands"},
         { "Chance": 24, "Description": "Ragged Coast"},
@@ -227,6 +231,8 @@
 },
 {
     "Name": "Location",
+    "Game": "Ironsworn",
+    "Aliases": ["loc", "locations"],
     "Oracles":[
         { "Chance": 1, "Description": "Hideout"},
         { "Chance": 2, "Description": "Ruin"},
@@ -283,6 +289,8 @@
 },
 {
     "Name": "Coastal Waters Location",
+    "Game": "Ironsworn",
+    "Aliases": ["CWL"],
     "Oracles":[
         { "Chance": 1, "Description": "Fleet"},
         { "Chance": 2, "Description": "Sargassum"},
@@ -305,6 +313,8 @@
 },
 {
     "Name": "Location Descriptors",
+    "Game": "Ironsworn",
+    "Aliases": ["ld"],
     "Oracles":[
         { "Chance": 2, "Description": "High"},
         { "Chance": 4, "Description": "Remote"},
@@ -360,6 +370,8 @@
 },
 {
     "Name": "Settlement Trouble",
+    "Game": "Ironsworn",
+    "Aliases": ["Trouble"],
     "Oracles":[
         { "Chance": 2, "Description": "Outsiders rejected"},
         { "Chance": 4, "Description": "Dangerous discovery"},
@@ -411,6 +423,8 @@
 },
 {
     "Name": "NPC Role",
+    "Game": "Ironsworn",
+    "Aliases": ["NPCR"],
     "Oracles":[
         { "Chance": 2, "Description": "Criminal"},
         { "Chance": 4, "Description": "Healer"},
@@ -445,6 +459,8 @@
 },
 {
     "Name": "Goals",
+    "Game": "Ironsworn",
+    "Aliases": ["Goal"],
     "Oracles":[
         { "Chance": 3, "Description": "Obtain an object"},
         { "Chance": 6, "Description": "Make an agreement"},
@@ -483,6 +499,8 @@
 },
 {
     "Name": "NPC Descriptors",
+    "Game": "Ironsworn",
+    "Aliases": ["NPCD"],
     "Oracles":[
         { "Chance": 1, "Description": "Stoic"},
         { "Chance": 2, "Description": "Attractive"},
@@ -588,6 +606,8 @@
 },
 {
     "Name": "Ironlander Names",
+    "Game": "Ironsworn",
+    "Aliases": [],
     "d": "200",
     "Oracles":[
         { "Chance": 1, "Description": "Solana"},
@@ -794,6 +814,8 @@
 },
 {
     "Name": "Elf Names",
+    "Game": "Ironsworn",
+    "Aliases": ["elf"],
     "Oracles":[
         { "Chance": 2, "Description": "Arsula"},
         { "Chance": 4, "Description": "Naidita"},
@@ -849,6 +871,8 @@
 },
 {
     "Name": "Combat Actions",
+    "Game": "Ironsworn",
+    "Aliases": ["Combat Actions"],
     "Oracles":[
         { "Chance": 3, "Description": "Compel a surrender."},
         { "Chance": 6, "Description": "Coordinate with allies."},
@@ -871,6 +895,8 @@
 },
 {
     "Name": "Mystic Backlash",
+    "Game": "Ironsworn",
+    "Aliases": ["Backlash"],
     "Oracles":[
         { "Chance": 5, "Description": "The ritual has the opposite affect."},
         { "Chance": 10, "Description": "You are sapped of strength."},
@@ -896,6 +922,8 @@
 },
 {
     "Name": "Major Plot Twist",
+    "Game": "Ironsworn",
+    "Aliases": ["MPT", "twist"],
     "Oracles":[
         { "Chance": 2, "Description": "It was all a diversion."},
         { "Chance": 10, "Description": "A dark secret is revealed."},
@@ -921,6 +949,8 @@
 },
 {
     "Name": "Challenge Rank",
+    "Game": "Ironsworn",
+    "Aliases": ["CR"],
     "Oracles":[
         { "Chance": 20, "Description": "Troublesome"},
         { "Chance": 55, "Description": "Dangerous"},
@@ -931,6 +961,8 @@
 },
 {
     "Name": "Inciting Situations",
+    "Game": "Ironsworn",
+    "Aliases": ["Inciting"],
     "Oracles":[
         { "Chance": 5, "Description": "Roll again, but the situation is dire."},
         { "Chance": 16, "Description": "Why are \\_\\_\\_ and \\_\\_\\_ fighting right now?"},
@@ -950,6 +982,8 @@
 },
 {
     "Name": "Gender Presentation and Identity",
+    "Game": "Ironsworn",
+    "Aliases": ["GPI"],
     "Oracles":[
         { "Chance": 5, "Description": "Masculine cis man (he/him)"},
         { "Chance": 10, "Description": "Feminine cis woman (she/her)"},
@@ -975,6 +1009,8 @@
 },
 {
     "Name": "Pay The Price",
+    "Game": "Ironsworn",
+    "Aliases": ["ptp"],
     "Oracles":[
         { "Chance": 2, "Description": "Roll again and apply that result but make it worse. If you roll this result yet again, think of something dreadful that changes the course of your quest (Ask the Oracle if unsure) and make it happen."},
         { "Chance": 5, "Description": "A person or community you trusted loses faith in you, or acts against you."},
@@ -993,5 +1029,137 @@
         { "Chance": 98, "Description": "A friend, companion, or ally is put in harm’s way (or you are, if alone)."},
         { "Chance": 100, "Description": "Roll twice more on this table. Both results occur. If they are the same result, make it worse."}
     ]
+},
+{
+    "Name": "Settlement Names",
+    "Game": "Ironsworn",
+    "Type": "Nested",
+    "Aliases": ["sn", "Settlement Name"],
+    "Oracles":[
+        {
+            "Chance" : 15, 
+            "Description": "A feature of the landscape",
+            "Prompt": "Envision what it is. What makes it unusual or distinctive?",
+            "Oracles":[                
+                { "Chance": 10, "Description": "Highmount"},
+                { "Chance": 20, "Description": "Brackwater"},
+                { "Chance": 30, "Description": "Frostwood"},
+                { "Chance": 40, "Description": "Redcrest"},
+                { "Chance": 50, "Description": "Grimtree"},
+                { "Chance": 60, "Description": "Stoneford"},
+                { "Chance": 70, "Description": "Deepwater"},
+                { "Chance": 80, "Description": "Whitefall"},
+                { "Chance": 90, "Description": "Graycliff"},
+                { "Chance": 100, "Description": "Three Rivers"}
+            ]
+        },
+        {
+            "Chance" : 30, 
+            "Description": "A manmade edifice",
+            "Prompt": "What is it? Why is it important to this settlement’s history?",
+            "Oracles":[                
+                { "Chance": 10, "Description": "Whitebridge"},
+                { "Chance": 20, "Description": "Lonefort"},
+                { "Chance": 30, "Description": "Highcairn"},
+                { "Chance": 40, "Description": "Redhall"},
+                { "Chance": 50, "Description": "Darkwell"},
+                { "Chance": 60, "Description": "Timberwall"},
+                { "Chance": 70, "Description": "Stonetower"},
+                { "Chance": 80, "Description": "Thornhall"},
+                { "Chance": 90, "Description": "Cinderhome"},
+                { "Chance": 100, "Description": "Fallowfield"}
+            ]
+        },
+        {
+            "Chance" : 45,
+            "Description": "A creature",
+            "Prompt": "Why have the people of this settlement chosen this creature as their totem? How is it represented in art or rituals?",
+            "Oracles":[
+                { "Chance": 10, "Description": "Ravencliff"},
+                { "Chance": 20, "Description": "Bearmark"},
+                { "Chance": 30, "Description": "Wolfcrag"},
+                { "Chance": 40, "Description": "Eaglespire"},
+                { "Chance": 50, "Description": "Wyvern's Rest"},
+                { "Chance": 60, "Description": "Boarwood"},
+                { "Chance": 70, "Description": "Foxhollow"},
+                { "Chance": 80, "Description": "Elderwatch"},
+                { "Chance": 90, "Description": "Elkfield"},
+                { "Chance": 100, "Description": "Dragonshadow"}
+            ]
+        },
+        {
+            "Chance" : 60,
+            "Description": "A historical event",
+            "Prompt": "What happened here? What place or practice commemorates this event?",
+            "Oracles":[
+                { "Chance": 10, "Description": "Swordbreak"},
+                { "Chance": 20, "Description": "Fool's Fall"},
+                { "Chance": 30, "Description": "Firstmeet"},
+                { "Chance": 40, "Description": "Brokenhelm"},
+                { "Chance": 50, "Description": "Mournhaunt"},
+                { "Chance": 60, "Description": "Olgar's Stand"},
+                { "Chance": 70, "Description": "Lostwater"},
+                { "Chance": 80, "Description": "Rojirra's Lament"},
+                { "Chance": 90, "Description": "Lastmarch"},
+                { "Chance": 100, "Description": "Rockfall"}
+            ]
+        },
+        {
+            "Chance" : 75,
+            "Description": "A word in an Old World language",
+            "Prompt": "What culture is represented by this word? What does it translate to?",
+            "Oracles":[
+                { "Chance": 10, "Description": "Abon"},
+                { "Chance": 20, "Description": "Daveza"},
+                { "Chance": 30, "Description": "Damula"},
+                { "Chance": 40, "Description": "Essus"},
+                { "Chance": 50, "Description": "Sina"},
+                { "Chance": 60, "Description": "Kazeera"},
+                { "Chance": 70, "Description": "Khazu"},
+                { "Chance": 80, "Description": "Sova"},
+                { "Chance": 90, "Description": "Nabuma"},
+                { "Chance": 100, "Description": "Tiza"}
+            ]
+        },
+        {
+            "Chance" : 45,
+            "Description": "A season or environmental aspect",
+            "Prompt": "What influence does the weather have on this settlement?",
+            "Oracles":[
+                { "Chance": 10, "Description": "Winterhome"},
+                { "Chance": 20, "Description": "Windhaven"},
+                { "Chance": 30, "Description": "Stormrest"},
+                { "Chance": 40, "Description": "Bleakfrost"},
+                { "Chance": 50, "Description": "Springtide"},
+                { "Chance": 60, "Description": "Duskmoor"},
+                { "Chance": 70, "Description": "Frostcrag"},
+                { "Chance": 80, "Description": "Springbrook"},
+                { "Chance": 90, "Description": "Icebreak"},
+                { "Chance": 100, "Description": "Summersong"}
+            ]
+        },
+        {
+            "Chance" : 100,
+            "Description": "Something Else....",
+            "Oracles":[
+                { "Chance": 10, "Description": "A trade good (Ironhome)"},
+                { "Chance": 20, "Description": "An Old World city (New Arkesh)"},
+                { "Chance": 30, "Description": "A founder or famous settler (Kei's Hall)"},
+                { "Chance": 40, "Description": "A god (Elisora)"},
+                { "Chance": 50, "Description": "A historical item (Blackhelm)"},
+                { "Chance": 60, "Description": "A firstborn race (Elfbrook)"},
+                { "Chance": 70, "Description": "An elvish word or name (Nessana)"},
+                { "Chance": 80, "Description": "A mythic belief or event (Ghostwalk)"},
+                { "Chance": 90, "Description": "A positive term (Hope)"},
+                { "Chance": 100, "Description": "A negative term (Forsaken)"}
+            ]
+        }
+    ]
+},
+{
+    "Name": "Quick Settlement Names",
+    "Game": "Ironsworn",
+    "Aliases": ["qsn", "Quick Settlement Name"],
+    "Oracles":[]
 }
 ]

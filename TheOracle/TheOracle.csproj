@@ -23,4 +23,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="GameCore\InitiativeTracker\" />
+    <Folder Include="GameCore\RulesReference\" />
+  </ItemGroup>
+
 </Project>

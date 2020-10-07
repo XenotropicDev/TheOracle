@@ -15,7 +15,7 @@ namespace TheOracle.IronSworn.Tests
         [TestMethod()]
         public void GeneratePlanetTest()
         {
-            var p = new PlanetCommands().GeneratePlanet();
+            var p = new PlanetCommands().PlanetPost();
         }
 
         [TestMethod()]
