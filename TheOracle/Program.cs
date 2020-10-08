@@ -42,7 +42,6 @@ namespace TheOracle
 
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);
 
-                client.ReactionAdded += ReactionAdded;
                 client.JoinedGuild += LogGuildJoin;
 
                 await Task.Delay(Timeout.Infinite);
@@ -53,20 +52,6 @@ namespace TheOracle
         {
             LogMessage msg = new LogMessage(LogSeverity.Info, "", $"The bot has been added to a new guild: {arg.Name}");
             LogAsync(msg);
-            return Task.CompletedTask;
-        }
-
-        //TODO find some way to allow reactions to be added per assembly, or at least use the event pattern
-        private Task ReactionAdded(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
-        {
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return Task.CompletedTask;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-            //if (message.Author.Id != BotUserId) return Task.CompletedTask; //TODO make sure this will work if we ever move to a sharded bot
-
-            if (reaction.Emote.Name == "🔍") PlanetCommands.CloserLook(message, channel, reaction);
-            if (reaction.Emote.Name == "\U0001F996") PlanetCommands.Life(message, channel, reaction);
-
             return Task.CompletedTask;
         }
 

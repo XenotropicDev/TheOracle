@@ -17,10 +17,4 @@
     <ProjectReference Include="..\TheOracle\TheOracle.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="StarForged\oracles.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

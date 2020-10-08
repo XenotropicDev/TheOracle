@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Rest;
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,14 @@ namespace TheOracle
             EmbedBuilder output = new EmbedBuilder();
             if (path == "")
             {
-                output.Title = "The Oracle bot help";
+                output.Title = "__TheOracle bot help__";
 
                 foreach (var mod in _commands.Modules.Where(m => m.Parent == null))
                 {
                     AddHelp(mod, ref output);
                 }
+
+                output.Url = "";
 
                 output.Footer = new EmbedFooterBuilder
                 {
