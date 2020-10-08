@@ -5,11 +5,11 @@ A bot written with [Discord.Net](https://discord.foxbot.me/stable/) for [Ironswo
 ## Features
 ### Oracle Tables
 TheOracle includes oracles tables for Ironsworn, and can easily be extended to include additional tables. It even supports rolling multiple tables at once, and oracles that roll other oracles.
-### Game Element Generators
+### Game Element Generators (Scheduled for Alpha 0.4.0)
 Quickly and easily add things like settlements, and NPCs to your game. TheOracle uses interactive posts to help you create 
-### Progress Tracker
+### Progress Tracker (Scheduled for Alpha 0.3.0)
 TheOracle can track the progress for just about anything you want.
-### Initiative Tracker
+### Initiative Tracker (Scheduled for Alpha 0.3.0)
 Easily keep track of who has initiative, and who is in trouble.
 
 ## Commands
