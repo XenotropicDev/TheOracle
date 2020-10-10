@@ -607,7 +607,7 @@
 {
     "Name": "Ironlander Names",
     "Game": "Ironsworn",
-    "Aliases": [],
+    "Aliases": ["Ironlander", "Iron Name", "IName"],
     "d": "200",
     "Oracles":[
         { "Chance": 1, "Description": "Solana"},
