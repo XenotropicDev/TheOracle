@@ -24,7 +24,7 @@ namespace TheOracle.Core
 
         public DiscordSocketClient Client { get; }
 
-        public ProgressTrackCommands(DiscordSocketClient client) //TODO Could also try: IStringLocalizer<ExampleClass> localizer
+        public ProgressTrackCommands(DiscordSocketClient client)
         {
             Client = client;
             if (Client != null) Client.ReactionAdded += ProgressBuilderReactions; //This has to be done with DI because the Context.Client is null when the CTOR is running
