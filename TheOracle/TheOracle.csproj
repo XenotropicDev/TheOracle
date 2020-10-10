@@ -30,6 +30,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="GameCore\Oracle\OracleResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OracleResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="GameCore\ProgressTracker\ProgressResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -41,6 +46,10 @@
     <EmbeddedResource Update="GameCore\Action\ActionResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ActionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GameCore\Oracle\OracleResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OracleResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="GameCore\ProgressTracker\ProgressResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

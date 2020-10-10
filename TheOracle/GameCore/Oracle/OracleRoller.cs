@@ -1,6 +1,7 @@
 ﻿using Discord;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.Core;
@@ -55,10 +56,10 @@ namespace TheOracle.GameCore.Oracle
 
             string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
 
-            EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}Oracle Result__");
+            EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}{OracleResources.OracleResult}__");
             foreach (var item in RollResultList)
             {
-                embed.AddField($"Oracle Table {item.TableName} [{item.Roll}]", item.Result.Description);
+                embed.AddField($"{OracleResources.OracleTable} {item.TableName} [{item.Roll}]", item.Result.Description);
             }
             return embed;
         }
@@ -71,14 +72,22 @@ namespace TheOracle.GameCore.Oracle
 
             if (TablesToRoll.Count == 0)
             {
-                throw new ArgumentException($"Unknown Oracle Table: {table}");
+                throw new ArgumentException($"{OracleResources.UnknownTableError}{table}");
             }
 
             foreach (var oracleTable in TablesToRoll)
             {
                 int roll = BotRandom.Instance.Next(1, oracleTable.d);
                 var oracleResult = oracleTable.Oracles.LookupOracle(roll);
-                RollResultList.Add(new RollResult { Roll = roll, Result = oracleResult, TableName = oracleTable.Name, Depth = depth });
+                if (oracleTable.ShowResult) 
+                    RollResultList.Add(new RollResult 
+                    { 
+                        Roll = roll, 
+                        Result = oracleResult, 
+                        TableName = oracleTable.Name,
+                        Depth = depth, 
+                        ShouldInline = oracleTable.DisplayMode.Equals("Inline", StringComparison.OrdinalIgnoreCase) 
+                    });
 
                 //Check if we have any nested oracles
                 if (oracleResult.Oracles != null)
@@ -99,7 +108,7 @@ namespace TheOracle.GameCore.Oracle
             string output = string.Empty;
             foreach (var rollResult in RollResultList)
             {
-                output += $"Roll: {rollResult.Roll} Outcome: {rollResult.Result.Description}\n";
+                output += $"{OracleResources.Roll}: {rollResult.Roll} {OracleResources.Outcome}: {rollResult.Result.Description}\n";
             }
         }
 
@@ -146,7 +155,7 @@ namespace TheOracle.GameCore.Oracle
                 string games = string.Empty;
                 var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
                 foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
-                throw new ArgumentException($"Too many tables with that name, please specify a game: {games}");
+                throw new ArgumentException($"{OracleResources.TooManyGamesError}{games}");
             }
 
             return result;
