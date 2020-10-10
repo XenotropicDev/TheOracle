@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http.Headers;
+using System.Threading;
+using TheOracle.GameCore.Action;
 
 namespace TheOracle.Core
 {
@@ -29,21 +32,21 @@ namespace TheOracle.Core
         {
             if (ActionScore > ChallengeDie1 && ActionScore > ChallengeDie2)
             {
-                if (ChallengeDie1 == ChallengeDie2) return "**Opportunity**";
-                return "Strong Hit";
+                if (ChallengeDie1 == ChallengeDie2) return $"**{ActionResources.Opportunity}**";
+                return ActionResources.Strong_Hit;
             }
             if (ActionScore <= ChallengeDie1 && ActionScore <= ChallengeDie2)
             {
-                if (ChallengeDie1 == ChallengeDie2) return "**Complication**";
-                return "Miss";
+                if (ChallengeDie1 == ChallengeDie2) return $"**{ActionResources.Complication}**";
+                return ActionResources.Miss;
             }
-            return "Weak Hit";
+            return ActionResources.Weak_Hit;
         }
 
         public override string ToString()
         {
             var rollValues = (PlayerModifier != 0) ? $" ({ActionDie}+{PlayerModifier})" : string.Empty;
-            return $"{ActionScore}{rollValues} vs. {ChallengeDie1} and {ChallengeDie2}\n{ResultText()}";
+            return $"{ActionScore}{rollValues} {ActionResources.VS} {ChallengeDie1} {ActionResources.and} {ChallengeDie2}\n{ResultText()}";
         }
     }
 }

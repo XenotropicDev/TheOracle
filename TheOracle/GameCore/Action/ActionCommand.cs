@@ -2,8 +2,10 @@
 using Discord.Commands;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
 
@@ -14,7 +16,7 @@ namespace TheOracle.IronSworn
 		[Command("Action", ignoreExtraArgs: true)]
 		[Summary("Performs an Iron Sworn action roll")]
 		[Alias("act")]
-		public async Task Action([Summary("Modifier for the action roll")] string ModiferAndFluff)
+		public async Task Action([Summary("Modifier for the action roll")] string ModiferAndFluff = "")
 		{
 			int mod = 0;
 
