@@ -55,6 +55,7 @@ namespace TheOracle.GameCore.ProgressTracker
         public string Title { get; set; }
 
         private int TicksPerProgress { get => ChallengeRankToTicks(Rank); }
+        public int ActionDie { get => (int)Math.Floor(Ticks / 4d); }
 
         public static bool HasMatchingChallengeRank(string rank, string[] trackerArgs)
         {
@@ -110,7 +111,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
         private object BuildProgressAmount(int ticks)
         {
-            return $"{(int)Math.Floor(Ticks / 4d)}/10";
+            return $"{ActionDie}/10";
         }
 
         private string BuildProgressGraphic(int ticks)

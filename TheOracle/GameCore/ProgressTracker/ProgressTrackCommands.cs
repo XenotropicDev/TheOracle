@@ -107,21 +107,18 @@ namespace TheOracle.Core
 
             if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
 
-            Console.WriteLine("Progress Reaction Event has triggered");
-
             var message = userMessage.GetOrDownloadAsync().Result;
 
             string ThingToTrack = message.Embeds.FirstOrDefault(embed => embed.Title == ProgressResources.Progress_Tracker)?.Description ?? "Unknown Task";
 
             Task.Run(async () =>
             {
-                if (reaction.Emote.Name == oneEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message);
-                if (reaction.Emote.Name == twoEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message);
-                if (reaction.Emote.Name == threeEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message);
-                if (reaction.Emote.Name == fourEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message);
-                if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message);
-            })
-            .Wait();
+                if (reaction.Emote.Name == oneEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == twoEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == threeEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == fourEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
+            });
 
             message.RemoveReactionsAsync(message.Author, emojisToProcess);
             message.RemoveReactionsAsync(reaction.User.Value, emojisToProcess);
@@ -148,6 +145,13 @@ namespace TheOracle.Core
             if (reaction.Emote.Name == FullEmoji)
             {
                 IncreaseProgressFullCheck(message);
+                message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+            }
+            if (reaction.Emote.Name == RollEmoji)
+            {
+                var tracker = new ProgressTracker(message);
+                var roll = new ActionRoll(0, tracker.ActionDie);
+                channel.SendMessageAsync(roll.ToString());
                 message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
             }
 

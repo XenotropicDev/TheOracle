@@ -12,6 +12,11 @@ namespace TheOracle.Core
 
         public int ActionScore { get => ActionDie + PlayerModifier; }
 
+        /// <summary>
+        /// Rolls dice for a Ironsworn game action.
+        /// </summary>
+        /// <param name="playerModifier"></param>
+        /// <param name="actionDie">Sets the value of the ActionDie, useful for things like progress rolls</param>
         public ActionRoll(int playerModifier = 0, int? actionDie = null)
         {
             ChallengeDie1 = BotRandom.Instance.Next(1, 10);
