@@ -1,7 +1,6 @@
 ﻿using Discord;
 using System;
 using System.Linq;
-using TheOracle.BotCore;
 using TheOracle.Core;
 
 namespace TheOracle.GameCore.ProgressTracker
@@ -14,30 +13,45 @@ namespace TheOracle.GameCore.ProgressTracker
         public const int formidableTicks = 4;
         public const int totalTicks = 40;
         public const int troublesomeTicks = 12;
+        private int ticks;
 
-        public ProgressTracker(ChallengeRank ChallengeRank, string title, int ticks = 0)
+        public ProgressTracker(ChallengeRank ChallengeRank, string title, int startingTicks = 0)
         {
             Rank = ChallengeRank;
             Title = title;
-            Ticks = ticks;
+            Ticks = startingTicks;
         }
 
-        public ProgressTracker(IUserMessage message)
+        public ProgressTracker(IUserMessage message, ChallengeRank challengeRank = ChallengeRank.None)
         {
             var embed = message.Embeds.FirstOrDefault(item => item.Title == ProgressResources.Progress_Tracker);
             if (embed == null) return;
 
-            var startingPercent = Utilities.ConvertPercentToDecimal(embed.Footer.Value.Text);
-            if (!Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == ProgressResources.Difficulty).Value, out ChallengeRank cr))
+            if (challengeRank == ChallengeRank.None && !Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == ProgressResources.Difficulty).Value, out challengeRank))
                 throw new ArgumentException("Unknown progress tracker post format, unable to parse difficulty");
 
-            Rank = cr;
-            Ticks = (int)Math.Floor(startingPercent * totalTicks);
+            Rank = challengeRank;
+
+            if (embed.Footer.HasValue)
+            {
+                Ticks = (Int32.TryParse(embed.Footer.Value.Text.Replace(ProgressResources.Ticks, "").Replace(":", ""), out int temp)) ? temp : 0;
+            }
             Title = embed.Description;
         }
 
         public ChallengeRank Rank { get; set; }
-        public int Ticks { get; set; }
+
+        public int Ticks
+        {
+            get => ticks;
+            set
+            {
+                if (value < 0) value = 0; 
+                if (value > totalTicks) value = totalTicks; 
+                ticks = value;
+            }
+        }
+
         public string Title { get; set; }
 
         private int TicksPerProgress { get => ChallengeRankToTicks(Rank); }
@@ -80,7 +94,7 @@ namespace TheOracle.GameCore.ProgressTracker
                     Value = BuildProgressAmount(Ticks),
                     IsInline = true
                 })
-                .WithFooter(((double)Ticks / totalTicks).ToString("P2"))
+                .WithFooter($"{ProgressResources.Ticks}: {Ticks}")
                 .Build();
         }
 

@@ -151,6 +151,15 @@ namespace TheOracle.GameCore.ProgressTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticks.
+        /// </summary>
+        internal static string Ticks {
+            get {
+                return ResourceManager.GetString("Ticks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Troublesome.
         /// </summary>
         internal static string Troublesome {

@@ -84,7 +84,7 @@ namespace TheOracle.Core
             }
             else
             {
-                var tracker = new ProgressTracker(messageToEdit);
+                var tracker = new ProgressTracker(messageToEdit, cr);
                 await messageToEdit.ModifyAsync(msg =>
                 {
                     msg.Content = string.Empty;
