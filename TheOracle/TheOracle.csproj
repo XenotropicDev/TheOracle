@@ -24,4 +24,19 @@
     <Folder Include="GameCore\InitiativeTracker\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="GameCore\ProgressTracker\ProgressResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgressResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="GameCore\ProgressTracker\ProgressResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProgressResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
