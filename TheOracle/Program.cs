@@ -30,12 +30,14 @@ namespace TheOracle
                 client.Log += LogAsync;
                 services.GetRequiredService<CommandService>().Log += LogAsync;
 
+                #nullable enable
                 string? token = Environment.GetEnvironmentVariable("DiscordToken");
                 if (token == null)
                 {
                     JObject jsonToken = JObject.Parse(File.ReadAllText("token.json"));
                     token = (string)jsonToken.SelectToken("DiscordToken");
                 }
+                #nullable disable
 
                 await client.LoginAsync(TokenType.Bot, token);
                 await client.StartAsync();
