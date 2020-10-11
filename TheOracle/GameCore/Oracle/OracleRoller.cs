@@ -59,7 +59,7 @@ namespace TheOracle.GameCore.Oracle
             EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}{OracleResources.OracleResult}__");
             foreach (var item in RollResultList)
             {
-                embed.AddField($"{OracleResources.OracleTable} {item.TableName} [{item.Roll}]", item.Result.Description);
+                embed.AddField($"{OracleResources.OracleTable} {item.TableName} [{item.Roll}]", item.Result.Description, item.ShouldInline);
             }
             return embed;
         }
