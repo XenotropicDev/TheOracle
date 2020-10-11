@@ -52,7 +52,7 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
    4. **Game Die** - Rolls the action and challenge die for the progress tracker.
  * Sample usage: `!ProgressTracker Epic Find the source of the evil`
  #### CreateNPC
-Creates a NPC with a name (given or random), A goal, a description, and a role/job.
+Creates a NPC with a name (given or random), a goal, a description, and a role/job.
  * Command Aliases: NewNPC, NPC
  * Parameters: NPC Name (optional)
  * Sample usage: `!CreateNPC Tom Bombadil`

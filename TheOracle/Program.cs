@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
@@ -25,6 +26,7 @@ namespace TheOracle
         {
             using (var services = ConfigureServices())
             {
+                Console.WriteLine($"Starting TheOracle v{Assembly.GetEntryAssembly().GetName().Version}");
                 var client = services.GetRequiredService<DiscordSocketClient>();
 
                 client.Log += LogAsync;
