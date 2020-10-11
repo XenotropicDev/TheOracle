@@ -424,7 +424,7 @@
 {
     "Name": "NPC Role",
     "Game": "Ironsworn",
-    "Aliases": ["NPCR"],
+    "Aliases": ["NPCR", "NPC Roles"],
     "Oracles":[
         { "Chance": 2, "Description": "Criminal"},
         { "Chance": 4, "Description": "Healer"},
@@ -607,7 +607,7 @@
 {
     "Name": "Ironlander Names",
     "Game": "Ironsworn",
-    "Aliases": ["Ironlander", "Iron Name", "IName"],
+    "Aliases": ["Ironlander Name","Ironlander", "Iron Name", "IName"],
     "d": "200",
     "Oracles":[
         { "Chance": 1, "Description": "Solana"},
