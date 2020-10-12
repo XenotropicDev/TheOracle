@@ -14,7 +14,7 @@ namespace TheOracle.IronSworn
         [Command("GeneratePlanet", ignoreExtraArgs: true)]
         [Summary("Creates a template post for a new Starforged planet\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms")]
         [Alias("Planet")]
-        public async Task PlanetPost(string PlanetName = "")
+        public async Task PlanetPost([Remainder]string PlanetName = "")
         {
             if (PlanetName == string.Empty) PlanetName = $"P-{DateTime.Now.Ticks}";
 
