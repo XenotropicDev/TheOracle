@@ -126,6 +126,9 @@
   <data name="Outcome" xml:space="preserve">
     <value>Outcome</value>
   </data>
+  <data name="PairedTable" xml:space="preserve">
+    <value>Paired Table(s):</value>
+  </data>
   <data name="Roll" xml:space="preserve">
     <value>Roll</value>
   </data>

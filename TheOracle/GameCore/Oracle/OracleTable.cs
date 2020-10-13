@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
+using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
 namespace TheOracle.Core
@@ -15,5 +17,14 @@ namespace TheOracle.Core
         public string Pair { get; set; } = string.Empty;
         public bool ShowResult { get; set; } = true;
         public OracleType Type { get; set; } = OracleType.standard;
+
+        internal OracleRoller RollPairedTable(OracleService service)
+        {
+            if (Pair.Length == 0) return new OracleRoller(null);
+
+            var row = service.RandomRow(Pair);
+
+            return new OracleRoller(service, Game ?? GameName.None).BuildRollResults(Pair);
+        }
     }
 }
