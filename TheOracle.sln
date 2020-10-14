@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheOracle", "TheOracle\TheOracle.csproj", "{218DEFA0-1EB2-4D88-880D-D1AFF486AA84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheOracle", "TheOracle\TheOracle.csproj", "{218DEFA0-1EB2-4D88-880D-D1AFF486AA84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheOracleTests", "TheOracleTests\TheOracleTests.csproj", "{B23D9BF2-AACA-4601-A187-1CC26D056EE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheOracleTests", "TheOracleTests\TheOracleTests.csproj", "{B23D9BF2-AACA-4601-A187-1CC26D056EE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{840DEE8C-68E5-42D1-8838-6A2973BC2084}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

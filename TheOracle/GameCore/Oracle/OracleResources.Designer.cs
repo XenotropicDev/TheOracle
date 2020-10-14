@@ -88,6 +88,15 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paired Table(s):.
+        /// </summary>
+        internal static string PairedTable {
+            get {
+                return ResourceManager.GetString("PairedTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Roll.
         /// </summary>
         internal static string Roll {

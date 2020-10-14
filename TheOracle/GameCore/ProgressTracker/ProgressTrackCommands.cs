@@ -31,8 +31,8 @@ namespace TheOracle.Core
             if (Client != null) Client.ReactionAdded += ProgressInteractiveReactions;
         }
 
-        [Command("Tracker")]
-        [Alias("Track")]
+        [Command("ProgressTracker")]
+        [Alias("Track", "Tracker", "Progress")]
         [Summary("Creates an objective tracking post for things like Iron Vows")]
         public async Task ProgressTrackerCommand([Remainder] string TrackerArgs)
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Net.Http.Headers;
-using System.Threading;
-using TheOracle.GameCore.Action;
+﻿using TheOracle.GameCore.Action;
 
 namespace TheOracle.Core
 {
@@ -12,7 +8,6 @@ namespace TheOracle.Core
         public int PlayerModifier { get; set; }
         public int ChallengeDie1 { get; set; }
         public int ChallengeDie2 { get; set; }
-
         public int ActionScore { get => ActionDie + PlayerModifier; }
 
         /// <summary>
@@ -32,12 +27,12 @@ namespace TheOracle.Core
         {
             if (ActionScore > ChallengeDie1 && ActionScore > ChallengeDie2)
             {
-                if (ChallengeDie1 == ChallengeDie2) return $"**{ActionResources.Opportunity}**";
+                if (ChallengeDie1 == ChallengeDie2) return $"{ActionResources.Opportunity}";
                 return ActionResources.Strong_Hit;
             }
             if (ActionScore <= ChallengeDie1 && ActionScore <= ChallengeDie2)
             {
-                if (ChallengeDie1 == ChallengeDie2) return $"**{ActionResources.Complication}**";
+                if (ChallengeDie1 == ChallengeDie2) return $"{ActionResources.Complication}";
                 return ActionResources.Miss;
             }
             return ActionResources.Weak_Hit;

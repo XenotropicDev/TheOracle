@@ -70,7 +70,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complication.
+        ///   Looks up a localized string similar to **Complication**.
         /// </summary>
         internal static string Complication {
             get {
@@ -79,7 +79,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Miss.
+        ///   Looks up a localized string similar to _Miss_.
         /// </summary>
         internal static string Miss {
             get {
@@ -88,7 +88,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opportunity.
+        ///   Looks up a localized string similar to **Opportunity**.
         /// </summary>
         internal static string Opportunity {
             get {
@@ -97,7 +97,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strong Hit.
+        ///   Looks up a localized string similar to _Strong Hit_.
         /// </summary>
         internal static string Strong_Hit {
             get {
@@ -115,7 +115,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weak Hit.
+        ///   Looks up a localized string similar to _Weak Hit_.
         /// </summary>
         internal static string Weak_Hit {
             get {
