@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheOracle.GameCore.NpcGenerator {
+namespace TheOracle.StarForged {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TheOracle.GameCore.NpcGenerator {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class NPCResources {
+    internal class StarforgedNPCResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NPCResources() {
+        internal StarforgedNPCResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TheOracle.GameCore.NpcGenerator {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.GameCore.NpcGenerator.NPCResources", typeof(NPCResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.StarforgedNPCResources", typeof(StarforgedNPCResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,47 @@ namespace TheOracle.GameCore.NpcGenerator {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descriptor.
+        ///   Looks up a localized string similar to Aspect.
         /// </summary>
-        internal static string Descriptor {
+        internal static string Aspect {
             get {
-                return ResourceManager.GetString("Descriptor", resourceCulture);
+                return ResourceManager.GetString("Aspect", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Goal.
+        ///   Looks up a localized string similar to Disposition.
         /// </summary>
-        internal static string Goal {
+        internal static string Disposition {
             get {
-                return ResourceManager.GetString("Goal", resourceCulture);
+                return ResourceManager.GetString("Disposition", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to : =,.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string ItemSeperators {
+        internal static string Empty1 {
             get {
-                return ResourceManager.GetString("ItemSeperators", resourceCulture);
+                return ResourceManager.GetString("Empty1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Name {
+        internal static string Empty2 {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Empty2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NPC.
+        ///   Looks up a localized string similar to First Look.
         /// </summary>
-        internal static string NPC {
+        internal static string FirstLook {
             get {
-                return ResourceManager.GetString("NPC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Role.
-        /// </summary>
-        internal static string Role {
-            get {
-                return ResourceManager.GetString("Role", resourceCulture);
+                return ResourceManager.GetString("FirstLook", resourceCulture);
             }
         }
     }

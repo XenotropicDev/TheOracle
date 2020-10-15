@@ -12,6 +12,9 @@
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
   </ItemGroup>
 
@@ -20,6 +23,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="IronSworn\oracles.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\GameRules.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="StarForged\Planet\PlanetTemplates.json">
@@ -60,11 +66,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ProgressResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="StarForged\StarforgedNPCResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StarforgedNPCResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="GameCore\Action\ActionResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ActionResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="GameCore\NpcGenerator\NPCResources.resx">
@@ -78,6 +89,10 @@
     <EmbeddedResource Update="GameCore\ProgressTracker\ProgressResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProgressResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StarForged\StarforgedNPCResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StarforgedNPCResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

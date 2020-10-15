@@ -117,22 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Descriptor" xml:space="preserve">
-    <value>Descriptor</value>
+  <data name="Aspect" xml:space="preserve">
+    <value>Aspect</value>
   </data>
-  <data name="Goal" xml:space="preserve">
-    <value>Goal</value>
+  <data name="Disposition" xml:space="preserve">
+    <value>Disposition</value>
   </data>
-  <data name="ItemSeperators" xml:space="preserve">
-    <value>: =,</value>
+  <data name="Empty1" xml:space="preserve">
+    <value />
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="Empty2" xml:space="preserve">
+    <value />
   </data>
-  <data name="NPC" xml:space="preserve">
-    <value>NPC</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Role</value>
+  <data name="FirstLook" xml:space="preserve">
+    <value>First Look</value>
   </data>
 </root>
