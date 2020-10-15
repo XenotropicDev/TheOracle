@@ -150,7 +150,7 @@ namespace TheOracle.Core
             if (reaction.Emote.Name == RollEmoji)
             {
                 var tracker = new ProgressTracker(message);
-                var roll = new ActionRoll(0, tracker.ActionDie);
+                var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Title}");
                 channel.SendMessageAsync(roll.ToString());
                 message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
             }
