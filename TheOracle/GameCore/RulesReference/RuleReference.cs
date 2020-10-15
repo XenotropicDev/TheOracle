@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.RulesReference
 {
@@ -6,6 +7,7 @@ namespace TheOracle.GameCore.RulesReference
     {
         public string Category { get; set; }
         public string[] Aliases { get; set; }
+        public GameName Game { get; set; }
         public List<Move> Moves { get; set; }
     }
 

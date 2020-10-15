@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
+using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.RulesReference;
 
 namespace TheOracle
@@ -79,6 +80,7 @@ namespace TheOracle
                 .AddSingleton(new CommandHandler(client, command))
                 .AddSingleton<OracleService>()
                 .AddSingleton<RuleService>()
+                .AddScoped<NpcFactory>()
                 .BuildServiceProvider();
         }
     }

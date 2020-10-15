@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks.Dataflow;
 using TheOracle.Core;
 using TheOracle.IronSworn;
 
@@ -11,13 +12,44 @@ namespace TheOracle.GameCore.Oracle
 {
     public class OracleRoller
     {
-        public class RollResult
+        public OracleRoller(OracleService oracleService, GameName game = GameName.None)
         {
-            public int Roll { get; set; }
-            public StandardOracle Result { get; set; }
-            public int Depth { get; set; }
-            public bool ShouldInline { get; set; }
-            public OracleTable ParentTable { get; set; }
+            OracleService = oracleService;
+            Game = game;
+        }
+
+        public GameName Game { get; }
+
+        public OracleService OracleService { get; }
+
+        public List<RollResult> RollResultList { get; set; }
+
+        public OracleRoller BuildRollResults(string tableName)
+        {
+            RollResultList = new List<RollResult>();
+            RollFacade(tableName);
+
+            return this;
+        }
+
+        public EmbedBuilder GetEmbedBuilder()
+        {
+            string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
+
+            EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}{OracleResources.OracleResult}__");
+            var footer = new EmbedFooterBuilder();
+            foreach (var item in RollResultList)
+            {
+                embed.AddField($"{OracleResources.OracleTable} {item.ParentTable.Name} [{item.Roll}]", item.Result.Description, item.ShouldInline);
+
+                if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
+                {
+                    footer.Text = (footer.Text == null || footer.Text.Length == 0) ? $"{OracleResources.PairedTable} {item.ParentTable.Pair}" : $"{CultureInfo.CurrentCulture.TextInfo.ListSeparator} {item.ParentTable.Pair}";
+                    embed.WithFooter(footer);
+                }
+            }
+
+            return embed;
         }
 
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
@@ -46,42 +78,64 @@ namespace TheOracle.GameCore.Oracle
             return roller;
         }
 
-        public OracleService OracleService { get; }
-        public GameName Game { get; }
-        public List<RollResult> RollResultList { get; set; }
-
-        public OracleRoller(OracleService oracleService, GameName game = GameName.None)
+        private bool MatchTableAlias(OracleTable valueToCheck, string table)
         {
-            OracleService = oracleService;
-            Game = game;
+            return valueToCheck.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || valueToCheck.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
         }
 
-        public OracleRoller BuildRollResults(string tableName)
+        private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
         {
-            RollResultList = new List<RollResult>();
-            RollFacade(tableName);
+            int numberOfRolls;
 
-            return this;
-        }
-
-        public EmbedBuilder GetEmbedBuilder()
-        {
-            string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
-
-            EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}{OracleResources.OracleResult}__");
-            var footer = new EmbedFooterBuilder();
-            foreach (var item in RollResultList)
+            // Match [2x] style entries
+            if (Regex.IsMatch(value, @"\[\d+x\]"))
             {
-                embed.AddField($"{OracleResources.OracleTable} {item.ParentTable.Name} [{item.Roll}]", item.Result.Description, item.ShouldInline);
-
-                if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
-                {
-                    footer.Text = (footer.Text == null || footer.Text.Length == 0) ? $"{OracleResources.PairedTable} {item.ParentTable.Pair}" : $"{CultureInfo.CurrentCulture.TextInfo.ListSeparator} {item.ParentTable.Pair}";
-                    embed.WithFooter(footer);
-                }
+                var match = Regex.Match(value, @"\[(\d+)x\]");
+                int.TryParse(match.Captures[0].Value, out numberOfRolls);
+            }
+            else
+            {
+                if (!int.TryParse(value, out numberOfRolls)) throw new ArgumentException($"Couldn't parse {value} as int");
             }
 
-            return embed;
+            string multiRollResult = string.Empty;
+            for (int i = 1; i <= numberOfRolls; i++)
+            {
+                RollFacade(multiRollTable.Name, depth + 1);
+            }
+
+            return multiRollResult;
+        }
+
+        private List<OracleTable> ParseOracleTables(string tableName)
+        {
+            var result = new List<OracleTable>();
+
+            // Match [table1/table2] style entries
+            var match = Regex.Match(tableName, @"\[.*\]");
+            if (match.Success)
+            {
+                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
+                foreach (var item in splits)
+                {
+                    result.AddRange(OracleService.OracleList.Where(o => MatchTableAlias(o, item) && (Game == GameName.None || Game == o.Game)).ToList());
+                }
+            }
+            else
+            {
+                result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
+            }
+
+            //if (result.GroupBy(t => t.Game).Where(grp => grp.Count() > 1).Select(grp => grp.Key).Count() > 1)
+            if (result.GroupBy(t => t.Game).Count() > 1)
+            {
+                string games = string.Empty;
+                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
+                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
+                throw new ArgumentException($"{OracleResources.TooManyGamesError} {games}");
+            }
+
+            return result;
         }
 
         private void RollFacade(string table, int depth = 0)
@@ -151,63 +205,13 @@ namespace TheOracle.GameCore.Oracle
             }
         }
 
-        private List<OracleTable> ParseOracleTables(string tableName)
+        public class RollResult
         {
-            var result = new List<OracleTable>();
-
-            // Match [table1/table2] style entries
-            var match = Regex.Match(tableName, @"\[.*\]");
-            if (match.Success)
-            {
-                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
-                foreach (var item in splits)
-                {
-                    result.AddRange(OracleService.OracleList.Where(o => MatchTableAlias(o, item) && (Game == GameName.None || Game == o.Game)).ToList());
-                }
-            }
-            else
-            {
-                result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
-            }
-
-            if (result.GroupBy(t => t.Game).Where(grp => grp.Count() > 1).Select(grp => grp.Key).Count() > 1)
-            {
-                string games = string.Empty;
-                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
-                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
-                throw new ArgumentException($"{OracleResources.TooManyGamesError}{games}");
-            }
-
-            return result;
-        }
-
-        private bool MatchTableAlias(OracleTable valueToCheck, string table)
-        {
-            return valueToCheck.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || valueToCheck.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
-        }
-
-        private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
-        {
-            int numberOfRolls;
-
-            // Match [2x] style entries
-            if (Regex.IsMatch(value, @"\[\d+x\]"))
-            {
-                var match = Regex.Match(value, @"\[(\d+)x\]");
-                int.TryParse(match.Captures[0].Value, out numberOfRolls);
-            }
-            else
-            {
-                if (!int.TryParse(value, out numberOfRolls)) throw new ArgumentException($"Couldn't parse {value} as int");
-            }
-
-            string multiRollResult = string.Empty;
-            for (int i = 1; i <= numberOfRolls; i++)
-            {
-                RollFacade(multiRollTable.Name, depth + 1);
-            }
-
-            return multiRollResult;
+            public int Depth { get; set; }
+            public OracleTable ParentTable { get; set; }
+            public StandardOracle Result { get; set; }
+            public int Roll { get; set; }
+            public bool ShouldInline { get; set; }
         }
     }
 }
