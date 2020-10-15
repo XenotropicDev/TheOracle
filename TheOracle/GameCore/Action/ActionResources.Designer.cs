@@ -22,7 +22,7 @@ namespace TheOracle.GameCore.Action {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ActionResources {
+    public class ActionResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace TheOracle.GameCore.Action {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.GameCore.Action.ActionResources", typeof(ActionResources).Assembly);
@@ -51,7 +51,7 @@ namespace TheOracle.GameCore.Action {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to and.
         /// </summary>
-        internal static string and {
+        public static string and {
             get {
                 return ResourceManager.GetString("and", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to **Complication**.
         /// </summary>
-        internal static string Complication {
+        public static string Complication {
             get {
                 return ResourceManager.GetString("Complication", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to _Miss_.
         /// </summary>
-        internal static string Miss {
+        public static string Miss {
             get {
                 return ResourceManager.GetString("Miss", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to **Opportunity**.
         /// </summary>
-        internal static string Opportunity {
+        public static string Opportunity {
             get {
                 return ResourceManager.GetString("Opportunity", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to _Strong Hit_.
         /// </summary>
-        internal static string Strong_Hit {
+        public static string Strong_Hit {
             get {
                 return ResourceManager.GetString("Strong Hit", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to vs..
         /// </summary>
-        internal static string VS {
+        public static string VS {
             get {
                 return ResourceManager.GetString("VS", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace TheOracle.GameCore.Action {
         /// <summary>
         ///   Looks up a localized string similar to _Weak Hit_.
         /// </summary>
-        internal static string Weak_Hit {
+        public static string Weak_Hit {
             get {
                 return ResourceManager.GetString("Weak Hit", resourceCulture);
             }
