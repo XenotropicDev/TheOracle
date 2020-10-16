@@ -117,43 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CommandDesc" xml:space="preserve">
-    <value>Creates an objective tracking post for things like Iron Vows</value>
+  <data name="Aspect" xml:space="preserve">
+    <value>Aspect</value>
   </data>
-  <data name="Dangerous" xml:space="preserve">
-    <value>Dangerous</value>
+  <data name="Disposition" xml:space="preserve">
+    <value>Disposition</value>
   </data>
-  <data name="Difficulty" xml:space="preserve">
-    <value>Difficulty</value>
+  <data name="Empty1" xml:space="preserve">
+    <value />
   </data>
-  <data name="Epic" xml:space="preserve">
-    <value>Epic</value>
+  <data name="Empty2" xml:space="preserve">
+    <value />
   </data>
-  <data name="Extreme" xml:space="preserve">
-    <value>Extreme</value>
-  </data>
-  <data name="Formidable" xml:space="preserve">
-    <value>Formidable</value>
-  </data>
-  <data name="Progress Amount" xml:space="preserve">
-    <value>Progress Amount</value>
-  </data>
-  <data name="Progress Bar" xml:space="preserve">
-    <value>Progress Bar</value>
-  </data>
-  <data name="Progress Tracker" xml:space="preserve">
-    <value>Progress Tracker</value>
-  </data>
-  <data name="ProgressRollFor" xml:space="preserve">
-    <value>Progress roll for </value>
-  </data>
-  <data name="Reactions" xml:space="preserve">
-    <value>Reactions</value>
-  </data>
-  <data name="Ticks" xml:space="preserve">
-    <value>Ticks</value>
-  </data>
-  <data name="Troublesome" xml:space="preserve">
-    <value>Troublesome</value>
+  <data name="FirstLook" xml:space="preserve">
+    <value>First Look</value>
   </data>
 </root>

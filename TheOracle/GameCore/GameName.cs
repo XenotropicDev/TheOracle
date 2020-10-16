@@ -1,4 +1,4 @@
-﻿namespace TheOracle.IronSworn
+﻿namespace TheOracle
 {
     public enum GameName
     {

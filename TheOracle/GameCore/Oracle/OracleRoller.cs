@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.IronSworn;
 
@@ -11,54 +12,23 @@ namespace TheOracle.GameCore.Oracle
 {
     public class OracleRoller
     {
-        public class RollResult
-        {
-            public int Roll { get; set; }
-            public StandardOracle Result { get; set; }
-            public int Depth { get; set; }
-            public bool ShouldInline { get; set; }
-            public OracleTable ParentTable { get; set; }
-        }
-
-        internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
-        {
-            var roller = new OracleRoller(oracleService);
-            roller.RollResultList = new List<RollResult>();
-
-            foreach (var field in embed.Fields)
-            {
-                var titleElementsRegex = Regex.Match(field.Name, OracleResources.OracleTable + @" ?(.*)\[(\d+)\]");
-                var sourceTable = oracleService.OracleList.Find(oracle => oracle.Name == titleElementsRegex.Groups[1].Value.Trim());
-
-                var oracleResult = oracleService.OracleList.Find(tbl => tbl.Name == sourceTable.Name)?.Oracles?.Find(oracle => oracle.Description == field.Value.ToString()) ?? null;
-
-                if (!Int32.TryParse(titleElementsRegex.Groups[2].Value, out int tempRoll)) continue;
-
-                roller.RollResultList.Add(new RollResult
-                {
-                    ParentTable = sourceTable,
-                    Result = oracleResult,
-                    ShouldInline = field.IsInline,
-                    Roll = tempRoll
-                });
-            }
-
-            return roller;
-        }
-
-        public OracleService OracleService { get; }
-        public GameName Game { get; }
-        public List<RollResult> RollResultList { get; set; }
-
         public OracleRoller(OracleService oracleService, GameName game = GameName.None)
         {
             OracleService = oracleService;
             Game = game;
         }
 
+        public GameName Game { get; private set; }
+
+        public OracleService OracleService { get; }
+
+        public List<RollResult> RollResultList { get; set; }
+
         public OracleRoller BuildRollResults(string tableName)
         {
             RollResultList = new List<RollResult>();
+            if (Game == GameName.None) Game = ParseOracleTables(tableName).FirstOrDefault()?.Game ?? GameName.None;
+
             RollFacade(tableName);
 
             return this;
@@ -82,6 +52,100 @@ namespace TheOracle.GameCore.Oracle
             }
 
             return embed;
+        }
+
+        internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
+        {
+            var roller = new OracleRoller(oracleService);
+            roller.Game = Utilities.GetGameContainedInString(embed.Title);
+
+            roller.RollResultList = new List<RollResult>();
+
+            foreach (var field in embed.Fields)
+            {
+                var titleElementsRegex = Regex.Match(field.Name, OracleResources.OracleTable + @" ?(.*)\[(\d+)\]");
+                var sourceTable = oracleService.OracleList.Find(oracle => oracle.Name == titleElementsRegex.Groups[1].Value.Trim());
+
+                var oracleResult = oracleService.OracleList.Find(tbl => tbl.Name == sourceTable.Name)?.Oracles?.Find(oracle => oracle.Description == field.Value.ToString()) ?? null;
+
+                if (!Int32.TryParse(titleElementsRegex.Groups[2].Value, out int tempRoll)) continue;
+
+                roller.RollResultList.Add(new RollResult
+                {
+                    ParentTable = sourceTable,
+                    Result = oracleResult,
+                    ShouldInline = field.IsInline,
+                    Roll = tempRoll
+                });
+            }
+
+            return roller;
+        }
+
+        private bool MatchTableAlias(OracleTable valueToCheck, string table)
+        {
+            return valueToCheck.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || valueToCheck.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
+        }
+
+        private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
+        {
+            int numberOfRolls;
+
+            // Match [2x] style entries
+            if (Regex.IsMatch(value, @"\[\d+x\]"))
+            {
+                var match = Regex.Match(value, @"\[(\d+)x\]");
+                int.TryParse(match.Captures[0].Value, out numberOfRolls);
+            }
+            else
+            {
+                if (!int.TryParse(value, out numberOfRolls)) throw new ArgumentException($"Couldn't parse {value} as int");
+            }
+
+            string multiRollResult = string.Empty;
+            for (int i = 1; i <= numberOfRolls; i++)
+            {
+                RollFacade(multiRollTable.Name, depth + 1);
+            }
+
+            return multiRollResult;
+        }
+
+        private List<OracleTable> ParseOracleTables(string tableName)
+        {
+            var result = new List<OracleTable>();
+
+            // Match [table1/table2] style entries
+            var match = Regex.Match(tableName, @"\[.*\]");
+            if (match.Success)
+            {
+                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
+                foreach (var item in splits)
+                {
+                    result.AddRange(OracleService.OracleList.Where(o => MatchTableAlias(o, item) && (Game == GameName.None || Game == o.Game)).ToList());
+                }
+            }
+            else
+            {
+                result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
+            }
+
+            //if (result.GroupBy(t => t.Game).Where(grp => grp.Count() > 1).Select(grp => grp.Key).Count() > 1)
+            if (result.GroupBy(t => t.Game).Count() > 1)
+            {
+                string games = string.Empty;
+                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
+                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
+                throw new ArgumentException($"{OracleResources.TooManyGamesError} {games}");
+            }
+
+            return result;
+        }
+
+        public OracleRoller WithGame(GameName game)
+        {
+            this.Game = game;
+            return this;
         }
 
         private void RollFacade(string table, int depth = 0)
@@ -151,63 +215,13 @@ namespace TheOracle.GameCore.Oracle
             }
         }
 
-        private List<OracleTable> ParseOracleTables(string tableName)
+        public class RollResult
         {
-            var result = new List<OracleTable>();
-
-            // Match [table1/table2] style entries
-            var match = Regex.Match(tableName, @"\[.*\]");
-            if (match.Success)
-            {
-                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
-                foreach (var item in splits)
-                {
-                    result.AddRange(OracleService.OracleList.Where(o => MatchTableAlias(o, item) && (Game == GameName.None || Game == o.Game)).ToList());
-                }
-            }
-            else
-            {
-                result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
-            }
-
-            if (result.GroupBy(t => t.Game).Where(grp => grp.Count() > 1).Select(grp => grp.Key).Count() > 1)
-            {
-                string games = string.Empty;
-                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
-                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
-                throw new ArgumentException($"{OracleResources.TooManyGamesError}{games}");
-            }
-
-            return result;
-        }
-
-        private bool MatchTableAlias(OracleTable valueToCheck, string table)
-        {
-            return valueToCheck.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || valueToCheck.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
-        }
-
-        private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
-        {
-            int numberOfRolls;
-
-            // Match [2x] style entries
-            if (Regex.IsMatch(value, @"\[\d+x\]"))
-            {
-                var match = Regex.Match(value, @"\[(\d+)x\]");
-                int.TryParse(match.Captures[0].Value, out numberOfRolls);
-            }
-            else
-            {
-                if (!int.TryParse(value, out numberOfRolls)) throw new ArgumentException($"Couldn't parse {value} as int");
-            }
-
-            string multiRollResult = string.Empty;
-            for (int i = 1; i <= numberOfRolls; i++)
-            {
-                RollFacade(multiRollTable.Name, depth + 1);
-            }
-
-            return multiRollResult;
+            public int Depth { get; set; }
+            public OracleTable ParentTable { get; set; }
+            public StandardOracle Result { get; set; }
+            public int Roll { get; set; }
+            public bool ShouldInline { get; set; }
         }
     }
 }

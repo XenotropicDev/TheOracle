@@ -79,6 +79,15 @@ namespace TheOracle.GameCore.NpcGenerator {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to : =,.
+        /// </summary>
+        internal static string ItemSeperators {
+            get {
+                return ResourceManager.GetString("ItemSeperators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {

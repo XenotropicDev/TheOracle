@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheOracle.GameCore.Action {
+namespace TheOracle.StarForged.NPC {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace TheOracle.GameCore.Action {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ActionResources {
+    internal class StarforgedNPCResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ActionResources() {
+        internal StarforgedNPCResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.GameCore.Action.ActionResources", typeof(ActionResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.NPC.StarforgedNPCResources", typeof(StarforgedNPCResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace TheOracle.GameCore.Action {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,65 +61,47 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to and.
+        ///   Looks up a localized string similar to Aspect.
         /// </summary>
-        public static string and {
+        internal static string Aspect {
             get {
-                return ResourceManager.GetString("and", resourceCulture);
+                return ResourceManager.GetString("Aspect", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to **Complication**.
+        ///   Looks up a localized string similar to Disposition.
         /// </summary>
-        public static string Complication {
+        internal static string Disposition {
             get {
-                return ResourceManager.GetString("Complication", resourceCulture);
+                return ResourceManager.GetString("Disposition", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Miss_.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Miss {
+        internal static string Empty1 {
             get {
-                return ResourceManager.GetString("Miss", resourceCulture);
+                return ResourceManager.GetString("Empty1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to **Opportunity**.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Opportunity {
+        internal static string Empty2 {
             get {
-                return ResourceManager.GetString("Opportunity", resourceCulture);
+                return ResourceManager.GetString("Empty2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Strong Hit_.
+        ///   Looks up a localized string similar to First Look.
         /// </summary>
-        public static string Strong_Hit {
+        internal static string FirstLook {
             get {
-                return ResourceManager.GetString("Strong Hit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to vs..
-        /// </summary>
-        public static string VS {
-            get {
-                return ResourceManager.GetString("VS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to _Weak Hit_.
-        /// </summary>
-        public static string Weak_Hit {
-            get {
-                return ResourceManager.GetString("Weak Hit", resourceCulture);
+                return ResourceManager.GetString("FirstLook", resourceCulture);
             }
         }
     }

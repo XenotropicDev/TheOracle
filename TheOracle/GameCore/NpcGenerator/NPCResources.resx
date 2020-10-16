@@ -123,6 +123,9 @@
   <data name="Goal" xml:space="preserve">
     <value>Goal</value>
   </data>
+  <data name="ItemSeperators" xml:space="preserve">
+    <value>: =,</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
