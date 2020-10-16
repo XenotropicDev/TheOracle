@@ -47,7 +47,7 @@
            { "Chance": 100, "Description": "Descriptor/Focus"}
         ],
         "NumberOfBiomes": [
-            { "Chance": 100, "Amount": 1 }
+            { "Chance": 100, "Amount": 0 }
           ],
         "PossibleBiomes": [
            { "Chance": 100, "Description": "Desert"}
@@ -126,7 +126,7 @@
             { "Chance": 100, "Description": "Descriptor/Focus"}
         ],
         "NumberOfBiomes": [
-            { "Chance": 100, "Amount": 1 }
+            { "Chance": 100, "Amount": 0 }
           ],
         "PossibleBiomes": [
            { "Chance": 100, "Description": "Furnace"}

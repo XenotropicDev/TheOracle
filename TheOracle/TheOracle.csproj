@@ -66,7 +66,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ProgressResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="StarForged\StarforgedNPCResources.Designer.cs">
+    <Compile Update="StarForged\NPC\StarforgedNPCResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>StarforgedNPCResources.resx</DependentUpon>
@@ -90,7 +90,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProgressResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="StarForged\StarforgedNPCResources.resx">
+    <EmbeddedResource Update="StarForged\NPC\StarforgedNPCResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StarforgedNPCResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks.Dataflow;
+using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.IronSworn;
 
@@ -18,7 +18,7 @@ namespace TheOracle.GameCore.Oracle
             Game = game;
         }
 
-        public GameName Game { get; }
+        public GameName Game { get; private set; }
 
         public OracleService OracleService { get; }
 
@@ -27,6 +27,8 @@ namespace TheOracle.GameCore.Oracle
         public OracleRoller BuildRollResults(string tableName)
         {
             RollResultList = new List<RollResult>();
+            if (Game == GameName.None) Game = ParseOracleTables(tableName).FirstOrDefault()?.Game ?? GameName.None;
+
             RollFacade(tableName);
 
             return this;
@@ -55,6 +57,8 @@ namespace TheOracle.GameCore.Oracle
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
         {
             var roller = new OracleRoller(oracleService);
+            roller.Game = Utilities.GetGameContainedInString(embed.Title);
+
             roller.RollResultList = new List<RollResult>();
 
             foreach (var field in embed.Fields)
@@ -136,6 +140,12 @@ namespace TheOracle.GameCore.Oracle
             }
 
             return result;
+        }
+
+        public OracleRoller WithGame(GameName game)
+        {
+            this.Game = game;
+            return this;
         }
 
         private void RollFacade(string table, int depth = 0)

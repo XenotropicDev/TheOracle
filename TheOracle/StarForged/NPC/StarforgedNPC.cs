@@ -9,7 +9,7 @@ using TheOracle.Core;
 using TheOracle.GameCore.NpcGenerator;
 using TheOracle.IronSworn;
 
-namespace TheOracle.StarForged
+namespace TheOracle.StarForged.NPC
 {
     public class StarforgedNPC : INpcGenerator
     {

@@ -1012,7 +1012,7 @@
 {
     "Name": "Pay The Price",
     "Game": "Ironsworn",
-    "Aliases": ["ptp"],
+    "Aliases": ["ptp", "Iron Price"],
     "Oracles":[
         { "Chance": 2, "Description": "Roll again and apply that result but make it worse. If you roll this result yet again, think of something dreadful that changes the course of your quest (Ask the Oracle if unsure) and make it happen."},
         { "Chance": 5, "Description": "A person or community you trusted loses faith in you, or acts against you."},

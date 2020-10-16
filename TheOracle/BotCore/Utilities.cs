@@ -42,7 +42,7 @@ namespace TheOracle.BotCore
 
             foreach (var s in Enum.GetNames(typeof(GameName)).Where(g => !g.Equals("none", StringComparison.OrdinalIgnoreCase)))
             {
-                if (Regex.IsMatch(value, $"(^{s} | {s}( |$)|^{s}$)", RegexOptions.IgnoreCase) && Enum.TryParse(s, out GameName game))
+                if (Regex.IsMatch(value, s, RegexOptions.IgnoreCase) && Enum.TryParse(s, out GameName game))
                 {
                     return game;
                 }
