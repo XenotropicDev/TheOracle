@@ -1,60 +1,40 @@
 ﻿using Discord;
-using Discord.Commands;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TheOracle.Core;
-using TheOracle.IronSworn;
 
 namespace TheOracle.StarForged
 {
-    public class StarforgedSettlementCommands : ModuleBase<SocketCommandContext>
-    {
-        public OracleService oracleService { get; set; }
-
-        [Command("GenerateSettlement", ignoreExtraArgs: true)]
-        [Summary("Creates a template post for a new Starforged settlement")]
-        [Alias("Settlement")]
-        public async Task SettlementPost(SpaceRegion region, [Remainder] string SettlementName = "")
-        {
-            var settlement = Settlement.GenerateSettlement(oracleService, region, SettlementName);
-
-            EmbedBuilder embedBuilder = new EmbedBuilder()
-                .WithTitle($"__{settlement.Name}__")
-                .AddField("Location", settlement.Location)
-                .AddField("Population", settlement.Population, true)
-                .AddField("Authority", settlement.Authority, true)
-
-                .AddField("First Look", settlement.FirstLooks[0])
-                .AddField("Initial Contact", settlement.InitialContact)
-                .AddField("Settlement Projects", settlement.Projects[0])
-                .AddField("Settlement Trouble", settlement.SettlementTrouble);
-
-            //embedBuilder.ThumbnailUrl = planet.Thumbnail; //TODO (maybe location hex?)
-            var message = await ReplyAsync("", false, embedBuilder.Build());
-        }
-    }
-
     public class Settlement
     {
+        public Settlement(ServiceProvider services)
+        {
+            Services = services;
+        }
+
         public string Authority { get; set; }
         public List<string> FirstLooks { get; set; }
+        public int FirstLooksRevealed { get; set; }
         public string InitialContact { get; set; }
         public string Location { get; set; }
         public string Name { get; set; }
         public string Population { get; set; }
         public List<string> Projects { get; set; }
+        public int ProjectsRevealed { get; set; }
         public int Seed { get; set; }
         public string SettlementTrouble { get; set; }
         public SpaceRegion Region { get; set; }
+        public ServiceProvider Services { get; }
 
-        public static Settlement GenerateSettlement(OracleService oracleService, SpaceRegion spaceRegion, string SettlementName = "")
+        public static Settlement GenerateSettlement(ServiceProvider serviceProvider, SpaceRegion spaceRegion, string SettlementName = "")
         {
+            var oracleService = serviceProvider.GetRequiredService<OracleService>();
             if (SettlementName == string.Empty)
                 SettlementName = oracleService.RandomRow("Settlement Name").Description;
 
-            var s = new Settlement();
+            var s = new Settlement(serviceProvider);
             s.Seed = $"{SettlementName}{spaceRegion}".GetDeterministicHashCode();
             s.Region = spaceRegion;
             s.Name = SettlementName;
@@ -80,6 +60,30 @@ namespace TheOracle.StarForged
             s.SettlementTrouble = oracleService.RandomRow($"Settlement Trouble", GameName.Starforged, random).Description;
 
             return s;
+        }
+
+        public Settlement FromEmbed(Embed embed)
+        {
+            SpaceRegion region = StarforgedUtilites.GetAnySpaceRegion(embed.Fields.First(e => e.Name.Contains("Settlement Population")).Name);
+            var settlement = GenerateSettlement(Services, region, embed.Title.Replace("__", ""));
+
+            return settlement;
+        }
+
+        public EmbedBuilder GetEmbedBuilder()
+        {
+            EmbedBuilder embedBuilder = new EmbedBuilder()
+                .WithTitle($"__{Name}__")
+                .AddField("Location", Location)
+                .AddField("Population", Population, true)
+                .AddField("Authority", Authority, true)
+
+                .AddField("First Look", FirstLooks[0])
+                .AddField("Initial Contact", InitialContact)
+                .AddField("Settlement Projects", Projects[0])
+                .AddField("Settlement Trouble", SettlementTrouble);
+
+            return embedBuilder;
         }
     }
 }

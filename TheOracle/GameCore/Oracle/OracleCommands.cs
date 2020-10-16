@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,19 @@ namespace TheOracle.IronSworn
     public class OracleCommands : ModuleBase<SocketCommandContext>
     {
         //OracleService is loaded from DI
-        public OracleCommands(OracleService oracleService, DiscordSocketClient client)
+        public OracleCommands(ServiceProvider services)
         {
-            _oracleService = oracleService;
-            this.client = client;
-            this.client.ReactionAdded += PairedTableReactionHandler;
+            _oracleService = services.GetRequiredService<OracleService>();
+            _client = services.GetRequiredService<DiscordSocketClient>();
+
+            if (!services.GetRequiredService<HookedEvents>().OracleReactions)
+            {
+                _client.ReactionAdded += PairedTableReactionHandler;
+            }
         }
 
         private readonly OracleService _oracleService;
-        private readonly DiscordSocketClient client;
+        private readonly DiscordSocketClient _client;
 
         [Command("OracleTable")]
         [Summary("Rolls an Oracle")]
@@ -96,7 +101,7 @@ namespace TheOracle.IronSworn
             if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return Task.CompletedTask;
 
             var message = userMessage.GetOrDownloadAsync().Result;
-            if (message.Author.Id != client.CurrentUser.Id) return Task.CompletedTask;
+            if (message.Author.Id != _client.CurrentUser.Id) return Task.CompletedTask;
 
             var pairEmoji = new Emoji("\uD83E\uDDE6");
             if (reaction.Emote.Name == pairEmoji.Name)
@@ -123,7 +128,7 @@ namespace TheOracle.IronSworn
                 var pairedTable = _oracleService.OracleList.Find(tbl => tbl.Name == rollResult.ParentTable.Name);
                 if (existingRoller.RollResultList.Any(tbl => tbl.ParentTable.Name == pairedTable.Pair)) continue;
 
-                var roller = new OracleRoller(_oracleService).BuildRollResults(pairedTable.Pair);
+                var roller = new OracleRoller(_oracleService).WithGame(existingRoller.Game).BuildRollResults(pairedTable.Pair);
 
                 roller.RollResultList.ForEach(res => res.ShouldInline = true);
                 rollResult.ShouldInline = true;

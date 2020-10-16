@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheOracle.StarForged {
+namespace TheOracle.StarForged.NPC {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TheOracle.StarForged {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.StarforgedNPCResources", typeof(StarforgedNPCResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.NPC.StarforgedNPCResources", typeof(StarforgedNPCResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

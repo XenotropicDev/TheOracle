@@ -80,6 +80,7 @@ namespace TheOracle
                 .AddSingleton(new CommandHandler(client, command))
                 .AddSingleton<OracleService>()
                 .AddSingleton<RuleService>()
+                .AddSingleton<HookedEvents>()
                 .AddScoped<NpcFactory>()
                 .BuildServiceProvider();
         }
