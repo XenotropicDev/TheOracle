@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TheOracle.IronSworn;
 using TheOracle.StarForged;
+using TheOracle.StarForged.NPC;
 
 namespace TheOracle.GameCore.NpcGenerator
 {
