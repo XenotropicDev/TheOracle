@@ -1,6 +1,7 @@
 [{
     "Name": "Action",
     "Game": "Ironsworn",
+    "Pair": "Theme",
     "Aliases": ["actions", "Iron Action", "IAction"],
     "Oracles": [
         { "Chance": 1, "Description": "Scheme"},
@@ -108,6 +109,7 @@
 {
     "Name": "Theme",
     "Game": "Ironsworn",
+    "Pair": "Action",
     "Aliases": ["themes", "Iron Theme", "ITheme"],
     "Oracles":[
         { "Chance": 1, "Description": "Risk"},

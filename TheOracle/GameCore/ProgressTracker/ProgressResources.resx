@@ -144,6 +144,9 @@
   <data name="Progress Tracker" xml:space="preserve">
     <value>Progress Tracker</value>
   </data>
+  <data name="ProgressRollFor" xml:space="preserve">
+    <value>Progress roll for </value>
+  </data>
   <data name="Reactions" xml:space="preserve">
     <value>Reactions</value>
   </data>

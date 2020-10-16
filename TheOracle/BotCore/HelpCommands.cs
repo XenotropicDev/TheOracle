@@ -21,7 +21,7 @@ namespace TheOracle
             _map = map;
         }
 
-        [Command("help")]
+        [Command("Help")]
         [Summary("Lists this bot's commands.")]
         public async Task Help(string path = "")
         {

@@ -35,7 +35,15 @@ namespace TheOracle.Core
         public IOracleEntry RandomRow(string TableName, GameName game = GameName.None, Random rand = null)
         {
             if (rand == null) rand = BotRandom.Instance;
-            return OracleList.Single(ot => ot.Name == TableName && (ot.Game == game || game == GameName.None)).Oracles.GetRandomRow(rand);
+            try
+            {
+                return OracleList.Single(ot => ot.Name == TableName && (ot.Game == game || game == GameName.None)).Oracles.GetRandomRow(rand);
+            }
+            catch (Exception ex)
+            {
+                ArgumentException argEx = new ArgumentException($"Error retrieving oracle '{TableName}' for game '{game}'", ex);
+                throw argEx;
+            }
         }
     }
 }

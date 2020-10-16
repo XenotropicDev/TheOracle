@@ -1,7 +1,9 @@
 ﻿using Discord.Commands;
 using System.Linq;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.GameCore.RulesReference;
+using TheOracle.IronSworn;
 
 namespace TheOracle.Core
 {
@@ -14,36 +16,53 @@ namespace TheOracle.Core
         [Summary("Creates an objective tracking post for things like Iron Vows")]
         public async Task ReferencePost([Remainder] string query)
         {
+            GameName game = Utilities.GetGameContainedInString(query);
+            query = Utilities.RemoveGameNamesFromString(query);
+
+            if (game == GameName.None) game = Utilities.GetDefaultGame();
+
             query = query.Trim();
+
             if (ruleService.Rules.Any(r => MatchNameOrAlias(r, query)))
             {
-                var rule = ruleService.Rules.Find(r => MatchNameOrAlias(r, query));
-                
-                if (rule.Moves.Count() == 0)
+                var rules = ruleService.Rules.Where(r => MatchNameOrAlias(r, query));
+
+                if (rules.GroupBy(r => r.Game).Count() > 1) rules = rules.Where(r => r.Game == game);
+
+                foreach (var rule in rules)
                 {
-                    await ReplyAsync($"No moves in {query}");
-                    return;
+                    if (rule.Moves.Count() == 0)
+                    {
+                        await ReplyAsync($"No moves in {query}");
+                        return;
+                    }
+
+                    string CategoryReply = string.Empty;
+                    foreach (var move in rule.Moves)
+                    {
+                        CategoryReply += $"{move.Name}\n";
+                    }
+
+                    await ReplyAsync($"__**{rule.Category}**__:\n{CategoryReply}");
                 }
 
-                string CategoryReply = string.Empty;
-                foreach (var move in rule.Moves)
-                {
-                    //string aliases = string.Empty;
-                    //if (move.Aliases != default)
-                    //{
-                    //    aliases = $" - Aliases: {string.Join(", ", move?.Aliases)}";
-                    //}
-                    CategoryReply += $"{move.Name}\n";
-                }
-
-                await ReplyAsync($"__**{rule.Category}**__:\n{CategoryReply}");
                 return;
             }
 
             string specificMovesReply = string.Empty;
-            foreach (var move in ruleService.Rules.SelectMany(r => r.Moves.Where(m => MatchNameOrAlias(m, query))))
+            var specRules = ruleService.Rules.Where(r => r.Moves.Any(m => MatchNameOrAlias(m, query)));
+
+            if (specRules.GroupBy(r => r.Game).Count() > 1) specRules = specRules.Where(r => r.Game == game);
+            
+            foreach (var move in specRules.SelectMany(r => r.Moves.Where(m => MatchNameOrAlias(m, query))))
             {
-                specificMovesReply += $"__**{move.Name}**__\n{move.Text}\n\n";
+                string temp = $"__{game} - **{move.Name}**__\n{move.Text}\n\n";
+                if (specificMovesReply.Length + temp.Length > 2000)
+                {
+                    await ReplyAsync(specificMovesReply);
+                    specificMovesReply = string.Empty;
+                }
+                specificMovesReply += temp;
             }
 
             if (specificMovesReply.Length == 0)

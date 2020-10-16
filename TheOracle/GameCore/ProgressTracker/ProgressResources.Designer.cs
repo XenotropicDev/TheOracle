@@ -142,6 +142,15 @@ namespace TheOracle.GameCore.ProgressTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progress roll for .
+        /// </summary>
+        internal static string ProgressRollFor {
+            get {
+                return ResourceManager.GetString("ProgressRollFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reactions.
         /// </summary>
         internal static string Reactions {

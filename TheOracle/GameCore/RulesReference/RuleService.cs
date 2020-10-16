@@ -20,6 +20,12 @@ namespace TheOracle.GameCore.RulesReference
                 var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText("IronSworn\\GameRules.json"));
                 Rules.AddRange(root.MovesReference);
             }
+
+            if (File.Exists("Starforged\\GameRules.json"))
+            {
+                var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText("Starforged\\GameRules.json"));
+                Rules.AddRange(root.MovesReference);
+            }
         }
     }
 }

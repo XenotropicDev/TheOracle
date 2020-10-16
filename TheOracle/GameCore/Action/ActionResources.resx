@@ -121,21 +121,21 @@
     <value>and</value>
   </data>
   <data name="Complication" xml:space="preserve">
-    <value>Complication</value>
+    <value>**Complication**</value>
   </data>
   <data name="Miss" xml:space="preserve">
-    <value>Miss</value>
+    <value>_Miss_</value>
   </data>
   <data name="Opportunity" xml:space="preserve">
-    <value>Opportunity</value>
+    <value>**Opportunity**</value>
   </data>
   <data name="Strong Hit" xml:space="preserve">
-    <value>Strong Hit</value>
+    <value>_Strong Hit_</value>
   </data>
   <data name="VS" xml:space="preserve">
     <value>vs.</value>
   </data>
   <data name="Weak Hit" xml:space="preserve">
-    <value>Weak Hit</value>
+    <value>_Weak Hit_</value>
   </data>
 </root>

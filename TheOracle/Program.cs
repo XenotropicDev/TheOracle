@@ -1,17 +1,16 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
-using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
+using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.RulesReference;
-using TheOracle.IronSworn;
 
 namespace TheOracle
 {
@@ -25,6 +24,7 @@ namespace TheOracle
         {
             using (var services = ConfigureServices())
             {
+                Console.WriteLine($"Starting TheOracle v{Assembly.GetEntryAssembly().GetName().Version}");
                 var client = services.GetRequiredService<DiscordSocketClient>();
 
                 client.Log += LogAsync;
@@ -34,8 +34,7 @@ namespace TheOracle
                 string? token = Environment.GetEnvironmentVariable("DiscordToken");
                 if (token == null)
                 {
-                    JObject jsonToken = JObject.Parse(File.ReadAllText("token.json"));
-                    token = (string)jsonToken.SelectToken("DiscordToken");
+                    token = services.GetRequiredService<IConfigurationRoot>().GetSection("DiscordToken").Value;
                 }
                 #nullable disable
 
@@ -68,12 +67,20 @@ namespace TheOracle
             var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100 };
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService();
+
+            var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("channelsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("token.json", optional: true, reloadOnChange: true)
+                .Build();
+
             return new ServiceCollection()
                 .AddSingleton(client)
                 .AddSingleton(command)
+                .AddSingleton(config)
                 .AddSingleton(new CommandHandler(client, command))
                 .AddSingleton<OracleService>()
                 .AddSingleton<RuleService>()
+                .AddScoped<NpcFactory>()
                 .BuildServiceProvider();
         }
     }
