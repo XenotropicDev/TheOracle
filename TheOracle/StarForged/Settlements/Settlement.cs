@@ -3,9 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TheOracle.Core;
 
-namespace TheOracle.StarForged
+namespace TheOracle.StarForged.Settlements
 {
     public class Settlement
     {
@@ -15,14 +16,14 @@ namespace TheOracle.StarForged
         }
 
         public string Authority { get; set; }
+        public int FirstLooksToReveal { get; set; }
         public List<string> FirstLooks { get; set; }
-        public int FirstLooksRevealed { get; set; }
         public string InitialContact { get; set; }
         public string Location { get; set; }
         public string Name { get; set; }
         public string Population { get; set; }
         public List<string> Projects { get; set; }
-        public int ProjectsRevealed { get; set; }
+        public int ProjectsRevealed { get; set; } = 0;
         public int Seed { get; set; }
         public string SettlementTrouble { get; set; }
         public SpaceRegion Region { get; set; }
@@ -46,6 +47,7 @@ namespace TheOracle.StarForged
             s.FirstLooks = oracleService.OracleList.Single(o => o.Name == "Settlement First Look" && o.Game == GameName.Starforged)
                 .Oracles.Select(o => o.Description).ToList();
             s.FirstLooks.Shuffle(random);
+            s.FirstLooksToReveal = random.Next(1, 3);
 
             s.InitialContact = oracleService.RandomRow("Settlement Initial Contact", GameName.Starforged, random).Description;
 
@@ -62,10 +64,15 @@ namespace TheOracle.StarForged
             return s;
         }
 
-        public Settlement FromEmbed(Embed embed)
+        public Settlement FromEmbed(IEmbed embed)
         {
-            SpaceRegion region = StarforgedUtilites.GetAnySpaceRegion(embed.Fields.First(e => e.Name.Contains("Settlement Population")).Name);
+            if (!embed.Description.Contains(SettlementResources.Settlement)) throw new ArgumentException(SettlementResources.SettlementNotFoundError);
+
+            SpaceRegion region = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
             var settlement = GenerateSettlement(Services, region, embed.Title.Replace("__", ""));
+
+            settlement.FirstLooksToReveal = embed.Fields.Count(fld => fld.Name.Contains(SettlementResources.FirstLook));
+            settlement.ProjectsRevealed = embed.Fields.Count(fld => fld.Name.Contains(SettlementResources.SettlementProjects));
 
             return settlement;
         }
@@ -74,14 +81,17 @@ namespace TheOracle.StarForged
         {
             EmbedBuilder embedBuilder = new EmbedBuilder()
                 .WithTitle($"__{Name}__")
-                .AddField("Location", Location)
-                .AddField("Population", Population, true)
-                .AddField("Authority", Authority, true)
+                .WithDescription($"{Region} {SettlementResources.Settlement}")
+                .AddField(SettlementResources.Location, Location, true)
+                .AddField(SettlementResources.Population, Population, true)
+                .AddField(SettlementResources.Authority, Authority, true);
 
-                .AddField("First Look", FirstLooks[0])
-                .AddField("Initial Contact", InitialContact)
-                .AddField("Settlement Projects", Projects[0])
-                .AddField("Settlement Trouble", SettlementTrouble);
+            for (int i = 0; i < FirstLooksToReveal; i++) embedBuilder.AddField(SettlementResources.FirstLook, FirstLooks[i], true);
+
+            embedBuilder.AddField(SettlementResources.InitialContact, $"||{InitialContact}||", true);
+            embedBuilder.AddField(SettlementResources.SettlementTrouble, $"||{SettlementTrouble}||", true);
+
+            for (int i = 0; i < ProjectsRevealed; i++) embedBuilder.AddField(SettlementResources.SettlementProjects, Projects[i], true);
 
             return embedBuilder;
         }

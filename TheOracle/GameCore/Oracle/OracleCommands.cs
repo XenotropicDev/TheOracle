@@ -69,7 +69,7 @@ namespace TheOracle.IronSworn
         [Alias("List")]
         public async Task OracleList()
         {
-            string reply = string.Empty;
+            string reply = $"__Here's a list of available Oracle Tables:__\n";
             foreach (var oracle in _oracleService.OracleList)
             {
                 //string sample = string.Join(", ", oracle.Oracles.Take(1).Select(o => o.Description));
@@ -90,9 +90,9 @@ namespace TheOracle.IronSworn
                     break;
                 }
 
-                int cutoff = reply.Substring(0, 2000).LastIndexOf('\n');
+                int cutoff = reply.Substring(0, 2000).LastIndexOf(',');
                 await ReplyAsync(reply.Substring(0, cutoff));
-                reply = reply.Substring(cutoff);
+                reply = reply.Substring(cutoff+1).Trim();
             }
         }
 

@@ -2,6 +2,7 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace TheOracle.Core
         public ProgressTrackCommands(DiscordSocketClient client, HookedEvents hooks)
         {
             Client = client;
-            if (!hooks.PlanetReactions)
+            if (!hooks.ProgressReactions)
             {
                 hooks.PlanetReactions = true;
                 Client.ReactionAdded += ProgressBuilderReactions;
@@ -55,9 +56,6 @@ namespace TheOracle.Core
                 if (reaction.Emote.Name == fourEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
             });
-
-            message.RemoveReactionsAsync(message.Author, emojisToProcess);
-            message.RemoveReactionsAsync(reaction.User.Value, emojisToProcess);
 
             return Task.CompletedTask;
         }
@@ -133,10 +131,12 @@ namespace TheOracle.Core
                 });
             }
 
-            await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji));
-            await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji));
-            await messageToEdit.AddReactionAsync(new Emoji(FullEmoji));
-            await messageToEdit.AddReactionAsync(new Emoji(RollEmoji));
+            Task.WaitAll(messageToEdit.RemoveAllReactionsAsync()); //Don't proceed until this is complete
+
+            await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji)).ConfigureAwait(false);
+            await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji)).ConfigureAwait(false);
+            await messageToEdit.AddReactionAsync(new Emoji(FullEmoji)).ConfigureAwait(false);
+            await messageToEdit.AddReactionAsync(new Emoji(RollEmoji)).ConfigureAwait(false);
 
             return;
         }

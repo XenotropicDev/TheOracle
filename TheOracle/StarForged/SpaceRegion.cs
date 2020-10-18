@@ -7,7 +7,7 @@ namespace TheOracle.StarForged
     {
         None,
         Terminus,
-        Outloads,
+        Outlands,
         Expanse,
     }
 }

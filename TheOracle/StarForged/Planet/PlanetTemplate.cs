@@ -53,7 +53,7 @@ namespace TheOracle.StarForged
         public List<Expanse> Expanse { get; set; } = new List<Expanse>();
     }
 
-    public class Settlements
+    public class SettlementRegions
     {
         public Terminus Terminus { get; set; }
         public Outlands Outlands { get; set; }

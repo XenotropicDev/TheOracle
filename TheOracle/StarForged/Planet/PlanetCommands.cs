@@ -67,7 +67,7 @@ namespace TheOracle.IronSworn
             embedBuilder.AddField("Atmosphere", planet.Atmosphere.Description, true);
 
             if (region == SpaceRegion.Terminus) embedBuilder.AddField("Terminus Settlements", planet.Settlements.Terminus.Description);
-            if (region == SpaceRegion.Outloads) embedBuilder.AddField("Outlands Settlements", planet.Settlements.Outlands.Description);
+            if (region == SpaceRegion.Outlands) embedBuilder.AddField("Outlands Settlements", planet.Settlements.Outlands.Description);
             if (region == SpaceRegion.Expanse) embedBuilder.AddField("Expanse Settlements", planet.Settlements.Expanse.Description);
 
             for (int i = 0; i < planet.SpaceObservations.Count; i++)
@@ -206,7 +206,6 @@ namespace TheOracle.IronSworn
         private async Task PlanetReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
             if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return;
-            Console.WriteLine($"User {reaction.User} triggered Planet reaction {reaction.Emote.Name}");
 
             var message = userMessage.GetOrDownloadAsync().Result;
 
@@ -214,10 +213,12 @@ namespace TheOracle.IronSworn
             if (reaction.Emote.Name == "\U0001F996") Life(message, channel, reaction);
             if (reaction.Emote.Name == "\uD83C\uDF0D") Biome(message, channel, reaction);
 
+            if (!message.Embeds.First()?.Fields.FirstOrDefault().Name.Contains("Options") ?? true) return;
+
             string PlanetName = message.Embeds.First().Title.Replace("__", "");
 
             if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, message);
-            if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outloads, PlanetName, message);
+            if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, message);
             if (reaction.Emote.Name == threeEmoji) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, message);
 
             return;

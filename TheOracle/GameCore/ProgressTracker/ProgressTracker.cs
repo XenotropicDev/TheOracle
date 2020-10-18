@@ -116,6 +116,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
         private string BuildProgressGraphic(int ticks)
         {
+            //User filler character so that we can do easy string math
             string fill = new string('#', (int)Math.Floor(Ticks / 4d));
             string finalTickMark = ((Ticks % 4) == 1) ? "-" : ((Ticks % 4) == 2) ? "+" : ((Ticks % 4) == 3) ? "*" : string.Empty;
             fill = (fill + finalTickMark).PadRight(10, '·');

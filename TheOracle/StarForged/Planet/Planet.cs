@@ -49,7 +49,7 @@ namespace TheOracle.StarForged
         public string Description { get; set; }
         public string Thumbnail { get; set; }
         public Atmosphere Atmosphere { get; set; } = new Atmosphere();
-        public Settlements Settlements { get; set; } = new Settlements();
+        public SettlementRegions Settlements { get; set; } = new SettlementRegions();
         public List<SpaceObservation> SpaceObservations { get; set; } = new List<SpaceObservation>();
         public int NumberOfBiomes { get => Biomes?.Count ?? 0; }
         public List<Biome> Biomes { get; set; } = new List<Biome>();
