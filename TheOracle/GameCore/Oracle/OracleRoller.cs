@@ -12,10 +12,12 @@ namespace TheOracle.GameCore.Oracle
 {
     public class OracleRoller
     {
-        public OracleRoller(OracleService oracleService, GameName game = GameName.None)
+        public OracleRoller(OracleService oracleService, GameName game = GameName.None, Random rnd = null)
         {
             OracleService = oracleService;
             Game = game;
+
+            RollerRandom = rnd ?? BotRandom.Instance;
         }
 
         public GameName Game { get; private set; }
@@ -23,6 +25,8 @@ namespace TheOracle.GameCore.Oracle
         public OracleService OracleService { get; }
 
         public List<RollResult> RollResultList { get; set; }
+
+        private Random RollerRandom { get; set; }
 
         public OracleRoller BuildRollResults(string tableName)
         {
@@ -111,7 +115,7 @@ namespace TheOracle.GameCore.Oracle
             return multiRollResult;
         }
 
-        private List<OracleTable> ParseOracleTables(string tableName)
+        public List<OracleTable> ParseOracleTables(string tableName)
         {
             var result = new List<OracleTable>();
 
@@ -161,7 +165,7 @@ namespace TheOracle.GameCore.Oracle
 
             foreach (var oracleTable in TablesToRoll)
             {
-                int roll = BotRandom.Instance.Next(1, oracleTable.d);
+                int roll = RollerRandom.Next(1, oracleTable.d);
                 var oracleResult = oracleTable.Oracles.LookupOracle(roll);
                 if (oracleTable.ShowResult)
                     RollResultList.Add(new RollResult
@@ -196,13 +200,12 @@ namespace TheOracle.GameCore.Oracle
             }
         }
 
-        private void RollNested(StandardOracle oracleResult, int depth, Random rnd = null)
+        private void RollNested(StandardOracle oracleResult, int depth)
         {
             if (oracleResult == null || oracleResult.Oracles == null) return;
-            rnd ??= BotRandom.Instance;
 
             //Todo fix it so the JSON can tell us what size die to roll
-            int roll = rnd.Next(1, 100);
+            int roll = RollerRandom.Next(1, 100);
             var innerRow = oracleResult.Oracles.LookupOracle(roll);
 
             if (innerRow == null) return;
@@ -211,7 +214,7 @@ namespace TheOracle.GameCore.Oracle
 
             if (innerRow.Oracles != null)
             {
-                RollNested(innerRow, depth + 1, rnd);
+                RollNested(innerRow, depth + 1);
             }
         }
 

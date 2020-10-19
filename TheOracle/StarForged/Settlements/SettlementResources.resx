@@ -130,7 +130,10 @@
     <value>Location</value>
   </data>
   <data name="PickSpaceRegionMessage" xml:space="preserve">
-    <value>Please pick a space region:\n\u0031\u20E3 - Termnius\n\u0032\u20E3 - Outlands\n\u0033\u20E3 - Expanse</value>
+    <value>Please pick a space region:
+1️⃣ - Termnius
+2️⃣ - Outlands
+3️⃣ - Expanse</value>
   </data>
   <data name="Population" xml:space="preserve">
     <value>Population</value>

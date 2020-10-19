@@ -59,16 +59,16 @@ namespace TheOracle.IronSworn
         {
             Planet planet = Planet.GeneratePlanet(PlanetName);
 
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-
-            embedBuilder.Title = $"__{PlanetName}__";
+            EmbedBuilder embedBuilder = new EmbedBuilder()
+                .WithTitle($"__{PlanetName}__")
+                .WithDescription($"{region} Planet");
 
             embedBuilder.AddField(planet.PlanetType, planet.Description);
             embedBuilder.AddField("Atmosphere", planet.Atmosphere.Description, true);
 
-            if (region == SpaceRegion.Terminus) embedBuilder.AddField("Terminus Settlements", planet.Settlements.Terminus.Description);
-            if (region == SpaceRegion.Outlands) embedBuilder.AddField("Outlands Settlements", planet.Settlements.Outlands.Description);
-            if (region == SpaceRegion.Expanse) embedBuilder.AddField("Expanse Settlements", planet.Settlements.Expanse.Description);
+            if (region == SpaceRegion.Terminus) embedBuilder.AddField("Settlements", planet.Settlements.Terminus.Description, true);
+            if (region == SpaceRegion.Outlands) embedBuilder.AddField("Settlements", planet.Settlements.Outlands.Description, true);
+            if (region == SpaceRegion.Expanse) embedBuilder.AddField("Settlements", planet.Settlements.Expanse.Description, true);
 
             for (int i = 0; i < planet.SpaceObservations.Count; i++)
             {
@@ -87,7 +87,7 @@ namespace TheOracle.IronSworn
                 message = await ReplyAsync("", false, embedBuilder.Build());
             }
 
-            var lookingGlass = new Emoji("🔍"); //TODO make these user settable
+            var lookingGlass = new Emoji("🔍");
             await message.AddReactionAsync(lookingGlass);
 
             var dino = new Emoji("\U0001F996");
@@ -104,18 +104,19 @@ namespace TheOracle.IronSworn
         {
             if (fieldName.Contains("World")) return 1;
             if (fieldName.Contains("Atmosphere")) return 2;
-            if (fieldName == "Life") return 3;
+            if (fieldName == "Settlements") return 3;
             if (fieldName == "Terminus Settlements") return 4;
             if (fieldName == "Outlands Settlements") return 5;
             if (fieldName == "Expanse Settlements") return 6;
-            if (fieldName.Contains("Observation 1")) return 7;
-            if (fieldName.Contains("Observation 2")) return 8;
-            if (fieldName.Contains("Observation 3")) return 9;
-            if (fieldName.Contains("Closer Look")) return 10;
+            if (fieldName == "Life") return 9;
+            if (fieldName.Contains("Observation 1")) return 11;
+            if (fieldName.Contains("Observation 2")) return 12;
+            if (fieldName.Contains("Observation 3")) return 13;
+            if (fieldName.Contains("Closer Look")) return 15;
             return 100;
         }
 
-        private void Biome(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task Biome(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
 
@@ -124,9 +125,8 @@ namespace TheOracle.IronSworn
             int currentBiomes = oldEmbed.Fields.Count(field => field.Name == "Biome");
             if (currentBiomes >= planet.NumberOfBiomes)
             {
-                var userReaction = message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-                var botReaction = message.RemoveReactionAsync(reaction.Emote, message.Author);
-                Task.WaitAll(userReaction, botReaction);
+                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+                await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
                 return;
             }
 
@@ -136,14 +136,14 @@ namespace TheOracle.IronSworn
             embedBuilder.AddField(fieldBuilder);
             embedBuilder.Fields = embedBuilder.Fields.OrderBy(field => PlanetFieldOrder(field.Name)).ToList();
 
-            message.ModifyAsync(msg =>
+            await message.ModifyAsync(msg =>
             {
                 msg.Content = string.Empty;
                 msg.Embed = embedBuilder.Build();
-            });
+            }).ConfigureAwait(false);
             currentBiomes++;
-            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-            if (currentBiomes >= planet.NumberOfBiomes) message.RemoveReactionAsync(reaction.Emote, message.Author);
+            await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+            if (currentBiomes >= planet.NumberOfBiomes) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
         }
 
         private void CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
@@ -190,7 +190,7 @@ namespace TheOracle.IronSworn
             var embedBuilder = oldEmbed.ToEmbedBuilder();
             var planet = Planet.GeneratePlanet(oldEmbed.Title);
 
-            EmbedFieldBuilder builder = new EmbedFieldBuilder().WithName("Life").WithValue(planet.Life.Description);
+            EmbedFieldBuilder builder = new EmbedFieldBuilder().WithName("Life").WithValue(planet.Life.Description).WithIsInline(true);
             embedBuilder.AddField(builder);
             embedBuilder.Fields = embedBuilder.Fields.OrderBy(field => PlanetFieldOrder(field.Name)).ToList();
 
@@ -211,15 +211,16 @@ namespace TheOracle.IronSworn
 
             if (reaction.Emote.Name == "🔍") CloserLook(message, channel, reaction);
             if (reaction.Emote.Name == "\U0001F996") Life(message, channel, reaction);
-            if (reaction.Emote.Name == "\uD83C\uDF0D") Biome(message, channel, reaction);
+            if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction).ConfigureAwait(false);
 
-            if (!message.Embeds.First()?.Fields.FirstOrDefault().Name.Contains("Options") ?? true) return;
+            if (message.Embeds.FirstOrDefault()?.Fields.FirstOrDefault().Name?.Contains("Options") ?? false)
+            {
+                string PlanetName = message.Embeds.First().Title.Replace("__", "");
 
-            string PlanetName = message.Embeds.First().Title.Replace("__", "");
-
-            if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, message);
-            if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, message);
-            if (reaction.Emote.Name == threeEmoji) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, message);
+                if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == threeEmoji) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, message).ConfigureAwait(false);
+            }
 
             return;
         }

@@ -97,7 +97,10 @@ namespace TheOracle.StarForged.Settlements {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please pick a space region:\n\u0031\u20E3 - Termnius\n\u0032\u20E3 - Outlands\n\u0033\u20E3 - Expanse.
+        ///   Looks up a localized string similar to Please pick a space region:
+        ///1️⃣ - Termnius
+        ///2️⃣ - Outlands
+        ///3️⃣ - Expanse.
         /// </summary>
         internal static string PickSpaceRegionMessage {
             get {

@@ -44,7 +44,7 @@
            { "Chance": 77, "Description": "Vast plateaus"},
            { "Chance": 88, "Description": "Vibrant terrain colors"},
            { "Chance": 92, "Description": "Precursor orbital site"},
-           { "Chance": 100, "Description": "Descriptor/Focus"}
+           { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -75,7 +75,7 @@
             { "Chance": 77, "Description": "Violent electrical storms"},
             { "Chance": 84, "Description": "Windborne metallic sand"},
             { "Chance": 89, "Description": "Sunbaked precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -123,7 +123,7 @@
             { "Chance": 77, "Description": "Towering mountain ranges"},
             { "Chance": 88, "Description": "World-spanning fissures"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -154,7 +154,7 @@
             { "Chance": 77, "Description": "Silica / metal storms"},
             { "Chance": 84, "Description": "Steaming mudflats"},
             { "Chance": 89, "Description": "Charred precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -202,7 +202,7 @@
             { "Chance": 77, "Description": "Sky-breaching ruins"},
             { "Chance": 88, "Description": "Vast wastelands"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -230,7 +230,7 @@
             { "Chance": 77, "Description": "Ship graveyards"},
             { "Chance": 84, "Description": "Whispers of the dead"},
             { "Chance": 89, "Description": "Subterranean precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -278,7 +278,7 @@
             { "Chance": 77, "Description": "Vibrantly colored ice"},
             { "Chance": 88, "Description": "World-spanning ice canyon"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -309,7 +309,7 @@
             { "Chance": 77, "Description": "Vibrant auroras"},
             { "Chance": 84, "Description": "Wind-carved ice formations"},
             { "Chance": 89, "Description": "Icebound precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -357,7 +357,7 @@
             { "Chance": 77, "Description": "Superheated atmosphere"},
             { "Chance": 88, "Description": "Unusual atmospheric colors"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -388,7 +388,7 @@
             { "Chance": 77, "Description": "Violent turbulence"},
             { "Chance": 84, "Description": "Zones of localized atmosphere"},
             { "Chance": 89, "Description": "Airborne precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -438,7 +438,7 @@
             { "Chance": 77, "Description": "Unbroken canopy"},
             { "Chance": 88, "Description": "Unusual vegetation color"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -467,7 +467,7 @@
             { "Chance": 77, "Description": "Violent electrical storms"},
             { "Chance": 84, "Description": "Waterlogged caves"},
             { "Chance": 89, "Description": "Overgrown precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -517,7 +517,7 @@
             { "Chance": 77, "Description": "Semi-frozen oceans"},
             { "Chance": 88, "Description": "Unusual water color"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -598,7 +598,7 @@
             { "Chance": 77, "Description": "Colossal mountains / plateaus"},
             { "Chance": 88, "Description": "Constant asteroid strikes"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -629,7 +629,7 @@
             { "Chance": 77, "Description": "Swirling low-lying gasses"},
             { "Chance": 84, "Description": "Towering rock formations"},
             { "Chance": 89, "Description": "Precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -679,7 +679,7 @@
             { "Chance": 77, "Description": "Thick, murky atmosphere"},
             { "Chance": 88, "Description": "Toxic seas"},
             { "Chance": 92, "Description": "Precursor orbital site"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 100, "Amount": 0 }
@@ -708,7 +708,7 @@
             { "Chance": 77, "Description": "Stifling heat"},
             { "Chance": 84, "Description": "Toxic rains"},
             { "Chance": 89, "Description": "Corrupted precursor sites"},
-            { "Chance": 100, "Description": "Descriptor/Focus"}
+            { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     },
     {
@@ -755,7 +755,7 @@
            { "Chance": 77, "Description": "Numerous small moons"},
            { "Chance": 88, "Description": "Unusual day/night cycle"},
            { "Chance": 92, "Description": "Precursor orbital site"},
-           { "Chance": 100, "Description": "Descriptor/Focus"}
+           { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ],
         "NumberOfBiomes": [
             { "Chance": 20, "Amount": 2 },

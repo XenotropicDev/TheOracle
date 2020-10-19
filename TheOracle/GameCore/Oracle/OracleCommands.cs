@@ -84,13 +84,13 @@ namespace TheOracle.IronSworn
 
             while (true)
             {
-                if (reply.Length < 2000)
+                if (reply.Length < DiscordConfig.MaxMessageSize)
                 {
                     await ReplyAsync(reply);
                     break;
                 }
 
-                int cutoff = reply.Substring(0, 2000).LastIndexOf(',');
+                int cutoff = reply.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf(',');
                 await ReplyAsync(reply.Substring(0, cutoff));
                 reply = reply.Substring(cutoff+1).Trim();
             }

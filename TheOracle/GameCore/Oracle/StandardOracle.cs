@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using TheOracle.Core;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.IronSworn
 {
@@ -10,9 +14,28 @@ namespace TheOracle.IronSworn
         public string Prompt { get; set; }
         public List<StandardOracle> Oracles { get; set; }
 
-        internal object GetOracleResult()
+        //TODO move this to an extension method of IOracleEntry?
+        /// <summary>
+        /// Gets the result of a oracle roll, and any rolls that would result from it.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="game"></param>
+        /// <returns></returns>
+        public string GetOracleResult(ServiceProvider services, GameName game, Random rnd = null)
         {
-            throw new NotImplementedException();
+            var oracleService = services.GetRequiredService<OracleService>();
+
+            var roller = new OracleRoller(oracleService, game, rnd);
+            var tables = roller.ParseOracleTables(Description);
+            
+            if (tables.Count == 0) return Description;
+
+            roller.BuildRollResults(Description);
+
+            string myReturn = $"{Description}\n";
+            var finalResults = roller.RollResultList.Select(ocl => ocl.Result.Description);
+
+            return $"{Description}\n" + String.Join(" / ", finalResults);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ namespace TheOracle.StarForged
         public static List<PlanetTemplate> GetPlanetTemplates()
         {
             var cache = BotCache.Get();
-                
+
             var cachedPlanets = cache.GetOrCreate("PlanetTemplates", entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromSeconds(10);
@@ -43,51 +42,32 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-
     }
 
     public class PossibleSettlements
     {
-        public List<Terminus> Terminus { get; set; } = new List<Terminus>();
-        public List<Outlands> Outlands { get; set; } = new List<Outlands>();
-        public List<Expanse> Expanse { get; set; } = new List<Expanse>();
+        public List<SettlementOracle> Terminus { get; set; } = new List<SettlementOracle>();
+        public List<SettlementOracle> Outlands { get; set; } = new List<SettlementOracle>();
+        public List<SettlementOracle> Expanse { get; set; } = new List<SettlementOracle>();
     }
 
     public class SettlementRegions
     {
-        public Terminus Terminus { get; set; }
-        public Outlands Outlands { get; set; }
-        public Expanse Expanse { get; set; }
+        public SettlementOracle Terminus { get; set; }
+        public SettlementOracle Outlands { get; set; }
+        public SettlementOracle Expanse { get; set; }
     }
-    
 
-    public class Terminus : IOracleEntry
+    public class SettlementOracle : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-
-    }
-
-    public class Outlands : IOracleEntry
-    {
-        public int Chance { get; set; }
-        public string Description { get; set; }
-
-    }
-
-    public class Expanse : IOracleEntry
-    {
-        public int Chance { get; set; }
-        public string Description { get; set; }
-
     }
 
     public class SpaceObservation : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-
-
     }
 
     public class Numberofbiomes
@@ -101,20 +81,18 @@ namespace TheOracle.StarForged
         public int Chance { get; set; }
         public string Description { get; set; }
 
-
         internal static List<Biome> GetFromTemplate(PlanetTemplate template, Random planetRandom = null)
         {
             if (planetRandom == null) planetRandom = BotRandom.Instance;
             List<Biome> Biomes = new List<Biome>();
             int BiomesToGenerate = template.NumberOfBiomes.OrderBy(b => b.Chance).First(b => b.Chance >= planetRandom.Next(1, 100)).Amount;
 
-
             if (template.PossibleBiomes.Count <= 1 || BiomesToGenerate <= template.PossibleBiomes.Count)
             {
                 Biomes.AddRange(template.PossibleBiomes);
                 return Biomes;
             }
-            
+
             if (BiomesToGenerate > 0)
             {
                 for (int i = 1; i <= BiomesToGenerate; i++)
@@ -136,13 +114,11 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-
     }
 
     public class CloserLook : IOracleEntry
     {
         public int Chance { get; set; }
         public string Description { get; set; }
-
     }
 }

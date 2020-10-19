@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TheOracle.Core;
+using TheOracle.IronSworn;
 
 namespace TheOracle.StarForged.Settlements
 {
@@ -45,7 +46,7 @@ namespace TheOracle.StarForged.Settlements
             s.Authority = oracleService.RandomRow("Settlement Authority", GameName.Starforged, random).Description;
 
             s.FirstLooks = oracleService.OracleList.Single(o => o.Name == "Settlement First Look" && o.Game == GameName.Starforged)
-                .Oracles.Select(o => o.Description).ToList();
+                .Oracles.Select(o => o.GetOracleResult(serviceProvider, GameName.Starforged, random)).ToList();
             s.FirstLooks.Shuffle(random);
             s.FirstLooksToReveal = random.Next(1, 3);
 
@@ -56,10 +57,11 @@ namespace TheOracle.StarForged.Settlements
             s.Population = oracleService.RandomRow($"Settlement Population {s.Region}", GameName.Starforged, random).Description;
 
             s.Projects = oracleService.OracleList.Single(o => o.Name == "Settlement Projects" && o.Game == GameName.Starforged)
-                .Oracles.Select(o => o.Description).ToList();
+                .Oracles.Select(o => o.GetOracleResult(serviceProvider, GameName.Starforged, random)).ToList();
             s.Projects.Shuffle(random);
 
-            s.SettlementTrouble = oracleService.RandomRow($"Settlement Trouble", GameName.Starforged, random).Description;
+            var trouble = oracleService.RandomRow($"Settlement Trouble", GameName.Starforged, random) as StandardOracle;
+            s.SettlementTrouble = trouble.GetOracleResult(serviceProvider, GameName.Starforged, random);
 
             return s;
         }
