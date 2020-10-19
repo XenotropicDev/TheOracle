@@ -132,5 +132,10 @@ namespace TheOracle.GameCore.ProgressTracker
 
             return fill;
         }
+
+        public static bool IsProgressTrackerMessage(IMessage message)
+        {
+            return message?.Embeds?.Any(embed => embed.Title == ProgressResources.Progress_Tracker) ?? false;
+        }
     }
 }

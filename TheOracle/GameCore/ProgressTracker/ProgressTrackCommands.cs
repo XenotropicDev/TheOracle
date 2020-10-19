@@ -68,6 +68,7 @@ namespace TheOracle.Core
             Console.WriteLine($"User {reaction.User} triggered {nameof(this.ProgressInteractiveReactions)} reaction {reaction.Emote.Name}");
 
             var message = userMessage.GetOrDownloadAsync().Result;
+            if (!ProgressTracker.IsProgressTrackerMessage(message)) return Task.CompletedTask;
 
             if (reaction.Emote.Name == DecreaseEmoji)
             {
