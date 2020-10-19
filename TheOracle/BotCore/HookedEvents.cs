@@ -9,6 +9,8 @@
         public bool StarCreatureReactions = false;
         public bool StarNPCReactions = false;
         public bool StarSettlementReactions = false;
-        public bool StarshipReactions = false;
+        public bool StarShipReactions = false;
+
+        public bool InitiativeReactions { get; internal set; }
     }
 }
