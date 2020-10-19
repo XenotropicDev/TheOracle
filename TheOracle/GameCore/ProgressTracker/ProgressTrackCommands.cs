@@ -27,7 +27,7 @@ namespace TheOracle.Core
             Client = client;
             if (!hooks.ProgressReactions)
             {
-                hooks.PlanetReactions = true;
+                hooks.ProgressReactions = true;
                 Client.ReactionAdded += ProgressBuilderReactions;
                 Client.ReactionAdded += ProgressInteractiveReactions;
             }
