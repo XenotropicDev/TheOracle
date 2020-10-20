@@ -1,4 +1,5 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
 using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
@@ -12,7 +13,7 @@ namespace TheOracle.Core
         public RuleService ruleService { get; set; }
 
         [Command("QuickReference")]
-        [Alias("Library", "QR", "Ref", "Reference")]
+        [Alias("Library", "Ref", "Reference")]
         [Summary("Creates an objective tracking post for things like Iron Vows")]
         public async Task ReferencePost([Remainder] string query)
         {
@@ -57,7 +58,7 @@ namespace TheOracle.Core
             foreach (var move in specRules.SelectMany(r => r.Moves.Where(m => MatchNameOrAlias(m, query))))
             {
                 string temp = $"__{game} - **{move.Name}**__\n{move.Text}\n\n";
-                if (specificMovesReply.Length + temp.Length > 2000)
+                if (specificMovesReply.Length + temp.Length > DiscordConfig.MaxMessageSize)
                 {
                     await ReplyAsync(specificMovesReply);
                     specificMovesReply = string.Empty;
