@@ -44,6 +44,7 @@ namespace TheOracle
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);
 
                 client.JoinedGuild += LogGuildJoin;
+                await client.SetGameAsync($"!Help | v{Assembly.GetEntryAssembly().GetName().Version}", "", ActivityType.Playing).ConfigureAwait(false);
 
                 await Task.Delay(Timeout.Infinite);
             }
