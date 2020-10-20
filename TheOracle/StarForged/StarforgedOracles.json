@@ -3,6 +3,7 @@
     "Type": "paired",
     "Pair": "Theme",
     "Game": "Starforged",
+    "Aliases": ["Star Action"],
     "Oracles": [
         { "Chance": 1, "Description": "Abandon"},
         { "Chance": 2, "Description": "Acquire"},
@@ -111,6 +112,7 @@
     "Type": "paired",
     "Pair": "Action",
     "Game": "Starforged",
+    "Aliases": ["Star Theme"],
     "Oracles": [
         { "Chance": 1, "Description": "Ability"},
         { "Chance": 2, "Description": "Advantage"},
@@ -327,6 +329,7 @@
     "Type": "paired",
     "Pair": "Descriptor",
     "Game": "Starforged",
+    "Aliases": ["Star Focus"],
     "Oracles": [
         { "Chance": 1, "Description": "AI"},
         { "Chance": 2, "Description": "Alarm"},
