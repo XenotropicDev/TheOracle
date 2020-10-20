@@ -9,9 +9,9 @@ TheOracle includes oracles tables for Ironsworn, and can easily be extended to i
 You don't have to lookup rules in the quick reference PDF any more, just ask the bot and it will post the rules text for you.
 #### Progress Tracker
 TheOracle can track the progress for just about anything you want. Track short term game goals like journeys, or long term goals like epic character vows.
-#### Game Element Generators (Scheduled for v0.4.0)
-Quickly and easily add things like settlements, and NPCs to your game. TheOracle uses interactive posts to help you create 
-#### Initiative Tracker (Scheduled for v0.4.0)
+#### Game Element Generators
+Quickly and easily add things like settlements, and NPCs to your game. TheOracle uses interactive posts to help you create a rich world quickly.
+#### Initiative Tracker
 Easily keep track of who has initiative, and who is in trouble.
 #### Localization Support (Full support scheduled for v1.0.0)
 TheOracle is written in a way that makes it easier to localize into your native language. Just fork the project, edit the resource files, and add a pull request and you localization will be added.
@@ -38,7 +38,7 @@ Lists the available oracle tables, and their aliases
  * Sample usage: `!OracleList`
 #### QuickReference
 Lists the detailed rules about how to make, resolve a move. 
- * Command Aliases: Reference, Library, Ref, QR
+ * Command Aliases: Reference, Library, Ref
  * Parameters: RuleName (optional)
  * Sample usage: `!QuickReference Swear an Iron Vow`
 #### ProgressTracker
@@ -46,11 +46,18 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
  * Command Aliases: Track, Tracker, Progress
  * Parameters: Difficulty (optional), Description (optional)
  * Reactions: 
-   1. **Left Arrow** - Decreases the progress track by the difficulty amount. 
-   2. **Right Arrow** - Increases the progress track by the difficulty amount.
-   3. **Check Mark** - Adds a single full box to the progress track.
-   4. **Game Die** - Rolls the action and challenge die for the progress tracker.
+  1. **Left Arrow** - Decreases the progress track by the difficulty amount. 
+  2. **Right Arrow** - Increases the progress track by the difficulty amount.
+  3. **Check Mark** - Adds a single full box to the progress track.
+  4. **Game Die** - Rolls the action and challenge die for the progress tracker.
  * Sample usage: `!ProgressTracker Epic Find the source of the evil`
+#### InitiativeTracker
+Builds an interactive post to keep track of players who do and don't have advantage.
+ * Command Aliases: Initiative, IniTracker
+ * Parameters: Description (optional)
+ * Reactions: 
+  1. **Left Arrow** - Assigns/moves you to the Advantage track. 
+  2. **Right Arrow** - Assigns/moves you to the Disadvantage track. 
 #### CreateNPC
 Creates a NPC with a name (given or random), a goal, a description, and a role/job.
  * Command Aliases: NewNPC, NPC
