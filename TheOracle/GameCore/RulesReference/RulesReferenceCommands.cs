@@ -14,7 +14,7 @@ namespace TheOracle.Core
 
         [Command("QuickReference")]
         [Alias("Library", "Ref", "Reference")]
-        [Summary("Creates an objective tracking post for things like Iron Vows")]
+        [Summary("Posts the rules text from the quick reference source document")]
         public async Task ReferencePost([Remainder] string query)
         {
             GameName game = Utilities.GetGameContainedInString(query);
