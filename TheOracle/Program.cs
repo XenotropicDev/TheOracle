@@ -8,6 +8,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.RulesReference;
@@ -22,7 +23,7 @@ namespace TheOracle
 
         public async Task MainAsync()
         {
-            using (var services = ConfigureServices())
+            using (ServiceProvider services = ConfigureServices())
             {
                 Console.WriteLine($"Starting TheOracle v{Assembly.GetEntryAssembly().GetName().Version}");
                 var client = services.GetRequiredService<DiscordSocketClient>();
@@ -44,12 +45,15 @@ namespace TheOracle
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);
 
                 client.JoinedGuild += LogGuildJoin;
+
+                var reactionHandler = new GlobalReactionHandler(services);
+                client.ReactionAdded += reactionHandler.ReactionEventHandler;
+
                 await client.SetGameAsync($"!Help | v{Assembly.GetEntryAssembly().GetName().Version}", "", ActivityType.Playing).ConfigureAwait(false);
 
                 await Task.Delay(Timeout.Infinite);
             }
         }
-
         private Task LogGuildJoin(SocketGuild arg)
         {
             LogMessage msg = new LogMessage(LogSeverity.Info, "", $"The bot has been added to a new guild: {arg.Name}");
