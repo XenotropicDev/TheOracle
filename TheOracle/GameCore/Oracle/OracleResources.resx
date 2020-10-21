@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlmostCertain" xml:space="preserve">
+    <value>Almost Certain</value>
+  </data>
+  <data name="AskCommandUnknownValue" xml:space="preserve">
+    <value>Please use a value between 1 and 99 or one of the following values:
+</value>
+  </data>
+  <data name="AskOracleHelperMessage" xml:space="preserve">
+    <value>What is the likelihood of it happening?
+1️⃣ - Almost Certain 
+2️⃣ - Likely
+3️⃣ - 50/50
+4️⃣ - Unlikely
+5️⃣ - Small Chance</value>
+  </data>
+  <data name="AskOracleHelperTitle" xml:space="preserve">
+    <value>__Ask The Oracle Helper__</value>
+  </data>
+  <data name="AskResult" xml:space="preserve">
+    <value>The result of</value>
+  </data>
+  <data name="FiftyFifty" xml:space="preserve">
+    <value>50/50</value>
+  </data>
+  <data name="Likely" xml:space="preserve">
+    <value>Likely</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="OracleResult" xml:space="preserve">
     <value>Oracle Result</value>
   </data>
@@ -132,10 +162,22 @@
   <data name="Roll" xml:space="preserve">
     <value>Roll</value>
   </data>
+  <data name="SmallChance" xml:space="preserve">
+    <value>Small Chance</value>
+  </data>
   <data name="TooManyGamesError" xml:space="preserve">
     <value>Too many tables with that name, please specify a game:</value>
   </data>
   <data name="UnknownTableError" xml:space="preserve">
     <value>Unknown Oracle Table:</value>
+  </data>
+  <data name="Unlikely" xml:space="preserve">
+    <value>Unlikely</value>
+  </data>
+  <data name="Verus" xml:space="preserve">
+    <value>vs</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

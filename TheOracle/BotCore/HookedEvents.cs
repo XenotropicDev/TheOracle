@@ -3,14 +3,14 @@
     public class HookedEvents
     {
         public bool IronNPCReactions = false;
-        public bool OracleReactions = false;
+        public bool OracleTableReactions = false;
         public bool PlanetReactions = false;
         public bool ProgressReactions = false;
         public bool StarCreatureReactions = false;
         public bool StarNPCReactions = false;
         public bool StarSettlementReactions = false;
         public bool StarShipReactions = false;
-
-        public bool InitiativeReactions { get; internal set; }
+        public bool InitiativeReactions = false;
+        public bool AskTheOracleReactions = false;
     }
 }

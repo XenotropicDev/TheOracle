@@ -61,6 +61,84 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Certain.
+        /// </summary>
+        internal static string AlmostCertain {
+            get {
+                return ResourceManager.GetString("AlmostCertain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use a value between 1 and 99 or one of the following values:
+        ///.
+        /// </summary>
+        internal static string AskCommandUnknownValue {
+            get {
+                return ResourceManager.GetString("AskCommandUnknownValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is the likelihood of it happening?
+        ///1️⃣ - Almost Certain 
+        ///2️⃣ - Likely
+        ///3️⃣ - 50/50
+        ///4️⃣ - Unlikely
+        ///5️⃣ - Small Chance.
+        /// </summary>
+        internal static string AskOracleHelperMessage {
+            get {
+                return ResourceManager.GetString("AskOracleHelperMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to __Ask The Oracle Helper__.
+        /// </summary>
+        internal static string AskOracleHelperTitle {
+            get {
+                return ResourceManager.GetString("AskOracleHelperTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The result of.
+        /// </summary>
+        internal static string AskResult {
+            get {
+                return ResourceManager.GetString("AskResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50/50.
+        /// </summary>
+        internal static string FiftyFifty {
+            get {
+                return ResourceManager.GetString("FiftyFifty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Likely.
+        /// </summary>
+        internal static string Likely {
+            get {
+                return ResourceManager.GetString("Likely", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oracle Result.
         /// </summary>
         internal static string OracleResult {
@@ -106,6 +184,15 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Small Chance.
+        /// </summary>
+        internal static string SmallChance {
+            get {
+                return ResourceManager.GetString("SmallChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Too many tables with that name, please specify a game:.
         /// </summary>
         internal static string TooManyGamesError {
@@ -120,6 +207,33 @@ namespace TheOracle.GameCore.Oracle {
         internal static string UnknownTableError {
             get {
                 return ResourceManager.GetString("UnknownTableError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlikely.
+        /// </summary>
+        internal static string Unlikely {
+            get {
+                return ResourceManager.GetString("Unlikely", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to vs.
+        /// </summary>
+        internal static string Verus {
+            get {
+                return ResourceManager.GetString("Verus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

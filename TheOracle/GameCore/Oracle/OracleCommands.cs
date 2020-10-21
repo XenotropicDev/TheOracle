@@ -22,7 +22,7 @@ namespace TheOracle.IronSworn
             _oracleService = services.GetRequiredService<OracleService>();
             _client = services.GetRequiredService<DiscordSocketClient>();
 
-            if (!services.GetRequiredService<HookedEvents>().OracleReactions)
+            if (!services.GetRequiredService<HookedEvents>().OracleTableReactions)
             {
                 _client.ReactionAdded += PairedTableReactionHandler;
             }
