@@ -4,7 +4,6 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.Core;
@@ -56,12 +55,12 @@ namespace TheOracle.GameCore.Oracle
             Task.Run(async () =>
             {
                 await message.RemoveAllReactionsAsync();
-                
-                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(90, OracleResources.AlmostCertain); msg.Embed = null; }).ConfigureAwait(false);
-                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(75, OracleResources.Likely); msg.Embed = null; }).ConfigureAwait(false);
-                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(50, OracleResources.FiftyFifty); msg.Embed = null; }).ConfigureAwait(false);
-                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(25, OracleResources.Unlikely); msg.Embed = null; }).ConfigureAwait(false);
-                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(10, OracleResources.SmallChance); msg.Embed = null; }).ConfigureAwait(false);
+
+                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(90, OracleResources.AlmostCertain); msg.Embed = null; });
+                if (reaction.Emote.Name == twoEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(75, OracleResources.Likely); msg.Embed = null; });
+                if (reaction.Emote.Name == threeEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(50, OracleResources.FiftyFifty); msg.Embed = null; });
+                if (reaction.Emote.Name == fourEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(25, OracleResources.Unlikely); msg.Embed = null; });
+                if (reaction.Emote.Name == fiveEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(10, OracleResources.SmallChance); msg.Embed = null; });
             });
 
             return Task.CompletedTask;
@@ -69,6 +68,7 @@ namespace TheOracle.GameCore.Oracle
 
         public List<Tuple<string, int>> ChanceLookUp { get; }
         public ServiceProvider Service { get; }
+
         [Command("AskTheOracle")]
         [Summary("Asks the oracle for the likelihood of something happening")]
         [Alias("Ask", "Chance")]
@@ -80,7 +80,8 @@ namespace TheOracle.GameCore.Oracle
                 var helperEmbed = new EmbedBuilder().WithTitle(OracleResources.AskOracleHelperTitle).WithDescription(OracleResources.AskOracleHelperMessage);
                 var msg = await ReplyAsync(embed: helperEmbed.Build());
 
-                _ = Task.Run(async () => {
+                _ = Task.Run(async () =>
+                {
                     await msg.AddReactionAsync(new Emoji(oneEmoji));
                     await msg.AddReactionAsync(new Emoji(twoEmoji));
                     await msg.AddReactionAsync(new Emoji(threeEmoji));
