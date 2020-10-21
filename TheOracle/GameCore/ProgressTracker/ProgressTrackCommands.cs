@@ -160,7 +160,7 @@ namespace TheOracle.Core
                             $"\n{fiveEmoji} = {ProgressResources.Epic}"
                 });
 
-            var msg = ReplyAsync(embed: embed.Build()).Result;
+            var msg = await ReplyAsync(embed: embed.Build());
 
             _ = Task.Run(async () =>
             {
