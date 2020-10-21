@@ -48,14 +48,14 @@ namespace TheOracle.Core
 
             string ThingToTrack = message.Embeds.FirstOrDefault(embed => embed.Title == ProgressResources.Progress_Tracker)?.Description ?? "Unknown Task";
 
-            Task.Run(async () =>
+            _ = Task.Run(async () =>
             {
                 if (reaction.Emote.Name == oneEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == twoEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == threeEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == fourEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
-            });
+            }).ConfigureAwait(false);
 
             return Task.CompletedTask;
         }
@@ -132,12 +132,15 @@ namespace TheOracle.Core
                 });
             }
 
-            Task.WaitAll(messageToEdit.RemoveAllReactionsAsync()); //Don't proceed until this is complete
+            await messageToEdit.RemoveAllReactionsAsync();
 
-            await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji)).ConfigureAwait(false);
-            await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji)).ConfigureAwait(false);
-            await messageToEdit.AddReactionAsync(new Emoji(FullEmoji)).ConfigureAwait(false);
-            await messageToEdit.AddReactionAsync(new Emoji(RollEmoji)).ConfigureAwait(false);
+            _ = Task.Run(async () => 
+            {
+                await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji));
+                await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji));
+                await messageToEdit.AddReactionAsync(new Emoji(FullEmoji));
+                await messageToEdit.AddReactionAsync(new Emoji(RollEmoji));
+            }).ConfigureAwait(false);
 
             return;
         }
@@ -159,11 +162,15 @@ namespace TheOracle.Core
 
             var msg = ReplyAsync(embed: embed.Build()).Result;
 
-            await msg.AddReactionAsync(new Emoji(oneEmoji));
-            await msg.AddReactionAsync(new Emoji(twoEmoji));
-            await msg.AddReactionAsync(new Emoji(threeEmoji));
-            await msg.AddReactionAsync(new Emoji(fourEmoji));
-            await msg.AddReactionAsync(new Emoji(fiveEmoji));
+            _ = Task.Run(async () =>
+            {
+                await msg.AddReactionAsync(new Emoji(oneEmoji));
+                await msg.AddReactionAsync(new Emoji(twoEmoji));
+                await msg.AddReactionAsync(new Emoji(threeEmoji));
+                await msg.AddReactionAsync(new Emoji(fourEmoji));
+                await msg.AddReactionAsync(new Emoji(fiveEmoji));
+            }).ConfigureAwait(false);
+
             return;
         }
 
@@ -173,7 +180,7 @@ namespace TheOracle.Core
 
             tracker.RemoveProgress();
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed());
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
         }
 
         private void IncreaseProgress(IUserMessage message)
@@ -182,7 +189,7 @@ namespace TheOracle.Core
 
             tracker.AddProgress();
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed());
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
         }
 
         private void IncreaseProgressFullCheck(IUserMessage message)
@@ -191,13 +198,13 @@ namespace TheOracle.Core
 
             tracker.Ticks += 4;
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed());
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
         }
 
         private bool IsProgressTrackerMessage(IUserMessage message)
         {
             if (message.Embeds == null) return false;
-            if (message.Embeds.First().Title == ProgressResources.Progress_Tracker) return true;
+            if (message.Embeds?.FirstOrDefault()?.Title == ProgressResources.Progress_Tracker) return true;
 
             return false;
         }
