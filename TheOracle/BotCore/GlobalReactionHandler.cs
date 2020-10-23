@@ -18,9 +18,10 @@ namespace TheOracle.BotCore
         private DiscordSocketClient Client { get; }
 
         public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
-        {
+        { 
             var message = await userMessage.GetOrDownloadAsync();
-            if (reaction.User.Value.IsBot || message.Author.Id != Client.CurrentUser.Id) return;
+            
+            if (channel as IDMChannel != null || reaction.User.Value.IsBot || message.Author.Id != Client.CurrentUser.Id) return;
 
             if (reaction.Emote.Name == "⏬")
             {
