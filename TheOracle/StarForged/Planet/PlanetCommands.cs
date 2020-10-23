@@ -27,7 +27,7 @@ namespace TheOracle.IronSworn
         public DiscordSocketClient Client { get; }
 
         [Command("GeneratePlanet", ignoreExtraArgs: true)]
-        [Summary("Creates a template post for a new Starforged planet\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms")]
+        [Summary("Creates a template post for a new Starforged planet\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms\n\uD83C\uDF0D Adds a biome (vital worlds only)")]
         [Alias("Planet")]
         public async Task PlanetPost([Remainder] string PlanetCommand = "")
         {
