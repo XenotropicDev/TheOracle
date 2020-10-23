@@ -64,7 +64,7 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
  * Parameters: NPC Name (optional)
  * Sample usage: `!CreateNPC Tom Bombadil`
 #### Bring Post To Bottom
-This is not really a command but more of a feature. Simply react to any bot post with the ⏬ (:arrow_double_down:) reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers, NPCs, as an alternative to needing separate channels, or multiple pinned messages.
+This is not really a command but more of a feature. Simply react to any bot post with the ⏬ `:arrow_double_down:` reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers, NPCs, as an alternative to needing separate channels, or multiple pinned messages.
 
 ## Starforged Commands
 #### PlanetGenerator
