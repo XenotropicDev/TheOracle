@@ -159,7 +159,7 @@ namespace TheOracle.IronSworn
                 return;
             }
 
-            var planet = Planet.GeneratePlanet(oldEmbed.Title);
+            var planet = Planet.GeneratePlanet(oldEmbed.Title.Replace("__", ""));
 
             var embedBuilder = oldEmbed.ToEmbedBuilder();
 
