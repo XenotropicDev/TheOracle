@@ -64,9 +64,28 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
  * Parameters: NPC Name (optional)
  * Sample usage: `!CreateNPC Tom Bombadil`
 #### Bring Post To Bottom
-This is not really a command but more of a feature. Simply react to any bot post with the ⏬ (:arrow_double_down:) reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers, NPCs, as an alternative to needing separate channels, or multiple pinned messages.
+This is not really a command but more of a feature. Simply react to any bot post with the ⏬ `arrow_double_down:` reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers, NPCs, as an alternative to needing separate channels, or multiple pinned messages.
 
 ## Starforged Commands
-#### PlanetGenerator
+#### GeneratePlanet
 Creates a planet with a name (given or a random P-number), and the planet features that detectable from space. It also adds reaction buttons for revealing more features as you explore the planet
- * COmmand Aliases: Planet
+ * Command Aliases: Planet
+ * Parameters: SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
+ * Reactions:
+ 🔍 - Closer look
+ 🦖 - Reveals the planet's life (if any)
+ 🌍 - Reveals the planet's biomes (only displayed if the planet type can have biomes)
+
+#### GenerateSettlement
+Creates a Starforged settlement with a name (given, or random from the settlement name list), and the features in the settlement oracles.
+ * Command Aliases: Settlement
+ * Parameters: SpaceRegion (optional), Name (optional)
+ * Reactions:
+ :tools: - Adds/reveals a settlement project
+
+#### GenerateStarship
+Creates a starforged starship, *Note: this command is still a work in progress*
+ * Command Aliases: Settlement
+ * Parameters: SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
+ * Reactions:
+ :exclamation: - Adds/reveals the starship's mission
