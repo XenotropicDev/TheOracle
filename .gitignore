@@ -5,6 +5,8 @@
 
 # Project-Defined Excludes:
 *launchSettings.json
+StarForged/StarforgedOracles.json
+StarForged/Planet/PlanetTemplates.json
 
 # User-specific files
 *.rsuser
