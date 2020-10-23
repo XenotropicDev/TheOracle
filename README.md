@@ -75,17 +75,20 @@ Creates a planet with a name (given or a random P-number), and the planet featur
  🔍 - Closer look
  🦖 - Reveals the planet's life (if any)
  🌍 - Reveals the planet's biomes (only displayed if the planet type can have biomes)
-
+ * Sample usage: `!Planet Expanse Hoth`
 #### GenerateSettlement
 Creates a Starforged settlement with a name (given, or random from the settlement name list), and the features in the settlement oracles.
  * Command Aliases: Settlement
  * Parameters: SpaceRegion (optional), Name (optional)
  * Reactions:
  :tools: - Adds/reveals a settlement project
-
+ * Sample usage: `!Settlement Outlands Deep Space Nine`
 #### GenerateStarship
 Creates a starforged starship, *Note: this command is still a work in progress*
- * Command Aliases: Settlement
+ * Command Aliases: Starship, Spaceship, Ship
  * Parameters: SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
  * Reactions:
  :exclamation: - Adds/reveals the starship's mission
+ * Sample usage: `!Starship Terminus Serenity`
+#### CreateNPC Starforged
+Same as the Ironsworn command, but with the character traits in the starforged oracles
