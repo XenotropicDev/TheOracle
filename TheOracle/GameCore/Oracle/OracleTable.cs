@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
@@ -25,6 +26,11 @@ namespace TheOracle.Core
             var row = service.RandomRow(Pair);
 
             return new OracleRoller(service, Game ?? GameName.None).BuildRollResults(Pair);
+        }
+
+        public bool MatchTableAlias(string table)
+        {
+            return this.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
         }
     }
 }

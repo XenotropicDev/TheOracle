@@ -86,10 +86,7 @@ namespace TheOracle.GameCore.Oracle
             return roller;
         }
 
-        private bool MatchTableAlias(OracleTable valueToCheck, string table)
-        {
-            return valueToCheck.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || valueToCheck.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
-        }
+
 
         private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
         {
@@ -126,15 +123,14 @@ namespace TheOracle.GameCore.Oracle
                 var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
                 foreach (var item in splits)
                 {
-                    result.AddRange(OracleService.OracleList.Where(o => MatchTableAlias(o, item) && (Game == GameName.None || Game == o.Game)).ToList());
+                    result.AddRange(OracleService.OracleList.Where(o => o.MatchTableAlias(item) && (Game == GameName.None || Game == o.Game)).ToList());
                 }
             }
             else
             {
-                result = OracleService.OracleList.Where(o => MatchTableAlias(o, tableName) && (Game == GameName.None || Game == o.Game)).ToList();
+                result = OracleService.OracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game)).ToList();
             }
 
-            //if (result.GroupBy(t => t.Game).Where(grp => grp.Count() > 1).Select(grp => grp.Key).Count() > 1)
             if (result.GroupBy(t => t.Game).Count() > 1)
             {
                 string games = string.Empty;

@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
@@ -36,16 +37,8 @@ namespace TheOracle.IronSworn
         [Alias("Oracle", "Table")]
         public async Task OracleRollCommand([Remainder] string Fullcommand = "")
         {
-            GameName game = GameName.None;
-            string oracleTable = Fullcommand;
-            foreach (var s in Enum.GetNames(typeof(GameName)).Where(g => !g.Equals("none", StringComparison.OrdinalIgnoreCase)))
-            {
-                if (Regex.IsMatch(Fullcommand, $"(^{s} | {s}( |$))", RegexOptions.IgnoreCase)  && Enum.TryParse(s, out game))
-                {
-                    oracleTable = Regex.Replace(Fullcommand, $"{s} ?", "", RegexOptions.IgnoreCase).Trim();
-                    break;
-                }
-            }
+            GameName game = Utilities.GetGameContainedInString(Fullcommand);
+            string oracleTable = Utilities.RemoveGameNamesFromString(Fullcommand);
 
             OracleRoller roller = new OracleRoller(_oracleService, game);
 
