@@ -440,7 +440,7 @@
     "Oracles": [
         { "Chance": 20, "Description": "[Stellar Object]"},
         { "Chance": 33, "Description": "[Cosmic Matter]"},
-        { "Chance": 56, "Description": "[Planet]"},
+        { "Chance": 56, "Description": "Planet"},
         { "Chance": 66, "Description": "[Settlement: Deep space]"},
         { "Chance": 71, "Description": "[Precursor site: Deep space]"},
         { "Chance": 74, "Description": "[Creature]"},
@@ -457,7 +457,7 @@
     "Oracles": [
         { "Chance": 24, "Description": "[Stellar Object]"},
         { "Chance": 40, "Description": "[Cosmic Matter]"},
-        { "Chance": 65, "Description": "[Planet]"},
+        { "Chance": 65, "Description": "Planet"},
         { "Chance": 70, "Description": "[Settlement: Deep space]"},
         { "Chance": 77, "Description": "[Precursor site: Deep space]"},
         { "Chance": 81, "Description": "[Creature]"},
@@ -474,7 +474,7 @@
     "Oracles": [
         { "Chance": 24, "Description": "[Stellar Object]"},
         { "Chance": 40, "Description": "[Cosmic Matter]"},
-        { "Chance": 65, "Description": "[Planet]"},
+        { "Chance": 65, "Description": "Planet"},
         { "Chance": 67, "Description": "[Settlement: Deep space]"},
         { "Chance": 76, "Description": "[Precursor site: Deep space]"},
         { "Chance": 82, "Description": "[Creature]"},
