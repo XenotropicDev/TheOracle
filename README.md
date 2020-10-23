@@ -1,4 +1,4 @@
-# TheOracle
+﻿# TheOracle
 
 A bot written with [Discord.Net](https://discord.foxbot.me/stable/) for [Ironsworn](https://www.ironswornrpg.com/) and its derived games, with a focus on play-by-post games.
 
@@ -48,7 +48,7 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
  * Reactions: 
   1. **Left Arrow** - Decreases the progress track by the difficulty amount. 
   2. **Right Arrow** - Increases the progress track by the difficulty amount.
-  3. **Check Mark** - Adds a single full box to the progress track.
+  3. **Check Mark** - Increases the progress track by a single full box (four ticks).
   4. **Game Die** - Rolls the action and challenge die for the progress tracker.
  * Sample usage: `!ProgressTracker Epic Find the source of the evil`
 #### InitiativeTracker
@@ -63,3 +63,10 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
  * Command Aliases: NewNPC, NPC
  * Parameters: NPC Name (optional)
  * Sample usage: `!CreateNPC Tom Bombadil`
+#### Bring Post To Bottom
+This is not really a command but more of a feature. Simply react to any bot post with the ⏬ (:arrow_double_down:) reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers, NPCs, as an alternative to needing separate channels, or multiple pinned messages.
+
+## Starforged Commands
+#### PlanetGenerator
+Creates a planet with a name (given or a random P-number), and the planet features that detectable from space. It also adds reaction buttons for revealing more features as you explore the planet
+ * COmmand Aliases: Planet

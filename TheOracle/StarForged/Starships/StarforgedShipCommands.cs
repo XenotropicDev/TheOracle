@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.Core;
 
@@ -12,7 +13,7 @@ namespace TheOracle.StarForged.Starships
 {
     public class StarforgedShipCommands : ModuleBase<SocketCommandContext>
     {
-        public Emoji projectEmoji = new Emoji("\uD83D\uDEE0");
+        public Emoji missionEmoji = new Emoji("❗");
         public Emoji oneEmoji = new Emoji("\u0031\u20E3");
         public Emoji twoEmoji = new Emoji("\u0032\u20E3");
         public Emoji threeEmoji = new Emoji("\u0033\u20E3");
@@ -34,12 +35,12 @@ namespace TheOracle.StarForged.Starships
 
         private Task ShipReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
-            var emojisToProcess = new Emoji[] { projectEmoji, oneEmoji, twoEmoji, threeEmoji };
+            var emojisToProcess = new Emoji[] { missionEmoji, oneEmoji, twoEmoji, threeEmoji };
             if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
 
             var message = userMessage.GetOrDownloadAsync().Result;
 
-            var starshipHelperEmbed = message.Embeds.FirstOrDefault(embed => embed?.Title?.Contains(StarShipResources.StarshipTitle) ?? false);
+            var starshipHelperEmbed = message.Embeds.FirstOrDefault(embed => embed?.Title?.Contains(StarShipResources.StarshipHelperTitle) ?? false);
 
             if (starshipHelperEmbed != null)
             {
@@ -58,21 +59,25 @@ namespace TheOracle.StarForged.Starships
                     msg.Content = string.Empty;
                     msg.Embed = newShip.GetEmbedBuilder().Build();
                 });
-                var task2 = message.AddReactionAsync(projectEmoji);
+                var task2 = message.AddReactionAsync(missionEmoji);
                 return Task.WhenAll(task1, task2);
             }
 
-            var shipEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(StarShipResources.StarshipTitle) ?? false);
+            var shipEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(StarShipResources.Starship, StringComparison.OrdinalIgnoreCase) ?? false);
             if (shipEmbed == null) return Task.CompletedTask;
             
             Console.WriteLine($"User {reaction.User} triggered {nameof(shipEmbed)} with reaction {reaction.Emote.Name}");
 
             Starship ship = Starship.FromEmbed(Services, shipEmbed);
 
-            //if (reaction.Emote.Name == projectEmoji.Name) ship.ProjectsRevealed++;
+            if (reaction.Emote.Name == missionEmoji.Name)
+            {
+                ship.MissionRevealed = true;
+                message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
+            }
 
-            message.ModifyAsync(msg => msg.Embed = ship.GetEmbedBuilder().Build());
-            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+            message.ModifyAsync(msg => msg.Embed = ship.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
 
             return Task.CompletedTask;
         }
@@ -89,7 +94,7 @@ namespace TheOracle.StarForged.Starships
             if (region == SpaceRegion.None)
             {
                 EmbedBuilder builder = new EmbedBuilder()
-                    .WithTitle(StarShipResources.StarshipTitle)
+                    .WithTitle(StarShipResources.StarshipHelperTitle)
                     .WithDescription(StarShipResources.PickSpaceRegionMessage);
 
                 if (StarShipCommand.Length > 0) builder.WithFields(new EmbedFieldBuilder().WithName(StarShipResources.StarshipName).WithValue(StarShipCommand));
@@ -101,12 +106,12 @@ namespace TheOracle.StarForged.Starships
                 return;
             }
 
-            string ShipName = StarShipCommand.Replace(region.ToString(), "").Trim();
+            string ShipName = Regex.Replace(StarShipCommand, region.ToString(), "", RegexOptions.IgnoreCase).Trim();
             var ship = Starship.GenerateShip(Services, region, ShipName);
 
             var message = await ReplyAsync("", false, ship.GetEmbedBuilder().Build());
 
-            await message.AddReactionAsync(projectEmoji);
+            await message.AddReactionAsync(missionEmoji);
         }
     }
 }

@@ -117,16 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FirstLook" xml:space="preserve">
+    <value>FirstLook</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Fleet</value>
+  </data>
+  <data name="InitialContact" xml:space="preserve">
+    <value>Initial Contact</value>
+  </data>
   <data name="PickSpaceRegionMessage" xml:space="preserve">
     <value>Please pick a space region:
 1️⃣ - Termnius
 2️⃣ - Outlands
 3️⃣ - Expanse</value>
   </data>
+  <data name="Starship" xml:space="preserve">
+    <value>Starship</value>
+  </data>
+  <data name="StarshipDescription" xml:space="preserve">
+    <value>{0} Starship</value>
+    <comment>{0} will be replaced with the space region</comment>
+  </data>
+  <data name="StarshipHelperTitle" xml:space="preserve">
+    <value>Starship Helper</value>
+  </data>
+  <data name="StarshipMission" xml:space="preserve">
+    <value>Starship Mission</value>
+  </data>
+  <data name="StarshipMissionOracle" xml:space="preserve">
+    <value>[Starship Mission]</value>
+  </data>
+  <data name="StarshipMissionOracleRegionFormatter" xml:space="preserve">
+    <value>Starship Mission {0}</value>
+    <comment>Use this add a space region to the starship mission programatically. {0} will be replaced with the space region. Needs to match the format of the StarforgedOracles.json file</comment>
+  </data>
   <data name="StarshipName" xml:space="preserve">
     <value>Starship Name</value>
   </data>
-  <data name="StarshipTitle" xml:space="preserve">
-    <value>__Starship__</value>
+  <data name="StarshipType" xml:space="preserve">
+    <value>Starship Type</value>
+  </data>
+  <data name="TypicalRole" xml:space="preserve">
+    <value>Typical Role</value>
   </data>
 </root>

@@ -61,6 +61,33 @@ namespace TheOracle.StarForged.Starships {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FirstLook.
+        /// </summary>
+        internal static string FirstLook {
+            get {
+                return ResourceManager.GetString("FirstLook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fleet.
+        /// </summary>
+        internal static string Fleet {
+            get {
+                return ResourceManager.GetString("Fleet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial Contact.
+        /// </summary>
+        internal static string InitialContact {
+            get {
+                return ResourceManager.GetString("InitialContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please pick a space region:
         ///1️⃣ - Termnius
         ///2️⃣ - Outlands
@@ -69,6 +96,60 @@ namespace TheOracle.StarForged.Starships {
         internal static string PickSpaceRegionMessage {
             get {
                 return ResourceManager.GetString("PickSpaceRegionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starship.
+        /// </summary>
+        internal static string Starship {
+            get {
+                return ResourceManager.GetString("Starship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Starship.
+        /// </summary>
+        internal static string StarshipDescription {
+            get {
+                return ResourceManager.GetString("StarshipDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starship Helper.
+        /// </summary>
+        internal static string StarshipHelperTitle {
+            get {
+                return ResourceManager.GetString("StarshipHelperTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starship Mission.
+        /// </summary>
+        internal static string StarshipMission {
+            get {
+                return ResourceManager.GetString("StarshipMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Starship Mission].
+        /// </summary>
+        internal static string StarshipMissionOracle {
+            get {
+                return ResourceManager.GetString("StarshipMissionOracle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starship Mission {0}.
+        /// </summary>
+        internal static string StarshipMissionOracleRegionFormatter {
+            get {
+                return ResourceManager.GetString("StarshipMissionOracleRegionFormatter", resourceCulture);
             }
         }
         
@@ -82,11 +163,20 @@ namespace TheOracle.StarForged.Starships {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to __Starship__.
+        ///   Looks up a localized string similar to Starship Type.
         /// </summary>
-        internal static string StarshipTitle {
+        internal static string StarshipType {
             get {
-                return ResourceManager.GetString("StarshipTitle", resourceCulture);
+                return ResourceManager.GetString("StarshipType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Typical Role.
+        /// </summary>
+        internal static string TypicalRole {
+            get {
+                return ResourceManager.GetString("TypicalRole", resourceCulture);
             }
         }
     }
