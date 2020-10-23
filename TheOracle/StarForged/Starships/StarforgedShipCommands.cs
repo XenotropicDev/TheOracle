@@ -85,7 +85,7 @@ namespace TheOracle.StarForged.Starships
         public ServiceProvider Services { get; }
 
         [Command("GenerateStarship", ignoreExtraArgs: true)]
-        [Summary("Creates a template post for a new Starforged settlement")]
+        [Summary("Creates a template post for a new Starforged Starship")]
         [Alias("Starship", "Spaceship", "Ship")]
         public async Task StarShipPost([Remainder] string StarShipCommand = "")
         {
