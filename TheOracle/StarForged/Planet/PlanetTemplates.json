@@ -795,7 +795,17 @@
            { "Chance": 6, "Description": "Chaotically juxtaposed biomes"},
            { "Chance": 13, "Description": "Crystalline formations"},
            { "Chance": 20, "Description": "Dramatic sky color / auroras"},
-           { "Chance": 26, "Description": "Fierce electrical storms"}
+           { "Chance": 26, "Description": "Fierce electrical storms"},
+           { "Chance": 32, "Description": "Floating / suspended terrain"},
+           { "Chance": 38, "Description": "Frequent seismic activity"},
+           { "Chance": 44, "Description": "Geometric terrain patterns"},
+           { "Chance": 51, "Description": "Magnetic anomalies"},
+           { "Chance": 57, "Description": "Sudden weather fluctuations"},
+           { "Chance": 64, "Description": "Towering geological formations"},
+           { "Chance": 71, "Description": "Towering plant life"},
+           { "Chance": 78, "Description": "Vibrantly colored landscapes"},
+           { "Chance": 88, "Description": "Precursor sites"},
+           { "Chance": 100, "Description": "[Descriptor/Focus]"}
         ]
     }
 ]
