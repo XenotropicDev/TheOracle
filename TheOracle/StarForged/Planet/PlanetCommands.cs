@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,17 +15,20 @@ namespace TheOracle.IronSworn
         public const string twoEmoji = "\u0032\u20E3";
         public const string threeEmoji = "\u0033\u20E3";
 
-        public PlanetCommands(DiscordSocketClient client, HookedEvents hooks)
+        public PlanetCommands(ServiceProvider services)
         {
-            Client = client;
+            Client = services.GetRequiredService<DiscordSocketClient>();
+            var hooks = services.GetRequiredService<HookedEvents>();
             if (!hooks.PlanetReactions)
             {
                 hooks.PlanetReactions = true;
                 Client.ReactionAdded += PlanetReactionHandler;
             }
+            Services = services;
         }
 
         public DiscordSocketClient Client { get; }
+        public ServiceProvider Services { get; }
 
         [Command("GeneratePlanet", ignoreExtraArgs: true)]
         [Summary("Creates a template post for a new Starforged planet\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms\n\uD83C\uDF0D Adds a biome (vital worlds only)")]
@@ -57,150 +61,82 @@ namespace TheOracle.IronSworn
 
         private async Task MakePlanetPost(SpaceRegion region, string PlanetName, IUserMessage message = null)
         {
-            Planet planet = Planet.GeneratePlanet(PlanetName);
-
-            EmbedBuilder embedBuilder = new EmbedBuilder()
-                .WithTitle($"__{PlanetName}__")
-                .WithDescription($"{region} Planet");
-
-            embedBuilder.AddField(planet.PlanetType, planet.Description);
-            embedBuilder.AddField("Atmosphere", planet.Atmosphere.Description, true);
-
-            if (region == SpaceRegion.Terminus) embedBuilder.AddField("Settlements", planet.Settlements.Terminus.Description, true);
-            if (region == SpaceRegion.Outlands) embedBuilder.AddField("Settlements", planet.Settlements.Outlands.Description, true);
-            if (region == SpaceRegion.Expanse) embedBuilder.AddField("Settlements", planet.Settlements.Expanse.Description, true);
-
-            for (int i = 0; i < planet.SpaceObservations.Count; i++)
-            {
-                embedBuilder.AddField($"Space Observation {i + 1}:", planet.SpaceObservations[i].Description, true);
-            }
-
-            embedBuilder.ThumbnailUrl = planet.Thumbnail;
+            Planet planet = Planet.GeneratePlanet(PlanetName, region, Services);
 
             if (message != null)
             {
                 await message.RemoveAllReactionsAsync();
-                await message.ModifyAsync(msg => msg.Embed = embedBuilder.Build());
+                await message.ModifyAsync(msg => msg.Embed = planet.GetEmbedBuilder().Build());
             }
             else
             {
-                message = await ReplyAsync("", false, embedBuilder.Build());
+                message = await ReplyAsync(embed: planet.GetEmbedBuilder().Build());
             }
 
-            var lookingGlass = new Emoji("🔍");
-            await message.AddReactionAsync(lookingGlass);
-
-            var dino = new Emoji("\U0001F996");
-            await message.AddReactionAsync(dino);
-
-            if (planet.NumberOfBiomes > 1)
+            _ = Task.Run(async () =>
             {
-                var biome = new Emoji("\uD83C\uDF0D");
-                await message.AddReactionAsync(biome);
-            }
-        }
+                await message.AddReactionAsync(new Emoji("🔍"));
+                await message.AddReactionAsync(new Emoji("\U0001F996"));
 
-        private int PlanetFieldOrder(string fieldName)
-        {
-            if (fieldName.Contains("World")) return 1;
-            if (fieldName.Contains("Atmosphere")) return 2;
-            if (fieldName == "Settlements") return 3;
-            if (fieldName == "Terminus Settlements") return 4;
-            if (fieldName == "Outlands Settlements") return 5;
-            if (fieldName == "Expanse Settlements") return 6;
-            if (fieldName == "Life") return 9;
-            if (fieldName.Contains("Observation 1")) return 11;
-            if (fieldName.Contains("Observation 2")) return 12;
-            if (fieldName.Contains("Observation 3")) return 13;
-            if (fieldName.Contains("Closer Look")) return 15;
-            return 100;
+                if (planet.NumberOfBiomes > 1)
+                {
+                    var biome = new Emoji("\uD83C\uDF0D");
+                    await message.AddReactionAsync(biome);
+                }
+            }).ConfigureAwait(false);
         }
 
         private async Task Biome(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
+            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
-            var planet = Planet.GeneratePlanet(oldEmbed.Title);
-
-            int currentBiomes = oldEmbed.Fields.Count(field => field.Name == "Biome");
-            if (currentBiomes >= planet.NumberOfBiomes)
-            {
-                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
-                await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
-                return;
-            }
-
-            var embedBuilder = oldEmbed.ToEmbedBuilder();
-
-            EmbedFieldBuilder fieldBuilder = new EmbedFieldBuilder().WithName("Biome").WithValue(planet.Biomes[currentBiomes].Description).WithIsInline(true);
-            embedBuilder.AddField(fieldBuilder);
-            embedBuilder.Fields = embedBuilder.Fields.OrderBy(field => PlanetFieldOrder(field.Name)).ToList();
+            planet.RevealedBiomes++;
 
             await message.ModifyAsync(msg =>
             {
                 msg.Content = string.Empty;
-                msg.Embed = embedBuilder.Build();
+                msg.Embed = planet.GetEmbedBuilder().Build();
             }).ConfigureAwait(false);
-            currentBiomes++;
+
             await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
-            if (currentBiomes >= planet.NumberOfBiomes) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
+            if (planet.RevealedBiomes >= planet.NumberOfBiomes) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
         }
 
         private void CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
+            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
-            int currentLooks = oldEmbed.Fields.Count(field => field.Name == "Closer Look");
-            if (currentLooks >= 3) //TODO move this to a property of the planet?
-            {
-                var userReaction = message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-                var botReaction = message.RemoveReactionAsync(reaction.Emote, message.Author);
-                Task.WaitAll(userReaction, botReaction);
-                return;
-            }
-
-            var planet = Planet.GeneratePlanet(oldEmbed.Title.Replace("__", ""));
-
-            var embedBuilder = oldEmbed.ToEmbedBuilder();
-
-            EmbedFieldBuilder fieldBuilder = new EmbedFieldBuilder().WithName("Closer Look").WithValue(planet.CloserLooks[currentLooks].Description).WithIsInline(true);
-            embedBuilder.AddField(fieldBuilder);
-            embedBuilder.Fields = embedBuilder.Fields.OrderBy(field => PlanetFieldOrder(field.Name)).ToList();
+            planet.RevealedLooks++;
 
             message.ModifyAsync(msg =>
             {
                 msg.Content = string.Empty;
-                msg.Embed = embedBuilder.Build();
+                msg.Embed = planet.GetEmbedBuilder().Build();
             });
-            currentLooks++;
+
             message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-            if (currentLooks >= 3) message.RemoveReactionAsync(reaction.Emote, message.Author);
+            if (planet.RevealedLooks >= 3) message.RemoveReactionAsync(reaction.Emote, message.Author);
         }
 
         private void Life(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
+            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
-            if (oldEmbed.Fields.Any(field => field.Name == "Life"))
+            planet.LifeRevealed = true;
+
+            _ = Task.Run(async () =>
             {
-                message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-                return;
-            }
-
-            var embedBuilder = oldEmbed.ToEmbedBuilder();
-            var planet = Planet.GeneratePlanet(oldEmbed.Title);
-
-            EmbedFieldBuilder builder = new EmbedFieldBuilder().WithName("Life").WithValue(planet.Life.Description).WithIsInline(true);
-            embedBuilder.AddField(builder);
-            embedBuilder.Fields = embedBuilder.Fields.OrderBy(field => PlanetFieldOrder(field.Name)).ToList();
-
-            message.ModifyAsync(msg =>
-            {
-                msg.Content = string.Empty;
-                msg.Embed = embedBuilder.Build();
-            });
-            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-            message.RemoveReactionAsync(reaction.Emote, message.Author);
+                await message.ModifyAsync(msg =>
+                {
+                    msg.Content = string.Empty;
+                    msg.Embed = planet.GetEmbedBuilder().Build();
+                });
+                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await message.RemoveReactionAsync(reaction.Emote, message.Author);
+            }).ConfigureAwait(false);
         }
 
         private async Task PlanetReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
