@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using TheOracle.StarForged;
 
 namespace TheOracle.Core
 {
@@ -12,7 +14,8 @@ namespace TheOracle.Core
         {
             if (source.Count() == 0) return default;
             if (random == default) random = BotRandom.Instance;
-            return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= random.Next(1, dieSize));
+            int roll = random.Next(1, dieSize);
+            return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
         }
 
         public static T LookupOracle<T>(this IEnumerable<T> source, int roll) where T : IOracleEntry
