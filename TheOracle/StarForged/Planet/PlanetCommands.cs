@@ -91,6 +91,12 @@ namespace TheOracle.IronSworn
             var oldEmbed = message.Embeds.FirstOrDefault();
             var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
+            if (planet.RevealedBiomes >= planet.NumberOfBiomes)
+            {
+                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+                return;
+            }
+
             planet.RevealedBiomes++;
 
             await message.ModifyAsync(msg =>
@@ -103,31 +109,37 @@ namespace TheOracle.IronSworn
             if (planet.RevealedBiomes >= planet.NumberOfBiomes) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
         }
 
-        private void CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
             var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
+            if (planet.RevealedLooks >= 3)
+            {
+                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+                return;
+            }
+
             planet.RevealedLooks++;
 
-            message.ModifyAsync(msg =>
+            await message.ModifyAsync(msg =>
             {
                 msg.Content = string.Empty;
                 msg.Embed = planet.GetEmbedBuilder().Build();
-            });
+            }).ConfigureAwait(false);
 
-            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-            if (planet.RevealedLooks >= 3) message.RemoveReactionAsync(reaction.Emote, message.Author);
+            await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+            if (planet.RevealedLooks >= 3) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
         }
 
-        private void Life(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task Life(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
             var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
             planet.LifeRevealed = true;
 
-            _ = Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 await message.ModifyAsync(msg =>
                 {
@@ -145,8 +157,8 @@ namespace TheOracle.IronSworn
 
             var message = userMessage.GetOrDownloadAsync().Result;
 
-            if (reaction.Emote.Name == "🔍") CloserLook(message, channel, reaction);
-            if (reaction.Emote.Name == "\U0001F996") Life(message, channel, reaction);
+            if (reaction.Emote.Name == "🔍") await CloserLook(message, channel, reaction).ConfigureAwait(false);
+            if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction).ConfigureAwait(false);
             if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction).ConfigureAwait(false);
 
             if (message.Embeds.FirstOrDefault()?.Fields.FirstOrDefault().Name?.Contains("Options") ?? false)
