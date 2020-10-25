@@ -27,7 +27,7 @@ namespace TheOracle
         /// <param name="services"></param>
         /// <param name="game"></param>
         /// <returns></returns>
-        public static string GetOracleResult(this IOracleEntry oracle, ServiceProvider services, GameName game, Random rnd = null)
+        public static string GetOracleResult(this IOracleEntry oracle, IServiceProvider services, GameName game, Random rnd = null)
         {
             var oracleService = services.GetRequiredService<OracleService>();
 
