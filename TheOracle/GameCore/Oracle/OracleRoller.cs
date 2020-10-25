@@ -21,11 +21,8 @@ namespace TheOracle.GameCore.Oracle
         }
 
         public GameName Game { get; private set; }
-
         public OracleService OracleService { get; }
-
         public List<RollResult> RollResultList { get; set; }
-
         private Random RollerRandom { get; set; }
 
         public OracleRoller BuildRollResults(string tableName)
@@ -85,8 +82,6 @@ namespace TheOracle.GameCore.Oracle
 
             return roller;
         }
-
-
 
         private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
         {
