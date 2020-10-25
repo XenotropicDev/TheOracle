@@ -473,7 +473,7 @@
     {
         "PlanetType": "Ocean World",
         "Chance": 75,
-        "Description": "",
+        "Description": "A planet completely or mostly covered by a boundless ocean.",
         "Thumbnail":  "https://i.imgur.com/BUCW1rB.png",
         "Atmospheres": [
            { "Chance": 5, "Description": "None / thin"},
