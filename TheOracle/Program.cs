@@ -61,7 +61,7 @@ namespace TheOracle
 
         private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
         {
-            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Verbose };
+            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info };
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService();
 
