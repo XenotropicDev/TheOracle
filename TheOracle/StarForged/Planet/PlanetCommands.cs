@@ -43,7 +43,8 @@ namespace TheOracle.IronSworn
             if (spaceRegion == SpaceRegion.None)
             {
                 var palceHolderEmbed = new EmbedBuilder()
-                    .WithTitle($"__{PlanetName}__")
+                    .WithTitle("__Planet Helper__")
+                    .WithDescription(PlanetName)
                     .WithFields(new EmbedFieldBuilder()
                         .WithName("Options:")
                         .WithValue($"{oneEmoji}: Terminus\n{twoEmoji}: Outlands\n{threeEmoji}: Expanse")
@@ -161,9 +162,9 @@ namespace TheOracle.IronSworn
             if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction).ConfigureAwait(false);
             if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction).ConfigureAwait(false);
 
-            if (message.Embeds.FirstOrDefault()?.Fields.FirstOrDefault().Name?.Contains("Options") ?? false)
+            if (message.Embeds.FirstOrDefault()?.Title.Contains("Planet Helper") ?? false)
             {
-                string PlanetName = message.Embeds.First().Title.Replace("__", "");
+                string PlanetName = message.Embeds.First().Description;
 
                 if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, message).ConfigureAwait(false);
