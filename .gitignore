@@ -5,8 +5,8 @@
 
 # Project-Defined Excludes:
 *launchSettings.json
-StarForged/StarforgedOracles.json
-StarForged/Planet/PlanetTemplates.json
+/TheOracle/StarForged/Planet/PlanetTemplates.json
+/TheOracle/StarForged/StarforgedOracles.json
 
 # User-specific files
 *.rsuser
@@ -344,3 +344,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /5db5f549296926001e040d66.jpg
+
