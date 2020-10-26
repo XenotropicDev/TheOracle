@@ -20,10 +20,11 @@ namespace TheOracle.BotCore
         private DiscordSocketClient Client { get; }
 
         public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
-        { 
-            var message = await userMessage.GetOrDownloadAsync();
+        {
+            if (reaction.User.Value.IsBot) return;
             
-            if (channel as IDMChannel != null || reaction.User.Value.IsBot || message.Author.Id != Client.CurrentUser.Id) return;
+            var message = await userMessage.GetOrDownloadAsync();            
+            if (message.Author.Id != Client.CurrentUser.Id) return;
 
             if (reaction.Emote.Name == "⏬")
             {
@@ -31,7 +32,7 @@ namespace TheOracle.BotCore
                 {
                     if (message.Embeds.Count == 0) return;
 
-                    if (message.Embeds.Any(NeedsWarning)) await channel.SendMessageAsync($"{reaction.User} moved the following message to the bottom of chat from a message posted on {message.Timestamp.ToLocalTime()}");
+                    if (message.Embeds.Any(NeedsWarning) && !(channel is IDMChannel)) await channel.SendMessageAsync($"{reaction.User} moved the following message to the bottom of chat from a message posted on {message.Timestamp.ToLocalTime()}");
 
                     var reactionsToAdd = message.Reactions.Where(item => item.Value.IsMe).Select(item => item.Key);
                     var newMessage = await channel.SendMessageAsync(message.Content, message.IsTTS, message.Embeds.FirstOrDefault() as Embed);
