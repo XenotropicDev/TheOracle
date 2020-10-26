@@ -1,8 +1,10 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.BotCore
 {
@@ -18,26 +20,36 @@ namespace TheOracle.BotCore
         private DiscordSocketClient Client { get; }
 
         public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
-        { 
-            var message = await userMessage.GetOrDownloadAsync();
+        {
+            if (reaction.User.Value.IsBot) return;
             
-            if (channel as IDMChannel != null || reaction.User.Value.IsBot || message.Author.Id != Client.CurrentUser.Id) return;
+            var message = await userMessage.GetOrDownloadAsync();            
+            if (message.Author.Id != Client.CurrentUser.Id) return;
 
             if (reaction.Emote.Name == "⏬")
             {
                 _ = Task.Run(async () =>
                 {
-                    var warningMsg = await channel.SendMessageAsync($"{reaction.User} moved the following message to the bottom of chat from a message posted on {message.Timestamp.ToLocalTime()}");
+                    if (message.Embeds.Count == 0) return;
+
+                    if (message.Embeds.Any(NeedsWarning) && !(channel is IDMChannel)) await channel.SendMessageAsync($"{reaction.User} moved the following message to the bottom of chat from a message posted on {message.Timestamp.ToLocalTime()}");
 
                     var reactionsToAdd = message.Reactions.Where(item => item.Value.IsMe).Select(item => item.Key);
-                    var msg = await channel.SendMessageAsync(message.Content, message.IsTTS, message.Embeds.FirstOrDefault() as Embed);
+                    var newMessage = await channel.SendMessageAsync(message.Content, message.IsTTS, message.Embeds.FirstOrDefault() as Embed);
 
-                    await msg.AddReactionsAsync(reactionsToAdd.ToArray()).ConfigureAwait(false);
+                    await newMessage.AddReactionsAsync(reactionsToAdd.ToArray()).ConfigureAwait(false);
                     await message.DeleteAsync().ConfigureAwait(false);
                 }).ConfigureAwait(false);
             }
 
             return;
+        }
+
+        private bool NeedsWarning(IEmbed embed)
+        {
+            if (embed.Title.Contains(OracleResources.OracleResult)) return true;
+
+            return false;
         }
     }
 }

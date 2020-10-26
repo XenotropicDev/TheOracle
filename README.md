@@ -67,6 +67,28 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
 This is not really a command but more of a feature. Simply react to any bot post with the ⏬ `:arrow_double_down:` reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers and NPCs, as an alternative to needing separate channels, or multiple pinned messages.
 
 ## Starforged Commands
-#### PlanetGenerator
+#### GeneratePlanet
 Creates a planet with a name (given or a random P-number), and the planet features that detectable from space. It also adds reaction buttons for revealing more features as you explore the planet
- * COmmand Aliases: Planet
+ * Command Aliases: Planet
+ * Parameters: SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
+ * Reactions:
+ 🔍 - Closer look
+ 🦖 - Reveals the planet's life (if any)
+ 🌍 - Reveals the planet's biomes (only displayed if the planet type can have biomes)
+ * Sample usage: `!Planet Expanse Hoth`
+#### GenerateSettlement
+Creates a Starforged settlement with a name (given, or random from the settlement name list), and the features in the settlement oracles.
+ * Command Aliases: Settlement
+ * Parameters: SpaceRegion (optional), Name (optional)
+ * Reactions:
+ :tools: - Adds/reveals a settlement project
+ * Sample usage: `!Settlement Outlands Deep Space Nine`
+#### GenerateStarship
+Creates a starforged starship, *Note: this command is still a work in progress*
+ * Command Aliases: Starship, Spaceship, Ship
+ * Parameters: SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
+ * Reactions:
+ :exclamation: - Adds/reveals the starship's mission
+ * Sample usage: `!Starship Terminus Serenity`
+#### CreateNPC Starforged
+Same as the Ironsworn command, but with the character traits in the starforged oracles

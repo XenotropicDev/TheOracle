@@ -44,8 +44,6 @@ namespace TheOracle
 
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync(services);
 
-                client.JoinedGuild += LogGuildJoin;
-
                 var reactionHandler = new GlobalReactionHandler(services);
                 client.ReactionAdded += reactionHandler.ReactionEventHandler;
 
@@ -54,22 +52,16 @@ namespace TheOracle
                 await Task.Delay(Timeout.Infinite);
             }
         }
-        private Task LogGuildJoin(SocketGuild arg)
-        {
-            LogMessage msg = new LogMessage(LogSeverity.Info, "", $"The bot has been added to a new guild: {arg.Name}");
-            LogAsync(msg);
-            return Task.CompletedTask;
-        }
 
         private Task LogAsync(LogMessage msg)
-        {
+        { 
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
 
         private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
         {
-            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100 };
+            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info };
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService();
 

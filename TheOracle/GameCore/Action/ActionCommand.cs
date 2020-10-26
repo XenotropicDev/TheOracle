@@ -16,7 +16,7 @@ namespace TheOracle.IronSworn
 		[Command("Action", ignoreExtraArgs: true)]
 		[Summary("Performs an Iron Sworn action roll")]
 		[Alias("act")]
-		public async Task Action([Summary("Modifier for the action roll")] [Remainder]string ModiferAndFluff = "")
+		public async Task Action([Summary("Modifier for the action roll")][Remainder] string ModiferAndFluff = "")
 		{
 			int mod = 0;
 
