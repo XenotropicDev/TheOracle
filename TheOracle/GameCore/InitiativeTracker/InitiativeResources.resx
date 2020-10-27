@@ -129,6 +129,12 @@
   <data name="None" xml:space="preserve">
     <value>none</value>
   </data>
+  <data name="StarforgedAdvantage" xml:space="preserve">
+    <value>In control</value>
+  </data>
+  <data name="StarforgedDisadvantage" xml:space="preserve">
+    <value>In a bad spot</value>
+  </data>
   <data name="TrackerTitle" xml:space="preserve">
     <value>__Initiative Tracker__</value>
   </data>

@@ -97,6 +97,24 @@ namespace TheOracle.GameCore.InitiativeTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In control.
+        /// </summary>
+        internal static string StarforgedAdvantage {
+            get {
+                return ResourceManager.GetString("StarforgedAdvantage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In a bad spot.
+        /// </summary>
+        internal static string StarforgedDisadvantage {
+            get {
+                return ResourceManager.GetString("StarforgedDisadvantage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to __Initiative Tracker__.
         /// </summary>
         internal static string TrackerTitle {

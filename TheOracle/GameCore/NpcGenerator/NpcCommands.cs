@@ -30,10 +30,11 @@ namespace TheOracle.GameCore.NpcGenerator
         [Alias("CreateNPC", "NewNPC")]
         public async Task NPCPost([Remainder]string NPCArguments = "")
         {
+            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
             var game = Utilities.GetGameContainedInString(NPCArguments);
 
             if (game != GameName.None) NPCArguments = Utilities.RemoveGameNamesFromString(NPCArguments);
-            if (game == GameName.None) game = Utilities.GetDefaultGame();
+            if (game == GameName.None) game = channelSettings.DefaultGame;
 
             var NPCGen = new NpcFactory(serviceProvider).GetNPCGenerator(game);
 

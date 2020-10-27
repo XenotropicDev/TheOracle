@@ -37,8 +37,12 @@ namespace TheOracle.IronSworn
         [Alias("Oracle", "Table")]
         public async Task OracleRollCommand([Remainder] string Fullcommand = "")
         {
+            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+
             GameName game = Utilities.GetGameContainedInString(Fullcommand);
             string oracleTable = Utilities.RemoveGameNamesFromString(Fullcommand);
+
+            if (game == GameName.None) game = channelSettings.DefaultGame;
 
             OracleRoller roller = new OracleRoller(_oracleService, game);
 
@@ -62,10 +66,10 @@ namespace TheOracle.IronSworn
         [Alias("List")]
         public async Task OracleList()
         {
+            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
             string reply = $"__Here's a list of available Oracle Tables:__\n";
-            foreach (var oracle in _oracleService.OracleList)
+            foreach (var oracle in _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame))
             {
-                //string sample = string.Join(", ", oracle.Oracles.Take(1).Select(o => o.Description));
                 string aliases = string.Empty;
                 if (oracle.Aliases != null)
                 {
@@ -121,7 +125,7 @@ namespace TheOracle.IronSworn
                 var pairedTable = _oracleService.OracleList.Find(tbl => tbl.Name == rollResult.ParentTable.Name);
                 if (existingRoller.RollResultList.Any(tbl => tbl.ParentTable.Name == pairedTable.Pair)) continue;
 
-                var roller = new OracleRoller(_oracleService).WithGame(existingRoller.Game).BuildRollResults(pairedTable.Pair);
+                var roller = new OracleRoller(_oracleService, existingRoller.Game).BuildRollResults(pairedTable.Pair);
 
                 roller.RollResultList.ForEach(res => res.ShouldInline = true);
                 rollResult.ShouldInline = true;

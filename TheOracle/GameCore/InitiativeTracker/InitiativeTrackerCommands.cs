@@ -1,10 +1,12 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Net.Udp;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 
 namespace TheOracle.GameCore.InitiativeTracker
 {
@@ -33,7 +35,9 @@ namespace TheOracle.GameCore.InitiativeTracker
         [Alias("Initiative", "IniTracker")]
         public async Task BuildTrackerCommand([Remainder] string Description = "")
         {
-            InitiativeTracker tracker = new InitiativeTracker();
+            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+
+            InitiativeTracker tracker = new InitiativeTracker(channelSettings);
             tracker.Description = Description;
             var msg = await ReplyAsync(embed: tracker.GetEmbedBuilder().Build());
             await msg.AddReactionAsync(new Emoji(AdvantageEmoji));
@@ -46,30 +50,37 @@ namespace TheOracle.GameCore.InitiativeTracker
         private async Task InitiativeReactionsHandler(Discord.Cacheable<Discord.IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var emojisToProcess = new Emoji[] { new Emoji(AdvantageEmoji), new Emoji(DisadvantageEmoji), new Emoji(DeleteEmoji), new Emoji(ConfirmEmoji) };
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return;
+            if (!emojisToProcess.Contains(reaction.Emote)) return;
+
+            var user = reaction.User.GetValueOrDefault();
+            if (user == default) user = Services.GetRequiredService<DiscordSocketClient>().GetUser(reaction.UserId);
+            
+            if (user == default || user.IsBot) return;
+
+            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
 
             var message = await userMessage.GetOrDownloadAsync();
             if (!InitiativeTracker.IsInitiativeTrackerMessage(message)) return;
 
-            InitiativeTracker tracker = InitiativeTracker.FromMessage(message);
+            InitiativeTracker tracker = InitiativeTracker.FromMessage(message).WithChannelSettings(channelSettings);
             if (reaction.Emote.Name == DisadvantageEmoji)
             {
-                if (!tracker.Disadvantage.Contains(reaction.User.ToString()))
+                if (!tracker.Disadvantage.Contains(user.ToString()))
                 {
-                    await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
-                    tracker.Disadvantage.Add(reaction.User.ToString());
-                    tracker.Advantage.RemoveAll(s => s == reaction.User.ToString());
+                    await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+                    tracker.Disadvantage.Add(user.ToString());
+                    tracker.Advantage.RemoveAll(s => s == user.ToString());
                     await message.ModifyAsync(msg => msg.Embed = tracker.GetEmbedBuilder().Build());
                     return;
                 }
             }
             if (reaction.Emote.Name == AdvantageEmoji)
             {
-                if (!tracker.Advantage.Contains(reaction.User.ToString()))
+                if (!tracker.Advantage.Contains(user.ToString()))
                 {
-                    await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
-                    tracker.Advantage.Add(reaction.User.ToString());
-                    tracker.Disadvantage.RemoveAll(s => s == reaction.User.ToString());
+                    await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+                    tracker.Advantage.Add(user.ToString());
+                    tracker.Disadvantage.RemoveAll(s => s == user.ToString());
                     await message.ModifyAsync(msg => msg.Embed = tracker.GetEmbedBuilder().Build());
                     return;
                 }

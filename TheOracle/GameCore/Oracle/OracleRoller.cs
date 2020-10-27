@@ -12,7 +12,7 @@ namespace TheOracle.GameCore.Oracle
 {
     public class OracleRoller
     {
-        public OracleRoller(OracleService oracleService, GameName game = GameName.None, Random rnd = null)
+        public OracleRoller(OracleService oracleService, GameName game, Random rnd = null)
         {
             OracleService = oracleService;
             Game = game;
@@ -57,8 +57,7 @@ namespace TheOracle.GameCore.Oracle
 
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
         {
-            var roller = new OracleRoller(oracleService);
-            roller.Game = Utilities.GetGameContainedInString(embed.Title);
+            var roller = new OracleRoller(oracleService, Utilities.GetGameContainedInString(embed.Title));
 
             roller.RollResultList = new List<RollResult>();
 
@@ -127,7 +126,7 @@ namespace TheOracle.GameCore.Oracle
             }
 
             if (result.GroupBy(t => t.Game).Count() > 1)
-            {
+            { 
                 string games = string.Empty;
                 var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
                 foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
@@ -135,12 +134,6 @@ namespace TheOracle.GameCore.Oracle
             }
 
             return result;
-        }
-
-        public OracleRoller WithGame(GameName game)
-        {
-            this.Game = game;
-            return this;
         }
 
         private void RollFacade(string table, int depth = 0)
