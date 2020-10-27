@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -29,11 +30,6 @@ namespace TheOracle.BotCore
 
             var convertedValue = decimal.Parse(percentValue, NumberStyles.Currency, nfi);
             return convertedValue / 100m;
-        }
-
-        internal static GameName GetDefaultGame()
-        {
-            return GameName.Ironsworn;
         }
 
         public static GameName GetGameContainedInString(string value)
