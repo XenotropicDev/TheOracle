@@ -19,15 +19,6 @@ namespace TheOracle.Core
         public bool ShowResult { get; set; } = true;
         public OracleType Type { get; set; } = OracleType.standard;
 
-        internal OracleRoller RollPairedTable(OracleService service)
-        {
-            if (Pair.Length == 0) return new OracleRoller(null);
-
-            var row = service.RandomRow(Pair);
-
-            return new OracleRoller(service, Game ?? GameName.None).BuildRollResults(Pair);
-        }
-
         public bool MatchTableAlias(string table)
         {
             return this.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;

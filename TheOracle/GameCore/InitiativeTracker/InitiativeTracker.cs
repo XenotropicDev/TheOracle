@@ -2,26 +2,42 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheOracle.BotCore;
 
 namespace TheOracle.GameCore.InitiativeTracker
 {
     public class InitiativeTracker
     {
+        private ChannelSettings ChannelSettings;
+
+        public InitiativeTracker(ChannelSettings channelSettings = null)
+        {
+            this.ChannelSettings = channelSettings;
+        }
+
+        public InitiativeTracker WithChannelSettings(ChannelSettings channelSettings)
+        {
+            this.ChannelSettings = channelSettings;
+            return this;
+        }
+
         public List<string> Advantage { get; set; } = new List<string>();
         public List<string> Disadvantage { get; set; } = new List<string>();
         public string Description { get; set; }
 
         public EmbedBuilder GetEmbedBuilder()
         {
+            string advantageTitle = (ChannelSettings?.DefaultGame == GameName.Starforged) ? InitiativeResources.StarforgedAdvantage : InitiativeResources.Advantage;
+            string disadvantageTitle = (ChannelSettings?.DefaultGame == GameName.Starforged) ? InitiativeResources.StarforgedDisadvantage : InitiativeResources.Disadvantage;
             return new EmbedBuilder()
                 .WithTitle(InitiativeResources.TrackerTitle)
                 .WithDescription(Description)
                 .WithFields(new EmbedFieldBuilder()
-                    .WithName(InitiativeResources.Advantage)
+                    .WithName(advantageTitle)
                     .WithValue((Advantage.Count > 0) ? String.Join('\n', Advantage) : InitiativeResources.None)
                     .WithIsInline(true))
                 .WithFields(new EmbedFieldBuilder()
-                    .WithName(InitiativeResources.Disadvantage)
+                    .WithName(disadvantageTitle)
                     .WithValue((Disadvantage.Count > 0) ? String.Join('\n', Disadvantage) : InitiativeResources.None)
                     .WithIsInline(true))
                 ;
@@ -39,8 +55,8 @@ namespace TheOracle.GameCore.InitiativeTracker
             var tracker = new InitiativeTracker
             {
                 Description = embed.Description,
-                Advantage = embed.Fields.First(field => field.Name == InitiativeResources.Advantage).Value.Split('\n').ToList(),
-                Disadvantage = embed.Fields.First(field => field.Name == InitiativeResources.Disadvantage).Value.Split('\n').ToList()
+                Advantage = embed.Fields.First(field => field.Name == InitiativeResources.Advantage || field.Name == InitiativeResources.StarforgedAdvantage).Value.Split('\n').ToList(),
+                Disadvantage = embed.Fields.First(field => field.Name == InitiativeResources.Disadvantage || field.Name == InitiativeResources.StarforgedDisadvantage).Value.Split('\n').ToList()
             };
 
             tracker.Advantage.RemoveAll(s => s == InitiativeResources.None);

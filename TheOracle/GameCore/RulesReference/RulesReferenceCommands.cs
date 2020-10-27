@@ -17,10 +17,11 @@ namespace TheOracle.Core
         [Summary("Posts the rules text from the quick reference source document")]
         public async Task ReferencePost([Remainder] string query)
         {
+            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
             GameName game = Utilities.GetGameContainedInString(query);
             query = Utilities.RemoveGameNamesFromString(query);
 
-            if (game == GameName.None) game = Utilities.GetDefaultGame();
+            if (game == GameName.None) game = channelSettings.DefaultGame;
 
             query = query.Trim();
 
@@ -54,16 +55,20 @@ namespace TheOracle.Core
             var specRules = ruleService.Rules.Where(r => r.Moves.Any(m => MatchNameOrAlias(m, query)));
 
             if (specRules.GroupBy(r => r.Game).Count() > 1) specRules = specRules.Where(r => r.Game == game);
-            
-            foreach (var move in specRules.SelectMany(r => r.Moves.Where(m => MatchNameOrAlias(m, query))))
+
+            foreach (var rules in specRules)
             {
-                string temp = $"__{game} - **{move.Name}**__\n{move.Text}\n\n";
-                if (specificMovesReply.Length + temp.Length > DiscordConfig.MaxMessageSize)
+                var actualGame = rules.Game;
+                foreach (var move in rules.Moves.Where(m => MatchNameOrAlias(m, query)))
                 {
-                    await ReplyAsync(specificMovesReply);
-                    specificMovesReply = string.Empty;
+                    string temp = $"__{actualGame} - **{move.Name}**__\n{move.Text}\n\n";
+                    if (specificMovesReply.Length + temp.Length > DiscordConfig.MaxMessageSize)
+                    {
+                        await ReplyAsync(specificMovesReply);
+                        specificMovesReply = string.Empty;
+                    }
+                    specificMovesReply += temp;
                 }
-                specificMovesReply += temp;
             }
 
             if (specificMovesReply.Length == 0)

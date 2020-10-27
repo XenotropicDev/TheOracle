@@ -21,10 +21,8 @@ namespace TheOracle.BotCore
 
         public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
-            if (reaction.User.Value.IsBot) return;
-            
             var message = await userMessage.GetOrDownloadAsync();            
-            if (message.Author.Id != Client.CurrentUser.Id) return;
+            if (message.Author.Id != Client.CurrentUser.Id || (reaction.User.IsSpecified && reaction.User.Value.IsBot)) return;
 
             if (reaction.Emote.Name == "⏬")
             {
