@@ -15,6 +15,7 @@ namespace TheOracle.Tests
         [TestMethod()]
         public void GetOracleResultTest()
         {
+            Assert.Inconclusive();
             var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
 
             var testTable = services.GetRequiredService<OracleService>().OracleList.FirstOrDefault(tbl => tbl.Oracles.Any(oracle => oracle.Description == "[2x]"));
@@ -22,8 +23,6 @@ namespace TheOracle.Tests
 
             var oracle = testTable.Oracles.First(oracle => oracle.Description == "[2x]");
             var final = oracle.GetOracleResult(services, testTable.Game.Value);
-
-            Assert.Inconclusive();
         }
     }
 }
