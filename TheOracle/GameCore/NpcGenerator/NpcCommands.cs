@@ -34,7 +34,7 @@ namespace TheOracle.GameCore.NpcGenerator
             var game = Utilities.GetGameContainedInString(NPCArguments);
 
             if (game != GameName.None) NPCArguments = Utilities.RemoveGameNamesFromString(NPCArguments);
-            if (game == GameName.None) game = channelSettings.DefaultGame;
+            if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
             var NPCGen = new NpcFactory(serviceProvider).GetNPCGenerator(game);
 

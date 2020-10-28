@@ -21,7 +21,7 @@ namespace TheOracle.Core
             GameName game = Utilities.GetGameContainedInString(query);
             query = Utilities.RemoveGameNamesFromString(query);
 
-            if (game == GameName.None) game = channelSettings.DefaultGame;
+            if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
             query = query.Trim();
 

@@ -42,7 +42,7 @@ namespace TheOracle.IronSworn
             GameName game = Utilities.GetGameContainedInString(Fullcommand);
             string oracleTable = Utilities.RemoveGameNamesFromString(Fullcommand);
 
-            if (game == GameName.None) game = channelSettings.DefaultGame;
+            if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
             OracleRoller roller = new OracleRoller(_oracleService, game);
 

@@ -23,6 +23,11 @@ namespace TheOracle
 
         public async Task MainAsync()
         {
+            using (DiscordChannelContext dbContext = new DiscordChannelContext())
+            {
+                dbContext.Database.EnsureCreated();
+            }
+
             using (ServiceProvider services = ConfigureServices())
             {
                 Console.WriteLine($"Starting TheOracle v{Assembly.GetEntryAssembly().GetName().Version}");
