@@ -5,10 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
 using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
@@ -25,7 +22,12 @@ namespace TheOracle.IronSworn
 
             if (!services.GetRequiredService<HookedEvents>().OracleTableReactions)
             {
-                _client.ReactionAdded += PairedTableReactionHandler;
+                var reactionService = services.GetRequiredService<ReactionService>();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji("\uD83E\uDDE6").WithEvent(PairedTableReactionHandler).Build();
+
+                reactionService.reactionList.Add(reaction1);
+
+                services.GetRequiredService<HookedEvents>().OracleTableReactions = true;
             }
         }
 
@@ -89,27 +91,24 @@ namespace TheOracle.IronSworn
 
                 int cutoff = reply.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf(',');
                 await ReplyAsync(reply.Substring(0, cutoff));
-                reply = reply.Substring(cutoff+1).Trim();
+                reply = reply.Substring(cutoff + 1).Trim();
             }
         }
 
-        private Task PairedTableReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task PairedTableReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return Task.CompletedTask;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-            if (message.Author.Id != _client.CurrentUser.Id) return Task.CompletedTask;
+            if (message.Author.Id != _client.CurrentUser.Id) return;
 
             var pairEmoji = new Emoji("\uD83E\uDDE6");
             if (reaction.Emote.Name == pairEmoji.Name)
             {
-                message.RemoveReactionAsync(pairEmoji, reaction.User.Value);
-                message.RemoveReactionAsync(pairEmoji, message.Author);
+                await message.RemoveReactionAsync(pairEmoji, user).ConfigureAwait(false);
+                await message.RemoveReactionAsync(pairEmoji, message.Author).ConfigureAwait(false);
 
-                message.ModifyAsync(msg => msg.Embed = AddRollToExisting(message));
+                await message.ModifyAsync(msg => msg.Embed = AddRollToExisting(message)).ConfigureAwait(false);
             }
 
-            return Task.CompletedTask;
+            return;
         }
 
         private Embed AddRollToExisting(IUserMessage message)

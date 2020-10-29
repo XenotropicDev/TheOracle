@@ -1,6 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using Discord.Net.Udp;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,9 +12,8 @@ namespace TheOracle.GameCore.InitiativeTracker
     public class InitiativeTrackerCommands : ModuleBase<SocketCommandContext>
     {
         public const string AdvantageEmoji = "\u25C0";
-        public const string ConfirmEmoji = "\u2713";
-        public const string DeleteEmoji = "\u274C";
         public const string DisadvantageEmoji = "\u25B6";
+
         public InitiativeTrackerCommands(ServiceProvider services)
         {
             Services = services;
@@ -23,8 +21,11 @@ namespace TheOracle.GameCore.InitiativeTracker
             var hooks = Services.GetRequiredService<HookedEvents>();
             if (!hooks.InitiativeReactions)
             {
-                var client = Services.GetRequiredService<DiscordSocketClient>();
-                client.ReactionAdded += InitiativeReactionsHandler;
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(AdvantageEmoji).WithEvent(InitiativeReactionsHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(DisadvantageEmoji).WithEvent(InitiativeReactionsHandler).Build();
+
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction1);
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction2);
                 hooks.InitiativeReactions = true;
             }
         }
@@ -47,19 +48,10 @@ namespace TheOracle.GameCore.InitiativeTracker
             return;
         }
 
-        private async Task InitiativeReactionsHandler(Discord.Cacheable<Discord.IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task InitiativeReactionsHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            var emojisToProcess = new Emoji[] { new Emoji(AdvantageEmoji), new Emoji(DisadvantageEmoji), new Emoji(DeleteEmoji), new Emoji(ConfirmEmoji) };
-            if (!emojisToProcess.Contains(reaction.Emote)) return;
-
-            var user = reaction.User.GetValueOrDefault();
-            if (user == default) user = Services.GetRequiredService<DiscordSocketClient>().GetUser(reaction.UserId);
-            
-            if (user == default || user.IsBot) return;
-
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
 
-            var message = await userMessage.GetOrDownloadAsync();
             if (!InitiativeTracker.IsInitiativeTrackerMessage(message)) return;
 
             InitiativeTracker tracker = InitiativeTracker.FromMessage(message).WithChannelSettings(channelSettings);

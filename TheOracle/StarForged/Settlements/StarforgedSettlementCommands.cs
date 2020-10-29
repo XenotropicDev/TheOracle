@@ -6,6 +6,7 @@ using Microsoft.VisualBasic;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.Core;
 
 namespace TheOracle.StarForged.Settlements
@@ -25,56 +26,59 @@ namespace TheOracle.StarForged.Settlements
             {
                 var client = services.GetRequiredService<DiscordSocketClient>();
 
-                client.ReactionAdded += SettlementReactionHandler;
+                var reactionService = services.GetRequiredService<ReactionService>();
+
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(SettlementReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(SettlementReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(SettlementReactionHandler).Build();
+
+                ReactionEvent project = new ReactionEventBuilder().WithEmote(projectEmoji).WithEvent(SettlementReactionHandler).Build();
+
+                reactionService.reactionList.Add(reaction1);
+                reactionService.reactionList.Add(reaction2);
+                reactionService.reactionList.Add(reaction3);
+                reactionService.reactionList.Add(project);
+
                 hooks.StarSettlementReactions = true;
             }
 
             Services = services;
         }
 
-        private Task SettlementReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task SettlementReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            var emojisToProcess = new Emoji[] { projectEmoji, oneEmoji, twoEmoji, threeEmoji };
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-
             var settlementHelperEmbed = message.Embeds.FirstOrDefault(embed => embed?.Title?.Contains(SettlementResources.SettlementHelper) ?? false);
 
             if (settlementHelperEmbed != null)
             {
-                Console.WriteLine($"User {reaction.User} triggered {nameof(settlementHelperEmbed)} with reaction {reaction.Emote.Name}");
-
                 var region = StarforgedUtilites.SpaceRegionFromEmote(reaction.Emote.Name);
-                if (region == SpaceRegion.None) return Task.CompletedTask;
+                if (region == SpaceRegion.None) return;
 
                 string name = settlementHelperEmbed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.SettlementName).Value ?? string.Empty;
 
                 var newSettlement = Settlement.GenerateSettlement(Services, region, name);
                 Task.WaitAll(message.RemoveAllReactionsAsync());
 
-                var task1 = message.ModifyAsync(msg =>
+                await message.ModifyAsync(msg =>
                 {
                     msg.Content = string.Empty;
                     msg.Embed = newSettlement.GetEmbedBuilder().Build();
-                });
-                var task2 = message.AddReactionAsync(projectEmoji);
-                return Task.WhenAll(task1, task2);
+                }).ConfigureAwait(false);
+                await message.AddReactionAsync(projectEmoji).ConfigureAwait(false);
+                return;
             }
 
             var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
-            if (settlmentEmbed == null) return Task.CompletedTask;
+            if (settlmentEmbed == null) return;
             
-            Console.WriteLine($"User {reaction.User} triggered {nameof(settlmentEmbed)} with reaction {reaction.Emote.Name}");
-
             var settlement = new Settlement(Services).FromEmbed(settlmentEmbed);
 
             if (reaction.Emote.Name == projectEmoji.Name) settlement.ProjectsRevealed++;
 
-            message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build());
-            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
-            return Task.CompletedTask;
+            return;
         }
 
         public OracleService oracleService { get; set; }

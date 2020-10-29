@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.Core;
 
 namespace TheOracle.StarForged.Starships
@@ -26,60 +27,63 @@ namespace TheOracle.StarForged.Starships
             {
                 var client = services.GetRequiredService<DiscordSocketClient>();
 
-                client.ReactionAdded += ShipReactionHandler;
+                var reactionService = services.GetRequiredService<ReactionService>();
+
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(ShipReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(ShipReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(ShipReactionHandler).Build();
+
+                ReactionEvent misison = new ReactionEventBuilder().WithEmote(missionEmoji).WithEvent(ShipReactionHandler).Build();
+
+                reactionService.reactionList.Add(reaction1);
+                reactionService.reactionList.Add(reaction2);
+                reactionService.reactionList.Add(reaction3);
+                reactionService.reactionList.Add(misison);
+
                 hooks.StarShipReactions = true;
             }
 
             Services = services;
         }
 
-        private Task ShipReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task ShipReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            var emojisToProcess = new Emoji[] { missionEmoji, oneEmoji, twoEmoji, threeEmoji };
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-
             var starshipHelperEmbed = message.Embeds.FirstOrDefault(embed => embed?.Title?.Contains(StarShipResources.StarshipHelperTitle) ?? false);
 
             if (starshipHelperEmbed != null)
             {
-                Console.WriteLine($"User {reaction.User} triggered {nameof(starshipHelperEmbed)} with reaction {reaction.Emote.Name}");
-
                 var region = StarforgedUtilites.SpaceRegionFromEmote(reaction.Emote.Name);
-                if (region == SpaceRegion.None) return Task.CompletedTask;
+                if (region == SpaceRegion.None) return;
 
                 string name = starshipHelperEmbed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.StarshipName).Value ?? string.Empty;
 
                 Starship newShip = Starship.GenerateShip(Services, region, name);
                 Task.WaitAll(message.RemoveAllReactionsAsync());
 
-                var task1 = message.ModifyAsync(msg =>
+                await message.ModifyAsync(msg =>
                 {
                     msg.Content = string.Empty;
                     msg.Embed = newShip.GetEmbedBuilder().Build();
-                });
-                var task2 = message.AddReactionAsync(missionEmoji);
-                return Task.WhenAll(task1, task2);
+                }).ConfigureAwait(false);
+                await message.AddReactionAsync(missionEmoji).ConfigureAwait(false);
+                return;
             }
 
             var shipEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(StarShipResources.Starship, StringComparison.OrdinalIgnoreCase) ?? false);
-            if (shipEmbed == null) return Task.CompletedTask;
+            if (shipEmbed == null) return;
             
-            Console.WriteLine($"User {reaction.User} triggered {nameof(shipEmbed)} with reaction {reaction.Emote.Name}");
-
             Starship ship = Starship.FromEmbed(Services, shipEmbed);
 
             if (reaction.Emote.Name == missionEmoji.Name)
             {
                 ship.MissionRevealed = true;
-                message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
+                await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
             }
 
-            message.ModifyAsync(msg => msg.Embed = ship.GetEmbedBuilder().Build()).ConfigureAwait(false);
-            message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = ship.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
-            return Task.CompletedTask;
+            return;
         }
 
         public ServiceProvider Services { get; }
