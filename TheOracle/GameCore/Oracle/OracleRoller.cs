@@ -126,7 +126,7 @@ namespace TheOracle.GameCore.Oracle
             }
 
             if (result.GroupBy(t => t.Game).Count() > 1)
-            { 
+            {
                 string games = string.Empty;
                 var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
                 foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
@@ -144,7 +144,11 @@ namespace TheOracle.GameCore.Oracle
 
             if (TablesToRoll.Count == 0)
             {
-                throw new ArgumentException($"{OracleResources.UnknownTableError}{table}");
+                if (this.Game == GameName.None) throw new ArgumentException($"{OracleResources.UnknownTableError}{table}");
+
+                //try again without any game name
+                this.Game = GameName.None;
+                RollFacade(table, depth);
             }
 
             foreach (var oracleTable in TablesToRoll)
