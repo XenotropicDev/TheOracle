@@ -193,7 +193,8 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Too many tables with that name, please specify a game: {0}. To avoid this error in the future you set you default game with the !SetDefaultGame command.
+        ///   Looks up a localized string similar to Too many tables with that name, please specify a game: {0}. 
+        ///To avoid this error in the future your set you default game with the `!SetDefaultGame` command.
         /// </summary>
         internal static string TooManyGamesError {
             get {
