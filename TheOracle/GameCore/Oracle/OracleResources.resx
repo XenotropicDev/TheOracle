@@ -166,7 +166,8 @@
     <value>Small Chance</value>
   </data>
   <data name="TooManyGamesError" xml:space="preserve">
-    <value>Too many tables with that name, please specify a game:</value>
+    <value>Too many tables with that name, please specify a game: {0}. To avoid this error in the future you set you default game with the !SetDefaultGame command</value>
+    <comment>{0} will be replaced with a list of games installed on the bot</comment>
   </data>
   <data name="UnknownTableError" xml:space="preserve">
     <value>Unknown Oracle Table:</value>

@@ -130,7 +130,7 @@ namespace TheOracle.GameCore.Oracle
                 string games = string.Empty;
                 var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
                 foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
-                throw new ArgumentException($"{OracleResources.TooManyGamesError} {games}");
+                throw new ArgumentException(string.Format(OracleResources.TooManyGamesError, games));
             }
 
             return result;
