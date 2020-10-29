@@ -251,6 +251,7 @@
               [
               {
                   "Name": "Reveal a Danger (alternate version)",
+                  "Aliases": ["Reveal a Danger alternate", "Reveal a Danger alt"],
                   "Text": "When **you encounter a risky situation within a site**, envision the danger or roll on the following table. ```Roll\tResult\n 1-22\tYou encounter a hostile denizen.\n23-42\tYou face an environmental or architectural hazard.\n43-58\tA discovery undermines or complicates your quest.\n59-64\tYou confront a harrowing situation or sensation.\n65-70\tYou face the consequences of an earlier choice or approach.\n71-76\tThe path is blocked or trapped.\n77-82\tA resource is diminished, broken, or lost.\n83-88\tYou face a perplexing mystery or tough choice.\n89-94\tYou lose your way or are delayed.\n95-00\tRoll twice more on this table. Both results occur. If they are the same result, make it worse.```"
               },
               {
@@ -274,5 +275,6 @@
                   "Text": "When *you make a move aided by an augmented asset*, roll your rarity die in place of your action die.\nOn *any result* with 6 showing on the rarity die, the power of the rarity manifests in a dramatic and obvious way. You score an automatic **strong hit** and take +1 momentum.\nOn a *hit* with 5 showing on the rarity die, the power of the rarity manifests in a subtle way. Take +1 momentum.\nOn a *miss* with 1 showing on the rarity die, the rarity’s power fails or works against you."
               }
             ]
+        }
     ]
 }
