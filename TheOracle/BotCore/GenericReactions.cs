@@ -15,7 +15,11 @@ namespace TheOracle.BotCore
             Service = service;
 
             ReactionEvent moveDownReaction = new ReactionEventBuilder().WithEmoji("⏬").WithEvent(movePostDown).Build();
+            ReactionEvent deleteReaction = new ReactionEventBuilder().WithEmoji("❌").WithEvent(deletePostStart).Build();
+            ReactionEvent confrimDeleteReaction = new ReactionEventBuilder().WithEmoji("☑️").WithEvent(deletePostConfirm).Build();
             service.GetRequiredService<ReactionService>().reactionList.Add(moveDownReaction);
+            service.GetRequiredService<ReactionService>().reactionList.Add(deleteReaction);
+            service.GetRequiredService<ReactionService>().reactionList.Add(confrimDeleteReaction);
         }
 
         public IServiceProvider Service { get; }
@@ -36,6 +40,22 @@ namespace TheOracle.BotCore
             }).ConfigureAwait(false);
             
             return;
+        }
+
+        private async Task deletePostStart(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            await message.AddReactionAsync(new Emoji("☑️"));
+        }
+
+        private async Task deletePostConfirm(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var client = Service.GetRequiredService<DiscordSocketClient>();
+            if (message.Author.Id != client.CurrentUser.Id) return;
+
+            if (message.Reactions.ContainsKey(new Emoji("❌")))
+            {
+                await message.DeleteAsync();
+            }
         }
 
         private bool NeedsWarning(IEmbed embed)
