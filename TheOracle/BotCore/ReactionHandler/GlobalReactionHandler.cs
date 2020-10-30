@@ -18,7 +18,7 @@ namespace TheOracle.BotCore
         public IServiceProvider Service { get; }
         private DiscordSocketClient Client { get; }
 
-        public async Task ReactionEventHandler( Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var reactionHandler = Service.GetRequiredService<ReactionService>();
             if (!reactionHandler.reactionList.Any(item => item.Emote.Name == reaction.Emote.Name)) return;
@@ -30,10 +30,22 @@ namespace TheOracle.BotCore
 
             var message = await userMessage.GetOrDownloadAsync();
 
-            foreach (var item in reactionHandler.reactionList.Where(react => react.Emote.Name == reaction.Emote.Name))
+            //foreach (var item in reactionHandler.reactionList.Where(react => react.Emote.Name == reaction.Emote.Name))
+            Parallel.ForEach(reactionHandler.reactionList.Where(react => react.Emote.Name == reaction.Emote.Name), (item) =>
             {
-                await item.ReactionAddedEvent.InvokeAsync(message, channel, reaction, user);
-            }
+                try
+                {
+                    _ = item.ReactionAddedEvent.InvokeAsync(message, channel, reaction, user);
+                }
+                catch (Discord.Net.HttpException httpEx)
+                {
+                    Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {user} triggered a {httpEx.GetType()} - {httpEx.Message}");
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            });
         }
     }
 }
