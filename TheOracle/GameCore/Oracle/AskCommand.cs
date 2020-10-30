@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
@@ -83,38 +84,35 @@ namespace TheOracle.GameCore.Oracle
         public async Task AskTheOracleCommand([Remainder] string Likelihood = "")
         {
             Likelihood = Likelihood.Trim();
-            if (Likelihood == string.Empty)
-            {
-                var helperEmbed = new EmbedBuilder().WithTitle(OracleResources.AskOracleHelperTitle).WithDescription(OracleResources.AskOracleHelperMessage);
-                var msg = await ReplyAsync(embed: helperEmbed.Build());
 
-                _ = Task.Run(async () =>
-                {
-                    await msg.AddReactionAsync(new Emoji(oneEmoji));
-                    await msg.AddReactionAsync(new Emoji(twoEmoji));
-                    await msg.AddReactionAsync(new Emoji(threeEmoji));
-                    await msg.AddReactionAsync(new Emoji(fourEmoji));
-                    await msg.AddReactionAsync(new Emoji(fiveEmoji));
-                }).ConfigureAwait(false);
+            var lookForDigits = Regex.Match(Likelihood, @"\d+");
 
-                return;
-            }
-
-            if (int.TryParse(Likelihood, out int chanceAsInt) && chanceAsInt > 0 && chanceAsInt < 100)
+            if (lookForDigits.Success && int.TryParse(lookForDigits.Value, out int chanceAsInt) && chanceAsInt > 0 && chanceAsInt < 100)
             {
                 await ReplyAsync(AskTheOracleWithChance(chanceAsInt));
                 return;
             }
 
-            var lookupResult = ChanceLookUp.Find(chance => chance.Item1.Equals(Likelihood, StringComparison.OrdinalIgnoreCase));
+            var lookupResult = ChanceLookUp.Find(chance => Likelihood.Contains(chance.Item1, StringComparison.OrdinalIgnoreCase));
             if (lookupResult != null)
             {
                 await ReplyAsync(AskTheOracleWithChance(lookupResult.Item2, lookupResult.Item1));
                 return;
             }
 
-            string listOfOptions = String.Join(", ", ChanceLookUp.Select(lookup => $"`{lookup.Item2}`"));
-            await ReplyAsync(OracleResources.AskCommandUnknownValue + listOfOptions);
+            var helperEmbed = new EmbedBuilder().WithTitle(OracleResources.AskOracleHelperTitle).WithDescription(OracleResources.AskOracleHelperMessage);
+            var msg = await ReplyAsync(embed: helperEmbed.Build());
+
+            _ = Task.Run(async () =>
+            {
+                await msg.AddReactionAsync(new Emoji(oneEmoji));
+                await msg.AddReactionAsync(new Emoji(twoEmoji));
+                await msg.AddReactionAsync(new Emoji(threeEmoji));
+                await msg.AddReactionAsync(new Emoji(fourEmoji));
+                await msg.AddReactionAsync(new Emoji(fiveEmoji));
+            }).ConfigureAwait(false);
+
+            return;
         }
 
         private string AskTheOracleWithChance(int chance, string descriptor = "")
