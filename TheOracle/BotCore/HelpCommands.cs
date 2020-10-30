@@ -44,8 +44,9 @@ namespace TheOracle
             }
             else
             {
-                var mod = _commands.Modules.FirstOrDefault(m => m.Name.Replace("Module", "").ToLower() == path.ToLower());
-                if (mod == null) { await ReplyAsync("No module could be found with that name."); return; }
+                var mod = _commands.Modules.FirstOrDefault(m => m.Name.Contains(path, StringComparison.OrdinalIgnoreCase) || m.Aliases.Any(alias => alias.Contains(path, StringComparison.OrdinalIgnoreCase)));
+                if (mod == null) mod = _commands.Modules.FirstOrDefault(m => m.Commands.Any(c => c.Aliases.Any(a => a.Contains(path)))); 
+                if (mod == null) { await ReplyAsync("No command could be found with that name."); return; }
 
                 output.Title = mod.Name;
                 output.Description = $"{mod.Summary}\n" +
