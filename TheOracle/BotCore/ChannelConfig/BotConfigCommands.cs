@@ -49,6 +49,34 @@ namespace TheOracle.BotCore
             }
         }
 
+        [Command("SetRerollDuplicates", ignoreExtraArgs: true)]
+        [Alias("RerollDuplicates")]
+        [Summary("Sets the rolling behavior for a channel.")]
+        public async Task SetRerollDuplicates(bool value)
+        {
+            using var db = new DiscordChannelContext();
+            var existingSettings = await db.ChannelSettings.FirstOrDefaultAsync(cs => cs.ChannelID == Context.Channel.Id);
+
+            if (existingSettings != null)
+            {
+                existingSettings.RerollDuplicates = value;
+                await db.SaveChangesAsync().ConfigureAwait(false);
+                await Context.Message.AddReactionAsync(new Emoji("🆗")).ConfigureAwait(false);
+                return;
+            }
+            else
+            {
+                ChannelSettings cs = new ChannelSettings
+                {
+                    ChannelID = Context.Channel.Id,
+                    RerollDuplicates = value
+                };
+                db.ChannelSettings.Add(cs);
+                await db.SaveChangesAsync().ConfigureAwait(false);
+                await Context.Message.AddReactionAsync(new Emoji("🆗")).ConfigureAwait(false);
+            }
+        }
+
         [Command("GetDefaultGame", ignoreExtraArgs: true)]
         [Summary("Posts the default game for the channel.")]
         public async Task GetDefaultGame()

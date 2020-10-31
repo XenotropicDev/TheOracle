@@ -83,6 +83,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ProgressResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="StarForged\Creatures\CreatureResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreatureResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StarForged\Creature\CreatureResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -125,6 +130,10 @@
     <EmbeddedResource Update="GameCore\ProgressTracker\ProgressResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProgressResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StarForged\Creatures\CreatureResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreatureResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="StarForged\Creature\CreatureResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

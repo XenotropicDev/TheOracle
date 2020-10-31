@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheOracle.StarForged.Creature {
+namespace TheOracle.StarForged.Creatures {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TheOracle.StarForged.Creature {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.Creature.CreatureResources", typeof(CreatureResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.Creatures.CreatureResources", typeof(CreatureResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,24 @@ namespace TheOracle.StarForged.Creature {
         internal static string BasicForm {
             get {
                 return ResourceManager.GetString("BasicForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creature Helper.
+        /// </summary>
+        internal static string CreatureHelper {
+            get {
+                return ResourceManager.GetString("CreatureHelper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to __Starforged Creature__.
+        /// </summary>
+        internal static string CreatureTitle {
+            get {
+                return ResourceManager.GetString("CreatureTitle", resourceCulture);
             }
         }
         
@@ -97,6 +115,21 @@ namespace TheOracle.StarForged.Creature {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please pick the creature&apos;s environment:
+        ///1️⃣ - Void
+        ///2️⃣ - Interior
+        ///3️⃣ - Land
+        ///4️⃣ - Liquid
+        ///5️⃣ - Air
+        ///🎲 - Random.
+        /// </summary>
+        internal static string PickCreatureEnvironmentMessage {
+            get {
+                return ResourceManager.GetString("PickCreatureEnvironmentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revealed Aspect.
         /// </summary>
         internal static string RevealedAspect {
@@ -111,6 +144,15 @@ namespace TheOracle.StarForged.Creature {
         internal static string Scale {
             get {
                 return ResourceManager.GetString("Scale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seed: {0}.
+        /// </summary>
+        internal static string Seed {
+            get {
+                return ResourceManager.GetString("Seed", resourceCulture);
             }
         }
     }

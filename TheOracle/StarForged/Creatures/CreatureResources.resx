@@ -120,6 +120,12 @@
   <data name="BasicForm" xml:space="preserve">
     <value>BasicForm</value>
   </data>
+  <data name="CreatureHelper" xml:space="preserve">
+    <value>Creature Helper</value>
+  </data>
+  <data name="CreatureTitle" xml:space="preserve">
+    <value>__Starforged Creature__</value>
+  </data>
   <data name="EncounteredBehavior" xml:space="preserve">
     <value>Encountered Behavior</value>
   </data>
@@ -129,10 +135,23 @@
   <data name="FirstLook" xml:space="preserve">
     <value>First Look</value>
   </data>
+  <data name="PickCreatureEnvironmentMessage" xml:space="preserve">
+    <value>Please pick the creature's environment:
+1️⃣ - Void
+2️⃣ - Interior
+3️⃣ - Land
+4️⃣ - Liquid
+5️⃣ - Air
+🎲 - Random</value>
+  </data>
   <data name="RevealedAspect" xml:space="preserve">
     <value>Revealed Aspect</value>
   </data>
   <data name="Scale" xml:space="preserve">
     <value>Scale</value>
+  </data>
+  <data name="Seed" xml:space="preserve">
+    <value>Seed: {0}</value>
+    <comment>{0} will be replaced with the creatures random seed for generation purposes</comment>
   </data>
 </root>
