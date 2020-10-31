@@ -193,7 +193,7 @@ namespace TheOracle.GameCore.Oracle
             if (oracleResult == null || oracleResult.Oracles == null) return;
 
             //Todo fix it so the JSON can tell us what size die to roll
-            int roll = RollerRandom.Next(1, 100);
+            int roll = RollerRandom.Next(1, 101);
             var innerRow = oracleResult.Oracles.LookupOracle(roll);
 
             if (innerRow == null) return;

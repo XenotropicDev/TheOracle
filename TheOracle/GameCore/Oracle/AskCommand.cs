@@ -117,7 +117,7 @@ namespace TheOracle.GameCore.Oracle
 
         private string AskTheOracleWithChance(int chance, string descriptor = "")
         {
-            int roll = BotRandom.Instance.Next(1, 100);
+            int roll = BotRandom.Instance.Next(1, 101);
             string result = (roll > chance) ? OracleResources.No : OracleResources.Yes;
             if (descriptor.Length > 0) descriptor = $"{descriptor.Trim()} ";
             return $"{OracleResources.AskResult} {descriptor}**{chance}** {OracleResources.Verus} {roll}\n**{result}**.";

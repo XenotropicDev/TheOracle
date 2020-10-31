@@ -47,7 +47,7 @@ namespace TheOracle.StarForged.Starships
             ship.FirstLooks = oracles.OracleList.Single(o => o.Name == "Starship First Look" && o.Game == GameName.Starforged)
                 .Oracles.Select(o => o.GetOracleResult(services, GameName.Starforged, random)).ToList();
             ship.FirstLooks.Shuffle(random);
-            ship.FirstLooksToReveal = random.Next(1, 3);
+            ship.FirstLooksToReveal = random.Next(1, 4);
 
             ship.Fleet = oracles.RandomRow($"Fleet", GameName.Starforged, random).Description;
             if (ship.Fleet.Equals(StarShipResources.StarshipMissionOracle)) ship.Fleet = oracles.RandomRow(string.Format(StarShipResources.StarshipMissionOracleRegionFormatter, region), GameName.Starforged).Description;
