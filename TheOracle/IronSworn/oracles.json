@@ -1444,20 +1444,23 @@
     ]
 },
 {
+    "_comment": "currently points to a random place name from a random domain type; revisit once square bracket syntax updated; ideally we want to be able either to generate a name for a specified domain type, or include the domain being pulled from afterwards, like '(Frozen Cavern)'... and if we're doing that, we might as well generate a theme, too",
     "Name": "Site Name Format",
+    "Aliases": ["site name", "delve name"],
     "Game": "Ironsworn",
     "Oracles": [
         { "Chance": 25, "Description": "[Description] [Place]"},
         { "Chance": 50, "Description": "[Place] of [Detail]"},
         { "Chance": 70, "Description": "[Place] of [Description] [Detail]"},
-        { "Chance": 80, "Description": "[Place] of [Namesake's] [Detail]"},
-        { "Chance": 85, "Description": "[Namesake's] [Place]"},
+        { "Chance": 80, "Description": "[Place] of [Namesake]'s [Detail]"},
+        { "Chance": 85, "Description": "[Namesake] [Place]"},
         { "Chance": 95, "Description": "[Description] [Place] of [Namesake]"},
         { "Chance": 100, "Description": "[Place] of [Namesake]"}
     ]
   },
   {
     "Name": "Site Name Description",
+    "Aliases": ["description"],
     "Game": "Ironsworn",
     "Oracles": [
         { "Chance": 2, "Description": "Deep"},
@@ -1514,6 +1517,7 @@
   },
   {
     "Name": "Site Name Detail",
+    "Aliases": ["detail"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1571,6 +1575,7 @@
   },
   {
     "Name": "Site Name Namesake",
+    "Aliases": ["namesake"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1627,7 +1632,28 @@
     ]
   },
   {
+    "_comment": "remove this when delve site interactivity implemented",
+    "Name": "Place",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 6, "Description": "[barrow place]"},
+      { "Chance": 18, "Description": "[cavern place]"},
+      { "Chance": 28, "Description": "[frozen cavern place]"},
+      { "Chance": 32, "Description": "[icereach place]"},
+      { "Chance": 38, "Description": "[mine place]"},
+      { "Chance": 48, "Description": "[pass place]"},
+      { "Chance": 58, "Description": "[ruin place]"},
+      { "Chance": 68, "Description": "[sea cave place]"},
+      { "Chance": 78, "Description": "[shadowfen place]"},
+      { "Chance": 83, "Description": "[stronghold place]"},
+      { "Chance": 95, "Description": "[tanglewood place]"},
+      { "Chance": 100, "Description": "[underkeep place]"}
+    ]
+  },
+  {
     "Name": "Site Name Place Barrow",
+    "Aliases": ["barrow place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1641,6 +1667,7 @@
   },
   {
     "Name": "Site Name Place Cavern",
+    "Aliases": ["cavern place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1658,6 +1685,7 @@
   },
   {
     "Name": "Site Name Place Frozen Cavern",
+    "Aliases": ["frozen cavern place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1675,6 +1703,7 @@
   },
   {
     "Name": "Site Name Place Icereach",
+    "Aliases": ["icereach place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1688,6 +1717,7 @@
   },
   {
     "Name": "Site Name Place Mine",
+    "Aliases": ["mine place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1701,6 +1731,7 @@
   },
   {
     "Name": "Site Name Place Pass",
+    "Aliases": ["pass place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1718,6 +1749,7 @@
   },
   {
     "Name": "Site Name Place Ruin",
+    "Aliases": ["ruin place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1735,6 +1767,7 @@
   },
   {
     "Name": "Site Name Place Sea Cave",
+    "Aliases": ["sea cave place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1748,6 +1781,7 @@
   },
   {
     "Name": "Site Name Place Shadowfen",
+    "Aliases": ["shadowfen place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1765,6 +1799,7 @@
   },
   {
     "Name": "Site Name Place Stronghold",
+    "Aliases": ["stronghold place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1782,6 +1817,7 @@
   },
   {
     "Name": "Site Name Place Tanglewood",
+    "Aliases": ["tanglewood place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1797,6 +1833,7 @@
   },
   {
     "Name": "Site Name Place Underkeep",
+    "Aliases": ["underkeep place"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1815,6 +1852,7 @@
   {
     "Name": "Site Nature Theme",
     "Pair": "Site Nature Domain",
+    "Aliases": ["site theme"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1831,6 +1869,7 @@
   {
     "Name": "Site Nature Domain",
     "Pair": "Site Nature Theme",
+    "Aliases": ["site domain"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1850,6 +1889,7 @@
   },
   {
     "Name": "Character Disposition",
+    "Aliases": ["disposition"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1869,6 +1909,7 @@
   },
   {
     "Name": "Character Activity",
+    "Aliases": ["activity"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1926,6 +1967,7 @@
   },
   {
     "Name": "Monstrosity Size",
+    "Aliases": ["size"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1940,6 +1982,7 @@
   },
   {
     "Name": "Monstrosity Primary Form",
+    "Aliases": ["primary form", "form"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1965,6 +2008,7 @@
   },
   {
     "Name": "Monstrosity Characteristics",
+    "Aliases": ["characteristics", "characteristic"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2000,6 +2044,7 @@
   },
   {
     "Name": "Monstrosity Abilities",
+    "Aliases": ["ability", "abilities"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2048,6 +2093,7 @@
   {
     "Name": "Trap Event",
     "Pair": "Trap Component",
+    "Aliases": ["event"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2080,6 +2126,7 @@
   },
   {
     "Name": "Trap Component",
+    "Aliases": ["component"],
     "Pair": "Trap Event",
     "Game": "Ironsworn",
     "Oracles":
@@ -2113,6 +2160,7 @@
   },
   {
     "Name": "Combat Event Method",
+    "Aliases": ["combat method", "event method"],
     "Pair": "Combat Event Target",
     "Game": "Ironsworn",
     "Oracles":
@@ -2171,6 +2219,7 @@
   },
   {
     "Name": "Combat Event Target",
+    "Aliases": ["combat target", "event target"],
     "Pair": "Combat Event Method",
     "Game": "Ironsworn",
     "Oracles":
@@ -2229,6 +2278,7 @@
   },
   {
     "Name": "Threat Category",
+    "Aliases": ["threat"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2241,11 +2291,12 @@
       { "Chance": 70, "Description": "Scheming Leader"},
       { "Chance": 80, "Description": "Power-Hungry Mystic"},
       { "Chance": 90, "Description": "Zealous Cult"},
-      { "Chance": 100, "Description": "Roll Twice"}
+      { "Chance": 100, "Description": "[Threat Category/Threat Category]"}
     ]
   },
   {
     "Name": "Threat Burgeoning Conflict",
+    "Aliases": ["Burgeoning Conflict"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2263,6 +2314,7 @@
   },
   {
     "Name": "Threat Cursed Site",
+    "Aliases": ["Cursed Site"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2280,6 +2332,7 @@
   },
   {
     "Name": "Threat Environmental Calamity",
+    "Aliases": ["Environmental Calamity"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2297,6 +2350,7 @@
   },
   {
     "Name": "Threat Malignant Plague",
+    "Aliases": ["Malignant Plague"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2314,6 +2368,7 @@
   },
   {
     "Name": "Threat Rampaging Creature",
+    "Aliases": ["Rampaging Creature"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2331,6 +2386,7 @@
   },
   {
     "Name": "Threat Ravaging Horde",
+    "Aliases": ["Ravaging Horde"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2348,6 +2404,7 @@
   },
   {
     "Name": "Threat Scheming Leader",
+    "Aliases": ["Scheming Leader"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2365,6 +2422,7 @@
   },
   {
     "Name": "Threat Power-Hungry Mystic",
+    "Aliases": ["Power-Hungry Mystic"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2382,6 +2440,7 @@
   },
   {
     "Name": "Threat Zealous Cult",
+    "Aliases": ["Zealous Cult"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2399,6 +2458,7 @@
   },
   {
     "Name": "Delve the Depths Edge",
+    "Aliases": ["delve edge"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2411,6 +2471,7 @@
   },
   {
     "Name": "Delve the Depths Shadow",
+    "Aliases": ["delve shadow"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2423,6 +2484,7 @@
   },
   {
     "Name": "Delve the Depths Wits",
+    "Aliases": ["delve wits"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2435,6 +2497,7 @@
   },
   {
     "Name": "Find An Opportunity",
+    "Aliases": ["opportunity"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2452,6 +2515,7 @@
   },
   {
     "Name": "Reveal a Danger",
+    "Aliases": ["danger"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2471,6 +2535,7 @@
   },
   {
     "Name": "Reveal a Danger Alternate",
+    "Aliases": ["danger alt"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2488,6 +2553,7 @@
   },
   {
     "Name": "Advance a Threat",
+    "Aliases": ["advance threat"],
     "Game": "Ironsworn",
     "Oracles":
     [
