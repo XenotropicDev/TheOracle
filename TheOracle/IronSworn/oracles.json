@@ -1444,18 +1444,17 @@
     ]
 },
 {
-    "_comment": "currently points to a random place name from a random domain type; revisit once square bracket syntax updated; ideally we want to be able either to generate a name for a specified domain type, or include the domain being pulled from afterwards, like '(Frozen Cavern)'... and if we're doing that, we might as well generate a theme, too",
     "Name": "Site Name Format",
     "Aliases": ["site name", "delve name"],
     "Game": "Ironsworn",
     "Oracles": [
-        { "Chance": 25, "Description": "[Description] [Place]"},
-        { "Chance": 50, "Description": "[Place] of [Detail]"},
-        { "Chance": 70, "Description": "[Place] of [Description] [Detail]"},
-        { "Chance": 80, "Description": "[Place] of [Namesake]'s [Detail]"},
-        { "Chance": 85, "Description": "[Namesake] [Place]"},
-        { "Chance": 95, "Description": "[Description] [Place] of [Namesake]"},
-        { "Chance": 100, "Description": "[Place] of [Namesake]"}
+        { "Chance": 25, "Description": "[Description] {Place}"},
+        { "Chance": 50, "Description": "{Place} of [Detail]"},
+        { "Chance": 70, "Description": "{Place} of [Description] [Detail]"},
+        { "Chance": 80, "Description": "{Place} of [Namesake]'s [Detail]"},
+        { "Chance": 85, "Description": "[Namesake] {Place}"},
+        { "Chance": 95, "Description": "[Description] {Place} of [Namesake]"},
+        { "Chance": 100, "Description": "{Place} of [Namesake]"}
     ]
   },
   {
@@ -1629,26 +1628,6 @@
       { "Chance": 96, "Description": "Arnorr"},
       { "Chance": 98, "Description": "Thyri"},
       { "Chance": 100, "Description": "Erisia"}
-    ]
-  },
-  {
-    "_comment": "remove this when delve site interactivity implemented",
-    "Name": "Place",
-    "Game": "Ironsworn",
-    "Oracles":
-    [
-      { "Chance": 6, "Description": "[barrow place]"},
-      { "Chance": 18, "Description": "[cavern place]"},
-      { "Chance": 28, "Description": "[frozen cavern place]"},
-      { "Chance": 32, "Description": "[icereach place]"},
-      { "Chance": 38, "Description": "[mine place]"},
-      { "Chance": 48, "Description": "[pass place]"},
-      { "Chance": 58, "Description": "[ruin place]"},
-      { "Chance": 68, "Description": "[sea cave place]"},
-      { "Chance": 78, "Description": "[shadowfen place]"},
-      { "Chance": 83, "Description": "[stronghold place]"},
-      { "Chance": 95, "Description": "[tanglewood place]"},
-      { "Chance": 100, "Description": "[underkeep place]"}
     ]
   },
   {
