@@ -420,7 +420,7 @@
         { "Chance": 86, "Description": "Stranger causes discord"},
         { "Chance": 88, "Description": "Important event threatened"},
         { "Chance": 90, "Description": "Dangerous tradition"},
-        { "Chance": 100, "Description": "[2xTrouble]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -497,7 +497,7 @@
         { "Chance": 90, "Description": "Find redemption"},
         { "Chance": 92, "Description": "Escape from something"},
         { "Chance": 95, "Description": "Resolve a dispute"},
-        { "Chance": 100, "Description": "[2xGoal]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -947,7 +947,7 @@
         { "Chance": 85, "Description": "The truth of a relationship is revealed."},
         { "Chance": 90, "Description": "Two seemingly unrelated situations are shown to be connected."},
         { "Chance": 95, "Description": "Unexpected powers or abilities are revealed."},
-        { "Chance": 100, "Description": "[2xMPT]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -980,7 +980,7 @@
         { "Chance": 85, "Description": "To whom is \\_\\_\\_ tearfully or angrily apologizing right now?"},
         { "Chance": 90, "Description": "\\_\\_\\_ and \\_\\_\\_ are at a standstill. What happened?"},
         { "Chance": 95, "Description": "What has \\_\\_\\_ done to betray \\_\\_\\_?"},
-        { "Chance": 100, "Description": "[2xInciting]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1982,7 +1982,7 @@
       { "Chance": 78, "Description": "Incorporeal"},
       { "Chance": 79, "Description": "Mineral"},
       { "Chance": 80, "Description": "Elemental"},
-      { "Chance": 100, "Description": "Hybrid: [2xform]"}
+      { "Chance": 100, "Description": "Hybrid: [2x]"}
     ]
   },
   {
@@ -2270,7 +2270,7 @@
       { "Chance": 70, "Description": "Scheming Leader"},
       { "Chance": 80, "Description": "Power-Hungry Mystic"},
       { "Chance": 90, "Description": "Zealous Cult"},
-      { "Chance": 100, "Description": "[2xThreat Category]"}
+      { "Chance": 100, "Description": "[2x]"}
     ]
   },
   {
