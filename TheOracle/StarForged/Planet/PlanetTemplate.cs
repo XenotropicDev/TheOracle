@@ -86,7 +86,7 @@ namespace TheOracle.StarForged
             if (planetRandom == null) planetRandom = BotRandom.Instance;
             List<Biome> Biomes = new List<Biome>();
             
-            int biomeRoll = planetRandom.Next(1, 100);
+            int biomeRoll = planetRandom.Next(1, 101);
             int BiomesToGenerate = template.NumberOfBiomes.OrderBy(b => b.Chance).First(b => b.Chance >= biomeRoll).Amount;
 
             if (template.PossibleBiomes.Count <= 1 || BiomesToGenerate >= template.PossibleBiomes.Count)

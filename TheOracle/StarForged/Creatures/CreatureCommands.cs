@@ -2,8 +2,6 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
@@ -20,6 +18,7 @@ namespace TheOracle.StarForged.Creatures
         public Emoji fourEmoji = new Emoji("\u0034\u20E3");
         public Emoji fiveEmoji = new Emoji("\u0035\u20E3");
         public Emoji randomEmoji = new Emoji("🎲");
+
         public StarfrogedCreatureCommands(ServiceProvider services)
         {
             var hooks = services.GetRequiredService<HookedEvents>();
@@ -110,16 +109,19 @@ namespace TheOracle.StarForged.Creatures
                     .WithDescription(CreatureResources.PickCreatureEnvironmentMessage);
 
                 var msg = await ReplyAsync(embed: builder.Build());
-                await msg.AddReactionAsync(oneEmoji);
-                await msg.AddReactionAsync(twoEmoji);
-                await msg.AddReactionAsync(threeEmoji);
-                await msg.AddReactionAsync(fourEmoji);
-                await msg.AddReactionAsync(fiveEmoji);
-                await msg.AddReactionAsync(randomEmoji);
+                _ = Task.Run(async () =>
+                {
+                    await msg.AddReactionAsync(oneEmoji);
+                    await msg.AddReactionAsync(twoEmoji);
+                    await msg.AddReactionAsync(threeEmoji);
+                    await msg.AddReactionAsync(fourEmoji);
+                    await msg.AddReactionAsync(fiveEmoji);
+                    await msg.AddReactionAsync(randomEmoji);
+                }).ConfigureAwait(false);
+                
                 return;
             }
 
-            string CreatureName = CreatureCommand.Replace(environment.ToString(), "").Trim();
             var creature = Creature.GenerateCreature(Services, Context.Channel.Id, environment);
 
             var message = await ReplyAsync("", false, creature.GetEmbedBuilder().Build());

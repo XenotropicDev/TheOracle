@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
+using TheOracle.IronSworn;
 
 namespace TheOracle
 {
@@ -29,9 +31,7 @@ namespace TheOracle
         /// <returns></returns>
         public static string GetOracleResult(this IOracleEntry oracle, IServiceProvider services, GameName game, Random rnd = null)
         {
-            var oracleService = services.GetRequiredService<OracleService>();
-
-            var roller = new OracleRoller(oracleService, game, rnd);
+            var roller = new OracleRoller(services, game, rnd);
             var tables = roller.ParseOracleTables(oracle.Description);
 
             if (tables.Count == 0) return oracle.Description;

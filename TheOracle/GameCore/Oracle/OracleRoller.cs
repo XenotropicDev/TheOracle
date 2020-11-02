@@ -1,4 +1,6 @@
 ﻿using Discord;
+using Discord.Commands;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,22 +14,23 @@ namespace TheOracle.GameCore.Oracle
 {
     public class OracleRoller
     {
-        public OracleRoller(OracleService oracleService, GameName game, Random rnd = null)
+        public OracleRoller(IServiceProvider serviceProvider, GameName game, Random rnd = null)
         {
-            OracleService = oracleService;
+            ServiceProvider = serviceProvider;
+            OracleService = ServiceProvider.GetRequiredService<OracleService>();
             Game = game;
 
             RollerRandom = rnd ?? BotRandom.Instance;
         }
 
+        public IServiceProvider ServiceProvider { get; }
         public GameName Game { get; private set; }
         public OracleService OracleService { get; }
-        public List<RollResult> RollResultList { get; set; }
+        public List<RollResult> RollResultList { get; set; } = new List<RollResult>();
         private Random RollerRandom { get; set; }
 
         public OracleRoller BuildRollResults(string tableName)
         {
-            RollResultList = new List<RollResult>();
             if (Game == GameName.None) Game = ParseOracleTables(tableName).FirstOrDefault()?.Game ?? GameName.None;
 
             RollFacade(tableName);
@@ -55,11 +58,9 @@ namespace TheOracle.GameCore.Oracle
             return embed;
         }
 
-        internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
+        internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed, IServiceProvider serviceProvider)
         {
-            var roller = new OracleRoller(oracleService, Utilities.GetGameContainedInString(embed.Title));
-
-            roller.RollResultList = new List<RollResult>();
+            var roller = new OracleRoller(serviceProvider, Utilities.GetGameContainedInString(embed.Title));
 
             foreach (var field in embed.Fields)
             {
@@ -82,7 +83,7 @@ namespace TheOracle.GameCore.Oracle
             return roller;
         }
 
-        private string MultiRollFacade(string value, OracleTable multiRollTable, int depth)
+        private void MultiRollFacade(string value, OracleTable multiRollTable, int depth)
         {
             int numberOfRolls;
 
@@ -90,20 +91,17 @@ namespace TheOracle.GameCore.Oracle
             if (Regex.IsMatch(value, @"\[\d+x\]"))
             {
                 var match = Regex.Match(value, @"\[(\d+)x\]");
-                int.TryParse(match.Captures[0].Value, out numberOfRolls);
+                int.TryParse(match.Groups[1].Value, out numberOfRolls);
             }
             else
             {
                 if (!int.TryParse(value, out numberOfRolls)) throw new ArgumentException($"Couldn't parse {value} as int");
             }
 
-            string multiRollResult = string.Empty;
             for (int i = 1; i <= numberOfRolls; i++)
             {
                 RollFacade(multiRollTable.Name, depth + 1);
             }
-
-            return multiRollResult;
         }
 
         public List<OracleTable> ParseOracleTables(string tableName)
@@ -123,6 +121,13 @@ namespace TheOracle.GameCore.Oracle
             else
             {
                 result = OracleService.OracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game)).ToList();
+            }
+
+            if (result.GroupBy(t => t.Game).Count() > 1)
+            {
+                var Context = ServiceProvider.GetService<CommandContext>();
+                ChannelSettings channelSettings = ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id).Result;
+
             }
 
             if (result.GroupBy(t => t.Game).Count() > 1)
@@ -153,7 +158,7 @@ namespace TheOracle.GameCore.Oracle
 
             foreach (var oracleTable in TablesToRoll)
             {
-                int roll = RollerRandom.Next(1, oracleTable.d);
+                int roll = RollerRandom.Next(1, oracleTable.d + 1);
                 var oracleResult = oracleTable.Oracles.LookupOracle(roll);
                 if (oracleTable.ShowResult)
                     RollResultList.Add(new RollResult
@@ -176,7 +181,11 @@ namespace TheOracle.GameCore.Oracle
                 if (match.Success)
                 {
                     string nextTable = match.Groups[0].Value;
-                    if (Regex.IsMatch(nextTable, @"^\[\d+x\]")) MultiRollFacade(nextTable, oracleTable, depth);
+                    if (Regex.IsMatch(nextTable, @"^\[\d+x\]"))
+                    {
+                        MultiRollFacade(nextTable, oracleTable, depth);
+                        return;
+                    }
                     RollFacade(nextTable, depth + 1);
                 }
             }
@@ -193,7 +202,7 @@ namespace TheOracle.GameCore.Oracle
             if (oracleResult == null || oracleResult.Oracles == null) return;
 
             //Todo fix it so the JSON can tell us what size die to roll
-            int roll = RollerRandom.Next(1, 100);
+            int roll = RollerRandom.Next(1, 101);
             var innerRow = oracleResult.Oracles.LookupOracle(roll);
 
             if (innerRow == null) return;

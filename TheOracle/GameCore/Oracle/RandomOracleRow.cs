@@ -12,7 +12,7 @@ namespace TheOracle.Core
         {
             if (source.Count() == 0) return default;
             if (random == default) random = BotRandom.Instance;
-            int roll = random.Next(1, dieSize);
+            int roll = random.Next(1, dieSize + 1);
             return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
         }
 

@@ -48,7 +48,7 @@ namespace TheOracle.StarForged.Settlements
             s.FirstLooks = oracleService.OracleList.Single(o => o.Name == "Settlement First Look" && o.Game == GameName.Starforged)
                 .Oracles.Select(o => o.GetOracleResult(serviceProvider, GameName.Starforged, random)).ToList();
             s.FirstLooks.Shuffle(random);
-            s.FirstLooksToReveal = random.Next(1, 3);
+            s.FirstLooksToReveal = random.Next(1, 4);
 
             s.InitialContact = oracleService.RandomRow("Settlement Initial Contact", GameName.Starforged, random).Description;
 

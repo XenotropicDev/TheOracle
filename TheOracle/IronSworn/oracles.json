@@ -1389,7 +1389,6 @@
     "Name": "Feature Focus",
     "Pair": "Feature Aspect",
     "Game": "Ironsworn",
-    "Aliases": ["Focus"],
     "Oracles": [
         { "Chance": 2, "Description": "Attack"},
         { "Chance": 4, "Description": "Threshold"},

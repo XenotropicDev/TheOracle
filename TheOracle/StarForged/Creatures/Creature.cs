@@ -47,11 +47,11 @@ namespace TheOracle.StarForged.Creatures
 
             if (environment == CreatureEnvironment.None) Enum.TryParse(oracles.RandomRow("Creature Environment", GameName.Starforged, rnd).Description, out environment);
 
-            creature.BasicForm = oracles.RandomRow($"Basic Form {environment}", GameName.Starforged, rnd).GetOracleResult(serviceProvider, GameName.Starforged, rnd);
+            creature.BasicForm = oracles.RandomOracleResult($"Basic Form {environment}", serviceProvider, GameName.Starforged, rnd);
             creature.Environment = environment;
-            creature.EncounteredBehavior = oracles.RandomRow("Creature Encountered Behavior", GameName.Starforged, rnd).Description;
+            creature.EncounteredBehavior = oracles.RandomOracleResult("Creature Encountered Behavior", serviceProvider, GameName.Starforged, rnd);
 
-            int firstLookCount = rnd.Next(2, 3);
+            int firstLookCount = rnd.Next(2, 4); //random.Next doesn't include the max value
             for (int i = 0; i < firstLookCount; i++)
             {
                 creature.FirstLook.AddRandomOracleRow("Creature First Look", GameName.Starforged, ChannelId, serviceProvider, rnd);
@@ -62,7 +62,7 @@ namespace TheOracle.StarForged.Creatures
                 creature.RevealedAspectsList.AddRandomOracleRow("Creature Revealed Aspects", GameName.Starforged, ChannelId, serviceProvider, rnd);
             }
 
-            creature.Scale = oracles.RandomRow($"Creature Scale", GameName.Starforged, rnd).GetOracleResult(serviceProvider, GameName.Starforged, rnd);
+            creature.Scale = oracles.RandomOracleResult($"Creature Scale", serviceProvider, GameName.Starforged, rnd);
 
             return creature;
         }
