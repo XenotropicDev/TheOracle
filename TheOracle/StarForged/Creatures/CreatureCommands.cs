@@ -122,7 +122,6 @@ namespace TheOracle.StarForged.Creatures
                 return;
             }
 
-            string CreatureName = CreatureCommand.Replace(environment.ToString(), "").Trim();
             var creature = Creature.GenerateCreature(Services, Context.Channel.Id, environment);
 
             var message = await ReplyAsync("", false, creature.GetEmbedBuilder().Build());
