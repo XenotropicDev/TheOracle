@@ -18,9 +18,9 @@ namespace TheOracle.Core
         /// <param name="actionDie">Sets the value of the ActionDie, useful for things like progress rolls</param>
         public ActionRoll(int playerModifier = 0, int? actionDie = null, string message = "")
         {
-            ChallengeDie1 = BotRandom.Instance.Next(1, 10);
-            ChallengeDie2 = BotRandom.Instance.Next(1, 10);
-            ActionDie = actionDie ?? BotRandom.Instance.Next(1, 6);
+            ChallengeDie1 = BotRandom.Instance.Next(1, 11);
+            ChallengeDie2 = BotRandom.Instance.Next(1, 11);
+            ActionDie = actionDie ?? BotRandom.Instance.Next(1, 7);
             Message = message;
             PlayerModifier = playerModifier;
         }

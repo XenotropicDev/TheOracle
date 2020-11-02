@@ -52,6 +52,8 @@ namespace TheOracle
                 var reactionHandler = new GlobalReactionHandler(services);
                 client.ReactionAdded += reactionHandler.ReactionEventHandler;
 
+                GenericReactions genericReactions = new GenericReactions(services); //TODO fix this because it's hacky/bad code.
+
                 await client.SetGameAsync($"!Help | v{Assembly.GetEntryAssembly().GetName().Version}", "", ActivityType.Playing).ConfigureAwait(false);
 
                 await Task.Delay(Timeout.Infinite);
@@ -67,11 +69,11 @@ namespace TheOracle
         private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
         {
             var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info };
+            var commandConfig = new CommandServiceConfig { LogLevel = LogSeverity.Info  };
             client ??= new DiscordSocketClient(clientConfig);
-            command ??= new CommandService();
+            command ??= new CommandService(commandConfig);
 
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("channelsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile("token.json", optional: true, reloadOnChange: true)
                 .Build();
 
@@ -83,6 +85,7 @@ namespace TheOracle
                 .AddSingleton<OracleService>()
                 .AddSingleton<RuleService>()
                 .AddSingleton<HookedEvents>()
+                .AddSingleton<ReactionService>()
                 .AddScoped<NpcFactory>()
                 .BuildServiceProvider();
         }

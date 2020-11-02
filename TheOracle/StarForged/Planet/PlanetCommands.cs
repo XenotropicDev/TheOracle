@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.StarForged;
 
 namespace TheOracle.IronSworn
@@ -22,7 +23,22 @@ namespace TheOracle.IronSworn
             if (!hooks.PlanetReactions)
             {
                 hooks.PlanetReactions = true;
-                Client.ReactionAdded += PlanetReactionHandler;
+                var reactionService = services.GetRequiredService<ReactionService>();
+
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(PlanetReactionHandler).Build();
+
+                ReactionEvent look = new ReactionEventBuilder().WithEmoji("🔍").WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent Life = new ReactionEventBuilder().WithEmoji("\U0001F996").WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent biome = new ReactionEventBuilder().WithEmoji("\uD83C\uDF0D").WithEvent(PlanetReactionHandler).Build();
+
+                reactionService.reactionList.Add(reaction1);
+                reactionService.reactionList.Add(reaction2);
+                reactionService.reactionList.Add(reaction3);
+                reactionService.reactionList.Add(look);
+                reactionService.reactionList.Add(Life);
+                reactionService.reactionList.Add(biome);
             }
             Services = services;
         }
@@ -87,14 +103,14 @@ namespace TheOracle.IronSworn
             }).ConfigureAwait(false);
         }
 
-        private async Task Biome(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task Biome(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
             var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
             if (planet.RevealedBiomes >= planet.NumberOfBiomes)
             {
-                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
                 return;
             }
 
@@ -106,18 +122,18 @@ namespace TheOracle.IronSworn
                 msg.Embed = planet.GetEmbedBuilder().Build();
             }).ConfigureAwait(false);
 
-            await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             if (planet.RevealedBiomes >= planet.NumberOfBiomes) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
         }
 
-        private async Task CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
             var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
 
             if (planet.RevealedLooks >= 3)
             {
-                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
                 return;
             }
 
@@ -129,11 +145,11 @@ namespace TheOracle.IronSworn
                 msg.Embed = planet.GetEmbedBuilder().Build();
             }).ConfigureAwait(false);
 
-            await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             if (planet.RevealedLooks >= 3) await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
         }
 
-        private async Task Life(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task Life(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
             var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
@@ -147,20 +163,16 @@ namespace TheOracle.IronSworn
                     msg.Content = string.Empty;
                     msg.Embed = planet.GetEmbedBuilder().Build();
                 });
-                await message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await message.RemoveReactionAsync(reaction.Emote, user);
                 await message.RemoveReactionAsync(reaction.Emote, message.Author);
             }).ConfigureAwait(false);
         }
 
-        private async Task PlanetReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task PlanetReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-
-            if (reaction.Emote.Name == "🔍") await CloserLook(message, channel, reaction).ConfigureAwait(false);
-            if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction).ConfigureAwait(false);
-            if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction).ConfigureAwait(false);
+            if (reaction.Emote.Name == "🔍") await CloserLook(message, channel, reaction, user).ConfigureAwait(false);
+            if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction, user).ConfigureAwait(false);
+            if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction, user).ConfigureAwait(false);
 
             if (message.Embeds.FirstOrDefault()?.Title.Contains("Planet Helper") ?? false)
             {

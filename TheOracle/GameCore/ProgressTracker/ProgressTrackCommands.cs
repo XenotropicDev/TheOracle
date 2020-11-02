@@ -1,11 +1,12 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.GameCore.ProgressTracker;
 
 namespace TheOracle.Core
@@ -22,33 +23,51 @@ namespace TheOracle.Core
         public const string threeEmoji = "\u0033\u20E3";
         public const string twoEmoji = "\u0032\u20E3";
 
-        public ProgressTrackCommands(DiscordSocketClient client, HookedEvents hooks)
+        public ProgressTrackCommands(IServiceProvider service)
         {
-            Client = client;
+            Service = service;
+            Client = service.GetRequiredService<DiscordSocketClient>();
+            var hooks = service.GetRequiredService<HookedEvents>();
+
             if (!hooks.ProgressReactions)
             {
                 hooks.ProgressReactions = true;
-                Client.ReactionAdded += ProgressBuilderReactions;
-                Client.ReactionAdded += ProgressInteractiveReactions;
+                var reactionService = Service.GetRequiredService<ReactionService>();
+
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmoji(fourEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmoji(fiveEmoji).WithEvent(ProgressBuilderReactions).Build();
+
+                ReactionEvent decrease = new ReactionEventBuilder().WithEmoji(DecreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent increase = new ReactionEventBuilder().WithEmoji(IncreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent fullMark = new ReactionEventBuilder().WithEmoji(FullEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent roll = new ReactionEventBuilder().WithEmoji(RollEmoji).WithEvent(ProgressInteractiveReactions).Build();
+
+                reactionService.reactionList.Add(reaction1);
+                reactionService.reactionList.Add(reaction2);
+                reactionService.reactionList.Add(reaction3);
+                reactionService.reactionList.Add(reaction4);
+                reactionService.reactionList.Add(reaction5);
+
+                reactionService.reactionList.Add(decrease);
+                reactionService.reactionList.Add(increase);
+                reactionService.reactionList.Add(fullMark);
+                reactionService.reactionList.Add(roll);
             }
         }
 
         public DiscordSocketClient Client { get; }
+        public IServiceProvider Service { get; }
 
-        public Task ProgressBuilderReactions(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        public async Task ProgressBuilderReactions(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            //TODO Concurrent queue so that users can't spam reactions?
-            var emojisToProcess = new Emoji[] { new Emoji(oneEmoji), new Emoji(twoEmoji), new Emoji(threeEmoji), new Emoji(fourEmoji), new Emoji(fiveEmoji) };
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-            if (!IsProgressTrackerMessage(message)) return Task.CompletedTask;
-            
-            Console.WriteLine($"User {reaction.User} triggered {nameof(this.ProgressBuilderReactions)} reaction {reaction.Emote.Name}");
+            if (!IsProgressTrackerMessage(message)) return;
 
             string ThingToTrack = message.Embeds.FirstOrDefault(embed => embed.Title == ProgressResources.Progress_Tracker)?.Description ?? "Unknown Task";
 
-            _ = Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 if (reaction.Emote.Name == oneEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
                 if (reaction.Emote.Name == twoEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
@@ -57,43 +76,37 @@ namespace TheOracle.Core
                 if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
             }).ConfigureAwait(false);
 
-            return Task.CompletedTask;
+            return;
         }
 
-        public Task ProgressInteractiveReactions(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        public async Task ProgressInteractiveReactions(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            var emojisToProcess = new Emoji[] { new Emoji(DecreaseEmoji), new Emoji(IncreaseEmoji), new Emoji(FullEmoji), new Emoji(RollEmoji) };
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
-            
-            Console.WriteLine($"User {reaction.User} triggered {nameof(this.ProgressInteractiveReactions)} reaction {reaction.Emote.Name}");
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-            if (!ProgressTracker.IsProgressTrackerMessage(message)) return Task.CompletedTask;
+            if (!ProgressTracker.IsProgressTrackerMessage(message)) return;
 
             if (reaction.Emote.Name == DecreaseEmoji)
             {
                 DecreaseProgress(message);
-                message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
             if (reaction.Emote.Name == IncreaseEmoji)
             {
                 IncreaseProgress(message);
-                message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
             if (reaction.Emote.Name == FullEmoji)
             {
                 IncreaseProgressFullCheck(message);
-                message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
             if (reaction.Emote.Name == RollEmoji)
             {
                 var tracker = new ProgressTracker(message);
                 var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Title}");
-                channel.SendMessageAsync(roll.ToString());
-                message.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await channel.SendMessageAsync(roll.ToString()).ConfigureAwait(false);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
 
-            return Task.CompletedTask;
+            return;
         }
 
         [Command("ProgressTracker")]
@@ -134,7 +147,7 @@ namespace TheOracle.Core
 
             await messageToEdit.RemoveAllReactionsAsync();
 
-            _ = Task.Run(async () => 
+            _ = Task.Run(async () =>
             {
                 await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji));
                 await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji));

@@ -2,7 +2,6 @@
 {
     public class HookedEvents
     {
-        public bool IronNPCReactions = false;
         public bool OracleTableReactions = false;
         public bool PlanetReactions = false;
         public bool ProgressReactions = false;

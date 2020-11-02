@@ -1039,10 +1039,10 @@
     "Aliases": ["sn", "Settlement Name"],
     "Oracles":[
         {
-            "Chance" : 15, 
+            "Chance" : 15,
             "Description": "A feature of the landscape",
             "Prompt": "Envision what it is. What makes it unusual or distinctive?",
-            "Oracles":[                
+            "Oracles":[
                 { "Chance": 10, "Description": "Highmount"},
                 { "Chance": 20, "Description": "Brackwater"},
                 { "Chance": 30, "Description": "Frostwood"},
@@ -1056,10 +1056,10 @@
             ]
         },
         {
-            "Chance" : 30, 
+            "Chance" : 30,
             "Description": "A manmade edifice",
             "Prompt": "What is it? Why is it important to this settlement’s history?",
-            "Oracles":[                
+            "Oracles":[
                 { "Chance": 10, "Description": "Whitebridge"},
                 { "Chance": 20, "Description": "Lonefort"},
                 { "Chance": 30, "Description": "Highcairn"},
@@ -1326,5 +1326,1173 @@
         { "Chance": 96, "Description": "Leech"},
         { "Chance": 100, "Description": "Herk"}
     ]
-}
+},
+{
+    "Name": "Feature Aspect",
+    "Pair": "Feature Focus",
+    "Game": "Ironsworn",
+    "Aliases": ["Aspect"],
+    "Oracles": [
+        { "Chance": 2, "Description": "Blocked"},
+        { "Chance": 4, "Description": "Crafted"},
+        { "Chance": 6, "Description": "Ancient"},
+        { "Chance": 8, "Description": "Sunken"},
+        { "Chance": 10, "Description": "Trapped"},
+        { "Chance": 12, "Description": "Secret"},
+        { "Chance": 14, "Description": "Toxic"},
+        { "Chance": 16, "Description": "Ruined"},
+        { "Chance": 18, "Description": "Defended"},
+        { "Chance": 20, "Description": "Decaying"},
+        { "Chance": 22, "Description": "Marked"},
+        { "Chance": 24, "Description": "Guarded"},
+        { "Chance": 26, "Description": "Inaccessible"},
+        { "Chance": 28, "Description": "Foreboding"},
+        { "Chance": 30, "Description": "Veiled"},
+        { "Chance": 32, "Description": "Deep"},
+        { "Chance": 34, "Description": "Depleted"},
+        { "Chance": 36, "Description": "Foul"},
+        { "Chance": 38, "Description": "Elevated"},
+        { "Chance": 40, "Description": "Moving"},
+        { "Chance": 42, "Description": "Unnatural"},
+        { "Chance": 44, "Description": "Active"},
+        { "Chance": 46, "Description": "Confined"},
+        { "Chance": 48, "Description": "Fortified"},
+        { "Chance": 50, "Description": "Collapsed"},
+        { "Chance": 52, "Description": "Isolated"},
+        { "Chance": 54, "Description": "Destroyed"},
+        { "Chance": 56, "Description": "Open"},
+        { "Chance": 58, "Description": "Sacred"},
+        { "Chance": 60, "Description": "Flooded"},
+        { "Chance": 62, "Description": "Complex"},
+        { "Chance": 64, "Description": "Abundant"},
+        { "Chance": 66, "Description": "Hidden"},
+        { "Chance": 68, "Description": "Expansive"},
+        { "Chance": 70, "Description": "Mysterious"},
+        { "Chance": 72, "Description": "Unstable"},
+        { "Chance": 74, "Description": "Fragile"},
+        { "Chance": 76, "Description": "Broken"},
+        { "Chance": 78, "Description": "Ensnaring"},
+        { "Chance": 80, "Description": "Pillaged"},
+        { "Chance": 82, "Description": "Sealed"},
+        { "Chance": 84, "Description": "Makeshift"},
+        { "Chance": 86, "Description": "Treacherous"},
+        { "Chance": 88, "Description": "Natural"},
+        { "Chance": 90, "Description": "Dead"},
+        { "Chance": 92, "Description": "Unusual"},
+        { "Chance": 94, "Description": "Abandoned"},
+        { "Chance": 96, "Description": "Deadly"},
+        { "Chance": 98, "Description": "Forgotten"},
+        { "Chance": 100, "Description": "Mystical"}
+    ]
+},
+{
+    "Name": "Feature Focus",
+    "Pair": "Feature Aspect",
+    "Game": "Ironsworn",
+    "Oracles": [
+        { "Chance": 2, "Description": "Attack"},
+        { "Chance": 4, "Description": "Threshold"},
+        { "Chance": 6, "Description": "Boundary"},
+        { "Chance": 8, "Description": "Alarm"},
+        { "Chance": 10, "Description": "Exit"},
+        { "Chance": 12, "Description": "Passage"},
+        { "Chance": 14, "Description": "Crossing"},
+        { "Chance": 16, "Description": "Trigger"},
+        { "Chance": 18, "Description": "Trap"},
+        { "Chance": 20, "Description": "Hideaway"},
+        { "Chance": 22, "Description": "Nature"},
+        { "Chance": 24, "Description": "Sign"},
+        { "Chance": 26, "Description": "Refuge"},
+        { "Chance": 28, "Description": "Valuables"},
+        { "Chance": 30, "Description": "Breach"},
+        { "Chance": 32, "Description": "Route"},
+        { "Chance": 34, "Description": "Location"},
+        { "Chance": 36, "Description": "Trail"},
+        { "Chance": 38, "Description": "Supply"},
+        { "Chance": 40, "Description": "History"},
+        { "Chance": 42, "Description": "Prisoner"},
+        { "Chance": 44, "Description": "Habitation"},
+        { "Chance": 46, "Description": "Debris"},
+        { "Chance": 48, "Description": "Creature"},
+        { "Chance": 50, "Description": "Lair"},
+        { "Chance": 52, "Description": "Person"},
+        { "Chance": 54, "Description": "Enclosure"},
+        { "Chance": 56, "Description": "Remains"},
+        { "Chance": 58, "Description": "Water"},
+        { "Chance": 60, "Description": "Message"},
+        { "Chance": 62, "Description": "Darkness"},
+        { "Chance": 64, "Description": "Opening"},
+        { "Chance": 66, "Description": "Weapon"},
+        { "Chance": 68, "Description": "Entry"},
+        { "Chance": 70, "Description": "Illumination"},
+        { "Chance": 72, "Description": "Obstacle"},
+        { "Chance": 74, "Description": "Craft"},
+        { "Chance": 76, "Description": "Container"},
+        { "Chance": 78, "Description": "Information"},
+        { "Chance": 80, "Description": "Grave"},
+        { "Chance": 82, "Description": "Equipment"},
+        { "Chance": 84, "Description": "Shelter"},
+        { "Chance": 86, "Description": "Denizen"},
+        { "Chance": 88, "Description": "Environment"},
+        { "Chance": 90, "Description": "Material"},
+        { "Chance": 92, "Description": "Resource"},
+        { "Chance": 94, "Description": "Corruption"},
+        { "Chance": 96, "Description": "Death"},
+        { "Chance": 98, "Description": "Function"},
+        { "Chance": 100, "Description": "Power"}
+    ]
+},
+{
+    "Name": "Site Name Format",
+    "Game": "Ironsworn",
+    "Oracles": [
+        { "Chance": 25, "Description": "[Description] [Place]"},
+        { "Chance": 50, "Description": "[Place] of [Detail]"},
+        { "Chance": 70, "Description": "[Place] of [Description] [Detail]"},
+        { "Chance": 80, "Description": "[Place] of [Namesake's] [Detail]"},
+        { "Chance": 85, "Description": "[Namesake's] [Place]"},
+        { "Chance": 95, "Description": "[Description] [Place] of [Namesake]"},
+        { "Chance": 100, "Description": "[Place] of [Namesake]"}
+    ]
+  },
+  {
+    "Name": "Site Name Description",
+    "Game": "Ironsworn",
+    "Oracles": [
+        { "Chance": 2, "Description": "Deep"},
+        { "Chance": 4, "Description": "Tainted"},
+        { "Chance": 6, "Description": "Grey"},
+        { "Chance": 8, "Description": "Forgotten"},
+        { "Chance": 10, "Description": "Flooded"},
+        { "Chance": 12, "Description": "Forbidden"},
+        { "Chance": 14, "Description": "Barren"},
+        { "Chance": 16, "Description": "Lost"},
+        { "Chance": 18, "Description": "Cursed"},
+        { "Chance": 20, "Description": "Fell"},
+        { "Chance": 22, "Description": "Sunken"},
+        { "Chance": 24, "Description": "Nightmare"},
+        { "Chance": 26, "Description": "Infernal"},
+        { "Chance": 28, "Description": "Dark"},
+        { "Chance": 30, "Description": "Bloodstained"},
+        { "Chance": 32, "Description": "Haunted"},
+        { "Chance": 34, "Description": "White"},
+        { "Chance": 36, "Description": "Shrouded"},
+        { "Chance": 38, "Description": "Wasted"},
+        { "Chance": 40, "Description": "Grim"},
+        { "Chance": 42, "Description": "Endless"},
+        { "Chance": 44, "Description": "Crumbling"},
+        { "Chance": 46, "Description": "Undying"},
+        { "Chance": 48, "Description": "Bloodied"},
+        { "Chance": 50, "Description": "Forsaken"},
+        { "Chance": 52, "Description": "Silent"},
+        { "Chance": 54, "Description": "Blighted"},
+        { "Chance": 56, "Description": "Iron"},
+        { "Chance": 58, "Description": "Frozen"},
+        { "Chance": 60, "Description": "Abyssal"},
+        { "Chance": 62, "Description": "Crimson"},
+        { "Chance": 64, "Description": "Silver"},
+        { "Chance": 66, "Description": "Desecrated"},
+        { "Chance": 68, "Description": "Ashen"},
+        { "Chance": 70, "Description": "Elder"},
+        { "Chance": 72, "Description": "Scorched"},
+        { "Chance": 74, "Description": "Unknown"},
+        { "Chance": 76, "Description": "Scarred"},
+        { "Chance": 78, "Description": "Broken"},
+        { "Chance": 80, "Description": "Chaotic"},
+        { "Chance": 82, "Description": "Black"},
+        { "Chance": 84, "Description": "Hidden"},
+        { "Chance": 86, "Description": "Sundered"},
+        { "Chance": 88, "Description": "Shattered"},
+        { "Chance": 90, "Description": "Dreaded"},
+        { "Chance": 92, "Description": "Secret"},
+        { "Chance": 94, "Description": "High"},
+        { "Chance": 96, "Description": "Sacred"},
+        { "Chance": 98, "Description": "Fallen"},
+        { "Chance": 100, "Description": "Ruined"}
+      ]
+  },
+  {
+    "Name": "Site Name Detail",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 2, "Description": "Blight"},
+      { "Chance": 4, "Description": "Strife"},
+      { "Chance": 6, "Description": "Nightfall"},
+      { "Chance": 8, "Description": "Fury"},
+      { "Chance": 10, "Description": "Terror"},
+      { "Chance": 12, "Description": "Truth"},
+      { "Chance": 14, "Description": "Spring"},
+      { "Chance": 16, "Description": "Sanctuary"},
+      { "Chance": 18, "Description": "Bone"},
+      { "Chance": 20, "Description": "Specters"},
+      { "Chance": 22, "Description": "Daybreak"},
+      { "Chance": 24, "Description": "Doom"},
+      { "Chance": 26, "Description": "Treachery"},
+      { "Chance": 28, "Description": "Blood"},
+      { "Chance": 30, "Description": "War"},
+      { "Chance": 32, "Description": "Torment"},
+      { "Chance": 34, "Description": "Iron"},
+      { "Chance": 36, "Description": "Silence"},
+      { "Chance": 38, "Description": "Mist"},
+      { "Chance": 40, "Description": "Isolation"},
+      { "Chance": 42, "Description": "Runes"},
+      { "Chance": 44, "Description": "Rot"},
+      { "Chance": 46, "Description": "Corruption"},
+      { "Chance": 48, "Description": "Prophecy"},
+      { "Chance": 50, "Description": "Fate"},
+      { "Chance": 52, "Description": "Twilight"},
+      { "Chance": 54, "Description": "Power"},
+      { "Chance": 56, "Description": "Darkness"},
+      { "Chance": 58, "Description": "Gloom"},
+      { "Chance": 60, "Description": "Storms"},
+      { "Chance": 62, "Description": "Hope"},
+      { "Chance": 64, "Description": "Lament"},
+      { "Chance": 66, "Description": "Frost"},
+      { "Chance": 68, "Description": "Souls"},
+      { "Chance": 70, "Description": "Winter"},
+      { "Chance": 72, "Description": "Sadness"},
+      { "Chance": 74, "Description": "Desolation"},
+      { "Chance": 76, "Description": "Bane"},
+      { "Chance": 78, "Description": "Lies"},
+      { "Chance": 80, "Description": "Ash"},
+      { "Chance": 82, "Description": "Banishment"},
+      { "Chance": 84, "Description": "Shadow"},
+      { "Chance": 86, "Description": "Madness"},
+      { "Chance": 88, "Description": "Stone"},
+      { "Chance": 90, "Description": "Secrets"},
+      { "Chance": 92, "Description": "Despair"},
+      { "Chance": 94, "Description": "Blades"},
+      { "Chance": 96, "Description": "Dread"},
+      { "Chance": 98, "Description": "Light"},
+      { "Chance": 100, "Description": "Wrath"}
+    ]
+  },
+  {
+    "Name": "Site Name Namesake",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 2, "Description": "Breckon"},
+      { "Chance": 4, "Description": "Issara"},
+      { "Chance": 6, "Description": "Milenna"},
+      { "Chance": 8, "Description": "Thorval"},
+      { "Chance": 10, "Description": "Khulan"},
+      { "Chance": 12, "Description": "Aurvang"},
+      { "Chance": 14, "Description": "Kalida"},
+      { "Chance": 16, "Description": "Keeara"},
+      { "Chance": 18, "Description": "Andor"},
+      { "Chance": 20, "Description": "Zakaria"},
+      { "Chance": 22, "Description": "Willa"},
+      { "Chance": 24, "Description": "Etana"},
+      { "Chance": 26, "Description": "Valgard"},
+      { "Chance": 28, "Description": "Kenrick"},
+      { "Chance": 30, "Description": "Wyland"},
+      { "Chance": 32, "Description": "Sidura"},
+      { "Chance": 34, "Description": "Svala"},
+      { "Chance": 36, "Description": "Kajir"},
+      { "Chance": 38, "Description": "Saiven"},
+      { "Chance": 40, "Description": "Callwen"},
+      { "Chance": 42, "Description": "Zhan"},
+      { "Chance": 44, "Description": "Solana"},
+      { "Chance": 46, "Description": "Ildar"},
+      { "Chance": 48, "Description": "Keelan"},
+      { "Chance": 50, "Description": "Thrain"},
+      { "Chance": 52, "Description": "Kynan"},
+      { "Chance": 54, "Description": "Jadina"},
+      { "Chance": 56, "Description": "Radek"},
+      { "Chance": 58, "Description": "Wulan"},
+      { "Chance": 60, "Description": "Garion"},
+      { "Chance": 62, "Description": "Eysa"},
+      { "Chance": 64, "Description": "Kolor"},
+      { "Chance": 66, "Description": "Katarra"},
+      { "Chance": 68, "Description": "Dain"},
+      { "Chance": 70, "Description": "Farina"},
+      { "Chance": 72, "Description": "Yala"},
+      { "Chance": 74, "Description": "Kodroth"},
+      { "Chance": 76, "Description": "Morien"},
+      { "Chance": 78, "Description": "Akida"},
+      { "Chance": 80, "Description": "Haldorr"},
+      { "Chance": 82, "Description": "Nyrad"},
+      { "Chance": 84, "Description": "Edda"},
+      { "Chance": 86, "Description": "Jorund"},
+      { "Chance": 88, "Description": "Morraine"},
+      { "Chance": 90, "Description": "Lindar"},
+      { "Chance": 92, "Description": "Sithra"},
+      { "Chance": 94, "Description": "Torgan"},
+      { "Chance": 96, "Description": "Arnorr"},
+      { "Chance": 98, "Description": "Thyri"},
+      { "Chance": 100, "Description": "Erisia"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Barrow",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 16, "Description": "Sepulcher"},
+      { "Chance": 32, "Description": "Grave"},
+      { "Chance": 49, "Description": "Crypt"},
+      { "Chance": 66, "Description": "Mound"},
+      { "Chance": 83, "Description": "Tomb"},
+      { "Chance": 100, "Description": "Barrow"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Cavern",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Abyss"},
+      { "Chance": 20, "Description": "Caverns"},
+      { "Chance": 30, "Description": "Caves"},
+      { "Chance": 40, "Description": "Chasm"},
+      { "Chance": 50, "Description": "Depths"},
+      { "Chance": 60, "Description": "Hollow"},
+      { "Chance": 70, "Description": "Lair"},
+      { "Chance": 80, "Description": "Rift"},
+      { "Chance": 90, "Description": "Tunnels"},
+      { "Chance": 100, "Description": "Warren"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Frozen Cavern",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Abyss"},
+      { "Chance": 20, "Description": "Caverns"},
+      { "Chance": 30, "Description": "Caves"},
+      { "Chance": 40, "Description": "Chasm"},
+      { "Chance": 50, "Description": "Depths"},
+      { "Chance": 60, "Description": "Hollow"},
+      { "Chance": 70, "Description": "Lair"},
+      { "Chance": 80, "Description": "Rift"},
+      { "Chance": 90, "Description": "Tunnels"},
+      { "Chance": 100, "Description": "Warren"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Icereach",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 16, "Description": "Icemark"},
+      { "Chance": 32, "Description": "Wintertide"},
+      { "Chance": 49, "Description": "Reach"},
+      { "Chance": 66, "Description": "Waste"},
+      { "Chance": 83, "Description": "Expanse"},
+      { "Chance": 100, "Description": "Barrens"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Mine",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 16, "Description": "Lode"},
+      { "Chance": 32, "Description": "Dig"},
+      { "Chance": 49, "Description": "Forge"},
+      { "Chance": 66, "Description": "Mine"},
+      { "Chance": 83, "Description": "Tunnels"},
+      { "Chance": 100, "Description": "Cut"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Pass",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Cliffs"},
+      { "Chance": 20, "Description": "Crag"},
+      { "Chance": 30, "Description": "Cut"},
+      { "Chance": 40, "Description": "Gap"},
+      { "Chance": 50, "Description": "Gorge"},
+      { "Chance": 60, "Description": "Heights"},
+      { "Chance": 70, "Description": "Highlands"},
+      { "Chance": 80, "Description": "Pass"},
+      { "Chance": 90, "Description": "Reach"},
+      { "Chance": 100, "Description": "Ridge"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Ruin",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Citadel"},
+      { "Chance": 20, "Description": "Enclave"},
+      { "Chance": 30, "Description": "Fortress"},
+      { "Chance": 40, "Description": "Hall"},
+      { "Chance": 50, "Description": "Keep"},
+      { "Chance": 60, "Description": "Sanctuary"},
+      { "Chance": 70, "Description": "Sanctum"},
+      { "Chance": 80, "Description": "Spire"},
+      { "Chance": 90, "Description": "Temple"},
+      { "Chance": 100, "Description": "Tower"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Sea Cave",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 16, "Description": "Caves"},
+      { "Chance": 32, "Description": "Channel"},
+      { "Chance": 49, "Description": "Cove"},
+      { "Chance": 66, "Description": "Hollow"},
+      { "Chance": 83, "Description": "Pools"},
+      { "Chance": 100, "Description": "Gouge"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Shadowfen",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Bog"},
+      { "Chance": 20, "Description": "Fen"},
+      { "Chance": 30, "Description": "Lowland"},
+      { "Chance": 40, "Description": "Marsh"},
+      { "Chance": 50, "Description": "Mire"},
+      { "Chance": 60, "Description": "Morass"},
+      { "Chance": 70, "Description": "Quagmire"},
+      { "Chance": 80, "Description": "Floodlands"},
+      { "Chance": 90, "Description": "Slough"},
+      { "Chance": 100, "Description": "Wetlands"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Stronghold",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Bastion"},
+      { "Chance": 20, "Description": "Citadel"},
+      { "Chance": 30, "Description": "Fortress"},
+      { "Chance": 40, "Description": "Garrison"},
+      { "Chance": 50, "Description": "Haven"},
+      { "Chance": 60, "Description": "Keep"},
+      { "Chance": 70, "Description": "Outpost"},
+      { "Chance": 80, "Description": "Refuge"},
+      { "Chance": 90, "Description": "Sanctuary"},
+      { "Chance": 100, "Description": "Watch"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Tanglewood",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 11, "Description": "Weald"},
+      { "Chance": 23, "Description": "Tangle"},
+      { "Chance": 35, "Description": "Bramble"},
+      { "Chance": 48, "Description": "Briar"},
+      { "Chance": 61, "Description": "Thicket"},
+      { "Chance": 74, "Description": "Forest"},
+      { "Chance": 87, "Description": "Wilds"},
+      { "Chance": 100, "Description": "Wood"}
+    ]
+  },
+  {
+    "Name": "Site Name Place Underkeep",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Catacomb"},
+      { "Chance": 20, "Description": "Chambers"},
+      { "Chance": 30, "Description": "Den"},
+      { "Chance": 40, "Description": "Hall"},
+      { "Chance": 50, "Description": "Labyrinth"},
+      { "Chance": 60, "Description": "Maze"},
+      { "Chance": 70, "Description": "Pit"},
+      { "Chance": 80, "Description": "Sanctum"},
+      { "Chance": 90, "Description": "Underkeep"},
+      { "Chance": 100, "Description": "Vault"}
+    ]
+  },
+  {
+    "Name": "Site Nature Theme",
+    "Pair": "Site Nature Domain",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 11, "Description": "Ancient"},
+      { "Chance": 23, "Description": "Corrupted"},
+      { "Chance": 35, "Description": "Fortified"},
+      { "Chance": 48, "Description": "Hallowed"},
+      { "Chance": 61, "Description": "Haunted"},
+      { "Chance": 74, "Description": "Infested"},
+      { "Chance": 87, "Description": "Ravaged"},
+      { "Chance": 100, "Description": "Wild"}
+    ]
+  },
+  {
+    "Name": "Site Nature Domain",
+    "Pair": "Site Nature Theme",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 6, "Description": "Barrow"},
+      { "Chance": 18, "Description": "Cavern"},
+      { "Chance": 28, "Description": "Frozen Cavern"},
+      { "Chance": 32, "Description": "Icereach"},
+      { "Chance": 38, "Description": "Mine"},
+      { "Chance": 48, "Description": "Pass"},
+      { "Chance": 58, "Description": "Ruin"},
+      { "Chance": 68, "Description": "Sea Cave"},
+      { "Chance": 78, "Description": "Shadowfen"},
+      { "Chance": 83, "Description": "Stronghold"},
+      { "Chance": 95, "Description": "Tanglewood"},
+      { "Chance": 100, "Description": "Underkeep"}
+    ]
+  },
+  {
+    "Name": "Character Disposition",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 6, "Description": "Helpful"},
+      { "Chance": 13, "Description": "Friendly"},
+      { "Chance": 20, "Description": "Cooperative"},
+      { "Chance": 28, "Description": "Curious"},
+      { "Chance": 36, "Description": "Indifferent"},
+      { "Chance": 47, "Description": "Suspicious"},
+      { "Chance": 57, "Description": "Wanting"},
+      { "Chance": 67, "Description": "Desperate"},
+      { "Chance": 76, "Description": "Demanding"},
+      { "Chance": 85, "Description": "Unfriendly"},
+      { "Chance": 93, "Description": "Threatening"},
+      { "Chance": 100, "Description": "Hostile"}
+    ]
+  },
+  {
+    "Name": "Character Activity",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 2, "Description": "Guarding"},
+      { "Chance": 4, "Description": "Preserving"},
+      { "Chance": 6, "Description": "Constructing"},
+      { "Chance": 8, "Description": "Mending"},
+      { "Chance": 10, "Description": "Assisting"},
+      { "Chance": 12, "Description": "Securing"},
+      { "Chance": 14, "Description": "Learning"},
+      { "Chance": 16, "Description": "Sneaking"},
+      { "Chance": 18, "Description": "Fleeing"},
+      { "Chance": 20, "Description": "Sacrificing"},
+      { "Chance": 22, "Description": "Creating"},
+      { "Chance": 24, "Description": "Luring"},
+      { "Chance": 26, "Description": "Hunting"},
+      { "Chance": 28, "Description": "Seizing"},
+      { "Chance": 30, "Description": "Bargaining"},
+      { "Chance": 32, "Description": "Mimicking"},
+      { "Chance": 34, "Description": "Tricking"},
+      { "Chance": 36, "Description": "Tracking"},
+      { "Chance": 38, "Description": "Escorting"},
+      { "Chance": 40, "Description": "Hiding"},
+      { "Chance": 42, "Description": "Raiding"},
+      { "Chance": 44, "Description": "Socializing"},
+      { "Chance": 46, "Description": "Exploring"},
+      { "Chance": 48, "Description": "Journeying"},
+      { "Chance": 50, "Description": "Supporting"},
+      { "Chance": 52, "Description": "Avoiding"},
+      { "Chance": 54, "Description": "Disabling"},
+      { "Chance": 56, "Description": "Leading"},
+      { "Chance": 58, "Description": "Assaulting"},
+      { "Chance": 60, "Description": "Ensnaring"},
+      { "Chance": 62, "Description": "Defending"},
+      { "Chance": 64, "Description": "Recovering"},
+      { "Chance": 66, "Description": "Patrolling"},
+      { "Chance": 68, "Description": "Resting"},
+      { "Chance": 70, "Description": "Distracting"},
+      { "Chance": 72, "Description": "Leaving"},
+      { "Chance": 74, "Description": "Fighting"},
+      { "Chance": 76, "Description": "Ambushing"},
+      { "Chance": 78, "Description": "Controlling"},
+      { "Chance": 80, "Description": "Observing"},
+      { "Chance": 82, "Description": "Gathering"},
+      { "Chance": 84, "Description": "Suffering"},
+      { "Chance": 86, "Description": "Threatening"},
+      { "Chance": 88, "Description": "Searching"},
+      { "Chance": 90, "Description": "Destroying"},
+      { "Chance": 92, "Description": "Restoring"},
+      { "Chance": 94, "Description": "Consuming"},
+      { "Chance": 96, "Description": "Removing"},
+      { "Chance": 98, "Description": "Inspecting"},
+      { "Chance": 100, "Description": "Summoning"}
+    ]
+  },
+  {
+    "Name": "Monstrosity Size",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 5, "Description": "Tiny (rodent-sized)"},
+      { "Chance": 30, "Description": "Small (hound-sized)"},
+      { "Chance": 65, "Description": "Medium (person-sized)"},
+      { "Chance": 94, "Description": "Large (giant-sized)"},
+      { "Chance": 99, "Description": "Huge (whale-sized)"},
+      { "Chance": 99, "Description": "Huge (whale-sized)"},
+      { "Chance": 100, "Description": "Titanic (incomprehensible)"}
+    ]
+  },
+  {
+    "Name": "Monstrosity Primary Form",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 15, "Description": "Beast / mammal"},
+      { "Chance": 25, "Description": "Humanoid"},
+      { "Chance": 31, "Description": "Bird"},
+      { "Chance": 37, "Description": "Spider"},
+      { "Chance": 43, "Description": "Snake"},
+      { "Chance": 49, "Description": "Worm / slug"},
+      { "Chance": 55, "Description": "Lizard"},
+      { "Chance": 61, "Description": "Insect"},
+      { "Chance": 66, "Description": "Amorphous"},
+      { "Chance": 69, "Description": "Crustacean"},
+      { "Chance": 71, "Description": "Fish"},
+      { "Chance": 73, "Description": "Octopoid"},
+      { "Chance": 75, "Description": "Amphibian"},
+      { "Chance": 77, "Description": "Plant"},
+      { "Chance": 78, "Description": "Incorporeal"},
+      { "Chance": 79, "Description": "Mineral"},
+      { "Chance": 80, "Description": "Elemental"},
+      { "Chance": 100, "Description": "Hybrid (roll twice)"}
+    ]
+  },
+  {
+    "Name": "Monstrosity Characteristics",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 5, "Description": "Extra limbs"},
+      { "Chance": 10, "Description": "Fangs / rows of sharp teeth"},
+      { "Chance": 15, "Description": "Claws / talons"},
+      { "Chance": 20, "Description": "Strange color / markings"},
+      { "Chance": 25, "Description": "Horns / tusks"},
+      { "Chance": 30, "Description": "Oversized mouth"},
+      { "Chance": 35, "Description": "Spikes / spines"},
+      { "Chance": 40, "Description": "Tail"},
+      { "Chance": 45, "Description": "Multi-segmented body"},
+      { "Chance": 50, "Description": "Wings"},
+      { "Chance": 54, "Description": "Stinger / barbs"},
+      { "Chance": 58, "Description": "Many-eyed"},
+      { "Chance": 62, "Description": "Distinctive sound"},
+      { "Chance": 66, "Description": "Tentacles / tendrils"},
+      { "Chance": 69, "Description": "Mandibles / pincers"},
+      { "Chance": 72, "Description": "Luminescent"},
+      { "Chance": 75, "Description": "Antennae / sensory organs"},
+      { "Chance": 78, "Description": "Proboscis / inner jaw"},
+      { "Chance": 81, "Description": "Exoskeleton / shell"},
+      { "Chance": 84, "Description": "Bony protuberances"},
+      { "Chance": 87, "Description": "Corrupted flesh"},
+      { "Chance": 90, "Description": "Semi-transparent"},
+      { "Chance": 93, "Description": "Scarred / injured"},
+      { "Chance": 95, "Description": "Egg sac / carried offspring"},
+      { "Chance": 97, "Description": "Rotting / skeletal"},
+      { "Chance": 98, "Description": "Mummified / desiccated"},
+      { "Chance": 99, "Description": "Multi-headed"},
+      { "Chance": 100, "Description": "Etched with mystic runes"}
+    ]
+  },
+  {
+    "Name": "Monstrosity Abilities",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 4, "Description": "Keen senses"},
+      { "Chance": 8, "Description": "Intimidating vocalization"},
+      { "Chance": 12, "Description": "Climber"},
+      { "Chance": 16, "Description": "Intelligent"},
+      { "Chance": 20, "Description": "Swift"},
+      { "Chance": 24, "Description": "Powerful bite"},
+      { "Chance": 28, "Description": "Stealthy / ambusher"},
+      { "Chance": 32, "Description": "Horrid visage"},
+      { "Chance": 36, "Description": "Strong"},
+      { "Chance": 40, "Description": "Camouflaged"},
+      { "Chance": 43, "Description": "Flier / glider"},
+      { "Chance": 46, "Description": "Poisonous"},
+      { "Chance": 49, "Description": "Semiaquatic / swimmer"},
+      { "Chance": 52, "Description": "Grappler / entangler"},
+      { "Chance": 55, "Description": "Leaper"},
+      { "Chance": 58, "Description": "Crusher / constrictor"},
+      { "Chance": 61, "Description": "Armored"},
+      { "Chance": 64, "Description": "Burrower"},
+      { "Chance": 67, "Description": "Noxious smell"},
+      { "Chance": 69, "Description": "Trap-setter"},
+      { "Chance": 71, "Description": "Parasitic"},
+      { "Chance": 73, "Description": "Vibration sense"},
+      { "Chance": 75, "Description": "Breath weapon / toxic spew"},
+      { "Chance": 77, "Description": "Mimicry"},
+      { "Chance": 79, "Description": "Shapeshifting"},
+      { "Chance": 81, "Description": "Control lesser creatures"},
+      { "Chance": 83, "Description": "Echolocation"},
+      { "Chance": 85, "Description": "Electric shock"},
+      { "Chance": 87, "Description": "Acidic"},
+      { "Chance": 89, "Description": "Symbiotic"},
+      { "Chance": 91, "Description": "Shoot projectiles"},
+      { "Chance": 92, "Description": "Paralyzing"},
+      { "Chance": 93, "Description": "Immune to iron"},
+      { "Chance": 94, "Description": "Feels no pain"},
+      { "Chance": 95, "Description": "Enact rituals"},
+      { "Chance": 96, "Description": "Create illusions"},
+      { "Chance": 97, "Description": "Mind control / telepathy"},
+      { "Chance": 98, "Description": "Move between realities"},
+      { "Chance": 99, "Description": "Wield weapons"},
+      { "Chance": 100, "Description": "Control elements"}
+    ]
+  },
+  {
+    "Name": "Trap Event",
+    "Pair": "Trap Component",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 4, "Description": "Block"},
+      { "Chance": 8, "Description": "Create"},
+      { "Chance": 12, "Description": "Break"},
+      { "Chance": 16, "Description": "Puncture"},
+      { "Chance": 20, "Description": "Entangle"},
+      { "Chance": 24, "Description": "Enclose"},
+      { "Chance": 28, "Description": "Ambush"},
+      { "Chance": 32, "Description": "Snare"},
+      { "Chance": 36, "Description": "Change"},
+      { "Chance": 40, "Description": "Imitate"},
+      { "Chance": 44, "Description": "Crush"},
+      { "Chance": 48, "Description": "Drop"},
+      { "Chance": 52, "Description": "Conceal"},
+      { "Chance": 56, "Description": "Lure"},
+      { "Chance": 60, "Description": "Release"},
+      { "Chance": 64, "Description": "Obscure"},
+      { "Chance": 68, "Description": "Cut"},
+      { "Chance": 72, "Description": "Smother"},
+      { "Chance": 76, "Description": "Collapse"},
+      { "Chance": 80, "Description": "Summon"},
+      { "Chance": 84, "Description": "Move"},
+      { "Chance": 88, "Description": "Surprise"},
+      { "Chance": 92, "Description": "Divert"},
+      { "Chance": 96, "Description": "Attack"},
+      { "Chance": 100, "Description": "Trigger"}
+    ]
+  },
+  {
+    "Name": "Trap Component",
+    "Pair": "Trap Event",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 4, "Description": "Pit"},
+      { "Chance": 8, "Description": "Water"},
+      { "Chance": 12, "Description": "Fire"},
+      { "Chance": 16, "Description": "Projectile"},
+      { "Chance": 20, "Description": "Passage"},
+      { "Chance": 24, "Description": "Fall"},
+      { "Chance": 28, "Description": "Debris"},
+      { "Chance": 32, "Description": "Fear"},
+      { "Chance": 36, "Description": "Alarm"},
+      { "Chance": 40, "Description": "Trigger"},
+      { "Chance": 44, "Description": "Cold"},
+      { "Chance": 48, "Description": "Weapon"},
+      { "Chance": 52, "Description": "Darkness"},
+      { "Chance": 56, "Description": "Decay"},
+      { "Chance": 60, "Description": "Path"},
+      { "Chance": 64, "Description": "Stone"},
+      { "Chance": 68, "Description": "Terrain"},
+      { "Chance": 72, "Description": "Poison"},
+      { "Chance": 76, "Description": "Barrier"},
+      { "Chance": 80, "Description": "Overhead"},
+      { "Chance": 84, "Description": "Magic"},
+      { "Chance": 88, "Description": "Toxin"},
+      { "Chance": 92, "Description": "Earth"},
+      { "Chance": 96, "Description": "Light"},
+      { "Chance": 100, "Description": "Denizen"}
+    ]
+  },
+  {
+    "Name": "Combat Event Method",
+    "Pair": "Combat Event Target",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 2, "Description": "Defy"},
+      { "Chance": 4, "Description": "Break"},
+      { "Chance": 6, "Description": "Trick"},
+      { "Chance": 8, "Description": "Evade"},
+      { "Chance": 10, "Description": "Protect"},
+      { "Chance": 12, "Description": "Overwhelm"},
+      { "Chance": 14, "Description": "Persevere"},
+      { "Chance": 16, "Description": "Assist"},
+      { "Chance": 18, "Description": "Await"},
+      { "Chance": 20, "Description": "Abort"},
+      { "Chance": 22, "Description": "Block"},
+      { "Chance": 24, "Description": "Collide"},
+      { "Chance": 26, "Description": "Focus"},
+      { "Chance": 28, "Description": "Advance"},
+      { "Chance": 30, "Description": "Breach"},
+      { "Chance": 32, "Description": "Endure"},
+      { "Chance": 34, "Description": "Assault"},
+      { "Chance": 36, "Description": "Charge"},
+      { "Chance": 38, "Description": "Escalate"},
+      { "Chance": 40, "Description": "Sunder"},
+      { "Chance": 42, "Description": "Shatter"},
+      { "Chance": 44, "Description": "Aim"},
+      { "Chance": 46, "Description": "Stagger"},
+      { "Chance": 48, "Description": "Counter"},
+      { "Chance": 50, "Description": "Seize"},
+      { "Chance": 52, "Description": "Impact"},
+      { "Chance": 54, "Description": "Entangle"},
+      { "Chance": 56, "Description": "Hold"},
+      { "Chance": 58, "Description": "Deflect"},
+      { "Chance": 60, "Description": "Drop"},
+      { "Chance": 62, "Description": "Lose"},
+      { "Chance": 64, "Description": "Sweep"},
+      { "Chance": 66, "Description": "Secure"},
+      { "Chance": 68, "Description": "Cover"},
+      { "Chance": 70, "Description": "Withdraw"},
+      { "Chance": 72, "Description": "Clash"},
+      { "Chance": 74, "Description": "Amplify"},
+      { "Chance": 76, "Description": "Batter"},
+      { "Chance": 78, "Description": "Feint"},
+      { "Chance": 80, "Description": "Shove"},
+      { "Chance": 82, "Description": "Embed"},
+      { "Chance": 84, "Description": "Affect"},
+      { "Chance": 86, "Description": "Probe"},
+      { "Chance": 88, "Description": "Force"},
+      { "Chance": 90, "Description": "Intensify"},
+      { "Chance": 92, "Description": "Distract"},
+      { "Chance": 94, "Description": "Challenge"},
+      { "Chance": 96, "Description": "Brawl"},
+      { "Chance": 98, "Description": "Coordinate"},
+      { "Chance": 100, "Description": "Overrun"}
+    ]
+  },
+  {
+    "Name": "Combat Event Target",
+    "Pair": "Combat Event Method",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 2, "Description": "Control"},
+      { "Chance": 4, "Description": "Defense"},
+      { "Chance": 6, "Description": "Limbs"},
+      { "Chance": 8, "Description": "Focus"},
+      { "Chance": 10, "Description": "Advantage"},
+      { "Chance": 12, "Description": "Range"},
+      { "Chance": 14, "Description": "Stress"},
+      { "Chance": 16, "Description": "Sense"},
+      { "Chance": 18, "Description": "Weakness"},
+      { "Chance": 20, "Description": "Opening"},
+      { "Chance": 22, "Description": "Fear"},
+      { "Chance": 24, "Description": "Instinct"},
+      { "Chance": 26, "Description": "Footing"},
+      { "Chance": 28, "Description": "Maneuver"},
+      { "Chance": 30, "Description": "Reach"},
+      { "Chance": 32, "Description": "Harm"},
+      { "Chance": 34, "Description": "Finesse"},
+      { "Chance": 36, "Description": "Weapon"},
+      { "Chance": 38, "Description": "Environment"},
+      { "Chance": 40, "Description": "Technique"},
+      { "Chance": 42, "Description": "Surprise"},
+      { "Chance": 44, "Description": "Pride"},
+      { "Chance": 46, "Description": "Wound"},
+      { "Chance": 48, "Description": "Precision"},
+      { "Chance": 50, "Description": "Ally"},
+      { "Chance": 52, "Description": "Ground"},
+      { "Chance": 54, "Description": "Courage"},
+      { "Chance": 56, "Description": "Companion"},
+      { "Chance": 58, "Description": "Object"},
+      { "Chance": 60, "Description": "Momentum"},
+      { "Chance": 62, "Description": "Speed"},
+      { "Chance": 64, "Description": "Strength"},
+      { "Chance": 66, "Description": "Supply"},
+      { "Chance": 68, "Description": "Terrain"},
+      { "Chance": 70, "Description": "Armor"},
+      { "Chance": 72, "Description": "Skill"},
+      { "Chance": 74, "Description": "Body"},
+      { "Chance": 76, "Description": "Protection"},
+      { "Chance": 78, "Description": "Resolve"},
+      { "Chance": 80, "Description": "Ferocity"},
+      { "Chance": 82, "Description": "Shield"},
+      { "Chance": 84, "Description": "Ammo"},
+      { "Chance": 86, "Description": "Anger"},
+      { "Chance": 88, "Description": "Opportunity"},
+      { "Chance": 90, "Description": "Balance"},
+      { "Chance": 92, "Description": "Position"},
+      { "Chance": 94, "Description": "Barrier"},
+      { "Chance": 96, "Description": "Strategy"},
+      { "Chance": 98, "Description": "Grasp"},
+      { "Chance": 100, "Description": "Power"}
+    ]
+  },
+  {
+    "Name": "Threat Category",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Burgeoning Conflict"},
+      { "Chance": 20, "Description": "Cursed Site"},
+      { "Chance": 30, "Description": "Environmental Calamity"},
+      { "Chance": 40, "Description": "Malignant Plague"},
+      { "Chance": 50, "Description": "Rampaging Creature"},
+      { "Chance": 60, "Description": "Ravaging Horde"},
+      { "Chance": 70, "Description": "Scheming Leader"},
+      { "Chance": 80, "Description": "Power-Hungry Mystic"},
+      { "Chance": 90, "Description": "Zealous Cult"},
+      { "Chance": 100, "Description": "Roll Twice"}
+    ]
+  },
+  {
+    "Name": "Threat Burgeoning Conflict",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Allow warmongers to gain influence"},
+      { "Chance": 20, "Description": "Break a treaty"},
+      { "Chance": 30, "Description": "Force a hasty decision"},
+      { "Chance": 40, "Description": "Deepen suspicions"},
+      { "Chance": 50, "Description": "Trigger a confrontation"},
+      { "Chance": 60, "Description": "Subvert a potential accord"},
+      { "Chance": 70, "Description": "Isolate the antagonists"},
+      { "Chance": 80, "Description": "Draw new battle lines"},
+      { "Chance": 90, "Description": "Reveal an unexpected aspect of the dispute"},
+      { "Chance": 100, "Description": "Introduce a new person or faction to complicate the situation"}
+    ]
+  },
+  {
+    "Name": "Threat Cursed Site",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Unleash a creature or being"},
+      { "Chance": 20, "Description": "Lure the unwary into its depths"},
+      { "Chance": 30, "Description": "Offer promises of power"},
+      { "Chance": 40, "Description": "Reveal a new aspect of its cursed history"},
+      { "Chance": 50, "Description": "Expand its malignancy to surrounding lands"},
+      { "Chance": 60, "Description": "Leave its mark on an inhabitant or visitor"},
+      { "Chance": 70, "Description": "Reveal hidden depths"},
+      { "Chance": 80, "Description": "Ensnare an important person or object"},
+      { "Chance": 90, "Description": "Corrupt the environment"},
+      { "Chance": 100, "Description": "Transform its nature"}
+    ]
+  },
+  {
+    "Name": "Threat Environmental Calamity",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Devastate a place"},
+      { "Chance": 20, "Description": "Block a path"},
+      { "Chance": 30, "Description": "Threaten a community with imminent destruction"},
+      { "Chance": 40, "Description": "Manifest unexpected effects"},
+      { "Chance": 50, "Description": "Expand in scope or intensity"},
+      { "Chance": 60, "Description": "Allow someone to take advantage"},
+      { "Chance": 70, "Description": "Deprive of resources"},
+      { "Chance": 80, "Description": "Isolate an important person or community"},
+      { "Chance": 90, "Description": "Force refugees into hostile lands"},
+      { "Chance": 100, "Description": "Disrupt natural ecosystems"}
+    ]
+  },
+  {
+    "Name": "Threat Malignant Plague",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Manifest new symptoms or effects"},
+      { "Chance": 20, "Description": "Infect someone important"},
+      { "Chance": 30, "Description": "Expand to new territory or communities"},
+      { "Chance": 40, "Description": "Allow someone to take advantage"},
+      { "Chance": 50, "Description": "Allow someone to take the blame"},
+      { "Chance": 60, "Description": "Create panic or disorder"},
+      { "Chance": 70, "Description": "Force a horrible decision"},
+      { "Chance": 80, "Description": "Lure into complacency"},
+      { "Chance": 90, "Description": "Reveal the root of the sickness"},
+      { "Chance": 100, "Description": "Undermine a potential cure"}
+    ]
+  },
+  {
+    "Name": "Threat Rampaging Creature",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Reveal a new aspect of its nature or abilities"},
+      { "Chance": 20, "Description": "Expand its territory"},
+      { "Chance": 30, "Description": "Make a sudden and brutal attack"},
+      { "Chance": 40, "Description": "Control or influence lesser creatures"},
+      { "Chance": 50, "Description": "Create confusion or strife"},
+      { "Chance": 60, "Description": "Leave foreboding signs"},
+      { "Chance": 70, "Description": "Lure the unwary"},
+      { "Chance": 80, "Description": "Imperil an event"},
+      { "Chance": 90, "Description": "Assert control over a location"},
+      { "Chance": 100, "Description": "Threaten resources"}
+    ]
+  },
+  {
+    "Name": "Threat Ravaging Horde",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Overrun defenses"},
+      { "Chance": 20, "Description": "Gather resources"},
+      { "Chance": 30, "Description": "Attack a location"},
+      { "Chance": 40, "Description": "Expand forces"},
+      { "Chance": 50, "Description": "Appoint or reveal a leader"},
+      { "Chance": 60, "Description": "Send forth a champion"},
+      { "Chance": 70, "Description": "Create a diversion"},
+      { "Chance": 80, "Description": "Undermine an opposing force from within"},
+      { "Chance": 90, "Description": "Cut off supplies or reinforcements"},
+      { "Chance": 100, "Description": "Employ a new weapon"}
+    ]
+  },
+  {
+    "Name": "Threat Scheming Leader",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Defeat an enemy"},
+      { "Chance": 20, "Description": "Form a new alliance"},
+      { "Chance": 30, "Description": "Usurp or undermine another leader"},
+      { "Chance": 40, "Description": "Force the loyalty of a community or important person"},
+      { "Chance": 50, "Description": "Enact a new law or tradition"},
+      { "Chance": 60, "Description": "Rescind an old law or tradition"},
+      { "Chance": 70, "Description": "Reveal a true intention"},
+      { "Chance": 80, "Description": "Unravel an existing alliance"},
+      { "Chance": 90, "Description": "Incite conflict"},
+      { "Chance": 100, "Description": "Use an unexpected capability or asset"}
+    ]
+  },
+  {
+    "Name": "Threat Power-Hungry Mystic",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Gain hidden knowledge"},
+      { "Chance": 20, "Description": "Assault an enemy with magic"},
+      { "Chance": 30, "Description": "Despoil a place through magic"},
+      { "Chance": 40, "Description": "Forge a bond with ancient forces"},
+      { "Chance": 50, "Description": "Create magical wards or protections"},
+      { "Chance": 60, "Description": "Obtain a powerful artifact"},
+      { "Chance": 70, "Description": "Tempt with power or secrets"},
+      { "Chance": 80, "Description": "Recruit a follower or ally"},
+      { "Chance": 90, "Description": "Sacrifice something in exchange for greater power"},
+      { "Chance": 100, "Description": "Use magic to trick or deceive"}
+    ]
+  },
+  {
+    "Name": "Threat Zealous Cult",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 10, "Description": "Overtake a faction or community"},
+      { "Chance": 20, "Description": "Unlock secrets to greater power"},
+      { "Chance": 30, "Description": "Establish false credibility"},
+      { "Chance": 40, "Description": "Appoint or reveal a leader"},
+      { "Chance": 50, "Description": "Lure new members or establish alliances"},
+      { "Chance": 60, "Description": "Subvert opposition through devious schemes"},
+      { "Chance": 70, "Description": "Attack opposition directly"},
+      { "Chance": 80, "Description": "Spread the word of its doctrine"},
+      { "Chance": 90, "Description": "Reveal a dire prophecy"},
+      { "Chance": 100, "Description": "Reveal its true nature or goal"}
+    ]
+  },
+  {
+    "Name": "Delve the Depths Edge",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 45, "Description": "Mark progress and Reveal a Danger."},
+      { "Chance": 65, "Description": "Mark progress."},
+      { "Chance": 75, "Description": "Choose one: Mark progress or Find an Opportunity."},
+      { "Chance": 80, "Description": "Take both: Mark progress and Find an Opportunity."},
+      { "Chance": 100, "Description": "Mark progress twice and Reveal a Danger."}
+    ]
+  },
+  {
+    "Name": "Delve the Depths Shadow",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 30, "Description": "Mark progress and Reveal a Danger."},
+      { "Chance": 65, "Description": "Mark progress."},
+      { "Chance": 90, "Description": "Choose one: Mark progress or Find an Opportunity."},
+      { "Chance": 99, "Description": "Take both: Mark progress and Find an Opportunity."},
+      { "Chance": 100, "Description": "Mark progress twice and Reveal a Danger."}
+    ]
+  },
+  {
+    "Name": "Delve the Depths Wits",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 40, "Description": "Mark progress and Reveal a Danger."},
+      { "Chance": 55, "Description": "Mark progress."},
+      { "Chance": 80, "Description": "Choose one: Mark progress or Find an Opportunity."},
+      { "Chance": 99, "Description": "Take both: Mark progress and Find an Opportunity."},
+      { "Chance": 100, "Description": "Mark progress twice and Reveal a Danger."}
+    ]
+  },
+  {
+    "Name": "Find An Opportunity",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 25, "Description": "The terrain favors you, or you find a hidden path."},
+      { "Chance": 45, "Description": "An aspect of the history or nature of this place is revealed."},
+      { "Chance": 57, "Description": "You locate a secure area."},
+      { "Chance": 68, "Description": "A clue offers insight or direction."},
+      { "Chance": 78, "Description": "You get the drop on a denizen."},
+      { "Chance": 86, "Description": "This area provides an opportunity to scavenge, forage, or hunt."},
+      { "Chance": 90, "Description": "You locate an interesting or helpful object."},
+      { "Chance": 94, "Description": "You are alerted to a potential threat."},
+      { "Chance": 98, "Description": "You encounter a denizen who might support you."},
+      { "Chance": 100, "Description": "You encounter a denizen in need of help."}
+    ]
+  },
+  {
+    "Name": "Reveal a Danger",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 30, "Description": "Check the theme card."},
+      { "Chance": 45, "Description": "Check the domain card."},
+      { "Chance": 57, "Description": "You encounter a hostile denizen."},
+      { "Chance": 68, "Description": "You face an environmental or architectural hazard."},
+      { "Chance": 76, "Description": "A discovery undermines or complicates your quest."},
+      { "Chance": 79, "Description": "You confront a harrowing situation or sensation."},
+      { "Chance": 82, "Description": "You face the consequences of an earlier choice or approach."},
+      { "Chance": 85, "Description": "Your way is blocked or trapped."},
+      { "Chance": 88, "Description": "A resource is diminished, broken, or lost."},
+      { "Chance": 91, "Description": "You face a perplexing mystery or tough choice."},
+      { "Chance": 94, "Description": "You lose your way or are delayed."},
+      { "Chance": 100, "Description": "Roll twice more on this table. Both results occur. If they are the same result, make it worse."}
+    ]
+  },
+  {
+    "Name": "Reveal a Danger Alternate",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 22, "Description": "You encounter a hostile denizen."},
+      { "Chance": 42, "Description": "You face an environmental or architectural hazard."},
+      { "Chance": 58, "Description": "A discovery undermines or complicates your quest."},
+      { "Chance": 64, "Description": "You confront a harrowing situation or sensation."},
+      { "Chance": 70, "Description": "You face the consequences of an earlier choice or approach."},
+      { "Chance": 76, "Description": "The path is blocked or trapped."},
+      { "Chance": 82, "Description": "A resource is diminished, broken, or lost."},
+      { "Chance": 88, "Description": "You face a perplexing mystery or tough choice."},
+      { "Chance": 94, "Description": "You lose your way or are delayed."},
+      { "Chance": 100, "Description": "Roll twice more on this table. Both results occur. If they are the same result, make it worse."}
+    ]
+  },
+  {
+    "Name": "Advance a Threat",
+    "Game": "Ironsworn",
+    "Oracles":
+    [
+      { "Chance": 30, "Description": "The threat readies its next step, or a new danger looms. If you are in a position to prevent this development, you may attempt to do so. If you succeed, Reach a Milestone. Otherwise, mark menace."},
+      { "Chance": 70, "Description": "The threat works subtly to advance toward its goal, or the danger escalates. Mark menace."},
+      { "Chance": 100, "Description": "The threat makes a dramatic and immediate move, or a major event reveals new complications. Mark menace twice."}
+    ]
+  }
 ]

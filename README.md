@@ -22,6 +22,10 @@ Most commands and oracle tables names have shorter hand versions of them, but co
 Shows all the commands. Use `!Help ModuleName` to get more specific details about a command.
  * Command Aliases: None
  * Sample usage: `!Help ActionCommand`
+#### SetDefaultGame
+Allows players to set the default game for a discord channel.
+ * Command Aliases: None
+ * Sample usage: `!SetDefaultGame Ironsworn`
 #### Action
 Rolls the action die, adds a modifier (if one is provided), compares it to the challenge die, and reports the strength of your hit/miss/match. Anything after modifier is just fluff. 
  * Command Aliases: Act

@@ -117,69 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlmostCertain" xml:space="preserve">
-    <value>Almost Certain</value>
+  <data name="BasicForm" xml:space="preserve">
+    <value>BasicForm</value>
   </data>
-  <data name="AskCommandUnknownValue" xml:space="preserve">
-    <value>Please use a value between 1 and 99 or one of the following values:
-</value>
+  <data name="CreatureHelper" xml:space="preserve">
+    <value>Creature Helper</value>
   </data>
-  <data name="AskOracleHelperMessage" xml:space="preserve">
-    <value>What is the likelihood of it happening?
-1️⃣ - Almost Certain 
-2️⃣ - Likely
-3️⃣ - 50/50
-4️⃣ - Unlikely
-5️⃣ - Small Chance</value>
+  <data name="CreatureTitle" xml:space="preserve">
+    <value>__Starforged Creature__</value>
   </data>
-  <data name="AskOracleHelperTitle" xml:space="preserve">
-    <value>__Ask The Oracle Helper__</value>
+  <data name="EncounteredBehavior" xml:space="preserve">
+    <value>Encountered Behavior</value>
   </data>
-  <data name="AskResult" xml:space="preserve">
-    <value>The result of</value>
+  <data name="Environment" xml:space="preserve">
+    <value>Environment</value>
   </data>
-  <data name="FiftyFifty" xml:space="preserve">
-    <value>50/50</value>
+  <data name="FirstLook" xml:space="preserve">
+    <value>First Look</value>
   </data>
-  <data name="Likely" xml:space="preserve">
-    <value>Likely</value>
+  <data name="PickCreatureEnvironmentMessage" xml:space="preserve">
+    <value>Please pick the creature's environment:
+1️⃣ - Void
+2️⃣ - Interior
+3️⃣ - Land
+4️⃣ - Liquid
+5️⃣ - Air
+🎲 - Random</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
+  <data name="RevealedAspect" xml:space="preserve">
+    <value>Revealed Aspect</value>
   </data>
-  <data name="OracleResult" xml:space="preserve">
-    <value>Oracle Result</value>
+  <data name="Scale" xml:space="preserve">
+    <value>Scale</value>
   </data>
-  <data name="OracleTable" xml:space="preserve">
-    <value>Oracle Table</value>
-  </data>
-  <data name="Outcome" xml:space="preserve">
-    <value>Outcome</value>
-  </data>
-  <data name="PairedTable" xml:space="preserve">
-    <value>Paired Table(s):</value>
-  </data>
-  <data name="Roll" xml:space="preserve">
-    <value>Roll</value>
-  </data>
-  <data name="SmallChance" xml:space="preserve">
-    <value>Small Chance</value>
-  </data>
-  <data name="TooManyGamesError" xml:space="preserve">
-    <value>Too many tables with that name, please specify a game: {0}. 
-To avoid this error in the future your set you default game with the `!SetDefaultGame` command</value>
-    <comment>{0} will be replaced with a list of games installed on the bot</comment>
-  </data>
-  <data name="UnknownTableError" xml:space="preserve">
-    <value>Unknown Oracle Table:</value>
-  </data>
-  <data name="Unlikely" xml:space="preserve">
-    <value>Unlikely</value>
-  </data>
-  <data name="Verus" xml:space="preserve">
-    <value>vs</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+  <data name="Seed" xml:space="preserve">
+    <value>Seed: {0}</value>
+    <comment>{0} will be replaced with the creatures random seed for generation purposes</comment>
   </data>
 </root>

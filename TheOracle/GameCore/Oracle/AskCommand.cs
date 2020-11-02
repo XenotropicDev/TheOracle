@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 using TheOracle.Core;
 
 namespace TheOracle.GameCore.Oracle
@@ -25,7 +27,19 @@ namespace TheOracle.GameCore.Oracle
 
             if (!hooks.AskTheOracleReactions)
             {
-                service.GetRequiredService<DiscordSocketClient>().ReactionAdded += HelperHandler;
+                var reactionService = Service.GetRequiredService<ReactionService>();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmoji(fourEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmoji(fiveEmoji).WithEvent(HelperHandler).Build();
+
+                reactionService.reactionList.Add(reaction1);
+                reactionService.reactionList.Add(reaction2);
+                reactionService.reactionList.Add(reaction3);
+                reactionService.reactionList.Add(reaction4);
+                reactionService.reactionList.Add(reaction5);
+
                 hooks.AskTheOracleReactions = true;
             }
 
@@ -43,16 +57,11 @@ namespace TheOracle.GameCore.Oracle
             };
         }
 
-        private Task HelperHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task HelperHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            //TODO Concurrent queue so that users can't spam reactions?
-            var emojisToProcess = new Emoji[] { new Emoji(oneEmoji), new Emoji(twoEmoji), new Emoji(threeEmoji), new Emoji(fourEmoji), new Emoji(fiveEmoji) };
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot || !emojisToProcess.Contains(reaction.Emote)) return Task.CompletedTask;
+            if (!message?.Embeds?.Any(embed => embed.Title == OracleResources.AskOracleHelperTitle) ?? false) return;
 
-            var message = userMessage.GetOrDownloadAsync().Result;
-            if (!message?.Embeds?.Any(embed => embed.Title == OracleResources.AskOracleHelperTitle) ?? false) return Task.CompletedTask;
-
-            Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 await message.RemoveAllReactionsAsync();
 
@@ -63,7 +72,7 @@ namespace TheOracle.GameCore.Oracle
                 if (reaction.Emote.Name == fiveEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(10, OracleResources.SmallChance); msg.Embed = null; });
             });
 
-            return Task.CompletedTask;
+            return;
         }
 
         public List<Tuple<string, int>> ChanceLookUp { get; }
@@ -75,43 +84,40 @@ namespace TheOracle.GameCore.Oracle
         public async Task AskTheOracleCommand([Remainder] string Likelihood = "")
         {
             Likelihood = Likelihood.Trim();
-            if (Likelihood == string.Empty)
-            {
-                var helperEmbed = new EmbedBuilder().WithTitle(OracleResources.AskOracleHelperTitle).WithDescription(OracleResources.AskOracleHelperMessage);
-                var msg = await ReplyAsync(embed: helperEmbed.Build());
 
-                _ = Task.Run(async () =>
-                {
-                    await msg.AddReactionAsync(new Emoji(oneEmoji));
-                    await msg.AddReactionAsync(new Emoji(twoEmoji));
-                    await msg.AddReactionAsync(new Emoji(threeEmoji));
-                    await msg.AddReactionAsync(new Emoji(fourEmoji));
-                    await msg.AddReactionAsync(new Emoji(fiveEmoji));
-                }).ConfigureAwait(false);
+            var lookForDigits = Regex.Match(Likelihood, @"\d+");
 
-                return;
-            }
-
-            if (int.TryParse(Likelihood, out int chanceAsInt) && chanceAsInt > 0 && chanceAsInt < 100)
+            if (lookForDigits.Success && int.TryParse(lookForDigits.Value, out int chanceAsInt) && chanceAsInt > 0 && chanceAsInt < 100)
             {
                 await ReplyAsync(AskTheOracleWithChance(chanceAsInt));
                 return;
             }
 
-            var lookupResult = ChanceLookUp.Find(chance => chance.Item1.Equals(Likelihood, StringComparison.OrdinalIgnoreCase));
+            var lookupResult = ChanceLookUp.Find(chance => Likelihood.Contains(chance.Item1, StringComparison.OrdinalIgnoreCase));
             if (lookupResult != null)
             {
                 await ReplyAsync(AskTheOracleWithChance(lookupResult.Item2, lookupResult.Item1));
                 return;
             }
 
-            string listOfOptions = String.Join(", ", ChanceLookUp.Select(lookup => $"`{lookup.Item2}`"));
-            await ReplyAsync(OracleResources.AskCommandUnknownValue + listOfOptions);
+            var helperEmbed = new EmbedBuilder().WithTitle(OracleResources.AskOracleHelperTitle).WithDescription(OracleResources.AskOracleHelperMessage);
+            var msg = await ReplyAsync(embed: helperEmbed.Build());
+
+            _ = Task.Run(async () =>
+            {
+                await msg.AddReactionAsync(new Emoji(oneEmoji));
+                await msg.AddReactionAsync(new Emoji(twoEmoji));
+                await msg.AddReactionAsync(new Emoji(threeEmoji));
+                await msg.AddReactionAsync(new Emoji(fourEmoji));
+                await msg.AddReactionAsync(new Emoji(fiveEmoji));
+            }).ConfigureAwait(false);
+
+            return;
         }
 
         private string AskTheOracleWithChance(int chance, string descriptor = "")
         {
-            int roll = BotRandom.Instance.Next(1, 100);
+            int roll = BotRandom.Instance.Next(1, 101);
             string result = (roll > chance) ? OracleResources.No : OracleResources.Yes;
             if (descriptor.Length > 0) descriptor = $"{descriptor.Trim()} ";
             return $"{OracleResources.AskResult} {descriptor}**{chance}** {OracleResources.Verus} {roll}\n**{result}**.";

@@ -5,10 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
 using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
@@ -25,12 +22,20 @@ namespace TheOracle.IronSworn
 
             if (!services.GetRequiredService<HookedEvents>().OracleTableReactions)
             {
-                _client.ReactionAdded += PairedTableReactionHandler;
+                var reactionService = services.GetRequiredService<ReactionService>();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji("\uD83E\uDDE6").WithEvent(PairedTableReactionHandler).Build();
+
+                reactionService.reactionList.Add(reaction1);
+
+                services.GetRequiredService<HookedEvents>().OracleTableReactions = true;
             }
+            Services = services;
         }
 
         private readonly OracleService _oracleService;
         private readonly DiscordSocketClient _client;
+
+        public ServiceProvider Services { get; }
 
         [Command("OracleTable")]
         [Summary("Rolls an Oracle")]
@@ -44,7 +49,7 @@ namespace TheOracle.IronSworn
 
             if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
-            OracleRoller roller = new OracleRoller(_oracleService, game);
+            OracleRoller roller = new OracleRoller(Services, game);
 
             try
             {
@@ -89,27 +94,24 @@ namespace TheOracle.IronSworn
 
                 int cutoff = reply.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf(',');
                 await ReplyAsync(reply.Substring(0, cutoff));
-                reply = reply.Substring(cutoff+1).Trim();
+                reply = reply.Substring(cutoff + 1).Trim();
             }
         }
 
-        private Task PairedTableReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task PairedTableReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (!reaction.User.IsSpecified || reaction.User.Value.IsBot) return Task.CompletedTask;
-
-            var message = userMessage.GetOrDownloadAsync().Result;
-            if (message.Author.Id != _client.CurrentUser.Id) return Task.CompletedTask;
+            if (message.Author.Id != _client.CurrentUser.Id) return;
 
             var pairEmoji = new Emoji("\uD83E\uDDE6");
             if (reaction.Emote.Name == pairEmoji.Name)
             {
-                message.RemoveReactionAsync(pairEmoji, reaction.User.Value);
-                message.RemoveReactionAsync(pairEmoji, message.Author);
+                await message.RemoveReactionAsync(pairEmoji, user).ConfigureAwait(false);
+                await message.RemoveReactionAsync(pairEmoji, message.Author).ConfigureAwait(false);
 
-                message.ModifyAsync(msg => msg.Embed = AddRollToExisting(message));
+                await message.ModifyAsync(msg => msg.Embed = AddRollToExisting(message)).ConfigureAwait(false);
             }
 
-            return Task.CompletedTask;
+            return;
         }
 
         private Embed AddRollToExisting(IUserMessage message)
@@ -117,7 +119,7 @@ namespace TheOracle.IronSworn
             var embed = message.Embeds.First().ToEmbedBuilder();
             if (!embed.Title.Contains(OracleResources.OracleResult)) throw new ArgumentException("Unknown message type");
 
-            OracleRoller existingRoller = OracleRoller.RebuildRoller(_oracleService, embed);
+            OracleRoller existingRoller = OracleRoller.RebuildRoller(_oracleService, embed, Services);
             var rollerCopy = new List<OracleRoller.RollResult>(existingRoller.RollResultList); //Copy the list so we can safely add to it using foreach
 
             foreach (var rollResult in rollerCopy.Where(tbl => tbl.ParentTable.Pair?.Length > 0))
@@ -125,7 +127,7 @@ namespace TheOracle.IronSworn
                 var pairedTable = _oracleService.OracleList.Find(tbl => tbl.Name == rollResult.ParentTable.Name);
                 if (existingRoller.RollResultList.Any(tbl => tbl.ParentTable.Name == pairedTable.Pair)) continue;
 
-                var roller = new OracleRoller(_oracleService, existingRoller.Game).BuildRollResults(pairedTable.Pair);
+                var roller = new OracleRoller(Services, existingRoller.Game).BuildRollResults(pairedTable.Pair);
 
                 roller.RollResultList.ForEach(res => res.ShouldInline = true);
                 rollResult.ShouldInline = true;

@@ -441,13 +441,13 @@
         { "Chance": 20, "Description": "[Stellar Object]"},
         { "Chance": 33, "Description": "[Cosmic Matter]"},
         { "Chance": 56, "Description": "Planet"},
-        { "Chance": 66, "Description": "[Settlement: Deep space]"},
-        { "Chance": 71, "Description": "[Precursor site: Deep space]"},
-        { "Chance": 74, "Description": "[Creature]"},
+        { "Chance": 66, "Description": "Settlement: Deep space"},
+        { "Chance": 71, "Description": "Precursor site: Deep space"},
+        { "Chance": 74, "Description": "Creature"},
         { "Chance": 89, "Description": "[Starship]"},
         { "Chance": 94, "Description": "[Descriptor/Focus]"},
-        { "Chance": 99, "Description": "[Space Sighting Terminus/Space Sighting Terminus]"},
-        { "Chance": 100, "Description": "[Space Sighting Terminus/Space Sighting Terminus/Space Sighting Terminus]"}
+        { "Chance": 99, "Description": "[2x]"},
+        { "Chance": 100, "Description": "[3x]"}
     ]
 },
 {
@@ -458,13 +458,13 @@
         { "Chance": 24, "Description": "[Stellar Object]"},
         { "Chance": 40, "Description": "[Cosmic Matter]"},
         { "Chance": 65, "Description": "Planet"},
-        { "Chance": 70, "Description": "[Settlement: Deep space]"},
-        { "Chance": 77, "Description": "[Precursor site: Deep space]"},
-        { "Chance": 81, "Description": "[Creature]"},
-        { "Chance": 87, "Description": "[Starship]"},
+        { "Chance": 70, "Description": "Settlement: Deep space"},
+        { "Chance": 77, "Description": "Precursor site: Deep space"},
+        { "Chance": 81, "Description": "Creature"},
+        { "Chance": 87, "Description": "Starship"},
         { "Chance": 94, "Description": "[Descriptor/Focus]"},
-        { "Chance": 99, "Description": "[Space Sighting Outlands/Space Sighting Outlands]"},
-        { "Chance": 100, "Description": "[Space Sighting Outlands/Space Sighting Outlands/Space Sighting Outlands]"}
+        { "Chance": 99, "Description": "[2x]"},
+        { "Chance": 100, "Description": "[3x]"}
     ]
 },
 {
@@ -475,13 +475,13 @@
         { "Chance": 24, "Description": "[Stellar Object]"},
         { "Chance": 40, "Description": "[Cosmic Matter]"},
         { "Chance": 65, "Description": "Planet"},
-        { "Chance": 67, "Description": "[Settlement: Deep space]"},
-        { "Chance": 76, "Description": "[Precursor site: Deep space]"},
-        { "Chance": 82, "Description": "[Creature]"},
-        { "Chance": 84, "Description": "[Starship]"},
+        { "Chance": 67, "Description": "Settlement: Deep space"},
+        { "Chance": 76, "Description": "Precursor site: Deep space"},
+        { "Chance": 82, "Description": "Creature"},
+        { "Chance": 84, "Description": "Starship"},
         { "Chance": 94, "Description": "[Descriptor/Focus]"},
-        { "Chance": 99, "Description": "[Space Sighting Expanse/Space Sighting Expanse]"},
-        { "Chance": 100, "Description": "[Space Sighting Expanse/Space Sighting Expanse/Space Sighting Expanse]"}
+        { "Chance": 99, "Description": "[2x]"},
+        { "Chance": 100, "Description": "[3x]"}
     ]
 },
 {
@@ -721,7 +721,7 @@
         { "Chance": 78, "Description": "Volatile energy source"},
         { "Chance": 80, "Description": "Vulnerable lifeforms"},
         { "Chance": 90, "Description": "[Action/Theme]"},
-        { "Chance": 100, "Description": "[Settlement Trouble/Settlement Trouble]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -889,7 +889,7 @@
         { "Chance": 86, "Description": "Spider / web-weaver"},
         { "Chance": 88, "Description": "Starfish / symmetrical"},
         { "Chance": 90, "Description": "Worm / slug / larva"},
-        { "Chance": 100, "Description": "[Basic Form Void/Basic Form Void]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -914,7 +914,7 @@
         { "Chance": 83, "Description": "Spider / web-weaver"},
         { "Chance": 85, "Description": "Starfish / symmetrical"},
         { "Chance": 90, "Description": "Worm / slug / larva"},
-        { "Chance": 100, "Description": "[Basic Form Interior/Basic Form Interior]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -939,7 +939,7 @@
         { "Chance": 81, "Description": "Spider / web-weaver"},
         { "Chance": 83, "Description": "Starfish / symmetrical"},
         { "Chance": 90, "Description": "Worm / slug / larva"},
-        { "Chance": 100, "Description": "[Basic Form Land/Basic Form Land]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -964,7 +964,7 @@
         { "Chance": 82, "Description": "Spider / web-weaver"},
         { "Chance": 87, "Description": "Starfish / symmetrical"},
         { "Chance": 90, "Description": "Worm / slug / larva"},
-        { "Chance": 100, "Description": "[Basic Form Liquid/Basic Form Liquid]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -989,7 +989,7 @@
         { "Chance": 86, "Description": "Spider / web-weaver"},
         { "Chance": 88, "Description": "Starfish / symmetrical"},
         { "Chance": 90, "Description": "Worm / slug / larva"},
-        { "Chance": 100, "Description": "[Basic Form Air/Basic Form Air]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1074,7 +1074,7 @@
         { "Chance": 85, "Description": "Scavenger"},
         { "Chance": 90, "Description": "Tracker"},
         { "Chance": 95, "Description": "Trapper"},
-        { "Chance": 100, "Description": "[Creature Encountered Behavior/Creature Encountered Behavior]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1158,7 +1158,7 @@
         { "Chance": 81, "Description": "You are harmed"},
         { "Chance": 88, "Description": "You are stressed"},
         { "Chance": 95, "Description": "You are delayed or put at a disadvantage"},
-        { "Chance": 100, "Description": "[Pay The Price/Pay The Price]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1288,7 +1288,7 @@
         { "Chance": 82, "Description": "Transport cargo"},
         { "Chance": 85, "Description": "Transport passengers"},
         { "Chance": 90, "Description": "[Action/Theme]"},
-        { "Chance": 100, "Description": "[Starship Mission Terminus/Starship Mission Terminus]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1327,7 +1327,7 @@
         { "Chance": 83, "Description": "Transport cargo"},
         { "Chance": 85, "Description": "Transport passengers"},
         { "Chance": 90, "Description": "[Action/Theme]"},
-        { "Chance": 100, "Description": "[Starship Mission Outlands/Starship Mission Outlands]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1366,7 +1366,7 @@
         { "Chance": 83, "Description": "Transport cargo"},
         { "Chance": 85, "Description": "Transport passengers"},
         { "Chance": 90, "Description": "[Action/Theme]"},
-        { "Chance": 100, "Description": "[Starship Mission Expanse/Starship Mission Expanse]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1504,7 +1504,7 @@
         { "Chance": 90, "Description": "Technician"},
         { "Chance": 92, "Description": "Thief"},
         { "Chance": 95, "Description": "[Action/Theme]"},
-        { "Chance": 100, "Description": "[Character Role/Character Role]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1551,7 +1551,7 @@
         { "Chance": 78, "Description": "Travel to a place"},
         { "Chance": 80, "Description": "Undermine a relationship"},
         { "Chance": 90, "Description": "[Action/Theme]"},
-        { "Chance": 100, "Description": "[Character Goal/Character Goal]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
@@ -1688,7 +1688,7 @@
         { "Chance": 86, "Description": "Rare and valuable resource"},
         { "Chance": 88, "Description": "Safeguarded or idyllic location"},
         { "Chance": 90, "Description": "Visions or prophesies of the future"},
-        { "Chance": 100, "Description": "[Make A Discovery/Make A Discovery]"}
+        { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {

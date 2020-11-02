@@ -7,6 +7,7 @@
 *launchSettings.json
 /TheOracle/StarForged/Planet/PlanetTemplates.json
 /TheOracle/StarForged/StarforgedOracles.json
+/TheOracle/GameCore/TestEmbed.cs
 
 # User-specific files
 *.rsuser

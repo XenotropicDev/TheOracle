@@ -44,6 +44,8 @@ namespace TheOracle
             // Create a WebSocket-based command context based on the message
             var context = new SocketCommandContext(_client, message);
 
+            Console.WriteLine($"{DateTime.Now:HH:mm:ss} Commands    {message.Author} entered the command: {message.Content}");
+
             // Execute the command with the command context we just
             // created, along with the service provider for precondition checks.
 
