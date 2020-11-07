@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.StarForged;
 
-namespace TheOracle.IronSworn
+namespace TheOracle.StarForged.Planets
 {
     public class PlanetCommands : ModuleBase<SocketCommandContext>
     {
@@ -59,11 +59,11 @@ namespace TheOracle.IronSworn
             if (spaceRegion == SpaceRegion.None)
             {
                 var palceHolderEmbed = new EmbedBuilder()
-                    .WithTitle("__Planet Helper__")
+                    .WithTitle(PlanetResources.PlanetHelperTitle)
                     .WithDescription(PlanetName)
                     .WithFields(new EmbedFieldBuilder()
-                        .WithName("Options:")
-                        .WithValue($"{oneEmoji}: Terminus\n{twoEmoji}: Outlands\n{threeEmoji}: Expanse")
+                        .WithName(PlanetResources.HelperOptions)
+                        .WithValue(PlanetResources.HelperText)
                         );
 
                 var msg = await ReplyAsync(embed: palceHolderEmbed.Build());
@@ -73,12 +73,12 @@ namespace TheOracle.IronSworn
                 return;
             }
 
-            await MakePlanetPost(spaceRegion, PlanetName);
+            await MakePlanetPost(spaceRegion, PlanetName, Context.Channel.Id);
         }
 
-        private async Task MakePlanetPost(SpaceRegion region, string PlanetName, IUserMessage message = null)
+        private async Task MakePlanetPost(SpaceRegion region, string PlanetName, ulong channelId, IUserMessage message = null)
         {
-            Planet planet = Planet.GeneratePlanet(PlanetName, region, Services);
+            Planet planet = Planet.GeneratePlanet(PlanetName, region, Services, channelId);
 
             if (message != null)
             {
@@ -106,7 +106,7 @@ namespace TheOracle.IronSworn
         private async Task Biome(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
-            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
+            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services, channel.Id);
 
             if (planet.RevealedBiomes >= planet.NumberOfBiomes)
             {
@@ -114,7 +114,7 @@ namespace TheOracle.IronSworn
                 return;
             }
 
-            planet.RevealedBiomes++;
+            planet.RevealBiome();
 
             await message.ModifyAsync(msg =>
             {
@@ -129,7 +129,7 @@ namespace TheOracle.IronSworn
         private async Task CloserLook(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
-            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
+            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services, channel.Id);
 
             if (planet.RevealedLooks >= 3)
             {
@@ -137,7 +137,7 @@ namespace TheOracle.IronSworn
                 return;
             }
 
-            planet.RevealedLooks++;
+            planet.RevealCloserLook();
 
             await message.ModifyAsync(msg =>
             {
@@ -152,9 +152,9 @@ namespace TheOracle.IronSworn
         private async Task Life(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             var oldEmbed = message.Embeds.FirstOrDefault();
-            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services);
+            var planet = Planet.GeneratePlanetFromEmbed(oldEmbed, Services, channel.Id);
 
-            planet.LifeRevealed = true;
+            planet.RevealLife();
 
             await Task.Run(async () =>
             {
@@ -174,13 +174,13 @@ namespace TheOracle.IronSworn
             if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction, user).ConfigureAwait(false);
             if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction, user).ConfigureAwait(false);
 
-            if (message.Embeds.FirstOrDefault()?.Title.Contains("Planet Helper") ?? false)
+            if (message.Embeds.FirstOrDefault()?.Title.Contains(PlanetResources.PlanetHelperTitle) ?? false)
             {
                 string PlanetName = message.Embeds.First().Description;
 
-                if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == threeEmoji) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, message).ConfigureAwait(false);
+                if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, channel.Id, message: message).ConfigureAwait(false);
+                if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, channel.Id, message: message).ConfigureAwait(false);
+                if (reaction.Emote.Name == threeEmoji) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, channel.Id, message: message).ConfigureAwait(false);
             }
 
             return;

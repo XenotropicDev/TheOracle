@@ -6,13 +6,14 @@ using System.IO;
 using System.Linq;
 using TheOracle.Core;
 
-namespace TheOracle.StarForged
+namespace TheOracle.StarForged.Planets
 {
     public class PlanetTemplate : IOracleEntry
     {
         public string PlanetType { get; set; }
         public int Chance { get; set; }
         public string Description { get; set; }
+        public string Prompt { get; set; }
         public string Thumbnail { get; set; }
         public List<Atmosphere> Atmospheres { get; set; } = new List<Atmosphere>();
         public PossibleSettlements PossibleSettlements { get; set; } = new PossibleSettlements();
@@ -30,7 +31,7 @@ namespace TheOracle.StarForged
             var cachedPlanets = cache.GetOrCreate("PlanetTemplates", entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromSeconds(10);
-                string json = File.ReadAllText("StarForged\\Planet\\PlanetTemplates.json");
+                string json = File.ReadAllText("StarForged\\Planets\\PlanetTemplates.json");
                 return JsonConvert.DeserializeObject<List<PlanetTemplate>>(json);
             });
 
@@ -42,6 +43,7 @@ namespace TheOracle.StarForged
     {
         public int Chance { get; set; }
         public string Description { get; set; }
+        public string Prompt { get; set; }
     }
 
     public class PossibleSettlements
@@ -60,12 +62,14 @@ namespace TheOracle.StarForged
 
     public class SettlementOracle : IOracleEntry
     {
+        public string Prompt { get; set; }
         public int Chance { get; set; }
         public string Description { get; set; }
     }
 
     public class SpaceObservation : IOracleEntry
     {
+        public string Prompt { get; set; }
         public int Chance { get; set; }
         public string Description { get; set; }
     }
@@ -78,6 +82,7 @@ namespace TheOracle.StarForged
 
     public class Biome : IOracleEntry
     {
+        public string Prompt { get; set; }
         public int Chance { get; set; }
         public string Description { get; set; }
 
@@ -114,12 +119,14 @@ namespace TheOracle.StarForged
 
     public class Life : IOracleEntry
     {
+        public string Prompt { get; set; }
         public int Chance { get; set; }
         public string Description { get; set; }
     }
 
     public class CloserLook : IOracleEntry
     {
+        public string Prompt { get; set; }
         public int Chance { get; set; }
         public string Description { get; set; }
     }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
+    <PackageReference Include="Pidgin" Version="2.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +45,7 @@
     <None Update="StarForged\GameRules.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="StarForged\Planet\PlanetTemplates.json">
+    <None Update="StarForged\Planets\PlanetTemplates.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="StarForged\StarforgedOracles.json">
@@ -98,6 +99,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>StarforgedNPCResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="StarForged\Planets\PlanetResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PlanetResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StarForged\Settlements\SettlementResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -142,6 +148,10 @@
     <EmbeddedResource Update="StarForged\NPC\StarforgedNPCResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StarforgedNPCResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StarForged\Planets\PlanetResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PlanetResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="StarForged\Settlements\SettlementResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
