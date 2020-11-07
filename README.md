@@ -55,6 +55,11 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
   3. **Check Mark** - Increases the progress track by a single full box (four ticks).
   4. **Game Die** - Rolls the action and challenge die for the progress tracker.
  * Sample usage: `!ProgressTracker Epic Find the source of the evil`
+#### PlayerCard
+Builds an interactive post for keeping track of player resources
+ * Command Aliases: StatsCard
+ * Parameters: Character Name
+ * Sample usage: `!PlayerCard Sneaky Archer`
 #### InitiativeTracker
 Builds an interactive post to keep track of players who do and don't have advantage.
  * Command Aliases: Initiative, IniTracker
