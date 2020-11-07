@@ -9,59 +9,86 @@ namespace TheOracle.StarForged.Starships
 {
     public class Starship
     {
-        public List<string> FirstLooks { get; set; }
+        public List<string> FirstLooks { get; set; } = new List<string>();
         public int FirstLooksToReveal { get; set; }
         public string Fleet { get; set; }
         public string InitialContact { get; set; }
         public string Mission { get; set; }
         public string Name { get; set; }
-        public int Seed { get; set; }
         public string ShipType { get; set; }
         public SpaceRegion SpaceRegion { get; set; }
         public string TypicalRole { get; set; }
-        public bool MissionRevealed { get; set; } = false;
+        public bool MissionRevealed { get; private set; }
+        public IServiceProvider Services { get; }
+        public ulong ChannelId { get; }
 
-        public static Starship FromEmbed(ServiceProvider services, IEmbed embed)
+        public Starship(IServiceProvider services, ulong channelId)
+        {
+            Services = services;
+            ChannelId = channelId;
+        }
+
+        public Starship FromEmbed(IEmbed embed)
         {
             string Name = embed.Title.Replace("__", "");
             SpaceRegion region = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
 
-            var ship = GenerateShip(services, region, Name);
-            ship.MissionRevealed = embed.Fields.Any(fld => fld.Name.Equals(StarShipResources.StarshipMission));
+            this.FirstLooksToReveal = embed.Fields.Count(fld => fld.Name == StarShipResources.FirstLook);
+            this.FirstLooks = embed.Fields.Where(fld => fld.Name == StarShipResources.FirstLook)?.Select(item => item.Value).ToList() ?? new List<string>();
+            this.Fleet = embed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.Fleet).Value;
+            this.InitialContact = embed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.InitialContact).Value;
+            this.MissionRevealed = embed.Fields.Any(fld => fld.Name == StarShipResources.StarshipMission);
+            if (this.MissionRevealed) this.Mission = embed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.StarshipMission).Value;
+            this.Name = embed.Title.Replace("__", string.Empty);
+            this.ShipType = embed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.StarshipType).Value;
+            this.SpaceRegion = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
 
-            return ship;
+            bool hasTypicalRole = embed.Fields.Any(fld => fld.Name == StarShipResources.TypicalRole);
+            this.TypicalRole = (hasTypicalRole) ? embed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.TypicalRole).Value : string.Empty;
+
+            return this;
         }
 
-        public static Starship GenerateShip(ServiceProvider services, SpaceRegion region, string name)
+        public Starship AddMission()
+        {
+            var oracles = Services.GetRequiredService<OracleService>();
+            this.Mission = oracles.RandomRow($"Starship Mission {SpaceRegion}", GameName.Starforged).Description;
+            this.MissionRevealed = true;
+            
+            return this;
+        }
+
+        public static Starship GenerateShip(IServiceProvider services, SpaceRegion region, string name, ulong channelId)
         {
             if (region == SpaceRegion.None) throw new ArgumentException($"Please specify a space region");
             var oracles = services.GetRequiredService<OracleService>();
 
-            Starship ship = new Starship();
+            Starship ship = new Starship(services, channelId);
             ship.Name = (name.Length > 0) ? name : oracles.RandomRow("Starship Name").Description;
 
-            ship.Seed = $"{ship.Name}{region}".GetDeterministicHashCode();
+            int seed = $"{ship.Name}{region}".GetDeterministicHashCode();
 
-            Random random = new Random(ship.Seed);
+            Random random = new Random(seed);
 
-            ship.FirstLooks = oracles.OracleList.Single(o => o.Name == "Starship First Look" && o.Game == GameName.Starforged)
-                .Oracles.Select(o => o.GetOracleResult(services, GameName.Starforged, random)).ToList();
-            ship.FirstLooks.Shuffle(random);
             ship.FirstLooksToReveal = random.Next(1, 4);
+            for (int i = 0; i < ship.FirstLooksToReveal; i++)
+            {
+                ship.FirstLooks.AddRandomOracleRow("Settlement First Look", GameName.Starforged, services, channelId, random);
+            }
 
             ship.Fleet = oracles.RandomRow($"Fleet", GameName.Starforged, random).Description;
             if (ship.Fleet.Equals(StarShipResources.StarshipMissionOracle)) ship.Fleet = oracles.RandomRow(string.Format(StarShipResources.StarshipMissionOracleRegionFormatter, region), GameName.Starforged).Description;
 
             ship.InitialContact = oracles.RandomRow("Starship Initial Contact", GameName.Starforged, random).Description;
-            ship.Mission = oracles.RandomRow($"Starship Mission {region}", GameName.Starforged, random).Description;
 
-            var shipType = oracles.OracleList.Single(o => o.Name == "Starship Type" && o.Game == GameName.Starforged).Oracles.GetRandomRow(random);
-            ship.ShipType = shipType.GetOracleResult(services, GameName.Starforged, random);
+            var shipTypeOracle = oracles.OracleList.Single(o => o.Name == "Starship Type" && o.Game == GameName.Starforged).Oracles.GetRandomRow(random);
+            var shipType = (shipTypeOracle.Description != "[Starship Mission]") ? shipTypeOracle.Description : $"[Starship Mission {region}]";
+            ship.ShipType = shipTypeOracle.GetOracleResult(services, GameName.Starforged, random);
 
             ship.TypicalRole = string.Empty;
-            if (shipType?.Prompt?.Length > 0)
+            if (shipTypeOracle?.Prompt?.Length > 0)
             {
-                ship.TypicalRole = shipType.Prompt;
+                ship.TypicalRole = shipTypeOracle.Prompt;
                 if (ship.TypicalRole.Equals(StarShipResources.StarshipMissionOracle, StringComparison.OrdinalIgnoreCase))
                 {
                     string additionalOracleTable = string.Format(StarShipResources.StarshipMissionOracleRegionFormatter, region);
@@ -87,7 +114,7 @@ namespace TheOracle.StarForged.Starships
             embed.AddField(StarShipResources.Fleet, Fleet, true);
             embed.AddField(StarShipResources.InitialContact, InitialContact, true);
 
-            for (int i = 0; i < FirstLooksToReveal - 1; i++) embed.AddField(StarShipResources.FirstLook, FirstLooks[i], true);
+            for (int i = 0; i < FirstLooksToReveal; i++) embed.AddField(StarShipResources.FirstLook, FirstLooks[i], true);
 
             if (MissionRevealed) embed.AddField(StarShipResources.StarshipMission, Mission, true);
 

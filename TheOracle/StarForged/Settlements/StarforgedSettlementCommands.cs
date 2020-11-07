@@ -2,7 +2,6 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +13,13 @@ namespace TheOracle.StarForged.Settlements
     public class StarforgedSettlementCommands : ModuleBase<SocketCommandContext>
     {
         public Emoji projectEmoji = new Emoji("\uD83D\uDEE0");
+        public Emoji contactEmoji = new Emoji("☎️");
+        public Emoji troubleEmoji = new Emoji("🔥");
         public Emoji oneEmoji = new Emoji("\u0031\u20E3");
         public Emoji twoEmoji = new Emoji("\u0032\u20E3");
         public Emoji threeEmoji = new Emoji("\u0033\u20E3");
 
-        public StarforgedSettlementCommands(ServiceProvider services)
+        public StarforgedSettlementCommands(IServiceProvider services)
         {
             var hooks = services.GetRequiredService<HookedEvents>();
 
@@ -32,17 +33,66 @@ namespace TheOracle.StarForged.Settlements
                 ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(SettlementReactionHandler).Build();
                 ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(SettlementReactionHandler).Build();
 
-                ReactionEvent project = new ReactionEventBuilder().WithEmote(projectEmoji).WithEvent(SettlementReactionHandler).Build();
+                ReactionEvent project = new ReactionEventBuilder().WithEmote(projectEmoji).WithEvent(ProjectReactionHandler).Build();
+                ReactionEvent contact = new ReactionEventBuilder().WithEmote(contactEmoji).WithEvent(ContactReactionHandler).Build();
+                ReactionEvent trouble = new ReactionEventBuilder().WithEmote(troubleEmoji).WithEvent(TroubleReactionHandler).Build();
 
                 reactionService.reactionList.Add(reaction1);
                 reactionService.reactionList.Add(reaction2);
                 reactionService.reactionList.Add(reaction3);
+
                 reactionService.reactionList.Add(project);
+                reactionService.reactionList.Add(contact);
+                reactionService.reactionList.Add(trouble);
 
                 hooks.StarSettlementReactions = true;
             }
 
             Services = services;
+        }
+
+        private async Task ProjectReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
+            if (settlmentEmbed == null) return;
+
+            var settlement = new Settlement(Services, channel.Id).FromEmbed(settlmentEmbed);
+            settlement.AddProject();
+
+            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+
+            return;
+        }
+
+        private async Task TroubleReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
+            if (settlmentEmbed == null) return;
+
+            var settlement = new Settlement(Services, channel.Id).FromEmbed(settlmentEmbed);
+
+            settlement.RevealTrouble();
+
+            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+
+            return;
+        }
+
+        private async Task ContactReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
+            if (settlmentEmbed == null) return;
+
+            var settlement = new Settlement(Services, channel.Id).FromEmbed(settlmentEmbed);
+
+            settlement.RevealInitialContact();
+
+            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
         }
 
         private async Task SettlementReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -56,7 +106,7 @@ namespace TheOracle.StarForged.Settlements
 
                 string name = settlementHelperEmbed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.SettlementName).Value ?? string.Empty;
 
-                var newSettlement = Settlement.GenerateSettlement(Services, region, name);
+                var newSettlement = Settlement.GenerateSettlement(Services, region, channel.Id, name);
                 Task.WaitAll(message.RemoveAllReactionsAsync());
 
                 await message.ModifyAsync(msg =>
@@ -64,25 +114,20 @@ namespace TheOracle.StarForged.Settlements
                     msg.Content = string.Empty;
                     msg.Embed = newSettlement.GetEmbedBuilder().Build();
                 }).ConfigureAwait(false);
-                await message.AddReactionAsync(projectEmoji).ConfigureAwait(false);
+
+                await Task.Run(async () =>
+                {
+                    await message.AddReactionAsync(projectEmoji);
+                    await message.AddReactionAsync(contactEmoji);
+                    await message.AddReactionAsync(troubleEmoji);
+                }).ConfigureAwait(false);
+
                 return;
             }
-
-            var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
-            if (settlmentEmbed == null) return;
-            
-            var settlement = new Settlement(Services).FromEmbed(settlmentEmbed);
-
-            if (reaction.Emote.Name == projectEmoji.Name) settlement.ProjectsRevealed++;
-
-            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
-            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-
-            return;
         }
 
         public OracleService oracleService { get; set; }
-        public ServiceProvider Services { get; }
+        public IServiceProvider Services { get; }
 
         [Command("GenerateSettlement", ignoreExtraArgs: true)]
         [Summary("Creates a template post for a new Starforged settlement")]
@@ -106,13 +151,18 @@ namespace TheOracle.StarForged.Settlements
                 return;
             }
 
-            string SettlementName = SettlementCommand.Replace(region.ToString(), "").Trim();
-            var settlement = Settlement.GenerateSettlement(Services, region, SettlementName);
+            string SettlementName = SettlementCommand.Replace(region.ToString(), "", StringComparison.OrdinalIgnoreCase).Trim();
+            var settlement = Settlement.GenerateSettlement(Services, region, Context.Channel.Id, SettlementName);
 
             //embedBuilder.ThumbnailUrl = planet.Thumbnail; //TODO (maybe location hex?)
             var message = await ReplyAsync("", false, settlement.GetEmbedBuilder().Build());
 
-            await message.AddReactionAsync(projectEmoji);
+            await Task.Run(async () =>
+            {
+                await message.AddReactionAsync(projectEmoji);
+                await message.AddReactionAsync(contactEmoji);
+                await message.AddReactionAsync(troubleEmoji);
+            }).ConfigureAwait(false);
         }
     }
 }

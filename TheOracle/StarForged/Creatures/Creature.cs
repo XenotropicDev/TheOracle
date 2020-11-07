@@ -20,20 +20,26 @@ namespace TheOracle.StarForged.Creatures
 
     public class Creature
     {
-        private int revealedAspectsToShow = 0;
+        private IServiceProvider serviceProvider;
+        private ulong channelId;
 
         public string BasicForm { get; set; }
         public CreatureEnvironment Environment { get; set; }
         public string EncounteredBehavior { get; set; }
         public List<string> FirstLook { get; set; } = new List<string>();
         public List<string> RevealedAspectsList { get; set; } = new List<string>();
-        public int RevealedAspectsToShow { get => revealedAspectsToShow; set => revealedAspectsToShow = (value > 5) ? 5 : value; }
         public string Scale { get; set; }
         public int Seed { get; set; }
 
-        public static Creature GenerateCreature(IServiceProvider serviceProvider, ulong ChannelId, CreatureEnvironment environment, int seed = 0)
+        public Creature(IServiceProvider serviceProvider, ulong channelId)
         {
-            var creature = new Creature();
+            this.serviceProvider = serviceProvider;
+            this.channelId = channelId;
+        }
+
+        public static Creature GenerateNewCreature(IServiceProvider serviceProvider, ulong ChannelId, CreatureEnvironment environment, int seed = 0)
+        {
+            var creature = new Creature(serviceProvider, ChannelId);
             OracleService oracles = serviceProvider.GetRequiredService<OracleService>();
             Random rnd = new Random(seed);
 
@@ -54,12 +60,7 @@ namespace TheOracle.StarForged.Creatures
             int firstLookCount = rnd.Next(2, 4); //random.Next doesn't include the max value
             for (int i = 0; i < firstLookCount; i++)
             {
-                creature.FirstLook.AddRandomOracleRow("Creature First Look", GameName.Starforged, ChannelId, serviceProvider, rnd);
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                creature.RevealedAspectsList.AddRandomOracleRow("Creature Revealed Aspects", GameName.Starforged, ChannelId, serviceProvider, rnd);
+                creature.FirstLook.AddRandomOracleRow("Creature First Look", GameName.Starforged, serviceProvider, ChannelId, rnd);
             }
 
             creature.Scale = oracles.RandomOracleResult($"Creature Scale", serviceProvider, GameName.Starforged, rnd);
@@ -72,12 +73,21 @@ namespace TheOracle.StarForged.Creatures
             var seedRegex = Regex.Match(embed.Footer.Value.Text, @"\d+");
             if (!seedRegex.Success || !int.TryParse(seedRegex.Value, out int seed)) throw new ArgumentException("Unknown creature seed value");
 
-            CreatureEnvironment environment = StarforgedUtilites.GetAnyEnvironment(embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.Environment).Value);
+            var creature = new Creature(serviceProvider, ChannelId);
+            creature.Environment = StarforgedUtilites.GetAnyEnvironment(embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.Environment).Value);
+            creature.Scale = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.Scale).Value;
+            creature.BasicForm = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.BasicForm).Value;
+            creature.FirstLook = embed.Fields.Where(fld => fld.Name == CreatureResources.FirstLook).Select(fld => fld.Value).ToList();
+            creature.EncounteredBehavior = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.EncounteredBehavior).Value;
+            creature.RevealedAspectsList = embed.Fields.Where(fld => fld.Name == CreatureResources.RevealedAspect).Select(fld => fld.Value).ToList();
 
-            var creature = GenerateCreature(serviceProvider, ChannelId, environment, seed);
-
-            creature.RevealedAspectsToShow = embed.Fields.Count(fld => fld.Name == CreatureResources.RevealedAspect);
             return creature;
+        }
+
+        public Creature AddRandomAspect()
+        {
+            this.RevealedAspectsList.AddRandomOracleRow("Creature First Look", GameName.Starforged, serviceProvider, channelId);
+            return this;
         }
 
         public EmbedBuilder GetEmbedBuilder()
@@ -89,7 +99,7 @@ namespace TheOracle.StarForged.Creatures
             builder.AddField(CreatureResources.BasicForm, BasicForm, true);
             foreach (var s in FirstLook) builder.AddField(CreatureResources.FirstLook, s, true);
             builder.AddField(CreatureResources.EncounteredBehavior, EncounteredBehavior, true);
-            for (int i = 0; i < RevealedAspectsToShow; i++) builder.AddField(CreatureResources.RevealedAspect, RevealedAspectsList[i], true);
+            for (int i = 0; i < RevealedAspectsList.Count; i++) builder.AddField(CreatureResources.RevealedAspect, RevealedAspectsList[i], true);
             builder.WithFooter(String.Format(CreatureResources.Seed, Seed));
 
             return builder;

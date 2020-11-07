@@ -9,7 +9,7 @@ using TheOracle.Core;
 
 namespace TheOracle.StarForged.Creatures
 {
-    public class StarfrogedCreatureCommands : ModuleBase<SocketCommandContext>
+    public class StarforgedCreatureCommands : ModuleBase<SocketCommandContext>
     {
         public Emoji revealAspectEmoji = new Emoji("🦋");
         public Emoji oneEmoji = new Emoji("\u0031\u20E3");
@@ -19,7 +19,7 @@ namespace TheOracle.StarForged.Creatures
         public Emoji fiveEmoji = new Emoji("\u0035\u20E3");
         public Emoji randomEmoji = new Emoji("🎲");
 
-        public StarfrogedCreatureCommands(ServiceProvider services)
+        public StarforgedCreatureCommands(ServiceProvider services)
         {
             var hooks = services.GetRequiredService<HookedEvents>();
 
@@ -66,7 +66,7 @@ namespace TheOracle.StarForged.Creatures
                 }
                 if (environment == CreatureEnvironment.None) return;
 
-                var newCreature = Creature.GenerateCreature(Services, channel.Id, environment);
+                var newCreature = Creature.GenerateNewCreature(Services, channel.Id, environment);
                 Task.WaitAll(message.RemoveAllReactionsAsync());
 
                 await message.ModifyAsync(msg =>
@@ -75,7 +75,16 @@ namespace TheOracle.StarForged.Creatures
                     msg.Embed = newCreature.GetEmbedBuilder().Build();
                 }).ConfigureAwait(false);
 
-                await message.AddReactionAsync(revealAspectEmoji).ConfigureAwait(false);
+                await Task.Run(async () =>
+                {
+                    if (message.Reactions.Count > 0)
+                    {
+                        await Task.Delay(1500); //wait just in case we are still adding more reactions. Impatient users deserve to wait!!!
+                        await message.RemoveAllReactionsAsync();
+                    }
+
+                    await message.AddReactionAsync(revealAspectEmoji).ConfigureAwait(false);
+                }).ConfigureAwait(false);
                 return;
             }
 
@@ -84,7 +93,7 @@ namespace TheOracle.StarForged.Creatures
 
             var creature = Creature.FromEmbed(creatureEmbed, Services, channel.Id);
 
-            if (reaction.Emote.Name == revealAspectEmoji.Name) creature.RevealedAspectsToShow++;
+            if (reaction.Emote.Name == revealAspectEmoji.Name) creature.AddRandomAspect();
 
             await message.ModifyAsync(msg => msg.Embed = creature.GetEmbedBuilder().Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -118,11 +127,11 @@ namespace TheOracle.StarForged.Creatures
                     await msg.AddReactionAsync(fiveEmoji);
                     await msg.AddReactionAsync(randomEmoji);
                 }).ConfigureAwait(false);
-                
+
                 return;
             }
 
-            var creature = Creature.GenerateCreature(Services, Context.Channel.Id, environment);
+            var creature = Creature.GenerateNewCreature(Services, Context.Channel.Id, environment);
 
             var message = await ReplyAsync("", false, creature.GetEmbedBuilder().Build());
 

@@ -99,7 +99,7 @@ namespace TheOracle.StarForged.NPC
             for (int i = 0; i < Goals.Length; i++) goalFields.Add(new EmbedFieldBuilder().WithIsInline(true).WithName(NPCResources.Goal).WithValue(Goals[i]));
 
             return new EmbedBuilder()
-                .WithTitle($"__{NPCResources.NPC}__")
+                .WithTitle($"__{NPCResources.NPCTitle}__")                     
                 .WithFields(new EmbedFieldBuilder().WithName(NPCResources.Name).WithValue(Name).WithIsInline(false))
                 .WithFields(FirstLookFields)
                 .WithFields(DispositionsFields)

@@ -57,7 +57,7 @@ namespace TheOracle.StarForged.Starships
 
                 string name = starshipHelperEmbed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.StarshipName).Value ?? string.Empty;
 
-                Starship newShip = Starship.GenerateShip(Services, region, name);
+                Starship newShip = Starship.GenerateShip(Services, region, name, channel.Id);
                 Task.WaitAll(message.RemoveAllReactionsAsync());
 
                 await message.ModifyAsync(msg =>
@@ -72,11 +72,11 @@ namespace TheOracle.StarForged.Starships
             var shipEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(StarShipResources.Starship, StringComparison.OrdinalIgnoreCase) ?? false);
             if (shipEmbed == null) return;
             
-            Starship ship = Starship.FromEmbed(Services, shipEmbed);
+            Starship ship = new Starship(Services, channel.Id).FromEmbed(shipEmbed);
 
             if (reaction.Emote.Name == missionEmoji.Name)
             {
-                ship.MissionRevealed = true;
+                ship.AddMission();
                 await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
             }
 
@@ -111,7 +111,7 @@ namespace TheOracle.StarForged.Starships
             }
 
             string ShipName = Regex.Replace(StarShipCommand, region.ToString(), "", RegexOptions.IgnoreCase).Trim();
-            var ship = Starship.GenerateShip(Services, region, ShipName);
+            var ship = Starship.GenerateShip(Services, region, ShipName, Context.Channel.Id);
 
             var message = await ReplyAsync("", false, ship.GetEmbedBuilder().Build());
 

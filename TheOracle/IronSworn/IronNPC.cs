@@ -47,7 +47,7 @@ namespace TheOracle.GameCore.NpcGenerator
             }
 
             return new EmbedBuilder()
-                .WithTitle($"__{NPCResources.NPC}__")
+                .WithTitle($"__{NPCResources.NPCTitle}__")
                 .WithFields(new EmbedFieldBuilder().WithName(NPCResources.Name).WithValue(Name).WithIsInline(false))
                 .WithFields(rolesField)
                 .WithFields(goalFields)

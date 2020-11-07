@@ -3,80 +3,108 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using TheOracle.Core;
-using TheOracle.IronSworn;
 
 namespace TheOracle.StarForged.Settlements
 {
     public class Settlement
     {
-        public Settlement(ServiceProvider services)
+        public Settlement(IServiceProvider services, ulong channelId)
         {
             Services = services;
+            ChannelId = channelId;
         }
 
         public string Authority { get; set; }
         public int FirstLooksToReveal { get; set; }
-        public List<string> FirstLooks { get; set; }
+        public List<string> FirstLooks { get; set; } = new List<string>();
         public string InitialContact { get; set; }
+        public bool InitialContactRevealed { get; private set; }
         public string Location { get; set; }
         public string Name { get; set; }
         public string Population { get; set; }
-        public List<string> Projects { get; set; }
-        public int ProjectsRevealed { get; set; } = 0;
-        public int Seed { get; set; }
+        public List<string> Projects { get; set; } = new List<string>();
+        public int ProjectsRevealed { get; private set; } = 0;
         public string SettlementTrouble { get; set; }
+        public bool SettlementTroubleRevealed { get; private set; }
         public SpaceRegion Region { get; set; }
-        public ServiceProvider Services { get; }
+        public IServiceProvider Services { get; }
+        public ulong ChannelId { get; }
 
-        public static Settlement GenerateSettlement(ServiceProvider serviceProvider, SpaceRegion spaceRegion, string SettlementName = "")
+        public static Settlement GenerateSettlement(IServiceProvider serviceProvider, SpaceRegion spaceRegion, ulong channelId, string SettlementName = "")
         {
             var oracleService = serviceProvider.GetRequiredService<OracleService>();
             if (SettlementName == string.Empty)
                 SettlementName = oracleService.RandomRow("Settlement Name").Description;
 
-            var s = new Settlement(serviceProvider);
-            s.Seed = $"{SettlementName}{spaceRegion}".GetDeterministicHashCode();
+            var s = new Settlement(serviceProvider, channelId);
             s.Region = spaceRegion;
             s.Name = SettlementName;
 
-            Random random = new Random(s.Seed);
+            int seed = $"{SettlementName}{spaceRegion}".GetDeterministicHashCode();
+            Random random = new Random(seed);
 
             s.Authority = oracleService.RandomRow("Settlement Authority", GameName.Starforged, random).Description;
 
-            s.FirstLooks = oracleService.OracleList.Single(o => o.Name == "Settlement First Look" && o.Game == GameName.Starforged)
-                .Oracles.Select(o => o.GetOracleResult(serviceProvider, GameName.Starforged, random)).ToList();
-            s.FirstLooks.Shuffle(random);
             s.FirstLooksToReveal = random.Next(1, 4);
-
-            s.InitialContact = oracleService.RandomRow("Settlement Initial Contact", GameName.Starforged, random).Description;
+            for (int i = 0; i < s.FirstLooksToReveal; i++)
+            {
+                s.FirstLooks.AddRandomOracleRow("Settlement First Look", GameName.Starforged, serviceProvider, channelId, random);
+            }
 
             s.Location = oracleService.RandomRow("Settlement Location", GameName.Starforged, random).Description;
 
             s.Population = oracleService.RandomRow($"Settlement Population {s.Region}", GameName.Starforged, random).Description;
 
-            s.Projects = oracleService.OracleList.Single(o => o.Name == "Settlement Projects" && o.Game == GameName.Starforged)
-                .Oracles.Select(o => o.GetOracleResult(serviceProvider, GameName.Starforged, random)).ToList();
-            s.Projects.Shuffle(random);
-
-            var trouble = oracleService.RandomRow($"Settlement Trouble", GameName.Starforged, random) as StandardOracle;
-            s.SettlementTrouble = trouble.GetOracleResult(serviceProvider, GameName.Starforged, random);
+            for (int i = 0; i < 6; i++)
+            {
+            }
 
             return s;
+        }
+
+        public Settlement RevealTrouble()
+        {
+            var oracleService = Services.GetRequiredService<OracleService>();
+            SettlementTrouble = oracleService.RandomOracleResult($"Settlement Trouble", Services, GameName.Starforged);
+            SettlementTroubleRevealed = true;
+            return this;
+        }
+
+        public Settlement RevealInitialContact()
+        {
+            var oracleService = Services.GetRequiredService<OracleService>();
+            InitialContact = oracleService.RandomOracleResult($"Settlement Initial Contact", Services, GameName.Starforged);
+            InitialContactRevealed = true;
+            return this;
+        }
+
+        public Settlement AddProject()
+        {
+            Projects.AddRandomOracleRow("Settlement Projects", GameName.Starforged, Services, ChannelId);
+            ProjectsRevealed++;
+            return this;
         }
 
         public Settlement FromEmbed(IEmbed embed)
         {
             if (!embed.Description.Contains(SettlementResources.Settlement)) throw new ArgumentException(SettlementResources.SettlementNotFoundError);
 
-            SpaceRegion region = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
-            var settlement = GenerateSettlement(Services, region, embed.Title.Replace("__", ""));
+            this.Authority = embed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.Authority).Value;
+            this.FirstLooks = embed.Fields.Where(fld => fld.Name == SettlementResources.FirstLook)?.Select(item => item.Value).ToList() ?? new List<string>();
+            this.FirstLooksToReveal = FirstLooks.Count();
+            this.InitialContactRevealed = embed.Fields.Any(fld => fld.Name == SettlementResources.InitialContact);
+            if (InitialContactRevealed) this.InitialContact = embed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.InitialContact).Value;
+            this.Location = embed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.Location).Value;
+            this.Name = embed.Title.Replace("__", "");
+            this.Population = embed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.Population).Value;
+            this.Projects = embed.Fields.Where(fld => fld.Name == SettlementResources.SettlementProjects)?.Select(item => item.Value).ToList() ?? new List<string>();
+            this.ProjectsRevealed = embed.Fields.Count(fld => fld.Name.Contains(SettlementResources.SettlementProjects));
+            this.Region = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
+            this.SettlementTroubleRevealed = embed.Fields.Any(fld => fld.Name == SettlementResources.SettlementTrouble);
+            if (SettlementTroubleRevealed) this.SettlementTrouble = embed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.SettlementTrouble).Value;
 
-            settlement.FirstLooksToReveal = embed.Fields.Count(fld => fld.Name.Contains(SettlementResources.FirstLook));
-            settlement.ProjectsRevealed = embed.Fields.Count(fld => fld.Name.Contains(SettlementResources.SettlementProjects));
-
-            return settlement;
+            return this;
         }
 
         public EmbedBuilder GetEmbedBuilder()
@@ -90,8 +118,8 @@ namespace TheOracle.StarForged.Settlements
 
             for (int i = 0; i < FirstLooksToReveal; i++) embedBuilder.AddField(SettlementResources.FirstLook, FirstLooks[i], true);
 
-            embedBuilder.AddField(SettlementResources.InitialContact, $"||{InitialContact}||", true);
-            embedBuilder.AddField(SettlementResources.SettlementTrouble, $"||{SettlementTrouble}||", true);
+            if (InitialContactRevealed) embedBuilder.AddField(SettlementResources.InitialContact, $"{InitialContact}", true);
+            if (SettlementTroubleRevealed) embedBuilder.AddField(SettlementResources.SettlementTrouble, $"{SettlementTrouble}", true);
 
             for (int i = 0; i < ProjectsRevealed; i++) embedBuilder.AddField(SettlementResources.SettlementProjects, Projects[i], true);
 
