@@ -21,7 +21,8 @@ namespace TheOracle.IronSworn
         /// <param name="services"></param>
         /// <param name="game"></param>
         /// <returns></returns>
-        public string GetOracleResult(ServiceProvider services, GameName game, Random rnd = null)
+        [Obsolete("Use OracleService.RandomOracleResult instead")]
+        public string GetOracleResult(IServiceProvider services, GameName game, Random rnd = null)
         {
             var roller = new OracleRoller(services, game, rnd);
             var tables = roller.ParseOracleTables(Description);
@@ -42,7 +43,7 @@ namespace TheOracle.IronSworn
         /// <param name="services"></param>
         /// <param name="game"></param>
         /// <returns></returns>
-        public string GetOracleResultPrompt(ServiceProvider services, GameName game, Random rnd = null)
+        public string GetOracleResultPrompt(IServiceProvider services, GameName game, Random rnd = null)
         {
             var roller = new OracleRoller(services, game, rnd);
             var tables = roller.ParseOracleTables(Prompt);

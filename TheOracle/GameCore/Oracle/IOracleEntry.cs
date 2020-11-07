@@ -12,6 +12,7 @@ namespace TheOracle
     {
         int Chance { get; set; }
         string Description { get; set; }
+        string Prompt { get; set; }
     }
     public enum OracleType 
     {

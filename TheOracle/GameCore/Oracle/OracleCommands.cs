@@ -15,7 +15,7 @@ namespace TheOracle.IronSworn
     public class OracleCommands : ModuleBase<SocketCommandContext>
     {
         //OracleService is loaded from DI
-        public OracleCommands(ServiceProvider services)
+        public OracleCommands(IServiceProvider services)
         {
             _oracleService = services.GetRequiredService<OracleService>();
             _client = services.GetRequiredService<DiscordSocketClient>();
@@ -35,7 +35,7 @@ namespace TheOracle.IronSworn
         private readonly OracleService _oracleService;
         private readonly DiscordSocketClient _client;
 
-        public ServiceProvider Services { get; }
+        public IServiceProvider Services { get; }
 
         [Command("OracleTable")]
         [Summary("Rolls an Oracle")]
@@ -120,7 +120,7 @@ namespace TheOracle.IronSworn
             if (!embed.Title.Contains(OracleResources.OracleResult)) throw new ArgumentException("Unknown message type");
 
             OracleRoller existingRoller = OracleRoller.RebuildRoller(_oracleService, embed, Services);
-            var rollerCopy = new List<OracleRoller.RollResult>(existingRoller.RollResultList); //Copy the list so we can safely add to it using foreach
+            var rollerCopy = new List<RollResult>(existingRoller.RollResultList); //Copy the list so we can safely add to it using foreach
 
             foreach (var rollResult in rollerCopy.Where(tbl => tbl.ParentTable.Pair?.Length > 0))
             {

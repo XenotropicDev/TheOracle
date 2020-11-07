@@ -12,7 +12,7 @@ using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.Oracle
 {
-    public class OracleRoller
+    public partial class OracleRoller
     {
         public OracleRoller(IServiceProvider serviceProvider, GameName game, Random rnd = null)
         {
@@ -23,10 +23,10 @@ namespace TheOracle.GameCore.Oracle
             RollerRandom = rnd ?? BotRandom.Instance;
         }
 
-        public IServiceProvider ServiceProvider { get; }
         public GameName Game { get; private set; }
         public OracleService OracleService { get; }
         public List<RollResult> RollResultList { get; set; } = new List<RollResult>();
+        public IServiceProvider ServiceProvider { get; }
         private Random RollerRandom { get; set; }
 
         public OracleRoller BuildRollResults(string tableName)
@@ -56,6 +56,43 @@ namespace TheOracle.GameCore.Oracle
             }
 
             return embed;
+        }
+
+        public List<OracleTable> ParseOracleTables(string tableName)
+        {
+            var result = new List<OracleTable>();
+
+            // Match [table1/table2] style entries
+            var match = Regex.Match(tableName, @"\[.*\]");
+            if (match.Success)
+            {
+                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
+                foreach (var item in splits)
+                {
+                    result.AddRange(OracleService.OracleList.Where(o => o.MatchTableAlias(item) && (Game == GameName.None || Game == o.Game)).ToList());
+                }
+            }
+            else
+            {
+                result = OracleService.OracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game)).ToList();
+            }
+
+            if (result.GroupBy(t => t.Game).Count() > 1)
+            {
+                var Context = ServiceProvider.GetService<CommandContext>();
+                ChannelSettings channelSettings = ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id).Result;
+
+            }
+
+            if (result.GroupBy(t => t.Game).Count() > 1)
+            {
+                string games = string.Empty;
+                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
+                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
+                throw new ArgumentException(string.Format(OracleResources.TooManyGamesError, games));
+            }
+
+            return result;
         }
 
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed, IServiceProvider serviceProvider)
@@ -103,44 +140,6 @@ namespace TheOracle.GameCore.Oracle
                 RollFacade(multiRollTable.Name, depth + 1);
             }
         }
-
-        public List<OracleTable> ParseOracleTables(string tableName)
-        {
-            var result = new List<OracleTable>();
-
-            // Match [table1/table2] style entries
-            var match = Regex.Match(tableName, @"\[.*\]");
-            if (match.Success)
-            {
-                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
-                foreach (var item in splits)
-                {
-                    result.AddRange(OracleService.OracleList.Where(o => o.MatchTableAlias(item) && (Game == GameName.None || Game == o.Game)).ToList());
-                }
-            }
-            else
-            {
-                result = OracleService.OracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game)).ToList();
-            }
-
-            if (result.GroupBy(t => t.Game).Count() > 1)
-            {
-                var Context = ServiceProvider.GetService<CommandContext>();
-                ChannelSettings channelSettings = ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id).Result;
-
-            }
-
-            if (result.GroupBy(t => t.Game).Count() > 1)
-            {
-                string games = string.Empty;
-                var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
-                foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
-                throw new ArgumentException(string.Format(OracleResources.TooManyGamesError, games));
-            }
-
-            return result;
-        }
-
         private void RollFacade(string table, int depth = 0)
         {
             table = table.Trim();
@@ -213,15 +212,6 @@ namespace TheOracle.GameCore.Oracle
             {
                 RollNested(innerRow, depth + 1);
             }
-        }
-
-        public class RollResult
-        {
-            public int Depth { get; set; }
-            public OracleTable ParentTable { get; set; }
-            public StandardOracle Result { get; set; }
-            public int Roll { get; set; }
-            public bool ShouldInline { get; set; }
         }
     }
 }

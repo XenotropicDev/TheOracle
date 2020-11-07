@@ -42,10 +42,10 @@ namespace TheOracle.Core
         /// <param name="source"></param>
         /// <param name="table">The Oracle table to roll</param>
         /// <param name="game">The game of the oracle table</param>
-        /// <param name="channelId">The channel the request originated from</param>
         /// <param name="services">The DI service container</param>
+        /// <param name="channelId">The channel the request originated from</param>
         /// <param name="random">The random instance to use</param>
-        public static void AddRandomOracleRow(this IList<string> source, string table, GameName game, ulong channelId, IServiceProvider services, Random random = default)
+        public static void AddRandomOracleRow(this IList<string> source, string table, GameName game, IServiceProvider services, ulong channelId = 0, Random random = default)
         {
             if (random == default) random = BotRandom.Instance;
             OracleService oracles = services.GetRequiredService<OracleService>();
@@ -53,8 +53,8 @@ namespace TheOracle.Core
 
             while (retry)
             {
-                string result = oracles.RandomRow(table, game, random).Description;
-                if (source.Contains(result))
+                string result = oracles.RandomOracleResult(table, services, game, random);
+                if (source.Contains(result) && channelId > 0)
                 {
                     ChannelSettings channelSettings = ChannelSettings.GetChannelSettingsAsync(channelId).Result;
                     if (channelSettings.RerollDuplicates) continue;
