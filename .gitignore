@@ -7,6 +7,7 @@
 *launchSettings.json
 /TheOracle/StarForged/Planet/PlanetTemplates.json
 /TheOracle/StarForged/StarforgedOracles.json
+/TheOracle/GameCore/TestEmbed.cs
 
 # User-specific files
 *.rsuser
@@ -345,4 +346,4 @@ ASALocalRun/
 healthchecksdb
 /5db5f549296926001e040d66.jpg
 
-/TheOracle/GameCore/TestEmbed.cs
+.DS_Store
