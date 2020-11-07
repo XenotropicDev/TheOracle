@@ -182,6 +182,7 @@ namespace TheOracle.Core
                 await msg.AddReactionAsync(new Emoji(threeEmoji));
                 await msg.AddReactionAsync(new Emoji(fourEmoji));
                 await msg.AddReactionAsync(new Emoji(fiveEmoji));
+                await msg.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
             }).ConfigureAwait(false);
 
             return;

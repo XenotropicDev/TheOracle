@@ -10,11 +10,12 @@ namespace TheOracle.BotCore
 {
     public class GenericReactions
     {
+        public const string recreatePostEmoji = "⏬";
         public GenericReactions(IServiceProvider service)
         {
             Service = service;
 
-            ReactionEvent moveDownReaction = new ReactionEventBuilder().WithEmoji("⏬").WithEvent(movePostDown).Build();
+            ReactionEvent moveDownReaction = new ReactionEventBuilder().WithEmoji(recreatePostEmoji).WithEvent(movePostDown).Build();
             ReactionEvent deleteReaction = new ReactionEventBuilder().WithEmoji("❌").WithEvent(deletePostStart).Build();
             ReactionEvent confrimDeleteReaction = new ReactionEventBuilder().WithEmoji("☑️").WithEvent(deletePostConfirm).Build();
             service.GetRequiredService<ReactionService>().reactionList.Add(moveDownReaction);
