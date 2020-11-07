@@ -106,6 +106,15 @@ namespace TheOracle.GameCore.NpcGenerator {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-Player Character.
+        /// </summary>
+        internal static string NPCTitle {
+            get {
+                return ResourceManager.GetString("NPCTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role.
         /// </summary>
         internal static string Role {

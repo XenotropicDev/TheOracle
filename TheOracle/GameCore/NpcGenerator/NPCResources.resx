@@ -132,6 +132,10 @@
   <data name="NPC" xml:space="preserve">
     <value>NPC</value>
   </data>
+  <data name="NPCTitle" xml:space="preserve">
+    <value>Non-Player Character</value>
+    <comment>This needs to be on the wordy side for better mobile support</comment>
+  </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
   </data>
