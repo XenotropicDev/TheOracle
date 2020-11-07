@@ -51,6 +51,7 @@ namespace TheOracle
 
                 var reactionHandler = new GlobalReactionHandler(services);
                 client.ReactionAdded += reactionHandler.ReactionEventHandler;
+                client.ReactionRemoved += reactionHandler.RemovedReactionHandler;
 
                 GenericReactions genericReactions = new GenericReactions(services); //TODO fix this because it's hacky/bad code.
 

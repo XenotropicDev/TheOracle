@@ -12,6 +12,7 @@ namespace TheOracle.BotCore
     public class ReactionService
     {
         public List<ReactionEvent> reactionList = new List<ReactionEvent>();
+        public List<ReactionEvent> reactionRemovedList = new List<ReactionEvent>();
     }
 
     public class ReactionEvent
@@ -25,6 +26,14 @@ namespace TheOracle.BotCore
         }
 
         internal readonly AsyncEvent<Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task>> ReactionAddedEvent = new AsyncEvent<Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task>>();
+
+        public event Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task> ReactionRemoved
+        {
+            add { ReactionRemovedEvent.Add(value); }
+            remove { ReactionRemovedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task>> ReactionRemovedEvent = new AsyncEvent<Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task>>();
     }
 
     internal class AsyncEvent<T> where T : class

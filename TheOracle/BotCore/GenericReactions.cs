@@ -11,16 +11,41 @@ namespace TheOracle.BotCore
     public class GenericReactions
     {
         public const string recreatePostEmoji = "⏬";
+        public const string pinPostEmoji = "📌";
         public GenericReactions(IServiceProvider service)
         {
             Service = service;
+            var reactionService = service.GetRequiredService<ReactionService>();
 
             ReactionEvent moveDownReaction = new ReactionEventBuilder().WithEmoji(recreatePostEmoji).WithEvent(movePostDown).Build();
             ReactionEvent deleteReaction = new ReactionEventBuilder().WithEmoji("❌").WithEvent(deletePostStart).Build();
             ReactionEvent confrimDeleteReaction = new ReactionEventBuilder().WithEmoji("☑️").WithEvent(deletePostConfirm).Build();
-            service.GetRequiredService<ReactionService>().reactionList.Add(moveDownReaction);
-            service.GetRequiredService<ReactionService>().reactionList.Add(deleteReaction);
-            service.GetRequiredService<ReactionService>().reactionList.Add(confrimDeleteReaction);
+
+            ReactionEvent pinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithEvent(pinMessage).Build();
+            ReactionEvent unpinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithEvent(unpinMessage).Build();
+
+            reactionService.reactionList.Add(moveDownReaction);
+            reactionService.reactionList.Add(deleteReaction);
+            reactionService.reactionList.Add(confrimDeleteReaction);
+            reactionService.reactionList.Add(pinMessageReaction);
+
+            reactionService.reactionRemovedList.Add(unpinMessageReaction);
+        }
+
+        private async Task unpinMessage(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            if (message.IsPinned)
+            {
+                await message.UnpinAsync().ConfigureAwait(false);
+            }
+        }
+
+        private async Task pinMessage(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            if (message.IsPinned)
+            {
+                await message.PinAsync().ConfigureAwait(false);
+            }
         }
 
         public IServiceProvider Service { get; }

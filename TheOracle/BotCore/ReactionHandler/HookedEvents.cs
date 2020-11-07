@@ -11,5 +11,7 @@
         public bool StarShipReactions = false;
         public bool InitiativeReactions = false;
         public bool AskTheOracleReactions = false;
+
+        public bool PlayerCardReactions { get; internal set; }
     }
 }

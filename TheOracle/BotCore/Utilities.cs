@@ -56,5 +56,38 @@ namespace TheOracle.BotCore
             }
             return value;
         }
+
+        public static bool UndoFormatString(this string data, string format, out string[] values, bool ignoreCase)
+        {
+            int tokenCount = 0;
+            format = Regex.Escape(format).Replace("\\{", "{");
+
+            for (tokenCount = 0; ; tokenCount++)
+            {
+                string token = string.Format("{{{0}}}", tokenCount);
+                if (!format.Contains(token)) break;
+                format = format.Replace(token,
+                    string.Format("(?'group{0}'.*)", tokenCount));
+            }
+
+            RegexOptions options =
+                ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None;
+
+            Match match = new Regex(format, options).Match(data);
+
+            if (tokenCount != (match.Groups.Count - 1))
+            {
+                values = new string[] { };
+                return false;
+            }
+            else
+            {
+                values = new string[tokenCount];
+                for (int index = 0; index < tokenCount; index++)
+                    values[index] =
+                        match.Groups[string.Format("group{0}", index)].Value;
+                return true;
+            }
+        }
     }
 }
