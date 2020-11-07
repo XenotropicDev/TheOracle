@@ -72,8 +72,13 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
  * Command Aliases: NewNPC, NPC
  * Parameters: NPC Name (optional)
  * Sample usage: `!CreateNPC Tom Bombadil`
-#### Bring Post To Bottom
-This is not really a command but more of a feature. Simply react to any bot post with the ⏬ `:arrow_double_down:` reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers and NPCs, as an alternative to needing separate channels, or multiple pinned messages.
+
+## Generic Message Reactions
+Apply one of these reactions to any of the bot's posts to help you manage your game and keep your channel up to date and free of clutter.
+##### Move Existing Post To Bottom of Chat
+Simply react to any bot post with the ⏬ `:arrow_double_down:` reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers and NPCs, as an alternative to needing separate channels, or multiple pinned messages.
+##### Delete a Post
+React with :x: `:x:` then the bot will add a :ballot_box_with_check: `:ballot_box_with_check:` reaction for you to confirm the delete. This is helpful to remove things like initiative trackers or progress trackers for little things from the chat.
 
 ## Starforged Commands
 #### GeneratePlanet
@@ -81,9 +86,9 @@ Creates a planet with a name (given or a random P-number), and the planet featur
  * Command Aliases: Planet
  * Parameters: SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
  * Reactions:
- 🔍 - Closer look
- 🦖 - Reveals the planet's life (if any)
- 🌍 - Reveals the planet's biomes (only displayed if the planet type can have biomes)
+  1.🔍 - Closer look
+  2.🦖 - Reveals the planet's life (if any)
+  3.🌍 - Reveals the planet's biomes (only displayed if the planet type can have biomes)
  * Sample usage: `!Planet Expanse Hoth`
 #### GenerateSettlement
 Creates a Starforged settlement with a name (given, or random from the settlement name list), and the features in the settlement oracles.
@@ -101,3 +106,9 @@ Creates a starforged starship, *Note: this command is still a work in progress*
  * Sample usage: `!Starship Terminus Serenity`
 #### CreateNPC Starforged
 Same as the Ironsworn command, but with the character traits in the starforged oracles
+
+## Advanced Commands
+#### SetRerollDuplicates
+Sets the bot's re-rolling behavior for multiple oracles and game element posts.
+ * Command Aliases: RerollDuplicates
+ * Parameters: True/False
