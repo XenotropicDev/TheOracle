@@ -2,8 +2,6 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 
@@ -43,7 +41,6 @@ namespace TheOracle.GameCore.InitiativeTracker
             var msg = await ReplyAsync(embed: tracker.GetEmbedBuilder().Build());
             await msg.AddReactionAsync(new Emoji(AdvantageEmoji));
             await msg.AddReactionAsync(new Emoji(DisadvantageEmoji));
-            //await msg.AddReactionAsync(new Emoji(DeleteEmoji));
 
             return;
         }
@@ -54,12 +51,14 @@ namespace TheOracle.GameCore.InitiativeTracker
 
             if (!InitiativeTracker.IsInitiativeTrackerMessage(message)) return;
 
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+
             InitiativeTracker tracker = InitiativeTracker.FromMessage(message).WithChannelSettings(channelSettings);
+
             if (reaction.Emote.Name == DisadvantageEmoji)
             {
                 if (!tracker.Disadvantage.Contains(user.ToString()))
                 {
-                    await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
                     tracker.Disadvantage.Add(user.ToString());
                     tracker.Advantage.RemoveAll(s => s == user.ToString());
                     await message.ModifyAsync(msg => msg.Embed = tracker.GetEmbedBuilder().Build());
@@ -70,7 +69,6 @@ namespace TheOracle.GameCore.InitiativeTracker
             {
                 if (!tracker.Advantage.Contains(user.ToString()))
                 {
-                    await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
                     tracker.Advantage.Add(user.ToString());
                     tracker.Disadvantage.RemoveAll(s => s == user.ToString());
                     await message.ModifyAsync(msg => msg.Embed = tracker.GetEmbedBuilder().Build());
