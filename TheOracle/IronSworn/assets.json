@@ -283,13 +283,13 @@
 		"AssetType": "Path",
 		"Description": "Once you become maimed...",
 		"AssetFields": [{
-				"Text": "**You focus your energies:** Reduce your edge or iron by 1 and add +2 to wits or heart, or +1 to each (to a maximum of +4)."
+				"Text": "You focus your energies: Reduce your edge or iron by 1 and add +2 to wits or heart, or +1 to each (to a maximum of +4)."
 			},
 			{
-				"Text": "**You overcome your limitations:** Reduce your maximum health by 1. Maimed no longer counts as a debility, and does not reduce your maximum momentum or reset value. When you *Endure Stress* +heart, take +1 momentum on a strong hit."
+				"Text": "You overcome your limitations: Reduce your maximum health by 1. Maimed no longer counts as a debility, and does not reduce your maximum momentum or reset value. When you *Endure Stress* +heart, take +1 momentum on a strong hit."
 			},
 			{
-				"Text": "**You have stared down death before:** When you are at 0 health and *Endure Harm*, you may roll +wits or +heart (instead of +health or +iron). If you do, take +1 momentum on a hit."
+				"Text": "You have stared down death before: When you are at 0 health and *Endure Harm*, you may roll +wits or +heart (instead of +health or +iron). If you do, take +1 momentum on a hit."
 			}
 		]
 	},
@@ -584,13 +584,13 @@
 		"AssetType": "Path",
 		"Description": "Once you become corrupted...",
 		"AssetFields": [{
-				"Text": "**You harden your heart:** Reduce your heart stat by 1 and add up to +2 to shadow (to a maximum of +4)."
+				"Text": "You harden your heart: Reduce your heart stat by 1 and add up to +2 to shadow (to a maximum of +4)."
 			},
 			{
-				"Text": "**You are attuned to the realms of shadow:** When you perform a ritual, add +1."
+				"Text": "You are attuned to the realms of shadow: When you perform a ritual, add +1."
 			},
 			{
-				"Text": "**You know the sly ways of death:** When you *Face Death*, you may roll +shadow (instead of +heart). On a weak hit, if you choose to undertake a deathbound quest, you may roll +shadow (instead of +heart) and reroll any dice as you *Swear an Iron Vow*. When you *Fulfill Your Vow* on that quest and and mark experience, take +2 experience."
+				"Text": "You know the sly ways of death: When you *Face Death*, you may roll +shadow (instead of +heart). On a weak hit, if you choose to undertake a deathbound quest, you may roll +shadow (instead of +heart) and reroll any dice as you *Swear an Iron Vow*. When you *Fulfill Your Vow* on that quest and and mark experience, take +2 experience."
 			}
 		]
 	},
