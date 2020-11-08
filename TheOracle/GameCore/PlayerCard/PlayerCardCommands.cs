@@ -24,8 +24,8 @@ namespace TheOracle.GameCore.PlayerCard
         public Emoji upEmoji = new Emoji("🔼");
         public Emoji downEmoji = new Emoji("🔽");
         public Emoji healthEmoji = new Emoji("❤️");
-        public Emoji spiritEmoji = new Emoji("🎒");
-        public Emoji supplyEmoji = new Emoji("✨");
+        public Emoji supplyEmoji = new Emoji("🎒");
+        public Emoji spiritEmoji = new Emoji("✨");
         public Emoji momentumEmoji = new Emoji("✈️");
         public Emoji burnEmoji = new Emoji("🔥");
 
