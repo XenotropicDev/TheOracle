@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using TheOracle.Core;
+using TheOracle.StarForged.Planets;
 
 namespace TheOracle.StarForged.Tests
 {
@@ -20,7 +21,7 @@ namespace TheOracle.StarForged.Tests
             //find a vital world
             for (int i = 0; i < 1000; i++)
             {
-                var planet = Planet.GeneratePlanet("P-" + i.ToString(), SpaceRegion.Expanse, services);
+                var planet = Planet.GeneratePlanet("P-" + i.ToString(), SpaceRegion.Expanse, services, 0);
 
                 planet.GetEmbedBuilder();
             }
