@@ -475,7 +475,7 @@
 		"AssetType": "Path",
 		"Description": "Once you mark a bond with elves, and are gifted a mask of precious elderwood...",
 		"AssetFields": [{
-				"Text": "Choose your mask’s material.\n* Thunderwood: Edge / *Heal*th\n* Bloodwood: Iron / *Heal*th\n* Ghostwood: Shadow / Spirit\n* Whisperwood: Wits / Spirit\nWhen you wear the mask and make a move which uses its stat, add +1. If you roll a 1 on your action die, suffer -1 to the associated track (in addition to any other outcome of the move)."
+				"Text": "Choose your mask’s material.\n• Thunderwood: Edge / Health\n• Bloodwood: Iron / Health\n• Ghostwood: Shadow / Spirit\n • Whisperwood: Wits / Spirit\nWhen you wear the mask and make a move which uses its stat, add +1. If you roll a 1 on your action die, suffer -1 to the associated track (in addition to any other outcome of the move)."
 			},
 			{
 				"Text": "As above, and you may instead add +2 and suffer -2 (decide before rolling)."
