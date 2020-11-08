@@ -4,6 +4,6 @@
     {
         public int Min { get; set; }
         public int Max { get; set; }
-        public int StartingNumber { get; set; }
+        public int ActiveNumber { get; set; }
     }
 }

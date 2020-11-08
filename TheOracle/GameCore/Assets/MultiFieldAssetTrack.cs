@@ -2,12 +2,12 @@
 
 namespace TheOracle.GameCore.Assets
 {
-    internal class MultiFieldAssetTrack : IMultiFieldAssetTrack
+    public class MultiFieldAssetTrack : IMultiFieldAssetTrack
     {
         public MultiFieldAssetTrack()
         {
-            Fields = new List<IAssetEmbedField>();
+            Fields = new List<AssetEmbedField>();
         }
-        public List<IAssetEmbedField> Fields { get; set; }
+        public List<AssetEmbedField> Fields { get; set; }
     }
 }

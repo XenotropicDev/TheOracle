@@ -3,13 +3,16 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
+using TheOracle.GameCore.Assets;
 using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.RulesReference;
 
@@ -74,6 +77,8 @@ namespace TheOracle
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService(commandConfig);
 
+            var AssetList = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText("IronSworn\\assets.json"));
+
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("token.json", optional: true, reloadOnChange: true)
                 .Build();
@@ -87,6 +92,7 @@ namespace TheOracle
                 .AddSingleton<RuleService>()
                 .AddSingleton<HookedEvents>()
                 .AddSingleton<ReactionService>()
+                .AddSingleton(AssetList)
                 .AddScoped<NpcFactory>()
                 .BuildServiceProvider();
         }

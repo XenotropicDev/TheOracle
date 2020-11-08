@@ -12,7 +12,7 @@ namespace TheOracle.GameCore.Assets
         public string Name { get; set; }
         public string ActiveText { get; set; }
         public string InactiveText { get; set; }
-        public bool StartsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public EmbedField ToDiscordEmbedField()
         {

@@ -36,10 +36,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="IronSworn\assets.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="IronSworn\domains.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="IronSworn\GameRules.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="IronSworn\oracles.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="IronSworn\themes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="StarForged\GameRules.json">
@@ -63,6 +72,16 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ActionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="GameCore\Assets\AssetResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AssetResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="GameCore\Assets\Resource1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Update="GameCore\DiceRoller\RollResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -130,6 +149,14 @@
     <EmbeddedResource Update="GameCore\Action\ActionResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ActionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GameCore\Assets\AssetResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AssetResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GameCore\Assets\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="GameCore\DiceRoller\RollResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

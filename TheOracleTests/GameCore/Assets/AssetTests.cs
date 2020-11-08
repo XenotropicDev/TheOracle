@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TheOracle.GameCore.Assets.Tests
 {
@@ -14,12 +15,13 @@ namespace TheOracle.GameCore.Assets.Tests
             asset1.Name = "IRONCLAD";
             asset1.Description = "If you wear armor...";
             asset1.AssetType = "COMBAT TALENT";
+            asset1.IconUrl = "www.someurl.com/image.jpg";
 
             asset1.AssetFields.Add(new AssetField { Enabled = true, Text = "When you equip or adjust your armor, choose one.\n• Lightly armored: When you Endure...\n• Geared for war: Mark encumbered..." });
             asset1.AssetFields.Add(new AssetField { Text = @"When you Clash while you are geared for war, add +1." });
             asset1.AssetFields.Add(new AssetField { Text = @"When you Compel in a situation where strength of arms is a factor, add +2." });
-            asset1.MultiFieldAssetTrack.Fields.Add(new AssetEmbedField { ActiveText = "**Lightly Armored**", InactiveText = "-", Name = "Armor", StartsActive = false });
-            asset1.MultiFieldAssetTrack.Fields.Add(new AssetEmbedField { ActiveText = "**Geared For War**", InactiveText = "-", Name = "Armor", StartsActive = false });
+            asset1.MultiFieldAssetTrack.Fields.Add(new AssetEmbedField { ActiveText = "**Lightly Armored**", InactiveText = "-", Name = "Armor", IsActive = false });
+            asset1.MultiFieldAssetTrack.Fields.Add(new AssetEmbedField { ActiveText = "**Geared For War**", InactiveText = "-", Name = "Armor", IsActive = false });
 
             var asset2 = new Asset();
             asset2.Name = "KINDRED";
@@ -31,7 +33,7 @@ namespace TheOracle.GameCore.Assets.Tests
             asset2.AssetFields.Add(new AssetField { Text = @"Bonded: Once you mark a bond with..." });
             asset2.InputFields.Add("Name");
             asset2.InputFields.Add("Expertise");
-            asset2.NumericAssetTrack = new NumericAssetTrack { Min = 0, Max = 4, StartingNumber = 0 };
+            asset2.NumericAssetTrack = new NumericAssetTrack { Min = 0, Max = 4, ActiveNumber = 0 };
 
             var asset3 = new Asset();
             asset3.Name = "THUNDER-BRINGER";
@@ -42,7 +44,16 @@ namespace TheOracle.GameCore.Assets.Tests
             asset3.AssetFields.Add(new AssetField { Text = @"When you Strike a foe to knock them back, stun them, or put them off balance, inflict 1 harm (instead of 2) and take +2 momentum on a hit. On a strong hit, you also create an opening and add +1 on your next move." });
 
             var jsonSample = new List<Asset> { asset1, asset2, asset3 };
-            System.Console.WriteLine(JsonConvert.SerializeObject(jsonSample, Formatting.Indented)); 
+            
+            
+            System.Console.WriteLine(JsonConvert.SerializeObject(jsonSample, Formatting.Indented, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore })); 
+        }
+
+        [TestMethod()]
+        public void JsonToAssets()
+        {
+            var assets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText("IronSworn\\assets.json"));
+            Assert.IsTrue(assets.Count > 1);
         }
     }
 }

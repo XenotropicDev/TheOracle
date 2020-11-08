@@ -6,6 +6,6 @@ namespace TheOracle.GameCore.Assets
 {
     public interface IMultiFieldAssetTrack
     {
-        public List<IAssetEmbedField> Fields { get; set; }
+        public List<AssetEmbedField> Fields { get; set; }
     }
 }

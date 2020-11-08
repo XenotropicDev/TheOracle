@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Discord;
+using System.Collections.Generic;
 
 namespace TheOracle.GameCore.Assets
 {
@@ -9,8 +10,11 @@ namespace TheOracle.GameCore.Assets
         public string IconUrl { get; set; }
         public string AssetType { get; set; }
         public List<string> InputFields { get; set; }
-        public List<IAssetField> AssetFields { get; set; }
-        public IMultiFieldAssetTrack MultiFieldAssetTrack { get; set; }
-        public INumericAssetTrack NumericAssetTrack { get; set; }
+        public List<AssetField> AssetFields { get; set; }
+        public MultiFieldAssetTrack MultiFieldAssetTrack { get; set; }
+        public CountingAssetTrack CountingAssetTrack { get; set; }
+        public NumericAssetTrack NumericAssetTrack { get; set; }
+
+        Embed GetEmbed(string[] arguments);
     }
 }
