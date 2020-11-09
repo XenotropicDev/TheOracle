@@ -17,18 +17,20 @@ namespace TheOracle.Core
         {
             OracleList = new List<OracleTable>();
 
-            foreach (var file in new DirectoryInfo("IronSworn\\").GetFiles("oracles.??.json"))
+            foreach (var file in new DirectoryInfo("IronSworn").GetFiles("oracles.??.json"))
             {
             }
 
-            if (File.Exists("IronSworn\\oracles.json"))
+            var ironOraclesPath = Path.Combine("IronSworn", "oracles.json");
+            var starOraclesPath = Path.Combine("StarForged", "StarforgedOracles.json");
+            if (File.Exists(ironOraclesPath))
             {
-                var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("IronSworn\\oracles.json"));
+                var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(ironOraclesPath));
                 OracleList.AddRange(ironSworn);
             }
-            if (File.Exists("StarForged\\StarforgedOracles.json"))
+            if (File.Exists(starOraclesPath))
             {
-                var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText("StarForged\\StarforgedOracles.json"));
+                var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
                 OracleList.AddRange(starForged);
             }
         }

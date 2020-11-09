@@ -15,15 +15,17 @@ namespace TheOracle.GameCore.RulesReference
 
         public RuleService()
         {
-            if (File.Exists("IronSworn\\GameRules.json"))
+            var ironRulesPath = Path.Combine("IronSworn","GameRules.json");
+            var starRulesPath = Path.Combine("Starforged", "GameRules.json");
+            if (File.Exists(ironRulesPath))
             {
-                var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText("IronSworn\\GameRules.json"));
+                var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText(ironRulesPath));
                 Rules.AddRange(root.MovesReference);
             }
 
-            if (File.Exists("Starforged\\GameRules.json"))
+            if (File.Exists(starRulesPath))
             {
-                var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText("Starforged\\GameRules.json"));
+                var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText(starRulesPath));
                 Rules.AddRange(root.MovesReference);
             }
         }

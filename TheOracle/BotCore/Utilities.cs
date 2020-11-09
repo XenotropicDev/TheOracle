@@ -1,11 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using TheOracle.IronSworn;
 
 namespace TheOracle.BotCore
 {
@@ -14,7 +10,7 @@ namespace TheOracle.BotCore
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
         {
             if (culture == default) culture = CultureInfo.CurrentCulture;
-            
+
             var numFormat = culture.NumberFormat;
 
             NumberFormatInfo nfi = new NumberFormatInfo()
@@ -55,6 +51,16 @@ namespace TheOracle.BotCore
                 value = Regex.Replace(value, $"{s} ?", "", RegexOptions.IgnoreCase).Trim();
             }
             return value;
+        }
+
+        public static string ReplaceFirst(this string text, string search, string replace, StringComparison comparer = StringComparison.Ordinal)
+        {
+            int pos = text.IndexOf(search, comparer);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
 
         public static bool UndoFormatString(this string data, string format, out string[] values, bool ignoreCase)
