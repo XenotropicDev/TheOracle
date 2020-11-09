@@ -1014,6 +1014,7 @@
 	},
 	{
 		"Name": "Augur",
+		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you summon a flock of crows and ask a single question, roll +wits. On a strong hit, you interpret their calls as a helpful omen. Envision the response (*Ask the Oracle* if unsure) and take +2 momentum. On a weak hit, the crows ignore your question and offer a clue to an unrelated problem or opportunity in this area. Envision what you learn (*Ask the Oracle* if unsure), and take +1 momentum.",
 				"Enabled": true
