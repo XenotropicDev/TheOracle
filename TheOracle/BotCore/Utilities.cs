@@ -53,9 +53,9 @@ namespace TheOracle.BotCore
             return value;
         }
 
-        public static string ReplaceFirst(this string text, string search, string replace)
+        public static string ReplaceFirst(this string text, string search, string replace, StringComparison comparer = StringComparison.Ordinal)
         {
-            int pos = text.IndexOf(search);
+            int pos = text.IndexOf(search, comparer);
             if (pos < 0)
             {
                 return text;
