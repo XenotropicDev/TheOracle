@@ -192,7 +192,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Secure an Advantage__ or __Gather Information__ by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit. ✴ Controlled scan: Add +1\n✴ Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
+        "Text": "When you __Secure an Advantage__ or __Gather Information__ by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n✴ Controlled scan: Add +1\n✴ Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
       },
       {
         "Text": "When you __Enter the Fray__ against an ambush, or __Face Danger__ to detect a hidden threat, you may roll +integrity. If you do, reroll any dice and take +1 momentum on a hit."
@@ -678,7 +678,7 @@
     "Description": "If you wield a heavy ranged weapon...",
     "AssetFields": [
       {
-        "Text": "When you __Strike__, choose one (before rolling). ✴ Make them hurt: On a hit, mark extra progress.\n✴ Pin them down: Add +1 and take +1 momentum on a hit.",
+        "Text": "When you __Strike__, choose one (before rolling). \n✴ Make them hurt: On a hit, mark extra progress.\n✴ Pin them down: Add +1 and take +1 momentum on a hit.",
         "Enabled": true
       },
       {
@@ -778,7 +778,7 @@
     "AssetType": "Path",
     "AssetFields": [
       {
-        "Text": "When you __Set a Course__, choose one. ✴ Follow the fastest path: Take +2 momentum on a hit.\n✴ Follow the safest path: Add +1 On a strong hit with a match, you charted a new path during the journey; mark one tick on your discoveries legacy track.",
+        "Text": "When you __Set a Course__, choose one.\n✴ Follow the fastest path: Take +2 momentum on a hit.\n✴ Follow the safest path: Add +1 On a strong hit with a match, you charted a new path during the journey; mark one tick on your discoveries legacy track.",
         "Enabled": true
       },
       {
@@ -950,7 +950,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Sojourn__ in your home, choose one. ✴ Make it quick: Instead of rolling, take an automatic weak hit\n✴ Stay a while: Add +1 and take +1 mometum on a hit"
+        "Text": "When you __Sojourn__ in your home, choose one.\n✴ Make it quick: Instead of rolling, take an automatic weak hit\n✴ Stay a while: Add +1 and take +1 mometum on a hit"
       },
       {
         "Text": "When you __Set a Course__ for home, you may reroll your action die if its value is less than your spirit."
