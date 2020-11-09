@@ -31,7 +31,7 @@ namespace TheOracle.StarForged.Planets
             var cachedPlanets = cache.GetOrCreate("PlanetTemplates", entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromSeconds(10);
-                string json = File.ReadAllText("StarForged\\Planets\\PlanetTemplates.json");
+                string json = File.ReadAllText(Path.Combine("StarForged","Planets", "PlanetTemplates.json"));
                 return JsonConvert.DeserializeObject<List<PlanetTemplate>>(json);
             });
 

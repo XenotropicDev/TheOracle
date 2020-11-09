@@ -77,7 +77,8 @@ namespace TheOracle
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService(commandConfig);
 
-            var AssetList = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText("IronSworn\\assets.json"));
+            var ironAssetsPath = Path.Combine("IronSworn", "assets.json");
+            var AssetList = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
 
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("token.json", optional: true, reloadOnChange: true)
