@@ -557,7 +557,7 @@
   {
     "Name": "Blademaster",
     "AssetType": "Path",
-    "Description": "If you wield a bladed weapon....",
+    "Description": "If you wield a bladed weapon...",
     "AssetFields": [
       {
         "Text": "When you __Clash__ or __Strike__ in close-quarters, add +1. On a strong hit with a match, mark extra progress. Once per fight, you may also reroll any dice and mark extra progress on a hit.",
@@ -824,7 +824,7 @@
   {
     "Name": "Sharpshooter",
     "AssetType": "Path",
-    "Description": "If you wield a rifle....",
+    "Description": "If you wield a rifle...",
     "AssetFields": [
       {
         "Text": "When you __Face Danger__ outside of a fight to preemptively take out a single minor foe (dangerous or less) from a distance, add +1. On a hit, they are out of action and no longer a threat. If other foes remain and you __Enter the Fray__ against them, mark progress immediately.",
