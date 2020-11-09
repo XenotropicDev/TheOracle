@@ -17,7 +17,7 @@ namespace TheOracle.Core
         {
             OracleList = new List<OracleTable>();
 
-            foreach (var file in new DirectoryInfo("IronSworn\\").GetFiles("oracles.??.json"))
+            foreach (var file in new DirectoryInfo("IronSworn").GetFiles("oracles.??.json"))
             {
             }
 
