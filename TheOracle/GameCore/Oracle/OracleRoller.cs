@@ -79,13 +79,6 @@ namespace TheOracle.GameCore.Oracle
 
             if (result.GroupBy(t => t.Game).Count() > 1)
             {
-                var Context = ServiceProvider.GetService<CommandContext>();
-                ChannelSettings channelSettings = ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id).Result;
-
-            }
-
-            if (result.GroupBy(t => t.Game).Count() > 1)
-            {
                 string games = string.Empty;
                 var gamesList = result.GroupBy(tbl => tbl.Game).Select(g => g.First());
                 foreach (var g in gamesList) games += (g == gamesList.Last()) ? $"`{g.Game}`" : $"`{g.Game}`, ";
