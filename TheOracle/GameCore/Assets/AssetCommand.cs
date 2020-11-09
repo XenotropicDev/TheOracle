@@ -26,7 +26,7 @@ namespace TheOracle.GameCore.Assets
             var asset = assets.FirstOrDefault(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase));
             if (asset == default) throw new ArgumentException(AssetResources.UnknownAssetError);
 
-            string additionalInputsRaw = AssetCommand.ReplaceFirst(asset.Name, "").Replace("  ", " ").Trim();
+            string additionalInputsRaw = AssetCommand.ReplaceFirst(asset.Name, "", StringComparison.OrdinalIgnoreCase).Replace("  ", " ").Trim();
 
             string[] seperators = new string[] { " " };
             if (additionalInputsRaw.Contains(",") || additionalInputsRaw.Contains("\n"))
