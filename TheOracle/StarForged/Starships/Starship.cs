@@ -10,7 +10,7 @@ namespace TheOracle.StarForged.Starships
     public class Starship
     {
         public List<string> FirstLooks { get; set; } = new List<string>();
-        public int FirstLooksToReveal { get; set; }
+        public int FirstLooksToReveal { get; set; } = 1;
         public string Fleet { get; set; }
         public string InitialContact { get; set; }
         public string Mission { get; set; }
@@ -73,7 +73,7 @@ namespace TheOracle.StarForged.Starships
             ship.FirstLooksToReveal = random.Next(1, 4);
             for (int i = 0; i < ship.FirstLooksToReveal; i++)
             {
-                ship.FirstLooks.AddRandomOracleRow("Settlement First Look", GameName.Starforged, services, channelId, random);
+                ship.FirstLooks.AddRandomOracleRow("Starship First Look", GameName.Starforged, services, channelId, random);
             }
 
             ship.Fleet = oracles.RandomRow($"Fleet", GameName.Starforged, random).Description;
