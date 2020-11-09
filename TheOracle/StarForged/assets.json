@@ -67,7 +67,7 @@
     "AssetType": "Module",
     "AssetFields": [
       {
-        "Text": "When you aim your cannons and use them to __Strike__, choose one:\n✴ Strafing run: Add +1 and take +1 momentum onahit\n✴ Focus fire: Mark extra progress on a hit, but suffer -1 momentum",
+        "Text": "When you aim your cannons and use them to __Strike__, choose one:\n✴ Strafing run: Add +1 and take +1 momentum on a hit\n✴ Focus fire: Mark extra progress on a hit, but suffer -1 momentum",
         "Enabled": true
       },
       {
