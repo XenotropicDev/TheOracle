@@ -20,13 +20,13 @@ TheOracle is written in a way that makes it easier to localize into your native 
 To add TheOracle to a discord server click [this link](https://discordapp.com/oauth2/authorize?&client_id=704480988561932389&scope=bot&permissions=523328) and then select the server you wish to add the bot to.
 
 ## Commands
-Most commands and oracle tables names have shorter hand versions of them, but command clarity is one of the goals of this bot so overly cryptic and short commands are avoided.
+Most commands and oracle tables names have shorter hand versions of them, but command clarity is one of the goals of this bot so overly cryptic and short commands are avoided. If a command needs more information such as a progress tracker difficulty a helper post will give you options to select from.
 #### Help
 Shows all the commands. Use `!Help ModuleName` to get more specific details about a command.
  * Command Aliases: None
  * Sample usage: `!Help ActionCommand`
 #### SetDefaultGame
-Allows players to set the default game for a discord channel.
+Allows players to set the default game for a discord channel. This command only needs to be run once per channel, or if you ever want to change the default game.
  * Command Aliases: None
  * Sample usage: `!SetDefaultGame Ironsworn`
 #### Action
@@ -57,7 +57,7 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
   2. :arrow_right: | Increases the progress track by the difficulty amount.
   3. :heavy_check_mark: | Increases the progress track by a single full box (four ticks).
   4. :game_die: | Rolls the action and challenge die for the progress tracker.
- * Sample usage: `!ProgressTracker Epic Find the source of the evil`
+ * Sample usage: `!ProgressTracker Epic Find the source of evil in the forest`
 #### PlayerCard
 Builds an interactive post for keeping track of player resources
  * Command Aliases: StatsCard
@@ -83,6 +83,11 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
  * Command Aliases: NewNPC, NPC
  * Parameters: NPC Name (optional)
  * Sample usage: `!CreateNPC Tom Bombadil`
+#### Roll
+Rolls the specified dice for things like assets that let you reroll a die.
+ * Command Aliases: Dice
+ * Parameters: Die notation value, Number of times to roll (optional, default is 1)
+ * Sample usage: `!Roll 1d10 2`
 
 ## Generic Message Reactions
 Apply one of these reactions to any of the bot's posts to help you manage your game and keep your channel up to date and free of clutter.
@@ -106,7 +111,7 @@ Creates a Starforged settlement with a name (given, or random from the settlemen
  * Command Aliases: Settlement
  * Parameters: SpaceRegion (optional), Name (optional)
  * Reactions:
- 1. :tools: | Adds/reveals a settlement project
+ 1. ️🛠️ | Adds/reveals a settlement project
  * Sample usage: `!Settlement Outlands Deep Space Nine`
 #### GenerateStarship
 Creates a starforged starship, *Note: this command is still a work in progress*
