@@ -1390,6 +1390,7 @@
     "Name": "Feature Focus",
     "Pair": "Feature Aspect",
     "Game": "Ironsworn",
+    "Alias": "Focus",
     "Oracles": [
         { "Chance": 2, "Description": "Attack"},
         { "Chance": 4, "Description": "Threshold"},
@@ -1459,7 +1460,7 @@
   },
   {
     "Name": "Site Name Description",
-    "Aliases": ["description"],
+    "Aliases": ["description", "site description"],
     "Game": "Ironsworn",
     "Oracles": [
         { "Chance": 2, "Description": "Deep"},
@@ -1516,7 +1517,7 @@
   },
   {
     "Name": "Site Name Detail",
-    "Aliases": ["detail"],
+    "Aliases": ["detail", "site detail"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1574,7 +1575,7 @@
   },
   {
     "Name": "Site Name Namesake",
-    "Aliases": ["namesake"],
+    "Aliases": ["namesake", "site namesake"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1831,7 +1832,7 @@
   {
     "Name": "Site Nature Theme",
     "Pair": "Site Nature Domain",
-    "Aliases": ["site theme"],
+    "Aliases": ["site theme", "delve theme"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1848,7 +1849,7 @@
   {
     "Name": "Site Nature Domain",
     "Pair": "Site Nature Theme",
-    "Aliases": ["site domain"],
+    "Aliases": ["site domain", "delve theme"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -1955,13 +1956,12 @@
       { "Chance": 65, "Description": "Medium (person-sized)"},
       { "Chance": 94, "Description": "Large (giant-sized)"},
       { "Chance": 99, "Description": "Huge (whale-sized)"},
-      { "Chance": 99, "Description": "Huge (whale-sized)"},
       { "Chance": 100, "Description": "Titanic (incomprehensible)"}
     ]
   },
   {
     "Name": "Monstrosity Primary Form",
-    "Aliases": ["primary form", "form"],
+    "Aliases": ["primary form", "form", "monstrosity form"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2139,7 +2139,7 @@
   },
   {
     "Name": "Combat Event Method",
-    "Aliases": ["combat method", "event method"],
+    "Aliases": ["combat method"],
     "Pair": "Combat Event Target",
     "Game": "Ironsworn",
     "Oracles":
@@ -2198,7 +2198,7 @@
   },
   {
     "Name": "Combat Event Target",
-    "Aliases": ["combat target", "event target"],
+    "Aliases": ["combat target"],
     "Pair": "Combat Event Method",
     "Game": "Ironsworn",
     "Oracles":
@@ -2257,7 +2257,7 @@
   },
   {
     "Name": "Threat Category",
-    "Aliases": ["threat"],
+    "Aliases": ["threat", "threat type"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2476,7 +2476,7 @@
   },
   {
     "Name": "Find An Opportunity",
-    "Aliases": ["opportunity"],
+    "Aliases": ["opportunity", "delve opportunity"],
     "Game": "Ironsworn",
     "Oracles":
     [
@@ -2514,7 +2514,7 @@
   },
   {
     "Name": "Reveal a Danger Alternate",
-    "Aliases": ["danger alt"],
+    "Aliases": ["danger alt", "reveal a danger alt"],
     "Game": "Ironsworn",
     "Oracles":
     [
