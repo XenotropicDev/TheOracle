@@ -123,8 +123,10 @@ Creates a starforged starship, *Note: this command is still a work in progress*
 #### CreateNPC Starforged
 Same as the Ironsworn command, but with the character traits in the starforged oracles
 
-## Advanced Commands
+## Advanced Commands/Features
 #### SetRerollDuplicates
 Sets the bot's re-rolling behavior for multiple oracles and game element posts.
  * Command Aliases: RerollDuplicates
  * Parameters: True/False
+#### Roll multiple oracles with one command
+To roll multiple oracle tables at once use the following command: `!Table [Action/Theme]`. You can even do things like `!Table [Action/Action/Action/Action]`
