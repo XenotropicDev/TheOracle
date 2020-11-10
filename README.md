@@ -95,6 +95,8 @@ Apply one of these reactions to any of the bot's posts to help you manage your g
 Simply react to any bot post with the ⏬ `:arrow_double_down:` reaction to move it to the bottom of your chat. This is useful for moving things like progress trackers and NPCs, as an alternative to needing separate channels, or multiple pinned messages.
 ##### Delete a Post
 React with :x: `:x:` then the bot will add a :ballot_box_with_check: `:ballot_box_with_check:` reaction for you to confirm the delete. This is helpful to remove things like initiative trackers or progress trackers for little things from the chat.
+##### Pin a Post
+React to a bot message with :pushpin: `:pushpin:` and the bot will pin the message for you. Make sure to leave the reaction on the message until you are ready to unpin it.
 
 ## Starforged Commands
 #### GeneratePlanet

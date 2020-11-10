@@ -59,7 +59,7 @@ namespace TheOracle.BotCore
 
             var message = await userMessage.GetOrDownloadAsync();
 
-            Parallel.ForEach(reactionHandler.reactionList.Where(react => react.Emote.Name == reaction.Emote.Name), (item) =>
+            Parallel.ForEach(reactionHandler.reactionRemovedList.Where(react => react.Emote.Name == reaction.Emote.Name), (item) =>
             {
                 try
                 {

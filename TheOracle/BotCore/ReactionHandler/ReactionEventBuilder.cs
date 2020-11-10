@@ -9,6 +9,7 @@ namespace TheOracle.BotCore
     {
         private IEmote emote;
         private Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task> reactionAdded;
+        private Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task> reactionRemoved;
 
         public ReactionEventBuilder WithEmote(IEmote emote)
         {
@@ -28,11 +29,19 @@ namespace TheOracle.BotCore
             return this;
         }
 
+        public ReactionEventBuilder WithRemoveEvent(Func<IUserMessage, ISocketMessageChannel, SocketReaction, IUser, Task> value)
+        {
+            this.reactionRemoved = value;
+            return this;
+        }
+
         public ReactionEvent Build()
         {
             ReactionEvent reactionEvent = new ReactionEvent();
             reactionEvent.Emote = this.emote;
-            reactionEvent.ReactionAdded += this.reactionAdded;
+            
+            if (reactionAdded != null) reactionEvent.ReactionAdded += this.reactionAdded;
+            if (reactionRemoved != null) reactionEvent.ReactionRemoved += this.reactionRemoved;
 
             return reactionEvent;
         }

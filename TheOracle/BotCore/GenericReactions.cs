@@ -12,6 +12,7 @@ namespace TheOracle.BotCore
     {
         public const string recreatePostEmoji = "⏬";
         public const string pinPostEmoji = "📌";
+
         public GenericReactions(IServiceProvider service)
         {
             Service = service;
@@ -22,7 +23,7 @@ namespace TheOracle.BotCore
             ReactionEvent confrimDeleteReaction = new ReactionEventBuilder().WithEmoji("☑️").WithEvent(deletePostConfirm).Build();
 
             ReactionEvent pinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithEvent(pinMessage).Build();
-            ReactionEvent unpinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithEvent(unpinMessage).Build();
+            ReactionEvent unpinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithRemoveEvent(unpinMessage).Build();
 
             reactionService.reactionList.Add(moveDownReaction);
             reactionService.reactionList.Add(deleteReaction);
@@ -34,6 +35,9 @@ namespace TheOracle.BotCore
 
         private async Task unpinMessage(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
+            var client = Service.GetRequiredService<DiscordSocketClient>();
+            if (message.Author.Id != client.CurrentUser.Id) return;
+
             if (message.IsPinned)
             {
                 await message.UnpinAsync().ConfigureAwait(false);
@@ -42,7 +46,10 @@ namespace TheOracle.BotCore
 
         private async Task pinMessage(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (message.IsPinned)
+            var client = Service.GetRequiredService<DiscordSocketClient>();
+            if (message.Author.Id != client.CurrentUser.Id) return;
+
+            if (!message.IsPinned)
             {
                 await message.PinAsync().ConfigureAwait(false);
             }
@@ -64,12 +71,15 @@ namespace TheOracle.BotCore
                 await newMessage.AddReactionsAsync(reactionsToAdd.ToArray()).ConfigureAwait(false);
                 await message.DeleteAsync().ConfigureAwait(false);
             }).ConfigureAwait(false);
-            
+
             return;
         }
 
         private async Task deletePostStart(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
+            var client = Service.GetRequiredService<DiscordSocketClient>();
+            if (message.Author.Id != client.CurrentUser.Id) return;
+
             await message.AddReactionAsync(new Emoji("☑️"));
         }
 
