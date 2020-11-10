@@ -78,7 +78,10 @@ namespace TheOracle
             command ??= new CommandService(commandConfig);
 
             var ironAssetsPath = Path.Combine("IronSworn", "assets.json");
-            var AssetList = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
+            var starAssetsPath = Path.Combine("StarForged", "assets.json");
+            var AssetList = new List<Asset>();
+            if (File.Exists(ironAssetsPath)) AssetList.AddRange(JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath)));
+            if (File.Exists(starAssetsPath)) AssetList.AddRange(JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(starAssetsPath)));
 
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("token.json", optional: true, reloadOnChange: true)
