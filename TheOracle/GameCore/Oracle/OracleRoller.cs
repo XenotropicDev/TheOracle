@@ -46,7 +46,7 @@ namespace TheOracle.GameCore.Oracle
             var footer = new EmbedFooterBuilder();
             foreach (var item in RollResultList)
             {
-                embed.AddField($"{OracleResources.OracleTable} {item.ParentTable.Name} [{item.Roll}]", item.Result.Description, item.ShouldInline);
+                embed.AddField($"{OracleResources.OracleTable} {item?.ParentTable?.Name} [{item.Roll}]", item.Result.Description, item.ShouldInline);
 
                 if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
                 {
