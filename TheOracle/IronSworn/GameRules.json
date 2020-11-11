@@ -210,7 +210,7 @@
         },
         {
             "Category": "Delve Moves",
-            "Aliases": ["Delve", "dm"],
+            "Aliases": ["dm"],
             "Game": "Ironsworn",
             "Moves":
             [
@@ -220,26 +220,32 @@
               },
               {
                   "Name": "Delve the Depths",
+                  "Aliases": ["Delve"],
                   "Text": "When you **traverse an area within a perilous site**, envision your surroundings (*Ask the Oracle* if unsure). Then, consider your approach. If you navigate this area...\n• With haste: Roll +edge.\n• With stealth or trickery: Roll +shadow.\n• With observation, intuition, or expertise: Roll +wits.\nOn a **strong hit**, you delve deeper. Mark progress and *Find an Opportunity*. On a **weak hit**, roll on the following table according to your stat.\nOn a **miss**, *Reveal a Danger*. ```Edge\tShadow\tWits\tWeak Hit Result\n 1-45\t 1-30\t 1-40\tMark progress and Reveal a Danger.\n 46-65\t31-65\t41-55\tMark progress.\n 66-75\t66-90\t56-80\tChoose one: Mark progress or Find an Opportunity.\n 76-80\t91-99\t81-99\tTake both: Mark progress and Find an Opportunity.\n 81-00\t   00\t   00\tMark progress twice and Reveal a Danger.```"
               },
               {
                   "Name": "Find an Opportunity",
+                  "Aliases": ["Opportunity"],
                   "Text": "When **you encounter a helpful situation or feature within a site**, roll on the following table. If you are making this move as a result of a strong hit on *Delve the Depths*, you may pick or envision an opportunity instead of rolling.\nThen, choose one.\n• Gain insight or prepare: Take +1 momentum.\n• Take action now: You and any allies may make a move (not a progress move) which directly leverages the opportunity. When you do, add +1 and take +1 momentum on a hit. ```Roll\tResult\n 1-25\tThe terrain favors you, or you find a hidden path.\n26-45\tAn aspect of the history or nature of this place is revealed. 46-57\tYou locate a secure area.\n58-68\tA clue offers insight or direction.\n69-78\tYou get the drop on a denizen.\n79-86\tThis area provides an opportunity to scavenge, forage, or hunt. \n87-90\tYou locate an interesting or helpful object.\n91-94\tYou are alerted to a potential threat.\n95-98\tYou encounter a denizen who might support you.\n99-00\tYou encounter a denizen in need of help.```"
               },
               {
                   "Name": "Reveal a Danger",
+                  "Aliases": ["Reveal Danger", "reveal"],
                   "Text": "When **you encounter a risky situation within a site**, envision the danger or roll on the following table. ```Roll\tResult\n 1-30\tCheck the theme card.\n31-45\tCheck the domain card.\n46-57\tYou encounter a hostile denizen.\n58-68\tYou face an environmental or architectural hazard.\n69-76\tA discovery undermines or complicates your quest.\n77-79\tYou confront a harrowing situation or sensation.\n80-82\tYou face the consequences of an earlier choice or approach.\n83-85\tYour way is blocked or trapped.\n86-88\tA resource is diminished, broken, or lost.\n89-91\tYou face a perplexing mystery or tough choice.\n92-94\tYou lose your way or are delayed.\n95-00\tRoll twice more on this table. Both results occur. If they are the same result, make it worse.```"
               },
               {
                   "Name": "Check Your Gear",
+                  "Aliases": ["Gear", "Check Gear", "check"],
                   "Text": "When **you check to see if you have a specific helpful item**, and you have at least +1 supply, roll +supply.\nOn a **strong hit**, you have it. Take +1 momentum.\nOn a **weak hit**, you have it, but your resources are diminished. Take +1 momentum and suffer -1 supply.\nOn a **miss**, you don’t have it and the situation grows more perilous. *Pay the Price*."
               },
               {
                   "Name": "Locate Your Objective",
+                  "Aliases": ["locate objective", "delve objective", "objective"],
                   "Text": "_Progress Move_\nWhen **your exploration of a site comes to an end**, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\nOn a **strong hit**, you locate your objective and the situation favors you. Choose one.\n• Make another move now (not a progress move), and add +1.\n• Take +1 momentum.\nOn a **weak hit**, you locate your objective but face an unforeseen hazard or complication. Envision what you find (**Ask the Oracle** if unsure).\nOn a **miss**, your objective falls out of reach, you have been misled about the nature of your objective, or you discover that this site holds unexpected depths. If you continue your exploration, clear all but one filled progress and raise the site’s rank by one (if not already epic)."
               },
               {
                   "Name": "Escape the Depths",
+                  "Aliases": ["escape", "delve escape", "escape depths"],
                   "Text": "When **you flee or withdraw from a site**, consider the situation and your approach. If you...\n• Find the fastest way out: Roll +edge.\n• Steel yourself against the horrors of this place: Roll +heart.\n• Fight your way out: Roll +iron.\n• Retrace your steps or locate an alternate path: Roll +wits.\n• Keep out of sight: Roll +shadow.\nOn a **strong hit**, you make your way safely out of the site. Take +1 momentum. \nOn a **weak hit**, you find your way out, but this place exacts its price. Choose one.\n• You are weary or wounded: *Endure Harm*.\n• The experience leaves you shaken: *Endure Stress*.\n• You are delayed, and it costs you.\n• You leave behind something important.\n• You face a new complication as you emerge from the depths.\n• A denizen plots their revenge.\nOn a **miss**, a dire threat or imposing obstacle stands in your way. *Reveal a Danger*. If you survive, you may make your escape."
               }
             ]
@@ -251,27 +257,32 @@
               [
               {
                   "Name": "Reveal a Danger (alternate version)",
-                  "Aliases": ["Reveal a Danger alternate", "Reveal a Danger alt"],
+                  "Aliases": ["Reveal a Danger alternate", "Reveal a Danger alt", "reveal danger alt"],
                   "Text": "When **you encounter a risky situation within a site**, envision the danger or roll on the following table. ```Roll\tResult\n 1-22\tYou encounter a hostile denizen.\n23-42\tYou face an environmental or architectural hazard.\n43-58\tA discovery undermines or complicates your quest.\n59-64\tYou confront a harrowing situation or sensation.\n65-70\tYou face the consequences of an earlier choice or approach.\n71-76\tThe path is blocked or trapped.\n77-82\tA resource is diminished, broken, or lost.\n83-88\tYou face a perplexing mystery or tough choice.\n89-94\tYou lose your way or are delayed.\n95-00\tRoll twice more on this table. Both results occur. If they are the same result, make it worse.```"
               },
               {
                   "Name": "Mark Your Failure",
+                  "Aliases": ["mark failure", "failure"],
                   "Text": "When **you make a move and score a miss**, mark a tick on your failure track. If **you score a miss when making a progress move**, mark two ticks."
               },
               {
                   "Name": "Learn From Your Failures",
+                  "Aliases": ["learn from failures", "learn"],
                   "Text": "_Progress Move_\nWhen **you spend time reflecting on your hardships and missteps**, and your failure track is +6 or greater, roll your challenge dice and compare to your progress. Momentum is ignored on this roll.\nOn a **strong hit**, you commit to making a dramatic change. Take 3 experience and clear all progress. Then, choose one.\n• Adjust your approach: Discard a single asset, and take 2 experience for each marked ability.\n• Make an oath: *Swear an Iron Vow*, and reroll any dice.\n• Ready your next steps: Take +3 momentum.\nOn a **weak hit**, you learn from your mistakes. Take 2 experience and clear all progress.\nOn a **miss**, you’ve learned the wrong lessons. Take 1 experience and clear all progress. Then, envision how you set off on an ill-fated path."
               },
               {
                   "Name": "Advance a Threat",
+                  "Aliases": ["advance threat", "threat"],
                   "Text": "When **you give ground to a threat through inaction, failure, or delay**, roll on the table below and envision how the change manifests in your world (*Ask the Oracle* if unsure). ```Roll\tResult\n 1-30\tThe threat readies its next step, or a new danger looms. If you are in a position to prevent this development, you may attempt to do so. If you succeed, Reach a Milestone. Otherwise, mark menace.\n31-70\tThe threat works subtly to advance toward its goal, or the danger escalates. Mark menace.\n71-00\tThe threat makes a dramatic and immediate move, or a major event reveals new complications. Mark menace twice.``` On a match, this development also exposes a surprising aspect of the threat’s plan or nature.\nIf **you mark the last box on the threat’s menace track**, the threat achieves its goal, or the final dire outcome occurs. You must *Forsake Your Vow*."
               },
               {
                   "Name": "Take a Hiatus",
+                  "Aliases": ["hiatus"],
                   "Text": "When **you spend an extended time recovering in a safe place while a threat is active**, do any of the following.\n• Clear any marked conditions.\n• Set your health, spirit, supply, and companion health to their maximum values.\n• Set your momentum to its reset value.\nThen, for each active threat, *Advance a Threat*."
               },
               {
                   "Name": "Wield a Rarity",
+                  "Aliases": ["rarity"],
                   "Text": "When *you make a move aided by an augmented asset*, roll your rarity die in place of your action die.\nOn *any result* with 6 showing on the rarity die, the power of the rarity manifests in a dramatic and obvious way. You score an automatic **strong hit** and take +1 momentum.\nOn a *hit* with 5 showing on the rarity die, the power of the rarity manifests in a subtle way. Take +1 momentum.\nOn a *miss* with 1 showing on the rarity die, the rarity’s power fails or works against you."
               }
             ]
