@@ -59,9 +59,9 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
   4. :game_die: | Rolls the action and challenge die for the progress tracker.
  * Sample usage: `!ProgressTracker Epic Find the source of evil in the forest`
 #### PlayerCard
-Builds an interactive post to keep track of players who do and don't have advantage.
- * Command Aliases: Initiative, IniTracker
- * Parameters: Description (optional)
+Builds an interactive post for keeping track of player resources
+ * Command Aliases: StatsCard
+ * Parameters: Character Name
  * Reactions: 
   1. :arrow_up_small: | Increases the active stat by one. 
   2. :arrow_down_small: | Decreases the active stat by one.
@@ -71,9 +71,9 @@ Builds an interactive post to keep track of players who do and don't have advant
   6. :airplane: | Sets momentum as your active stat.
   7. :fire: | Burns/resets your momentum to 2.
 #### InitiativeTracker
-Builds an interactive post for keeping track of player resources
- * Command Aliases: StatsCard
- * Parameters: Character Name
+Builds an interactive post to keep track of players who do and don't have advantage.
+ * Command Aliases: Initiative, IniTracker
+ * Parameters: Description (optional)
  * Reactions: 
   1. :arrow_left: | Assigns/moves you to the Advantage track. 
   2. :arrow_right: | Assigns/moves you to the Disadvantage track. 
