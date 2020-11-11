@@ -60,7 +60,7 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
  * Sample usage: `!ProgressTracker Epic Find the source of evil in the forest`
 #### PlayerCard
 Builds an interactive post for keeping track of player resources
- * Command Aliases: StatsCard
+ * Command Aliases: StatsCard, CharacterSheet, CharSheet
  * Parameters: Character Name
  * Reactions: 
   1. :arrow_up_small: | Increases the active stat by one. 

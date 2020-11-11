@@ -83,8 +83,8 @@ namespace TheOracle.GameCore.PlayerCard
             if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata momentumMetadata)) return;
 
             var healthActive = message.GetReactionUsersAsync(healthEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
-            var supplyActive = message.GetReactionUsersAsync(supplyEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var spiritActive = message.GetReactionUsersAsync(spiritEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
+            var supplyActive = message.GetReactionUsersAsync(supplyEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var momentumActive = message.GetReactionUsersAsync(momentumEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
 
             Task[] tasks = new Task[] { healthActive.AsTask(), supplyActive.AsTask(), spiritActive.AsTask(), momentumActive.AsTask() };
@@ -151,7 +151,7 @@ namespace TheOracle.GameCore.PlayerCard
 
                 await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
 
-                Emoji[] playerCardControlEmojis = new Emoji[] {upEmoji, downEmoji, healthEmoji, supplyEmoji, spiritEmoji, momentumEmoji, burnEmoji };
+                Emoji[] playerCardControlEmojis = new Emoji[] {upEmoji, downEmoji, healthEmoji, spiritEmoji, supplyEmoji, momentumEmoji, burnEmoji };
 
                 await Task.Run(async () => { 
                     await message.RemoveAllReactionsAsync();
@@ -173,7 +173,7 @@ namespace TheOracle.GameCore.PlayerCard
 
         [Summary("Creates a player stat tracking card.")]
         [Command("PlayerCard")]
-        [Alias("StatsCard")]
+        [Alias("StatsCard", "CharacterSheet", "CharSheet")]
         public async Task CreatePlayerCard([Remainder] string CharacterName)
         {
             var helper = new EmbedBuilder()
