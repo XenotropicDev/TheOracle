@@ -1191,6 +1191,148 @@
           "Quest": "A wight is in search of the person it is sworn to protect, now held in a **Fortified Stronghold**. Who does it seek? Why were they taken? Will you stand against the wight, or help them?"
         }
       ]
+    },
+    {
+      "Category": "Anomaly",
+      "Description": "Old magic permeates the Ironlands. These forces sometimes manifest as an anomaly, which is an otherworldly feature of the terrain or environment. Some are the embodiment of ancient spirits, and have unknowable motivations. Others are forces of nature given cruel purpose.",
+      "Foes": [
+        {
+          "Name": "Blood Thorn",
+          "Rank": "Dangerous",
+          "Source": "Delve",
+          "Page": "138",
+          "Features": [
+            "Thorn-tipped branches",
+            "Scattered bones, stripped clean",
+            "Large central pod"
+          ],
+          "Drives": [
+            "Consume blood",
+            "Proliferate"
+          ],
+          "Tactics": [
+            "Lie in wait",
+            "Grasp, entangle, and feed"
+          ],
+          "Description": "A blood thorn is a malignant, carnivorous plant. It seizes its victims with long, creeping tendrils. Then, it leeches their life through hollow thorns, eventually bleeding them dry.\nBlood thorns appear in woodland areas throughout the Ironlands. They are especially common in the Deep Wilds, where they often encircle elf villages. Some suspect they are cultivated by the elves, or share a symbiotic relationship with them.",
+          "Quest": "Ironlanders attempted to found a settlement at the heart of a **Wild Tanglewood** a decade ago. That place is now abandoned and infested by blood thorns. Why did the settlers try to create a home in such an untamed place? What object or information do you seek there?",
+          "Truth": "Each spring, a vibrant red flower sprouts from blood thorn branches. This blossom is coveted as an ingredient for alchemical elixirs. What effect does it provide?"
+        },
+        {
+          "Name": "Circle of Stones",
+          "Rank": "Dangerous",
+          "Source": "Delve",
+          "Page": "140",
+          "Features": [
+            "Ancient stones, etched with mysterious symbols",
+            "Whispers of old magic",
+            "Visions of hoarded memories"
+          ],
+          "Drives": [
+            "Preserve age-old secrets",
+            "Seek new knowledge"
+          ],
+          "Tactics": [
+            "Trap the unwary, and lure the desperate",
+            "Extract painful memories",
+            "Grant knowledge, for a price"
+          ],
+          "Description": "The ancient standing stones, crafted long before we settled here, preserve the memories and secrets of the Ironlands.\nBecause the stones are often hidden within dense thickets, buried in snow, or obscured by veils of mist, a traveler may find themselves unexpectedly breaking the boundary of a circle. The stones hunger for new knowledge, and our memories are fodder for their insatiable appetites. What they take is sometimes gone forever.\nSome Ironlanders enter a circle willingly. Perhaps they hope to abandon a painful memory to the stones, discarding that piece of themselves like slag hammered from wrought iron. Then, there are those who wish to forsake the world and live with their memories. For them, an unreal life within the circle is better than the cruel reality outside of it.\nThose in need of information may choose to risk a negotiation within a circle. Knowledge for knowledge is the customary trade, but the stones are cunning and may demand a more horrible price.",
+          "Quest": "A clan of Ironlanders protect and worship a circle of stones found in a Hallowed Tanglewood. What forbidden secrets do these stones offer? How does the price for these secrets threaten you or your kin?",
+          "Truth": "The stones covet a particular type of memory above all others. What is it, and what do they offer in exchange?"
+        },
+        {
+          "Name": "Glimmer",
+          "Rank": "Dangerous",
+          "Source": "Delve",
+          "Page": "142",
+          "Features": [
+            "Dancing lights given vague form",
+            "Silent beckoning"
+          ],
+          "Drives": [
+            "Illuminate the darkness",
+            "Provide escort along secret paths"
+          ],
+          "Tactics": [
+            "Appear to the lost and desperate",
+            "Show the way",
+            "Lead astray"
+          ],
+          "Description": "The glimmer are beings of mysterious origin and intent. They are most often encountered as particles of light which coalesce into a luminous humanoid or animal form.\nThey are drawn to those who need guidance. For wayward travelers and seekers of hidden things, a glimmer will make a silent offer of passage. Relief from the dangers of the Ironlands or a quick journey to a distant destination is a tempting invitation, but not without its own price.\nThe path the glimmer reveals is not wholly of our world. It can descend into the past, or climb into the future. It can wend its way across other lands and through strange realities. These trails are navigated not just by the glimmer, but by ancient, baneful things beyond comprehension.\nIf you accept a glimmer’s guidance, steel yourself for the journey. Envision the places and people that give you hope, and you may find yourself among them. But do not be distracted. The temptations and terrors along the way can lead all but the most resolute astray. To be lost along a glimmer’s path is to remain lost—perhaps forever.",
+          "Quest": "Someone you love entered a **Corrupted Shadowfen** in search of a glimmer’s aid. They did not return. What did they seek? Can you walk the glimmer’s path and bring them back home?",
+          "Truth": "If you seek the guidance of a glimmer, you can try summoning one through a specific rite. What must you do? What cost must be paid?"
+        },
+        {
+          "Name": "Gloom",
+          "Rank": "Dangerous",
+          "Source": "Delve",
+          "Page": "144",
+          "Features": [
+            "Creeping, vaporous murk",
+            "Whispers and illusions"
+          ],
+          "Drives": [
+            "Envelop all in shadow",
+            "Feed on fear and despair"
+          ],
+          "Tactics": [
+            "Lure with trickery",
+            "Snuff out lights",
+            "Surround and engulf",
+            "Show painful and horrifying visions"
+          ],
+          "Description": "A gloom is a mass of malignant shadow. It dwells in dark places beneath the earth, or in the shadows of thick woods. At twilight and during the long gray days of winter, it emerges from its lightless refuge to sate its hunger.\nThe gloom’s amorphous form cannot exert physical force. Instead, it will draw in its victims through illusion, mimicking familiar voices or forms. Or it will use the cover of darkness to ambush unwary prey. Once enveloped, the victim is a captive audience for the gloom’s apparitions, forced to face their innermost doubts and fears. The gloom picks at their sanity like a scavenger cleaning meat from bones. After a time, there is nothing left but an empty shell.\nIf trapped within a gloom, let your conviction and courage be your light. Against hopelessness, find hope. Against despair, find peace of mind. Against terror, find faith. In the darkness, it is not the gloom that is your enemy. It is yourself.",
+          "Quest": "Zealots nurture a gloom within a Hallowed Underkeep. They believe this anomaly offers true enlightenment, and seek a means to unleash it on the Ironlands. Who is the leader of this sect?",
+          "Truth": "Is there a benevolent counterpart to a gloom—one which offers light and hope instead of darkness and despair? Is this the cure for someone who suffers the aftermath of a gloom’s visions? What is it called, and where can it be found?"
+        },
+        {
+          "Name": "Maelstrom",
+          "Rank": "Dangerous",
+          "Source": "Delve",
+          "Page": "146",
+          "Features": [
+            "Whirling vortex of water",
+            "Fierce currents",
+            "Ghostly screams"
+          ],
+          "Drives": [
+            "Engulf victims",
+            "Amass the voices of the lost"
+          ],
+          "Tactics": [
+            "Seize with raging, swirling waters",
+            "Stun with numbing cold",
+            "Batter with debris",
+            "Drag into abyssal darkness"
+          ],
+          "Description": "In coastal waters and cavern pools, these swirling vortexes of frigid water drag the unwary into their depths, stealing the breath from their lungs.\nMaelstroms often manifest in places of great loss and tragedy, on the sites of shipwrecks or the watery graves of drowned travelers. The debris swept into the maelstrom’s heart batter armor and flesh. The voices of the maelstrom’s victims, ripped from their chests with their dying breaths, cry out from the turbulent water.",
+          "Quest": "Within a waterway cutting through a **Ravaged Icereach**, a great maelstrom drew a longship and its crew into the depths. Despite an exhaustive search, no survivors—or even bodies—are found. They are simply gone. Why are you compelled to discover the fate of these victims?",
+          "Truth": "Some believe that you must cast a particular thing of value into a maelstrom in trade for your life. What is it?"
+        },
+        {
+          "Name": "Tempest",
+          "Rank": "Dangerous",
+          "Source": "Delve",
+          "Page": "148",
+          "Features": [
+            "Biting winds",
+            "Stinging ice",
+            "Ghostly voices and shadowy forms"
+          ],
+          "Drives": [
+            "Seek warmth, and snuff it out"
+          ],
+          "Tactics": [
+            "Envelop in a wintry cyclone",
+            "Batter with icy shards and ferocious winds",
+            "Grant release, at great cost"
+          ],
+          "Description": "A tempest is a fierce, unnatural storm. It can appear in any season or in any weather, but is larger and more powerful in the depths of winter. It is drawn to the warmth of living beings, and seeks to douse that life as one would snuff out a candle.\nA tempest’s true nature is a mystery. Is it intelligent, or just a force of nature? Those who survive an encounter sometimes report hearing hushed voices and seeing strange forms within the whirlwind. Some few tell tales of the eye of the storm, where the colds and wind abate, and where relief from certain death is offered—for a price.",
+          "Quest": "In the Havens, a massive, swirling tempest has appeared. It is expanding with grim purpose. A settlement was destroyed, and others are threatened. At the heart of the storm lies an **Ancient Ruin**. What force powers this tempest? Can it be stopped, or will it someday cover all the Ironlands in its cold wrath?",
+          "Truth": "Are there Ironlanders in your world who can foretell or influence the weather? If so, what are they called? What signs do they look for as a portent of a coming tempest?"
+        }
+      ]
     }
   ]
 }
