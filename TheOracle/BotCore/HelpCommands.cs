@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -40,23 +41,24 @@ namespace TheOracle
             }
             else
             {
-                EmbedBuilder output = new EmbedBuilder();
-                var mods = _commands.Modules.Where(m => m.Name.Contains(path, StringComparison.OrdinalIgnoreCase) || m.Aliases.Any(alias => alias.Contains(path, StringComparison.OrdinalIgnoreCase)));
-                if (mods.Count() == 0) mods = _commands.Modules.Where(m => m.Commands.Any(c => c.Aliases.Any(a => a.Contains(path, StringComparison.OrdinalIgnoreCase))));
-                if (mods.Count() == 0) { await ReplyAsync(HelpResources.NoCommandError); return; }
-                if (mods.Count() > 3) { await ReplyAsync(HelpResources.TooManyMatches); return; }
+                var commands = _commands.Modules.SelectMany(m => m.Commands).Where(c => c.Aliases.Any(a => a.Contains(path, StringComparison.OrdinalIgnoreCase)));
+                if (commands.Count() == 0) { await ReplyAsync(HelpResources.NoCommandError); return; }
+                if (commands.Count() > 3) { await ReplyAsync(HelpResources.TooManyMatches); return; }
 
-                foreach (var mod in mods)
+                foreach (var command in commands)
                 {
-                    output.Title = mod.Name;
-                    output.Description = $"{mod.Summary}\n" +
-                    (!string.IsNullOrEmpty(mod.Remarks) ? $"{mod.Remarks}\n" : "") +
-                    (mod.Aliases.Count() > 0 ? $"Prefix(es): {string.Join(",", mod.Aliases)}\n" : "") +
-                    (mod.Submodules.Any() ? $"Submodules: {mod.Submodules.Select(m => m.Name)}\n" : "") + " ";
-                    AddCommands(mod, ref output);
+                    command.CheckPreconditionsAsync(Context, _map).GetAwaiter().GetResult();
+                    
+                    EmbedBuilder output = new EmbedBuilder()
+                        .WithTitle(String.Format(HelpResources.CommandTitle, command.Name))
+                        .WithDescription($"{command.Summary}\n" +
+                            (command.Aliases.Any() ? String.Format(HelpResources.AliasList, string.Join(CultureInfo.CurrentCulture.TextInfo.ListSeparator, command.Aliases.Select(x => $"`{x}`"))) : string.Empty) + "\n" +
+                            String.Format(HelpResources.Usage, $"`!{GetPrefix(command)} {GetAliases(command)}`") + "\n\n" +
+                            (!string.IsNullOrEmpty(command.Remarks) ? $"{command.Remarks}\n" : string.Empty));
+                    
+                    await ReplyAsync("", embed: output.Build()).ConfigureAwait(false);
                 }
 
-                await ReplyAsync("", embed: output.Build());
             }
         }
 
@@ -75,26 +77,7 @@ namespace TheOracle
             return helpText;
         }
 
-        public void AddCommands(ModuleInfo module, ref EmbedBuilder builder)
-        {
-            foreach (var command in module.Commands)
-            {
-                command.CheckPreconditionsAsync(Context, _map).GetAwaiter().GetResult();
-                AddCommand(command, ref builder);
-            }
-        }
 
-        public void AddCommand(CommandInfo command, ref EmbedBuilder builder)
-        {
-            builder.AddField(f =>
-            {
-                f.Name = $"**{command.Name}**";
-                f.Value = $"{command.Summary}\n\n" +
-                (!string.IsNullOrEmpty(command.Remarks) ? $"{command.Remarks}\n" : string.Empty) +
-                (command.Aliases.Any() ? String.Format(HelpResources.AliasList, string.Join(CultureInfo.CurrentCulture.TextInfo.ListSeparator, command.Aliases.Select(x => $"`{x}`"))) : string.Empty) + "\n" +
-                String.Format(HelpResources.Usage, $"`!{GetPrefix(command)} {GetAliases(command)}`");
-            });
-        }
 
         public string GetAliases(CommandInfo command)
         {

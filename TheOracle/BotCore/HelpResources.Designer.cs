@@ -88,6 +88,15 @@ namespace TheOracle.BotCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to **{0}** - Help.
+        /// </summary>
+        internal static string CommandTitle {
+            get {
+                return ResourceManager.GetString("CommandTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No command could be found with that name..
         /// </summary>
         internal static string NoCommandError {

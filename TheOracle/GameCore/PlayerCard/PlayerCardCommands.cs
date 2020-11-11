@@ -64,7 +64,7 @@ namespace TheOracle.GameCore.PlayerCard
         [Summary("Creates a player stat tracking post\n• Use the reactions to set your active stat, then use 🔼 and 🔽 to change the value. Use 🔥 to burn/reset your momentum")]
         [Command("PlayerCard")]
         [Alias("StatsCard", "CharacterSheet", "CharSheet")]
-        [Remarks("🔼 - Increase\n🔽 - Decrease stat\n❤️ - Set health as active stat\n✨ - Set spirit as active stat\n🎒 - Set supply as active stat\n✈️ - Set momentum as active stat")]
+        [Remarks("🔼 - Increase stat\n🔽 - Decrease stat\n❤️ - Set health as active stat\n✨ - Set spirit as active stat\n🎒 - Set supply as active stat\n✈️ - Set momentum as active stat")]
         public async Task CreatePlayerCard([Remainder] string CharacterName)
         {
             var helper = new EmbedBuilder()

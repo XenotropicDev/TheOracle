@@ -41,12 +41,12 @@ namespace TheOracle.IronSworn
         [Summary("Rolls an Oracle")]
         [Alias("Oracle", "Table")]
         [Remarks("\uD83E\uDDE6 - Rolls the paired oracle table, and adds it to the post")]
-        public async Task OracleRollCommand([Remainder] string Fullcommand = "")
+        public async Task OracleRollCommand([Remainder] string TableNameAndOptionalGame)
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
 
-            GameName game = Utilities.GetGameContainedInString(Fullcommand);
-            string oracleTable = Utilities.RemoveGameNamesFromString(Fullcommand);
+            GameName game = Utilities.GetGameContainedInString(TableNameAndOptionalGame);
+            string oracleTable = Utilities.RemoveGameNamesFromString(TableNameAndOptionalGame);
 
             if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
