@@ -40,6 +40,7 @@ namespace TheOracle.IronSworn
         [Command("OracleTable")]
         [Summary("Rolls an Oracle")]
         [Alias("Oracle", "Table")]
+        [Remarks("\uD83E\uDDE6 - Rolls the paired oracle table, and adds it to the post")]
         public async Task OracleRollCommand([Remainder] string Fullcommand = "")
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);

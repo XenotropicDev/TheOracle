@@ -111,7 +111,8 @@ namespace TheOracle.Core
 
         [Command("ProgressTracker")]
         [Alias("Track", "Tracker", "Progress")]
-        [Summary("Creates an objective tracking post for things like Iron Vows")]
+        [Summary("Creates an objective tracking post for things like Iron vows, journeys, and combat encounters")]
+        [Remarks("\u25C0 - Decreases the progress track by the difficulty amount.\n\u25B6 - Increases the progress track by the difficulty amount.\n\u2714 - Increases the progress track by a single full box (four ticks).\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker.")]
         public async Task ProgressTrackerCommand([Remainder] string TrackerArgs)
         {
             //TODO this all needs to be reworked for globalization

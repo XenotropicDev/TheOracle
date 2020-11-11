@@ -16,14 +16,8 @@ namespace TheOracle.BotCore
 
         public IServiceProvider Services { get; }
 
-        //[Command("Language")]
-        //public async Task SetChannelLocalization(string name)
-        //{
-        //    await ReplyAsync("Saved.");
-        //}
-
         [Command("SetDefaultGame", ignoreExtraArgs: true)]
-        [Summary("Sets the default game for a channel.")]
+        [Summary("Sets the default game for a channel")]
         public async Task SetDefaultGame(GameName game)
         {
             using var db = new DiscordChannelContext();
@@ -51,7 +45,7 @@ namespace TheOracle.BotCore
 
         [Command("SetRerollDuplicates", ignoreExtraArgs: true)]
         [Alias("RerollDuplicates")]
-        [Summary("Sets the rolling behavior for a channel.")]
+        [Summary("Sets the rolling behavior for a channel")]
         public async Task SetRerollDuplicates(bool value)
         {
             using var db = new DiscordChannelContext();
@@ -78,7 +72,7 @@ namespace TheOracle.BotCore
         }
 
         [Command("GetDefaultGame", ignoreExtraArgs: true)]
-        [Summary("Posts the default game for the channel.")]
+        [Summary("Posts the default game for the channel")]
         public async Task GetDefaultGame()
         {
             using var db = new DiscordChannelContext();

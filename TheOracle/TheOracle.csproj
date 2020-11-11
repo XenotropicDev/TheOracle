@@ -203,6 +203,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="BotCore\HelpResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HelpResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="GameCore\Action\ActionResources - Copy.Designer.cs">
       <DependentUpon>ActionResources.Designer.cs</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -286,6 +291,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="BotCore\HelpResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HelpResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="GameCore\Action\ActionResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ActionResources.Designer.cs</LastGenOutput>

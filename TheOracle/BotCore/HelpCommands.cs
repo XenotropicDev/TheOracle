@@ -1,12 +1,12 @@
 ﻿using Discord;
 using Discord.Commands;
-using Discord.Rest;
-using Discord.WebSocket;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using TheOracle.BotCore;
 
 namespace TheOracle
 {
@@ -22,53 +22,57 @@ namespace TheOracle
         }
 
         [Command("Help")]
-        [Summary("Lists this bot's commands.")]
+        [Summary("Lists this bot's commands, or details about a command if one is specified")]
         public async Task Help(string path = "")
         {
-            EmbedBuilder output = new EmbedBuilder();
             if (path == "")
             {
-                output.Title = "__TheOracle bot help__";
+                string helperText = string.Empty;
+                helperText += HelpResources.Title + "\n";
+                helperText += HelpResources.AdditionalInfo + "\n";
 
                 foreach (var mod in _commands.Modules.Where(m => m.Parent == null))
                 {
-                    AddHelp(mod, ref output);
+                    helperText += AddHelp(mod);
                 }
 
-                output.Url = "";
-
-                output.Footer = new EmbedFooterBuilder
-                {
-                    Text = "Use 'help <module>' to get help with a module."
-                };
+                await ReplyAsync(helperText);
             }
             else
             {
-                var mod = _commands.Modules.FirstOrDefault(m => m.Name.Contains(path, StringComparison.OrdinalIgnoreCase) || m.Aliases.Any(alias => alias.Contains(path, StringComparison.OrdinalIgnoreCase)));
-                if (mod == null) mod = _commands.Modules.FirstOrDefault(m => m.Commands.Any(c => c.Aliases.Any(a => a.Contains(path)))); 
-                if (mod == null) { await ReplyAsync("No command could be found with that name."); return; }
+                EmbedBuilder output = new EmbedBuilder();
+                var mods = _commands.Modules.Where(m => m.Name.Contains(path, StringComparison.OrdinalIgnoreCase) || m.Aliases.Any(alias => alias.Contains(path, StringComparison.OrdinalIgnoreCase)));
+                if (mods.Count() == 0) mods = _commands.Modules.Where(m => m.Commands.Any(c => c.Aliases.Any(a => a.Contains(path, StringComparison.OrdinalIgnoreCase))));
+                if (mods.Count() == 0) { await ReplyAsync(HelpResources.NoCommandError); return; }
+                if (mods.Count() > 3) { await ReplyAsync(HelpResources.TooManyMatches); return; }
 
-                output.Title = mod.Name;
-                output.Description = $"{mod.Summary}\n" +
-                (!string.IsNullOrEmpty(mod.Remarks) ? $"({mod.Remarks})\n" : "") +
-                (mod.Aliases.Any() ? $"Prefix(es): {string.Join(",", mod.Aliases)}\n" : "") +
-                (mod.Submodules.Any() ? $"Submodules: {mod.Submodules.Select(m => m.Name)}\n" : "") + " ";
-                AddCommands(mod, ref output);
+                foreach (var mod in mods)
+                {
+                    output.Title = mod.Name;
+                    output.Description = $"{mod.Summary}\n" +
+                    (!string.IsNullOrEmpty(mod.Remarks) ? $"{mod.Remarks}\n" : "") +
+                    (mod.Aliases.Count() > 0 ? $"Prefix(es): {string.Join(",", mod.Aliases)}\n" : "") +
+                    (mod.Submodules.Any() ? $"Submodules: {mod.Submodules.Select(m => m.Name)}\n" : "") + " ";
+                    AddCommands(mod, ref output);
+                }
+
+                await ReplyAsync("", embed: output.Build());
             }
-
-            await ReplyAsync("", embed: output.Build());
         }
 
-        public void AddHelp(ModuleInfo module, ref EmbedBuilder builder)
+        public string AddHelp(ModuleInfo module)
         {
-            foreach (var sub in module.Submodules) AddHelp(sub, ref builder);
-            builder.AddField(f =>
+            string helpText = string.Empty;
+            foreach (var sub in module.Submodules) helpText += AddHelp(sub);
+
+            foreach (var command in module.Commands)
             {
-                f.Name = $"**{module.Name}**";
-                f.Value = $"Submodules: {string.Join(", ", module.Submodules.Select(m => m.Name))}" +
-                $"\n" +
-                $"Commands: {string.Join(", ", module.Commands.Select(x => $"`{x.Name}`"))}";
-            });
+                helpText += $"__{command.Name}__";
+                helpText += !string.IsNullOrEmpty(command.Summary) ? $" - {command.Summary}" : string.Empty;
+                helpText += "\n";  //command.Summary.Contains("\n") ? "\n\n" : "\n";
+            }
+
+            return helpText;
         }
 
         public void AddCommands(ModuleInfo module, ref EmbedBuilder builder)
@@ -78,7 +82,6 @@ namespace TheOracle
                 command.CheckPreconditionsAsync(Context, _map).GetAwaiter().GetResult();
                 AddCommand(command, ref builder);
             }
-
         }
 
         public void AddCommand(CommandInfo command, ref EmbedBuilder builder)
@@ -86,10 +89,10 @@ namespace TheOracle
             builder.AddField(f =>
             {
                 f.Name = $"**{command.Name}**";
-                f.Value = $"{command.Summary}\n" +
-                (!string.IsNullOrEmpty(command.Remarks) ? $"({command.Remarks})\n" : "") +
-                (command.Aliases.Any() ? $"**Aliases:** {string.Join(", ", command.Aliases.Select(x => $"`{x}`"))}\n" : "") +
-                $"**Usage:** `{GetPrefix(command)} {GetAliases(command)}`";
+                f.Value = $"{command.Summary}\n\n" +
+                (!string.IsNullOrEmpty(command.Remarks) ? $"{command.Remarks}\n" : string.Empty) +
+                (command.Aliases.Any() ? String.Format(HelpResources.AliasList, string.Join(CultureInfo.CurrentCulture.TextInfo.ListSeparator, command.Aliases.Select(x => $"`{x}`"))) : string.Empty) + "\n" +
+                String.Format(HelpResources.Usage, $"`!{GetPrefix(command)} {GetAliases(command)}`");
             });
         }
 
@@ -99,28 +102,26 @@ namespace TheOracle
             if (!command.Parameters.Any()) return output.ToString();
             foreach (var param in command.Parameters)
             {
-                if (param.IsOptional)
-                    output.Append($"[{param.Name} = {param.DefaultValue}] ");
-                else if (param.IsMultiple)
-                    output.Append($"|{param.Name}| ");
-                else if (param.IsRemainder)
-                    output.Append($"...{param.Name} ");
-                else
-                    output.Append($"<{param.Name}> ");
+                if (param.IsOptional) output.Append($"[{param.Name} : Default = {param.DefaultValue}] ");
+                else if (param.IsMultiple) output.Append($"|{param.Name}| ");
+                //else if (param.IsRemainder) output.Append($"...{param.Name} ");
+                else output.Append($"<{param.Name}> ");
             }
             return output.ToString();
         }
+
         public string GetPrefix(CommandInfo command)
         {
             var output = GetPrefix(command.Module);
-            output += $"{command.Aliases.FirstOrDefault()} ";
+            output += $"{command.Aliases.FirstOrDefault()}";
             return output;
         }
+
         public string GetPrefix(ModuleInfo module)
         {
             string output = "";
             if (module.Parent != null) output = $"{GetPrefix(module.Parent)}{output}";
-            if (module.Aliases.Any())
+            if (module.Aliases.Any(a => a.Length > 0))
                 output += string.Concat(module.Aliases.FirstOrDefault(), " ");
             return output;
         }

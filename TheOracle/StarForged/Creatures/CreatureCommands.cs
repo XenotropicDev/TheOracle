@@ -105,7 +105,8 @@ namespace TheOracle.StarForged.Creatures
         public ServiceProvider Services { get; }
 
         [Command("GenerateCreature", ignoreExtraArgs: true)]
-        [Summary("Creates a template post for a new Starforged Creature")]
+        [Summary("Creates an interactive post for a new Starforged creature")]
+        [Remarks("🦋 - Adds a creature aspect")]
         [Alias("Creature")]
         public async Task CreaturePost([Remainder] string CreatureCommand = "")
         {

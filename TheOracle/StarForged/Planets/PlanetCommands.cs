@@ -47,7 +47,8 @@ namespace TheOracle.StarForged.Planets
         public ServiceProvider Services { get; }
 
         [Command("GeneratePlanet", ignoreExtraArgs: true)]
-        [Summary("Creates a template post for a new Starforged planet\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms\n\uD83C\uDF0D Adds a biome (vital worlds only)")]
+        [Summary("Creates an interactive post for a new Starforged planet")]
+        [Remarks("Reactions:\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms\n\uD83C\uDF0D Adds a biome (vital worlds only)")]
         [Alias("Planet")]
         public async Task PlanetPost([Remainder] string PlanetCommand = "")
         {

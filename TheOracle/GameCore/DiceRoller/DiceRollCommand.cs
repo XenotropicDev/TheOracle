@@ -11,7 +11,7 @@ namespace TheOracle.GameCore.DiceRoller
 {
     public class DiceRollCommand : ModuleBase<SocketCommandContext>
     {
-        [Summary("Rolls die")]
+        [Summary("Rolls dice using standard die notation\n• Sample usage: Roll two 10 sided die `!roll 2d10`, Roll a ten sided die twice `!roll 1d10 2`")]
         [Command("Roll")]
         [Alias("Dice")]
         public async Task RollCommand(string dieNotaion, int timesToRoll = 1)

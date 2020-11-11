@@ -32,6 +32,8 @@ namespace TheOracle.GameCore.InitiativeTracker
 
         [Command("InitiativeTracker")]
         [Alias("Initiative", "IniTracker")]
+        [Summary("Creates an interactive post for tracking combat initiative")]
+        [Remarks("\u25C0 - Adds or moves you to the advantage category\n\u25B6 - Adds or moves you to the disadvantage category")]
         public async Task BuildTrackerCommand([Remainder] string Description = "")
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);

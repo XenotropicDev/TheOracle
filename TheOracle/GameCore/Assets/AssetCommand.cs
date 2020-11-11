@@ -19,6 +19,7 @@ namespace TheOracle.GameCore.Assets
         public IServiceProvider Services { get; }
 
         [Command("Asset")]
+        [Summary("Creates an interactive post for asset tracking and reference")]
         public async Task StandardAsset([Remainder] string AssetCommand)
         {
             var assets = Services.GetRequiredService<List<Asset>>();

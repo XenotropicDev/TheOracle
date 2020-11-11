@@ -15,20 +15,18 @@ namespace TheOracle.GameCore.PlayerCard
 {
     public class PlayerCardCommands : ModuleBase<SocketCommandContext>
     {
-        public Emoji oneEmoji = new Emoji("\u0031\u20E3");
-        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
-        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
-        public Emoji fourEmoji = new Emoji("\u0034\u20E3");
-        public Emoji fiveEmoji = new Emoji("\u0035\u20E3");
-
-        public Emoji upEmoji = new Emoji("🔼");
-        public Emoji downEmoji = new Emoji("🔽");
-        public Emoji healthEmoji = new Emoji("❤️");
-        public Emoji supplyEmoji = new Emoji("🎒");
-        public Emoji spiritEmoji = new Emoji("✨");
-        public Emoji momentumEmoji = new Emoji("✈️");
         public Emoji burnEmoji = new Emoji("🔥");
-
+        public Emoji downEmoji = new Emoji("🔽");
+        public Emoji fiveEmoji = new Emoji("\u0035\u20E3");
+        public Emoji fourEmoji = new Emoji("\u0034\u20E3");
+        public Emoji healthEmoji = new Emoji("❤️");
+        public Emoji momentumEmoji = new Emoji("✈️");
+        public Emoji oneEmoji = new Emoji("\u0031\u20E3");
+        public Emoji spiritEmoji = new Emoji("✨");
+        public Emoji supplyEmoji = new Emoji("🎒");
+        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
+        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
+        public Emoji upEmoji = new Emoji("🔼");
         public PlayerCardCommands(IServiceProvider services)
         {
             Services = services;
@@ -61,6 +59,31 @@ namespace TheOracle.GameCore.PlayerCard
             }
         }
 
+        public IServiceProvider Services { get; }
+
+        [Summary("Creates a player stat tracking post\n• Use the reactions to set your active stat, then use 🔼 and 🔽 to change the value. Use 🔥 to burn/reset your momentum")]
+        [Command("PlayerCard")]
+        [Alias("StatsCard", "CharacterSheet", "CharSheet")]
+        [Remarks("🔼 - Increase\n🔽 - Decrease stat\n❤️ - Set health as active stat\n✨ - Set spirit as active stat\n🎒 - Set supply as active stat\n✈️ - Set momentum as active stat")]
+        public async Task CreatePlayerCard([Remainder] string CharacterName)
+        {
+            var helper = new EmbedBuilder()
+                .WithTitle(PlayerResources.HelperTitle)
+                .WithAuthor(CharacterName)
+                .WithDescription("0,0,0,0,0");
+            helper.AddField(PlayerResources.ActiveStat, PlayerResources.Edge);
+
+            var message = await ReplyAsync(embed: helper.Build());
+
+            _ = Task.Run(async () =>
+            {
+                await message.AddReactionAsync(oneEmoji);
+                await message.AddReactionAsync(twoEmoji);
+                await message.AddReactionAsync(threeEmoji);
+                await message.AddReactionAsync(fourEmoji);
+            }).ConfigureAwait(false);
+        }
+
         private async Task BurnMomentumReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle) return;
@@ -69,6 +92,62 @@ namespace TheOracle.GameCore.PlayerCard
             player.Momentum = 2;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+        }
+
+        private async Task HelperReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed.Title != PlayerResources.HelperTitle) return;
+
+            int StatValue = 0;
+            if (reaction.Emote.Name == oneEmoji.Name) StatValue = 1;
+            if (reaction.Emote.Name == twoEmoji.Name) StatValue = 2;
+            if (reaction.Emote.Name == threeEmoji.Name) StatValue = 3;
+            if (reaction.Emote.Name == fourEmoji.Name) StatValue = 4;
+            if (reaction.Emote.Name == fiveEmoji.Name) StatValue = 5;
+
+            var stats = Array.ConvertAll(embed.Description.Split(','), int.Parse);
+
+            string nextStat = string.Empty;
+            var activeField = embed.Fields.First(embed => embed.Name == PlayerResources.ActiveStat);
+            if (activeField.Value == PlayerResources.Edge) { stats[0] = StatValue; nextStat = PlayerResources.Heart; }
+            if (activeField.Value == PlayerResources.Heart) { stats[1] = StatValue; nextStat = PlayerResources.Iron; }
+            if (activeField.Value == PlayerResources.Iron) { stats[2] = StatValue; nextStat = PlayerResources.Shadow; }
+            if (activeField.Value == PlayerResources.Shadow) { stats[3] = StatValue; nextStat = PlayerResources.Wits; }
+
+            if (activeField.Value == PlayerResources.Wits)
+            {
+                stats[4] = StatValue;
+                var player = new Player
+                {
+                    Edge = stats[0],
+                    Heart = stats[1],
+                    Iron = stats[2],
+                    Shadow = stats[3],
+                    Wits = stats[4],
+                    Name = embed.Author.Value.Name,
+                    AvatarUrl = embed.Author.Value.IconUrl
+                };
+
+                await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
+
+                Emoji[] playerCardControlEmojis = new Emoji[] { upEmoji, downEmoji, healthEmoji, spiritEmoji, supplyEmoji, momentumEmoji, burnEmoji };
+
+                await Task.Run(async () =>
+                {
+                    await message.RemoveAllReactionsAsync();
+                    await message.AddReactionsAsync(playerCardControlEmojis);
+                }).ConfigureAwait(false);
+
+                return;
+            }
+
+            var newHelper = embed.ToEmbedBuilder().WithDescription(String.Join(',', stats));
+            newHelper.Fields.RemoveAll(fld => fld.Name == activeField.Name);
+            newHelper.AddField(PlayerResources.ActiveStat, nextStat);
+
+            await message.ModifyAsync(msg => msg.Embed = newHelper.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
         }
 
@@ -112,84 +191,6 @@ namespace TheOracle.GameCore.PlayerCard
             if (momentumActive.Result) player.Momentum = player.Momentum + direction;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build());
-        }
-
-        private async Task HelperReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
-        {
-            var embed = message.Embeds.FirstOrDefault();
-            if (embed.Title != PlayerResources.HelperTitle) return;
-
-            int StatValue = 0;
-            if (reaction.Emote.Name == oneEmoji.Name) StatValue = 1;
-            if (reaction.Emote.Name == twoEmoji.Name) StatValue = 2;
-            if (reaction.Emote.Name == threeEmoji.Name) StatValue = 3;
-            if (reaction.Emote.Name == fourEmoji.Name) StatValue = 4;
-            if (reaction.Emote.Name == fiveEmoji.Name) StatValue = 5;
-
-            var stats = Array.ConvertAll( embed.Description.Split(','), int.Parse);
-
-            string nextStat = string.Empty;
-            var activeField = embed.Fields.First(embed => embed.Name == PlayerResources.ActiveStat);
-            if (activeField.Value == PlayerResources.Edge) { stats[0] = StatValue; nextStat = PlayerResources.Heart; }
-            if (activeField.Value == PlayerResources.Heart) { stats[1] = StatValue; nextStat = PlayerResources.Iron; }
-            if (activeField.Value == PlayerResources.Iron) { stats[2] = StatValue; nextStat = PlayerResources.Shadow; }
-            if (activeField.Value == PlayerResources.Shadow) { stats[3] = StatValue; nextStat = PlayerResources.Wits; }
-
-            if (activeField.Value == PlayerResources.Wits)
-            {
-                stats[4] = StatValue;
-                var player = new Player
-                {
-                    Edge = stats[0],
-                    Heart = stats[1],
-                    Iron = stats[2],
-                    Shadow = stats[3],
-                    Wits = stats[4],
-                    Name = embed.Author.Value.Name,
-                    AvatarUrl = embed.Author.Value.IconUrl
-                };
-
-                await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
-
-                Emoji[] playerCardControlEmojis = new Emoji[] {upEmoji, downEmoji, healthEmoji, spiritEmoji, supplyEmoji, momentumEmoji, burnEmoji };
-
-                await Task.Run(async () => { 
-                    await message.RemoveAllReactionsAsync();
-                    await message.AddReactionsAsync(playerCardControlEmojis);
-                }).ConfigureAwait(false);
-
-                return;
-            }
-
-            var newHelper = embed.ToEmbedBuilder().WithDescription(String.Join(',', stats));
-            newHelper.Fields.RemoveAll(fld => fld.Name == activeField.Name);
-            newHelper.AddField(PlayerResources.ActiveStat, nextStat);
-
-            await message.ModifyAsync(msg => msg.Embed = newHelper.Build()).ConfigureAwait(false);
-            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-        }
-
-        public IServiceProvider Services { get; }
-
-        [Summary("Creates a player stat tracking card.")]
-        [Command("PlayerCard")]
-        [Alias("StatsCard", "CharacterSheet", "CharSheet")]
-        public async Task CreatePlayerCard([Remainder] string CharacterName)
-        {
-            var helper = new EmbedBuilder()
-                .WithTitle(PlayerResources.HelperTitle)
-                .WithAuthor(CharacterName)
-                .WithDescription("0,0,0,0,0");
-            helper.AddField(PlayerResources.ActiveStat, PlayerResources.Edge);
-
-            var message = await ReplyAsync(embed: helper.Build());
-
-            _ = Task.Run(async () => {
-                await message.AddReactionAsync(oneEmoji);
-                await message.AddReactionAsync(twoEmoji);
-                await message.AddReactionAsync(threeEmoji);
-                await message.AddReactionAsync(fourEmoji);
-            }).ConfigureAwait(false);
         }
     }
 }
