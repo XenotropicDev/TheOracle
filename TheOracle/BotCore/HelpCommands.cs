@@ -29,7 +29,7 @@ namespace TheOracle
             {
                 string helperText = string.Empty;
                 helperText += HelpResources.Title + "\n";
-                helperText += HelpResources.AdditionalInfo + "\n";
+                helperText += HelpResources.AdditionalInfo + "\n\n";
 
                 foreach (var mod in _commands.Modules.Where(m => m.Parent == null))
                 {
