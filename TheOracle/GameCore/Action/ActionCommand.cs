@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,12 +19,16 @@ namespace TheOracle.IronSworn
 		[Alias("act")]
 		public async Task Action([Summary("Modifier for the action roll")][Remainder] string ModiferAndFluff = "")
 		{
-			int mod = 0;
+			List<int> mod = new List<int>();
 
-			var regex = Regex.Match(ModiferAndFluff, @"[\+-]?\d+");
-			if (regex.Success) Int32.TryParse(regex.Value, out mod);
+			var regex = Regex.Matches(ModiferAndFluff, @"[\+-]?\d+");
+			foreach (Match match in regex)
+            {
+				Int32.TryParse(match.Value, out int temp);
+				mod.Add(temp);
+			}
 
-			var roll = new ActionRoll(mod);
+			var roll = new ActionRoll(mod.ToArray());
 			await ReplyAsync(roll.ToString());
 		}
 	}
