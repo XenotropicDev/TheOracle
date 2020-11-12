@@ -30,7 +30,7 @@ Allows players to set the default game for a discord channel. This command only 
  * Command Aliases: None
  * Sample usage: `!SetDefaultGame Ironsworn`
 #### Action
-Rolls the action die, adds a modifier (if one is provided), compares it to the challenge die, and reports the strength of your hit/miss/match. Anything after modifier is just fluff. 
+Rolls the action die, adds any modifier(s), compares it to the challenge die, and reports the strength of your hit/miss/match. Anything other than numbers in the command is ignored by the command as fluff. 
  * Command Aliases: Act
  * Parameters: Modifier (optional, can be negative), Fluff (optional, useful for role playing)
  * Sample usage: `!Action +1 Swing at the darkness`
