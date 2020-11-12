@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.RulesReference;
-using TheOracle.IronSworn;
 
 namespace TheOracle.Core
 {
@@ -35,7 +34,7 @@ namespace TheOracle.Core
                 {
                     if (rule.Moves.Count() == 0)
                     {
-                        await ReplyAsync($"No moves in {query}");
+                        await ReplyAsync(string.Format(RulesResources.NoMovesError, query));
                         return;
                     }
 
@@ -45,7 +44,7 @@ namespace TheOracle.Core
                         CategoryReply += $"{move.Name}\n";
                     }
 
-                    await ReplyAsync($"__**{rule.Category}**__:\n{CategoryReply}");
+                    await ReplyAsync($"__**{rule.Category}**__:\n{CategoryReply}\n\n{rule.Source}");
                 }
 
                 return;
@@ -61,7 +60,8 @@ namespace TheOracle.Core
                 var actualGame = rules.Game;
                 foreach (var move in rules.Moves.Where(m => MatchNameOrAlias(m, query)))
                 {
-                    string temp = $"__{actualGame} - **{move.Name}**__\n{move.Text}\n\n";
+                    string sourceText = (move.Source != null) ? $"{move.Source}\n\n" : string.Empty;
+                    string temp = $"__{actualGame} - **{move.Name}**__\n{move.Text}\n\n{sourceText}";
                     if (specificMovesReply.Length + temp.Length > DiscordConfig.MaxMessageSize)
                     {
                         await ReplyAsync(specificMovesReply);
@@ -73,7 +73,7 @@ namespace TheOracle.Core
 
             if (specificMovesReply.Length == 0)
             {
-                await ReplyAsync($"Unknown move: '{query}'");
+                await ReplyAsync(string.Format(RulesResources.UnknownMoveError, query));
                 return;
             }
 

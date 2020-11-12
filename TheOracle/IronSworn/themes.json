@@ -1,8 +1,10 @@
 [
   {
     "DelveSiteTheme": "Ancient",
-    "Source": "Delve",
-    "Page": "84",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "84"
+    },
     "Description": "This place holds the secrets of a bygone age.",
     "LongDescription": "An ancient site contains the mysteries, legacies, and dangers of another age.\nWalking the paths of this place is like stepping through time. Ruins and relics provide glimpses of long-forgotten people and events. The knowledge and power hidden here are a tempting lure, but those treasures may come with a dire cost. Some secrets are best left buried.",
     "Features": [
@@ -29,8 +31,10 @@
   },
   {
     "DelveSiteTheme": "Corrupted",
-    "Source": "Delve",
-    "Page": "84",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "84"
+    },
     "Description": "This place is tainted by dark magic.",
     "LongDescription": "A corrupted site is befouled by dark forces. It might be the ancient magic of the Ironlands, or the residue of ancient evils, concentrated here like poisoned water soaked into a sponge. Perhaps a powerful mystic dwells in this place, one who walks a sinister path in search of power.\nWhen you enter a corrupted site, you can feel the wrongness of it down to your bones. The air is tainted with foul smells, or tinged with strange energies. You hear unintelligible whispers. Shadows lurk at the edge of your vision. The creatures of this place are twisted by corruption, and the people are in thrall to a dark influence.",
     "Features": [
@@ -57,8 +61,10 @@
   },
   {
     "DelveSiteTheme": "Fortified",
-    "Source": "Delve",
-    "Page": "85",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "85"
+    },
     "Description": "Foes defend this place against intruders.",
     "LongDescription": "A fortified site is held and defended by an enemy force. It might be an enemy camp, an outpost, a fortress, or a closely-guarded territory.\nInfiltrating this place requires caution and cunning. You may be forced to avoid inhabitants, sentries, and patrols. Revealing yourself or causing a disturbance will catch the attention of the denizens, perhaps forcing you to fight your way to your objective.",
     "Features": [
@@ -85,8 +91,10 @@
   },
   {
     "DelveSiteTheme": "Hallowed",
-    "Source": "Delve",
-    "Page": "85",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "85"
+    },
     "Description": "The faithful worship here.",
     "LongDescription": "A hallowed site is a place of great reverence, suffused with the power of old gods or the fervency of belief. It might be a location of religious significance, the resting place of legendary relics or figures, or the haven of a religious leader.\nHallowed places may be warded by ancient rituals, or imbued with divine energy. But it is the faithful and the zealous who will sacrifice everything to defend this place.",
     "Features": [
@@ -113,8 +121,10 @@
   },
   {
     "DelveSiteTheme": "Haunted",
-    "Source": "Delve",
-    "Page": "86",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "86"
+    },
     "Description": "Restless spirits are bound to this place.",
     "LongDescription": "Within a haunted site, dread, sadness, and fear are palpable. Disturbing sounds and visions lure the unwary and terrorize the vulnerable. Gird your will when you enter this place, for you walk at the boundary of life and death.\nSome lost souls, unaware they have passed, wander the site in search of answers. Others, stricken by eternal grief, seek to set right what caused their death or see their vows fulfilled. But all too often, the denizens of this place are undone by their deaths. They are rage and terror made incarnate, feeling nothing but hate for the living and a hunger for warmth which will never be sated.",
     "Features": [
@@ -141,8 +151,10 @@
   },
   {
     "DelveSiteTheme": "Infested",
-    "Source": "Delve",
-    "Page": "86",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "86"
+    },
     "Description": "Foul creatures dwell here.",
     "LongDescription": "Foul creatures swarm these sites, overwhelming trespassers with sheer numbers and unchecked ferocity. The denizens do little beyond multiplying, feeding, and expanding, ravenous for fresh kills to feed the swarm.\nNavigation through this place, across paths undermined by the hordes, may be perilous. The sights and smells may test your fortitude. But it is the creatures which pose the greatest threat, as they ambush and cut off your escape with unforeseen cunning.",
     "Features": [
@@ -169,8 +181,10 @@
   },
   {
     "DelveSiteTheme": "Ravaged",
-    "Source": "Delve",
-    "Page": "87",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "87"
+    },
     "Description": "Time, disaster, or strife have taken their toll.",
     "LongDescription": "Time, weather, war, or calamity have laid waste to a ravaged site. The terrain is precarious. Hazards lurk around every corner. You may face glimpses of a former greatness, but this place is a ruined shadow of what it once was.\nTraversing a ravaged site requires care, cunning, and quick wits to react to sudden perils. The environment here is your greatest enemy. It is a force, as willful as any intelligent adversary, which will see your quest undone.",
     "Features": [
@@ -197,8 +211,10 @@
   },
   {
     "DelveSiteTheme": "Wild",
-    "Source": "Delve",
-    "Page": "87",
+    "Source":{
+    	"Name": "Delve",
+    	"Page": "87"
+    },
     "Description": "Nature prevails in this place.",
     "LongDescription": "Despite our attempts to extend our control into untracked reaches, the primal forces of nature still hold sway across the Ironlands. In those wild places, we must test our shields against tooth and claw, our wits against insidious creatures, and our resolve against dangerous terrain and harsh environments.\nBe wary when you enter the wild places of this world. Beyond the comforting walls of your village, you are not the hunter. You are the prey.",
     "Features": [
