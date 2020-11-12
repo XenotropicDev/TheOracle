@@ -3,6 +3,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.GameCore.Oracle;
 
@@ -68,8 +69,13 @@ namespace TheOracle.BotCore
                 var reactionsToAdd = message.Reactions.Where(item => item.Value.IsMe).Select(item => item.Key);
                 var newMessage = await channel.SendMessageAsync(message.Content, message.IsTTS, message.Embeds.FirstOrDefault() as Embed);
 
-                await newMessage.AddReactionsAsync(reactionsToAdd.ToArray()).ConfigureAwait(false);
-                await message.DeleteAsync().ConfigureAwait(false);
+                foreach (var reaction in reactionsToAdd)
+                {
+                    await newMessage.AddReactionAsync(reaction);
+                    await Task.Delay(300); //Manual delay to avoid the rate limiter
+                }
+
+                await message.DeleteAsync();
             }).ConfigureAwait(false);
 
             return;
