@@ -33,7 +33,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Enter the Fray__, choose one (before rolling).\n✴ Maneuver: Add +1 and take +1 momentum on a strong hit.\n✴ Boost: Take +2 momentum on a hit."
+        "Text": "When you __Enter the Fray__, choose one (before rolling).\n  • Maneuver: Add +1 and take +1 momentum on a strong hit.\n  • Boost: Take +2 momentum on a hit."
       },
       {
         "Text": "When you make a desperate move to pursue a foe, escape a threat, or get in range, you may push your engines to their limit. If you do (decide after rolling), reroll any dice, add +1, and count a weak hit as a strong hit. Then, __Withstand Damage (-2)__."
@@ -67,7 +67,7 @@
     "AssetType": "Module",
     "AssetFields": [
       {
-        "Text": "When you aim your cannons and use them to __Strike__, choose one:\n✴ Strafing run: Add +1 and take +1 momentum on a hit\n✴ Focus fire: Mark extra progress on a hit, but suffer -1 momentum",
+        "Text": "When you aim your cannons and use them to __Strike__, choose one:\n  • Strafing run: Add +1 and take +1 momentum on a hit\n  • Focus fire: Mark extra progress on a hit, but suffer -1 momentum",
         "Enabled": true
       },
       {
@@ -192,7 +192,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Secure an Advantage__ or __Gather Information__ by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n✴ Controlled scan: Add +1\n✴ Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
+        "Text": "When you __Secure an Advantage__ or __Gather Information__ by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n  • Controlled scan: Add +1\n  • Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
       },
       {
         "Text": "When you __Enter the Fray__ against an ambush, or __Face Danger__ to detect a hidden threat, you may roll +integrity. If you do, reroll any dice and take +1 momentum on a hit."
@@ -233,7 +233,7 @@
         "Text": "When you make a move against a specific foe or threat to avoid detection, add +1. If you __Enter the Fray__ by ambushing an unaware foe, add +1 and mark progress on a strong hit."
       },
       {
-        "Text": "When you are poised to __Strike__ from hiding, you may roll +shadow. If you do, choose one (before rolling).\n✴ __Strike__ true: Reroll any dice.\n✴ __Strike__ hard: Mark extra progress on a hit. On a strong hit with a match, you remain totally undetected; take +2 momentum."
+        "Text": "When you are poised to __Strike__ from hiding, you may roll +shadow. If you do, choose one (before rolling).\n  • __Strike__ true: Reroll any dice.\n  • __Strike__ hard: Mark extra progress on a hit. On a strong hit with a match, you remain totally undetected; take +2 momentum."
       }
     ]
   },
@@ -564,7 +564,7 @@
         "Enabled": true
       },
       {
-        "Text": "If you __Gain Ground__ by moving into close- quarters against your foe, choose your approach.\n✴ Charge: Roll +heart, and mark extra progress on a strong hit.\n✴ Evade: Roll +edge, and take +1 momentum on a hit."
+        "Text": "If you __Gain Ground__ by moving into close- quarters against your foe, choose your approach.\n  • Charge: Roll +heart, and mark extra progress on a strong hit.\n  • Evade: Roll +edge, and take +1 momentum on a hit."
       },
       {
         "Text": "When you __Swear an Iron Vow__ and bind the oath to your blade, add +1. On a hit, take +2 momentum or +2 spirit."
@@ -580,7 +580,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Gather Information__ related to a bounty’s identity or location, add +2. On a strong hit with a match, you reveal a surprising aspect of the target; envision what you discover (__Ask the Oracle__ if unsure), and choose one.\n✴ Forge ahead: Reach a Waypoint and mark extra progress.\n✴ Cut and run: __Forsake Your Vow__ and mark two ticks on your bonds legacy track."
+        "Text": "When you __Gather Information__ related to a bounty’s identity or location, add +2. On a strong hit with a match, you reveal a surprising aspect of the target; envision what you discover (__Ask the Oracle__ if unsure), and choose one.\n  • Forge ahead: Reach a Waypoint and mark extra progress.\n  • Cut and run: __Forsake Your Vow__ and mark two ticks on your bonds legacy track."
       },
       {
         "Text": "When you __Take Decisive Action__ in a fight against a bounty target or their agents, you may reroll one challenge die."
@@ -597,7 +597,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Clash__ in close-quarters, you may draw on your momentum to gain advantage. If you do, __Lose Momentum (-2)__ and choose one (before rolling).\n✴ Offensive style: Count a weak hit as a strong hit.\n✴ Defensive style: Count a miss as weak hit."
+        "Text": "When you __Clash__ in close-quarters, you may draw on your momentum to gain advantage. If you do, __Lose Momentum (-2)__ and choose one (before rolling).\n  • Offensive style: Count a weak hit as a strong hit.\n  • Defensive style: Count a miss as weak hit."
       },
       {
         "Text": "When you __Enter the Fray__ already positioned in close-quarters against your foe, mark progress on a hit. On a strong hit with a match, mark extra progress."
@@ -649,7 +649,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you come across a wondrous sight or phenomenon, such as an extraordinary planet, majestic creature, or dazzling stellar object, choose one:\n✴ Find inspiration: Take +1 momentum\n✴ Soak it all in: __Hearten__; add +1, and take +1 momentum on a hit."
+        "Text": "When you come across a wondrous sight or phenomenon, such as an extraordinary planet, majestic creature, or dazzling stellar object, choose one:\n  • Find inspiration: Take +1 momentum\n  • Soak it all in: __Hearten__; add +1, and take +1 momentum on a hit."
       },
       {
         "Text": "When you __Secure an Advantage__ by studying a newfound place from a safe position, add +1 and take +1 momentum on a hit. On a strong hit with a match, take another +1 momentum and envision an unusual aspect of the site."
@@ -668,7 +668,7 @@
         "Text": "When you __Gather Information__ by studying or disassembling a piece of equipment or technology, or if you __Resupply__ by breaking down and repurposing an item, add +1 and take +1 momentum on a hit."
       },
       {
-        "Text": "When you __Face Danger__ to rig, modify, or enhance a device for a powerful but limited function, envision your approach and add +1. On a hit, the device is ready for use. One time only, if you make a move in a critical moment aided by the device, do all of the the following.\n✴ Reroll any dice\n✴ Take +1 momentum on a hit\n✴ On a strong hit, mark 1 tick on your quests legacy track"
+        "Text": "When you __Face Danger__ to rig, modify, or enhance a device for a powerful but limited function, envision your approach and add +1. On a hit, the device is ready for use. One time only, if you make a move in a critical moment aided by the device, do all of the the following.\n  • Reroll any dice\n  • Take +1 momentum on a hit\n  • On a strong hit, mark 1 tick on your quests legacy track"
       }
     ]
   },
@@ -678,7 +678,7 @@
     "Description": "If you wield a heavy ranged weapon...",
     "AssetFields": [
       {
-        "Text": "When you __Strike__, choose one (before rolling). \n✴ Make them hurt: On a hit, mark extra progress.\n✴ Pin them down: Add +1 and take +1 momentum on a hit.",
+        "Text": "When you __Strike__, choose one (before rolling). \n  • Make them hurt: On a hit, mark extra progress.\n  • Pin them down: Add +1 and take +1 momentum on a hit.",
         "Enabled": true
       },
       {
@@ -778,7 +778,7 @@
     "AssetType": "Path",
     "AssetFields": [
       {
-        "Text": "When you __Set a Course__, choose one.\n✴ Follow the fastest path: Take +2 momentum on a hit.\n✴ Follow the safest path: Add +1 On a strong hit with a match, you charted a new path during the journey; mark one tick on your discoveries legacy track.",
+        "Text": "When you __Set a Course__, choose one.\n  • Follow the fastest path: Take +2 momentum on a hit.\n  • Follow the safest path: Add +1 On a strong hit with a match, you charted a new path during the journey; mark one tick on your discoveries legacy track.",
         "Enabled": true
       },
       {
@@ -910,7 +910,7 @@
     "AssetType": "Path",
     "AssetFields": [
       {
-        "Text": "When you __Make a Connection__, add +1. If you roll a match, you have a history.\n✴ On a strong hit with a match, you once fought beside them, and they owe you a favor; mark progress on their track. When you __Forge a Bond__ with them, mark an extra tick on your bonds legacy track.\n✴ On a miss with a match, you once fought against them, and they hold a grudge.",
+        "Text": "When you __Make a Connection__, add +1. If you roll a match, you have a history.\n  • On a strong hit with a match, you once fought beside them, and they owe you a favor; mark progress on their track. When you __Forge a Bond__ with them, mark an extra tick on your bonds legacy track.\n  • On a miss with a match, you once fought against them, and they hold a grudge.",
         "Enabled": true
       },
       {
@@ -950,7 +950,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Sojourn__ in your home, choose one.\n✴ Make it quick: Instead of rolling, take an automatic weak hit\n✴ Stay a while: Add +1 and take +1 mometum on a hit"
+        "Text": "When you __Sojourn__ in your home, choose one.\n  • Make it quick: Instead of rolling, take an automatic weak hit\n  • Stay a while: Add +1 and take +1 mometum on a hit"
       },
       {
         "Text": "When you __Set a Course__ for home, you may reroll your action die if its value is less than your spirit."
