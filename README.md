@@ -66,10 +66,10 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
 * *Command Aliases:* `!Track`, `!Tracker`, `!Progress`
 * *Parameters:* Difficulty (optional), Description (optional)
 * *Reactions:*
-  1. :arrow_left: | Decreases the progress track by the difficulty amount.
-  2. :arrow_right: | Increases the progress track by the difficulty amount.
-  3. :heavy_check_mark: | Increases the progress track by a single full box (four ticks).
-  4. :game_die: | Rolls the action and challenge die for the progress tracker.
+ 1. :arrow_left: | Decreases the progress track by the difficulty amount.
+ 2. :arrow_right: | Increases the progress track by the difficulty amount.
+ 3. :heavy_check_mark: | Increases the progress track by a single full box (four ticks).
+ 4. :game_die: | Rolls the action and challenge die for the progress tracker.
 * *Sample usage:* `!ProgressTracker Epic Find the source of evil in the forest`
 
 ### `!PlayerCard`
@@ -77,21 +77,21 @@ Builds an interactive post for keeping track of player resources
 * *Command Aliases:* `!StatsCard`, `!CharacterSheet`, `!CharSheet`
 * *Parameters:* Character Name
 * *Reactions:*
-  1. :arrow_up_small: | Increases the active stat by one.
-  2. :arrow_down_small: | Decreases the active stat by one.
-  3. :heart: | Sets health as your active stat.
-  4. :school_satchel: | Sets supply as your active stat.
-  5. :sparkles: | Sets spirit as your active stat.
-  6. :airplane: | Sets momentum as your active stat.
-  7. :fire: | Burns/resets your momentum to 2.
+ 1. :arrow_up_small: | Increases the active stat by one.
+ 2. :arrow_down_small: | Decreases the active stat by one.
+ 3. :heart: | Sets health as your active stat.
+ 4. :school_satchel: | Sets supply as your active stat.
+ 5. :sparkles: | Sets spirit as your active stat.
+ 6. :airplane: | Sets momentum as your active stat.
+ 7. :fire: | Burns/resets your momentum to 2.
 
 ### `!InitiativeTracker`
 Builds an interactive post to keep track of players who do and don't have advantage.
 * *Command Aliases:* `!Initiative`, `!IniTracker`
 * *Parameters:* Description (optional)
 * *Reactions:*
-  1. :arrow_left: | Assigns/moves you to the Advantage track.
-  2. :arrow_right: | Assigns/moves you to the Disadvantage track.
+ 1. :arrow_left: | Assigns/moves you to the Advantage track.
+ 2. :arrow_right: | Assigns/moves you to the Disadvantage track.
 * *Sample usage:* `!PlayerCard Sneaky Archer`
 
 ### `!CreateNPC`
@@ -125,9 +125,9 @@ Creates a planet with a name (given or a random P-number), and the planet featur
 * *Command Aliases:* `!Planet`
 * *Parameters:* SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
 * *Reactions:*
-  1. 🔍 | Closer look
-  2. 🦖 | Reveals the planet's life (if any)
-  3. 🌍 | Reveals the planet's biomes (only displayed if the planet type can have biomes)
+ 1. 🔍 | Closer look
+ 2. 🦖 | Reveals the planet's life (if any)
+ 3. 🌍 | Reveals the planet's biomes (only displayed if the planet type can have biomes)
 * *Sample usage:* `!Planet Expanse Hoth`
 
 ### `!GenerateSettlement`
