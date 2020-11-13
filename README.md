@@ -135,7 +135,7 @@ Creates a Starforged settlement with a name (given, or random from the settlemen
 * *Command Aliases:* `!Settlement`
 * *Parameters:* SpaceRegion (optional), Name (optional)
 * *Reactions:*
- 1. ️🛠️ | Adds/reveals a settlement project
+  1. ️🛠️ | Adds/reveals a settlement project
 * *Sample usage:* `!Settlement Outlands Deep Space Nine`
 
 ### `!GenerateStarship`
@@ -143,7 +143,7 @@ Creates a starforged starship, *Note: this command is still a work in progress*
 * *Command Aliases:* `!Starship`, `!Spaceship`, `!Ship`
 * *Parameters:* SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
 * *Reactions:*
- 1. :exclamation: | Adds/reveals the starship's mission
+  1. :exclamation: | Adds/reveals the starship's mission
 * *Sample usage:* `!Starship Terminus Serenity`
 
 ### `!CreateNPC Starforged`
