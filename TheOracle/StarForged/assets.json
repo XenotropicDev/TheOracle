@@ -2,6 +2,10 @@
   {
     "Name": "Starship",
     "AssetType": "Command Vehicle",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -27,13 +31,17 @@
   {
     "Name": "Engine Upgrade",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "Your vehicle’s finely-tuned engines speed your travels. When you __Undertake an Expedition__ (+edge) and roll a strong hit with 6 on your action die, take +2 momentum.",
         "Enabled": true
       },
       {
-        "Text": "When you __Enter the Fray__, choose one (before rolling).\n✴ Maneuver: Add +1 and take +1 momentum on a strong hit.\n✴ Boost: Take +2 momentum on a hit."
+        "Text": "When you __Enter the Fray__, choose one (before rolling).\n  • Maneuver: Add +1 and take +1 momentum on a strong hit.\n  • Boost: Take +2 momentum on a hit."
       },
       {
         "Text": "When you make a desperate move to pursue a foe, escape a threat, or get in range, you may push your engines to their limit. If you do (decide after rolling), reroll any dice, add +1, and count a weak hit as a strong hit. Then, __Withstand Damage (-2)__."
@@ -43,6 +51,10 @@
   {
     "Name": "Expanded Hold",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "Your vehicle carries up to +3 cargo. When you earn +supply, you may convert it to +cargo. When you have access to your vehicle and make a move +supply, you may add +cargo. When you __Sacrifice Resources__, you may instead suffer -cargo for any portion of the cost.",
@@ -65,9 +77,13 @@
   {
     "Name": "Heavy Cannons",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
-        "Text": "When you aim your cannons and use them to __Strike__, choose one:\n✴ Strafing run: Add +1 and take +1 momentum on a hit\n✴ Focus fire: Mark extra progress on a hit, but suffer -1 momentum",
+        "Text": "When you aim your cannons and use them to __Strike__, choose one:\n  • Strafing run: Add +1 and take +1 momentum on a hit\n  • Focus fire: Mark extra progress on a hit, but suffer -1 momentum",
         "Enabled": true
       },
       {
@@ -81,6 +97,10 @@
   {
     "Name": "Internal Refit",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You have customized the cabins, common spaces, and environment of the ship to your needs. When you __Undertake an Expedition__ (dangerous or greater), reroll any dice for the first leg of your journey. On a hit, you and your allies may envision how you make yourself at home; if you do, take +2 momentum or +1 spirit.",
@@ -97,6 +117,10 @@
   {
     "Name": "Medbay",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you use your medbay to __Heal__ yourself or another patient, you may reroll your action die if its value is less than your vehicle’s integrity.",
@@ -113,6 +137,10 @@
   {
     "Name": "Missile Array",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You have +5 missiles. When you __Strike__ or __Clash__ with a missile attack, suffer -1 missile and mark extra progress on a hit. If you __Resupply__ in a place where your missiles can be replenished, you may exchange any earned +supply for +missile.",
@@ -135,6 +163,10 @@
   {
     "Name": "Overseer",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -154,6 +186,10 @@
   {
     "Name": "Reinforced Hull",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "Your vehicle is clad in iron. When you __Withstand Damage__, add +1. On a strong hit, take +1 momentum.",
@@ -170,6 +206,10 @@
   {
     "Name": "Research Lab",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you use your lab to __Secure an Advantage__ or __Gather Information__ through careful analysis or experimentation, add +1 and take +1 momentum on a hit.",
@@ -186,13 +226,17 @@
   {
     "Name": "Sensor Array",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "Your advanced sensors scan the paths ahead to help spot dangers. When you __Undertake an Expedition__ (+wits), and roll a 10 on only one challenge die, you may reroll it.",
         "Enabled": true
       },
       {
-        "Text": "When you __Secure an Advantage__ or __Gather Information__ by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n✴ Controlled scan: Add +1\n✴ Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
+        "Text": "When you __Secure an Advantage__ or __Gather Information__ by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n  • Controlled scan: Add +1\n  • Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
       },
       {
         "Text": "When you __Enter the Fray__ against an ambush, or __Face Danger__ to detect a hidden threat, you may roll +integrity. If you do, reroll any dice and take +1 momentum on a hit."
@@ -202,6 +246,10 @@
   {
     "Name": "Shields",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you raise your shields, roll +integrity or +wits, whichever is higher. On a strong hit, set your shields to +4. On a weak hit, make them +3. On a miss, you may make them +2 but must __Lose Momentum (-1)__. Then, if you __Withstand Damage__, ignore damage up to the value of your shields and suffer -1 shields. Raised shields only last for a few minutes. Once reduced to 0, shields cannot be raised again for an hour or so.",
@@ -224,6 +272,10 @@
   {
     "Name": "Stealth Refit",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "Your vehicle is equipped with stealth tech, and travels the hidden paths. When you __Undertake an Expedition__ (+shadow), and roll a 1 on your action die, you may reroll it.",
@@ -233,13 +285,17 @@
         "Text": "When you make a move against a specific foe or threat to avoid detection, add +1. If you __Enter the Fray__ by ambushing an unaware foe, add +1 and mark progress on a strong hit."
       },
       {
-        "Text": "When you are poised to __Strike__ from hiding, you may roll +shadow. If you do, choose one (before rolling).\n✴ __Strike__ true: Reroll any dice.\n✴ __Strike__ hard: Mark extra progress on a hit. On a strong hit with a match, you remain totally undetected; take +2 momentum."
+        "Text": "When you are poised to __Strike__ from hiding, you may roll +shadow. If you do, choose one (before rolling).\n  • __Strike__ true: Reroll any dice.\n  • __Strike__ hard: Mark extra progress on a hit. On a strong hit with a match, you remain totally undetected; take +2 momentum."
       }
     ]
   },
   {
     "Name": "Vehicle Bay",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You may purchase or upgrade a support vehicle for 1 less experience. When you __Repair__ a battered support vehicle, use 1 repair point (instead of 2).",
@@ -256,6 +312,10 @@
   {
     "Name": "Workshop",
     "AssetType": "Module",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Repair__ in the field, add +1.",
@@ -272,6 +332,10 @@
   {
     "Name": "Exosuit",
     "AssetType": "Support Vehicle",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -297,6 +361,10 @@
   {
     "Name": "Hoverbike",
     "AssetType": "Support Vehicle",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -322,6 +390,10 @@
   {
     "Name": "Rover",
     "AssetType": "Support Vehicle",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -347,6 +419,10 @@
   {
     "Name": "Shuttle",
     "AssetType": "Support Vehicle",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -372,6 +448,10 @@
   {
     "Name": "Snub Fighter",
     "AssetType": "Support Vehicle",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -398,6 +478,10 @@
   {
     "Name": "Combat Bot",
     "AssetType": "Companion",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -423,6 +507,10 @@
   {
     "Name": "Utility Bot",
     "AssetType": "Companion",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -448,6 +536,10 @@
   {
     "Name": "Glowcat",
     "AssetType": "Companion",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name"
     ],
@@ -473,6 +565,10 @@
   {
     "Name": "Ace",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Face Danger__ or __React Under Fire__ by guiding your vehicle through a hazard or out of harm’s way, add +1 and take +1 momentum on a hit.",
@@ -489,6 +585,10 @@
   {
     "Name": "Agent",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you make a move to break into a secure site, or to hack or manipulate a secure system, add +1 and take +1 momentum on a hit.",
@@ -505,6 +605,10 @@
   {
     "Name": "Archivist",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You are the bearer of a digital archive of specialized knowledge. When you __Secure an Advantage__ or __Gather Information__ using lore recalled from your studies, add +1. If you have ample time to search the archive, add +2. On a hit, envision the obscure but helpful knowledge you put to use (__Ask the Oracle__ if unsure), and take +1 momentum.",
@@ -521,6 +625,10 @@
   {
     "Name": "Armored",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You wear a finely crafted set of personal armor. When you __Face Danger__, __React Under Fire__, or __Clash__ against physical attacks or impact, you may put trust in your armor’s protection. If you do, set the value of your action die to 4 and roll only the challenge dice.",
@@ -537,6 +645,10 @@
   {
     "Name": "Augmented",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "One",
       "Two"
@@ -557,6 +669,10 @@
   {
     "Name": "Blademaster",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "If you wield a bladed weapon...",
     "AssetFields": [
       {
@@ -564,7 +680,7 @@
         "Enabled": true
       },
       {
-        "Text": "If you __Gain Ground__ by moving into close- quarters against your foe, choose your approach.\n✴ Charge: Roll +heart, and mark extra progress on a strong hit.\n✴ Evade: Roll +edge, and take +1 momentum on a hit."
+        "Text": "If you __Gain Ground__ by moving into close- quarters against your foe, choose your approach.\n  • Charge: Roll +heart, and mark extra progress on a strong hit.\n  • Evade: Roll +edge, and take +1 momentum on a hit."
       },
       {
         "Text": "When you __Swear an Iron Vow__ and bind the oath to your blade, add +1. On a hit, take +2 momentum or +2 spirit."
@@ -574,13 +690,17 @@
   {
     "Name": "Bounty Hunter",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Swear an Iron Vow__ (formidable or greater) to bring in a wanted fugitive, add +1. On a strong hit, __Reach a Milestone__. When you __Fulfill Your Vow__, mark two extra ticks on your quests legacy track.",
         "Enabled": true
       },
       {
-        "Text": "When you __Gather Information__ related to a bounty’s identity or location, add +2. On a strong hit with a match, you reveal a surprising aspect of the target; envision what you discover (__Ask the Oracle__ if unsure), and choose one.\n✴ Forge ahead: Reach a Waypoint and mark extra progress.\n✴ Cut and run: __Forsake Your Vow__ and mark two ticks on your bonds legacy track."
+        "Text": "When you __Gather Information__ related to a bounty’s identity or location, add +2. On a strong hit with a match, you reveal a surprising aspect of the target; envision what you discover (__Ask the Oracle__ if unsure), and choose one.\n  • Forge ahead: Reach a Waypoint and mark extra progress.\n  • Cut and run: __Forsake Your Vow__ and mark two ticks on your bonds legacy track."
       },
       {
         "Text": "When you __Take Decisive Action__ in a fight against a bounty target or their agents, you may reroll one challenge die."
@@ -590,6 +710,10 @@
   {
     "Name": "Brawler",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "If you are unarmed or fighting with a close- quarters weapon...",
     "AssetFields": [
       {
@@ -597,7 +721,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Clash__ in close-quarters, you may draw on your momentum to gain advantage. If you do, __Lose Momentum (-2)__ and choose one (before rolling).\n✴ Offensive style: Count a weak hit as a strong hit.\n✴ Defensive style: Count a miss as weak hit."
+        "Text": "When you __Clash__ in close-quarters, you may draw on your momentum to gain advantage. If you do, __Lose Momentum (-2)__ and choose one (before rolling).\n  • Offensive style: Count a weak hit as a strong hit.\n  • Defensive style: Count a miss as weak hit."
       },
       {
         "Text": "When you __Enter the Fray__ already positioned in close-quarters against your foe, mark progress on a hit. On a strong hit with a match, mark extra progress."
@@ -607,6 +731,10 @@
   {
     "Name": "Devotant",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Name",
       "Stat"
@@ -627,6 +755,10 @@
   {
     "Name": "Diplomat",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Swear an Iron Vow__ (formidable or greater) to resolve a dispute, negotiate an agreement, or gather allies, add +1. On a strong hit, __Reach a Milestone__. When you __Fulfill Your Vow__ and score a hit, also mark 2 ticks on your bonds legacy track.",
@@ -643,13 +775,17 @@
   {
     "Name": "Explorer",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Explore a Waypoint__, take +1 momentum on a hit. When you __Finish an Expedition__ and score a hit, mark one extra tick on your discoveries legacy track.",
         "Enabled": true
       },
       {
-        "Text": "When you come across a wondrous sight or phenomenon, such as an extraordinary planet, majestic creature, or dazzling stellar object, choose one:\n✴ Find inspiration: Take +1 momentum\n✴ Soak it all in: __Hearten__; add +1, and take +1 momentum on a hit."
+        "Text": "When you come across a wondrous sight or phenomenon, such as an extraordinary planet, majestic creature, or dazzling stellar object, choose one:\n  • Find inspiration: Take +1 momentum\n  • Soak it all in: __Hearten__; add +1, and take +1 momentum on a hit."
       },
       {
         "Text": "When you __Secure an Advantage__ by studying a newfound place from a safe position, add +1 and take +1 momentum on a hit. On a strong hit with a match, take another +1 momentum and envision an unusual aspect of the site."
@@ -659,6 +795,10 @@
   {
     "Name": "Gearhead",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Repair__ (+wits), add +1 and take +1 repair point or +1 momentum on a hit.",
@@ -668,17 +808,21 @@
         "Text": "When you __Gather Information__ by studying or disassembling a piece of equipment or technology, or if you __Resupply__ by breaking down and repurposing an item, add +1 and take +1 momentum on a hit."
       },
       {
-        "Text": "When you __Face Danger__ to rig, modify, or enhance a device for a powerful but limited function, envision your approach and add +1. On a hit, the device is ready for use. One time only, if you make a move in a critical moment aided by the device, do all of the the following.\n✴ Reroll any dice\n✴ Take +1 momentum on a hit\n✴ On a strong hit, mark 1 tick on your quests legacy track"
+        "Text": "When you __Face Danger__ to rig, modify, or enhance a device for a powerful but limited function, envision your approach and add +1. On a hit, the device is ready for use. One time only, if you make a move in a critical moment aided by the device, do all of the the following.\n  • Reroll any dice\n  • Take +1 momentum on a hit\n  • On a strong hit, mark 1 tick on your quests legacy track"
       }
     ]
   },
   {
     "Name": "Gunner",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "If you wield a heavy ranged weapon...",
     "AssetFields": [
       {
-        "Text": "When you __Strike__, choose one (before rolling). \n✴ Make them hurt: On a hit, mark extra progress.\n✴ Pin them down: Add +1 and take +1 momentum on a hit.",
+        "Text": "When you __Strike__, choose one (before rolling). \n  • Make them hurt: On a hit, mark extra progress.\n  • Pin them down: Add +1 and take +1 momentum on a hit.",
         "Enabled": true
       },
       {
@@ -695,6 +839,10 @@
   {
     "Name": "Gunslinger",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "If you wield a pistol...",
     "AssetFields": [
       {
@@ -712,6 +860,10 @@
   {
     "Name": "Healer",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you attempt to __Heal__, add +1. If you are treating someone other than yourself, take +1 spirit or +1 momentum on a hit.",
@@ -728,6 +880,10 @@
   {
     "Name": "Kinetic",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You are gifted with kinetic powers. By focusing, you may remotely, push, pull, lift, or constrict objects and beings that are about your size and weight or smaller. When you are in a risky situation and draw on your powers to make a move, add +2 and __Lose Momentum (-2)__.",
@@ -744,6 +900,10 @@
   {
     "Name": "Loyalist",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Aid Your Ally__, add +1 and take +1 momentum on a hit. This is in addition to the benefits taken by your ally. On a strong hit with a match, envision how this moment marks a breakthrough or milestone in your relationship; both of you may mark one tick on your bonds legacy track.",
@@ -760,6 +920,10 @@
   {
     "Name": "Naturalist",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Secure an Advantage__ or __Gather Information__ using your knowledge of lifeforms or planetside ecosystems, add +1 and take +1 momentum on a hit. On a strong hit with a match, you also confirm an obscure theory or reveal a surprising aspect of the encounter; mark one tick on your discoveries legacy track.",
@@ -776,9 +940,13 @@
   {
     "Name": "Navigator",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
-        "Text": "When you __Set a Course__, choose one.\n✴ Follow the fastest path: Take +2 momentum on a hit.\n✴ Follow the safest path: Add +1 On a strong hit with a match, you charted a new path during the journey; mark one tick on your discoveries legacy track.",
+        "Text": "When you __Set a Course__, choose one.\n  • Follow the fastest path: Take +2 momentum on a hit.\n  • Follow the safest path: Add +1 On a strong hit with a match, you charted a new path during the journey; mark one tick on your discoveries legacy track.",
         "Enabled": true
       },
       {
@@ -792,6 +960,10 @@
   {
     "Name": "Scavenger",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Resupply__ or Gather Informtation by scavenging a wreck, ruin, or abandoned site, add +1 and take +1 momentum on a hit. On a strong hit with a match, you also find something of unique value, significance, or function; envision the nature of this discovery, take +2 momentum, and mark two ticks on your discoveries legacy track.",
@@ -808,6 +980,10 @@
   {
     "Name": "Scoundrel",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Make a Connection__ to search out a new connection, you may roll +shadow. If you do, reroll any dice on a miss and envision how your reputation or underworld contacts lead you to a disreputable connection.",
@@ -824,6 +1000,10 @@
   {
     "Name": "Sharpshooter",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "If you wield a rifle...",
     "AssetFields": [
       {
@@ -841,6 +1021,10 @@
   {
     "Name": "Slayer",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you make a move to investigate, stalk, or track a hostile creature, add +1 and take +1 momentum on a hit.",
@@ -857,6 +1041,10 @@
   {
     "Name": "Tech",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you make a move to configure, optimize, hack, or disrupt an electronic system, add +1. On a weak hit, you can choose to press your luck. If you do, reroll all dice and add +2 (instead of +1).",
@@ -873,6 +1061,10 @@
   {
     "Name": "Trader",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "When you __Resupply__ by bartering, add +1 and take +1 momentum on a hit. On a strong hit with a match, you make out like a bandit and take another +1 momentum or +1 supply.",
@@ -889,6 +1081,10 @@
   {
     "Name": "Vestige",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "InputFields": [
       "Last of"
     ],
@@ -908,9 +1104,13 @@
   {
     "Name": "Veteran",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
-        "Text": "When you __Make a Connection__, add +1. If you roll a match, you have a history.\n✴ On a strong hit with a match, you once fought beside them, and they owe you a favor; mark progress on their track. When you __Forge a Bond__ with them, mark an extra tick on your bonds legacy track.\n✴ On a miss with a match, you once fought against them, and they hold a grudge.",
+        "Text": "When you __Make a Connection__, add +1. If you roll a match, you have a history.\n  • On a strong hit with a match, you once fought beside them, and they owe you a favor; mark progress on their track. When you __Forge a Bond__ with them, mark an extra tick on your bonds legacy track.\n  • On a miss with a match, you once fought against them, and they hold a grudge.",
         "Enabled": true
       },
       {
@@ -924,6 +1124,10 @@
   {
     "Name": "Voidborn",
     "AssetType": "Path",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "AssetFields": [
       {
         "Text": "You are accsustomed to life in the limitless void. When you are in space (or in a spacebound vehicle), increase your momentum reset by 1. When you are on a planetary surface or within its atmosphere, you must instead count this asset as a debility (reduce your max momentum and reset by 1).",
@@ -940,6 +1144,10 @@
   {
     "Name": "Home",
     "AssetType": "Deed",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "Once you fill the third box on your bonds legacy track, you may take this asset at no cost.",
     "InputFields": [
       "Name"
@@ -950,7 +1158,7 @@
         "Enabled": true
       },
       {
-        "Text": "When you __Sojourn__ in your home, choose one.\n✴ Make it quick: Instead of rolling, take an automatic weak hit\n✴ Stay a while: Add +1 and take +1 mometum on a hit"
+        "Text": "When you __Sojourn__ in your home, choose one.\n  • Make it quick: Instead of rolling, take an automatic weak hit\n  • Stay a while: Add +1 and take +1 mometum on a hit"
       },
       {
         "Text": "When you __Set a Course__ for home, you may reroll your action die if its value is less than your spirit."
@@ -960,6 +1168,10 @@
   {
     "Name": "Revenant",
     "AssetType": "Deed",
+    "Source": {
+      "Name": "Starforged Playtest Assets",
+      "Version": "1b-091720"
+    },
     "Description": "Once you __Face Death__ and live to tell the tale...",
     "AssetFields": [
       {

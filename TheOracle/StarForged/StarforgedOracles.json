@@ -1,5 +1,9 @@
 [{
     "Name": "Action",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Type": "paired",
     "Pair": "Theme",
     "Game": "Starforged",
@@ -109,6 +113,10 @@
 },
 {
     "Name": "Theme",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Type": "paired",
     "Pair": "Action",
     "Game": "Starforged",
@@ -218,6 +226,10 @@
 },
 {
     "Name": "Descriptor",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Type": "paired",
     "Pair": "Focus",
     "Game": "Starforged",
@@ -321,11 +333,15 @@
         { "Chance": 97, "Description": "Untamed"},
         { "Chance": 98, "Description": "Valuable"},
         { "Chance": 99, "Description": "Veiled"},
-        { "Chance": 100, "Description": "Violent"}       
+        { "Chance": 100, "Description": "Violent"}
     ]
 },
 {
     "Name": "Focus",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Type": "paired",
     "Pair": "Descriptor",
     "Game": "Starforged",
@@ -430,11 +446,15 @@
         { "Chance": 97, "Description": "Weapon"},
         { "Chance": 98, "Description": "World"},
         { "Chance": 99, "Description": "Wreckage"},
-        { "Chance": 100, "Description": "Zone"}      
+        { "Chance": 100, "Description": "Zone"}
     ]
 },
 {
     "Name": "Space Sighting Terminus",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Aliases": ["sst"],
     "Game": "Starforged",
     "Oracles": [
@@ -452,6 +472,10 @@
 },
 {
     "Name": "Space Sighting Outlands",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Aliases": ["sso"],
     "Game": "Starforged",
     "Oracles": [
@@ -469,6 +493,10 @@
 },
 {
     "Name": "Space Sighting Expanse",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Aliases": ["sse"],
     "Game": "Starforged",
     "Oracles": [
@@ -486,25 +514,33 @@
 },
 {
     "Name": "Stellar Object",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Oracles": [
-        { "Chance": 20, "Description": "Smoldering red star"},  
-        { "Chance": 35, "Description": "Glowing orange star"},  
-        { "Chance": 50, "Description": "Burning yellow star"},  
-        { "Chance": 55, "Description": "Blazing blue star"},  
-        { "Chance": 65, "Description": "Young star incubating in a molecular cloud"},  
-        { "Chance": 75, "Description": "White dwarf shining with spectral light"},  
-        { "Chance": 79, "Description": "Corrupted star radiating with unnatural light"},  
-        { "Chance": 82, "Description": "Neutron star surrounded by intense magnetic fields"},  
-        { "Chance": 85, "Description": "Two stars in close orbit connected by fiery tendrils of energy"},  
-        { "Chance": 88, "Description": "Black hole allows nothing to escape—not even light"},  
-        { "Chance": 98, "Description": "Hypergiant star generating turbulent solar winds"},  
-        { "Chance": 99, "Description": "Artificial star constructed by a long-dead civilization"},  
+        { "Chance": 20, "Description": "Smoldering red star"},
+        { "Chance": 35, "Description": "Glowing orange star"},
+        { "Chance": 50, "Description": "Burning yellow star"},
+        { "Chance": 55, "Description": "Blazing blue star"},
+        { "Chance": 65, "Description": "Young star incubating in a molecular cloud"},
+        { "Chance": 75, "Description": "White dwarf shining with spectral light"},
+        { "Chance": 79, "Description": "Corrupted star radiating with unnatural light"},
+        { "Chance": 82, "Description": "Neutron star surrounded by intense magnetic fields"},
+        { "Chance": 85, "Description": "Two stars in close orbit connected by fiery tendrils of energy"},
+        { "Chance": 88, "Description": "Black hole allows nothing to escape—not even light"},
+        { "Chance": 98, "Description": "Hypergiant star generating turbulent solar winds"},
+        { "Chance": 99, "Description": "Artificial star constructed by a long-dead civilization"},
         { "Chance": 100, "Description": "Unstable star showing signs of impending supernova"}
     ]
 },
 {
     "Name": "Cosmic Matter",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Oracles": [
         { "Chance": 40, "Description": "[Asteroids]"},
@@ -518,6 +554,10 @@
 },
 {
     "Name": "Asteroid Type",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Type": "paired",
     "Pair": "Asteroid Material",
     "Aliases": ["Asteroids"],
@@ -530,6 +570,10 @@
 },
 {
     "Name": "Asteroid Material",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Type": "paired",
     "Pair": "Asteroid Type",
     "Game": "Starforged",
@@ -543,6 +587,10 @@
 },
 {
     "Name": "Settlement Location",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases":["Settlement Loc", "SFSL", "SLoc"],
     "Oracles": [
@@ -553,6 +601,10 @@
 },
 {
     "Name": "Settlement Population Terminus",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["spt"],
     "Oracles": [
@@ -565,6 +617,10 @@
 },
 {
     "Name": "Settlement Population Outlands",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["spo"],
     "Oracles": [
@@ -577,6 +633,10 @@
 },
 {
     "Name": "Settlement Population Expanse",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["spe"],
     "Oracles": [
@@ -589,6 +649,10 @@
 },
 {
     "Name": "Settlement First Look",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["sfl"],
     "Oracles": [
@@ -617,6 +681,10 @@
 },
 {
     "Name": "Settlement Initial Contact",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["sic"],
     "Oracles": [
@@ -635,6 +703,10 @@
 },
 {
     "Name": "Settlement Authority",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["sa", "Authority"],
     "Oracles": [
@@ -649,6 +721,10 @@
 },
 {
     "Name": "Settlement Projects",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["sp", "Settlement Project"],
     "Oracles": [
@@ -689,6 +765,10 @@
 },
 {
     "Name": "Settlement Trouble",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["st"],
     "Oracles": [
@@ -726,6 +806,10 @@
 },
 {
     "Name": "Settlement Name",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["sn"],
     "Oracles": [
@@ -833,6 +917,10 @@
 },
 {
     "Name": "Creature Environment",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["ce"],
     "Oracles": [
@@ -845,6 +933,10 @@
 },
 {
     "Name": "Creature Scale",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["cs"],
     "Oracles": [
@@ -859,6 +951,10 @@
 },
 {
     "Name": "Ultra-scale",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["us", "Ultra Scale"],
     "Oracles": [
@@ -869,6 +965,10 @@
 },
 {
     "Name": "Basic Form Void",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["bfv"],
     "Oracles": [
@@ -894,6 +994,10 @@
 },
 {
     "Name": "Basic Form Interior",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["bfi"],
     "Oracles": [
@@ -919,6 +1023,10 @@
 },
 {
     "Name": "Basic Form Land",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["bfland"],
     "Oracles": [
@@ -944,6 +1052,10 @@
 },
 {
     "Name": "Basic Form Liquid",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["bfliquid"],
     "Oracles": [
@@ -969,6 +1081,10 @@
 },
 {
     "Name": "Basic Form Air",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["bfa", "bfair"],
     "Oracles": [
@@ -994,6 +1110,10 @@
 },
 {
     "Name": "Creature First Look",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["cfl"],
     "Oracles": [
@@ -1051,6 +1171,10 @@
 },
 {
     "Name": "Creature Encountered Behavior",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["ceb", "Creature Behavior"],
     "Oracles": [
@@ -1079,6 +1203,10 @@
 },
 {
     "Name": "Creature Revealed Aspects",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["cra", "Creature Revealed Aspect"],
     "Oracles": [
@@ -1136,6 +1264,10 @@
 },
 {
     "Name": "Pay The Price",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Star Price", "Sptp"],
     "Oracles": [
@@ -1163,6 +1295,10 @@
 },
 {
     "Name": "Starship Type",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Type", "Starship Types"],
     "Oracles": [
@@ -1191,6 +1327,10 @@
 },
 {
     "Name": "Fleet",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Fleet", "Starship Fleet"],
     "Oracles": [
@@ -1206,6 +1346,10 @@
 },
 {
     "Name": "Starship Initial Contact",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Contact", "Starship Contact"],
     "Oracles": [
@@ -1225,6 +1369,10 @@
 },
 {
     "Name": "Starship First Look",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship First Look", "Ship Look"],
     "Oracles": [
@@ -1254,6 +1402,10 @@
 },
 {
     "Name": "Starship Mission Terminus",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Mission Terminus", "Terminus Mission"],
     "Oracles": [
@@ -1293,6 +1445,10 @@
 },
 {
     "Name": "Starship Mission Outlands",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Mission Outlands", "Outlands Mission"],
     "Oracles": [
@@ -1332,6 +1488,10 @@
 },
 {
     "Name": "Starship Mission Expanse",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Mission Expanse", "Expanse Mission"],
     "Oracles": [
@@ -1371,6 +1531,10 @@
 },
 {
     "Name": "Starship Name",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Ship Name"],
     "Oracles": [
@@ -1398,6 +1562,10 @@
 },
 {
     "Name": "Character First Look",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Char First", "Char Look"],
     "Oracles": [
@@ -1435,6 +1603,10 @@
 },
 {
     "Name": "Disposition",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Dispositions", "Character Disposition", "Char Disposition", "Char Disp"],
     "Oracles": [
@@ -1454,6 +1626,10 @@
 },
 {
     "Name": "Character Role",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Char Role"],
     "Oracles": [
@@ -1509,6 +1685,10 @@
 },
 {
     "Name": "Character Goal",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Char Goal"],
     "Oracles": [
@@ -1556,6 +1736,10 @@
 },
 {
     "Name": "Character Aspects",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Character Aspect", "Char Aspects", "Char Aspect", "Aspects", "Aspect"],
     "Oracles": [
@@ -1663,6 +1847,10 @@
 },
 {
     "Name": "Make A Discovery",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Discovery"],
     "Oracles": [
@@ -1693,6 +1881,10 @@
 },
 {
     "Name": "Confront Chaos",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Chaos"],
     "Oracles": [
@@ -1723,6 +1915,10 @@
 },
 {
     "Name": "Decisive Action Cost",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Decisive Action", "Decisive"],
     "Oracles": [
@@ -1736,6 +1932,10 @@
 },
 {
     "Name": "Endure Harm Miss",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Endure Harm", "Harm"],
     "Oracles": [
@@ -1748,6 +1948,10 @@
 },
 {
     "Name": "Endure Stress Miss",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Endure Stress","Stress"],
     "Oracles": [
@@ -1759,6 +1963,10 @@
 },
 {
     "Name": "Withstand Damage Miss",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Withstand Damage", "Damage"],
     "Oracles": [
@@ -1774,6 +1982,10 @@
 },
 {
     "Name": "Character Name",
+    "Source": {
+      "Name": "Starforged Playtest Oracles",
+      "Version": "091420"
+    },
     "Game": "Starforged",
     "Aliases": ["Char Name"],
     "Oracles": [

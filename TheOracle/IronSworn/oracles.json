@@ -1,6 +1,11 @@
 [{
     "Name": "Action",
     "Game": "Ironsworn",
+    "Description": "Use this table to inspire a discovery, event, character goal, or situation. A roll on this table can be combined with a Theme roll to provide an action and a subject. Then, interpret the result based on the context of the question and your current situation.",
+    "Source":{
+    	"Name": "Ironsworn Rulebook",
+      "Page": "174"
+    },
     "Pair": "Theme",
     "Aliases": ["actions", "Iron Action", "IAction"],
     "Oracles": [
@@ -109,6 +114,11 @@
 {
     "Name": "Theme",
     "Game": "Ironsworn",
+    "Description": "As with the Action oracle, this is an interpretative table which you can use to answer questions or generate new situations. Combined, the Action and Theme tables provide creative prompts suitable for most situations and questions. In fact, with some creative interpretations, it’s entirely possible to play with only these two tables.",
+    "Source":{
+    	"Name": "Ironsworn Rulebook",
+      "Page": "174"
+    },
     "Pair": "Action",
     "Aliases": ["themes", "Iron Theme", "ITheme"],
     "Oracles":[
@@ -217,6 +227,11 @@
 {
     "Name": "Region",
     "Game": "Ironsworn",
+    "Description": "Use this oracle when you want to randomly select a region with the Ironlands.",
+    "Source":{
+    	"Name": "Ironsworn Rulebook",
+      "Page": "176"
+    },
     "Aliases": ["regions"],
     "Oracles":[
         { "Chance": 12, "Description": "Barrier Islands"},
@@ -234,6 +249,11 @@
 {
     "Name": "Location",
     "Game": "Ironsworn",
+    "Description": "Use this oracle when traveling to generate a point-of-interest or to answer a question about a place where someone or something can be found.",
+    "Source":{
+    	"Name": "Ironsworn Rulebook",
+      "Page": "176"
+    },
     "Aliases": ["loc", "locations"],
     "Oracles":[
         { "Chance": 1, "Description": "Hideout"},
@@ -292,6 +312,11 @@
 {
     "Name": "Coastal Waters Location",
     "Game": "Ironsworn",
+    "Description": "Use this oracle to identify a point-of-interest or destination when you are traveling by ship or boat along the coast.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "176"
+    },
     "Aliases": ["CWL"],
     "Oracles":[
         { "Chance": 1, "Description": "Fleet"},
@@ -316,7 +341,12 @@
 {
     "Name": "Location Descriptors",
     "Game": "Ironsworn",
-    "Aliases": ["ld"],
+    "Description": "Use this oracle to add detail to the Location or Coastal Waters Location oracles, or by itself to generate a description of a location. Roll more than once for extra detail.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "177"
+    },
+    "Aliases": ["ld", "location descriptor"],
     "Oracles":[
         { "Chance": 2, "Description": "High"},
         { "Chance": 4, "Description": "Remote"},
@@ -373,6 +403,11 @@
 {
     "Name": "Settlement Trouble",
     "Game": "Ironsworn",
+    "Description": "Use this table to generate a narrative hook for a problem faced by a community. This oracle can help inspire a vow for your character or serve as a prompt for a trouble you encounter when you interact with a settlement. Use other oracles, as appropriate, to help flesh out the answer.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "181"
+    },
     "Aliases": ["Trouble"],
     "Oracles":[
         { "Chance": 2, "Description": "Outsiders rejected"},
@@ -424,9 +459,14 @@
     ]
 },
 {
-    "Name": "NPC Role",
+    "Name": "Character Role",
     "Game": "Ironsworn",
-    "Aliases": ["NPCR", "NPC Roles"],
+    "Description": "Use this oracle to define the background for a character, or to generate a random encounter",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "182"
+    },
+    "Aliases": ["NPCR", "NPC Roles", "NPC Role", "role", "roles"],
     "Oracles":[
         { "Chance": 2, "Description": "Criminal"},
         { "Chance": 4, "Description": "Healer"},
@@ -461,9 +501,14 @@
     ]
 },
 {
-    "Name": "Goals",
+    "Name": "Character Goal",
     "Game": "Ironsworn",
-    "Aliases": ["Goal"],
+    "Description": "Use this oracle to define the primary motivation of an NPC or a faction. It can also be used to kick-off a personal quest for your own character.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "182"
+    },
+    "Aliases": ["Goal", "Goals"],
     "Oracles":[
         { "Chance": 3, "Description": "Obtain an object"},
         { "Chance": 6, "Description": "Make an agreement"},
@@ -501,9 +546,14 @@
     ]
 },
 {
-    "Name": "NPC Descriptors",
+    "Name": "Character Descriptor",
     "Game": "Ironsworn",
-    "Aliases": ["NPCD"],
+    "Description": "Use this oracle to help flesh out a character’s personality or physical characteristics. Roll more than once to add additional detail.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "183"
+    },
+    "Aliases": ["NPCD", "NPC Descriptors"],
     "Oracles":[
         { "Chance": 1, "Description": "Stoic"},
         { "Chance": 2, "Description": "Attractive"},
@@ -610,6 +660,11 @@
 {
     "Name": "Ironlander Names",
     "Game": "Ironsworn",
+    "Description": "Use this oracle to quickly generate a name for an Ironlander character. Roll on either table. Surnames are not used in the Ironlands and names are often gender-neutral.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "184"
+    },
     "Aliases": ["Ironlander Name","Ironlander", "Iron Name", "IName"],
     "d": "200",
     "Oracles":[
@@ -818,6 +873,11 @@
 {
     "Name": "Elf Names",
     "Game": "Ironsworn",
+    "Description": "Use this oracle to generate a name for an elf character. To learn more about elves in the Ironlands, see page 142.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "186"
+    },
     "Aliases": ["elf"],
     "Oracles":[
         { "Chance": 2, "Description": "Arsula"},
@@ -873,8 +933,13 @@
     ]
 },
 {
-    "Name": "Combat Actions",
+    "Name": "Combat Action",
     "Game": "Ironsworn",
+    "Description": "Use this oracle to help inspire an action for an NPC in combat. When you’re not sure what your foe does next, particularly when they have initiative, roll on this table and interpret the result as appropriate to your foe and the situation.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "188"
+    },
     "Aliases": ["Combat Actions"],
     "Oracles":[
         { "Chance": 3, "Description": "Compel a surrender."},
@@ -899,6 +964,11 @@
 {
     "Name": "Mystic Backlash",
     "Game": "Ironsworn",
+    "Description": "Those who deal in magic may find themselves at the mercy of chaos. This oracle can supplement, or replace, the *Pay the Price* table when resolving the outcome of a failed ritual or other negative interaction with mystical forces. Use this oracle in dramatic moments, or to introduce an unexpected outcome triggered by a match.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "189"
+    },
     "Aliases": ["Backlash"],
     "Oracles":[
         { "Chance": 5, "Description": "The ritual has the opposite affect."},
@@ -926,6 +996,11 @@
 {
     "Name": "Major Plot Twist",
     "Game": "Ironsworn",
+    "Description": "Use this oracle to introduce a narrative surprise or revelation. Most of these results have a negative implication, and can be used to resolve a match at a crucial moment in your story. In particular, this is an effective tool to leverage when you make a move with matched 10’s on the challenge dice.\n\nThis oracle offers similar results to the *Pay the Price* table, but is more focused on dramatic events tied to your current quests.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "190"
+    },
     "Aliases": ["MPT", "twist"],
     "Oracles":[
         { "Chance": 2, "Description": "It was all a diversion."},
@@ -953,7 +1028,12 @@
 {
     "Name": "Challenge Rank",
     "Game": "Ironsworn",
-    "Aliases": ["CR"],
+    "Description": "Use this oracle when you want to randomly determine the challenge rank of a quest, journey, or fight.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "190"
+    },
+    "Aliases": ["CR", "rank"],
     "Oracles":[
         { "Chance": 20, "Description": "Troublesome"},
         { "Chance": 55, "Description": "Dangerous"},
@@ -1011,8 +1091,12 @@
     ]
 },
 {
-    "Name": "Pay The Price",
+    "Name": "Pay the Price",
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "105"
+    },
     "Aliases": ["ptp", "Iron Price"],
     "Oracles":[
         { "Chance": 2, "Description": "Roll again and apply that result but make it worse. If you roll this result yet again, think of something dreadful that changes the course of your quest (Ask the Oracle if unsure) and make it happen."},
@@ -1034,10 +1118,15 @@
     ]
 },
 {
-    "Name": "Settlement Names",
+    "Name": "Settlement Name",
     "Game": "Ironsworn",
+    "Description": "Ask this oracle for a thematic name for an Ironlander settlement. Roll once for the category, and again to pick from the examples. Alternatively, just roll for the category and come up with a name that fits the theme. In either case, consider the meaning of the name and how it impacts this settlement’s surroundings, livelihood, culture, or history. This may, in turn, inspire narrative hooks and opportunities for new quests.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "178"
+    },
     "Type": "Nested",
-    "Aliases": ["sn", "Settlement Name"],
+    "Aliases": ["sn", "Settlement Names"],
     "Oracles":[
         {
             "Chance" : 15,
@@ -1160,15 +1249,24 @@
     ]
 },
 {
-    "Name": "Quick Settlement Names",
+    "Name": "Quick Settlement Name",
     "Game": "Ironsworn",
+    "Description": "Use this oracle as a simpler alternative for settlement names. Once you have your answer, envision what feature, person, or event inspired the name.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "180"
+    },
     "ShowResult": false,
-    "Aliases": ["qsn", "Quick Settlement Name"],
+    "Aliases": ["qsn", "Quick Settlement Names"],
     "Oracles":[{"Chance": 100, "Description": "[QuickPrefix/QuickSuffix]"}]
 },
 {
     "Name": "Settlement Name Prefix",
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "180"
+    },
     "Aliases": ["QuickPrefix"],
     "DisplayMode": "Inline",
     "Oracles":[
@@ -1202,6 +1300,10 @@
 {
     "Name": "Settlement Name Suffix",
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "180"
+    },
     "Aliases": ["QuickSuffix"],
     "DisplayMode": "Inline",
     "Oracles":[
@@ -1235,7 +1337,12 @@
 {
     "Name": "Giant Names",
     "Game": "Ironsworn",
-    "Aliases": ["Giant"],
+    "Description": "Use this oracle for other firstborn characters, including giants, varou, and trolls.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "187"
+    },
+    "Aliases": ["Giant", "Giant Name"],
     "Oracles":[
         { "Chance": 4, "Description": "Chony"},
         { "Chance": 8, "Description": "Banda"},
@@ -1267,6 +1374,11 @@
 {
     "Name": "Varou Names",
     "Game": "Ironsworn",
+    "Description": "Use this oracle for other firstborn characters, including giants, varou, and trolls.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "187"
+    },
     "Aliases": ["Varou", "Varou Name"],
     "Oracles":[
         { "Chance": 4, "Description": "Vata"},
@@ -1299,6 +1411,11 @@
 {
     "Name": "Troll Names",
     "Game": "Ironsworn",
+    "Description": "Use this oracle for other firstborn characters, including giants, varou, and trolls.",
+    "Source":{
+      "Name": "Ironsworn Rulebook",
+      "Page": "187"
+    },
     "Aliases": ["Troll", "Troll Name"],
     "Oracles":[
         { "Chance": 4, "Description": "Rattle"},
@@ -1332,6 +1449,11 @@
     "Name": "Feature Aspect",
     "Pair": "Feature Focus",
     "Game": "Ironsworn",
+    "Description": "Use the Aspect and Focus oracles to generate the details of a location or event within a site, or to answer questions about the site’s nature or history.\n\nThe basic function of these oracles is similar to the Action and Theme oracles in *Ironsworn Core*. They are abstract word prompts you can interpret as appropriate to the current situation and setting.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "204"
+    },
     "Aliases": ["Aspect"],
     "Oracles": [
         { "Chance": 2, "Description": "Blocked"},
@@ -1390,6 +1512,11 @@
     "Name": "Feature Focus",
     "Pair": "Feature Aspect",
     "Game": "Ironsworn",
+    "Description": "Use the Aspect and Focus oracles to generate the details of a location or event within a site, or to answer questions about the site’s nature or history.\n\nThe basic function of these oracles is similar to the Action and Theme oracles in *Ironsworn Core*. They are abstract word prompts you can interpret as appropriate to the current situation and setting.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "205"
+    },
     "Alias": "Focus",
     "Oracles": [
         { "Chance": 2, "Description": "Attack"},
@@ -1448,6 +1575,11 @@
     "Name": "Site Name Format",
     "Aliases": ["site name", "delve name"],
     "Game": "Ironsworn",
+    "Description": "To generate a name for a site, first roll on the Format table above. Then, fill in the blanks by using the __Description__, __Detail__, __Namesake__, and __Place__ oracles.\n\nIf the form of a particular word doesn’t work, try making it plural instead of singular, or vice-versa.\n\nIf you already know the theme and domain, you can pick from the tables instead of rolling. If not, you can use these oracles to help define those aspects of the site. Use the Place oracle to roll for a domain, and let the Description and Detail oracles inform your selection of a theme.\n\nThe site’s name might be known in your world, or it could just be an evocative label you use to understand its history and nature.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "206"
+    },
     "Oracles": [
         { "Chance": 25, "Description": "[Description] {Place}"},
         { "Chance": 50, "Description": "{Place} of [Detail]"},
@@ -1462,6 +1594,11 @@
     "Name": "Site Name Description",
     "Aliases": ["description", "site description"],
     "Game": "Ironsworn",
+    "Description": "Even without giving a site a name, you can use the Description and Detail oracles to help flesh out the theme and nature of that place.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "207"
+    },
     "Oracles": [
         { "Chance": 2, "Description": "Deep"},
         { "Chance": 4, "Description": "Tainted"},
@@ -1519,6 +1656,10 @@
     "Name": "Site Name Detail",
     "Aliases": ["detail", "site detail"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "208"
+    },
     "Oracles":
     [
       { "Chance": 2, "Description": "Blight"},
@@ -1577,6 +1718,11 @@
     "Name": "Site Name Namesake",
     "Aliases": ["namesake", "site namesake"],
     "Game": "Ironsworn",
+    "Description": "You may also use your preferred name randomizer to generate a Namesake for your site.\n\nIf you want to add details for the Namesake, use the Character oracles in *Ironsworn Core*. This may help inspire a deeper understanding of the history of the site.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "209"
+    },
     "Oracles":
     [
       { "Chance": 2, "Description": "Breckon"},
@@ -1635,6 +1781,10 @@
     "Name": "Site Name Place Barrow",
     "Aliases": ["barrow place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "210"
+    },
     "Oracles":
     [
       { "Chance": 16, "Description": "Sepulcher"},
@@ -1649,6 +1799,10 @@
     "Name": "Site Name Place Cavern",
     "Aliases": ["cavern place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "210"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Abyss"},
@@ -1667,6 +1821,10 @@
     "Name": "Site Name Place Frozen Cavern",
     "Aliases": ["frozen cavern place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "210"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Abyss"},
@@ -1685,6 +1843,10 @@
     "Name": "Site Name Place Icereach",
     "Aliases": ["icereach place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "210"
+    },
     "Oracles":
     [
       { "Chance": 16, "Description": "Icemark"},
@@ -1699,6 +1861,10 @@
     "Name": "Site Name Place Mine",
     "Aliases": ["mine place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "210"
+    },
     "Oracles":
     [
       { "Chance": 16, "Description": "Lode"},
@@ -1713,6 +1879,10 @@
     "Name": "Site Name Place Pass",
     "Aliases": ["pass place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "210"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Cliffs"},
@@ -1731,6 +1901,10 @@
     "Name": "Site Name Place Ruin",
     "Aliases": ["ruin place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "211"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Citadel"},
@@ -1749,6 +1923,10 @@
     "Name": "Site Name Place Sea Cave",
     "Aliases": ["sea cave place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "211"
+    },
     "Oracles":
     [
       { "Chance": 16, "Description": "Caves"},
@@ -1763,6 +1941,10 @@
     "Name": "Site Name Place Shadowfen",
     "Aliases": ["shadowfen place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "211"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Bog"},
@@ -1781,6 +1963,10 @@
     "Name": "Site Name Place Stronghold",
     "Aliases": ["stronghold place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "211"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Bastion"},
@@ -1799,6 +1985,10 @@
     "Name": "Site Name Place Tanglewood",
     "Aliases": ["tanglewood place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "211"
+    },
     "Oracles":
     [
       { "Chance": 11, "Description": "Weald"},
@@ -1815,6 +2005,10 @@
     "Name": "Site Name Place Underkeep",
     "Aliases": ["underkeep place"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "211"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Catacomb"},
@@ -1834,6 +2028,11 @@
     "Pair": "Site Nature Domain",
     "Aliases": ["site theme", "delve theme"],
     "Game": "Ironsworn",
+    "Description": "Use these oracles to generate a random theme and domain for a site. Alternatively, you can print out the theme and domain cards and draw a random result. Or use the Site Name oracles to inspire the selection of a theme and domain.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "212"
+    },
     "Oracles":
     [
       { "Chance": 11, "Description": "Ancient"},
@@ -1851,6 +2050,11 @@
     "Pair": "Site Nature Theme",
     "Aliases": ["site domain", "delve theme"],
     "Game": "Ironsworn",
+    "Description": "Use these oracles to generate a random theme and domain for a site. Alternatively, you can print out the theme and domain cards and draw a random result. Or use the Site Name oracles to inspire the selection of a theme and domain.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "212"
+    },
     "Oracles":
     [
       { "Chance": 6, "Description": "Barrow"},
@@ -1871,6 +2075,11 @@
     "Name": "Character Disposition",
     "Aliases": ["disposition"],
     "Game": "Ironsworn",
+    "Description": "Use the Disposition oracle to understand the initial posture of another character or faction toward you—which may change as you interact. Or you can use this oracle to define the relationships between NPCs or factions.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "213"
+    },
     "Oracles":
     [
       { "Chance": 6, "Description": "Helpful"},
@@ -1891,6 +2100,11 @@
     "Name": "Character Activity",
     "Aliases": ["activity"],
     "Game": "Ironsworn",
+    "Description": "To give an NPC or faction a task or objective, use the Activity oracle. For more detail, you can combine this prompt with the Focus oracle or Theme oracle.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "213"
+    },
     "Oracles":
     [
       { "Chance": 2, "Description": "Guarding"},
@@ -1949,6 +2163,11 @@
     "Name": "Monstrosity Size",
     "Aliases": ["size"],
     "Game": "Ironsworn",
+    "Description": "Use The Monstrosity oracle to define the nature of a Nightspawn, or to introduce a new type of animal, beast, or horror in your world.\n\nTo create a monstrosity, start by rolling for its Size and Primary Form. Then, roll up to four times for Characteristics and keep up to three of those results. Do the same for Abilities.\n\nGive the monstrosity a rank. Choose one appropriate to its features, or use the Challenge Rank oracle.\n\nFinally, envision your creation and give it a name. It’s part of your world now.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "214"
+    },
     "Oracles":
     [
       { "Chance": 5, "Description": "Tiny (rodent-sized)"},
@@ -1962,7 +2181,11 @@
   {
     "Name": "Monstrosity Primary Form",
     "Aliases": ["primary form", "form", "monstrosity form"],
-    "Game": "Ironsworn",
+    "Description": "Use The Monstrosity oracle to define the nature of a Nightspawn, or to introduce a new type of animal, beast, or horror in your world.\n\nTo create a monstrosity, start by rolling for its Size and Primary Form. Then, roll up to four times for Characteristics and keep up to three of those results. Do the same for Abilities.\n\nGive the monstrosity a rank. Choose one appropriate to its features, or use the Challenge Rank oracle.\n\nFinally, envision your creation and give it a name. It’s part of your world now.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "214"
+    },
     "Oracles":
     [
       { "Chance": 15, "Description": "Beast / mammal"},
@@ -1989,6 +2212,11 @@
     "Name": "Monstrosity Characteristics",
     "Aliases": ["characteristics", "characteristic"],
     "Game": "Ironsworn",
+    "Description": "Some results on these tables include two related options separated by a slash (/). Pick the one which best fits the nature of the creature or is the most interesting. You can also make one of the options likely, and *Ask the Oracle* (using the pick two procedure) to confirm your choice. Or just take both!",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "215"
+    },
     "Oracles":
     [
       { "Chance": 5, "Description": "Extra limbs"},
@@ -2025,6 +2253,11 @@
     "Name": "Monstrosity Abilities",
     "Aliases": ["ability", "abilities"],
     "Game": "Ironsworn",
+    "Description": "You should weave these abilities into the fiction of your encounter with a monstrosity. Combined with its physical characteristics, they help define the creature’s approach and tactics. Make moves as appropriate to overcome, avoid, or face the consequences of these abilities.\n\nTo learn more about your creation’s nature, you can roll on additional tables. Use the Character Goal oracle to give the monstrosity a purpose. Roll on the Character Disposition and Activity oracles to frame your initial encounter. Another roll or two can give your monstrosity nuance and complexity, making it a deeper part of your story.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "216"
+    },
     "Oracles":
     [
       { "Chance": 4, "Description": "Keen senses"},
@@ -2074,6 +2307,11 @@
     "Pair": "Trap Component",
     "Aliases": ["event"],
     "Game": "Ironsworn",
+    "Description": "If you encounter a trap within a site, use these oracles to better understand the nature or function of this obstacle. Roll once for an Event and once for a Component, and interpret the response as appropriate to the situation and environment. A trap might be a physical, supernatural, or an ambush by a denizen.\n\nIf you are in a position to overcome or avoid the trap, make moves to see what happens. A simple trap might be dealt with in a single action, such as through the Face Danger move. A complex trap could be represented as a scene challenge (*Ironsworn Core*, page 234).",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "217"
+    },
     "Oracles":
     [
       { "Chance": 4, "Description": "Block"},
@@ -2108,6 +2346,11 @@
     "Aliases": ["component"],
     "Pair": "Trap Event",
     "Game": "Ironsworn",
+    "Description": "If you encounter a trap within a site, use these oracles to better understand the nature or function of this obstacle. Roll once for an Event and once for a Component, and interpret the response as appropriate to the situation and environment. A trap might be a physical, supernatural, or an ambush by a denizen.\n\nIf you are in a position to overcome or avoid the trap, make moves to see what happens. A simple trap might be dealt with in a single action, such as through the Face Danger move. A complex trap could be represented as a scene challenge (*Ironsworn Core*, page 234).",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "217"
+    },
     "Oracles":
     [
       { "Chance": 4, "Description": "Pit"},
@@ -2142,6 +2385,11 @@
     "Aliases": ["combat method"],
     "Pair": "Combat Event Target",
     "Game": "Ironsworn",
+    "Description": "Use the Combat Event oracles to answer questions about the actions of a foe or enemy force. You can use these oracles instead of—or in addition to—the Combat Action oracle (Ironsworn Core, page 188).\n\nRoll once each on the Method oracle (above) and the Target oracle (page 219). Then, interpret the response as appropriate to the current situation and the nature of your foe.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "218"
+    },
     "Oracles":
     [
       { "Chance": 2, "Description": "Defy"},
@@ -2201,6 +2449,11 @@
     "Aliases": ["combat target"],
     "Pair": "Combat Event Method",
     "Game": "Ironsworn",
+    "Description": "Use the Combat Event oracles to answer questions about the actions of a foe or enemy force. You can use these oracles instead of—or in addition to—the Combat Action oracle (Ironsworn Core, page 188).\n\nRoll once each on the Method oracle (above) and the Target oracle (page 219). Then, interpret the response as appropriate to the current situation and the nature of your foe.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "219"
+    },
     "Oracles":
     [
       { "Chance": 2, "Description": "Control"},
@@ -2259,6 +2512,11 @@
     "Name": "Threat Category",
     "Aliases": ["threat", "threat type"],
     "Game": "Ironsworn",
+    "Description": "These oracles support the optional threat mechanics detailed in *Delve* Chapter 6 (page 151).\n\nYou can use the Category oracle above to randomly select a broad type of threat for your campaign. If you are told to roll twice, take both results and decide how these two threats act together or represent a more complex situation. For example, choosing both a Malignant Plague and Zealous Cult might signify an evil sect which has unleashed a sickness upon the Ironlands in service to some dark god.\n\nFor additional detail, use other oracles as appropriate. For example, you can look to the Action and Theme oracles or Character Goal oracle to define the motivations of a Scheming Leader.\n\nOnce you’ve introduced a threat, consider how it endangers something or someone important to you, and Swear an Iron Vow to see its goal undone.\n\nThen, as you *Advance a Threat*, you can roll on the oracle table for your specific threat to generate an action, approach, or complication. Interpret the oracle’s answer as appropriate to the nature of the threat and the current situation.\n\nIf you aren’t using the threat mechanics within your campaign, you can use still these oracles to inspire details for enemies, troubles, and complications.",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "220"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Burgeoning Conflict"},
@@ -2277,6 +2535,10 @@
     "Name": "Threat Burgeoning Conflict",
     "Aliases": ["Burgeoning Conflict"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "221"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Allow warmongers to gain influence"},
@@ -2295,6 +2557,10 @@
     "Name": "Threat Cursed Site",
     "Aliases": ["Cursed Site"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "221"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Unleash a creature or being"},
@@ -2313,6 +2579,10 @@
     "Name": "Threat Environmental Calamity",
     "Aliases": ["Environmental Calamity"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "221"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Devastate a place"},
@@ -2331,6 +2601,10 @@
     "Name": "Threat Malignant Plague",
     "Aliases": ["Malignant Plague"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "222"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Manifest new symptoms or effects"},
@@ -2349,6 +2623,10 @@
     "Name": "Threat Rampaging Creature",
     "Aliases": ["Rampaging Creature"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "222"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Reveal a new aspect of its nature or abilities"},
@@ -2367,6 +2645,10 @@
     "Name": "Threat Ravaging Horde",
     "Aliases": ["Ravaging Horde"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "222"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Overrun defenses"},
@@ -2385,6 +2667,10 @@
     "Name": "Threat Scheming Leader",
     "Aliases": ["Scheming Leader"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "223"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Defeat an enemy"},
@@ -2403,6 +2689,10 @@
     "Name": "Threat Power-Hungry Mystic",
     "Aliases": ["Power-Hungry Mystic"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "223"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Gain hidden knowledge"},
@@ -2421,6 +2711,10 @@
     "Name": "Threat Zealous Cult",
     "Aliases": ["Zealous Cult"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "223"
+    },
     "Oracles":
     [
       { "Chance": 10, "Description": "Overtake a faction or community"},
@@ -2439,6 +2733,10 @@
     "Name": "Delve the Depths Edge",
     "Aliases": ["delve edge"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "21"
+    },
     "Oracles":
     [
       { "Chance": 45, "Description": "Mark progress and Reveal a Danger."},
@@ -2452,6 +2750,10 @@
     "Name": "Delve the Depths Shadow",
     "Aliases": ["delve shadow"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "21"
+    },
     "Oracles":
     [
       { "Chance": 30, "Description": "Mark progress and Reveal a Danger."},
@@ -2465,6 +2767,10 @@
     "Name": "Delve the Depths Wits",
     "Aliases": ["delve wits"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "21"
+    },
     "Oracles":
     [
       { "Chance": 40, "Description": "Mark progress and Reveal a Danger."},
@@ -2478,6 +2784,10 @@
     "Name": "Find An Opportunity",
     "Aliases": ["opportunity", "delve opportunity"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "30"
+    },
     "Oracles":
     [
       { "Chance": 25, "Description": "The terrain favors you, or you find a hidden path."},
@@ -2496,6 +2806,10 @@
     "Name": "Reveal a Danger",
     "Aliases": ["danger"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "34"
+    },
     "Oracles":
     [
       { "Chance": 30, "Description": "Check the theme card."},
@@ -2516,6 +2830,10 @@
     "Name": "Reveal a Danger Alternate",
     "Aliases": ["danger alt", "reveal a danger alt"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "68"
+    },
     "Oracles":
     [
       { "Chance": 22, "Description": "You encounter a hostile denizen."},
@@ -2534,6 +2852,10 @@
     "Name": "Advance a Threat",
     "Aliases": ["advance threat"],
     "Game": "Ironsworn",
+    "Source":{
+      "Name": "Ironsworn: Delve",
+      "Page": "155"
+    },
     "Oracles":
     [
       { "Chance": 30, "Description": "The threat readies its next step, or a new danger looms. If you are in a position to prevent this development, you may attempt to do so. If you succeed, Reach a Milestone. Otherwise, mark menace."},

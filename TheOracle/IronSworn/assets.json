@@ -410,7 +410,7 @@
 		"Name": "Herbalist",
 		"AssetType": "Path",
 		"AssetFields": [{
-				"Text": "When you attempt to *Heal* using herbal remedies, and you have at least +1 supply, choose one (decide before rolling).\n• Add +2.\n• On a hit, take or give an additional +1 health.",
+				"Text": "When you attempt to *Heal* using herbal remedies, and you have at least +1 supply, choose one (decide before rolling).\n  • Add +2.\n  • On a hit, take or give an additional +1 health.",
 				"Enabled": true
 			},
 			{
@@ -486,7 +486,7 @@
 		"AssetType": "Path",
 		"Description": "Once you mark a bond with elves, and are gifted a mask of precious elderwood...",
 		"AssetFields": [{
-				"Text": "Choose your mask’s material.\n• Thunderwood: Edge / Health\n• Bloodwood: Iron / Health\n• Ghostwood: Shadow / Spirit\n • Whisperwood: Wits / Spirit\nWhen you wear the mask and make a move which uses its stat, add +1. If you roll a 1 on your action die, suffer -1 to the associated track (in addition to any other outcome of the move)."
+				"Text": "Choose your mask’s material.\n  • Thunderwood: Edge / Health\n  • Bloodwood: Iron / Health\n  • Ghostwood: Shadow / Spirit\n • Whisperwood: Wits / Spirit\nWhen you wear the mask and make a move which uses its stat, add +1. If you roll a 1 on your action die, suffer -1 to the associated track (in addition to any other outcome of the move)."
 			},
 			{
 				"Text": "As above, and you may instead add +2 and suffer -2 (decide before rolling)."
@@ -631,7 +631,7 @@
 				"Text": "When you *Swear an Iron Vow* to slay a beast or horror, you may reroll any dice. When you *Fulfill Your Vow* and mark experience, take +1 experience."
 			},
 			{
-				"Text": "When you slay a beast or horror (at least formidable), you may take a trophy and choose one.\n• Power a ritual: When you or an ally make a ritual move, reroll any dice (one time only).\n• Prove your worth: When you *Sojourn*, reroll any dice (one time only)."
+				"Text": "When you slay a beast or horror (at least formidable), you may take a trophy and choose one.\n  • Power a ritual: When you or an ally make a ritual move, reroll any dice (one time only).\n  • Prove your worth: When you *Sojourn*, reroll any dice (one time only)."
 			}
 		]
 	},
@@ -646,7 +646,7 @@
 				"Text": "When you *Face Death* guided by the spirit, add +1. On a strong hit, envision what you learn and take 1 experience."
 			},
 			{
-				"Text": "One time only, when you successfully *Fulfill Your Vow* (formidable or greater) in service to the spirit, choose one.\n• Let them go: Take 2 experience for each marked ability and discard this asset.\n• Deepen your connection: Add +1 more when you leverage this asset."
+				"Text": "One time only, when you successfully *Fulfill Your Vow* (formidable or greater) in service to the spirit, choose one.\n  • Let them go: Take 2 experience for each marked ability and discard this asset.\n  • Deepen your connection: Add +1 more when you leverage this asset."
 			}
 		]
 	},
@@ -676,7 +676,7 @@
 				"Text": "When you *Gather Information* by investigating a devious scheme, you may roll +shadow (instead of +wits). If you do, take +2 momentum on a hit."
 			},
 			{
-				"Text": "When you *Forge a Bond* for a relationship founded on a lie, choose one.\n• Keep your secret: Roll+shadow (instead of +heart).\n• Reveal the truth: Roll+heart. On a strong hit, mark a bond twice and take 1 experience. A weak hit counts as a miss."
+				"Text": "When you *Forge a Bond* for a relationship founded on a lie, choose one.\n  • Keep your secret: Roll+shadow (instead of +heart).\n  • Reveal the truth: Roll+heart. On a strong hit, mark a bond twice and take 1 experience. A weak hit counts as a miss."
 			}
 		]
 	},
@@ -703,7 +703,7 @@
 				"Enabled": true
 			},
 			{
-				"Text": "When you *Undertake a Journey* by boat or ship, add +1. On a strong hit, also choose one.\n• The wind is at your back: Mark progress twice.\n• Find safe anchor: *Make Camp* now and reroll any dice.\n• Reap the bounty: *Resupply* now and reroll any dice."
+				"Text": "When you *Undertake a Journey* by boat or ship, add +1. On a strong hit, also choose one.\n  • The wind is at your back: Mark progress twice.\n  • Find safe anchor: *Make Camp* now and reroll any dice.\n  • Reap the bounty: *Resupply* now and reroll any dice."
 			},
 			{
 				"Text": "When you *Enter the Fray* aboard a boat or ship, reroll any dice."
@@ -779,7 +779,7 @@
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a bow....",
 		"AssetFields": [{
-				"Text": "When you *Secure an Advantage* by taking a moment to aim, choose your approach and add +1.\n• Trust your instincts: Roll+wits, and take +2 momentum on a strong hit.\n• Line up your shot: Roll +edge, and take +1 momentum on a hit.",
+				"Text": "When you *Secure an Advantage* by taking a moment to aim, choose your approach and add +1.\n  • Trust your instincts: Roll+wits, and take +2 momentum on a strong hit.\n  • Line up your shot: Roll +edge, and take +1 momentum on a hit.",
 				"Enabled": true
 			},
 			{
@@ -799,7 +799,7 @@
 				"Enabled": true
 			},
 			{
-				"Text": "When you *Strike* or *Clash* by unleashing your rage (decide before rolling), inflict +1 harm on a hit. Then, choose one.\n• Push yourself: *Endure Harm* (1 harm).\n• Lose yourself: *Endure Stress* (1 stress)."
+				"Text": "When you *Strike* or *Clash* by unleashing your rage (decide before rolling), inflict +1 harm on a hit. Then, choose one.\n  • Push yourself: *Endure Harm* (1 harm).\n  • Lose yourself: *Endure Stress* (1 stress)."
 			},
 			{
 				"Text": "When you *Endure Harm* in a fight, and your health is above 0, you may let the pain inflame your wildness (decide before rolling). If you then score a strong hit and choose to embrace the pain, take +momentum equal to your remaining health. A weak hit counts as a miss."
@@ -827,7 +827,7 @@
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a dagger or knife...",
 		"AssetFields": [{
-				"Text": "When you are in position to *Strike* at an unsuspecting foe, choose one (before rolling).\n• Add +2 and take +1 momentum on a hit.\n• Inflict +2 harm on a hit.",
+				"Text": "When you are in position to *Strike* at an unsuspecting foe, choose one (before rolling).\n  • Add +2 and take +1 momentum on a hit.\n  • Inflict +2 harm on a hit.",
 				"Enabled": true
 			},
 			{
@@ -850,7 +850,7 @@
 				"Text": "Once per fight, when you *Secure an Advantage* +edge by making a bold display of your combat prowess, you may reroll any dice."
 			},
 			{
-				"Text": "When you *Draw the Circle*, choose one (before rolling).\n• Add+2.\n• Take+2 momentum on a hit."
+				"Text": "When you *Draw the Circle*, choose one (before rolling).\n  • Add+2.\n  • Take+2 momentum on a hit."
 			}
 		]
 	},
@@ -865,7 +865,7 @@
 				"Text": "When you *Resupply* by recovering or gathering arrows after a battle, add +2."
 			},
 			{
-				"Text": "When you craft a single arrow designated for a specific foe, envision the process and materials, and roll +wits. On a strong hit, take both. On a weak hit, choose one.\n• Seeker: When a shooter uses the arrow to *Strike* or *Clash* against this foe, reroll any dice (one time only).\n• Ravager: When a shooter uses the arrow to inflict harm against this foe, inflict +1d6 harm (one time only)."
+				"Text": "When you craft a single arrow designated for a specific foe, envision the process and materials, and roll +wits. On a strong hit, take both. On a weak hit, choose one.\n  • Seeker: When a shooter uses the arrow to *Strike* or *Clash* against this foe, reroll any dice (one time only).\n  • Ravager: When a shooter uses the arrow to inflict harm against this foe, inflict +1d6 harm (one time only)."
 			}
 		]
 	},
@@ -874,7 +874,7 @@
 		"AssetType": "Combat Talent",
 		"Description": "If you wear armor...",
 		"AssetFields": [{
-				"Text": "When you equip or adjust your armor, choose one.\n• Lightly armored: When you *Endure Harm* in a fight, add +1 and take +1 momentum on a hit.\n• Geared for war: Mark encumbered. When you *Endure Harm* in a fight, add +2 and take +1 momentum on a hit.",
+				"Text": "When you equip or adjust your armor, choose one.\n  • Lightly armored: When you *Endure Harm* in a fight, add +1 and take +1 momentum on a hit.\n  • Geared for war: Mark encumbered. When you *Endure Harm* in a fight, add +2 and take +1 momentum on a hit.",
 				"Enabled": true
 			},
 			{
@@ -937,7 +937,7 @@
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a spear...",
 		"AssetFields": [{
-				"Text": "When you *Face Danger* by holding a foe at bay using your spear’s reach, roll +iron or +edge. If you score a hit, you may...\n• Iron: *Strike* (if you have initiative) or *Clash* now, and add +1.\n• Edge: Take+1 momentum.",
+				"Text": "When you *Face Danger* by holding a foe at bay using your spear’s reach, roll +iron or +edge. If you score a hit, you may...\n  • Iron: *Strike* (if you have initiative) or *Clash* now, and add +1.\n  • Edge: Take+1 momentum.",
 				"Enabled": true
 			},
 			{
@@ -957,7 +957,7 @@
 				"Enabled": true
 			},
 			{
-				"Text": "When you *Strike* by launching stones at an advancing foe, you may choose one (before rolling).\n• Hold them back: Retain initiative on a weak hit, but inflict only 1 harm.\n• Hit them hard: Inflict +1 harm on a hit, but suffer -1 momentum."
+				"Text": "When you *Strike* by launching stones at an advancing foe, you may choose one (before rolling).\n  • Hold them back: Retain initiative on a weak hit, but inflict only 1 harm.\n  • Hit them hard: Inflict +1 harm on a hit, but suffer -1 momentum."
 			},
 			{
 				"Text": "When you *Secure an Advantage* by preparing stones of a special quality or material, add +1. Then, take +1 momentum or +1 supply on a hit."
@@ -1169,7 +1169,7 @@
 		"Name": "Scry",
 		"AssetType": "Ritual",
 		"AssetFields": [{
-				"Text": "When you look into flames to study a remote person or location, roll +shadow. You or someone with you must have knowledge of the target. On a strong hit, you may *Gather Information* through observation using +shadow or +wits. On a weak hit, as above, but the flames are hungry; choose one to sacrifice.\n• Your blood: *Endure Harm* (2 harm).\n• Something precious: *Endure Stress* (2 stress).\n• Provisions: Suffer -2 supply.",
+				"Text": "When you look into flames to study a remote person or location, roll +shadow. You or someone with you must have knowledge of the target. On a strong hit, you may *Gather Information* through observation using +shadow or +wits. On a weak hit, as above, but the flames are hungry; choose one to sacrifice.\n  • Your blood: *Endure Harm* (2 harm).\n  • Something precious: *Endure Stress* (2 stress).\n  • Provisions: Suffer -2 supply.",
 				"Enabled": true
 			},
 			{
@@ -1274,7 +1274,7 @@
 		"Name": "Ward",
 		"AssetType": "Ritual",
 		"AssetFields": [{
-				"Text": "When you walk a wide circle, sprinkling the ground with salt, roll +wits. On a strong hit, choose two. On a weak hit, chose one.\n• When a foe first crosses the boundary, take +1 momentum.\n• When you first inflict harm against a foe within the boundary, inflict +1 harm.\n• Your ward is ‘likely’ (*Ask the Oracle*) to trap a foe within the boundary.",
+				"Text": "When you walk a wide circle, sprinkling the ground with salt, roll +wits. On a strong hit, choose two. On a weak hit, chose one.\n  • When a foe first crosses the boundary, take +1 momentum.\n  • When you first inflict harm against a foe within the boundary, inflict +1 harm.\n  • Your ward is ‘likely’ (*Ask the Oracle*) to trap a foe within the boundary.",
 				"Enabled": true
 			},
 			{
@@ -1288,7 +1288,10 @@
 	{
 		"Name": "Commander",
 		"AssetType": "Path",
-		"Source": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view",
+		"Source": {
+			"Name": "Ironsworn Bonus Assets - July 2020",
+			"Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
+		},
 		"AssetFields": [{
 				"Text": "You lead a warband with +4 strength. Roll +strength when you command your warband to *Face Danger*, *Secure an Advantage*, *Compel*, or *Battle*. When you face the negative outcome of any move, you may suffer -1 strength as the cost. When you *Make Camp* or *Sojourn* and score a hit, take +1 strength. While at 0 strength, this asset counts as a debility.",
 				"Enabled": true
@@ -1310,7 +1313,10 @@
 	{
 		"Name": "Fated",
 		"AssetType": "Path",
-		"Source": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view",
+		"Source": {
+			"Name": "Ironsworn Bonus Assets - July 2020",
+			"Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
+		},
 		"AssetFields": [{
 				"Text": "When you *Face Death* or *Face Desolation* while your epic background vow is unfulfilled, it is not yet your time. Instead of rolling, you may take an automatic strong hit. If you do, this asset counts as a debility (and you no longer have this protection) until you next *Reach a Milestone* on the background vow.",
 				"Enabled": true
@@ -1326,7 +1332,10 @@
 	{
 		"Name": "Lorekeeper",
 		"AssetType": "Path",
-		"Source": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view",
+		"Source": {
+			"Name": "Ironsworn Bonus Assets - July 2020",
+			"Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
+		},
 		"AssetFields": [{
 				"Text": "You are the bearer of a mystical archive. When you *Secure an Advantage* or *Gather Information* using lore recalled from your studies, add +1. If you have a few hours to search the archive, add +2. On a hit, envision the obscure but helpful knowledge you put to use (*Ask the Oracle* if unsure), and take +1 momentum.",
 				"Enabled": true
