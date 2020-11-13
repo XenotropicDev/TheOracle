@@ -16,7 +16,7 @@ namespace TheOracle.GameCore.RulesReference
         public RuleService()
         {
             var ironRulesPath = Path.Combine("IronSworn","GameRules.json");
-            var starRulesPath = Path.Combine("Starforged", "GameRules.json");
+            var starRulesPath = Path.Combine("StarForged", "GameRules.json");
             if (File.Exists(ironRulesPath))
             {
                 var root = JsonConvert.DeserializeObject<Rootobject>(File.ReadAllText(ironRulesPath));
