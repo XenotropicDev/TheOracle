@@ -93,7 +93,7 @@ namespace TheOracle.GameCore.Oracle
                 return;
             }
 
-            var lookupResult = ChanceLookUp.Find(chance => Likelihood.Contains(chance.Item1, StringComparison.OrdinalIgnoreCase));
+            var lookupResult = ChanceLookUp.OrderByDescending(tup => tup.Item1.Length).ToList().Find(chance => Likelihood.Contains(chance.Item1, StringComparison.OrdinalIgnoreCase));
             if (lookupResult != null)
             {
                 await ReplyAsync(AskTheOracleWithChance(lookupResult.Item2, lookupResult.Item1));
