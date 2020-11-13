@@ -30,53 +30,53 @@ Most commands and oracle tables names have shorter hand versions of them, but co
 
 ### `!Help`
 Shows all the commands. Use `!Help ModuleName` to get more specific details about a command.
- * *Command Aliases:* None
- * *Sample usage:* `!Help ActionCommand`
+* *Command Aliases:* None
+* *Sample usage:* `!Help ActionCommand`
 
 ### `!SetDefaultGame`
 Allows players to set the default game for a discord channel. This command only needs to be run once per channel, or if you ever want to change the default game.
- * *Command Aliases:* None
- * *Sample usage:* `!SetDefaultGame Ironsworn`
+* *Command Aliases:* None
+* *Sample usage:* `!SetDefaultGame Ironsworn`
 
 ### `!Action`
 Rolls the action die, adds any modifier(s), compares it to the challenge die, and reports the strength of your hit/miss/match. Anything other than numbers in the command is ignored by the command as fluff.
- * *Command Aliases:* `!Act`
- * *Parameters:* Modifier (optional, can be negative), Fluff (optional, useful for role playing)
- * *Sample usage:* `!Action +1 Swing at the darkness`
+* *Command Aliases:* `!Act`
+* *Parameters:* Modifier (optional, can be negative), Fluff (optional, useful for role playing)
+* *Sample usage:* `!Action +1 Swing at the darkness`
 
 ### `!OracleTable`
 Rolls the provided oracle table. Use `!OracleTable [table1/table2]` to roll multiple tables at once. If multiple games use the same table (like action in Starforged and Ironsworn) you will have to provide the game you want to roll a table for, or use a distinct alias.
- * *Command Aliases:* `!Table`, `!Oracle`
- * *Parameters:* TableName (required)
- * *Sample usage:* `!OracleTable Pay The Price`
+* *Command Aliases:* `!Table`, `!Oracle`
+* *Parameters:* TableName (required)
+* *Sample usage:* `!OracleTable Pay The Price`
 
 ### `!OracleList`
 Lists the available oracle tables, and their aliases
- * *Command Aliases:* `!List`
- * *Sample usage:* `!OracleList`
+* *Command Aliases:* `!List`
+* *Sample usage:* `!OracleList`
 
 ### `!QuickReference`
 Lists the detailed rules about how to make, resolve a move.
- * *Command Aliases:* `!Reference`, `!Library`, `!Ref`
- * *Parameters:* RuleName (optional)
- * *Sample usage:* `!QuickReference Swear an Iron Vow`
+* *Command Aliases:* `!Reference`, `!Library`, `!Ref`
+* *Parameters:* RuleName (optional)
+* *Sample usage:* `!QuickReference Swear an Iron Vow`
 
 ### `!ProgressTracker`
 Builds an interactive post to keep track any progress trackers in game (Iron vows, Combats, Journeys). If no difficulty is provided a helper post will let you select one.
- * *Command Aliases:* `!Track`, `!Tracker`, `!Progress`
- * *Parameters:* Difficulty (optional), Description (optional)
- * *Reactions:*
+* *Command Aliases:* `!Track`, `!Tracker`, `!Progress`
+* *Parameters:* Difficulty (optional), Description (optional)
+* *Reactions:*
   1. :arrow_left: | Decreases the progress track by the difficulty amount.
   2. :arrow_right: | Increases the progress track by the difficulty amount.
   3. :heavy_check_mark: | Increases the progress track by a single full box (four ticks).
   4. :game_die: | Rolls the action and challenge die for the progress tracker.
- * *Sample usage:* `!ProgressTracker Epic Find the source of evil in the forest`
+* *Sample usage:* `!ProgressTracker Epic Find the source of evil in the forest`
 
 ### `!PlayerCard`
 Builds an interactive post for keeping track of player resources
- * *Command Aliases:* `!StatsCard`, `!CharacterSheet`, `!CharSheet`
- * *Parameters:* Character Name
- * *Reactions:*
+* *Command Aliases:* `!StatsCard`, `!CharacterSheet`, `!CharSheet`
+* *Parameters:* Character Name
+* *Reactions:*
   1. :arrow_up_small: | Increases the active stat by one.
   2. :arrow_down_small: | Decreases the active stat by one.
   3. :heart: | Sets health as your active stat.
@@ -87,24 +87,24 @@ Builds an interactive post for keeping track of player resources
 
 ### `!InitiativeTracker`
 Builds an interactive post to keep track of players who do and don't have advantage.
- * *Command Aliases:* `!Initiative`, `!IniTracker`
- * *Parameters:* Description (optional)
- * *Reactions:*
+* *Command Aliases:* `!Initiative`, `!IniTracker`
+* *Parameters:* Description (optional)
+* *Reactions:*
   1. :arrow_left: | Assigns/moves you to the Advantage track.
   2. :arrow_right: | Assigns/moves you to the Disadvantage track.
- * *Sample usage:* `!PlayerCard Sneaky Archer`
+* *Sample usage:* `!PlayerCard Sneaky Archer`
 
 ### `!CreateNPC`
 Creates a NPC with a name (given or random), a goal, a description, and a role/job.
- * *Command Aliases:* `!NewNPC`, `!NPC`
- * *Parameters:* NPC Name (optional)
- * *Sample usage:* `!CreateNPC Tom Bombadil`
+* *Command Aliases:* `!NewNPC`, `!NPC`
+* *Parameters:* NPC Name (optional)
+* *Sample usage:* `!CreateNPC Tom Bombadil`
 
 ### `!Roll`
 Rolls the specified dice for things like assets that let you reroll a die.
- * *Command Aliases:* `!Dice`
- * *Parameters:* Die notation value, Number of times to roll (optional, default is 1)
- * *Sample usage:* `!Roll 1d10 2`
+* *Command Aliases:* `!Dice`
+* *Parameters:* Die notation value, Number of times to roll (optional, default is 1)
+* *Sample usage:* `!Roll 1d10 2`
 
 ## Generic Message Reactions
 Apply one of these reactions to any of the bot's posts to help you manage your game and keep your channel up to date and free of clutter.
@@ -122,29 +122,29 @@ React to a bot message with :pushpin: `:pushpin:` and the bot will pin the messa
 
 ### `!GeneratePlanet`
 Creates a planet with a name (given or a random P-number), and the planet features that detectable from space. It also adds reaction buttons for revealing more features as you explore the planet
- * *Command Aliases:* `!Planet`
- * *Parameters:* SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
- * *Reactions:*
+* *Command Aliases:* `!Planet`
+* *Parameters:* SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
+* *Reactions:*
   1. 🔍 | Closer look
   2. 🦖 | Reveals the planet's life (if any)
   3. 🌍 | Reveals the planet's biomes (only displayed if the planet type can have biomes)
- * *Sample usage:* `!Planet Expanse Hoth`
+* *Sample usage:* `!Planet Expanse Hoth`
 
 ### `!GenerateSettlement`
 Creates a Starforged settlement with a name (given, or random from the settlement name list), and the features in the settlement oracles.
- * *Command Aliases:* `!Settlement`
- * *Parameters:* SpaceRegion (optional), Name (optional)
- * *Reactions:*
+* *Command Aliases:* `!Settlement`
+* *Parameters:* SpaceRegion (optional), Name (optional)
+* *Reactions:*
  1. ️🛠️ | Adds/reveals a settlement project
- * *Sample usage:* `!Settlement Outlands Deep Space Nine`
+* *Sample usage:* `!Settlement Outlands Deep Space Nine`
 
 ### `!GenerateStarship`
 Creates a starforged starship, *Note: this command is still a work in progress*
- * *Command Aliases:* `!Starship`, `!Spaceship`, `!Ship`
- * *Parameters:* SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
- * *Reactions:*
+* *Command Aliases:* `!Starship`, `!Spaceship`, `!Ship`
+* *Parameters:* SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
+* *Reactions:*
  1. :exclamation: | Adds/reveals the starship's mission
- * *Sample usage:* `!Starship Terminus Serenity`
+* *Sample usage:* `!Starship Terminus Serenity`
 
 ### `!CreateNPC Starforged`
 Same as the Ironsworn command, but with the character traits in the starforged oracles
@@ -153,8 +153,8 @@ Same as the Ironsworn command, but with the character traits in the starforged o
 
 ### `!SetRerollDuplicates`
 Sets the bot's re-rolling behavior for multiple oracles and game element posts.
- * *Command Aliases:* `!RerollDuplicates`
- * *Parameters:* True/False
+* *Command Aliases:* `!RerollDuplicates`
+* *Parameters:* True/False
 
 ### Roll multiple oracles with one command
 To roll multiple oracle tables at once use the following command: `!Table [Action/Theme]`. You can even do things like `!Table [Action/Action/Action/Action]`
