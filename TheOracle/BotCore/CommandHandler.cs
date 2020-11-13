@@ -36,8 +36,10 @@ namespace TheOracle
             int argPos = 0;
 
             // Determine if the message is a command based on the prefix and make sure no bots trigger commands
-            if (!(message.HasCharPrefix('!', ref argPos) ||
-                message.HasMentionPrefix(_client.CurrentUser, ref argPos)) ||
+            if (!(message.HasStringPrefix("! ", ref argPos) ||
+                    message.HasCharPrefix('!', ref argPos) ||                    
+                    message.HasMentionPrefix(_client.CurrentUser, ref argPos)
+                ) ||
                 message.Author.IsBot)
                 return;
 
@@ -56,9 +58,9 @@ namespace TheOracle
                 argPos: argPos,
                 services: _service);
 
-            // Inform the user if the command fails to be executed; 
+            // Inform the user if the command fails to be executed;
             // however, this may not always be desired, as it may clog up the request queue should a user spam a command.
-            if (!result.IsSuccess) 
+            if (!result.IsSuccess)
                 await context.Channel.SendMessageAsync(result.ErrorReason);
         }
     }
