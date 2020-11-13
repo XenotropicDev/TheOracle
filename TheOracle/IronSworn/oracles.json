@@ -346,7 +346,7 @@
       "Name": "Ironsworn Rulebook",
       "Page": "177"
     },
-    "Aliases": ["ld"],
+    "Aliases": ["ld", "location descriptor"],
     "Oracles":[
         { "Chance": 2, "Description": "High"},
         { "Chance": 4, "Description": "Remote"},
@@ -459,14 +459,14 @@
     ]
 },
 {
-    "Name": "NPC Role",
+    "Name": "Character Role",
     "Game": "Ironsworn",
     "Description": "Use this oracle to define the background for a character, or to generate a random encounter",
     "Source":{
       "Name": "Ironsworn Rulebook",
       "Page": "182"
     },
-    "Aliases": ["NPCR", "NPC Roles"],
+    "Aliases": ["NPCR", "NPC Roles", "NPC Role", "role", "roles"],
     "Oracles":[
         { "Chance": 2, "Description": "Criminal"},
         { "Chance": 4, "Description": "Healer"},
@@ -501,14 +501,14 @@
     ]
 },
 {
-    "Name": "Goals",
+    "Name": "Character Goal",
     "Game": "Ironsworn",
     "Description": "Use this oracle to define the primary motivation of an NPC or a faction. It can also be used to kick-off a personal quest for your own character.",
     "Source":{
       "Name": "Ironsworn Rulebook",
       "Page": "182"
     },
-    "Aliases": ["Goal"],
+    "Aliases": ["Goal", "Goals"],
     "Oracles":[
         { "Chance": 3, "Description": "Obtain an object"},
         { "Chance": 6, "Description": "Make an agreement"},
@@ -546,14 +546,14 @@
     ]
 },
 {
-    "Name": "NPC Descriptors",
+    "Name": "Character Descriptor",
     "Game": "Ironsworn",
     "Description": "Use this oracle to help flesh out a character’s personality or physical characteristics. Roll more than once to add additional detail.",
     "Source":{
       "Name": "Ironsworn Rulebook",
       "Page": "183"
     },
-    "Aliases": ["NPCD"],
+    "Aliases": ["NPCD", "NPC Descriptors"],
     "Oracles":[
         { "Chance": 1, "Description": "Stoic"},
         { "Chance": 2, "Description": "Attractive"},
@@ -933,7 +933,7 @@
     ]
 },
 {
-    "Name": "Combat Actions",
+    "Name": "Combat Action",
     "Game": "Ironsworn",
     "Description": "Use this oracle to help inspire an action for an NPC in combat. When you’re not sure what your foe does next, particularly when they have initiative, roll on this table and interpret the result as appropriate to your foe and the situation.",
     "Source":{
@@ -1066,7 +1066,6 @@
 {
     "Name": "Gender Presentation and Identity",
     "Game": "Ironsworn",
-    "Description": "description",
     "Aliases": ["GPI"],
     "Oracles":[
         { "Chance": 5, "Description": "Masculine cis man (he/him)"},
@@ -1119,7 +1118,7 @@
     ]
 },
 {
-    "Name": "Settlement Names",
+    "Name": "Settlement Name",
     "Game": "Ironsworn",
     "Description": "Ask this oracle for a thematic name for an Ironlander settlement. Roll once for the category, and again to pick from the examples. Alternatively, just roll for the category and come up with a name that fits the theme. In either case, consider the meaning of the name and how it impacts this settlement’s surroundings, livelihood, culture, or history. This may, in turn, inspire narrative hooks and opportunities for new quests.",
     "Source":{
@@ -1127,7 +1126,7 @@
       "Page": "178"
     },
     "Type": "Nested",
-    "Aliases": ["sn", "Settlement Name"],
+    "Aliases": ["sn", "Settlement Names"],
     "Oracles":[
         {
             "Chance" : 15,
@@ -1250,7 +1249,7 @@
     ]
 },
 {
-    "Name": "Quick Settlement Names",
+    "Name": "Quick Settlement Name",
     "Game": "Ironsworn",
     "Description": "Use this oracle as a simpler alternative for settlement names. Once you have your answer, envision what feature, person, or event inspired the name.",
     "Source":{
@@ -1258,7 +1257,7 @@
       "Page": "180"
     },
     "ShowResult": false,
-    "Aliases": ["qsn", "Quick Settlement Name"],
+    "Aliases": ["qsn", "Quick Settlement Names"],
     "Oracles":[{"Chance": 100, "Description": "[QuickPrefix/QuickSuffix]"}]
 },
 {
@@ -1343,7 +1342,7 @@
       "Name": "Ironsworn Rulebook",
       "Page": "187"
     },
-    "Aliases": ["Giant"],
+    "Aliases": ["Giant", "Giant Name"],
     "Oracles":[
         { "Chance": 4, "Description": "Chony"},
         { "Chance": 8, "Description": "Banda"},
@@ -2807,7 +2806,6 @@
     "Name": "Reveal a Danger",
     "Aliases": ["danger"],
     "Game": "Ironsworn",
-    "Description": "description",
     "Source":{
       "Name": "Ironsworn: Delve",
       "Page": "34"
