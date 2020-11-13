@@ -2,7 +2,7 @@
   {
     "DelveSiteTheme": "Ancient",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "84"
     },
     "Description": "This place holds the secrets of a bygone age.",
@@ -32,7 +32,7 @@
   {
     "DelveSiteTheme": "Corrupted",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "84"
     },
     "Description": "This place is tainted by dark magic.",
@@ -62,7 +62,7 @@
   {
     "DelveSiteTheme": "Fortified",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "85"
     },
     "Description": "Foes defend this place against intruders.",
@@ -92,7 +92,7 @@
   {
     "DelveSiteTheme": "Hallowed",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "85"
     },
     "Description": "The faithful worship here.",
@@ -122,7 +122,7 @@
   {
     "DelveSiteTheme": "Haunted",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "86"
     },
     "Description": "Restless spirits are bound to this place.",
@@ -152,7 +152,7 @@
   {
     "DelveSiteTheme": "Infested",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "86"
     },
     "Description": "Foul creatures dwell here.",
@@ -182,7 +182,7 @@
   {
     "DelveSiteTheme": "Ravaged",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "87"
     },
     "Description": "Time, disaster, or strife have taken their toll.",
@@ -212,7 +212,7 @@
   {
     "DelveSiteTheme": "Wild",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "87"
     },
     "Description": "Nature prevails in this place.",

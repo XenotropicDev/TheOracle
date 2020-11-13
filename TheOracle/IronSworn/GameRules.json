@@ -375,7 +375,7 @@
         {
             "Category": "Delve Moves",
             "Source":{
-            	"Name": "Delve",
+            	"Name": "Ironsworn: Delve",
             	"Page": "19"
             },
             "Aliases": ["dm"],
@@ -385,7 +385,7 @@
               {
                   "Name": "Discover a Site",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "19"
                   },
                   "Text": "When **you resolve to enter a perilous site in pursuit of an objective**, choose the theme and domain which best represent its nature (*Ask the Oracle* if unsure), and give it a rank.\n  • Troublesome site: 3 progress per area.\n  • Dangerous site: 2 progress per area.\n  • Formidable site: 1 progress per area.\n  • Extreme site: 2 ticks per area.\n  • Epic site: 1 tick per area.\nIf you are returning to a previously explored site, roll both challenge dice, take the lowest value, and clear that number of progress boxes.\nThen, **Delve the Depths** to explore this place."
@@ -393,7 +393,7 @@
               {
                   "Name": "Delve the Depths",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "21"
                   },
                   "Aliases": ["Delve"],
@@ -402,7 +402,7 @@
               {
                   "Name": "Find an Opportunity",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "30"
                   },
                   "Aliases": ["Opportunity"],
@@ -411,7 +411,7 @@
               {
                   "Name": "Reveal a Danger",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "34"
                   },
                   "Aliases": ["Reveal Danger", "reveal"],
@@ -420,7 +420,7 @@
               {
                   "Name": "Check Your Gear",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "38"
                   },
                   "Aliases": ["Gear", "Check Gear", "check"],
@@ -429,7 +429,7 @@
               {
                   "Name": "Locate Your Objective",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "40"
                   },
                   "Aliases": ["locate objective", "delve objective", "objective"],
@@ -438,7 +438,7 @@
               {
                   "Name": "Escape the Depths",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "42"
                   },
                   "Aliases": ["escape", "delve escape", "escape depths"],
@@ -449,7 +449,7 @@
           {
               "Category": "Optional Delve Moves",
               "Source":{
-              	"Name": "Delve",
+              	"Name": "Ironsworn: Delve",
               	"Page": "68"
               },
               "Game": "Ironsworn",
@@ -458,7 +458,7 @@
               {
                   "Name": "Reveal a Danger (alternate version)",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "68"
                   },
                   "Aliases": ["Reveal a Danger alternate", "Reveal a Danger alt", "reveal danger alt"],
@@ -467,7 +467,7 @@
               {
                   "Name": "Mark Your Failure",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "58"
                   },
                   "Aliases": ["mark failure", "failure"],
@@ -476,7 +476,7 @@
               {
                   "Name": "Learn From Your Failures",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "59"
                   },
                   "Aliases": ["learn from failures", "learn"],
@@ -485,7 +485,7 @@
               {
                   "Name": "Advance a Threat",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "154"
                   },
                   "Aliases": ["advance threat", "threat"],
@@ -494,7 +494,7 @@
               {
                   "Name": "Take a Hiatus",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "158"
                   },
                   "Aliases": ["hiatus"],
@@ -503,7 +503,7 @@
               {
                   "Name": "Wield a Rarity",
                   "Source":{
-                  	"Name": "Delve",
+                  	"Name": "Ironsworn: Delve",
                   	"Page": "176"
                   },
                   "Aliases": ["rarity"],

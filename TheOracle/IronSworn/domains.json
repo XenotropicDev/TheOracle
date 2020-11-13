@@ -2,7 +2,7 @@
   {
     "DelveSiteDomain": "Barrow",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
       "Page": "88"
     },
     "Description": "The dead are enshrined here.",
@@ -32,7 +32,7 @@
   {
     "DelveSiteDomain": "Cavern",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "88"
     },
     "Description": "A place of stone and darkness.",
@@ -62,7 +62,7 @@
   {
     "DelveSiteDomain": "Frozen Cavern",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "89"
     },
     "Description": "A place of deep caves and enduring cold.",
@@ -92,7 +92,7 @@
   {
     "DelveSiteDomain": "Icereach",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "89"
     },
     "Description": "A frigid landscape formed of frozen seas.",
@@ -122,7 +122,7 @@
   {
     "DelveSiteDomain": "Mine",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "90"
     },
     "Description": "Tunnels dug greedily and deep.",
@@ -152,7 +152,7 @@
   {
     "DelveSiteDomain": "Pass",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "90"
     },
     "Description": "Treacherous paths over high mountains.",
@@ -182,7 +182,7 @@
   {
     "DelveSiteDomain": "Ruin",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "91"
     },
     "Description": "The crumbling legacy of a dead civilization.",
@@ -211,7 +211,7 @@
   {
     "DelveSiteDomain": "Sea Cave",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "91"
     },
     "Description": "Stone passages carved by ocean waves.",
@@ -241,7 +241,7 @@
   {
     "DelveSiteDomain": "Shadowfen",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "92"
     },
     "Description": "A primeval marsh, cloaked in mist.",
@@ -271,7 +271,7 @@
   {
     "DelveSiteDomain": "Stronghold",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "92"
     },
     "Description": "A fortress secured against trespassers.",
@@ -301,7 +301,7 @@
   {
     "DelveSiteDomain": "Tanglewood",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "93"
     },
     "Description": "A perilous forest of eternal shadow.",
@@ -331,7 +331,7 @@
   {
     "DelveSiteDomain": "Underkeep",
     "Source":{
-    	"Name": "Delve",
+    	"Name": "Ironsworn: Delve",
     	"Page": "93"
     },
     "Description": "An age-old subterranean dungeon.",
