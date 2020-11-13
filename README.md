@@ -84,6 +84,7 @@ Builds an interactive post for keeping track of player resources
   5. :sparkles: | Sets spirit as your active stat.
   6. :airplane: | Sets momentum as your active stat.
   7. :fire: | Burns/resets your momentum to 2.
+* *Sample usage:* `!PlayerCard Sneaky Archer`
 
 ### `!InitiativeTracker`
 Builds an interactive post to keep track of players who do and don't have advantage.
@@ -92,7 +93,7 @@ Builds an interactive post to keep track of players who do and don't have advant
 * *Reactions:*
   1. :arrow_left: | Assigns/moves you to the Advantage track.
   2. :arrow_right: | Assigns/moves you to the Disadvantage track.
-* *Sample usage:* `!PlayerCard Sneaky Archer`
+* *Sample usage:* `!InitiativeTracker`
 
 ### `!CreateNPC`
 Creates a NPC with a name (given or random), a goal, a description, and a role/job.
