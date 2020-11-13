@@ -1288,7 +1288,10 @@
 	{
 		"Name": "Commander",
 		"AssetType": "Path",
-		"Source": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view",
+		"Source": {
+			"Name": "Ironsworn Bonus Assets - July 2020",
+			"Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
+		},
 		"AssetFields": [{
 				"Text": "You lead a warband with +4 strength. Roll +strength when you command your warband to *Face Danger*, *Secure an Advantage*, *Compel*, or *Battle*. When you face the negative outcome of any move, you may suffer -1 strength as the cost. When you *Make Camp* or *Sojourn* and score a hit, take +1 strength. While at 0 strength, this asset counts as a debility.",
 				"Enabled": true
@@ -1310,7 +1313,10 @@
 	{
 		"Name": "Fated",
 		"AssetType": "Path",
-		"Source": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view",
+		"Source": {
+			"Name": "Ironsworn Bonus Assets - July 2020",
+			"Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
+		},
 		"AssetFields": [{
 				"Text": "When you *Face Death* or *Face Desolation* while your epic background vow is unfulfilled, it is not yet your time. Instead of rolling, you may take an automatic strong hit. If you do, this asset counts as a debility (and you no longer have this protection) until you next *Reach a Milestone* on the background vow.",
 				"Enabled": true
@@ -1326,7 +1332,10 @@
 	{
 		"Name": "Lorekeeper",
 		"AssetType": "Path",
-		"Source": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view",
+		"Source": {
+			"Name": "Ironsworn Bonus Assets - July 2020",
+			"Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
+		},
 		"AssetFields": [{
 				"Text": "You are the bearer of a mystical archive. When you *Secure an Advantage* or *Gather Information* using lore recalled from your studies, add +1. If you have a few hours to search the archive, add +2. On a hit, envision the obscure but helpful knowledge you put to use (*Ask the Oracle* if unsure), and take +1 momentum.",
 				"Enabled": true
