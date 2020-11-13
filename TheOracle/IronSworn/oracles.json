@@ -953,7 +953,7 @@
 {
     "Name": "Challenge Rank",
     "Game": "Ironsworn",
-    "Aliases": ["CR"],
+    "Aliases": ["CR", "rank"],
     "Oracles":[
         { "Chance": 20, "Description": "Troublesome"},
         { "Chance": 55, "Description": "Dangerous"},
