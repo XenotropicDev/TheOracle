@@ -465,7 +465,10 @@
       },
       {
         "Text": "When you personally defeat a notable foe (formidable or greater), envision the victory mark you make on your fighter’s fuselage. Track the total number of victories in this box. For every five, mark 2 ticks on your quests legacy track.",
-        "CountingAssetTrack": "Victory Marks"
+        "CountingAssetTrack": {
+          "Name": "Victory Marks",
+          "StartingValue": 0
+        }
       }
     ],
     "NumericAssetTrack": {

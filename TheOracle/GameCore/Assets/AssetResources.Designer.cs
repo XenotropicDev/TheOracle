@@ -61,20 +61,20 @@ namespace TheOracle.GameCore.Assets {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Track.
-        /// </summary>
-        internal static string Track {
-            get {
-                return ResourceManager.GetString("Track", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An asset name couldn&apos;t be found in the entered command.
         /// </summary>
         internal static string UnknownAssetError {
             get {
                 return ResourceManager.GetString("UnknownAssetError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to __{0} : {1}__.
+        /// </summary>
+        internal static string UserInputField {
+            get {
+                return ResourceManager.GetString("UserInputField", resourceCulture);
             }
         }
     }

@@ -63,7 +63,7 @@ namespace TheOracle.BotCore
             return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
 
-        public static bool UndoFormatString(this string data, string format, out string[] values, bool ignoreCase)
+        public static bool UndoFormatString(this string data, string format, out string[] values, bool ignoreCase = true)
         {
             int tokenCount = 0;
             format = Regex.Escape(format).Replace("\\{", "{");

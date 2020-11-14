@@ -1,9 +1,10 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 
@@ -14,6 +15,85 @@ namespace TheOracle.GameCore.Assets
         public AssetCommands(IServiceProvider services)
         {
             Services = services;
+
+            var hooks = Services.GetRequiredService<HookedEvents>();
+            if (!hooks.AssetReactions)
+            {
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji("⬆️").WithEvent(NumericTrackIncrease).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji("⬇️").WithEvent(NumericTrackDecrease).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji("⬅️").WithEvent(MultiTrackLeft).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmoji("➡️").WithEvent(MultiTrackRight).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmoji("➕").WithEvent(CountingTrackUp).Build();
+                ReactionEvent reaction6 = new ReactionEventBuilder().WithEmoji("➖").WithEvent(CountingTrackDown).Build();
+
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction1);
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction2);
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction3);
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction4);
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction5);
+                services.GetRequiredService<ReactionService>().reactionList.Add(reaction6);
+                hooks.AssetReactions = true;
+            }
+        }
+
+        private async Task CountingTrackDown(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var asset = Asset.FromEmbed(Services, message.Embeds.First());
+
+            asset.CountingAssetTrack.StartingValue--;
+
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+        }
+
+        private async Task CountingTrackUp(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var asset = Asset.FromEmbed(Services, message.Embeds.First());
+
+            asset.CountingAssetTrack.StartingValue++;
+
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+        }
+
+        private async Task MultiTrackRight(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var asset = Asset.FromEmbed(Services, message.Embeds.First());
+
+            //
+
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+        }
+
+        private async Task MultiTrackLeft(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var asset = Asset.FromEmbed(Services, message.Embeds.First());
+
+            //
+
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+        }
+
+        private async Task NumericTrackDecrease(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var asset = Asset.FromEmbed(Services, message.Embeds.First());
+
+            asset.NumericAssetTrack.ActiveNumber--;
+
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+        }
+
+        private async Task NumericTrackIncrease(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            var asset = Asset.FromEmbed(Services, message.Embeds.First());
+
+            asset.NumericAssetTrack.ActiveNumber++;
+
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
         }
 
         public IServiceProvider Services { get; }
@@ -38,9 +118,33 @@ namespace TheOracle.GameCore.Assets
             }
             string[] arguments = additionalInputsRaw.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
 
-            await ReplyAsync(embed:asset.GetEmbed(arguments)).ConfigureAwait(false);
+            var message = await ReplyAsync(embed: asset.GetEmbed(arguments));
+
+            var numericTasks = new List<Task>();
+            if (asset.NumericAssetTrack != null)
+            {
+                numericTasks.Add(message.AddReactionAsync(new Emoji("⬆️")));
+                numericTasks.Add(message.AddReactionAsync(new Emoji("⬇️")));
+            }
+
+            List<Task> multiFieldTasks = new List<Task>();
+            if (asset.MultiFieldAssetTrack != null)
+            {
+                await Task.WhenAll(numericTasks);
+                multiFieldTasks.Add(message.AddReactionAsync(new Emoji("⬅️")));
+                multiFieldTasks.Add(message.AddReactionAsync(new Emoji("➡️")));
+            }
+
+            if (asset.CountingAssetTrack != null)
+            {
+                await Task.WhenAll(numericTasks.Union(multiFieldTasks));
+
+                await Task.Run(async () =>
+                {
+                    await message.AddReactionAsync(new Emoji("➕"));
+                    await message.AddReactionAsync(new Emoji("➖"));
+                }).ConfigureAwait(false);
+            }
         }
     }
-
-
 }

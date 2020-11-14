@@ -13,5 +13,6 @@
         public bool AskTheOracleReactions = false;
 
         public bool PlayerCardReactions { get; internal set; }
+        public bool AssetReactions { get; internal set; }
     }
 }
