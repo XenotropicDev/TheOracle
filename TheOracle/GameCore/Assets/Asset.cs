@@ -12,6 +12,9 @@ namespace TheOracle.GameCore.Assets
 {
     public class Asset : IAsset
     {
+        public const string AssetEnabledEmoji = "\\⏺️";
+        public const string AssetDisabledEmoji = "\\🟦";
+
         public Asset()
         {
             AssetFields = new List<AssetField>();
@@ -21,15 +24,25 @@ namespace TheOracle.GameCore.Assets
             CountingAssetTrack = new CountingAssetTrack();
         }
 
-        public Asset ShallowCopy()
+        public Asset DeepCopy()
         {
-            return (Asset)this.MemberwiseClone();
+            var asset = (Asset)this.MemberwiseClone();
+
+            asset.AssetFields = asset.AssetFields.Select(fld => fld.ShallowCopy()).ToList();
+            asset.MultiFieldAssetTrack = asset.MultiFieldAssetTrack?.DeepCopy() ?? null;
+            asset.NumericAssetTrack = asset.NumericAssetTrack?.DeepCopy() ?? null;
+            asset.CountingAssetTrack = asset.CountingAssetTrack?.DeepCopy() ?? null;
+            asset.arguments = new List<string>();
+
+            return asset;
         }
 
         public string Name { get; set; }
         public string Description { get; set; }
         public string IconUrl { get; set; }
         public string AssetType { get; set; }
+        public GameName Game { get; set; }
+
         public List<AssetField> AssetFields { get; set; }
 
         [DefaultValue(null)]
@@ -53,9 +66,23 @@ namespace TheOracle.GameCore.Assets
             return Name;
         }
 
+        public static bool IsAssetMessage(IUserMessage message, IServiceProvider services)
+        {
+            return services.GetRequiredService<List<Asset>>().Any(a => message.Embeds.Any(embed => embed.Title.Contains(a.Name)));
+        }
+
         public static Asset FromEmbed(IServiceProvider Services, IEmbed embed)
         {
-            var asset = Services.GetRequiredService<List<Asset>>().Single(a => embed.Title.Contains(a.Name)).ShallowCopy();
+            var game = Utilities.GetGameContainedInString(embed.Footer.Value.Text ?? string.Empty);
+            var asset = Services.GetRequiredService<List<Asset>>().Single(a => embed.Title.Contains(a.Name) && a.Game == game).DeepCopy();
+
+            foreach (var assetField in asset.AssetFields)
+            {
+                EmbedField embedField = embed.Fields.FirstOrDefault(fld => fld.Value.Contains(assetField.Text));
+                if (embedField.Equals(default)) continue;
+
+                assetField.Enabled = embedField.Name.Contains(AssetEnabledEmoji);
+            }
 
             if (asset.NumericAssetTrack != null)
             {
@@ -69,7 +96,7 @@ namespace TheOracle.GameCore.Assets
             if (asset.CountingAssetTrack != null)
             {
                 var field = embed.Fields.First(f => f.Name == asset.CountingAssetTrack.Name);
-                var match = Regex.Match(field.Value, @"\d+");
+                var match = Regex.Match(field.Value, @"-?\d+");
                 int value = 0;
                 if (match.Success) int.TryParse(match.Groups[0].Value, out value);
                 asset.CountingAssetTrack.StartingValue = value;
@@ -85,12 +112,19 @@ namespace TheOracle.GameCore.Assets
 
             foreach (var input in asset.InputFields)
             {
+                string partialFormated = string.Format(AssetResources.UserInputField, input, ".*");
+                var match = Regex.Match(embed.Description, partialFormated);
+                if (match.Success && match.Value.UndoFormatString(AssetResources.UserInputField, out string[] descValues, true))
+                {
+                    asset.arguments.Add(descValues[1]);
+                }
+
                 if (!embed.Fields.Any(f => f.Value.Contains(input))) continue;
 
                 EmbedField field = embed.Fields.First(f => f.Value.Contains(input));
 
-                if (!field.Value.UndoFormatString(AssetResources.UserInputField, out string[] values, true)) continue;
-                asset.arguments.Add(values[1]);
+                if (!field.Value.UndoFormatString(AssetResources.UserInputField, out string[] fldValues, true)) continue;
+                asset.arguments.Add(fldValues[1]);
             }
 
             return asset;
@@ -117,7 +151,7 @@ namespace TheOracle.GameCore.Assets
 
             foreach (var fld in AssetFields)
             {
-                string label = (fld.Enabled) ? "\\:record_button:" : "\\:blue_square:";
+                string label = (fld.Enabled) ? AssetEnabledEmoji : AssetDisabledEmoji;
 
                 string inputField = string.Empty;
                 if (fld.InputFields?.Count > 0)
@@ -154,6 +188,8 @@ namespace TheOracle.GameCore.Assets
                 trackText = trackText.Trim().Replace(NumericAssetTrack.ActiveNumber.ToString(), $"__**{NumericAssetTrack.ActiveNumber}**__");
                 builder.AddField(NumericAssetTrack.Name, trackText);
             }
+
+            builder.WithFooter(Game.ToString());
 
             return builder.Build();
         }

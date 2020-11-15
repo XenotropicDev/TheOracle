@@ -1,5 +1,6 @@
 [{
 		"Name": "Cave Lion",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -24,6 +25,7 @@
 	},
 	{
 		"Name": "Giant Spider",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -48,6 +50,7 @@
 	},
 	{
 		"Name": "Hawk",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -72,6 +75,7 @@
 	},
 	{
 		"Name": "Horse",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -96,6 +100,7 @@
 	},
 	{
 		"Name": "Hound",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -120,6 +125,7 @@
 	},
 	{
 		"Name": "Kindred",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -147,6 +153,7 @@
 	},
 	{
 		"Name": "Mammoth",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -171,6 +178,7 @@
 	},
 	{
 		"Name": "Owl",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -195,6 +203,7 @@
 	},
 	{
 		"Name": "Raven",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -219,6 +228,7 @@
 	},
 	{
 		"Name": "Young Wyvern",
+		"Game": "Ironsworn",
 		"AssetType": "Companion",
 		"InputFields": [
 			"Name"
@@ -243,6 +253,7 @@
 	},
 	{
 		"Name": "Alchemist",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you create an elixir, choose an effect: Deftness (edge), audacity (heart), vigor (iron), slyness (shadow), or clarity (wits). Then, suffer -1 supply and roll +wits. On a strong hit, you create a single dose. The character who consumes the elixir must *Face Danger* +iron and score a hit, after which they add +1 when making moves with the related stat until their health, spirit, or momentum fall below +1. On a weak hit, as above, but suffer an additional -1 supply to create it.",
@@ -258,6 +269,7 @@
 	},
 	{
 		"Name": "Animal Kin",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you make a move to pacify, calm, control, aid, or fend off an animal (or an animal or beast companion), add +1 and take +1 momentum on a hit.",
@@ -273,6 +285,7 @@
 	},
 	{
 		"Name": "Banner-Sworn",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"InputFields": ["Name"],
 		"Description": "Once you mark a bond with a leader or faction...",
@@ -290,6 +303,7 @@
 	},
 	{
 		"Name": "Battle-Scarred",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you become maimed...",
 		"AssetFields": [{
@@ -305,6 +319,7 @@
 	},
 	{
 		"Name": "Blade-Bound",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"InputFields": [
 			"Name"
@@ -323,6 +338,7 @@
 	},
 	{
 		"Name": "Bonded",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you make a move which gives you an add for sharing a bond, add +1 more.",
@@ -338,6 +354,7 @@
 	},
 	{
 		"Name": "Dancer",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Secure an Advantage* +edge by dancing for an audience, add +1 and take +2 momentum on a hit. On a strong hit, also add +2 (one time only) if you make a move to interact with someone in the audience.",
@@ -353,6 +370,7 @@
 	},
 	{
 		"Name": "Devotant",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"InputFields": ["God's Name", "Stat"],
 		"AssetFields": [{
@@ -369,6 +387,7 @@
 	},
 	{
 		"Name": "Empowered",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"InputFields": [
 			"Title/Lineage"
@@ -387,6 +406,7 @@
 	},
 	{
 		"Name": "Fortune Hunter",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Swear an Iron Vow* to someone under the promise of payment, add +1 and give the quest a special mark. When you successfully *Fulfill Your Vow* to them, take +wealth equal to the rank of the quest. If you leverage wealth when making a move where resources are a factor, add +wealth and suffer -1 wealth.",
@@ -408,6 +428,7 @@
 	},
 	{
 		"Name": "Herbalist",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you attempt to *Heal* using herbal remedies, and you have at least +1 supply, choose one (decide before rolling).\n  • Add +2.\n  • On a hit, take or give an additional +1 health.",
@@ -423,6 +444,7 @@
 	},
 	{
 		"Name": "Honorbound",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Turn the Tide*, envision how your vows give you strength in this moment. Then, when you make your move, add +2 (instead of +1) and take +1 momentum on a hit.",
@@ -438,6 +460,7 @@
 	},
 	{
 		"Name": "Improviser",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Check your Gear*, you may roll +wits (instead of +supply). If you do, envision how you make do with a clever solution, and take +1 momentum on a hit.",
@@ -453,6 +476,7 @@
 	},
 	{
 		"Name": "Infiltrator",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you make a move to breach, traverse, or hide within an area held by an enemy, add +1 and take +1 momentum on a hit.",
@@ -468,6 +492,7 @@
 	},
 	{
 		"Name": "Loyalist",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Aid Your Ally*, add +1 and take +1 momentum on a hit. This is in addition to the benefits taken by your ally.",
@@ -483,6 +508,7 @@
 	},
 	{
 		"Name": "Masked",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you mark a bond with elves, and are gifted a mask of precious elderwood...",
 		"AssetFields": [{
@@ -498,6 +524,7 @@
 	},
 	{
 		"Name": "Oathbreaker",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you *Forsake Your Vow*...",
 		"AssetFields": [{
@@ -514,6 +541,7 @@
 	},
 	{
 		"Name": "Outcast",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When your supply is reduced to 0, suffer any remaining -supply as -momentum. Then, roll +wits. On a strong hit, you manage to scrape by and take +1 supply. On a weak hit, you may suffer -2 momentum in exchange for +1 supply. On a miss, you are *Out of Supply*.",
@@ -529,6 +557,7 @@
 	},
 	{
 		"Name": "Pretender",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you establish a false identity, roll +shadow. On a strong hit, you may add +2 when you make moves using this identity to deceive or influence others. If you roll a 1 on your action die when using your false identity, someone doubts you. Make appropriate moves to reassure them or prevent them from revealing the truth. On a weak hit, as above, but add +1 (instead of +2).",
@@ -544,6 +573,7 @@
 	},
 	{
 		"Name": "Revenant",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you *Face Death* and return to the world of the living...",
 		"AssetFields": [{
@@ -560,6 +590,7 @@
 	},
 	{
 		"Name": "Rider",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "If you are with your horse companion...",
 		"AssetFields": [{
@@ -576,6 +607,7 @@
 	},
 	{
 		"Name": "Ritualist",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you *Fulfill Your Vow* (formidable or greater) in service to an elder mystic, and *Forge a Bond* to train with them...",
 		"AssetFields": [{
@@ -592,6 +624,7 @@
 	},
 	{
 		"Name": "Shadow-Kin",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you become corrupted...",
 		"AssetFields": [{
@@ -607,6 +640,7 @@
 	},
 	{
 		"Name": "Sighted",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Face Danger* or *Gather Information* to identify or detect mystic forces, add +1 and take +1 momentum on a hit.",
@@ -622,6 +656,7 @@
 	},
 	{
 		"Name": "Slayer",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Gather Information* by tracking a beast or horror, or when you *Secure an Advantage* by readying yourself for a fight against them, add +1 and take +1 momentum on a hit.",
@@ -637,6 +672,7 @@
 	},
 	{
 		"Name": "Spirit-Bound",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "You are haunted by someone whose death you caused through your actions or failures. When you consult with their spirit to *Secure an Advantage* or *Gather Information*, add +1 and take +2 momentum on a hit. On a weak hit, also *Endure Stress* (1 stress).",
@@ -652,6 +688,7 @@
 	},
 	{
 		"Name": "Storyweaver",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Secure an Advantage*, *Compel*, or *Forge a Bond* by sharing an inspiring or enlightening song, poem, or tale, envision the story you tell. Then, add +1 and take +1 momentum on a hit.",
@@ -667,6 +704,7 @@
 	},
 	{
 		"Name": "Trickster",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Face Danger*, *Secure an Advantage*, or *Compel* by lying, bluffing, stealing, or cheating, add +1.",
@@ -682,6 +720,7 @@
 	},
 	{
 		"Name": "Veteran",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you burn momentum to improve your result in combat, envision how your hard-won fighting experience gives you the upper hand. Then, take +1 momentum after you reset, and add +1 when you make your next move. Once per fight, you also take initaitive when burning momentum to improve a miss to a weak hit.",
@@ -697,6 +736,7 @@
 	},
 	{
 		"Name": "Waterborn",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Face Danger*, *Gather Information*, or *Secure an Advantage* related to your knowledge of watercraft, water travel, or aquatic environments or creatures, add +1 and take +1 momentum on a hit.",
@@ -712,6 +752,7 @@
 	},
 	{
 		"Name": "Wayfinder",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Undertake a Journey*, take +1 momentum on a strong hit. If you burn momentum to improve your result, also take +1 momentum after you reset.",
@@ -727,6 +768,7 @@
 	},
 	{
 		"Name": "Weaponmaster",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Description": "Once you *Fulfill Your Vow* (formidable or greater) in service to a seasoned warrior, and *Forge a Bond* to train with them...",
 		"AssetFields": [{
@@ -743,6 +785,7 @@
 	},
 	{
 		"Name": "Wildblood",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"AssetFields": [{
 				"Text": "When you *Face Danger*, *Secure an Advantage*, or *Gather Information* using your knowledge of tracking, woodcraft, or woodland creatures, add +1.",
@@ -758,6 +801,7 @@
 	},
 	{
 		"Name": "Wright",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"InputFields": [
 			"Specialty"
@@ -776,6 +820,7 @@
 	},
 	{
 		"Name": "Archer",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a bow....",
 		"AssetFields": [{
@@ -792,6 +837,7 @@
 	},
 	{
 		"Name": "Berserker",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you are clad only in animal pelts...",
 		"AssetFields": [{
@@ -808,6 +854,7 @@
 	},
 	{
 		"Name": "Brawler",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you are unarmed or fighting with a non-deadly weapon...",
 		"AssetFields": [{
@@ -824,6 +871,7 @@
 	},
 	{
 		"Name": "Cutthroat",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a dagger or knife...",
 		"AssetFields": [{
@@ -840,6 +888,7 @@
 	},
 	{
 		"Name": "Duelist",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a bladed weapon in each hand...",
 		"AssetFields": [{
@@ -856,6 +905,7 @@
 	},
 	{
 		"Name": "Fletcher",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"AssetFields": [{
 				"Text": "When you *Secure an Advantage* by crafting arrows of fine quality, add +1. Then, take +1 supply or +1 momentum on a hit.",
@@ -871,6 +921,7 @@
 	},
 	{
 		"Name": "Ironclad",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wear armor...",
 		"AssetFields": [{
@@ -902,6 +953,7 @@
 	},
 	{
 		"Name": "Long Arm",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a staff...",
 		"AssetFields": [{
@@ -918,6 +970,7 @@
 	},
 	{
 		"Name": "Shield-Bearer",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a shield...",
 		"AssetFields": [{
@@ -934,6 +987,7 @@
 	},
 	{
 		"Name": "Skirmisher",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a spear...",
 		"AssetFields": [{
@@ -950,6 +1004,7 @@
 	},
 	{
 		"Name": "Slinger",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a sling...",
 		"AssetFields": [{
@@ -966,6 +1021,7 @@
 	},
 	{
 		"Name": "Sunderer",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield an axe...",
 		"AssetFields": [{
@@ -982,6 +1038,7 @@
 	},
 	{
 		"Name": "Swordmaster",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a sword...",
 		"AssetFields": [{
@@ -998,6 +1055,7 @@
 	},
 	{
 		"Name": "Thunder-Bringer",
+		"Game": "Ironsworn",
 		"AssetType": "Combat Talent",
 		"Description": "If you wield a mighty hammer...",
 		"AssetFields": [{
@@ -1014,6 +1072,7 @@
 	},
 	{
 		"Name": "Augur",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you summon a flock of crows and ask a single question, roll +wits. On a strong hit, you interpret their calls as a helpful omen. Envision the response (*Ask the Oracle* if unsure) and take +2 momentum. On a weak hit, the crows ignore your question and offer a clue to an unrelated problem or opportunity in this area. Envision what you learn (*Ask the Oracle* if unsure), and take +1 momentum.",
@@ -1029,6 +1088,7 @@
 	},
 	{
 		"Name": "Awakening",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you create a simulacrum, roll +heart. On a strong hit, your creation is given unnatural life. If it aids you as you make a move to assault or overcome an obstacle through strength, add +2. It has 3 health and suffers harm as appropriate, but is not a companion and may not be healed. At 0 health, it is dead. On a weak hit, as above, but if you roll a 1 on your action die when aided by your creation, you must *Face Danger* +heart to keep it from turning on you (as a formidable foe).",
@@ -1050,6 +1110,7 @@
 	},
 	{
 		"Name": "Bind",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you wear an animal pelt and dance in moonlight, roll +wits. On a strong hit, you or an ally may wear the pelt and add +1 when making moves with the related stat (wolf-edge; bear-iron; deer-heart; fox-shadow; boar-wits). If the wearer rolls a 1 on their action die while making a move using the pelt, the magic is spent. On a weak hit, as above, but the wilds call as you dance; *Endure Stress* (2 stress).",
@@ -1065,6 +1126,7 @@
 	},
 	{
 		"Name": "Communion",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you surround the remains of a recently deceased intelligent creature with lit candles, and summon its spirit, roll +heart. Add +1 if you share a bond. On a strong hit, the spirit appears and you may converse for a few minutes. Make moves as appropriate (add +1). On a weak hit, as above, but the spirit also delivers troubling news unrelated to your purpose. Envision what it tells you (*Ask the Oracle* if unsure) and *Endure Stress* (1 stress).",
@@ -1080,6 +1142,7 @@
 	},
 	{
 		"Name": "Divination",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you take a drop of blood from a willing subject (not yourself) and cast the rune-carved stones, roll +heart. On a strong hit, you may read the runes to gain insight about the subject and people close to them, including information you and the subject have no knowledge of. If you use the reading to *Gather Information*, *Compel*, or *Forge a Bond*, add +1. On a weak hit, as above, but the runes reveal their secrets only with extra time and focus; suffer -2 momentum.",
@@ -1095,6 +1158,7 @@
 	},
 	{
 		"Name": "Invoke",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you consume the mystical essence of your surroundings, roll +wits. On a strong hit, add the value of your action die to your essence track (max 6). You may then *Secure an Advantage* or *Face Danger* +essence to create minor mystical effects or illusions. If you do, suffer -1 essence and take +1 momentum on a hit. On a weak hit, as above, but capturing these energies is harrowing; *Endure Stress* (2 stress).",
@@ -1116,6 +1180,7 @@
 	},
 	{
 		"Name": "Keen",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you hold a weapon and sing a keen for those it has killed, roll +heart. On a strong hit, the wielder inflicts +1 harm when they *Strike* or *Clash*. If they roll a 1 on their action die when making a move to inflict harm, the magic is spent. On a weak hit, as above, but the voices of those who were slain join in your song; *Endure Stress* (2 stress).",
@@ -1131,6 +1196,7 @@
 	},
 	{
 		"Name": "Leech",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you mark your hands or weapon with an intricate blood rune, roll +iron. On a strong hit, the rune thirsts for fresh blood. One time only, when you make a move to inflict harm, reroll any dice and inflict +2 harm on a hit. Then, for each point of harm inflicted, take +1 and allocate it as +health or +momentum. On a weak hit, as above, but this asset counts as a debility until the rune’s thirst is quenched.",
@@ -1146,6 +1212,7 @@
 	},
 	{
 		"Name": "Lightbearer",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you focus on a source of light and capture its essence, roll +wits. On a strong hit, set your light track to +6. On a weak hit, make it +3. Then, when you make a move to overcome or navigate darkness, you may add +2 and suffer -1 light.",
@@ -1167,6 +1234,7 @@
 	},
 	{
 		"Name": "Scry",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you look into flames to study a remote person or location, roll +shadow. You or someone with you must have knowledge of the target. On a strong hit, you may *Gather Information* through observation using +shadow or +wits. On a weak hit, as above, but the flames are hungry; choose one to sacrifice.\n  • Your blood: *Endure Harm* (2 harm).\n  • Something precious: *Endure Stress* (2 stress).\n  • Provisions: Suffer -2 supply.",
@@ -1182,6 +1250,7 @@
 	},
 	{
 		"Name": "Shadow-Walk",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you cloak yourself with the gossamer veil of the shadow realms, roll +shadow. On a strong hit, take +1 momentum. Then, reroll any dice (one time only) when you make a move by ambushing, hiding, or sneaking. On a weak hit, as above, but the shadows try to lead you astray. You must first *Face Danger* to find your way.",
@@ -1197,6 +1266,7 @@
 	},
 	{
 		"Name": "Sway",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you speak a person’s name three times to the wind, roll +wits. On a strong hit, the wind whispers of this person’s need. Envision what you hear (*Ask the Oracle* if unsure). If you use this information or fulfill this need when you *Compel* them, you may reroll any dice (one time only). On a weak hit, as above, but this person’s need creates a troubling dilemma or complication; *Endure Stress* (1 stress).",
@@ -1212,6 +1282,7 @@
 	},
 	{
 		"Name": "Talisman",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you fashion a charm, envision it and name the specific person or creature it protects against. Then roll +wits. On a strong hit, when the wearer opposes the target through a move, add +2. If a 1 is rolled on the action die while making a move using the charm, the magic is spent. On a weak hit, as above, but the wearer adds +1 when making a move (instead of +2).",
@@ -1227,6 +1298,7 @@
 	},
 	{
 		"Name": "Tether",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you commune with the spirits of a place, roll +heart. If you share a bond with someone there, add +1. On a strong hit, you are tethered. When you *Undertake a Journey* to return, you may roll +spirit or +heart (instead of +wits), and take +1 momentum on a hit. When you *Reach Your Destination*, take +2 momentum on a strong hit. The tether is lost if you perform this ritual elsewhere, or when you *Face Desolation*. On a weak hit, as above, but the spirits reveal a disturbing aspect of the place; *Endure Stress* (2 stress).",
@@ -1242,6 +1314,7 @@
 	},
 	{
 		"Name": "Totem",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you hold a totem of your animal or beast companion and focus on it, roll +heart. On a strong hit, you are bound together. Add +1 and take +1 momentum on a hit when you use a companion ability. If you roll a 1 on your action die when using a companion ability, the magic is spent. On a weak hit, as above, but creating this connection is unsettling; *Endure Stress* (1 stress).",
@@ -1257,6 +1330,7 @@
 	},
 	{
 		"Name": "Visage",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you paint yourself in blood and ash, roll +wits. On a strong hit, you may add +2 and take +1 momentum on a hit when you *Secure an Advantage* or *Compel* using fear or intimidation. If you roll a 1 on your action die when making a move aided by your visage, the magic is spent. On a weak hit, as above, but the blood must be your own; *Endure Harm* (2 harm).",
@@ -1272,6 +1346,7 @@
 	},
 	{
 		"Name": "Ward",
+		"Game": "Ironsworn",
 		"AssetType": "Ritual",
 		"AssetFields": [{
 				"Text": "When you walk a wide circle, sprinkling the ground with salt, roll +wits. On a strong hit, choose two. On a weak hit, chose one.\n  • When a foe first crosses the boundary, take +1 momentum.\n  • When you first inflict harm against a foe within the boundary, inflict +1 harm.\n  • Your ward is ‘likely’ (*Ask the Oracle*) to trap a foe within the boundary.",
@@ -1287,6 +1362,7 @@
 	},
 	{
 		"Name": "Commander",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Source": {
 			"Name": "Ironsworn Bonus Assets - July 2020",
@@ -1312,6 +1388,7 @@
 	},
 	{
 		"Name": "Fated",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Source": {
 			"Name": "Ironsworn Bonus Assets - July 2020",
@@ -1331,6 +1408,7 @@
 	},
 	{
 		"Name": "Lorekeeper",
+		"Game": "Ironsworn",
 		"AssetType": "Path",
 		"Source": {
 			"Name": "Ironsworn Bonus Assets - July 2020",

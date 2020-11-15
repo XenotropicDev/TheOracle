@@ -1,4 +1,6 @@
-﻿namespace TheOracle.GameCore.Assets
+﻿using System;
+
+namespace TheOracle.GameCore.Assets
 {
     public class NumericAssetTrack : INumericAssetTrack
     {
@@ -15,6 +17,13 @@
             {
                 if (value >= Min && value <= Max) activeNumber = value;
             }
+        }
+
+        internal NumericAssetTrack DeepCopy()
+        {
+            var track = (NumericAssetTrack)this.MemberwiseClone();
+
+            return track;
         }
     }
 }

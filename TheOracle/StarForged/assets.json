@@ -1,6 +1,7 @@
 [
   {
     "Name": "Starship",
+    "Game": "Starforged",
     "AssetType": "Command Vehicle",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -30,6 +31,7 @@
   },
   {
     "Name": "Engine Upgrade",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -50,6 +52,7 @@
   },
   {
     "Name": "Expanded Hold",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -76,6 +79,7 @@
   },
   {
     "Name": "Heavy Cannons",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -96,6 +100,7 @@
   },
   {
     "Name": "Internal Refit",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -116,6 +121,7 @@
   },
   {
     "Name": "Medbay",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -136,6 +142,7 @@
   },
   {
     "Name": "Missile Array",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -162,6 +169,7 @@
   },
   {
     "Name": "Overseer",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -185,6 +193,7 @@
   },
   {
     "Name": "Reinforced Hull",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -205,6 +214,7 @@
   },
   {
     "Name": "Research Lab",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -225,6 +235,7 @@
   },
   {
     "Name": "Sensor Array",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -245,6 +256,7 @@
   },
   {
     "Name": "Shields",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -271,6 +283,7 @@
   },
   {
     "Name": "Stealth Refit",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -291,6 +304,7 @@
   },
   {
     "Name": "Vehicle Bay",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -311,6 +325,7 @@
   },
   {
     "Name": "Workshop",
+    "Game": "Starforged",
     "AssetType": "Module",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -331,6 +346,7 @@
   },
   {
     "Name": "Exosuit",
+    "Game": "Starforged",
     "AssetType": "Support Vehicle",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -360,6 +376,7 @@
   },
   {
     "Name": "Hoverbike",
+    "Game": "Starforged",
     "AssetType": "Support Vehicle",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -389,6 +406,7 @@
   },
   {
     "Name": "Rover",
+    "Game": "Starforged",
     "AssetType": "Support Vehicle",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -418,6 +436,7 @@
   },
   {
     "Name": "Shuttle",
+    "Game": "Starforged",
     "AssetType": "Support Vehicle",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -447,6 +466,7 @@
   },
   {
     "Name": "Snub Fighter",
+    "Game": "Starforged",
     "AssetType": "Support Vehicle",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -464,11 +484,7 @@
         "Text": "When you __Strike__ or __Clash__, add +1. On a strong hit with a match, mark extra progress."
       },
       {
-        "Text": "When you personally defeat a notable foe (formidable or greater), envision the victory mark you make on your fighter’s fuselage. Track the total number of victories in this box. For every five, mark 2 ticks on your quests legacy track.",
-        "CountingAssetTrack": {
-          "Name": "Victory Marks",
-          "StartingValue": 0
-        }
+        "Text": "When you personally defeat a notable foe (formidable or greater), envision the victory mark you make on your fighter’s fuselage. Track the total number of victories in this box. For every five, mark 2 ticks on your quests legacy track."
       }
     ],
     "NumericAssetTrack": {
@@ -476,10 +492,15 @@
       "Min": 0,
       "Max": 4,
       "ActiveNumber": 4
+    },
+    "CountingAssetTrack": {
+      "Name" : "Victory Marks",
+      "StartingValue": 0
     }
   },
   {
     "Name": "Combat Bot",
+    "Game": "Starforged",
     "AssetType": "Companion",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -509,6 +530,7 @@
   },
   {
     "Name": "Utility Bot",
+    "Game": "Starforged",
     "AssetType": "Companion",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -538,6 +560,7 @@
   },
   {
     "Name": "Glowcat",
+    "Game": "Starforged",
     "AssetType": "Companion",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -567,6 +590,7 @@
   },
   {
     "Name": "Ace",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -587,6 +611,7 @@
   },
   {
     "Name": "Agent",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -607,6 +632,7 @@
   },
   {
     "Name": "Archivist",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -627,6 +653,7 @@
   },
   {
     "Name": "Armored",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -647,6 +674,7 @@
   },
   {
     "Name": "Augmented",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -671,6 +699,7 @@
   },
   {
     "Name": "Blademaster",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -692,6 +721,7 @@
   },
   {
     "Name": "Bounty Hunter",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -712,6 +742,7 @@
   },
   {
     "Name": "Brawler",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -733,6 +764,7 @@
   },
   {
     "Name": "Devotant",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -757,6 +789,7 @@
   },
   {
     "Name": "Diplomat",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -777,6 +810,7 @@
   },
   {
     "Name": "Explorer",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -797,6 +831,7 @@
   },
   {
     "Name": "Gearhead",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -817,6 +852,7 @@
   },
   {
     "Name": "Gunner",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -841,6 +877,7 @@
   },
   {
     "Name": "Gunslinger",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -862,6 +899,7 @@
   },
   {
     "Name": "Healer",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -882,6 +920,7 @@
   },
   {
     "Name": "Kinetic",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -902,6 +941,7 @@
   },
   {
     "Name": "Loyalist",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -922,6 +962,7 @@
   },
   {
     "Name": "Naturalist",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -942,6 +983,7 @@
   },
   {
     "Name": "Navigator",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -962,6 +1004,7 @@
   },
   {
     "Name": "Scavenger",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -982,6 +1025,7 @@
   },
   {
     "Name": "Scoundrel",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1002,6 +1046,7 @@
   },
   {
     "Name": "Sharpshooter",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1023,6 +1068,7 @@
   },
   {
     "Name": "Slayer",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1043,6 +1089,7 @@
   },
   {
     "Name": "Tech",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1063,6 +1110,7 @@
   },
   {
     "Name": "Trader",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1083,6 +1131,7 @@
   },
   {
     "Name": "Vestige",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1106,6 +1155,7 @@
   },
   {
     "Name": "Veteran",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1126,6 +1176,7 @@
   },
   {
     "Name": "Voidborn",
+    "Game": "Starforged",
     "AssetType": "Path",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1146,6 +1197,7 @@
   },
   {
     "Name": "Home",
+    "Game": "Starforged",
     "AssetType": "Deed",
     "Source": {
       "Name": "Starforged Playtest Assets",
@@ -1170,6 +1222,7 @@
   },
   {
     "Name": "Revenant",
+    "Game": "Starforged",
     "AssetType": "Deed",
     "Source": {
       "Name": "Starforged Playtest Assets",
