@@ -40,7 +40,7 @@ namespace TheOracle.Core
             if (rand == null) rand = BotRandom.Instance;
             try
             {
-                return OracleList.Single(ot => ot.Name == TableName && (ot.Game == game || game == GameName.None)).Oracles.GetRandomRow(rand);
+                return OracleList.Single(ot => ot.MatchTableAlias(TableName) && (ot.Game == game || game == GameName.None)).Oracles.GetRandomRow(rand);
             }
             catch (Exception ex)
             {
