@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Track" xml:space="preserve">
-    <value>Track</value>
-    <comment>Mainly for the numeric asset tracks</comment>
-  </data>
   <data name="UnknownAssetError" xml:space="preserve">
     <value>An asset name couldn't be found in the entered command</value>
+  </data>
+  <data name="UserInputField" xml:space="preserve">
+    <value>__{0} : {1}__</value>
+    <comment>{0} will be replaced with the name of the field from the asset, {1} will be replaced with the user's input value.</comment>
   </data>
 </root>

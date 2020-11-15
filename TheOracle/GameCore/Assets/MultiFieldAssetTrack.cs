@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TheOracle.GameCore.Assets
 {
@@ -9,5 +10,13 @@ namespace TheOracle.GameCore.Assets
             Fields = new List<AssetEmbedField>();
         }
         public List<AssetEmbedField> Fields { get; set; }
+
+        internal MultiFieldAssetTrack DeepCopy()
+        {
+            var track = (MultiFieldAssetTrack)this.MemberwiseClone();
+            track.Fields = this.Fields.ConvertAll(item => item);
+
+            return track;
+        }
     }
 }
