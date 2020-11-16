@@ -35,7 +35,7 @@ namespace TheOracle.StarForged.Settlements
         {
             var oracleService = serviceProvider.GetRequiredService<OracleService>();
             if (SettlementName == string.Empty)
-                SettlementName = oracleService.RandomRow("Settlement Name").Description;
+                SettlementName = oracleService.RandomRow("Settlement Name", GameName.Starforged).Description;
 
             var s = new Settlement(serviceProvider, channelId);
             s.Region = spaceRegion;
