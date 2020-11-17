@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
@@ -73,50 +74,67 @@ namespace TheOracle.IronSworn
         public async Task OracleList(string PublicPost = "")
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
-
-            EmbedBuilder builder = new EmbedBuilder();
-            string currentCategory = string.Empty;
-            string currentFields = string.Empty;
+            var ShowPostInChannel = OracleResources.ShowListInChannel.Split(',').Contains(PublicPost, StringComparer.OrdinalIgnoreCase);
 
             var baseList = _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame);
-            foreach (var oracle in baseList.OrderBy(o => o.Category))
+            baseList.ToList().ForEach(o => { if (o.Category == null || o.Category.Length == 0) o.Category = o.Game?.ToString() ?? "Misc"; });
+
+            foreach (var game in baseList.GroupBy(o => o.Game).Select(o => o.First().Game))
             {
-                if (oracle.Category == null || oracle.Category.Length == 0) oracle.Category = oracle.Game?.ToString() ?? "Misc";
-                
-                if (!(currentCategory?.Length > 0)) currentCategory = oracle.Category;
-                if (oracle.Category != currentCategory)
+                EmbedBuilder builder = new EmbedBuilder().WithTitle(String.Format(OracleResources.OracleListTitle, game));
+                string currentCategory = string.Empty;
+                string entries = string.Empty;
+                List<string> splitUpList = new List<string>();
+
+                foreach (var oracle in baseList.Where(o => o.Game == game).OrderBy(o => o.Category))
                 {
-                    builder.AddField(currentCategory, currentFields, true);
-                    currentFields = string.Empty;
-                    currentCategory = oracle.Category;
+                    if (oracle.Category != currentCategory)
+                    {
+                        currentCategory = oracle.Category;
+                        string catValue = $"\n**{currentCategory}**\n";
+
+                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we don't end up with blank headers
+                        {
+                            splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
+                            entries = string.Empty;
+                        }
+                        entries += catValue;
+                    }
+
+                    string aliases = string.Empty;
+                    if (oracle.Aliases != null)
+                    {
+                        aliases = $" • {string.Join("\n• ", oracle.Aliases)}";
+                    }
+
+                    string entry = $" __`{oracle.Name}`__\n{aliases}\n";
+
+                    if (entries.Length + entry.Length > 1024)
+                    {
+                        splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
+                        entries = $"**{currentCategory}**\n";
+                    }
+
+                    entries += entry;
                 }
 
-                string aliases = string.Empty;
-                if (oracle.Aliases != null)
+                foreach (var s in splitUpList)
                 {
-                    aliases = $"• {string.Join("\n• ", oracle.Aliases)}\n";
+                    string title = "Title";
+                    string temp = Utilities.RemoveGameNamesFromString(s);
+                    var match = Regex.Matches(temp, @"\*\*([a-zA-Z0-9\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])");
+                    if (match.Count > 0)
+                    {
+                        title = string.Format(OracleResources.OracleListFieldTitle, match[0].Groups[1], match.Last().Groups[1]);
+                    }
+                    builder.AddField(title, s, true);
                 }
 
-                string entry = $"__`{oracle.Name}`__\n{aliases}";
-                if (currentFields.Length + entry.Length > 1024)
-                {
-                    builder.AddField(currentCategory, currentFields, true);
-                    currentFields = string.Empty;
-                    currentCategory = oracle.Category;
-                }
-
-                currentFields += entry;
+                if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
+                else await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
             }
 
-            builder.AddField(currentCategory, currentFields, true);
-
-            var ShowPostInChannel =  OracleResources.ShowListInChannel.Split(',').Contains(PublicPost, StringComparer.OrdinalIgnoreCase);
-            if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
-            else
-            {
-                await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
-                await ReplyAsync(OracleResources.ListSentInDM).ConfigureAwait(false);
-            }
+            if (!ShowPostInChannel) await ReplyAsync(OracleResources.ListSentInDM).ConfigureAwait(false);
         }
 
         private async Task PairedTableReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)

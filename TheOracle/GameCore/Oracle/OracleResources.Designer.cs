@@ -148,6 +148,24 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} -&gt; {1}.
+        /// </summary>
+        internal static string OracleListFieldTitle {
+            get {
+                return ResourceManager.GetString("OracleListFieldTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Oracles.
+        /// </summary>
+        internal static string OracleListTitle {
+            get {
+                return ResourceManager.GetString("OracleListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oracle Result.
         /// </summary>
         internal static string OracleResult {
@@ -193,7 +211,7 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Public, NoDM, Show, Channel, True.
+        ///   Looks up a localized string similar to Public,NoDM,Show,Channel,True.
         /// </summary>
         internal static string ShowListInChannel {
             get {

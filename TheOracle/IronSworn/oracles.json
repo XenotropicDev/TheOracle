@@ -1061,6 +1061,7 @@
 {
     "Name": "Inciting Situations",
     "Game": "Ironsworn",
+    "Category": "Other Oracles",
     "Aliases": ["Inciting"],
     "Oracles":[
         { "Chance": 5, "Description": "Roll again, but the situation is dire."},
@@ -1082,6 +1083,7 @@
 {
     "Name": "Gender Presentation and Identity",
     "Game": "Ironsworn",
+    "Category": "Other Oracles",
     "Aliases": ["GPI"],
     "Oracles":[
         { "Chance": 5, "Description": "Masculine cis man (he/him)"},
@@ -2229,6 +2231,7 @@
     "Name": "Monstrosity Primary Form",
     "Aliases": ["primary form", "form", "monstrosity form"],
     "Category": "Monstrosity Oracles",
+    "Game": "Ironsworn",
     "Description": "Use The Monstrosity oracle to define the nature of a Nightspawn, or to introduce a new type of animal, beast, or horror in your world.\n\nTo create a monstrosity, start by rolling for its Size and Primary Form. Then, roll up to four times for Characteristics and keep up to three of those results. Do the same for Abilities.\n\nGive the monstrosity a rank. Choose one appropriate to its features, or use the Challenge Rank oracle.\n\nFinally, envision your creation and give it a name. It’s part of your world now.",
     "Source":{
       "Name": "Ironsworn: Delve",
