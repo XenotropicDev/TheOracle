@@ -81,6 +81,8 @@ namespace TheOracle.IronSworn
             var baseList = _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame);
             foreach (var oracle in baseList.OrderBy(o => o.Category))
             {
+                if (oracle.Category == null || oracle.Category.Length == 0) oracle.Category = oracle.Game?.ToString() ?? "Misc";
+                
                 if (!(currentCategory?.Length > 0)) currentCategory = oracle.Category;
                 if (oracle.Category != currentCategory)
                 {
