@@ -130,6 +130,15 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I sent you the oracle list in a DM. To post it in public use `!List Show`.
+        /// </summary>
+        internal static string ListSentInDM {
+            get {
+                return ResourceManager.GetString("ListSentInDM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
@@ -180,6 +189,15 @@ namespace TheOracle.GameCore.Oracle {
         internal static string Roll {
             get {
                 return ResourceManager.GetString("Roll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public, NoDM, Show, Channel, True.
+        /// </summary>
+        internal static string ShowListInChannel {
+            get {
+                return ResourceManager.GetString("ShowListInChannel", resourceCulture);
             }
         }
         

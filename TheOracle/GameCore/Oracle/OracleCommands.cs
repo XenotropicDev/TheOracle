@@ -70,32 +70,50 @@ namespace TheOracle.IronSworn
         [Command("OracleList", ignoreExtraArgs: false)]
         [Summary("Lists Available Oracles")]
         [Alias("List")]
-        public async Task OracleList()
+        public async Task OracleList(string PublicPost = "")
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
-            string reply = $"__Here's a list of available Oracle Tables:__\n";
-            foreach (var oracle in _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame))
+
+            EmbedBuilder builder = new EmbedBuilder();
+            string currentCategory = string.Empty;
+            string currentFields = string.Empty;
+
+            var baseList = _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame);
+            foreach (var oracle in baseList.OrderBy(o => o.Category))
             {
+                if (!(currentCategory?.Length > 0)) currentCategory = oracle.Category;
+                if (oracle.Category != currentCategory)
+                {
+                    builder.AddField(currentCategory, currentFields, true);
+                    currentFields = string.Empty;
+                    currentCategory = oracle.Category;
+                }
+
                 string aliases = string.Empty;
                 if (oracle.Aliases != null)
                 {
-                    aliases = $"{string.Join(", ", oracle.Aliases)}, ";
+                    aliases = $"• {string.Join("\n• ", oracle.Aliases)}\n";
                 }
-                reply += $"**{oracle.Name}**, {aliases}";
-            }
-            reply = reply.Remove(reply.LastIndexOf(", "));
 
-            while (true)
-            {
-                if (reply.Length < DiscordConfig.MaxMessageSize)
+                string entry = $"__`{oracle.Name}`__\n{aliases}";
+                if (currentFields.Length + entry.Length > 1024)
                 {
-                    await ReplyAsync(reply);
-                    break;
+                    builder.AddField(currentCategory, currentFields, true);
+                    currentFields = string.Empty;
+                    currentCategory = oracle.Category;
                 }
 
-                int cutoff = reply.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf(',');
-                await ReplyAsync(reply.Substring(0, cutoff));
-                reply = reply.Substring(cutoff + 1).Trim();
+                currentFields += entry;
+            }
+
+            builder.AddField(currentCategory, currentFields, true);
+
+            var ShowPostInChannel =  OracleResources.ShowListInChannel.Split(',').Contains(PublicPost, StringComparer.OrdinalIgnoreCase);
+            if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
+            else
+            {
+                await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
+                await ReplyAsync(OracleResources.ListSentInDM).ConfigureAwait(false);
             }
         }
 

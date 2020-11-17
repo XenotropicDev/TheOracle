@@ -144,6 +144,9 @@
   <data name="Likely" xml:space="preserve">
     <value>Likely</value>
   </data>
+  <data name="ListSentInDM" xml:space="preserve">
+    <value>I sent you the oracle list in a DM. To post it in public use `!List Show`</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -161,6 +164,10 @@
   </data>
   <data name="Roll" xml:space="preserve">
     <value>Roll</value>
+  </data>
+  <data name="ShowListInChannel" xml:space="preserve">
+    <value>Public, NoDM, Show, Channel, True</value>
+    <comment>Comma seperated list of values that trigger posting the oracle list in public instead of a DM</comment>
   </data>
   <data name="SmallChance" xml:space="preserve">
     <value>Small Chance</value>
