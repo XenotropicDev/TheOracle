@@ -1,4 +1,4 @@
-﻿namespace TheOracle.Core
+﻿namespace TheOracle.GameCore.ProgressTracker
 {
     public enum ChallengeRank
     {

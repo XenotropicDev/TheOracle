@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TheOracle.BotCore;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.Oracle
 {
     public static class RandomOracleRow
     {

@@ -1,4 +1,4 @@
-﻿namespace TheOracle
+﻿namespace TheOracle.GameCore
 {
     public enum GameName
     {

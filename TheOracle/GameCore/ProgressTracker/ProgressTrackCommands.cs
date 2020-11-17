@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.ProgressTracker;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.ProgressTracker
 {
     public class ProgressTrackCommands : ModuleBase<SocketCommandContext>
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.GameCore.Oracle;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.Oracle
 {
     public class OracleService
     {

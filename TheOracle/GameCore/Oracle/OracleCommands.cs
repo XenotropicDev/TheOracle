@@ -10,7 +10,7 @@ using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
-namespace TheOracle.IronSworn
+namespace TheOracle.GameCore.Oracle
 {
     public class OracleCommands : ModuleBase<SocketCommandContext>
     {

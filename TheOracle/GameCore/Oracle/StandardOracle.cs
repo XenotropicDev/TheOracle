@@ -5,7 +5,7 @@ using System.Linq;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
-namespace TheOracle.IronSworn
+namespace TheOracle.GameCore.Oracle
 {
     public class StandardOracle : IOracleEntry
     {

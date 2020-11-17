@@ -6,7 +6,7 @@ using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
-namespace TheOracle
+namespace TheOracle.GameCore.Oracle
 {
     public interface IOracleEntry
     {

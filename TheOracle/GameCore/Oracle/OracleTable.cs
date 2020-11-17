@@ -5,7 +5,7 @@ using System.Linq;
 using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.Oracle
 {
     public class OracleTable
     {
