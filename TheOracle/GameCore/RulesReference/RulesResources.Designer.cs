@@ -70,11 +70,20 @@ namespace TheOracle.GameCore.RulesReference {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Source: {0} - pg. {1}_.
+        ///   Looks up a localized string similar to _Source: {0} {1}_.
         /// </summary>
         internal static string SourceField {
             get {
                 return ResourceManager.GetString("SourceField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - pg. {0}.
+        /// </summary>
+        internal static string SourcePageField {
+            get {
+                return ResourceManager.GetString("SourcePageField", resourceCulture);
             }
         }
         
