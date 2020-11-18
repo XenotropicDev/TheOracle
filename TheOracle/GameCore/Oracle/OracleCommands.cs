@@ -99,7 +99,7 @@ namespace TheOracle.IronSworn
                         currentCategory = oracle.Category;
                         string catValue = $"\n**{currentCategory}**\n";
 
-                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we don't end up with blank headers
+                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we are less likely up with duplicated top level entries
                         {
                             splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
                             entries = string.Empty;
