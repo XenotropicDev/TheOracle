@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
+using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.NpcGenerator

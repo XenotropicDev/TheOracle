@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
+using TheOracle.GameCore.Action;
 using TheOracle.GameCore.ProgressTracker;
 
 namespace TheOracle.GameCore.ProgressTracker

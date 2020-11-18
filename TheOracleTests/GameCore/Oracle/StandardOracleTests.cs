@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using TheOracle.Core;
 using Microsoft.Extensions.DependencyInjection;
+using TheOracle.GameCore.Oracle;
+using TheOracle.GameCore;
 
 namespace TheOracle.IronSworn.Tests
 {

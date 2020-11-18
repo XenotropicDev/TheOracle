@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using TheOracle.Core;
+using TheOracle.GameCore;
 using TheOracle.GameCore.NpcGenerator;
+using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
 namespace TheOracle.StarForged.NPC

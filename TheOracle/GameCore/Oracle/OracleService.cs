@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.GameCore.Oracle

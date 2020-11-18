@@ -14,6 +14,7 @@ using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Assets;
 using TheOracle.GameCore.NpcGenerator;
+using TheOracle.GameCore.Oracle;
 using TheOracle.GameCore.RulesReference;
 
 namespace TheOracle
