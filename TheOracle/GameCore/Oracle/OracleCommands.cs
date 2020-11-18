@@ -71,12 +71,18 @@ namespace TheOracle.IronSworn
         [Command("OracleList", ignoreExtraArgs: false)]
         [Summary("Lists Available Oracles")]
         [Alias("List")]
-        public async Task OracleList(string PublicPost = "")
+        public async Task OracleList([Remainder]string OracleListOptions = "")
         {
-            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
-            var ShowPostInChannel = OracleResources.ShowListInChannel.Split(',').Contains(PublicPost, StringComparer.OrdinalIgnoreCase);
+            var ShowPostInChannel = OracleResources.ShowListInChannel.Split(',').Any(s => OracleListOptions.Contains(s, StringComparison.OrdinalIgnoreCase));
 
-            var baseList = _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame);
+            var UserGame = Utilities.GetGameContainedInString(OracleListOptions);
+            if (UserGame == GameName.None)
+            {
+                ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+                UserGame = channelSettings?.DefaultGame ?? GameName.None;
+            }
+
+            var baseList = _oracleService.OracleList.Where(orc => UserGame == GameName.None || orc.Game == UserGame);
             baseList.ToList().ForEach(o => { if (o.Category == null || o.Category.Length == 0) o.Category = o.Game?.ToString() ?? "Misc"; });
 
             foreach (var game in baseList.GroupBy(o => o.Game).Select(o => o.First().Game))
