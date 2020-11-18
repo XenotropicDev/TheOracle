@@ -238,7 +238,7 @@
 				"Text": "**Insatiable:** When you *Undertake a Journey* and score a hit, you may suffer -1 supply in exchange for +2 momentum."
 			},
 			{
-				"Text": "**Indomitable:** When you make the Companion *Endure Harm* move for your wyvern, add +2 and take +1 momentum on a hit."
+				"Text": "**Indomitable:** When you make the *Companion Endure Harm* move for your wyvern, add +2 and take +1 momentum on a hit."
 			},
 			{
 				"Text": "**Savage:** When you *Strike* by commanding your wyvern to attack, roll +heart. Your wyvern inflicts 3 harm on a hit."
@@ -598,7 +598,7 @@
 				"Enabled": true
 			},
 			{
-				"Text": "When you *Undertake a Journey*, you may push your horse harder and add +1 (after rolling). If you do, make the Companion *Endure Harm* move (1 harm)."
+				"Text": "When you *Undertake a Journey*, you may push your horse harder and add +1 (after rolling). If you do, make the *Companion Endure Harm* move (1 harm)."
 			},
 			{
 				"Text": "When you *Secure an Advantage* +wits by sizing up a perilous situation from the saddle, you are one with your horse’s instincts. Add +1 and take +1 momentum on a hit."
