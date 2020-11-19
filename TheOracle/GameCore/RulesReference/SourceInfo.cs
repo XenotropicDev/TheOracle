@@ -13,7 +13,8 @@
             {
                 return string.Format(RulesResources.SourceField, Name, $"[{Page}]({URL})");
             }
-            return string.Format(RulesResources.SourceField, Name, Page);
+            string page = (Page?.Length > 0) ? string.Format(RulesResources.SourcePageField, Page) : string.Empty;
+            return string.Format(RulesResources.SourceField, Name, page);
         }
     }
 }
