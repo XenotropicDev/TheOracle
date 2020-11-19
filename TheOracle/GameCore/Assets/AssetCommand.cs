@@ -177,7 +177,7 @@ namespace TheOracle.GameCore.Assets
 
             string[] seperators = new string[] { ",", "\n" };
             if (additionalInputsRaw.Contains(",") || additionalInputsRaw.Contains("\n")) additionalInputsRaw.Replace("\"", string.Empty);
-            
+
             string[] arguments = additionalInputsRaw.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
 
             var message = await ReplyAsync(embed: asset.GetEmbed(arguments));
@@ -211,6 +211,43 @@ namespace TheOracle.GameCore.Assets
                     if (i == 3) await message.AddReactionAsync(fourEmoji);
                 }
             }).ConfigureAwait(false);
+        }
+
+        [Command("AssetList")]
+        [Summary("Posts a list of assets")]
+        [Remarks("Usage: `!AssetList` to show all assets `!AssetList [Options]` to specify specific assets.\nOptions: Game name, asset category, search string")]
+        public async Task AssetList([Remainder] string AssetListOptions = "")
+        {
+            var game = Utilities.GetGameContainedInString(AssetListOptions);
+            AssetListOptions = Utilities.RemoveGameNamesFromString(AssetListOptions).Trim();
+            if (game == GameName.None)
+            {
+                var settings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+                game = settings?.DefaultGame ?? GameName.None;
+            }
+
+            var sourceList = Services.GetRequiredService<List<Asset>>().Where(a => a.Game == game || game == GameName.None).ToList();
+            var assetList = new List<Asset>();
+
+            if (AssetListOptions.Length > 0)
+            {
+                assetList.AddRange(sourceList.Where(a => a.AssetType.Contains(AssetListOptions, StringComparison.OrdinalIgnoreCase)));
+                assetList.AddRange(sourceList.Where(a => a.Name.Contains(AssetListOptions, StringComparison.OrdinalIgnoreCase)));
+            }
+            else
+            {
+                assetList = new List<Asset>(sourceList);
+            }
+
+            if (assetList.Count > 0)
+            {
+                string replyMessage = string.Join(", ", assetList.Select(a => a.Name));
+                await ReplyAsync(replyMessage).ConfigureAwait(false);
+            }
+            else
+            {
+                await ReplyAsync(AssetResources.UnknownAssetError);
+            }
         }
     }
 }
