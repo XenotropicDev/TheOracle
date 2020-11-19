@@ -264,6 +264,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RulesResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="IronSworn\Delve\DelveResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DelveResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StarForged\Creatures\CreatureResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -340,6 +345,10 @@
     <EmbeddedResource Update="GameCore\RulesReference\RulesResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RulesResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="IronSworn\Delve\DelveResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DelveResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="StarForged\Creatures\CreatureResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

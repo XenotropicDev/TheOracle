@@ -1,4 +1,5 @@
 ﻿using Discord;
+using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
@@ -99,6 +100,7 @@ namespace TheOracle
                 .AddSingleton<ReactionService>()
                 .AddSingleton(AssetList)
                 .AddScoped<NpcFactory>()
+                .AddSingleton<InteractiveService>()
                 .BuildServiceProvider();
         }
     }
