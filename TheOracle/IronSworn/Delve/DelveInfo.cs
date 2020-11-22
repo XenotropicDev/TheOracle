@@ -33,16 +33,10 @@ namespace TheOracle.IronSworn.Delve
         public override string ToString()
         {
             string info = "Themes: ";
-            foreach(var theme in Themes)
-            {
-                info += $"**{theme.DelveSiteTheme}** ";
-            }
+            info += string.Join(',', Themes.Select(t => $"**{t.DelveSiteTheme}**"));
 
             info += $"\nDomains: ";
-            foreach (var domain in Domains)
-            {
-                info += $"**{domain.DelveSiteDomain}** ";
-            }
+            info += string.Join(',', Domains.Select(d => $"**{d.DelveSiteDomain}**"));
 
             return info;
         }
@@ -51,7 +45,7 @@ namespace TheOracle.IronSworn.Delve
         {
             var delveInfo = new DelveInfo();
             var themeItems = themeInput.Split(',');
-            var domains = domainInput.Split(',');
+            var domainItems = domainInput.Split(',');
             var randomAliases = DelveResources.RandomAliases.Split(',').ToList();
             int randomThemes = 0;
             int randomDomains = 0;
@@ -81,29 +75,29 @@ namespace TheOracle.IronSworn.Delve
                 throw new ArgumentException(String.Format(DelveResources.UnknownThemeError, themeItems[i]));
             }
 
-            for (int i = 0; i < domains.Length; i++)
+            for (int i = 0; i < domainItems.Length; i++)
             {
-                domains[i] = domains[i].Trim();
-                if (randomAliases.Any(alias => alias.Equals(domains[i], StringComparison.OrdinalIgnoreCase)))
+                domainItems[i] = domainItems[i].Trim();
+                if (randomAliases.Any(alias => alias.Equals(domainItems[i], StringComparison.OrdinalIgnoreCase)))
                 {
                     randomDomains++;
                     continue;
                 }
 
-                var matchingDomain = delveService.Domains.Find(d => d.DelveSiteDomain.Equals(domains[i], StringComparison.OrdinalIgnoreCase));
+                var matchingDomain = delveService.Domains.Find(d => d.DelveSiteDomain.Equals(domainItems[i], StringComparison.OrdinalIgnoreCase));
                 if (matchingDomain != null)
                 {
                     delveInfo.Domains.Add(matchingDomain);
                     continue;
                 }
 
-                if (int.TryParse(domains[i], out int domainValue) && domainValue - 1 < delveService.Domains.Count)
+                if (int.TryParse(domainItems[i], out int domainValue) && domainValue - 1 < delveService.Domains.Count)
                 {
                     delveInfo.Domains.Add(delveService.Domains[domainValue - 1]);
                     continue;
                 }
 
-                throw new ArgumentException(String.Format(DelveResources.UnknownDomainError, domains[i]));
+                throw new ArgumentException(String.Format(DelveResources.UnknownDomainError, domainItems[i]));
             }
 
             for (int i = 0; i < randomThemes; i++) delveInfo.AddRandomTheme(delveService);
