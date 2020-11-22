@@ -117,42 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DomainHelperText" xml:space="preserve">
-    <value>1 = Barrow
-2 = Cavern
-3 = Frozen Cavern
-4 = Icereach
-5 = Mine
-6 = Pass
-7 = Ruin
-8 = Sea Cave
-9 = Shadowfen
-10 = Stronghold
-11 = Tanglewood
-12 = Underkeep
-
-R = Random theme</value>
-  </data>
   <data name="DomainHelperTitle" xml:space="preserve">
     <value>Select Domain</value>
   </data>
   <data name="HelperFooter" xml:space="preserve">
     <value>Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries like `1, R`</value>
   </data>
-  <data name="ThemeHelperText" xml:space="preserve">
-    <value>1 = Ancient
-2 = Corrupted
-3 = Fortified
-4 = Hallowed
-5 = Haunted
-6 = Infested
-7 = Ravaged
-8 = Wild
-
-R = Random theme
-2R = Two random themes</value>
+  <data name="HelperTextFormat" xml:space="preserve">
+    <value>{0} = {1}</value>
+    <comment>{0} is the value the user is expected to enter (usually a number) and {1} is the name of the theme or domain</comment>
+  </data>
+  <data name="RandomAliases" xml:space="preserve">
+    <value>R,Random,Rand,Roll</value>
+    <comment>Comma seperated list of items that are the same as a user input for random. The first item is what will appear in the {0} of the HelperTextFormat, and the second values in the {1}</comment>
   </data>
   <data name="ThemeHelperTitle" xml:space="preserve">
     <value>Select Theme</value>
+  </data>
+  <data name="UnknownDomainError" xml:space="preserve">
+    <value>The domain you tried to enter '{0}' doesn't have any matching items</value>
+    <comment>{0} will be replaced with the user's input</comment>
+  </data>
+  <data name="UnknownThemeError" xml:space="preserve">
+    <value>The theme you tried to enter '{0}' doesn't have any matching items</value>
+    <comment>{0} will be replaced with the user's input</comment>
   </data>
 </root>

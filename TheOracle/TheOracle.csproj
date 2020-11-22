@@ -269,6 +269,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DelveResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="IronSworn\Delve\Domain.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="IronSworn\Delve\Theme.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="StarForged\Creatures\CreatureResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

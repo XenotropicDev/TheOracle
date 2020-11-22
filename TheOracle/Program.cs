@@ -12,11 +12,11 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.Core;
 using TheOracle.GameCore.Assets;
 using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.Oracle;
 using TheOracle.GameCore.RulesReference;
+using TheOracle.IronSworn.Delve;
 
 namespace TheOracle
 {
@@ -24,7 +24,6 @@ namespace TheOracle
     {
         public static void Main(string[] args)
         => new Program().MainAsync().GetAwaiter().GetResult();
-
 
         public async Task MainAsync()
         {
@@ -41,13 +40,13 @@ namespace TheOracle
                 client.Log += LogAsync;
                 services.GetRequiredService<CommandService>().Log += LogAsync;
 
-                #nullable enable
+#nullable enable
                 string? token = Environment.GetEnvironmentVariable("DiscordToken");
                 if (token == null)
                 {
                     token = services.GetRequiredService<IConfigurationRoot>().GetSection("DiscordToken").Value;
                 }
-                #nullable disable
+#nullable disable
 
                 await client.LoginAsync(TokenType.Bot, token);
                 await client.StartAsync();
@@ -67,7 +66,7 @@ namespace TheOracle
         }
 
         private Task LogAsync(LogMessage msg)
-        { 
+        {
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
@@ -75,7 +74,7 @@ namespace TheOracle
         private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
         {
             var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info };
-            var commandConfig = new CommandServiceConfig { LogLevel = LogSeverity.Info  };
+            var commandConfig = new CommandServiceConfig { LogLevel = LogSeverity.Info };
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService(commandConfig);
 
@@ -84,6 +83,10 @@ namespace TheOracle
             var AssetList = new List<Asset>();
             if (File.Exists(ironAssetsPath)) AssetList.AddRange(JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath)));
             if (File.Exists(starAssetsPath)) AssetList.AddRange(JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(starAssetsPath)));
+
+            var delveThemePath = Path.Combine("IronSworn", "themes.json");
+            var delveDomainPath = Path.Combine("IronSworn", "domains.json");
+            var delveService = DelveService.Load(new string[] { delveThemePath }, new string[] { delveDomainPath });
 
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("token.json", optional: true, reloadOnChange: true)
@@ -99,6 +102,7 @@ namespace TheOracle
                 .AddSingleton<HookedEvents>()
                 .AddSingleton<ReactionService>()
                 .AddSingleton(AssetList)
+                .AddSingleton(delveService)
                 .AddScoped<NpcFactory>()
                 .AddSingleton<InteractiveService>()
                 .BuildServiceProvider();

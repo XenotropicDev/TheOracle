@@ -61,28 +61,6 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 = Barrow
-        ///2 = Cavern
-        ///3 = Frozen Cavern
-        ///4 = Icereach
-        ///5 = Mine
-        ///6 = Pass
-        ///7 = Ruin
-        ///8 = Sea Cave
-        ///9 = Shadowfen
-        ///10 = Stronghold
-        ///11 = Tanglewood
-        ///12 = Underkeep
-        ///
-        ///R = Random theme.
-        /// </summary>
-        internal static string DomainHelperText {
-            get {
-                return ResourceManager.GetString("DomainHelperText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select Domain.
         /// </summary>
         internal static string DomainHelperTitle {
@@ -101,21 +79,20 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 = Ancient
-        ///2 = Corrupted
-        ///3 = Fortified
-        ///4 = Hallowed
-        ///5 = Haunted
-        ///6 = Infested
-        ///7 = Ravaged
-        ///8 = Wild
-        ///
-        ///R = Random theme
-        ///2R = Two random themes.
+        ///   Looks up a localized string similar to {0} = {1}.
         /// </summary>
-        internal static string ThemeHelperText {
+        internal static string HelperTextFormat {
             get {
-                return ResourceManager.GetString("ThemeHelperText", resourceCulture);
+                return ResourceManager.GetString("HelperTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R,Random,Rand,Roll.
+        /// </summary>
+        internal static string RandomAliases {
+            get {
+                return ResourceManager.GetString("RandomAliases", resourceCulture);
             }
         }
         
@@ -125,6 +102,24 @@ namespace TheOracle.IronSworn.Delve {
         internal static string ThemeHelperTitle {
             get {
                 return ResourceManager.GetString("ThemeHelperTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The domain you tried to enter &apos;{0}&apos; doesn&apos;t have any matching items.
+        /// </summary>
+        internal static string UnknownDomainError {
+            get {
+                return ResourceManager.GetString("UnknownDomainError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The theme you tried to enter &apos;{0}&apos; doesn&apos;t have any matching items.
+        /// </summary>
+        internal static string UnknownThemeError {
+            get {
+                return ResourceManager.GetString("UnknownThemeError", resourceCulture);
             }
         }
     }
