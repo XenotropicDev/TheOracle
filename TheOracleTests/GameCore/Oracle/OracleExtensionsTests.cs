@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TheOracle.Core;
 using System.Linq;
 using TheOracle.GameCore.Oracle;
+using TheOracle.BotCore;
 
 namespace TheOracle.Tests
 {
@@ -16,14 +17,14 @@ namespace TheOracle.Tests
         [TestMethod()]
         public void GetOracleResultTest()
         {
-            Assert.Inconclusive();
             var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
 
             var testTable = services.GetRequiredService<OracleService>().OracleList.FirstOrDefault(tbl => tbl.Oracles.Any(oracle => oracle.Description == "[2x]"));
             Assert.IsNotNull(testTable, "Couldn't find a 2x table");
 
             var oracle = testTable.Oracles.First(oracle => oracle.Description == "[2x]");
-            var final = oracle.GetOracleResult(services, testTable.Game.Value);
+            var final = services.GetRequiredService<OracleService>().RandomOracleResult(testTable.Name, services, testTable.Game.Value);
+            Assert.IsNotNull(final);
         }
     }
 }
