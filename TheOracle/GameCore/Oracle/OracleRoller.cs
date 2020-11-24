@@ -14,10 +14,17 @@ namespace TheOracle.GameCore.Oracle
 {
     public partial class OracleRoller
     {
-        public OracleRoller(IServiceProvider serviceProvider, GameName game, Random rnd = null)
+        public OracleRoller(OracleService oracleService, GameName game, Random rnd = null)
         {
-            ServiceProvider = serviceProvider;
-            OracleService = ServiceProvider.GetRequiredService<OracleService>();
+            OracleService = oracleService;
+            Game = game;
+
+            RollerRandom = rnd ?? BotRandom.Instance;
+        }
+
+        public OracleRoller(IServiceProvider services, GameName game, Random rnd = null)
+        {
+            OracleService = services.GetRequiredService<OracleService>();
             Game = game;
 
             RollerRandom = rnd ?? BotRandom.Instance;
@@ -38,7 +45,7 @@ namespace TheOracle.GameCore.Oracle
             return this;
         }
 
-        public EmbedBuilder GetEmbedBuilder()
+        public Embed GetEmbed()
         {
             string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
 
@@ -55,7 +62,7 @@ namespace TheOracle.GameCore.Oracle
                 }
             }
 
-            return embed;
+            return embed.Build();
         }
 
         public List<OracleTable> ParseOracleTables(string tableName)
@@ -88,9 +95,9 @@ namespace TheOracle.GameCore.Oracle
             return result;
         }
 
-        internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed, IServiceProvider serviceProvider)
+        internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
         {
-            var roller = new OracleRoller(serviceProvider, Utilities.GetGameContainedInString(embed.Title));
+            var roller = new OracleRoller(oracleService, Utilities.GetGameContainedInString(embed.Title));
 
             foreach (var field in embed.Fields)
             {

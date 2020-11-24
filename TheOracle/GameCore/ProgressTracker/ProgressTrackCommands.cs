@@ -102,7 +102,7 @@ namespace TheOracle.GameCore.ProgressTracker
             if (reaction.Emote.Name == RollEmoji)
             {
                 var tracker = new ProgressTracker(message);
-                var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Title}");
+                var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Description}");
                 await channel.SendMessageAsync(roll.ToString()).ConfigureAwait(false);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
@@ -135,7 +135,7 @@ namespace TheOracle.GameCore.ProgressTracker
             if (messageToEdit == null)
             {
                 var tracker = new ProgressTracker(cr, ThingToTrack);
-                messageToEdit = ReplyAsync(embed: tracker.BuildEmbed()).Result;
+                messageToEdit = ReplyAsync(embed: tracker.BuildEmbed() as Embed).Result;
             }
             else
             {
@@ -143,7 +143,7 @@ namespace TheOracle.GameCore.ProgressTracker
                 await messageToEdit.ModifyAsync(msg =>
                 {
                     msg.Content = string.Empty;
-                    msg.Embed = tracker.BuildEmbed();
+                    msg.Embed = tracker.BuildEmbed() as Embed;
                 });
             }
 
@@ -196,7 +196,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
             tracker.RemoveProgress();
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
         private void IncreaseProgress(IUserMessage message)
@@ -205,7 +205,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
             tracker.AddProgress();
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
         private void IncreaseProgressFullCheck(IUserMessage message)
@@ -214,7 +214,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
             tracker.Ticks += 4;
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
         private bool IsProgressTrackerMessage(IUserMessage message)

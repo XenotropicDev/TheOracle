@@ -17,7 +17,7 @@ namespace TheOracle.IronSworn.Tests
         public void GetOracleResultMultiTest()
         {
             var so = new StandardOracle();
-            var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
             so.Description = "[Descriptor/Focus]";
             string result = so.GetOracleResult(services, GameName.Starforged);
@@ -29,7 +29,7 @@ namespace TheOracle.IronSworn.Tests
         public void GetOracleResultSingleTest()
         {
             var so = new StandardOracle();
-            var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
             so.Description = "Some value / Or something else";
             string result = so.GetOracleResult(services, GameName.Starforged);

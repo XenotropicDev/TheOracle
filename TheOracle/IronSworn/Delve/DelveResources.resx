@@ -117,19 +117,87 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CardSiteNameFormat" xml:space="preserve">
+    <value>**__{0}__**</value>
+    <comment>The {0} will be replaced with the site's name. (This is mostly to allow different markdown formating)</comment>
+  </data>
+  <data name="CardThemeDomainTitleFormat" xml:space="preserve">
+    <value>Delve Site - {0} : {1}</value>
+    <comment>{0} will be replaced with the themes, and {1} will be replaced with the domains. Odd stuff might happen if there's only a space between the {0} and {1} (if your language has spaces in words normally)</comment>
+  </data>
   <data name="DomainHelperTitle" xml:space="preserve">
     <value>Select Domain</value>
   </data>
-  <data name="HelperFooter" xml:space="preserve">
-    <value>Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries like `1, R`</value>
+  <data name="HelperFooterThemeDomain" xml:space="preserve">
+    <value>Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries: 1, R</value>
+  </data>
+  <data name="HelperSiteNameText" xml:space="preserve">
+    <value>Input the name of the site or use `Random` to generate the name from the site name oracle tables</value>
+  </data>
+  <data name="HelperSiteNameTitle" xml:space="preserve">
+    <value>Select Site Name</value>
+  </data>
+  <data name="HelperSiteObjectiveText" xml:space="preserve">
+    <value>Input your objective for this delve site. The objective should be tied to your vow.</value>
+  </data>
+  <data name="HelperSiteObjectiveTitle" xml:space="preserve">
+    <value>Select Site Objective</value>
+  </data>
+  <data name="HelperSiteRankText" xml:space="preserve">
+    <value>Either input the full name of the site rank or use the corresponding number:
+
+1 - Troublesome
+2 - Dangerous
+3 - Formidable
+4 - Extreme
+5 - Epic</value>
+  </data>
+  <data name="HelperSiteRankTitle" xml:space="preserve">
+    <value>Select Site Rank</value>
   </data>
   <data name="HelperTextFormat" xml:space="preserve">
-    <value>{0} = {1}</value>
+    <value>{0} - {1}</value>
     <comment>{0} is the value the user is expected to enter (usually a number) and {1} is the name of the theme or domain</comment>
+  </data>
+  <data name="ListSeperator" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="LocateObjectiveRoll" xml:space="preserve">
+    <value>Locate your Objective roll for {0}</value>
+    <comment>{0} will be replaced with the name of the delve site.</comment>
+  </data>
+  <data name="ProgressAmountField" xml:space="preserve">
+    <value>Progress Amount</value>
+  </data>
+  <data name="ProgressTrackField" xml:space="preserve">
+    <value>Progress Track</value>
   </data>
   <data name="RandomAliases" xml:space="preserve">
     <value>R,Random,Rand,Roll</value>
     <comment>Comma seperated list of items that are the same as a user input for random. The first item is what will appear in the {0} of the HelperTextFormat, and the second values in the {1}</comment>
+  </data>
+  <data name="RankField" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="RevealDangerRoll" xml:space="preserve">
+    <value>Reveal a Danger roll for {0}</value>
+    <comment>{0} will be replaced with the name of the delve site.</comment>
+  </data>
+  <data name="RevealFeatureRoll" xml:space="preserve">
+    <value>Reveal a Feature roll for {0}</value>
+    <comment>{0} will be replaced with the name of the delve site.</comment>
+  </data>
+  <data name="RiskZoneField" xml:space="preserve">
+    <value>Risk Zone</value>
+  </data>
+  <data name="RiskZoneHigh" xml:space="preserve">
+    <value>High (Formidable or Extreme)</value>
+  </data>
+  <data name="RiskZoneLow" xml:space="preserve">
+    <value>Low (Troublesome or Dangerous)</value>
+  </data>
+  <data name="RiskZoneMedium" xml:space="preserve">
+    <value>Medium (Dangerous or Formidable)</value>
   </data>
   <data name="ThemeHelperTitle" xml:space="preserve">
     <value>Select Theme</value>
@@ -141,5 +209,8 @@
   <data name="UnknownThemeError" xml:space="preserve">
     <value>The theme you tried to enter '{0}' doesn't have any matching items</value>
     <comment>{0} will be replaced with the user's input</comment>
+  </data>
+  <data name="UserInputTimeoutError" xml:space="preserve">
+    <value>You did not reply before the timeout, please start again.</value>
   </data>
 </root>

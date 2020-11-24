@@ -61,6 +61,24 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to **__{0}__**.
+        /// </summary>
+        internal static string CardSiteNameFormat {
+            get {
+                return ResourceManager.GetString("CardSiteNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delve Site - {0} : {1}.
+        /// </summary>
+        internal static string CardThemeDomainTitleFormat {
+            get {
+                return ResourceManager.GetString("CardThemeDomainTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Domain.
         /// </summary>
         internal static string DomainHelperTitle {
@@ -70,20 +88,116 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries like `1, R`.
+        ///   Looks up a localized string similar to Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries: 1, R.
         /// </summary>
-        internal static string HelperFooter {
+        internal static string HelperFooterThemeDomain {
             get {
-                return ResourceManager.GetString("HelperFooter", resourceCulture);
+                return ResourceManager.GetString("HelperFooterThemeDomain", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} = {1}.
+        ///   Looks up a localized string similar to Input the name of the site or use `Random` to generate the name from the site name oracle tables.
+        /// </summary>
+        internal static string HelperSiteNameText {
+            get {
+                return ResourceManager.GetString("HelperSiteNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Site Name.
+        /// </summary>
+        internal static string HelperSiteNameTitle {
+            get {
+                return ResourceManager.GetString("HelperSiteNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input your objective for this delve site. The objective should be tied to your vow..
+        /// </summary>
+        internal static string HelperSiteObjectiveText {
+            get {
+                return ResourceManager.GetString("HelperSiteObjectiveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Site Objective.
+        /// </summary>
+        internal static string HelperSiteObjectiveTitle {
+            get {
+                return ResourceManager.GetString("HelperSiteObjectiveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Either input the full name of the site rank or use the corresponding number:
+        ///
+        ///1 - Troublesome
+        ///2 - Dangerous
+        ///3 - Formidable
+        ///4 - Extreme
+        ///5 - Epic.
+        /// </summary>
+        internal static string HelperSiteRankText {
+            get {
+                return ResourceManager.GetString("HelperSiteRankText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Site Rank.
+        /// </summary>
+        internal static string HelperSiteRankTitle {
+            get {
+                return ResourceManager.GetString("HelperSiteRankTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - {1}.
         /// </summary>
         internal static string HelperTextFormat {
             get {
                 return ResourceManager.GetString("HelperTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string ListSeperator {
+            get {
+                return ResourceManager.GetString("ListSeperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locate your Objective roll for {0}.
+        /// </summary>
+        internal static string LocateObjectiveRoll {
+            get {
+                return ResourceManager.GetString("LocateObjectiveRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progress Amount.
+        /// </summary>
+        internal static string ProgressAmountField {
+            get {
+                return ResourceManager.GetString("ProgressAmountField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progress Track.
+        /// </summary>
+        internal static string ProgressTrackField {
+            get {
+                return ResourceManager.GetString("ProgressTrackField", resourceCulture);
             }
         }
         
@@ -93,6 +207,69 @@ namespace TheOracle.IronSworn.Delve {
         internal static string RandomAliases {
             get {
                 return ResourceManager.GetString("RandomAliases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank.
+        /// </summary>
+        internal static string RankField {
+            get {
+                return ResourceManager.GetString("RankField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reveal a Danger roll for {0}.
+        /// </summary>
+        internal static string RevealDangerRoll {
+            get {
+                return ResourceManager.GetString("RevealDangerRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reveal a Feature roll for {0}.
+        /// </summary>
+        internal static string RevealFeatureRoll {
+            get {
+                return ResourceManager.GetString("RevealFeatureRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Risk Zone.
+        /// </summary>
+        internal static string RiskZoneField {
+            get {
+                return ResourceManager.GetString("RiskZoneField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High (Formidable or Extreme).
+        /// </summary>
+        internal static string RiskZoneHigh {
+            get {
+                return ResourceManager.GetString("RiskZoneHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low (Troublesome or Dangerous).
+        /// </summary>
+        internal static string RiskZoneLow {
+            get {
+                return ResourceManager.GetString("RiskZoneLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium (Dangerous or Formidable).
+        /// </summary>
+        internal static string RiskZoneMedium {
+            get {
+                return ResourceManager.GetString("RiskZoneMedium", resourceCulture);
             }
         }
         
@@ -120,6 +297,15 @@ namespace TheOracle.IronSworn.Delve {
         internal static string UnknownThemeError {
             get {
                 return ResourceManager.GetString("UnknownThemeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You did not reply before the timeout, please start again..
+        /// </summary>
+        internal static string UserInputTimeoutError {
+            get {
+                return ResourceManager.GetString("UserInputTimeoutError", resourceCulture);
             }
         }
     }

@@ -17,7 +17,10 @@ namespace TheOracle.GameCore.Oracle
         public OracleService()
         {
             OracleList = new List<OracleTable>();
+        }
 
+        public OracleService Load()
+        {
             foreach (var file in new DirectoryInfo("IronSworn").GetFiles("oracles.??.json"))
             {
             }
@@ -34,6 +37,8 @@ namespace TheOracle.GameCore.Oracle
                 var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
                 OracleList.AddRange(starForged);
             }
+
+            return this;
         }
 
         public IOracleEntry RandomRow(string TableName, GameName game = GameName.None, Random rand = null)
@@ -71,7 +76,8 @@ namespace TheOracle.GameCore.Oracle
                 lookup = lookup.Replace($"{match.Groups[1]}x", string.Join("/", ReplaceMultiRollTables));
             }
 
-            var roller = new OracleRoller(serviceProvider, game, rand);
+            var oracleService = serviceProvider.GetRequiredService<OracleService>();
+            var roller = new OracleRoller(oracleService, game, rand);
             var tables = roller.ParseOracleTables(lookup);
             if (tables.Count == 0) return row.Description;
             roller.BuildRollResults(lookup);
@@ -102,8 +108,9 @@ namespace TheOracle.GameCore.Oracle
                 }
                 lookup = lookup.Replace($"{match.Groups[1]}x", string.Join("/", ReplaceMultiRollTables));
             }
-
-            var roller = new OracleRoller(serviceProvider, game, rand);
+            
+            var oracleService = serviceProvider.GetRequiredService<OracleService>();
+            var roller = new OracleRoller(oracleService, game, rand);
             var tables = roller.ParseOracleTables(lookup);
 
             if (tables.Count == 0)

@@ -17,7 +17,7 @@ namespace TheOracle.Tests
         [TestMethod()]
         public void GetOracleResultTest()
         {
-            var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
             var testTable = services.GetRequiredService<OracleService>().OracleList.FirstOrDefault(tbl => tbl.Oracles.Any(oracle => oracle.Description == "[2x]"));
             Assert.IsNotNull(testTable, "Couldn't find a 2x table");

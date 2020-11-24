@@ -97,7 +97,7 @@ namespace TheOracle
                 .AddSingleton(command)
                 .AddSingleton(config)
                 .AddSingleton(new CommandHandler(client, command))
-                .AddSingleton<OracleService>()
+                .AddSingleton(new OracleService().Load())
                 .AddSingleton<RuleService>()
                 .AddSingleton<HookedEvents>()
                 .AddSingleton<ReactionService>()
