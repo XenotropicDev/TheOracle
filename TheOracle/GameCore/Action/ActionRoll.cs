@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using TheOracle.Core;
 using TheOracle.GameCore.Action;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.Action
 {
     public class ActionRoll
     {

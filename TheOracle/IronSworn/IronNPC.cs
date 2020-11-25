@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.Core;
+using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.NpcGenerator

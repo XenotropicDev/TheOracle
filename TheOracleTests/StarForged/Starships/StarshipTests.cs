@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using TheOracle.Core;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.StarForged.Starships.Tests
 {

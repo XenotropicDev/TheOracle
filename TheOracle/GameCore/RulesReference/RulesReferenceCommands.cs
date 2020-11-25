@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.RulesReference;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.RulesReference
 {
     public class RulesReferenceCommands : ModuleBase<SocketCommandContext>
     {

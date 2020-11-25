@@ -5,7 +5,7 @@ using System.Linq;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
-namespace TheOracle.IronSworn
+namespace TheOracle.GameCore.Oracle
 {
     public class StandardOracle : IOracleEntry
     {
@@ -34,6 +34,14 @@ namespace TheOracle.IronSworn
             var finalResults = roller.RollResultList.Select(ocl => ocl.Result.Description);
 
             return $"{Description}\n" + String.Join(" / ", finalResults);
+        }
+
+        internal StandardOracle DeepClone()
+        {
+            var clone = (StandardOracle)this.MemberwiseClone();
+            if (Oracles != null) clone.Oracles = new List<StandardOracle>(this.Oracles.Select(o => o.DeepClone()));
+
+            return clone;
         }
 
         //TODO move this to an extension method of IOracleEntry?

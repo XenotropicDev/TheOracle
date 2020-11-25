@@ -1,4 +1,6 @@
-﻿namespace TheOracle.GameCore.RulesReference
+﻿using TheOracle.GameCore.RulesReference;
+
+namespace TheOracle.GameCore
 {
     public class SourceInfo : ISourceInfo
     {

@@ -15,11 +15,15 @@ namespace TheOracle.GameCore.ProgressTracker
         public const int troublesomeTicks = 12;
         private int ticks;
 
-        public ProgressTracker(ChallengeRank ChallengeRank, string title, int startingTicks = 0)
+        public ProgressTracker(ChallengeRank ChallengeRank, string description, int startingTicks = 0)
         {
             Rank = ChallengeRank;
-            Title = title;
+            Description = description;
             Ticks = startingTicks;
+        }
+        public ProgressTracker()
+        {
+
         }
 
         public ProgressTracker(IUserMessage message, ChallengeRank challengeRank = ChallengeRank.None)
@@ -27,7 +31,7 @@ namespace TheOracle.GameCore.ProgressTracker
             var embed = message.Embeds.FirstOrDefault(item => item.Title == ProgressResources.Progress_Tracker);
             if (embed == null) return;
 
-            if (challengeRank == ChallengeRank.None && !Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == ProgressResources.Difficulty).Value, out challengeRank))
+            if (challengeRank == ChallengeRank.None && !Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == DifficultyFieldTitle).Value, out challengeRank))
                 throw new ArgumentException("Unknown progress tracker post format, unable to parse difficulty");
 
             Rank = challengeRank;
@@ -36,7 +40,7 @@ namespace TheOracle.GameCore.ProgressTracker
             {
                 Ticks = (Int32.TryParse(embed.Footer.Value.Text.Replace(ProgressResources.Ticks, "").Replace(":", ""), out int temp)) ? temp : 0;
             }
-            Title = embed.Description;
+            Description = embed.Description;
         }
 
         public ChallengeRank Rank { get; set; }
@@ -52,10 +56,11 @@ namespace TheOracle.GameCore.ProgressTracker
             }
         }
 
-        public string Title { get; set; }
+        public string Description { get; set; }
 
-        private int TicksPerProgress { get => ChallengeRankToTicks(Rank); }
+        public virtual int TicksPerProgress { get => ChallengeRankToTicks(Rank); }
         public int ActionDie { get => (int)Math.Floor(Ticks / 4d); }
+        public virtual string DifficultyFieldTitle { get => ProgressResources.Difficulty; }
 
         public static bool HasMatchingChallengeRank(string rank, string[] trackerArgs)
         {
@@ -72,14 +77,14 @@ namespace TheOracle.GameCore.ProgressTracker
             return epicTicks;
         }
 
-        public Embed BuildEmbed()
+        public virtual IEmbed BuildEmbed()
         {
             return new EmbedBuilder()
                 .WithTitle(ProgressResources.Progress_Tracker)
-                .WithDescription(Title)
+                .WithDescription(Description)
                 .WithFields(new EmbedFieldBuilder()
                 {
-                    Name = ProgressResources.Difficulty,
+                    Name = DifficultyFieldTitle,
                     Value = ProgressResources.ResourceManager.GetString(Rank.ToString()),
                     IsInline = true
                 })
@@ -109,12 +114,12 @@ namespace TheOracle.GameCore.ProgressTracker
             Ticks += TicksPerProgress;
         }
 
-        private object BuildProgressAmount(int ticks)
+        public virtual string BuildProgressAmount(int ticks)
         {
             return $"{ActionDie}/10";
         }
 
-        private string BuildProgressGraphic(int ticks)
+        public virtual string BuildProgressGraphic(int ticks)
         {
             //User filler character so that we can do easy string math
             string fill = new string('#', (int)Math.Floor(Ticks / 4d));

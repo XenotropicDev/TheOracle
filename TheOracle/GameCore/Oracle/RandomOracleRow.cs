@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TheOracle.BotCore;
+using TheOracle.Core;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.Oracle
 {
     public static class RandomOracleRow
     {
@@ -16,10 +17,16 @@ namespace TheOracle.Core
             return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
         }
 
-        public static T LookupOracle<T>(this IEnumerable<T> source, int roll) where T : IOracleEntry
+        //public static T LookupOracle<T>(this IEnumerable<T> source, int roll) where T : IOracleEntry
+        //{
+        //    if (source.Count() == 0) return default;
+        //    return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
+        //}
+
+        public static StandardOracle LookupOracle(this List<StandardOracle> source, int roll)
         {
             if (source.Count() == 0) return default;
-            return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
+            return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll).DeepClone();
         }
 
         public static void Shuffle<T>(this IList<T> list, Random random = default)

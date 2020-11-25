@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TheOracle.Core;
+using TheOracle.GameCore;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.StarForged.Starships
 {

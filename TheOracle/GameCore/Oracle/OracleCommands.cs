@@ -11,7 +11,7 @@ using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
-namespace TheOracle.IronSworn
+namespace TheOracle.GameCore.Oracle
 {
     public class OracleCommands : ModuleBase<SocketCommandContext>
     {
@@ -55,7 +55,7 @@ namespace TheOracle.IronSworn
 
             try
             {
-                var msg = await ReplyAsync("", false, roller.BuildRollResults(oracleTable).GetEmbedBuilder().Build());
+                var msg = await ReplyAsync("", false, roller.BuildRollResults(oracleTable).GetEmbed());
                 if (roller.RollResultList.Count == 1 && roller.RollResultList[0].ParentTable.Pair?.Length > 0)
                 {
                     await msg.AddReactionAsync(new Emoji("\uD83E\uDDE6"));
@@ -164,7 +164,7 @@ namespace TheOracle.IronSworn
             var embed = message.Embeds.First().ToEmbedBuilder();
             if (!embed.Title.Contains(OracleResources.OracleResult)) throw new ArgumentException("Unknown message type");
 
-            OracleRoller existingRoller = OracleRoller.RebuildRoller(_oracleService, embed, Services);
+            OracleRoller existingRoller = OracleRoller.RebuildRoller(_oracleService, embed);
             var rollerCopy = new List<RollResult>(existingRoller.RollResultList); //Copy the list so we can safely add to it using foreach
 
             foreach (var rollResult in rollerCopy.Where(tbl => tbl.ParentTable.Pair?.Length > 0))
@@ -181,7 +181,7 @@ namespace TheOracle.IronSworn
                 existingRoller.RollResultList.InsertRange(index, roller.RollResultList);
             }
 
-            return existingRoller.GetEmbedBuilder().Build();
+            return existingRoller.GetEmbed();
         }
     }
 }

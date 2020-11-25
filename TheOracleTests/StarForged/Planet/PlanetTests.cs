@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using TheOracle.Core;
 using TheOracle.StarForged.Planets;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.StarForged.Tests
 {

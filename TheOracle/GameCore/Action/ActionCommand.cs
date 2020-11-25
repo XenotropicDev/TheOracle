@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.Core;
 
-namespace TheOracle.IronSworn
+namespace TheOracle.GameCore.Action
 {
 	public class ActionCommand : ModuleBase<SocketCommandContext>
 	{

@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
+using TheOracle.GameCore.Action;
 using TheOracle.GameCore.ProgressTracker;
 
-namespace TheOracle.Core
+namespace TheOracle.GameCore.ProgressTracker
 {
     public class ProgressTrackCommands : ModuleBase<SocketCommandContext>
     {
         public const string DecreaseEmoji = "\u25C0";
         public const string fiveEmoji = "\u0035\u20E3";
         public const string fourEmoji = "\u0034\u20E3";
-        public const string FullEmoji = "\u2714";
+        public const string oldFullEmoji = "\u2714";
+        public const string FullEmoji = "\u0023\u20E3";
         public const string IncreaseEmoji = "\u25B6";
         public const string oneEmoji = "\u0031\u20E3";
         public const string RollEmoji = "\uD83C\uDFB2";
@@ -42,6 +44,7 @@ namespace TheOracle.Core
 
                 ReactionEvent decrease = new ReactionEventBuilder().WithEmoji(DecreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent increase = new ReactionEventBuilder().WithEmoji(IncreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent fullMark2 = new ReactionEventBuilder().WithEmoji(oldFullEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent fullMark = new ReactionEventBuilder().WithEmoji(FullEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent roll = new ReactionEventBuilder().WithEmoji(RollEmoji).WithEvent(ProgressInteractiveReactions).Build();
 
@@ -54,6 +57,7 @@ namespace TheOracle.Core
                 reactionService.reactionList.Add(decrease);
                 reactionService.reactionList.Add(increase);
                 reactionService.reactionList.Add(fullMark);
+                reactionService.reactionList.Add(fullMark2);
                 reactionService.reactionList.Add(roll);
             }
         }
@@ -93,7 +97,7 @@ namespace TheOracle.Core
                 IncreaseProgress(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
-            if (reaction.Emote.Name == FullEmoji)
+            if (reaction.Emote.Name == oldFullEmoji || reaction.Emote.Name == FullEmoji)
             {
                 IncreaseProgressFullCheck(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -101,7 +105,7 @@ namespace TheOracle.Core
             if (reaction.Emote.Name == RollEmoji)
             {
                 var tracker = new ProgressTracker(message);
-                var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Title}");
+                var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Description}");
                 await channel.SendMessageAsync(roll.ToString()).ConfigureAwait(false);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
@@ -112,7 +116,10 @@ namespace TheOracle.Core
         [Command("ProgressTracker")]
         [Alias("Track", "Tracker", "Progress")]
         [Summary("Creates an objective tracking post for things like Iron vows, journeys, and combat encounters")]
-        [Remarks("\u25C0 - Decreases the progress track by the difficulty amount.\n\u25B6 - Increases the progress track by the difficulty amount.\n\u2714 - Increases the progress track by a single full box (four ticks).\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker.")]
+        [Remarks("\u25C0 - Decreases the progress track by the difficulty amount." +
+            "\n\u25B6 - Increases the progress track by the difficulty amount." +
+            "\n\u0023\u20E3 - Increases the progress track by a single full box (four ticks)." +
+            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker.")]
         public async Task ProgressTrackerCommand([Remainder] string TrackerArgs)
         {
             //TODO this all needs to be reworked for globalization
@@ -134,7 +141,7 @@ namespace TheOracle.Core
             if (messageToEdit == null)
             {
                 var tracker = new ProgressTracker(cr, ThingToTrack);
-                messageToEdit = ReplyAsync(embed: tracker.BuildEmbed()).Result;
+                messageToEdit = ReplyAsync(embed: tracker.BuildEmbed() as Embed).Result;
             }
             else
             {
@@ -142,7 +149,7 @@ namespace TheOracle.Core
                 await messageToEdit.ModifyAsync(msg =>
                 {
                     msg.Content = string.Empty;
-                    msg.Embed = tracker.BuildEmbed();
+                    msg.Embed = tracker.BuildEmbed() as Embed;
                 });
             }
 
@@ -195,7 +202,7 @@ namespace TheOracle.Core
 
             tracker.RemoveProgress();
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
         private void IncreaseProgress(IUserMessage message)
@@ -204,7 +211,7 @@ namespace TheOracle.Core
 
             tracker.AddProgress();
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
         private void IncreaseProgressFullCheck(IUserMessage message)
@@ -213,7 +220,7 @@ namespace TheOracle.Core
 
             tracker.Ticks += 4;
 
-            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed()).ConfigureAwait(false);
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
         private bool IsProgressTrackerMessage(IUserMessage message)

@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using TheOracle.GameCore;
 
 namespace TheOracle.BotCore
 {

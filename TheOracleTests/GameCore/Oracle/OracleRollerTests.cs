@@ -13,7 +13,7 @@ namespace TheOracle.GameCore.Oracle.Tests
         [TestCategory("Integration")]
         public void BuildRollResultsTest()
         {
-            var oracleService = new OracleService();
+            var oracleService = new OracleService().Load();
 
             oracleService.RandomRow("Action", GameName.Ironsworn);
             oracleService.RandomRow("Theme", GameName.Ironsworn);
@@ -24,7 +24,7 @@ namespace TheOracle.GameCore.Oracle.Tests
         [TestMethod()]
         public void BuildRollResultsTest1()
         {
-            var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
             for (int i = 0; i < 100; i++)
             {
@@ -32,6 +32,21 @@ namespace TheOracle.GameCore.Oracle.Tests
                 var roller = new OracleRoller(services, GameName.Starforged, rand).BuildRollResults("sso");
                 Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result.Description)));
             }
+        }
+
+        [TestMethod()]
+        public void BuildRollResultsTest2()
+        {
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
+
+            var roller = new OracleRoller(services, GameName.Ironsworn);
+
+            for (int i = 0; i < 100; i++)
+            {
+                roller.BuildRollResults("Site Name Format");
+                Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result.Description)));
+            }
+            
         }
     }
 }
