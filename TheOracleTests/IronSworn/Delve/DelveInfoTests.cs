@@ -19,13 +19,13 @@ namespace TheOracle.IronSworn.Delve.Tests
             var delveDomainPath = Path.Combine("IronSworn", "domains.json");
             var delveService = DelveService.Load(new string[] { delveThemePath }, new string[] { delveDomainPath });
 
-            var craftedDelveSite = DelveInfo.FromInput(delveService, "Corrupted, Fortified", "Cavern", "Demo Site", "Test Delve", "Epic");
+            var craftedDelveSite = DelveInfo.FromInput(delveService, null, "Corrupted, Fortified", "Cavern", "Demo Site", "Test Delve", "Epic");
 
             Assert.AreEqual(ChallengeRank.Epic, craftedDelveSite.Rank);
             Assert.IsTrue(craftedDelveSite.Themes.Any(t => t.DelveSiteTheme == "Corrupted"));
             Assert.IsTrue(craftedDelveSite.Themes.Any(t => t.DelveSiteTheme == "Fortified"));
 
-            var randomDelveSite = DelveInfo.FromInput(delveService, "Random", "Random, Random", "Demo Site", "Test Delve", "Troublesome");
+            var randomDelveSite = DelveInfo.FromInput(delveService, null, "Random", "Random, Random", "Demo Site", "Test Delve", "Troublesome");
             Assert.AreEqual(ChallengeRank.Troublesome, randomDelveSite.Rank);
             Assert.AreEqual(1, randomDelveSite.Themes.Count());
             Assert.AreEqual(2, randomDelveSite.Domains.Count());
@@ -39,7 +39,7 @@ namespace TheOracle.IronSworn.Delve.Tests
             var delveDomainPath = Path.Combine("IronSworn", "domains.json");
             var delveService = DelveService.Load(new string[] { delveThemePath }, new string[] { delveDomainPath });
 
-            var delveSite = DelveInfo.FromInput(delveService, "Corrupted, Fortified", "Cavern", "Demo Site", "Test Delve", "Epic");
+            var delveSite = DelveInfo.FromInput(delveService, null, "Corrupted, Fortified", "Cavern", "Demo Site", "Test Delve", "Epic");
 
             var featureRoller = delveSite.RevealFeatureRoller();
             Assert.IsTrue(featureRoller.RollResultList.Count > 0);

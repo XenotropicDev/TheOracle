@@ -125,11 +125,17 @@
     <value>Delve Site - {0} : {1}</value>
     <comment>{0} will be replaced with the themes, and {1} will be replaced with the domains. Odd stuff might happen if there's only a space between the {0} and {1} (if your language has spaces in words normally)</comment>
   </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain: {0}</value>
+  </data>
   <data name="DomainHelperTitle" xml:space="preserve">
     <value>Select Domain</value>
   </data>
   <data name="HelperFooterThemeDomain" xml:space="preserve">
-    <value>Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries: 1, R</value>
+    <value>Reply to this message with the number of the action/theme you want. To add multiple themes/domains (up to two for each) use a comma to seperate the entries: 1, R</value>
+  </data>
+  <data name="HelperSelectionsTitle" xml:space="preserve">
+    <value>Selections</value>
   </data>
   <data name="HelperSiteNameText" xml:space="preserve">
     <value>Input the name of the site or use `Random` to generate the name from the site name oracle tables</value>
@@ -166,6 +172,9 @@
     <value>Locate your Objective roll for {0}</value>
     <comment>{0} will be replaced with the name of the delve site.</comment>
   </data>
+  <data name="Objective" xml:space="preserve">
+    <value>Objective: {0}</value>
+  </data>
   <data name="ProgressAmountField" xml:space="preserve">
     <value>Progress Amount</value>
   </data>
@@ -175,6 +184,9 @@
   <data name="RandomAliases" xml:space="preserve">
     <value>R,Random,Rand,Roll</value>
     <comment>Comma seperated list of items that are the same as a user input for random. The first item is what will appear in the {0} of the HelperTextFormat, and the second values in the {1}</comment>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Rank: {0}</value>
   </data>
   <data name="RankField" xml:space="preserve">
     <value>Rank</value>
@@ -198,6 +210,12 @@
   </data>
   <data name="RiskZoneMedium" xml:space="preserve">
     <value>Medium (Dangerous or Formidable)</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Site Name: {0}</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme: {0}</value>
   </data>
   <data name="ThemeHelperTitle" xml:space="preserve">
     <value>Select Theme</value>

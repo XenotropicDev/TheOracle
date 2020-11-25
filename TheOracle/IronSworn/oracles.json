@@ -1608,13 +1608,13 @@
       "Page": "206"
     },
     "Oracles": [
-        { "Chance": 25, "Description": "[Description] {Place}"},
-        { "Chance": 50, "Description": "{Place} of [Detail]"},
-        { "Chance": 70, "Description": "{Place} of [Description] [Detail]"},
-        { "Chance": 80, "Description": "{Place} of [Namesake]'s [Detail]"},
-        { "Chance": 85, "Description": "[Namesake] {Place}"},
-        { "Chance": 95, "Description": "[Description] {Place} of [Namesake]"},
-        { "Chance": 100, "Description": "{Place} of [Namesake]"}
+        { "Chance": 25, "Description": "{Site Name Description} {Place}"},
+        { "Chance": 50, "Description": "{Place} of {Site Name Detail}"},
+        { "Chance": 70, "Description": "{Place} of {Site Name Description} {Site Name Detail}"},
+        { "Chance": 80, "Description": "{Place} of {Namesake}'s {Site Name Detail}"},
+        { "Chance": 85, "Description": "{Namesake} {Place}"},
+        { "Chance": 95, "Description": "{Site Name Description} {Place} of {Namesake}"},
+        { "Chance": 100, "Description": "{Place} of {Namesake}"}
     ]
   },
   {

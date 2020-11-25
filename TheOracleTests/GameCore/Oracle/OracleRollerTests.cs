@@ -33,5 +33,20 @@ namespace TheOracle.GameCore.Oracle.Tests
                 Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result.Description)));
             }
         }
+
+        [TestMethod()]
+        public void BuildRollResultsTest2()
+        {
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
+
+            var roller = new OracleRoller(services, GameName.Ironsworn);
+
+            for (int i = 0; i < 100; i++)
+            {
+                roller.BuildRollResults("Site Name Format");
+                Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result.Description)));
+            }
+            
+        }
     }
 }

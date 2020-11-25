@@ -38,6 +38,7 @@ namespace TheOracle.GameCore.Oracle
 
         public OracleRoller BuildRollResults(string tableName)
         {
+            RollResultList = new List<RollResult>();
             if (Game == GameName.None) Game = ParseOracleTables(tableName).FirstOrDefault()?.Game ?? GameName.None;
 
             RollFacade(tableName);
@@ -140,6 +141,7 @@ namespace TheOracle.GameCore.Oracle
                 RollFacade(multiRollTable.Name, depth + 1);
             }
         }
+
         private void RollFacade(string table, int depth = 0)
         {
             table = table.Trim();
@@ -186,6 +188,22 @@ namespace TheOracle.GameCore.Oracle
                         return;
                     }
                     RollFacade(nextTable, depth + 1);
+                }
+
+                // Match "{Place} of {Namesake}'s {Detail}" style entries
+                var formatedStringMatches = Regex.Matches(oracleResult.Description, @"\{([^\}]*)\}").ToList();
+                for (int i = formatedStringMatches.Count - 1; i >= 0; i--)
+                {
+                    Match formatMatch = formatedStringMatches[i];
+                    var subTable = OracleService.OracleList.SingleOrDefault(o => o.MatchTableAlias(formatMatch.Groups[1].Value) && (Game == GameName.None || Game == o.Game));
+                    if (subTable == null) continue;
+
+                    var subRoller = new OracleRoller(OracleService, subTable.Game.GetValueOrDefault(), RollerRandom);
+                    subRoller.BuildRollResults(subTable.Name);
+
+                    var replacement = subRoller.RollResultList.Last().Result.Description;
+                    string newDescription = oracleResult.Description.Substring(0, formatMatch.Index) + replacement + oracleResult.Description.Substring(formatMatch.Index + formatMatch.Length);
+                    oracleResult.Description = newDescription;
                 }
             }
 

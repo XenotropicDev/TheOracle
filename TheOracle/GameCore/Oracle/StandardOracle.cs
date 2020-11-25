@@ -36,6 +36,14 @@ namespace TheOracle.GameCore.Oracle
             return $"{Description}\n" + String.Join(" / ", finalResults);
         }
 
+        internal StandardOracle DeepClone()
+        {
+            var clone = (StandardOracle)this.MemberwiseClone();
+            if (Oracles != null) clone.Oracles = new List<StandardOracle>(this.Oracles.Select(o => o.DeepClone()));
+
+            return clone;
+        }
+
         //TODO move this to an extension method of IOracleEntry?
         /// <summary>
         /// Gets the result of a oracle roll, and any rolls that would result from it.

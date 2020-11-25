@@ -7,8 +7,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.Core;
-using TheOracle.GameCore;
 using TheOracle.GameCore.Action;
 using TheOracle.GameCore.Oracle;
 
@@ -19,7 +17,7 @@ namespace TheOracle.IronSworn.Delve
         public const string DangerEmoji = "\u26A0";
         public const string FeatureEmoji = "\uD83C\uDF40";
         public const string DecreaseEmoji = "\u25C0";
-        public const string FullEmoji = "\u2714";
+        public const string FullEmoji = "\u0023\u20E3";
         public const string IncreaseEmoji = "\u25B6";
         public const string RollEmoji = "\uD83C\uDFB2";
 
@@ -27,6 +25,7 @@ namespace TheOracle.IronSworn.Delve
         {
             Services = services;
             DelveService = Services.GetRequiredService<DelveService>();
+            OracleService = Services.GetRequiredService<OracleService>();
 
             var hooks = services.GetRequiredService<HookedEvents>();
             if (!hooks.DelveReactions)
@@ -52,16 +51,25 @@ namespace TheOracle.IronSworn.Delve
         }
 
         public DelveService DelveService { get; }
-
+        public OracleService OracleService { get; }
         public IServiceProvider Services { get; }
 
         [Command("DelveSite", RunMode = RunMode.Async)]
         [Alias("Delve")]
+        [Summary("Creates an delve site tracking post")]
+        [Remarks("\u25C0 - Decreases the progress track by the difficulty amount." +
+            "\n\u25B6 - Increases the progress track by the difficulty amount." +
+            "\n\u2714 - Increases the progress track by a single full box (four ticks)." +
+            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the Locate your Objective move" +
+            "\n\uD83C\uDF40 - Rolls a Feature for the delve site" +
+            "\n\u26A0 - Rolls the Reveal a Danger table for the delve site")]
         public async Task DelveSite()
         {
             var delveService = Services.GetRequiredService<DelveService>();
             string themeHelperText = string.Empty;
             string domainHelperText = string.Empty;
+
+            var builder = new DelveInfoBuilder(delveService, OracleService);
 
             for (int i = 0; i < delveService.Themes.Count; i++)
             {
@@ -84,10 +92,14 @@ namespace TheOracle.IronSworn.Delve
             var themeResponse = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
             if (themeResponse != null)
             {
+                builder.WithThemes(themeResponse.Content);
+
                 await themeResponse.DeleteAsync().ConfigureAwait(false);
+
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                 .WithTitle(DelveResources.DomainHelperTitle)
                 .WithDescription(domainHelperText)
+                .AddField(DelveResources.HelperSelectionsTitle, builder)
                 .WithFooter(DelveResources.HelperFooterThemeDomain)
                 .Build());
             }
@@ -100,10 +112,12 @@ namespace TheOracle.IronSworn.Delve
             var domainResponse = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
             if (domainResponse != null)
             {
+                builder.WithDomains(domainResponse.Content);
                 await domainResponse.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                     .WithTitle(DelveResources.HelperSiteNameTitle)
                     .WithDescription(DelveResources.HelperSiteNameText)
+                    .AddField(DelveResources.HelperSelectionsTitle, builder)
                     .Build());
             }
             else
@@ -115,10 +129,12 @@ namespace TheOracle.IronSworn.Delve
             var siteName = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
             if (siteName != null)
             {
+                builder.WithName(siteName.Content);
                 await siteName.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                     .WithTitle(DelveResources.HelperSiteObjectiveTitle)
                     .WithDescription(DelveResources.HelperSiteObjectiveText)
+                    .AddField(DelveResources.HelperSelectionsTitle, builder)
                     .Build());
             }
             else
@@ -130,10 +146,12 @@ namespace TheOracle.IronSworn.Delve
             var siteObjective = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
             if (siteObjective != null)
             {
+                builder.WithObjective(siteObjective.Content);
                 await siteObjective.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                     .WithTitle(DelveResources.HelperSiteRankTitle)
                     .WithDescription(DelveResources.HelperSiteRankText)
+                    .AddField(DelveResources.HelperSelectionsTitle, builder)
                     .Build());
             }
             else
@@ -150,8 +168,9 @@ namespace TheOracle.IronSworn.Delve
                 return;
             }
 
+            builder.WithRank(siteRank.Content);
             await siteRank.DeleteAsync().ConfigureAwait(false);
-            DelveInfo delve = DelveInfo.FromInput(delveService, themeResponse.Content, domainResponse.Content, siteName.Content, siteObjective.Content, siteRank.Content);
+            DelveInfo delve = builder.Build();
             await helperMessage.ModifyAsync(msg => { msg.Content = null; msg.Embed = delve.BuildEmbed() as Embed; });
 
             await helperMessage.AddReactionAsync(new Emoji(DecreaseEmoji));

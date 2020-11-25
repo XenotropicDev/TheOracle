@@ -79,6 +79,15 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domain: {0}.
+        /// </summary>
+        internal static string Domain {
+            get {
+                return ResourceManager.GetString("Domain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Domain.
         /// </summary>
         internal static string DomainHelperTitle {
@@ -88,11 +97,20 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reply to this message with the number of the action/theme you want. To add multiple themes/domains use a comma to seperate the entries: 1, R.
+        ///   Looks up a localized string similar to Reply to this message with the number of the action/theme you want. To add multiple themes/domains (up to two for each) use a comma to seperate the entries: 1, R.
         /// </summary>
         internal static string HelperFooterThemeDomain {
             get {
                 return ResourceManager.GetString("HelperFooterThemeDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selections.
+        /// </summary>
+        internal static string HelperSelectionsTitle {
+            get {
+                return ResourceManager.GetString("HelperSelectionsTitle", resourceCulture);
             }
         }
         
@@ -184,6 +202,15 @@ namespace TheOracle.IronSworn.Delve {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Objective: {0}.
+        /// </summary>
+        internal static string Objective {
+            get {
+                return ResourceManager.GetString("Objective", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progress Amount.
         /// </summary>
         internal static string ProgressAmountField {
@@ -207,6 +234,15 @@ namespace TheOracle.IronSworn.Delve {
         internal static string RandomAliases {
             get {
                 return ResourceManager.GetString("RandomAliases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank: {0}.
+        /// </summary>
+        internal static string Rank {
+            get {
+                return ResourceManager.GetString("Rank", resourceCulture);
             }
         }
         
@@ -270,6 +306,24 @@ namespace TheOracle.IronSworn.Delve {
         internal static string RiskZoneMedium {
             get {
                 return ResourceManager.GetString("RiskZoneMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site Name: {0}.
+        /// </summary>
+        internal static string SiteName {
+            get {
+                return ResourceManager.GetString("SiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme: {0}.
+        /// </summary>
+        internal static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
             }
         }
         

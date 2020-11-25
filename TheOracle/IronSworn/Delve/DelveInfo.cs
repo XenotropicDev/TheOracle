@@ -18,7 +18,7 @@ namespace TheOracle.IronSworn.Delve
         public string SiteObjective { get; set; }
         public List<Theme> Themes { get; set; } = new List<Theme>();
 
-        public static DelveInfo FromInput(DelveService delveService, string themeInput, string domainInput, string siteNameInput, string stieObjective, string siteRankInput)
+        public static DelveInfo FromInput(DelveService delveService, OracleService oracles, string themeInput, string domainInput, string siteNameInput, string siteObjective, string siteRankInput)
         {
             var delveInfo = new DelveInfo();
             var themeItems = themeInput.Split(',');
@@ -27,8 +27,7 @@ namespace TheOracle.IronSworn.Delve
             int randomThemes = 0;
             int randomDomains = 0;
 
-            delveInfo.SiteName = siteNameInput;
-            delveInfo.SiteObjective = stieObjective;
+            delveInfo.SiteObjective = siteObjective;
 
             ChallengeRankHelper.TryParse(siteRankInput, out ChallengeRank cr);
             if (cr == ChallengeRank.None && int.TryParse(siteRankInput, out int rankNumber))
@@ -94,6 +93,16 @@ namespace TheOracle.IronSworn.Delve
             for (int i = 0; i < randomThemes; i++) delveInfo.AddRandomTheme(delveService);
             for (int i = 0; i < randomDomains; i++) delveInfo.AddRandomDomain(delveService);
 
+            if (randomAliases.Any(alias => alias.Equals(siteNameInput, StringComparison.OrdinalIgnoreCase)))
+            {
+                var roller = new OracleRoller(oracles, GameName.Ironsworn);
+                roller.BuildRollResults("Site Name Format");
+                siteNameInput = roller.RollResultList.First().Result.Description;
+                string place = roller.BuildRollResults($"Site Name Place {delveInfo.Domains.First().DelveSiteDomain}").RollResultList.First().Result.Description;
+                siteNameInput = siteNameInput.Replace("{Place}", place);
+            }
+            delveInfo.SiteName = siteNameInput;
+
             return delveInfo;
         }
 
@@ -154,13 +163,13 @@ namespace TheOracle.IronSworn.Delve
             var themes = themeDomainArgs[0].Split(DelveResources.ListSeperator).Select(s => s.Trim());
             var domains = themeDomainArgs[1].Split(DelveResources.ListSeperator).Select(s => s.Trim());
 
-            delve.Themes.AddRange(delveService.Themes.Where(t1 => themes.Any(t2 => t2.Equals(t1.DelveSiteTheme, StringComparison.OrdinalIgnoreCase))));
-            delve.Domains.AddRange(delveService.Domains.Where(d1 => domains.Any(d2 => d2.Equals(d1.DelveSiteDomain, StringComparison.OrdinalIgnoreCase))));
+            delve.Themes.AddRange(delveService.Themes.Where(t1 => themes.Any(t2 => t2.Equals(t1.DelveSiteTheme, StringComparison.OrdinalIgnoreCase))).Take(2));
+            delve.Domains.AddRange(delveService.Domains.Where(d1 => domains.Any(d2 => d2.Equals(d1.DelveSiteDomain, StringComparison.OrdinalIgnoreCase))).Take(2));
 
             return delve;
         }
 
-        private void AddRandomDomain(DelveService delveService)
+        public void AddRandomDomain(DelveService delveService)
         {
             Domain toAdd = null;
             while (toAdd == null)
@@ -173,7 +182,7 @@ namespace TheOracle.IronSworn.Delve
             this.Domains.Add(toAdd);
         }
 
-        private void AddRandomTheme(DelveService delveService)
+        public void AddRandomTheme(DelveService delveService)
         {
             Theme toAdd = null;
             while (toAdd == null)
