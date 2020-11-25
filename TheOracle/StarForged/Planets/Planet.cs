@@ -131,8 +131,10 @@ namespace TheOracle.StarForged.Planets
             }
 
             if (LifeRevealed) builder.AddField(PlanetResources.Life, Life, true);
-            foreach (var look in CloserLooks) builder.AddField(PlanetResources.CloserLook, look, true);
-            for (int i = 0; i < RevealedBiomes; i++) builder.AddField(PlanetResources.CloserLook, Biomes[i], true);
+            
+            for (int i = 0; i < RevealedLooks; i++) builder.AddField(PlanetResources.CloserLook, CloserLooks[i], true);
+            
+            for (int i = 0; i < RevealedBiomes; i++) builder.AddField(PlanetResources.Biome, Biomes[i], true);
 
             builder.Fields = builder.Fields.OrderBy(field => PlanetFieldOrder(field.Name)).ToList();
 
