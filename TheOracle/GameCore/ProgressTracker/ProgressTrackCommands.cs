@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.GameCore.Action;
-using TheOracle.GameCore.ProgressTracker;
+using TheOracle.Core;
 
 namespace TheOracle.GameCore.ProgressTracker
 {
@@ -17,9 +16,9 @@ namespace TheOracle.GameCore.ProgressTracker
         public const string DecreaseEmoji = "\u25C0";
         public const string fiveEmoji = "\u0035\u20E3";
         public const string fourEmoji = "\u0034\u20E3";
-        public const string oldFullEmoji = "\u2714";
         public const string FullEmoji = "\u0023\u20E3";
         public const string IncreaseEmoji = "\u25B6";
+        public const string oldFullEmoji = "\u2714";
         public const string oneEmoji = "\u0031\u20E3";
         public const string RollEmoji = "\uD83C\uDFB2";
         public const string threeEmoji = "\u0033\u20E3";
