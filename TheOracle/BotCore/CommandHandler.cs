@@ -1,6 +1,7 @@
 ﻿using Discord.Commands;
 using Discord.WebSocket;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -61,7 +62,15 @@ namespace TheOracle
             // Inform the user if the command fails to be executed;
             // however, this may not always be desired, as it may clog up the request queue should a user spam a command.
             if (!result.IsSuccess)
+            {
+                if (result.Error == CommandError.UnknownCommand) return;
+
+                var commandSearch = _commands.Search(context, argPos);
+                var triggeredCommand = commandSearch.Commands.FirstOrDefault();
+                if (commandSearch.Commands.Count > 0 && triggeredCommand.Command.Name == "Roll" && result.Error == CommandError.BadArgCount) return;
+
                 await context.Channel.SendMessageAsync(result.ErrorReason);
+            }
         }
     }
 }
