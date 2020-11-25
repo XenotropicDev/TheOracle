@@ -7,6 +7,7 @@
     "Type": "paired",
     "Pair": "Theme",
     "Game": "Starforged",
+    "Category": "Interpretative Oracles",
     "Aliases": ["Star Action"],
     "Oracles": [
         { "Chance": 1, "Description": "Abandon"},
@@ -120,6 +121,7 @@
     "Type": "paired",
     "Pair": "Action",
     "Game": "Starforged",
+    "Category": "Interpretative Oracles",
     "Aliases": ["Star Theme"],
     "Oracles": [
         { "Chance": 1, "Description": "Ability"},
@@ -233,6 +235,8 @@
     "Type": "paired",
     "Pair": "Focus",
     "Game": "Starforged",
+    "Category": "Interpretative Oracles",
+    "Aliases": ["Desc", "Star Desc"],
     "Oracles": [
         { "Chance": 1, "Description": "Abandoned"},
         { "Chance": 2, "Description": "Abundant"},
@@ -345,6 +349,7 @@
     "Type": "paired",
     "Pair": "Descriptor",
     "Game": "Starforged",
+    "Category": "Interpretative Oracles",
     "Aliases": ["Star Focus"],
     "Oracles": [
         { "Chance": 1, "Description": "AI"},
@@ -457,6 +462,7 @@
     },
     "Aliases": ["sst"],
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 20, "Description": "[Stellar Object]"},
         { "Chance": 33, "Description": "[Cosmic Matter]"},
@@ -478,6 +484,7 @@
     },
     "Aliases": ["sso"],
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 24, "Description": "[Stellar Object]"},
         { "Chance": 40, "Description": "[Cosmic Matter]"},
@@ -499,6 +506,7 @@
     },
     "Aliases": ["sse"],
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 24, "Description": "[Stellar Object]"},
         { "Chance": 40, "Description": "[Cosmic Matter]"},
@@ -519,6 +527,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 20, "Description": "Smoldering red star"},
         { "Chance": 35, "Description": "Glowing orange star"},
@@ -542,6 +551,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 40, "Description": "[Asteroids]"},
         { "Chance": 50, "Description": "Metallic debris field"},
@@ -562,6 +572,7 @@
     "Pair": "Asteroid Material",
     "Aliases": ["Asteroids"],
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 25, "Description": "Planetoid"},
         { "Chance": 50, "Description": "Scattered field"},
@@ -577,6 +588,7 @@
     "Type": "paired",
     "Pair": "Asteroid Type",
     "Game": "Starforged",
+    "Category": "Space Oracles",
     "Oracles": [
         { "Chance": 40, "Description": "Crystalline"},
         { "Chance": 50, "Description": "Ice"},
@@ -593,6 +605,7 @@
     },
     "Game": "Starforged",
     "Aliases":["Settlement Loc", "SFSL", "SLoc"],
+    "Category": "Settlement Oracles",
     "Oracles": [
         { "Chance": 40, "Description": "Planetside"},
         { "Chance": 75, "Description": "Orbital"},
@@ -606,6 +619,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["spt"],
     "Oracles": [
         { "Chance": 10, "Description": "Few"},
@@ -622,6 +636,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["spo"],
     "Oracles": [
         { "Chance": 15, "Description": "Few"},
@@ -638,6 +653,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["spe"],
     "Oracles": [
         { "Chance": 20, "Description": "Few"},
@@ -654,6 +670,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["sfl"],
     "Oracles": [
         { "Chance": 3, "Description": "Beautiful architecture"},
@@ -686,6 +703,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["sic"],
     "Oracles": [
         { "Chance": 10, "Description": "Welcoming"},
@@ -708,6 +726,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["sa", "Authority"],
     "Oracles": [
         { "Chance": 15, "Description": "None / lawless"},
@@ -726,6 +745,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["sp", "Settlement Project"],
     "Oracles": [
         { "Chance": 5, "Description": "Agriculture"},
@@ -770,6 +790,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["st"],
     "Oracles": [
         { "Chance": 3, "Description": "Betrayal from within"},
@@ -811,6 +832,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Settlement Oracles",
     "Aliases": ["sn"],
     "Oracles": [
         { "Chance": 1, "Description": "Acropolis"},
@@ -922,6 +944,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["ce"],
     "Oracles": [
         { "Chance": 5, "Description": "Void"},
@@ -938,6 +961,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["cs"],
     "Oracles": [
         { "Chance": 3, "Description": "Minuscule (bug-sized)"},
@@ -956,6 +980,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["us", "Ultra Scale"],
     "Oracles": [
         { "Chance": 89, "Description": "Titanic (hill-sized)"},
@@ -970,6 +995,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["bfv"],
     "Oracles": [
         { "Chance": 5, "Description": "Amoeba / pseudopods"},
@@ -999,6 +1025,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["bfi"],
     "Oracles": [
         { "Chance": 3, "Description": "Amoeba / pseudopods"},
@@ -1028,6 +1055,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["bfland"],
     "Oracles": [
         { "Chance": 2, "Description": "Amoeba / pseudopods"},
@@ -1057,6 +1085,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["bfliquid"],
     "Oracles": [
         { "Chance": 5, "Description": "Amoeba / pseudopods"},
@@ -1086,6 +1115,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["bfa", "bfair"],
     "Oracles": [
         { "Chance": 2, "Description": "Amoeba / pseudopods"},
@@ -1115,6 +1145,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["cfl"],
     "Oracles": [
         { "Chance": 2, "Description": "Antennae / sensory organs "},
@@ -1176,6 +1207,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["ceb", "Creature Behavior"],
     "Oracles": [
         { "Chance": 5, "Description": "Ambusher"},
@@ -1208,6 +1240,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Creature Oracles",
     "Aliases": ["cra", "Creature Revealed Aspect"],
     "Oracles": [
         { "Chance": 2, "Description": "Alternative environment"},
@@ -1269,6 +1302,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Star Price", "Sptp"],
     "Oracles": [
         { "Chance": 2, "Description": "A trusted person or community acts against you"},
@@ -1300,6 +1334,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Type", "Starship Types"],
     "Oracles": [
         { "Chance": 2, "Description": "Carrier", "Prompt": "Launches fighters"},
@@ -1332,6 +1367,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Fleet", "Starship Fleet"],
     "Oracles": [
         { "Chance": 15, "Description": "Transport and escorts"},
@@ -1351,6 +1387,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Contact", "Starship Contact"],
     "Oracles": [
         { "Chance": 2, "Description": "Familiar"},
@@ -1374,6 +1411,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship First Look", "Ship Look"],
     "Oracles": [
         { "Chance": 4, "Description": "Abnormal sensor readings"},
@@ -1407,6 +1445,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Mission Terminus", "Terminus Mission"],
     "Oracles": [
         { "Chance": 3, "Description": "Blockade a location"},
@@ -1450,6 +1489,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Mission Outlands", "Outlands Mission"],
     "Oracles": [
         { "Chance": 2, "Description": "Blockade a location"},
@@ -1493,6 +1533,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Mission Expanse", "Expanse Mission"],
     "Oracles": [
         { "Chance": 2, "Description": "Blockade a location"},
@@ -1536,6 +1577,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Ship Oracles",
     "Aliases": ["Ship Name"],
     "Oracles": [
         { "Chance": 5, "Description": "The Marchana"},
@@ -1567,6 +1609,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Character Oracles",
     "Aliases": ["Char First", "Char Look"],
     "Oracles": [
         { "Chance": 3, "Description": "Adorned"},
@@ -1608,6 +1651,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Character Oracles",
     "Aliases": ["Dispositions", "Character Disposition", "Char Disposition", "Char Disp"],
     "Oracles": [
         { "Chance": 6, "Description": "Helpful"},
@@ -1631,6 +1675,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Character Oracles",
     "Aliases": ["Char Role"],
     "Oracles": [
         { "Chance": 2, "Description": "Agent"},
@@ -1690,6 +1735,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Character Oracles",
     "Aliases": ["Char Goal"],
     "Oracles": [
         { "Chance": 2, "Description": "Avenge a wrong"},
@@ -1741,6 +1787,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Character Oracles",
     "Aliases": ["Character Aspect", "Char Aspects", "Char Aspect", "Aspects", "Aspect"],
     "Oracles": [
         { "Chance": 1, "Description": "Addicted"},
@@ -1848,136 +1895,150 @@
 {
     "Name": "Make A Discovery",
     "Source": {
-      "Name": "Starforged Playtest Oracles",
-      "Version": "091420"
+      "Name": "Starforged Playtest Moves",
+      "Version": "112220"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Discovery"],
     "Oracles": [
-        { "Chance": 4, "Description": "Advanced technology waiting to be harnessed or salvaged"},
-        { "Chance": 8, "Description": "Ancient archive or message"},
-        { "Chance": 10, "Description": "Artificial consciousness evolved to a higher state"},
-        { "Chance": 12, "Description": "Clues to a crucial resource or uncharted domain"},
-        { "Chance": 14, "Description": "Envoy from another time or reality"},
-        { "Chance": 22, "Description": "Extraordinary natural phenomenon"},
-        { "Chance": 24, "Description": "First contact with intelligent life"},
-        { "Chance": 26, "Description": "Gateway to another time or alternate reality"},
-        { "Chance": 28, "Description": "Key to unlocking a language or method of communication"},
-        { "Chance": 34, "Description": "Lost or hidden people"},
-        { "Chance": 42, "Description": "Majestic or unusual lifeforms"},
-        { "Chance": 46, "Description": "Marvel of ancient engineering"},
-        { "Chance": 50, "Description": "Miraculously preserved artifact or specimen"},
-        { "Chance": 56, "Description": "Monumental architecture or artistry of an ancient civilization"},
-        { "Chance": 62, "Description": "Mysterious device or artifact of potential value"},
-        { "Chance": 66, "Description": "New understanding of an enduring mystery"},
-        { "Chance": 68, "Description": "Pathway or means of travel to a distant location"},
-        { "Chance": 70, "Description": "Person or lifeform with phenomenal abilities"},
-        { "Chance": 78, "Description": "Place of awe-inspiring beauty"},
-        { "Chance": 86, "Description": "Rare and valuable resource"},
-        { "Chance": 88, "Description": "Safeguarded or idyllic location"},
-        { "Chance": 90, "Description": "Visions or prophesies of the future"},
-        { "Chance": 100, "Description": "[2x]"}
+      { "Chance": 4, "Description": "Advanced technology waiting to be harnessed or salvaged" },
+      { "Chance": 8, "Description": "Ancient archive or message" },
+      { "Chance": 10, "Description": "Artificial consciousness evolved to a higher state" },
+      { "Chance": 12, "Description": "Clues to a crucial resource or uncharted domain" },
+      { "Chance": 14, "Description": "Envoy from another time or reality" },
+      { "Chance": 22, "Description": "Extraordinary natural phenomenon" },
+      { "Chance": 24, "Description": "First contact with intelligent life" },
+      { "Chance": 26, "Description": "Gateway to another time or alternate reality" },
+      { "Chance": 28, "Description": "Key to unlocking a language or method of communication" },
+      { "Chance": 34, "Description": "Lost or hidden people" },
+      { "Chance": 42, "Description": "Majestic or unusual lifeforms" },
+      { "Chance": 46, "Description": "Marvel of ancient engineering" },
+      { "Chance": 50, "Description": "Miraculously preserved artifact or specimen" },
+      { "Chance": 56, "Description": "Monumental architecture or artistry of an ancient civilization" },
+      { "Chance": 62, "Description": "Mysterious device or artifact of potential value" },
+      { "Chance": 66, "Description": "New understanding of an enduring mystery" },
+      { "Chance": 68, "Description": "Pathway or means of travel to a distant location" },
+      { "Chance": 70, "Description": "Person or lifeform with phenomenal abilities" },
+      { "Chance": 78, "Description": "Place of awe-inspiring beauty" },
+      { "Chance": 86, "Description": "Rare and valuable resource" },
+      { "Chance": 88, "Description": "Safeguarded or idyllic location" },
+      { "Chance": 90, "Description": "Visions or prophesies of the future" },
+      { "Chance": 100, "Description": "[2x]"}
     ]
 },
 {
     "Name": "Confront Chaos",
     "Source": {
-      "Name": "Starforged Playtest Oracles",
-      "Version": "091420"
+      "Name": "Starforged Playtest Moves",
+      "Version": "112220"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Chaos"],
     "Oracles": [
-        { "Chance": 4, "Description": "Baneful weapon of mass destruction"},
-        { "Chance": 9, "Description": "Cataclysmic environmental effects"},
-        { "Chance": 12, "Description": "Dead given unnatural life"},
-        { "Chance": 17, "Description": "Destructive lifeform of monstrous proportion"},
-        { "Chance": 20, "Description": "Dread hallucinations or illusions"},
-        { "Chance": 24, "Description": "Harbingers of an imminent invasion"},
-        { "Chance": 27, "Description": "Horde of insatiable hunger or fury"},
-        { "Chance": 32, "Description": "Horrific lifeforms of inscrutable purpose"},
-        { "Chance": 36, "Description": "Impostors in human form"},
-        { "Chance": 41, "Description": "Machines made enemy"},
-        { "Chance": 45, "Description": "Malignant contagion or parasite"},
-        { "Chance": 50, "Description": "Messenger or signal with a dire warning"},
-        { "Chance": 53, "Description": "Passage to a grim alternate reality"},
-        { "Chance": 58, "Description": "People corrupted by chaos"},
-        { "Chance": 63, "Description": "Powerful distortions of time or space"},
-        { "Chance": 68, "Description": "Signs of an impending catastrophe"},
-        { "Chance": 72, "Description": "Site of a baffling disappearance"},
-        { "Chance": 77, "Description": "Site of a horrible disaster"},
-        { "Chance": 82, "Description": "Site of terrible carnage"},
-        { "Chance": 87, "Description": "Technology nullified or made unstable"},
-        { "Chance": 92, "Description": "Technology warped for dark purpose"},
-        { "Chance": 96, "Description": "Vault of dread technology or power"},
-        { "Chance": 100, "Description": "Worshipers of great and malevolent powers"}
+      { "Chance": 4, "Description": "Baneful weapon of mass destruction" },
+      { "Chance": 9, "Description": "Cataclysmic environmental effects" },
+      { "Chance": 12, "Description": "Dead given unnatural life" },
+      { "Chance": 17, "Description": "Destructive lifeform of monstrous proportion" },
+      { "Chance": 20, "Description": "Dread hallucinations or illusions" },
+      { "Chance": 24, "Description": "Harbingers of an imminent invasion" },
+      { "Chance": 27, "Description": "Horde of insatiable hunger or fury" },
+      { "Chance": 32, "Description": "Horrific lifeforms of inscrutable purpose" },
+      { "Chance": 36, "Description": "Impostors in human form" },
+      { "Chance": 41, "Description": "Machines made enemy" },
+      { "Chance": 45, "Description": "Malignant contagion or parasite" },
+      { "Chance": 50, "Description": "Messenger or signal with a dire warning" },
+      { "Chance": 53, "Description": "Passage to a grim alternate reality" },
+      { "Chance": 58, "Description": "People corrupted by chaos" },
+      { "Chance": 63, "Description": "Powerful distortions of time or space" },
+      { "Chance": 68, "Description": "Signs of an impending catastrophe" },
+      { "Chance": 72, "Description": "Site of a baffling disappearance" },
+      { "Chance": 77, "Description": "Site of a horrible disaster" },
+      { "Chance": 82, "Description": "Site of terrible carnage" },
+      { "Chance": 87, "Description": "Technology nullified or made unstable" },
+      { "Chance": 92, "Description": "Technology warped for dark purpose" },
+      { "Chance": 96, "Description": "Vault of dread technology or power" },
+      { "Chance": 100, "Description": "Worshipers of great and malevolent powers"}
     ]
 },
 {
     "Name": "Decisive Action Cost",
     "Source": {
-      "Name": "Starforged Playtest Oracles",
-      "Version": "091420"
+      "Name": "Starforged Playtest Moves",
+      "Version": "112220"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Decisive Action", "Decisive"],
     "Oracles": [
-        { "Chance": 40, "Description": "It’s worse than you thought: Make a suffer move (-2)"},
-        { "Chance": 52, "Description": "The victory is short-lived: A new danger or foe is revealed"},
-        { "Chance": 64, "Description": "You face collateral damage: Something is lost, damaged, or broken"},
-        { "Chance": 76, "Description": "Others pay the price: Someone else suffers the cost"},
-        { "Chance": 88, "Description": "Others won’t forget: You are marked for vengeance"},
-        { "Chance": 100, "Description": "It gets complicated: The true nature of a foe or objective is revealed"}
+      { "Chance": 40, "Description": "It's worse than you thought: You or an ally make a suffer move (-2)" },
+      { "Chance": 52, "Description": "The victory is short-lived: A new complication or foe is revealed" },
+      { "Chance": 64, "Description": "You face collateral damage: Something is lost, damaged, or broken" },
+      { "Chance": 76, "Description": "Others pay the price: Someone else suffers the cost" },
+      { "Chance": 88, "Description": "Others won't forget: You are marked for vengeance" },
+      { "Chance": 100, "Description": "It gets complicated: The true nature of a foe or objective is revealed" }
     ]
 },
 {
     "Name": "Endure Harm Miss",
     "Source": {
-      "Name": "Starforged Playtest Oracles",
-      "Version": "091420"
+      "Name": "Starforged Playtest Moves",
+      "Version": "112220"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Endure Harm", "Harm"],
     "Oracles": [
-        { "Chance": 10, "Description": "The harm is mortal. __Face Death__."},
-        { "Chance": 20, "Description": "You are dying. You must __Heal__ within an hour or two, or __Face Death__."},
-        { "Chance": 35, "Description": "You are unconscious and out of action. If left alone, you come back to your senses in an hour or two. If you are vulnerable to ongoing harm, __Face Death__."},
-        { "Chance": 50, "Description": "You are reeling and fighting to stay conscious. If you engage in any vigorous activity before taking a breather for a few minutes, roll on this table again (before resolving the other move)."},
-        { "Chance": 100, "Description": "You are battered but still standing."}
+      { "Chance": 10, "Description": "You suffer mortal harm. __Face Death__." },
+      { "Chance": 20, "Description": "You are dying. Within an hour or two, you must __Heal__ and raise your health above 0, or __Face Death__." },
+      { "Chance": 35, "Description": "You are unconscious and out of action. If left alone, you come back to your senses in an hour or two. If you are vulnerable to ongoing harm, __Face Death__." },
+      { "Chance": 50, "Description": "You are reeling and fighting to stay conscious. If you engage in any vigorous activity before taking a breather for a few minutes, roll on this table again (before resolving the other move)." },
+      { "Chance": 100, "Description": "You are still standing." },
+      { "Chance": 10, "Description": "You are overwhelmed. __Face Desolation__." },
+      { "Chance": 25, "Description": "You give up. __Forsake Your Vow__." },
+      { "Chance": 50, "Description": "You give in to fear or compulsion, and act against your better instincts." },
+      { "Chance": 100, "Description": "You persevere." }
     ]
 },
 {
     "Name": "Endure Stress Miss",
     "Source": {
-      "Name": "Starforged Playtest Oracles",
-      "Version": "091420"
+      "Name": "Starforged Playtest Moves",
+      "Version": "112220"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Endure Stress","Stress"],
     "Oracles": [
-        { "Chance": 10, "Description": "You are overwhelmed. __Face Desolation__."},
-        { "Chance": 25, "Description": "You give up. __Forsake Your Vow__."},
-        { "Chance": 50, "Description": "You give in to fear or compulsion, and act against your better instincts."},
-        { "Chance": 100, "Description": "You persevere."}
+      { "Chance": 10, "Description": "Immediate catastrophic destruction. All aboard must __Endure Harm__ or __Face Death__, as appropriate." },
+      { "Chance": 25, "Description": "Destruction is imminent and unavoidable. If you do not have the means or intention to get clear, __Endure Harm__ or __Face Death__, as appropriate." },
+      { "Chance": 40, "Description": "Destruction is imminent, but can be averted if you __Repair__ your vehicle and raise its integrity above 0. If you fail, see 11-25." },
+      { "Chance": 55, "Description": "You cannot __Repair__ this vehicle until you __Resupply__ and obtain a crucial replacement part. If you roll this result again prior to that, see 11-25." },
+      { "Chance": 70, "Description": "The vehicle is crippled or out of your control. To get it back in action, you must __Repair__ and raise its integrity above 0." },
+      { "Chance": 85, "Description": "It's a rough ride. All aboard suffer must make the __Endure Harm__, __Endure Stress__, or __Companion Takes a Hit__ move, suffering a serious (-2) cost." },
+      { "Chance": 95, "Description": "You've lost fuel, energy, or cargo. __Sacrifice Resources (-2)__." },
+      { "Chance": 100, "Description": "Against all odds, the vehicle holds together." }
     ]
 },
 {
     "Name": "Withstand Damage Miss",
     "Source": {
-      "Name": "Starforged Playtest Oracles",
-      "Version": "091420"
+      "Name": "Starforged Playtest Moves",
+      "Version": "112220"
     },
     "Game": "Starforged",
+    "Category": "Oracles",
     "Aliases": ["Withstand Damage", "Damage"],
     "Oracles": [
-        { "Chance": 10, "Description": "Immediate catastrophic destruction. All aboard must __Endure Harm__ or __Face Death__, as appropriate."},
-        { "Chance": 25, "Description": "Destruction is imminent and unavoidable. If you do not have the means or intention to get clear, __Endure Harm__ or __Face Death__, as appropriate."},
-        { "Chance": 40, "Description": "Destruction is imminent, but can be averted if you __Repair__ your vehicle and raise its integrity above 0. If you fail, see 11-25."},
-        { "Chance": 55, "Description": "You cannot __Repair__ this vehicle until you __Resupply__ and obtain a crucial replacement part. If you roll this result again prior to that, see 11-25."},
-        { "Chance": 70, "Description": "The vehicle is crippled or out of your control. To get it back in action, you must __Repair__ and raise its integrity above 0."},
-        { "Chance": 85, "Description": "It’s a rough ride. All aboard suffer must make the __Endure Harm__, __Endure Stress__, or __Companion Takes a Hit__ move, suffering a serious (-2) cost."},
-        { "Chance": 95, "Description": "You’ve lost fuel, energy, or cargo. __Sacrifice Resources (-2)__."},
-        { "Chance": 100, "Description": "Against all odds, the vehicle holds together."}
+      { "Chance": 10, "Description": "Immediate catastrophic destruction. All aboard must __Endure Harm__ or __Face Death__, as appropriate." },
+      { "Chance": 25, "Description": "Destruction is imminent and unavoidable. If you do not have the means or intention to get clear, __Endure Harm__ or __Face Death__, as appropriate." },
+      { "Chance": 40, "Description": "Destruction is imminent, but can be averted if you __Repair__ your vehicle and raise its integrity above 0. If you fail, see 11-25." },
+      { "Chance": 55, "Description": "You cannot __Repair__ this vehicle until you __Resupply__ and obtain a crucial replacement part. If you roll this result again prior to that, see 11-25." },
+      { "Chance": 70, "Description": "The vehicle is crippled or out of your control. To get it back in action, you must __Repair__ and raise its integrity above 0." },
+      { "Chance": 85, "Description": "It's a rough ride. All aboard suffer must make the __Endure Harm__, __Endure Stress__, or __Companion Takes a Hit__ move, suffering a serious (-2) cost." },
+      { "Chance": 95, "Description": "You've lost fuel, energy, or cargo. __Sacrifice Resources (-2)__." },
+      { "Chance": 100, "Description": "Against all odds, the vehicle holds together." }
     ]
 },
 {
@@ -1987,6 +2048,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
+    "Category": "Character Oracles",
     "Aliases": ["Char Name"],
     "Oracles": [
         { "Chance": 100, "Description": "Name oracle not provided yet"}
@@ -1997,10 +2059,11 @@
   "Aliases": ["backstory"],
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "101020",
+    "Version": "112220",
     "Page": "27"
   },
   "Game": "Starforged",
+  "Category": "Oracles",
   "Oracles": [
     {
       "Chance": 7,
@@ -2064,10 +2127,11 @@
   "Name": "Starship History",
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "101020",
+    "Version": "112220",
     "Page": "29"
   },
   "Game": "Starforged",
+  "Category": "Ship Oracles",
   "Oracles": [
     {
       "Chance": 8,
@@ -2123,10 +2187,11 @@
   "Name": "Starship Quirks",
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "101020",
+    "Version": "112220",
     "Page": "30"
   },
   "Game": "Starforged",
+  "Category": "Ship Oracles",
   "Oracles": [
     {
       "Chance": 5,
@@ -2209,5 +2274,96 @@
       "Description": "Timers and clocks are always just a bit off"
     }
   ]
-}
+},
+{"Name": "Sector Trouble",
+"Source": {
+  "Name": "Launching Your Campaign",
+  "Version": "112220",
+  "Page": "47"
+},
+"Game": "Starforged",
+"Category": "Oracles",
+"Oracles": [
+      {
+        "Chance": 5,
+        "Description": "Blockade prevents trade with other sectors"
+      },
+      {
+        "Chance": 10,
+        "Description": "Bounty hunters search for an infamous fugitive"
+      },
+      {
+        "Chance": 15,
+        "Description": "Chaotic breaches in spacetime spread like wildfire"
+      },
+      {
+        "Chance": 20,
+        "Description": "Criminal faction corrupts local authorities"
+      },
+      {
+        "Chance": 25,
+        "Description": "Devastating superweapon has fallen into the wrong hands"
+      },
+      {
+        "Chance": 30,
+        "Description": "Energy storms are rampant"
+      },
+      {
+        "Chance": 35,
+        "Description": "Magnetic disturbances disrupt communication"
+      },
+      {
+        "Chance": 40,
+        "Description": "Newly found resource lures greedy fortune hunters to the sector"
+      },
+      {
+        "Chance": 45,
+        "Description": "Notorious pirate clan preys on starships"
+      },
+      {
+        "Chance": 50,
+        "Description": "Parasitic lifeforms spread like a plague"
+      },
+      {
+        "Chance": 55,
+        "Description": "Precursor sites throughout the sector emit strange signals"
+      },
+      {
+        "Chance": 60,
+        "Description": "Prophecies foretell an imminent awakening of a dreadful power"
+      },
+      {
+        "Chance": 65,
+        "Description": "Raider clan emerges as a dominant threat under a new leader"
+      },
+      {
+        "Chance": 70,
+        "Description": "Religious zealots overrun the sector"
+      },
+      {
+        "Chance": 75,
+        "Description": "Rogue AI infiltrates systems throughout the sector"
+      },
+      {
+        "Chance": 80,
+        "Description": "Settlements or factions are on the brink of war"
+      },
+      {
+        "Chance": 85,
+        "Description": "Ships regularly go missing"
+      },
+      {
+        "Chance": 90,
+        "Description": "Sickness spreads among ships and settlements"
+      },
+      {
+        "Chance": 95,
+        "Description": "Supernova is imminent"
+      },
+      {
+        "Chance": 100,
+        "Description": "Titanic spacebound lifeform stalks the spaceways"
+      }
+    ]
+  }
 ]

@@ -144,8 +144,19 @@
   <data name="Likely" xml:space="preserve">
     <value>Likely</value>
   </data>
+  <data name="ListSentInDM" xml:space="preserve">
+    <value>I sent you the oracle list in a DM. To post it in public use `!List Show`</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="OracleListFieldTitle" xml:space="preserve">
+    <value>{0} -&gt; {1}</value>
+    <comment>{0} will be the first character of the first category, and {1} will be the first character of the last category</comment>
+  </data>
+  <data name="OracleListTitle" xml:space="preserve">
+    <value>{0} Oracles</value>
+    <comment>{0} will be replaced with the game name</comment>
   </data>
   <data name="OracleResult" xml:space="preserve">
     <value>Oracle Result</value>
@@ -161,6 +172,10 @@
   </data>
   <data name="Roll" xml:space="preserve">
     <value>Roll</value>
+  </data>
+  <data name="ShowListInChannel" xml:space="preserve">
+    <value>Public,NoDM,Show,Channel,True</value>
+    <comment>Comma seperated list of values that trigger posting the oracle list in public instead of a DM</comment>
   </data>
   <data name="SmallChance" xml:space="preserve">
     <value>Small Chance</value>

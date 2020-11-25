@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.RulesReference;
@@ -53,7 +54,7 @@ namespace TheOracle.GameCore.RulesReference
             string specificMovesReply = string.Empty;
             var specRules = ruleService.Rules.Where(r => r.Moves.Any(m => MatchNameOrAlias(m, query)));
 
-            if (specRules.GroupBy(r => r.Game).Count() > 1) specRules = specRules.Where(r => r.Game == game);
+            if (specRules.GroupBy(r => r.Game).Count() > 1) specRules = specRules.Where(r => r.Game == game || game == GameName.None);
 
             foreach (var rules in specRules)
             {
@@ -61,11 +62,28 @@ namespace TheOracle.GameCore.RulesReference
                 foreach (var move in rules.Moves.Where(m => MatchNameOrAlias(m, query)))
                 {
                     string sourceText = (move.Source != null) ? $"{move.Source}\n\n" : string.Empty;
-                    string temp = $"__{actualGame} - **{move.Name}**__\n{move.Text}\n\n{sourceText}";
+                    string temp = $"__{actualGame} - **{move.Name}**__\n{move.Text}\n\n{sourceText}".Replace("\n\n\n", "\n\n");
                     if (specificMovesReply.Length + temp.Length > DiscordConfig.MaxMessageSize)
                     {
-                        await ReplyAsync(specificMovesReply);
-                        specificMovesReply = string.Empty;
+                        if (specificMovesReply.Length > 0)
+                        {
+                            await ReplyAsync(specificMovesReply);
+                            specificMovesReply = string.Empty;
+                        }
+
+                        if (temp.Length > DiscordConfig.MaxMessageSize)
+                        {
+                            int messageCutoff = temp.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf("\n");
+
+                            var matches = Regex.Matches(temp, "```");
+                            if (matches.Count > 0)
+                            {
+                                var match = matches.LastOrDefault(m => m.Index < DiscordConfig.MaxMessageSize && m.Index > temp.Length - DiscordConfig.MaxMessageSize);
+                                if (match != default) messageCutoff = match.Index;
+                            }
+                            await ReplyAsync(temp.Substring(0, messageCutoff));
+                            temp = temp.Substring(messageCutoff);
+                        }
                     }
                     specificMovesReply += temp;
                 }

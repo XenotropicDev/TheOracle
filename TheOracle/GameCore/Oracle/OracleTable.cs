@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using TheOracle.GameCore.Oracle;
 using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.Oracle
@@ -11,6 +9,7 @@ namespace TheOracle.GameCore.Oracle
     {
         public string[] Aliases { get; set; }
         public int d { get; set; } = 100;
+        public string Category { get; set; }
         public string DisplayMode { get; set; }
         public GameName? Game { get; set; }
         public string Name { get; set; }

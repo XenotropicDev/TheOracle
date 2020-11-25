@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
@@ -70,33 +71,76 @@ namespace TheOracle.GameCore.Oracle
         [Command("OracleList", ignoreExtraArgs: false)]
         [Summary("Lists Available Oracles")]
         [Alias("List")]
-        public async Task OracleList()
+        public async Task OracleList([Remainder]string OracleListOptions = "")
         {
-            ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
-            string reply = $"__Here's a list of available Oracle Tables:__\n";
-            foreach (var oracle in _oracleService.OracleList.Where(orc => channelSettings == null || channelSettings.DefaultGame == GameName.None || orc.Game == channelSettings.DefaultGame))
-            {
-                string aliases = string.Empty;
-                if (oracle.Aliases != null)
-                {
-                    aliases = $"{string.Join(", ", oracle.Aliases)}, ";
-                }
-                reply += $"**{oracle.Name}**, {aliases}";
-            }
-            reply = reply.Remove(reply.LastIndexOf(", "));
+            var ShowPostInChannel = OracleResources.ShowListInChannel.Split(',').Any(s => OracleListOptions.Contains(s, StringComparison.OrdinalIgnoreCase));
 
-            while (true)
+            var UserGame = Utilities.GetGameContainedInString(OracleListOptions);
+            if (UserGame == GameName.None)
             {
-                if (reply.Length < DiscordConfig.MaxMessageSize)
+                ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+                UserGame = channelSettings?.DefaultGame ?? GameName.None;
+            }
+
+            var baseList = _oracleService.OracleList.Where(orc => UserGame == GameName.None || orc.Game == UserGame);
+            baseList.ToList().ForEach(o => { if (o.Category == null || o.Category.Length == 0) o.Category = o.Game?.ToString() ?? "Misc"; });
+
+            foreach (var game in baseList.GroupBy(o => o.Game).Select(o => o.First().Game))
+            {
+                EmbedBuilder builder = new EmbedBuilder().WithTitle(String.Format(OracleResources.OracleListTitle, game));
+                string currentCategory = string.Empty;
+                string entries = string.Empty;
+                List<string> splitUpList = new List<string>();
+
+                foreach (var oracle in baseList.Where(o => o.Game == game).OrderBy(o => o.Category))
                 {
-                    await ReplyAsync(reply);
-                    break;
+                    if (oracle.Category != currentCategory)
+                    {
+                        currentCategory = oracle.Category;
+                        string catValue = $"\n**{currentCategory}**\n";
+
+                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we are less likely up with duplicated top level entries
+                        {
+                            splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
+                            entries = string.Empty;
+                        }
+                        entries += catValue;
+                    }
+
+                    string aliases = string.Empty;
+                    if (oracle.Aliases != null)
+                    {
+                        aliases = $" • {string.Join("\n• ", oracle.Aliases)}";
+                    }
+
+                    string entry = $" __`{oracle.Name}`__\n{aliases}\n";
+
+                    if (entries.Length + entry.Length > 1024)
+                    {
+                        splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
+                        entries = $"**{currentCategory}**\n";
+                    }
+
+                    entries += entry;
                 }
 
-                int cutoff = reply.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf(',');
-                await ReplyAsync(reply.Substring(0, cutoff));
-                reply = reply.Substring(cutoff + 1).Trim();
+                foreach (var s in splitUpList)
+                {
+                    string title = "Title";
+                    string temp = Utilities.RemoveGameNamesFromString(s);
+                    var match = Regex.Matches(temp, @"\*\*([a-zA-Z0-9\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])");
+                    if (match.Count > 0)
+                    {
+                        title = string.Format(OracleResources.OracleListFieldTitle, match[0].Groups[1], match.Last().Groups[1]);
+                    }
+                    builder.AddField(title, s, true);
+                }
+
+                if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
+                else await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
             }
+
+            if (!ShowPostInChannel) await ReplyAsync(OracleResources.ListSentInDM).ConfigureAwait(false);
         }
 
         private async Task PairedTableReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)

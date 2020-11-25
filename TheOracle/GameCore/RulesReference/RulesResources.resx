@@ -122,8 +122,12 @@
     <comment>{0} is replaced with the user's serach input</comment>
   </data>
   <data name="SourceField" xml:space="preserve">
-    <value>_Source: {0} - pg. {1}_</value>
-    <comment>{0} will be replaced with the source name and {1} will be replaced with the page number if any.</comment>
+    <value>_Source: {0} {1}_</value>
+    <comment>{0} will be replaced with the source name and {1} will be the SourcePageField in this document if there is any page.</comment>
+  </data>
+  <data name="SourcePageField" xml:space="preserve">
+    <value>- pg. {0}</value>
+    <comment>{0} will be replaced with the page number if any.</comment>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>

@@ -17,7 +17,19 @@ namespace TheOracle.BotCore
         public static async Task<ChannelSettings> GetChannelSettingsAsync(ulong channelID)
         {
             using var context = new DiscordChannelContext();
-            return await context.ChannelSettings.FirstOrDefaultAsync(item => item.ChannelID == channelID);
+            var settings = await context.ChannelSettings.FirstOrDefaultAsync(item => item.ChannelID == channelID);
+            if (settings == null)
+            {
+                settings = new ChannelSettings
+                {
+                    ChannelID = channelID,
+                    RerollDuplicates = true,
+                    DefaultGame = GameName.Ironsworn
+                };
+                context.ChannelSettings.Add(settings);
+                await context.SaveChangesAsync().ConfigureAwait(false);
+            }
+            return settings;
         }
     }
 }
