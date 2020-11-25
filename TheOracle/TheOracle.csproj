@@ -155,7 +155,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Addons.Interactive" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -170,9 +169,14 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Discord.Addons.Interactive">
+      <HintPath>Discord.Addons.Interactive.dll</HintPath>
+    </Reference>
     <Reference Include="Discord.Net.Commands">
       <HintPath>..\..\..\Discord.Net\src\Discord.Net.Commands\bin\Release\netstandard2.1\Discord.Net.Commands.dll</HintPath>
     </Reference>
