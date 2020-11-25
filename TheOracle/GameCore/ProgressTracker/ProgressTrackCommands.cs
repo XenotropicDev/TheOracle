@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
+using TheOracle.GameCore.Action;
 
 namespace TheOracle.GameCore.ProgressTracker
 {
