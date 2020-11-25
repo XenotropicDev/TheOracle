@@ -17,7 +17,8 @@ namespace TheOracle.GameCore.ProgressTracker
         public const string DecreaseEmoji = "\u25C0";
         public const string fiveEmoji = "\u0035\u20E3";
         public const string fourEmoji = "\u0034\u20E3";
-        public const string FullEmoji = "\u2714";
+        public const string oldFullEmoji = "\u2714";
+        public const string FullEmoji = "\u0023\u20E3";
         public const string IncreaseEmoji = "\u25B6";
         public const string oneEmoji = "\u0031\u20E3";
         public const string RollEmoji = "\uD83C\uDFB2";
@@ -43,6 +44,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
                 ReactionEvent decrease = new ReactionEventBuilder().WithEmoji(DecreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent increase = new ReactionEventBuilder().WithEmoji(IncreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent fullMark2 = new ReactionEventBuilder().WithEmoji(oldFullEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent fullMark = new ReactionEventBuilder().WithEmoji(FullEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent roll = new ReactionEventBuilder().WithEmoji(RollEmoji).WithEvent(ProgressInteractiveReactions).Build();
 
@@ -55,6 +57,7 @@ namespace TheOracle.GameCore.ProgressTracker
                 reactionService.reactionList.Add(decrease);
                 reactionService.reactionList.Add(increase);
                 reactionService.reactionList.Add(fullMark);
+                reactionService.reactionList.Add(fullMark2);
                 reactionService.reactionList.Add(roll);
             }
         }
@@ -94,7 +97,7 @@ namespace TheOracle.GameCore.ProgressTracker
                 IncreaseProgress(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
-            if (reaction.Emote.Name == FullEmoji)
+            if (reaction.Emote.Name == oldFullEmoji || reaction.Emote.Name == FullEmoji)
             {
                 IncreaseProgressFullCheck(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
