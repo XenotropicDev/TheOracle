@@ -17,4 +17,13 @@
     <ProjectReference Include="..\TheOracle\TheOracle.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Discord.Net.Commands">
+      <HintPath>..\..\..\Discord.Net\src\Discord.Net.Commands\bin\Release\netstandard2.1\Discord.Net.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Core">
+      <HintPath>..\..\..\Discord.Net\src\Discord.Net.Commands\bin\Release\netstandard2.1\Discord.Net.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

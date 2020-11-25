@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
@@ -162,7 +161,7 @@ namespace TheOracle.GameCore.PlayerCard
             if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata spiritMetadata)) return;
             if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata momentumMetadata)) return;
 
-            var healthActive = message.GetReactionUsersAsync(healthEmoji, 5);
+            var healthActive = message.GetReactionUsersAsync(healthEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var spiritActive = message.GetReactionUsersAsync(spiritEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var supplyActive = message.GetReactionUsersAsync(supplyEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var momentumActive = message.GetReactionUsersAsync(momentumEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
@@ -180,7 +179,7 @@ namespace TheOracle.GameCore.PlayerCard
                 await message.ModifyAsync(msg => msg.Embed = existingEmbed.Build()).ConfigureAwait(false);
                 return;
             }
-            
+
             int direction = 0;
             if (reaction.Emote.Name == upEmoji.Name) direction = 1;
             if (reaction.Emote.Name == downEmoji.Name) direction = -1;
