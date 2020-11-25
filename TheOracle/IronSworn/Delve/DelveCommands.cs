@@ -59,7 +59,7 @@ namespace TheOracle.IronSworn.Delve
         [Summary("Creates an delve site tracking post")]
         [Remarks("\u25C0 - Decreases the progress track by the difficulty amount." +
             "\n\u25B6 - Increases the progress track by the difficulty amount." +
-            "\n\u2714 - Increases the progress track by a single full box (four ticks)." +
+            "\n\u0023\u20E3 - Increases the progress track by a single full box (four ticks)." +
             "\n\uD83C\uDFB2 - Rolls the action and challenge die for the Locate your Objective move" +
             "\n\uD83C\uDF40 - Rolls a Feature for the delve site" +
             "\n\u26A0 - Rolls the Reveal a Danger table for the delve site")]
