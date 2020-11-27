@@ -71,6 +71,7 @@ namespace TheOracle.GameCore.RulesReference
                             specificMovesReply = string.Empty;
                         }
 
+                        temp.Replace("\n\n\n", "\n\n");
                         if (temp.Length > DiscordConfig.MaxMessageSize)
                         {
                             int messageCutoff = temp.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf("\n");
