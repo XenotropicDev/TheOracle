@@ -67,13 +67,14 @@ namespace TheOracle.StarForged.NPC
             }
 
             var oracles = _serviceProvider.GetRequiredService<OracleService>();
-            Aspects ??= new string[] { oracles.RandomRow("Character Aspects", GameName.Starforged).Description };
-            Dispositions ??= new string[] { oracles.RandomRow("Disposition", GameName.Starforged).Description };
-            FirstLooks ??= new string[] { oracles.RandomRow("Character First Look", GameName.Starforged).Description };
-            Goals ??= new string[] { oracles.RandomRow("Character Goal", GameName.Starforged).Description };
-            Roles ??= new string[] { oracles.RandomRow("Character Role", GameName.Starforged).Description };
+            Aspects ??= new string[] { oracles.RandomRow("Character Aspects", GameName.Starforged).GetOracleResult(_serviceProvider, GameName.Starforged) };
+            Dispositions ??= new string[] { oracles.RandomRow("Disposition", GameName.Starforged).GetOracleResult(_serviceProvider, GameName.Starforged) };
+            FirstLooks ??= new string[] { oracles.RandomRow("Character First Look", GameName.Starforged).GetOracleResult(_serviceProvider, GameName.Starforged) };
+            Goals ??= new string[] { oracles.RandomRow("Character Goal", GameName.Starforged).GetOracleResult(_serviceProvider, GameName.Starforged) };
+            Roles ??= new string[] { oracles.RandomRow("Character Role", GameName.Starforged).GetOracleResult(_serviceProvider, GameName.Starforged) };
 
-            Name = (NPCCreationOptions.Length > 0) ? NPCCreationOptions : oracles.RandomRow("Ironlander Names", GameName.Ironsworn).Description; //TODO make this starforged name when available
+            //TODO make this starforged name when available
+            Name = (NPCCreationOptions.Length > 0) ? NPCCreationOptions : oracles.RandomRow("Ironlander Names", GameName.Ironsworn).GetOracleResult(_serviceProvider, GameName.Starforged); 
 
             return this;
         }
