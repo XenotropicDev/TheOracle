@@ -49,12 +49,12 @@ namespace TheOracle.StarForged.Planets
             p.Biomes = Biome.GetFromTemplate(Template, PlanetRandom).Select(biome => biome.Description).ToList();
 
             p.Description = Template.Description;
-            p.Life = Template.PossibleLife.GetRandomRow(PlanetRandom).Description;
+            p.Life = Template.PossibleLife.GetRandomRow(PlanetRandom).GetOracleResult(services, GameName.Starforged);
             p.Name = planetName;
             p.PlanetType = Template.PlanetType;
-            if (region == SpaceRegion.Terminus) p.Settlements = Template.PossibleSettlements.Terminus.GetRandomRow(PlanetRandom).Description;
-            if (region == SpaceRegion.Outlands) p.Settlements = Template.PossibleSettlements.Outlands.GetRandomRow(PlanetRandom).Description;
-            if (region == SpaceRegion.Expanse) p.Settlements = Template.PossibleSettlements.Expanse.GetRandomRow(PlanetRandom).Description;
+            if (region == SpaceRegion.Terminus) p.Settlements = Template.PossibleSettlements.Terminus.GetRandomRow(PlanetRandom).GetOracleResult(services, GameName.Starforged);
+            if (region == SpaceRegion.Outlands) p.Settlements = Template.PossibleSettlements.Outlands.GetRandomRow(PlanetRandom).GetOracleResult(services, GameName.Starforged);
+            if (region == SpaceRegion.Expanse) p.Settlements = Template.PossibleSettlements.Expanse.GetRandomRow(PlanetRandom).GetOracleResult(services, GameName.Starforged);
             p.SpaceRegion = region;
             p.Thumbnail = Template.Thumbnail;
 
@@ -95,7 +95,7 @@ namespace TheOracle.StarForged.Planets
 
         public Planet RevealLife()
         {
-            this.Life = PlanetTemplate.GetPlanetTemplates().First(pt => pt.PlanetType == this.PlanetType).PossibleLife.GetRandomRow().Description;
+            this.Life = PlanetTemplate.GetPlanetTemplates().First(pt => pt.PlanetType == this.PlanetType).PossibleLife.GetRandomRow().GetOracleResult(Services, GameName.Starforged);
             this.LifeRevealed = true;
             return this;
         }
