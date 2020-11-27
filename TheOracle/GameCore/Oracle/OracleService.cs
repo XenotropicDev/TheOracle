@@ -88,7 +88,7 @@ namespace TheOracle.GameCore.Oracle
             return $"{row.Description}{spacer}" + String.Join(" / ", finalResults);
         }
 
-        public List<RollResult> RandomOracleResultList(string TableName, IServiceProvider serviceProvider, GameName game = GameName.None, Random rand = null)
+        public List<RollResult> RandomOracleResultList(string TableName, IServiceProvider serviceProvider, GameName game = GameName.None, Random rand = null, string[] additionalSearchTerms = null)
         {
             if (rand == null) rand = BotRandom.Instance;
             var row = RandomRow(TableName, game, rand);
@@ -119,7 +119,7 @@ namespace TheOracle.GameCore.Oracle
                 rollResult.ParentTable = serviceProvider.GetRequiredService<OracleService>().OracleList.First(tbl => tbl.Name == TableName && (tbl.Game == game || game == GameName.None));
             }
 
-            roller.BuildRollResults(lookup);
+            roller.BuildRollResults(lookup, additionalSearchTerms);
 
             var finalResults = roller.RollResultList.Select(ocl => ocl.Result.Description);
 

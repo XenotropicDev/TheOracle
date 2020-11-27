@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TheOracle.Core;
 using TheOracle.StarForged.Planets;
 using TheOracle.GameCore.Oracle;
+using System.Linq;
 
 namespace TheOracle.StarForged.Tests
 {
@@ -14,17 +15,16 @@ namespace TheOracle.StarForged.Tests
     public class PlanetTests
     {
         [TestMethod()]
-        public void VitalWorldTest()
+        public void GeneratePlanetTest()
         {
-            var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
-            Planet vitalWorld = null;
+            var services = new ServiceCollection().AddSingleton( new OracleService().Load()).BuildServiceProvider();
 
-            //find a vital world
             for (int i = 0; i < 1000; i++)
             {
                 var planet = Planet.GeneratePlanet("P-" + i.ToString(), SpaceRegion.Expanse, services, 0);
 
-                planet.GetEmbedBuilder();
+                var embed = planet.GetEmbedBuilder();
+                Assert.IsFalse(embed.Fields.Any(f => f.Value.ToString().Contains("[") && !f.Value.ToString().Contains("\n")), planet.Name);
             }
         }
     }

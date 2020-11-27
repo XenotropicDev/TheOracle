@@ -14,22 +14,20 @@ namespace TheOracle.GameCore.Oracle
         public string Prompt { get; set; }
         public List<StandardOracle> Oracles { get; set; }
 
-        //TODO move this to an extension method of IOracleEntry?
         /// <summary>
         /// Gets the result of a oracle roll, and any rolls that would result from it.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="game"></param>
         /// <returns></returns>
-        [Obsolete("Use OracleService.RandomOracleResult instead")]
-        public string GetOracleResult(IServiceProvider services, GameName game, Random rnd = null)
+        public string GetOracleResult(IServiceProvider services, GameName game, Random rnd = null, string[] additionalSearchTerms = null)
         {
             var roller = new OracleRoller(services, game, rnd);
             var tables = roller.ParseOracleTables(Description);
 
             if (tables.Count == 0) return Description;
 
-            roller.BuildRollResults(Description);
+            roller.BuildRollResults(Description, additionalSearchTerms);
 
             var finalResults = roller.RollResultList.Select(ocl => ocl.Result.Description);
 

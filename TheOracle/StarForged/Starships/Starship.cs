@@ -56,7 +56,7 @@ namespace TheOracle.StarForged.Starships
             var oracles = Services.GetRequiredService<OracleService>();
             this.Mission = oracles.RandomRow($"Starship Mission {SpaceRegion}", GameName.Starforged).Description;
             this.MissionRevealed = true;
-            
+
             return this;
         }
 
@@ -85,7 +85,8 @@ namespace TheOracle.StarForged.Starships
 
             var shipTypeOracle = oracles.OracleList.Single(o => o.Name == "Starship Type" && o.Game == GameName.Starforged).Oracles.GetRandomRow(random);
             var shipType = (shipTypeOracle.Description != "[Starship Mission]") ? shipTypeOracle.Description : $"[Starship Mission {region}]";
-            ship.ShipType = shipTypeOracle.GetOracleResult(services, GameName.Starforged, random);
+
+            ship.ShipType = shipTypeOracle.GetOracleResult(services, GameName.Starforged, random, new string[] { region.ToString() });
 
             ship.TypicalRole = string.Empty;
             if (shipTypeOracle?.Prompt?.Length > 0)

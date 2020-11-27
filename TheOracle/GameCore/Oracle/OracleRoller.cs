@@ -36,12 +36,12 @@ namespace TheOracle.GameCore.Oracle
         public IServiceProvider ServiceProvider { get; }
         private Random RollerRandom { get; set; }
 
-        public OracleRoller BuildRollResults(string tableName)
+        public OracleRoller BuildRollResults(string tableName, string[] additionalSearchTerms = null)
         {
             RollResultList = new List<RollResult>();
             if (Game == GameName.None) Game = ParseOracleTables(tableName).FirstOrDefault()?.Game ?? GameName.None;
 
-            RollFacade(tableName);
+            RollFacade(tableName, additionalSearchTerms: additionalSearchTerms);
 
             return this;
         }
@@ -66,7 +66,7 @@ namespace TheOracle.GameCore.Oracle
             return embed.Build();
         }
 
-        public List<OracleTable> ParseOracleTables(string tableName)
+        public List<OracleTable> ParseOracleTables(string tableName, string[] additionalSearchTerms = null)
         {
             var result = new List<OracleTable>();
 
@@ -77,12 +77,13 @@ namespace TheOracle.GameCore.Oracle
                 var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
                 foreach (var item in splits)
                 {
-                    result.AddRange(OracleService.OracleList.Where(o => o.MatchTableAlias(item) && (Game == GameName.None || Game == o.Game)).ToList());
+                    var tables = TableMatchList(OracleService.OracleList, item, additionalSearchTerms);
+                    result.AddRange(tables);
                 }
             }
             else
             {
-                result = OracleService.OracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game)).ToList();
+                result = TableMatchList(OracleService.OracleList, tableName, additionalSearchTerms).ToList();
             }
 
             if (result.GroupBy(t => t.Game).Count() > 1)
@@ -94,6 +95,18 @@ namespace TheOracle.GameCore.Oracle
             }
 
             return result;
+        }
+
+        private IEnumerable<OracleTable> TableMatchList(List<OracleTable> oracleList, string tableName, string[] additionalSearchTerms = null)
+        {
+            var tables = oracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game));
+
+            if (tables.Count() == 0 && additionalSearchTerms != null)
+            {
+                tables = oracleList.Where(o => o.ContainsTableAlias(tableName, additionalSearchTerms) && (Game == GameName.None || Game == o.Game));
+            }
+
+            return tables;
         }
 
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
@@ -121,7 +134,7 @@ namespace TheOracle.GameCore.Oracle
             return roller;
         }
 
-        private void MultiRollFacade(string value, OracleTable multiRollTable, int depth)
+        private void MultiRollFacade(string value, OracleTable multiRollTable, int depth, string[] additionalSearchTerms = null)
         {
             int numberOfRolls;
 
@@ -138,15 +151,15 @@ namespace TheOracle.GameCore.Oracle
 
             for (int i = 1; i <= numberOfRolls; i++)
             {
-                RollFacade(multiRollTable.Name, depth + 1);
+                RollFacade(multiRollTable.Name, depth + 1, additionalSearchTerms);
             }
         }
 
-        private void RollFacade(string table, int depth = 0)
+        private void RollFacade(string table, int depth = 0, string[] additionalSearchTerms = null)
         {
             table = table.Trim();
 
-            var TablesToRoll = ParseOracleTables(table);
+            var TablesToRoll = ParseOracleTables(table, additionalSearchTerms);
 
             if (TablesToRoll.Count == 0)
             {
@@ -154,7 +167,7 @@ namespace TheOracle.GameCore.Oracle
 
                 //try again without any game name
                 this.Game = GameName.None;
-                RollFacade(table, depth);
+                RollFacade(table, depth, additionalSearchTerms);
             }
 
             foreach (var oracleTable in TablesToRoll)
@@ -187,7 +200,7 @@ namespace TheOracle.GameCore.Oracle
                         MultiRollFacade(nextTable, oracleTable, depth);
                         return;
                     }
-                    RollFacade(nextTable, depth + 1);
+                    RollFacade(nextTable, depth + 1, additionalSearchTerms);
                 }
 
                 // Match "{Place} of {Namesake}'s {Detail}" style entries

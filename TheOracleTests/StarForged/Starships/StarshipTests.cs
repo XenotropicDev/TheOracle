@@ -1,10 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TheOracle.StarForged.Starships;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.StarForged.Starships.Tests
@@ -15,7 +11,7 @@ namespace TheOracle.StarForged.Starships.Tests
         [TestMethod()]
         public void GenerateShipTest()
         {
-            var services = new ServiceCollection().AddSingleton<OracleService>().BuildServiceProvider();
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
             for (int i = 0; i < 1000; i++)
             {

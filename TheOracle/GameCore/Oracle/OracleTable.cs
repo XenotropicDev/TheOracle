@@ -22,5 +22,12 @@ namespace TheOracle.GameCore.Oracle
         {
             return this.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
         }
+
+        internal bool ContainsTableAlias(string tableName, string[] additionalSearchTerms)
+        {
+            var temp1 = this.Name.Contains(tableName, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => alias.Contains(tableName, StringComparison.OrdinalIgnoreCase)) == true;
+            var temp2 = additionalSearchTerms.Any(s => Name.Contains(s) || Aliases?.Contains(s) == true);
+            return temp1 && temp2;
+        }
     }
 }
