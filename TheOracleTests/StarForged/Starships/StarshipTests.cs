@@ -18,6 +18,7 @@ namespace TheOracle.StarForged.Starships.Tests
                 try
                 {
                     var ship = Starship.GenerateShip(services, SpaceRegion.Outlands, $"ship-{i}", 0);
+                    ship.AddMission();
 
                     ship.GetEmbedBuilder();
                 }
