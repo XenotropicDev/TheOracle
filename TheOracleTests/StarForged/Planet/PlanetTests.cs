@@ -23,8 +23,9 @@ namespace TheOracle.StarForged.Tests
             {
                 var planet = Planet.GeneratePlanet("P-" + i.ToString(), SpaceRegion.Expanse, services, 0);
 
+                planet = planet.RevealCloserLook().RevealCloserLook().RevealLife();
+
                 var embed = planet.GetEmbedBuilder();
-                Assert.IsFalse(embed.Fields.Any(f => f.Value.ToString().Contains("[") && !f.Value.ToString().Contains("\n")), planet.Name);
             }
         }
     }

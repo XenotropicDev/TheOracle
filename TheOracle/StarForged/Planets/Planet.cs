@@ -1,4 +1,4 @@
-using Discord;
+﻿using Discord;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -108,7 +108,7 @@ namespace TheOracle.StarForged.Planets
 
         public Planet RevealCloserLook()
         {
-            this.CloserLooks.Add(PlanetTemplate.GetPlanetTemplates().First(pt => pt.PlanetType == this.PlanetType).CloserLooks.GetRandomRow().Description);
+            this.CloserLooks.Add(PlanetTemplate.GetPlanetTemplates().First(pt => pt.PlanetType == this.PlanetType).CloserLooks.GetRandomRow().GetOracleResult(Services, GameName.Starforged));
             this.RevealedLooks++;
             return this;
         }
