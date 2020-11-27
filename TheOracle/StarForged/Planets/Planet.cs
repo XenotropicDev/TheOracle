@@ -1,4 +1,4 @@
-﻿using Discord;
+using Discord;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -84,7 +84,7 @@ namespace TheOracle.StarForged.Planets
             planet.RevealedBiomes = embed.Fields.Count(field => field.Name == PlanetResources.Biome);
             planet.RevealedLooks = embed.Fields.Count(field => field.Name == PlanetResources.CloserLook);
             planet.Settlements = embed.Fields.FirstOrDefault(fld => fld.Name == PlanetResources.Settlements).Value;
-            planet.SpaceObservations = embed.Fields.Where(fld => fld.Name.Contains(String.Format(PlanetResources.SpaceObservation, string.Empty)))?.Select(item => item.Value).ToList() ?? new List<string>();
+            planet.SpaceObservations = embed.Fields.Where(fld => fld.Name.Contains(String.Format(PlanetResources.SpaceObservation, string.Empty).Trim()))?.Select(item => item.Value).ToList() ?? new List<string>();
             planet.SpaceRegion = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
             planet.Thumbnail = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : string.Empty;
 
