@@ -2,6 +2,9 @@
 
 A bot written with [Discord.Net](https://discord.foxbot.me/stable/) for [Ironsworn](https://www.ironswornrpg.com/) and its derived games, with a focus on play-by-post games.
 
+## Joining the bot to your discord server
+To add TheOracle to a discord server click [this link](https://discordapp.com/oauth2/authorize?&client_id=704480988561932389&scope=bot&permissions=523328) and then select the server you wish to add the bot to.
+
 ## Features
 
 ### Oracle Tables
@@ -21,9 +24,6 @@ Easily keep track of who has initiative, and who is in trouble.
 
 ### Localization Support (Full support scheduled for v1.0.0)
 TheOracle is written in a way that makes it easier to localize into your native language. Just fork the project, edit the resource files, and add a pull request and you localization will be added.
-
-## Joining the bot to your discord server
-To add TheOracle to a discord server click [this link](https://discordapp.com/oauth2/authorize?&client_id=704480988561932389&scope=bot&permissions=523328) and then select the server you wish to add the bot to.
 
 ## Commands
 Most commands and oracle tables names have shorter hand versions of them, but command clarity is one of the goals of this bot so overly cryptic and short commands are avoided. If a command needs more information such as a progress tracker difficulty a helper post will give you options to select from.
