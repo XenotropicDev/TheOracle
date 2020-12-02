@@ -5,7 +5,7 @@ using TheOracle.Core;
 
 namespace TheOracle.GameCore.ProgressTracker
 {
-    public class ProgressTracker
+    public class ProgressTrackerInfo
     {
         public const int dangerousTicks = 8;
         public const int epicTicks = 1;
@@ -15,21 +15,21 @@ namespace TheOracle.GameCore.ProgressTracker
         public const int troublesomeTicks = 12;
         private int ticks;
 
-        public ProgressTracker(ChallengeRank ChallengeRank, string description, int startingTicks = 0)
+        public ProgressTrackerInfo(ChallengeRank ChallengeRank, string description, int startingTicks = 0)
         {
             Rank = ChallengeRank;
             Description = description;
             Ticks = startingTicks;
         }
-        public ProgressTracker()
+        public ProgressTrackerInfo()
         {
 
         }
 
-        public ProgressTracker(IUserMessage message, ChallengeRank challengeRank = ChallengeRank.None)
+        public ProgressTrackerInfo PopulateFromMessage(IUserMessage message, ChallengeRank challengeRank = ChallengeRank.None)
         {
-            var embed = message.Embeds.FirstOrDefault(item => item.Title == ProgressResources.Progress_Tracker);
-            if (embed == null) return;
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) throw new NullReferenceException();
 
             if (challengeRank == ChallengeRank.None && !Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == DifficultyFieldTitle).Value, out challengeRank))
                 throw new ArgumentException("Unknown progress tracker post format, unable to parse difficulty");
@@ -41,6 +41,7 @@ namespace TheOracle.GameCore.ProgressTracker
                 Ticks = (Int32.TryParse(embed.Footer.Value.Text.Replace(ProgressResources.Ticks, "").Replace(":", ""), out int temp)) ? temp : 0;
             }
             Description = embed.Description;
+            return this;
         }
 
         public ChallengeRank Rank { get; set; }
@@ -91,7 +92,7 @@ namespace TheOracle.GameCore.ProgressTracker
                 .WithFields(new EmbedFieldBuilder()
                 {
                     Name = ProgressResources.Progress_Bar,
-                    Value = BuildProgressGraphic(Ticks),
+                    Value = GetProgressGraphic(),
                     IsInline = true
                 })
                 .WithFields(new EmbedFieldBuilder()
@@ -119,16 +120,16 @@ namespace TheOracle.GameCore.ProgressTracker
             return $"{ActionDie}/10";
         }
 
-        public virtual string BuildProgressGraphic(int ticks)
+        public virtual string GetProgressGraphic()
         {
-            //User filler character so that we can do easy string math
+            //Use standard characters as stand-ins so that we can do easy string math
             string fill = new string('#', (int)Math.Floor(Ticks / 4d));
             string finalTickMark = ((Ticks % 4) == 1) ? "-" : ((Ticks % 4) == 2) ? "+" : ((Ticks % 4) == 3) ? "*" : string.Empty;
             fill = (fill + finalTickMark).PadRight(10, '·');
 
             fill = String.Join(' ', fill.ToCharArray()); //Add spaces between each character
 
-            //Replace all the filler characters with emojis
+            //Replace all the stand-in characters with emojis
             fill = fill.Replace("·", "🟦");
             fill = fill.Replace("-", "\uD83C\uDDEE");
             fill = fill.Replace("+", "\uD83C\uDDFD");

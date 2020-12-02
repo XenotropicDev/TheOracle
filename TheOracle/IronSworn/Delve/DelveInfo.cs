@@ -10,7 +10,7 @@ using TheOracle.GameCore.ProgressTracker;
 
 namespace TheOracle.IronSworn.Delve
 {
-    public class DelveInfo : ProgressTracker
+    public class DelveInfo : ProgressTrackerInfo
     {
         public override string DifficultyFieldTitle => DelveResources.RankField;
         public List<Domain> Domains { get; set; } = new List<Domain>();

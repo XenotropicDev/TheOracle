@@ -101,6 +101,32 @@ Creates a NPC with a name (given or random), a goal, a description, and a role/j
 * *Parameters:* NPC Name (optional)
 * *Sample usage:* `!CreateNPC Tom Bombadil`
 
+### `!DelveSite`
+Facilitates creating a delve site.
+* *Command Aliases:* `!Delve`
+* *Parameters:* None (The bot will ask for each option it needs, just reply in the chat)
+* *Reactions:*
+  1. :arrow_left: | Decreases the progress track by the difficulty amount.
+  2. :arrow_right: | Increases the progress track by the difficulty amount.
+  3. :hash: | Increases the progress track by a single full box (four ticks).
+  4. :game_die: | Rolls the action and challenge die for the Locate your Objective move.
+  5. :four_leaf_clover: | Rolls a Feature for the delve site.
+  6. :warning: | Rolls the Reveal a Danger table for the delve site.
+* *Sample usage:* `!DelveSite`
+
+### `!SceneChallenge`
+Creates a challenge scene tracking post.
+* *Command Aliases:* `!Scene`, `!Challenge`, `!SceneTracker`, `!ChallengeTracker`, `!ChallengeScene`
+* *Parameters:* Description, Difficulty (optional)
+* *Reactions:*
+  1. :arrow_left: | Decreases the progress track by the difficulty amount.
+  2. :arrow_right: | Increases the progress track by the difficulty amount.
+  3. :hash: | Increases the progress track by a single full box (four ticks).
+  4. :green_square: | Decreases the challenge track by one. This is mostly needed to fix any accidental clicks.
+  5. :negative_squared_cross_mark: | Increases the challenge track by one.
+  6. :game_die: | Rolls the action and challenge die for the Locate your Objective move.
+* *Sample usage:* `!SceneChallenge Dangerous Catch up to the iron robber's wagon`
+
 ### `!Roll`
 Rolls the specified dice for things like assets that let you reroll a die.
 * *Command Aliases:* `!Dice`

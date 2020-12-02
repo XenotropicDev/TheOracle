@@ -85,7 +85,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
         public async Task ProgressInteractiveReactions(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (!ProgressTracker.IsProgressTrackerMessage(message)) return;
+            if (!ProgressTrackerInfo.IsProgressTrackerMessage(message)) return;
 
             if (reaction.Emote.Name == DecreaseEmoji)
             {
@@ -104,7 +104,7 @@ namespace TheOracle.GameCore.ProgressTracker
             }
             if (reaction.Emote.Name == RollEmoji)
             {
-                var tracker = new ProgressTracker(message);
+                var tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
                 var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Description}");
                 await channel.SendMessageAsync(roll.ToString()).ConfigureAwait(false);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -127,12 +127,12 @@ namespace TheOracle.GameCore.ProgressTracker
             string NameOfTrack = TrackerArgs;
             ChallengeRank difficulty = ChallengeRank.None;
 
-            if (Enum.TryParse(Enum.GetNames(typeof(ChallengeRank)).FirstOrDefault(cr => ProgressTracker.HasMatchingChallengeRank(cr, splitArgs)), out difficulty))
+            if (Enum.TryParse(Enum.GetNames(typeof(ChallengeRank)).FirstOrDefault(cr => ProgressTrackerInfo.HasMatchingChallengeRank(cr, splitArgs)), out difficulty))
             {
                 NameOfTrack = Regex.Replace(NameOfTrack, difficulty.ToString(), string.Empty, RegexOptions.IgnoreCase);
             }
 
-            if (difficulty == ChallengeRank.None) await CreateEmptyTracker(NameOfTrack);
+            if (difficulty == ChallengeRank.None) await CreateTrackerHelper(NameOfTrack);
             else await BuildProgressTrackerPostAsync(difficulty, NameOfTrack);
         }
 
@@ -140,12 +140,12 @@ namespace TheOracle.GameCore.ProgressTracker
         {
             if (messageToEdit == null)
             {
-                var tracker = new ProgressTracker(cr, ThingToTrack);
+                var tracker = new ProgressTrackerInfo(cr, ThingToTrack);
                 messageToEdit = ReplyAsync(embed: tracker.BuildEmbed() as Embed).Result;
             }
             else
             {
-                var tracker = new ProgressTracker(messageToEdit, cr);
+                var tracker = new ProgressTrackerInfo().PopulateFromMessage(messageToEdit, cr);
                 await messageToEdit.ModifyAsync(msg =>
                 {
                     msg.Content = string.Empty;
@@ -167,7 +167,7 @@ namespace TheOracle.GameCore.ProgressTracker
             return;
         }
 
-        private async Task CreateEmptyTracker(string nameOfTrack)
+        private async Task CreateTrackerHelper(string nameOfTrack)
         {
             EmbedBuilder embed = new EmbedBuilder()
                 .WithTitle(ProgressResources.Progress_Tracker)
@@ -198,7 +198,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
         private void DecreaseProgress(IUserMessage message)
         {
-            ProgressTracker tracker = new ProgressTracker(message);
+            ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
 
             tracker.RemoveProgress();
 
@@ -207,7 +207,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
         private void IncreaseProgress(IUserMessage message)
         {
-            ProgressTracker tracker = new ProgressTracker(message);
+            ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
 
             tracker.AddProgress();
 
@@ -216,7 +216,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
         private void IncreaseProgressFullCheck(IUserMessage message)
         {
-            ProgressTracker tracker = new ProgressTracker(message);
+            ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
 
             tracker.Ticks += 4;
 
