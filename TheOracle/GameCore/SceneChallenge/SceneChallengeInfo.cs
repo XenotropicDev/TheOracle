@@ -34,7 +34,8 @@ namespace TheOracle.GameCore.SceneChallenge
             base.PopulateFromMessage(message, challengeRank);
 
             var countdownFieldValue = message.Embeds.First().Fields.FirstOrDefault(fld => fld.Name.Contains(SceneChallengeResources.CountdownAmount));
-            if (!int.TryParse(countdownFieldValue.Value.Replace("/4", string.Empty), out int countDownParsed)) countDownParsed = 0;
+            int countDownParsed;
+            if (countdownFieldValue.Value == null || !int.TryParse(countdownFieldValue.Value.Replace("/4", string.Empty), out countDownParsed)) countDownParsed = 0;
             CountDownValue = countDownParsed;
 
             return this;
