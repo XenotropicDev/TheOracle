@@ -26,8 +26,6 @@ namespace TheOracle.StarForged.Creatures
 
             if (!hooks.StarCreatureReactions)
             {
-                var client = services.GetRequiredService<DiscordSocketClient>();
-
                 var reactionService = services.GetRequiredService<ReactionService>();
 
                 ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(CreatureReactionHandler).Build();
