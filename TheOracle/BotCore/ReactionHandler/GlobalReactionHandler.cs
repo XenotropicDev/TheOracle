@@ -2,7 +2,6 @@
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,18 +33,7 @@ namespace TheOracle.BotCore
             var processList = reactionHandler.reactionList.Where(react => react.Emote.Name == reaction.Emote.Name);
             Parallel.ForEach(processList, (item) =>
             {
-                try
-                {
-                    _ = item.ReactionAddedEvent.InvokeAsync(message, channel, reaction, user).ConfigureAwait(false);
-                }
-                catch (Discord.Net.HttpException httpEx)
-                {
-                    Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {user} triggered a {httpEx.GetType()} - {httpEx.Message}");
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                _ = item.ReactionAddedEvent.InvokeAsync(message, channel, reaction, user).ConfigureAwait(false);
             });
         }
 
@@ -72,9 +60,9 @@ namespace TheOracle.BotCore
                 {
                     Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {user} triggered a {httpEx.GetType()} - {httpEx.Message}");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    Console.WriteLine(ex.Message);
                 }
             });
         }
