@@ -17,6 +17,7 @@ namespace TheOracle.GameCore.NpcGenerator
         public string[] Descriptors { get; set; }
         public string Name { get; set; }
         private IServiceProvider _serviceProvider { get; }
+        public IEmote[] ReactionsToAdd { get; set; } = null;
 
         public IronNPC(IServiceProvider serviceProvider)
         {
@@ -53,6 +54,7 @@ namespace TheOracle.GameCore.NpcGenerator
                 .WithFields(rolesField)
                 .WithFields(goalFields)
                 .WithFields(descFields)
+                .WithFooter(GameName.Ironsworn.ToString())
                 .Build();
         }
 

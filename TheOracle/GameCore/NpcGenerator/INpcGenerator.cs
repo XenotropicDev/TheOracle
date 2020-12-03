@@ -9,5 +9,7 @@ namespace TheOracle.GameCore.NpcGenerator
         public void BuildNPCFromEmbed(Embed embed);
 
         public INpcGenerator Build(string NPCCreationOptions);
+
+        public IEmote[] ReactionsToAdd { get; set; }
     }
 }

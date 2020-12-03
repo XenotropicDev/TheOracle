@@ -5,13 +5,10 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
-using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.NpcGenerator
 {
-
     public class NpcCommands : ModuleBase<SocketCommandContext>
     {
         public NpcCommands(DiscordSocketClient client, OracleService oracleService, ServiceProvider provider)
@@ -20,6 +17,18 @@ namespace TheOracle.GameCore.NpcGenerator
             Client = client;
             OracleService = oracleService;
             serviceProvider = provider;
+
+            if (!serviceProvider.GetRequiredService<HookedEvents>().NPCReationsLoaded)
+            {
+                serviceProvider.GetRequiredService<HookedEvents>().NPCReationsLoaded = true;
+                var types = AppDomain.CurrentDomain.GetAssemblies()
+                    .SelectMany(s => s.GetTypes())
+                    .Where(p => typeof(INpcGenerator).IsAssignableFrom(p) && !p.IsInterface);
+                foreach (var type in types)
+                {
+                    Activator.CreateInstance(type, provider);
+                }
+            }
         }
 
         public DiscordSocketClient Client { get; }
@@ -30,7 +39,7 @@ namespace TheOracle.GameCore.NpcGenerator
         [Command("NPC")]
         [Alias("CreateNPC", "NewNPC")]
         [Summary("Creates a NPC for the specified game, or default game if none is specified\n• Sample usage: `!NPC Ironsworn Tom Bombadil`")]
-        public async Task NPCPost([Remainder]string NPCNameAndOptionalGame = "")
+        public async Task NPCPost([Remainder] string NPCNameAndOptionalGame = "")
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
             var game = Utilities.GetGameContainedInString(NPCNameAndOptionalGame);
@@ -40,7 +49,17 @@ namespace TheOracle.GameCore.NpcGenerator
 
             var NPCGen = new NpcFactory(serviceProvider).GetNPCGenerator(game);
 
-            await ReplyAsync(embed: NPCGen.Build(NPCNameAndOptionalGame).GetEmbed());
+            var msg = await ReplyAsync(embed: NPCGen.Build(NPCNameAndOptionalGame).GetEmbed());
+            if (NPCGen.ReactionsToAdd != null)
+            {
+                await Task.Run(async () =>
+                {
+                    foreach (var emote in NPCGen.ReactionsToAdd)
+                    {
+                        await msg.AddReactionAsync(emote);
+                    }
+                }).ConfigureAwait(false);
+            }
         }
     }
 }
