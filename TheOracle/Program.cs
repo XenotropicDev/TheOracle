@@ -57,9 +57,10 @@ namespace TheOracle
                 client.ReactionAdded += reactionHandler.ReactionEventHandler;
                 client.ReactionRemoved += reactionHandler.RemovedReactionHandler;
 
-                GenericReactions genericReactions = new GenericReactions(services); //TODO fix this because it's hacky/bad code.
+                new GenericReactions(services).Load();
 
                 await client.SetGameAsync($"!Help | v{Assembly.GetEntryAssembly().GetName().Version}", "", ActivityType.Playing).ConfigureAwait(false);
+                await LogAsync(new LogMessage(LogSeverity.Info, "Info", $"Joined to {client.Rest.GetGuildsAsync().Result.Count} guilds")).ConfigureAwait(false);
 
                 await Task.Delay(Timeout.Infinite);
             }
