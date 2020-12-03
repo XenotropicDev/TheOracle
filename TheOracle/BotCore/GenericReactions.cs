@@ -3,7 +3,6 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.GameCore.Oracle;
 
@@ -17,7 +16,11 @@ namespace TheOracle.BotCore
         public GenericReactions(IServiceProvider service)
         {
             Service = service;
-            var reactionService = service.GetRequiredService<ReactionService>();
+        }
+
+        public void Load()
+        {
+            var reactionService = Service.GetRequiredService<ReactionService>();
 
             ReactionEvent moveDownReaction = new ReactionEventBuilder().WithEmoji(recreatePostEmoji).WithEvent(movePostDown).Build();
             ReactionEvent deleteReaction = new ReactionEventBuilder().WithEmoji("❌").WithEvent(deletePostStart).Build();
