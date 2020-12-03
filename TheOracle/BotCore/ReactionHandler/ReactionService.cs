@@ -3,8 +3,6 @@ using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace TheOracle.BotCore
@@ -107,9 +105,20 @@ namespace TheOracle.BotCore
 
         public static async Task InvokeAsync<T1, T2, T3, T4>(this AsyncEvent<Func<T1, T2, T3, T4, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
         {
-            var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke(arg1, arg2, arg3, arg4).ConfigureAwait(false);
+            try
+            {
+                var subscribers = eventHandler.Subscriptions;
+                for (int i = 0; i < subscribers.Count; i++)
+                    await subscribers[i].Invoke(arg1, arg2, arg3, arg4).ConfigureAwait(false);
+            }
+            catch (Discord.Net.HttpException httpEx)
+            {
+                Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {arg4} triggered a {httpEx.GetType()} - {httpEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {ex.GetType()} - {ex.Message}\n{ex.StackTrace}");
+            }
         }
 
         public static async Task InvokeAsync<T1, T2, T3, T4, T5>(this AsyncEvent<Func<T1, T2, T3, T4, T5, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
