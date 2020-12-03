@@ -171,6 +171,7 @@ namespace TheOracle.StarForged.Planets
 
         private async Task PlanetReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
+            if (!IsPlanetMessage(message)) return;
             if (reaction.Emote.Name == "🔍") await CloserLook(message, channel, reaction, user).ConfigureAwait(false);
             if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction, user).ConfigureAwait(false);
             if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction, user).ConfigureAwait(false);
@@ -185,6 +186,14 @@ namespace TheOracle.StarForged.Planets
             }
 
             return;
+        }
+
+        public bool IsPlanetMessage(IUserMessage message)
+        {
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return false;
+
+            return (embed.Description != null && embed.Description.Contains(String.Format(PlanetResources.PlanetPostDescription, string.Empty).Trim(), StringComparison.OrdinalIgnoreCase));
         }
     }
 }
