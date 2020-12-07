@@ -33,7 +33,7 @@ namespace TheOracle.StarForged.Settlements
         public IServiceProvider Services { get; }
         public ulong ChannelId { get; }
 
-        public static Settlement GenerateSettlement(IServiceProvider serviceProvider, SpaceRegion spaceRegion, ulong channelId, string SettlementName = "")
+        public static Settlement GenerateSettlement(IServiceProvider serviceProvider, SpaceRegion spaceRegion, ulong channelId, string SettlementName = "", string SettlementLocation = "")
         {
             var oracleService = serviceProvider.GetRequiredService<OracleService>();
             if (SettlementName == string.Empty)
@@ -54,13 +54,9 @@ namespace TheOracle.StarForged.Settlements
                 s.FirstLooks.AddRandomOracleRow("Settlement First Look", GameName.Starforged, serviceProvider, channelId, random);
             }
 
-            s.Location = oracleService.RandomRow("Settlement Location", GameName.Starforged, random).Description;
+            s.Location = (SettlementLocation.Length > 0) ? SettlementLocation : oracleService.RandomRow("Settlement Location", GameName.Starforged, random).Description;
 
             s.Population = oracleService.RandomRow($"Settlement Population {s.Region}", GameName.Starforged, random).Description;
-
-            for (int i = 0; i < 6; i++)
-            {
-            }
 
             return s;
         }

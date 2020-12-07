@@ -6,7 +6,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.StarForged.Settlements
@@ -153,8 +152,13 @@ namespace TheOracle.StarForged.Settlements
                 return;
             }
 
+            string[] Locations = new string[] { "Planetside", "Orbital", "Deep space" };
+
+            string SettlementLocation = Locations.FirstOrDefault(loc => SettlementCommand.Contains(loc, StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
             string SettlementName = SettlementCommand.Replace(region.ToString(), "", StringComparison.OrdinalIgnoreCase).Trim();
-            var settlement = Settlement.GenerateSettlement(Services, region, Context.Channel.Id, SettlementName);
+            if (SettlementLocation.Length > 0) SettlementName = SettlementName.Replace(SettlementLocation, "").Trim();
+            
+            var settlement = Settlement.GenerateSettlement(Services, region, Context.Channel.Id, SettlementName, SettlementLocation);
 
             //embedBuilder.ThumbnailUrl = planet.Thumbnail; //TODO (maybe location hex?)
             var message = await ReplyAsync("", false, settlement.GetEmbedBuilder().Build());
