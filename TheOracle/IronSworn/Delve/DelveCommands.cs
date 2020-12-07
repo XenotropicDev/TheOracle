@@ -235,6 +235,7 @@ namespace TheOracle.IronSworn.Delve
 
         private async Task ReactionLocateObjectiveEvent(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
+            if (!IsDelveMessage(message)) return;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
             DelveInfo delve = DelveInfo.FromMessage(DelveService, message);
