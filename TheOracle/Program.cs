@@ -60,7 +60,7 @@ namespace TheOracle
                 new GenericReactions(services).Load();
 
                 await client.SetGameAsync($"!Help | v{Assembly.GetEntryAssembly().GetName().Version}", "", ActivityType.Playing).ConfigureAwait(false);
-                await LogAsync(new LogMessage(LogSeverity.Info, "Info", $"Joined to {client.Rest.GetGuildsAsync().Result.Count} guilds")).ConfigureAwait(false);
+                //await LogAsync(new LogMessage(LogSeverity.Info, "Info", $"Joined to {client.Rest.GetGuildsAsync().Result.Count} guilds")).ConfigureAwait(false);
 
                 await Task.Delay(Timeout.Infinite);
             }
