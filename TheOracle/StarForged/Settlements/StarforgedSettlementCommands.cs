@@ -4,6 +4,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.Oracle;
@@ -104,9 +105,10 @@ namespace TheOracle.StarForged.Settlements
                 var region = StarforgedUtilites.SpaceRegionFromEmote(reaction.Emote.Name);
                 if (region == SpaceRegion.None) return;
 
-                string name = settlementHelperEmbed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.SettlementName).Value ?? string.Empty;
+                string command = settlementHelperEmbed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.SettlementName).Value ?? string.Empty;
+                string location = ExtractAnySettlementLocation(ref command);
 
-                var newSettlement = Settlement.GenerateSettlement(Services, region, channel.Id, name);
+                var newSettlement = Settlement.GenerateSettlement(Services, region, channel.Id, command, location);
                 Task.WaitAll(message.RemoveAllReactionsAsync());
 
                 await message.ModifyAsync(msg =>
@@ -152,11 +154,9 @@ namespace TheOracle.StarForged.Settlements
                 return;
             }
 
-            string[] Locations = new string[] { "Planetside", "Orbital", "Deep space" };
 
-            string SettlementLocation = Locations.FirstOrDefault(loc => SettlementCommand.Contains(loc, StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+            string SettlementLocation = ExtractAnySettlementLocation(ref SettlementCommand);
             string SettlementName = SettlementCommand.Replace(region.ToString(), "", StringComparison.OrdinalIgnoreCase).Trim();
-            if (SettlementLocation.Length > 0) SettlementName = SettlementName.Replace(SettlementLocation, "").Trim();
             
             var settlement = Settlement.GenerateSettlement(Services, region, Context.Channel.Id, SettlementName, SettlementLocation);
 
@@ -169,6 +169,28 @@ namespace TheOracle.StarForged.Settlements
                 await message.AddReactionAsync(contactEmoji);
                 await message.AddReactionAsync(troubleEmoji);
             }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Returns the value of any settlement locations contained in a string, and an empty string if not.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="removeSettlement"></param>
+        /// <returns></returns>
+        public string ExtractAnySettlementLocation(ref string value, bool removeSettlement = true)
+        {
+            string[] Locations = new string[] { "Planetside", "Orbital", "Deep space" };
+            var temp = value;
+
+            var SettlementLocation = Locations.FirstOrDefault(loc => temp.Contains(loc, StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+            
+            if (SettlementLocation.Length > 0 && removeSettlement)
+            {
+                value = value.Replace(SettlementLocation, "", StringComparison.OrdinalIgnoreCase).Trim();
+                value = Regex.Replace(value, "  +", " ");
+            }
+
+            return SettlementLocation;
         }
     }
 }
