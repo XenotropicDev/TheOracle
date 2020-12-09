@@ -201,6 +201,7 @@ namespace TheOracle.GameCore.SceneChallenge
         private async Task ReactionFullMarkEvent(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsSceneChallengeMessage(message)) return;
+
             SceneChallengeInfo scene = new SceneChallengeInfo().FromMessage(message);
             scene.Ticks += 4;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -228,7 +229,7 @@ namespace TheOracle.GameCore.SceneChallenge
 
         private async Task ReactionResolveScene(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            if (!IsSceneChallengeMessage(message)) return;
 
             SceneChallengeInfo scene = new SceneChallengeInfo().FromMessage(message);
             var roll = new ActionRoll(0, scene.ActionDie, String.Format(SceneChallengeResources.ResolveSceneRoll, scene.Description));
