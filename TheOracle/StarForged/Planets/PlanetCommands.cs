@@ -193,6 +193,8 @@ namespace TheOracle.StarForged.Planets
             var embed = message.Embeds.FirstOrDefault();
             if (embed == null) return false;
 
+            if (embed.Title.Contains(PlanetResources.PlanetHelperTitle, StringComparison.OrdinalIgnoreCase)) return true;
+
             return (embed.Description != null && embed.Description.Contains(String.Format(PlanetResources.PlanetPostDescription, string.Empty).Trim(), StringComparison.OrdinalIgnoreCase));
         }
     }
