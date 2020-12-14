@@ -65,7 +65,7 @@ namespace TheOracle.StarForged.Planets
                 obsTemp.Add(Template.SpaceObservations.GetRandomRow(PlanetRandom).GetOracleResult(p.Services, GameName.Starforged, PlanetRandom));
             }
 
-            p.SpaceObservations = new List<string>(obsTemp.Take(PlanetRandom.Next(1, 4)));
+            p.SpaceObservations = new List<string>(obsTemp.Take(PlanetRandom.Next(1, 3)));
 
             return p;
         }
