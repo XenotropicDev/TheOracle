@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Advantage" xml:space="preserve">
-    <value>Advantage</value>
+    <value>Initiative</value>
   </data>
   <data name="Disadvantage" xml:space="preserve">
-    <value>Disadvantage</value>
+    <value>No Initiative</value>
   </data>
   <data name="Initiative" xml:space="preserve">
     <value>Initiative</value>

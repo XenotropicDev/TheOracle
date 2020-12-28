@@ -61,7 +61,7 @@ namespace TheOracle.GameCore.InitiativeTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advantage.
+        ///   Looks up a localized string similar to Initiative.
         /// </summary>
         internal static string Advantage {
             get {
@@ -70,7 +70,7 @@ namespace TheOracle.GameCore.InitiativeTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disadvantage.
+        ///   Looks up a localized string similar to No Initiative.
         /// </summary>
         internal static string Disadvantage {
             get {
