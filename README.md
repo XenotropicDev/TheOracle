@@ -68,7 +68,7 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
 * *Reactions:*
   1. :arrow_left: | Decreases the progress track by the difficulty amount.
   2. :arrow_right: | Increases the progress track by the difficulty amount.
-  3. :heavy_check_mark: | Increases the progress track by a single full box (four ticks).
+  3. :hash: | Increases the progress track by a single full box (four ticks).
   4. :game_die: | Rolls the action and challenge die for the progress tracker.
 * *Sample usage:* `!ProgressTracker Epic Find the source of evil in the forest`
 
@@ -89,7 +89,6 @@ Builds an interactive post for keeping track of player resources
 ### `!Asset`
 Creates an interactive post for asset tracking and reference.
 * *Parameters:* First asset text (optional), second asset text (optional)
-* *Sample usage:* `!asset Devotant Wodin, Wits`
 * *Reactions:*
   1. :one: | Mark the first asset ability.
   2. :two: | Mark the second asset ability.
@@ -100,6 +99,7 @@ Creates an interactive post for asset tracking and reference.
   6. :heavy_minus_sign: | Decrease the asset's tally by one.
   7. :arrow_left: | Set asset modal ability to first ability (e.g. Ironclad).
   7. :arrow_right: | Set asset modal ability to second ability.
+* *Sample usage:* `!asset Devotant Wodin, Wits`
 
 ### `!AssetList`
 Posts a list of assets. On its own, it shows all assets for the current default game; the list may be narrowed by category or asset name.
