@@ -2629,7 +2629,7 @@
     "Aliases": ["threat", "threat type"],
     "Category": "Threat Oracles",
     "Game": "Ironsworn",
-    "Description": "These oracles support the optional threat mechanics detailed in *Delve* Chapter 6 (page 151).\n\nYou can use the Category oracle above to randomly select a broad type of threat for your campaign. If you are told to roll twice, take both results and decide how these two threats act together or represent a more complex situation. For example, choosing both a Malignant Plague and Zealous Cult might signify an evil sect which has unleashed a sickness upon the Ironlands in service to some dark god.\n\nFor additional detail, use other oracles as appropriate. For example, you can look to the Action and Theme oracles or Character Goal oracle to define the motivations of a Scheming Leader.\n\nOnce you’ve introduced a threat, consider how it endangers something or someone important to you, and Swear an Iron Vow to see its goal undone.\n\nThen, as you *Advance a Threat*, you can roll on the oracle table for your specific threat to generate an action, approach, or complication. Interpret the oracle’s answer as appropriate to the nature of the threat and the current situation.\n\nIf you aren’t using the threat mechanics within your campaign, you can use still these oracles to inspire details for enemies, troubles, and complications.",
+    "Description": "These oracles support the optional threat mechanics detailed in *Delve* Chapter 6 (page 151).\n\nYou can use the Category oracle above to randomly select a broad type of threat for your campaign. If you are told to roll twice, take both results and decide how these two threats act together or represent a more complex situation. For example, choosing both a Malignant Plague and Zealous Cult might signify an evil sect which has unleashed a sickness upon the Ironlands in service to some dark god.\n\nFor additional detail, use other oracles as appropriate. For example, you can look to the Action and Theme oracles or Character Goal oracle to define the motivations of a Scheming Leader.\n\nOnce you’ve introduced a threat, consider how it endangers something or someone important to you, and *Swear an Iron Vow* to see its goal undone.\n\nThen, as you *Advance a Threat*, you can roll on the oracle table for your specific threat to generate an action, approach, or complication. Interpret the oracle’s answer as appropriate to the nature of the threat and the current situation.\n\nIf you aren’t using the threat mechanics within your campaign, you can use still these oracles to inspire details for enemies, troubles, and complications.",
     "Source":{
       "Name": "Ironsworn: Delve",
       "Page": "220"
@@ -2866,11 +2866,11 @@
     },
     "Oracles":
     [
-      { "Chance": 45, "Description": "Mark progress and Reveal a Danger."},
+      { "Chance": 45, "Description": "Mark progress and *Reveal a Danger*."},
       { "Chance": 65, "Description": "Mark progress."},
-      { "Chance": 75, "Description": "Choose one: Mark progress or Find an Opportunity."},
-      { "Chance": 80, "Description": "Take both: Mark progress and Find an Opportunity."},
-      { "Chance": 100, "Description": "Mark progress twice and Reveal a Danger."}
+      { "Chance": 75, "Description": "Choose one: Mark progress or *Find an Opportunity*."},
+      { "Chance": 80, "Description": "Take both: Mark progress and *Find an Opportunity*."},
+      { "Chance": 100, "Description": "Mark progress twice and *Reveal a Danger*."}
     ]
   },
   {
@@ -2884,11 +2884,11 @@
     },
     "Oracles":
     [
-      { "Chance": 30, "Description": "Mark progress and Reveal a Danger."},
+      { "Chance": 30, "Description": "Mark progress and *Reveal a Danger*."},
       { "Chance": 65, "Description": "Mark progress."},
-      { "Chance": 90, "Description": "Choose one: Mark progress or Find an Opportunity."},
-      { "Chance": 99, "Description": "Take both: Mark progress and Find an Opportunity."},
-      { "Chance": 100, "Description": "Mark progress twice and Reveal a Danger."}
+      { "Chance": 90, "Description": "Choose one: Mark progress or *Find an Opportunity*."},
+      { "Chance": 99, "Description": "Take both: Mark progress and *Find an Opportunity*."},
+      { "Chance": 100, "Description": "Mark progress twice and *Reveal a Danger*."}
     ]
   },
   {
@@ -2902,15 +2902,15 @@
     },
     "Oracles":
     [
-      { "Chance": 40, "Description": "Mark progress and Reveal a Danger."},
+      { "Chance": 40, "Description": "Mark progress and *Reveal a Danger*."},
       { "Chance": 55, "Description": "Mark progress."},
-      { "Chance": 80, "Description": "Choose one: Mark progress or Find an Opportunity."},
-      { "Chance": 99, "Description": "Take both: Mark progress and Find an Opportunity."},
-      { "Chance": 100, "Description": "Mark progress twice and Reveal a Danger."}
+      { "Chance": 80, "Description": "Choose one: Mark progress or *Find an Opportunity*."},
+      { "Chance": 99, "Description": "Take both: Mark progress and *Find an Opportunity*."},
+      { "Chance": 100, "Description": "Mark progress twice and *Reveal a Danger*."}
     ]
   },
   {
-    "Name": "Find An Opportunity",
+    "Name": "Find an Opportunity",
     "Aliases": ["opportunity", "delve opportunity"],
     "Category": "Move Oracles",
     "Game": "Ironsworn",
@@ -2991,7 +2991,7 @@
     },
     "Oracles":
     [
-      { "Chance": 30, "Description": "The threat readies its next step, or a new danger looms. If you are in a position to prevent this development, you may attempt to do so. If you succeed, Reach a Milestone. Otherwise, mark menace."},
+      { "Chance": 30, "Description": "The threat readies its next step, or a new danger looms. If you are in a position to prevent this development, you may attempt to do so. If you succeed, *Reach a Milestone*. Otherwise, mark menace."},
       { "Chance": 70, "Description": "The threat works subtly to advance toward its goal, or the danger escalates. Mark menace."},
       { "Chance": 100, "Description": "The threat makes a dramatic and immediate move, or a major event reveals new complications. Mark menace twice."}
     ]
