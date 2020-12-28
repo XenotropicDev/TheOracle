@@ -124,7 +124,7 @@ Creates a challenge scene tracking post.
   3. :hash: | Increases the progress track by a single full box (four ticks).
   4. :green_square: | Decreases the challenge track by one. This is mostly needed to fix any accidental clicks.
   5. :negative_squared_cross_mark: | Increases the challenge track by one.
-  6. :game_die: | Rolls the action and challenge die for the Locate your Objective move.
+  6. :game_die: | Resolves the scene challenge by rolling against its progress track
 * *Sample usage:* `!SceneChallenge Dangerous Catch up to the iron robber's wagon`
 
 ### `!Roll`
