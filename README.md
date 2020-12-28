@@ -176,7 +176,13 @@ Creates a starforged starship, *Note: this command is still a work in progress*
 * *Sample usage:* `!Starship Terminus Serenity`
 
 ### `!CreateNPC Starforged`
-Same as the Ironsworn command, but with the character traits in the starforged oracles
+Similar to the Ironsworn command, but with some additional emoji reactions available to add results from Starforged's Character Oracles.
+* *Reactions:*
+  1. ️🔍 | Adds/reveals a Character Aspect
+  2. 👋 | Adds/reveals the NPC's Disposition
+  3. 👀 | Adds an additional First Look result to the NPC
+  4. ❗️ | Adds/reveals the NPC's Goal
+  5. 🎭 | Adds/reveals the NPC's Role
 
 ## Advanced Commands/Features
 
