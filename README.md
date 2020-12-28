@@ -184,6 +184,14 @@ Similar to the Ironsworn command, but with some additional emoji reactions avail
   4. ❗️ | Adds/reveals the NPC's Goal
   5. 🎭 | Adds/reveals the NPC's Role
 
+### `!generateCreature`
+Creates a Starforged creature with Scale, Basic Form, First Look, and Encountered Behaviour. *Note: this command is still a work in progress*
+* *Command Aliases:* `!creature`
+* *Parameters:* Environment (optional)
+* *Reactions:*
+  1. 🦋 | Adds/reveals a Creature Aspect
+* *Sample usage:* `!creature void`
+
 ## Advanced Commands/Features
 
 ### `!SetRerollDuplicates`
