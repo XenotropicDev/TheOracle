@@ -97,6 +97,15 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your action score was greater than 10, and has been adjusted to 10 (Ironsworn rule book page 8).
+        /// </summary>
+        public static string OverMaxMessage {
+            get {
+                return ResourceManager.GetString("OverMaxMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Strong Hit_.
         /// </summary>
         public static string Strong_Hit {

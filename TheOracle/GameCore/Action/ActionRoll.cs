@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TheOracle.Core;
 using TheOracle.GameCore.Action;
 
@@ -11,7 +12,7 @@ namespace TheOracle.GameCore.Action
         public int[] Modifiers { get; set; }
         public int ChallengeDie1 { get; set; }
         public int ChallengeDie2 { get; set; }
-        public int ActionScore { get => ActionDie + Modifiers.Sum(); }
+        public int ActionScore { get => ActionDie + Modifiers.Sum() <= 10 ? ActionDie + Modifiers.Sum() : 10; }
 
         /// <summary>
         /// Rolls dice for a Ironsworn game action.
@@ -67,7 +68,8 @@ namespace TheOracle.GameCore.Action
 
             var rollValues = (Modifiers.Any(mod => mod != 0)) ? $" ({ActionDie}{modString})" : string.Empty;
             var messageValue = (Message.Length > 0) ? $" {Message}\n" : string.Empty;
-            return $"{messageValue}**{ActionScore}**{rollValues} {ActionResources.VS} {ChallengeDie1} {ActionResources.and} {ChallengeDie2}\n{ResultText()}";
+            var overMaxMessage = (ActionDie + Modifiers.Sum() > 10) ? "\n" + String.Format(ActionResources.OverMaxMessage, ActionDie + Modifiers.Sum()) : string.Empty;
+            return $"{messageValue}**{ActionScore}**{rollValues} {ActionResources.VS} {ChallengeDie1} {ActionResources.and} {ChallengeDie2}\n{ResultText()}{overMaxMessage}";
         }
     }
 }
