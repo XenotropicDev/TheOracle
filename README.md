@@ -86,8 +86,29 @@ Builds an interactive post for keeping track of player resources
   7. :fire: | Burns/resets your momentum to 2.
 * *Sample usage:* `!PlayerCard Sneaky Archer`
 
+### `!Asset`
+Creates an interactive post for asset tracking and reference.
+* *Parameters:* First asset text (optional), second asset text (optional)
+* *Sample usage:* `!asset Devotant Wodin, Wits`
+* *Reactions:*
+  1. :one: | Mark the first asset ability.
+  2. :two: | Mark the second asset ability.
+  3. :three: | Mark the third asset ability.
+  4. :arrow_up_small: | Increases the asset's track (Health, Integrity, Essence, etc) by one, up to its maximum.
+  5. :arrow_down_small: | Decreases the asset's track by one, down to its minimum.
+  7. :heavy_plus_sign: | Increase the asset's tally by one (e.g. Snub Fighter's victory marks).
+  6. :heavy_minus_sign: | Decrease the asset's tally by one.
+  7. :arrow_left: | Set asset modal ability to first ability (e.g. Ironclad).
+  7. :arrow_right: | Set asset modal ability to second ability.
+
+### `!AssetList`
+Posts a list of assets. On its own, it shows all assets for the current default game; the list may be narrowed by category or asset name.
+
+* *Parameters:* Game name (optional), asset category (optional), search string (optional)
+* *Sample usage:* `!assetlist companion`
+
 ### `!InitiativeTracker`
-Builds an interactive post to keep track of which plays have Initiative (Ironsworn) or are In Control (Starforged).
+Builds an interactive post to keep track of which players have Initiative (Ironsworn) or are In Control (Starforged) in combat.
 * *Command Aliases:* `!Initiative`, `!IniTracker`
 * *Parameters:* Description (optional)
 * *Reactions:*
