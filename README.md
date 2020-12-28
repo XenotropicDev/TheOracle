@@ -187,7 +187,7 @@ Similar to the Ironsworn command, but with some additional emoji reactions avail
 ## Advanced Commands/Features
 
 ### `!SetRerollDuplicates`
-Sets the bot's re-rolling behavior for multiple oracles and game element posts.
+Sets the bot's re-rolling behavior for multiple oracles and game element posts. It is enabled by default.
 * *Command Aliases:* `!RerollDuplicates`
 * *Parameters:* True/False
 
