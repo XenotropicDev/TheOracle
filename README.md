@@ -87,12 +87,12 @@ Builds an interactive post for keeping track of player resources
 * *Sample usage:* `!PlayerCard Sneaky Archer`
 
 ### `!InitiativeTracker`
-Builds an interactive post to keep track of players who do and don't have advantage.
+Builds an interactive post to keep track of which plays have Initiative (Ironsworn) or are In Control (Starforged).
 * *Command Aliases:* `!Initiative`, `!IniTracker`
 * *Parameters:* Description (optional)
 * *Reactions:*
-  1. :arrow_left: | Assigns/moves you to the Advantage track.
-  2. :arrow_right: | Assigns/moves you to the Disadvantage track.
+  1. :arrow_left: | Assigns/moves you to the `Initiative`/`In Control` track.
+  2. :arrow_right: | Assigns/moves you to the `No Initiative`/`In a Bad Spot` track.
 * *Sample usage:* `!InitiativeTracker`
 
 ### `!CreateNPC`
