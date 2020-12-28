@@ -163,6 +163,8 @@ Creates a Starforged settlement with a name (given, or random from the settlemen
 * *Parameters:* SpaceRegion (optional), Name (optional)
 * *Reactions:*
   1. ️🛠️ | Adds/reveals a settlement project
+  2. ☎️ | Adds/reveals initial contact
+  3. 🔥 | Adds/reveals settlement trouble
 * *Sample usage:* `!Settlement Outlands Deep Space Nine`
 
 ### `!GenerateStarship`
