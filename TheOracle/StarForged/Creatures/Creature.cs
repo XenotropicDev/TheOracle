@@ -30,6 +30,7 @@ namespace TheOracle.StarForged.Creatures
         public string EncounteredBehavior { get; set; }
         public List<string> FirstLook { get; set; } = new List<string>();
         public List<string> RevealedAspectsList { get; set; } = new List<string>();
+        public string IconUrl { get; private set; }
         public string Scale { get; set; }
 
         public Creature(IServiceProvider serviceProvider, ulong channelId)
@@ -70,6 +71,7 @@ namespace TheOracle.StarForged.Creatures
             creature.FirstLook = embed.Fields.Where(fld => fld.Name == CreatureResources.FirstLook).Select(fld => fld.Value).ToList();
             creature.EncounteredBehavior = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.EncounteredBehavior).Value;
             creature.RevealedAspectsList = embed.Fields.Where(fld => fld.Name == CreatureResources.RevealedAspect).Select(fld => fld.Value).ToList();
+            creature.IconUrl = embed.Thumbnail?.Url;
 
             return creature;
         }
@@ -83,6 +85,7 @@ namespace TheOracle.StarForged.Creatures
         public EmbedBuilder GetEmbedBuilder()
         {
             var builder = new EmbedBuilder().WithTitle(CreatureResources.CreatureTitle);
+            builder.WithThumbnailUrl(IconUrl);
 
             builder.AddField(CreatureResources.Environment, Environment.ToString(), true);
             builder.AddField(CreatureResources.Scale, Scale, true);

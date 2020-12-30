@@ -18,6 +18,7 @@ namespace TheOracle.GameCore.NpcGenerator
         public string Name { get; set; }
         private IServiceProvider _serviceProvider { get; }
         public IEmote[] ReactionsToAdd { get; set; } = null;
+        public string IconUrl { get; private set; }
 
         public IronNPC(IServiceProvider serviceProvider)
         {
@@ -50,6 +51,7 @@ namespace TheOracle.GameCore.NpcGenerator
 
             return new EmbedBuilder()
                 .WithTitle($"__{NPCResources.NPCTitle}__")
+                .WithThumbnailUrl(IconUrl)
                 .WithFields(new EmbedFieldBuilder().WithName(NPCResources.Name).WithValue(Name).WithIsInline(false))
                 .WithFields(rolesField)
                 .WithFields(goalFields)

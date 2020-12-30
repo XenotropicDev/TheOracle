@@ -24,6 +24,7 @@ namespace TheOracle.GameCore.InitiativeTracker
         public List<string> Advantage { get; set; } = new List<string>();
         public List<string> Disadvantage { get; set; } = new List<string>();
         public string Description { get; set; }
+        public string IconUrl { get; private set; }
 
         public EmbedBuilder GetEmbedBuilder()
         {
@@ -32,6 +33,7 @@ namespace TheOracle.GameCore.InitiativeTracker
             return new EmbedBuilder()
                 .WithTitle(InitiativeResources.TrackerTitle)
                 .WithDescription(Description)
+                .WithThumbnailUrl(IconUrl)
                 .WithFields(new EmbedFieldBuilder()
                     .WithName(advantageTitle)
                     .WithValue((Advantage.Count > 0) ? String.Join('\n', Advantage) : InitiativeResources.None)
@@ -56,7 +58,8 @@ namespace TheOracle.GameCore.InitiativeTracker
             {
                 Description = embed.Description,
                 Advantage = embed.Fields.First(field => field.Name == InitiativeResources.Advantage || field.Name == InitiativeResources.StarforgedAdvantage).Value.Split('\n').ToList(),
-                Disadvantage = embed.Fields.First(field => field.Name == InitiativeResources.Disadvantage || field.Name == InitiativeResources.StarforgedDisadvantage).Value.Split('\n').ToList()
+                Disadvantage = embed.Fields.First(field => field.Name == InitiativeResources.Disadvantage || field.Name == InitiativeResources.StarforgedDisadvantage).Value.Split('\n').ToList(),
+                IconUrl = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : null
             };
 
             tracker.Advantage.RemoveAll(s => s == InitiativeResources.None);

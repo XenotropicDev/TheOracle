@@ -191,7 +191,7 @@ namespace TheOracle.IronSworn.Delve
         {
             if (!IsDelveMessage(message)) return;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-            var delve = DelveInfo.FromMessage(DelveService, message);
+            var delve = new DelveInfo().FromMessage(DelveService, message);
 
             var oracles = Services.GetRequiredService<OracleService>();
             await channel.SendMessageAsync(String.Format(DelveResources.RevealDangerRoll, delve.SiteName), false, delve.RevealDangerRoller(oracles).GetEmbed()).ConfigureAwait(false);
@@ -201,7 +201,7 @@ namespace TheOracle.IronSworn.Delve
         {
             if (!IsDelveMessage(message)) return;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-            var delve = DelveInfo.FromMessage(DelveService, message);
+            var delve = new DelveInfo().FromMessage(DelveService, message);
 
             await channel.SendMessageAsync(String.Format(DelveResources.RevealFeatureRoll, delve.SiteName), false, delve.RevealFeatureRoller().GetEmbed()).ConfigureAwait(false);
         }
@@ -209,7 +209,7 @@ namespace TheOracle.IronSworn.Delve
         private async Task ReactionDecreaseEvent(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsDelveMessage(message)) return;
-            DelveInfo delve = DelveInfo.FromMessage(DelveService, message);
+            DelveInfo delve = new DelveInfo().FromMessage(DelveService, message);
             delve.Ticks -= delve.TicksPerProgress;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             await message.ModifyAsync(msg => msg.Embed = delve.BuildEmbed() as Embed);
@@ -218,7 +218,7 @@ namespace TheOracle.IronSworn.Delve
         private async Task ReactionFullMarkEvent(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsDelveMessage(message)) return;
-            DelveInfo delve = DelveInfo.FromMessage(DelveService, message);
+            DelveInfo delve = new DelveInfo().FromMessage(DelveService, message);
             delve.Ticks += 4;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             await message.ModifyAsync(msg => msg.Embed = delve.BuildEmbed() as Embed);
@@ -227,7 +227,7 @@ namespace TheOracle.IronSworn.Delve
         private async Task ReactionIncreaseEvent(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsDelveMessage(message)) return;
-            DelveInfo delve = DelveInfo.FromMessage(DelveService, message);
+            DelveInfo delve = new DelveInfo().FromMessage(DelveService, message);
             delve.Ticks += delve.TicksPerProgress;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             await message.ModifyAsync(msg => msg.Embed = delve.BuildEmbed() as Embed);
@@ -238,7 +238,7 @@ namespace TheOracle.IronSworn.Delve
             if (!IsDelveMessage(message)) return;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
-            DelveInfo delve = DelveInfo.FromMessage(DelveService, message);
+            DelveInfo delve = new DelveInfo().FromMessage(DelveService, message);
             var roll = new ActionRoll(0, delve.ActionDie, String.Format(DelveResources.LocateObjectiveRoll, delve.SiteName));
             await channel.SendMessageAsync(roll.ToString()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);

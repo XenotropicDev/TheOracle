@@ -127,6 +127,8 @@ namespace TheOracle.GameCore.Assets
                 asset.arguments.Add(fldValues[1]);
             }
 
+            asset.IconUrl = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : asset.IconUrl;
+
             return asset;
         }
 
@@ -135,7 +137,8 @@ namespace TheOracle.GameCore.Assets
             int nextArgument = 0;
 
             EmbedBuilder builder = new EmbedBuilder();
-            builder.WithAuthor(AssetType, IconUrl);
+            builder.WithAuthor(AssetType);
+            builder.WithThumbnailUrl(IconUrl);
             builder.WithTitle(Name);
 
             string fullDesc = string.Empty;

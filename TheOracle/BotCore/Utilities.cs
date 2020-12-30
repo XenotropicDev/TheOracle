@@ -1,13 +1,50 @@
-﻿using System;
+﻿using Discord;
+using Discord.WebSocket;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using TheOracle.GameCore;
 
 namespace TheOracle.BotCore
 {
     public static class Utilities
     {
+        public static async Task<SocketMessage> NextChannelMessageAsync(this IChannel channel,
+            DiscordSocketClient client,
+            IUser user = null,
+            TimeSpan? timeout = null,
+            CancellationToken token = default(CancellationToken))
+        {
+            timeout = timeout ?? TimeSpan.FromSeconds(30);
+
+            var eventTrigger = new TaskCompletionSource<SocketMessage>();
+            var cancelTrigger = new TaskCompletionSource<bool>();
+
+            token.Register(() => cancelTrigger.SetResult(true));
+
+            async Task Handler(SocketMessage message)
+            {
+                var result = message.Channel.Id == channel.Id && (message.Author.Id == user.Id || user == null);
+                if (result) eventTrigger.SetResult(message);
+            }
+
+            client.MessageReceived += Handler;
+
+            var trigger = eventTrigger.Task;
+            var cancel = cancelTrigger.Task;
+            var delay = Task.Delay(timeout.Value);
+            var task = await Task.WhenAny(trigger, delay, cancel).ConfigureAwait(false);
+
+            client.MessageReceived -= Handler;
+
+            if (task == trigger)
+                return await trigger.ConfigureAwait(false);
+            else
+                return null;
+        }
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
         {
             if (culture == default) culture = CultureInfo.CurrentCulture;

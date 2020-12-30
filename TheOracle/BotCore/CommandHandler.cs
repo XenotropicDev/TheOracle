@@ -1,4 +1,5 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
 using Discord.WebSocket;
 using System;
 using System.Linq;
@@ -36,10 +37,16 @@ namespace TheOracle
             // Create a number to track where the prefix ends and the command begins
             int argPos = 0;
 
+            if (message.ReferencedMessage != null && message.ReferencedMessage.Author.Id == _client.CurrentUser.Id)
+            {
+                if (await ReferencedMessageCommandHandler.Process(message)) return;
+            }
+
             // Determine if the message is a command based on the prefix and make sure no bots trigger commands
             if (!(message.HasStringPrefix("! ", ref argPos) ||
                     message.HasCharPrefix('!', ref argPos) ||                    
-                    message.HasMentionPrefix(_client.CurrentUser, ref argPos)
+                    message.HasMentionPrefix(_client.CurrentUser, ref argPos) ||
+                    message.ReferencedMessage != null && message.ReferencedMessage.Author.Id == _client.CurrentUser.Id
                 ) ||
                 message.Author.IsBot)
                 return;

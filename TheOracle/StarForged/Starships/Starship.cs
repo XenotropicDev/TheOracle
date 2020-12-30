@@ -20,6 +20,7 @@ namespace TheOracle.StarForged.Starships
         public string ShipType { get; set; }
         public SpaceRegion SpaceRegion { get; set; }
         public string TypicalRole { get; set; }
+        public string IconUrl { get; private set; }
         public bool MissionRevealed { get; private set; }
         public IServiceProvider Services { get; }
         public ulong ChannelId { get; }
@@ -47,6 +48,7 @@ namespace TheOracle.StarForged.Starships
 
             bool hasTypicalRole = embed.Fields.Any(fld => fld.Name == StarShipResources.TypicalRole);
             this.TypicalRole = (hasTypicalRole) ? embed.Fields.FirstOrDefault(fld => fld.Name == StarShipResources.TypicalRole).Value : string.Empty;
+            this.IconUrl = embed.Thumbnail?.Url;
 
             return this;
         }
@@ -108,6 +110,7 @@ namespace TheOracle.StarForged.Starships
         {
             var embed = new EmbedBuilder()
                 .WithTitle($"__{Name}__")
+                .WithThumbnailUrl(IconUrl)
                 .WithDescription(String.Format(StarShipResources.StarshipDescription, SpaceRegion));
 
             embed.AddField(StarShipResources.StarshipType, ShipType, true);

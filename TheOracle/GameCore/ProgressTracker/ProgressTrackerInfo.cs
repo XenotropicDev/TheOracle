@@ -41,6 +41,8 @@ namespace TheOracle.GameCore.ProgressTracker
                 Ticks = (Int32.TryParse(embed.Footer.Value.Text.Replace(ProgressResources.Ticks, "").Replace(":", ""), out int temp)) ? temp : 0;
             }
             Description = embed.Description;
+            this.IconUrl = embed.Thumbnail?.Url;
+
             return this;
         }
 
@@ -58,7 +60,7 @@ namespace TheOracle.GameCore.ProgressTracker
         }
 
         public string Description { get; set; }
-
+        public string IconUrl { get; private set; }
         public virtual int TicksPerProgress { get => ChallengeRankToTicks(Rank); }
         public int ActionDie { get => (int)Math.Floor(Ticks / 4d); }
         public virtual string DifficultyFieldTitle { get => ProgressResources.Difficulty; }
@@ -82,6 +84,7 @@ namespace TheOracle.GameCore.ProgressTracker
         {
             return new EmbedBuilder()
                 .WithTitle(ProgressResources.Progress_Tracker)
+                .WithThumbnailUrl(IconUrl)
                 .WithDescription(Description)
                 .WithFields(new EmbedFieldBuilder()
                 {

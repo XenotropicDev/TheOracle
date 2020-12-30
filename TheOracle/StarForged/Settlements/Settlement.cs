@@ -32,6 +32,7 @@ namespace TheOracle.StarForged.Settlements
         public SpaceRegion Region { get; set; }
         public IServiceProvider Services { get; }
         public ulong ChannelId { get; }
+        public string IconUrl { get; private set; }
 
         public static Settlement GenerateSettlement(IServiceProvider serviceProvider, SpaceRegion spaceRegion, ulong channelId, string SettlementName = "", string SettlementLocation = "")
         {
@@ -101,6 +102,7 @@ namespace TheOracle.StarForged.Settlements
             this.Region = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
             this.SettlementTroubleRevealed = embed.Fields.Any(fld => fld.Name == SettlementResources.SettlementTrouble);
             if (SettlementTroubleRevealed) this.SettlementTrouble = embed.Fields.FirstOrDefault(fld => fld.Name == SettlementResources.SettlementTrouble).Value;
+            this.IconUrl = embed.Thumbnail?.Url;
 
             return this;
         }
@@ -109,6 +111,7 @@ namespace TheOracle.StarForged.Settlements
         {
             EmbedBuilder embedBuilder = new EmbedBuilder()
                 .WithTitle($"__{Name}__")
+                .WithThumbnailUrl(IconUrl)
                 .WithDescription($"{Region} {SettlementResources.Settlement}")
                 .AddField(SettlementResources.Location, Location, true)
                 .AddField(SettlementResources.Population, Population, true)

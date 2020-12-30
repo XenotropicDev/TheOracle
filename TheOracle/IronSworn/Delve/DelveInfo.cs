@@ -12,6 +12,11 @@ namespace TheOracle.IronSworn.Delve
 {
     public class DelveInfo : ProgressTrackerInfo
     {
+        public DelveInfo() : base()
+        {
+
+        }
+
         public override string DifficultyFieldTitle => DelveResources.RankField;
         public List<Domain> Domains { get; set; } = new List<Domain>();
         public string SiteName { get; set; }
@@ -138,24 +143,24 @@ namespace TheOracle.IronSworn.Delve
             return info;
         }
 
-        internal static DelveInfo FromMessage(DelveService delveService, IUserMessage message)
+        internal DelveInfo FromMessage(DelveService delveService, IUserMessage message)
         {
             var embed = message.Embeds.First();
-            DelveInfo delve = new DelveInfo();
+            base.PopulateFromMessage(message);
 
-            if (!Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == delve.DifficultyFieldTitle).Value, out ChallengeRank challengeRank))
+            if (!Enum.TryParse(embed.Fields.FirstOrDefault(f => f.Name == DifficultyFieldTitle).Value, out ChallengeRank challengeRank))
                 throw new ArgumentException("Unknown delve post format, unable to parse difficulty");
 
-            delve.Rank = challengeRank;
+            Rank = challengeRank;
 
             if (embed.Footer.HasValue)
             {
-                delve.Ticks = (Int32.TryParse(embed.Footer.Value.Text.Replace(ProgressResources.Ticks, "").Replace(":", ""), out int temp)) ? temp : 0;
+                Ticks = (Int32.TryParse(embed.Footer.Value.Text.Replace(ProgressResources.Ticks, "").Replace(":", ""), out int temp)) ? temp : 0;
             }
-            delve.Description = embed.Description;
-            delve.SiteObjective = embed.Description;
+            Description = embed.Description;
+            SiteObjective = embed.Description;
             if (!Utilities.UndoFormatString(embed.Title, DelveResources.CardSiteNameFormat, out string[] titleValues)) titleValues = new string[] { "Delve Site Title Error" };
-            delve.SiteName = titleValues[0];
+            SiteName = titleValues[0];
 
             if (!Utilities.UndoFormatString(embed.Author.Value.Name, DelveResources.CardThemeDomainTitleFormat, out string[] themeDomainArgs))
                 throw new ArgumentException("Unknown delve post format, unable to parse themes and domains");
@@ -163,10 +168,10 @@ namespace TheOracle.IronSworn.Delve
             var themes = themeDomainArgs[0].Split(DelveResources.ListSeperator).Select(s => s.Trim());
             var domains = themeDomainArgs[1].Split(DelveResources.ListSeperator).Select(s => s.Trim());
 
-            delve.Themes.AddRange(delveService.Themes.Where(t1 => themes.Any(t2 => t2.Equals(t1.DelveSiteTheme, StringComparison.OrdinalIgnoreCase))).Take(2));
-            delve.Domains.AddRange(delveService.Domains.Where(d1 => domains.Any(d2 => d2.Equals(d1.DelveSiteDomain, StringComparison.OrdinalIgnoreCase))).Take(2));
+            Themes.AddRange(delveService.Themes.Where(t1 => themes.Any(t2 => t2.Equals(t1.DelveSiteTheme, StringComparison.OrdinalIgnoreCase))).Take(2));
+            Domains.AddRange(delveService.Domains.Where(d1 => domains.Any(d2 => d2.Equals(d1.DelveSiteDomain, StringComparison.OrdinalIgnoreCase))).Take(2));
 
-            return delve;
+            return this;
         }
 
         public void AddRandomDomain(DelveService delveService)

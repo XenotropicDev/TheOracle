@@ -172,9 +172,9 @@ namespace TheOracle.GameCore.Assets
             if (game != GameName.None) AssetCommand = Utilities.RemoveGameNamesFromString(AssetCommand);
             if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
-            var asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)").IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
-            if (asset == default) asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); 
-            if (asset == default) asset = assets.FirstOrDefault(a => AssetCommand.Contains(a.Name) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
+            var asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)", RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
+            if (asset == default) asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); 
+            if (asset == default) asset = assets.FirstOrDefault(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
             if (asset == default) throw new ArgumentException(AssetResources.UnknownAssetError);
 
             string additionalInputsRaw = AssetCommand.ReplaceFirst(asset.Name, "", StringComparison.OrdinalIgnoreCase).Replace("  ", " ").Trim();

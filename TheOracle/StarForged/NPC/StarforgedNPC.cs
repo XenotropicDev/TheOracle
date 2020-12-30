@@ -57,7 +57,7 @@ namespace TheOracle.StarForged.NPC
         public List<string> Goals { get; set; } = new List<string>();
 
         public string Name { get; set; }
-
+        public string IconUrl { get; private set; }
         public IEmote[] ReactionsToAdd { get; set; }
 
         public List<string> Roles { get; set; } = new List<string>();
@@ -121,6 +121,7 @@ namespace TheOracle.StarForged.NPC
             foreach (var goal in embed.Fields.Where(fld => fld.Name == NPCResources.Goal)) Goals.Add(goal.Value);
             foreach (var role in embed.Fields.Where(fld => fld.Name == NPCResources.Role)) Roles.Add(role.Value);
             Name = embed.Fields.FirstOrDefault(fld => fld.Name == NPCResources.Name).Value;
+            IconUrl = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : null;
         }
 
         public Embed GetEmbed()
@@ -142,6 +143,7 @@ namespace TheOracle.StarForged.NPC
 
             return new EmbedBuilder()
                 .WithTitle($"__{NPCResources.NPCTitle}__")
+                .WithThumbnailUrl(IconUrl)
                 .WithFields(new EmbedFieldBuilder().WithName(NPCResources.Name).WithValue(Name).WithIsInline(false))
                 .WithFields(FirstLookFields)
                 .WithFields(DispositionsFields)
