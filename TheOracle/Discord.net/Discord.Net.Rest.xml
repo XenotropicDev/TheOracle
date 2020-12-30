@@ -3394,6 +3394,15 @@
         <member name="P:Discord.Rest.RestInvite.GuildId">
             <inheritdoc />
         </member>
+        <member name="P:Discord.Rest.RestInvite.Inviter">
+            <inheritdoc />
+        </member>
+        <member name="P:Discord.Rest.RestInvite.TargetUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Discord.Rest.RestInvite.TargetUserType">
+            <inheritdoc />
+        </member>
         <member name="P:Discord.Rest.RestInvite.Code">
             <inheritdoc />
         </member>
@@ -3438,15 +3447,7 @@
         <member name="P:Discord.Rest.RestInviteMetadata.Uses">
             <inheritdoc />
         </member>
-        <member name="P:Discord.Rest.RestInviteMetadata.Inviter">
-            <summary>
-                Gets the user that created this invite.
-            </summary>
-        </member>
         <member name="P:Discord.Rest.RestInviteMetadata.CreatedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Discord.Rest.RestInviteMetadata.Discord#IInviteMetadata#Inviter">
             <inheritdoc />
         </member>
         <member name="F:Discord.Rest.MessageHelper.InlineCodeRegex">
@@ -4151,7 +4152,7 @@
             <param name="options">The options to be used when sending the request.</param>
         </member>
         <member name="T:Discord.Attachment">
-            <inheritdoc/>
+            <inheritdoc cref="T:Discord.IAttachment"/>
         </member>
         <member name="P:Discord.Attachment.Id">
             <inheritdoc />

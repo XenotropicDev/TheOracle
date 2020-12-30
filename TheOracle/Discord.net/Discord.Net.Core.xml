@@ -3911,6 +3911,14 @@
                 A string containing the full invite URL (e.g. <c>https://discord.gg/FTqNnyS</c>).
             </returns>
         </member>
+        <member name="P:Discord.IInvite.Inviter">
+            <summary>
+                Gets the user that created this invite.
+            </summary>
+            <returns>
+                A user that created this invite.
+            </returns>
+        </member>
         <member name="P:Discord.IInvite.Channel">
             <summary>
                 Gets the channel this invite is linked to.
@@ -3982,26 +3990,26 @@
                 invite points to; <c>null</c> if one cannot be obtained.
             </returns>
         </member>
+        <member name="P:Discord.IInvite.TargetUser">
+            <summary>
+                Gets the user this invite is linked to via <see cref="P:Discord.IInvite.TargetUserType"/>.
+            </summary>
+            <returns>
+                A user that is linked to this invite.
+            </returns>
+        </member>
+        <member name="P:Discord.IInvite.TargetUserType">
+            <summary>
+                Gets the type of the linked <see cref="P:Discord.IInvite.TargetUser"/> for this invite.
+            </summary>
+            <returns>
+                The type of the linked user that is linked to this invite.
+            </returns>
+        </member>
         <member name="T:Discord.IInviteMetadata">
             <summary>
                 Represents additional information regarding the generic invite object.
             </summary>
-        </member>
-        <member name="P:Discord.IInviteMetadata.Inviter">
-            <summary>
-                Gets the user that created this invite.
-            </summary>
-            <returns>
-                A user that created this invite.
-            </returns>
-        </member>
-        <member name="P:Discord.IInviteMetadata.IsRevoked">
-            <summary>
-                Gets a value that indicates whether the invite has been revoked.
-            </summary>
-            <returns>
-                <c>true</c> if this invite was revoked; otherwise <c>false</c>.
-            </returns>
         </member>
         <member name="P:Discord.IInviteMetadata.IsTemporary">
             <summary>
@@ -4010,6 +4018,14 @@
             <returns>
                 <c>true</c> if users accepting this invite will be removed from the guild when they log off; otherwise 
                 <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Discord.IInviteMetadata.IsRevoked">
+            <summary>
+                Gets a value that indicates whether the invite has been revoked.
+            </summary>
+            <returns>
+                <c>true</c> if this invite was revoked; otherwise <c>false</c>.
             </returns>
         </member>
         <member name="P:Discord.IInviteMetadata.MaxAge">
@@ -5293,10 +5309,10 @@
                 Gets all embeds included in this message.
             </summary>
             <remarks>
-            </remarks>
                 This property gets a read-only collection of embeds associated with this message. Depending on the
                 message, a sent message may contain one or more embeds. This is usually true when multiple link previews
                 are generated; however, only one <see cref="F:Discord.EmbedType.Rich"/> <see cref="T:Discord.Embed"/> can be featured.
+            </remarks>
             <returns>
                 A read-only collection of embed objects.
             </returns>

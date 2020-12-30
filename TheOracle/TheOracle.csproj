@@ -226,6 +226,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="BotCore\GenericReactionResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenericReactionResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="BotCore\HelpResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -335,6 +340,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="BotCore\GenericReactionResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GenericReactionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="BotCore\HelpResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>HelpResources.Designer.cs</LastGenOutput>

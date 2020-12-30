@@ -301,6 +301,26 @@
                 found.
             </returns>
         </member>
+        <member name="M:Discord.WebSocket.BaseSocketClient.GetVoiceRegionsAsync(Discord.RequestOptions)">
+            <summary>
+                Gets all voice regions.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that contains a read-only collection of REST-based voice regions.
+            </returns>
+        </member>
+        <member name="M:Discord.WebSocket.BaseSocketClient.GetVoiceRegionAsync(System.String,Discord.RequestOptions)">
+            <summary>
+                Gets a voice region.
+            </summary>
+            <param name="id">The identifier of the voice region (e.g. <c>eu-central</c> ).</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that contains a REST-based voice region associated with the identifier; <c>null</c> if the
+                voice region is not found.
+            </returns>
+        </member>
         <member name="M:Discord.WebSocket.BaseSocketClient.StartAsync">
             <inheritdoc />
         </member>
@@ -793,6 +813,12 @@
         <member name="M:Discord.WebSocket.DiscordShardedClient.GetVoiceRegion(System.String)">
             <inheritdoc />
         </member>
+        <member name="M:Discord.WebSocket.DiscordShardedClient.GetVoiceRegionsAsync(Discord.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Discord.WebSocket.DiscordShardedClient.GetVoiceRegionAsync(System.String,Discord.RequestOptions)">
+            <inheritdoc />
+        </member>
         <member name="M:Discord.WebSocket.DiscordShardedClient.DownloadUsersAsync(System.Collections.Generic.IEnumerable{Discord.IGuild})">
             <inheritdoc />
             <exception cref="T:System.ArgumentNullException"><paramref name="guilds"/> is <see langword="null"/></exception>
@@ -977,6 +1003,12 @@
         <member name="M:Discord.WebSocket.DiscordSocketClient.GetVoiceRegion(System.String)">
             <inheritdoc />
         </member>
+        <member name="M:Discord.WebSocket.DiscordSocketClient.GetVoiceRegionsAsync(Discord.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Discord.WebSocket.DiscordSocketClient.GetVoiceRegionAsync(System.String,Discord.RequestOptions)">
+            <inheritdoc />
+        </member>
         <member name="M:Discord.WebSocket.DiscordSocketClient.DownloadUsersAsync(System.Collections.Generic.IEnumerable{Discord.IGuild})">
             <inheritdoc />
         </member>
@@ -1134,7 +1166,7 @@
         <member name="P:Discord.WebSocket.DiscordSocketConfig.LargeThreshold">
             <summary>
                 Gets or sets the max number of users a guild may have for offline users to be included in the READY
-                packet. Max is 250.
+                packet. The maximum value allowed is 250.
             </summary>
         </member>
         <member name="P:Discord.WebSocket.DiscordSocketConfig.WebSocketProvider">
@@ -1181,21 +1213,25 @@
         </member>
         <member name="P:Discord.WebSocket.DiscordSocketConfig.HandlerTimeout">
             <summary>
-                Gets or sets the timeout for event handlers, in milliseconds, after which a warning will be logged. Null
-                disables this check.
+                Gets or sets the timeout for event handlers, in milliseconds, after which a warning will be logged.
+                Setting this property to <c>null</c>disables this check.
             </summary>
         </member>
         <member name="P:Discord.WebSocket.DiscordSocketConfig.ExclusiveBulkDelete">
-             <summary>
-                 Gets or sets the behavior for <see cref="E:Discord.WebSocket.BaseSocketClient.MessageDeleted"/> on bulk deletes.
-            
-                 If true, the <see cref="E:Discord.WebSocket.BaseSocketClient.MessageDeleted"/> event will not be raised for bulk deletes, and
-                 only the <see cref="E:Discord.WebSocket.BaseSocketClient.MessagesBulkDeleted"/> will be raised.
-            
-                 If false, both events will be raised.
-            
-                 If unset, both events will be raised, but a warning will be raised the first time a bulk delete event is received.
-             </summary>
+            <summary>
+                Gets or sets the behavior for <see cref="E:Discord.WebSocket.BaseSocketClient.MessageDeleted"/> on bulk deletes.
+            </summary>
+            <remarks>
+            <para>
+                If <c>true</c>, the <see cref="E:Discord.WebSocket.BaseSocketClient.MessageDeleted"/> event will not be raised for bulk
+                deletes, and only the <see cref="E:Discord.WebSocket.BaseSocketClient.MessagesBulkDeleted"/> will be raised. If <c>false</c>
+                , both events will be raised.
+            </para>
+            <para>
+                If unset, both events will be raised, but a warning will be raised the first time a bulk delete event is
+                received.
+            </para>
+            </remarks>
         </member>
         <member name="P:Discord.WebSocket.DiscordSocketConfig.GuildSubscriptions">
             <summary>
@@ -1212,7 +1248,21 @@
                 It is only used when using a <see cref="T:Discord.WebSocket.DiscordShardedClient"/> and auto-sharding is disabled.
             </remarks>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Discord.WebSocket.DiscordSocketConfig.MaxWaitBetweenGuildAvailablesBeforeReady" -->
+        <member name="P:Discord.WebSocket.DiscordSocketConfig.MaxWaitBetweenGuildAvailablesBeforeReady">
+            <summary>
+                Gets or sets the maximum wait time in milliseconds between GUILD_AVAILABLE events before firing READY.
+                If zero, READY will fire as soon as it is received and all guilds will be unavailable.
+            </summary>
+            <remarks>
+                <para>This property is measured in milliseconds; negative values will throw an exception.</para>
+                <para>If a guild is not received before READY, it will be unavailable.</para>
+            </remarks>
+            <returns>
+                A <see cref="T:System.Int32"/> representing the maximum wait time in milliseconds between GUILD_AVAILABLE events
+                before firing READY.
+            </returns>
+            <exception cref="T:System.ArgumentException">Value must be at least 0.</exception>
+        </member>
         <member name="P:Discord.WebSocket.DiscordSocketConfig.GatewayIntents">
             <summary>
                Gets or sets gateway intents to limit what events are sent from Discord. Allows for more granular control than the <see cref="P:Discord.WebSocket.DiscordSocketConfig.GuildSubscriptions"/> property.
@@ -1225,7 +1275,7 @@
         </member>
         <member name="M:Discord.WebSocket.DiscordSocketConfig.#ctor">
             <summary>
-                Initializes a default configuration.
+                Initializes a new instance of the <see cref="T:Discord.WebSocket.DiscordSocketConfig"/> class with the default configuration.
             </summary>
         </member>
         <member name="T:Discord.WebSocket.ISocketAudioChannel">
@@ -2276,7 +2326,12 @@
             <inheritdoc />
         </member>
         <member name="P:Discord.WebSocket.SocketVoiceChannel.Users">
-            <inheritdoc />
+            <summary>
+                Gets a collection of users that are currently connected to this voice channel.
+            </summary>
+            <returns>
+                A read-only collection of users that are currently connected to this voice channel.
+            </returns>
         </member>
         <member name="M:Discord.WebSocket.SocketVoiceChannel.Update(Discord.WebSocket.ClientState,Discord.API.Channel)">
             <inheritdoc />
@@ -2464,6 +2519,14 @@
             <returns>
                 A <see cref="T:Discord.WebSocket.SocketVoiceChannel" /> that the AFK users will be moved to after they have idled for too
                 long; <see langword="null"/> if none is set.
+            </returns>
+        </member>
+        <member name="P:Discord.WebSocket.SocketGuild.MaxBitrate">
+            <summary>
+                Gets the max bitrate for voice channels in this guild.
+            </summary>
+            <returns>
+                A <see cref="T:System.Int32"/> representing the maximum bitrate value allowed by Discord in this guild.
             </returns>
         </member>
         <member name="P:Discord.WebSocket.SocketGuild.EmbedChannel">
@@ -3172,7 +3235,10 @@
         <member name="P:Discord.WebSocket.SocketInvite.Discord#IInvite#Channel">
             <inheritdoc />
         </member>
-        <member name="P:Discord.WebSocket.SocketInvite.Discord#IInviteMetadata#Inviter">
+        <member name="P:Discord.WebSocket.SocketInvite.Discord#IInvite#Inviter">
+            <inheritdoc />
+        </member>
+        <member name="P:Discord.WebSocket.SocketInvite.Discord#IInvite#TargetUser">
             <inheritdoc />
         </member>
         <member name="M:Discord.WebSocket.MessageCache.GetMany(System.Nullable{System.UInt64},Discord.Direction,System.Int32)">
@@ -4089,18 +4155,15 @@
         </member>
         <member name="T:Discord.WebSocket.GatewayReconnectException">
             <summary>
-            An exception thrown when the gateway client has been requested to
-            reconnect.
+                The exception thrown when the gateway client has been requested to reconnect.
             </summary>
         </member>
         <member name="M:Discord.WebSocket.GatewayReconnectException.#ctor(System.String)">
             <summary>
-            Creates a new instance of the
-            <see cref="T:Discord.WebSocket.GatewayReconnectException"/> type.
+                Initializes a new instance of the <see cref="T:Discord.WebSocket.GatewayReconnectException" /> class with the reconnection
+                message.
             </summary>
-            <param name="message">
-            The reason why the gateway has been requested to reconnect.
-            </param>
+            <param name="message">The reason why the gateway has been requested to reconnect.</param>
         </member>
         <member name="T:Discord.Commands.ShardedCommandContext">
             <summary> The sharded variant of <see cref="T:Discord.Commands.ICommandContext"/>, which may contain the client, user, guild, channel, and message. </summary>
