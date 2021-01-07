@@ -74,7 +74,7 @@ Builds an interactive post to keep track any progress trackers in game (Iron vow
 
 ### `!PlayerCard`
 Builds an interactive post for keeping track of player resources
-* *Command Aliases:* `!StatsCard`, `!CharacterSheet`, `!CharSheet`, `!Player`
+* *Command Aliases:* `!StatsCard`, `!CharacterSheet`, `!CharSheet`, `!Character`, `!Player`
 * *Parameters:* Character Name
 * *Reactions:*
   1. :arrow_up_small: | Increases the active stat by one.
