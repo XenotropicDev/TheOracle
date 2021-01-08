@@ -581,5 +581,36 @@
         }
       ]
     }
+  ],
+  "Glossary": [
+    {
+      "Category": "Impacts",
+      "Aliases": [
+        "Impact"
+      ],
+      "Game": "Starforged",
+      "Impacts": [
+        {
+          "Name": "Misfortunes",
+          "Aliases": ["wounded", "shaken", "unprepared", "wound", "wounds", "misfortune"],
+          "Text": "  • **Wounded** may be marked when you are at 0 health and fail to __Endure Harm__. You are severely injured.\n  • **Shaken** may be marked when you are at 0 spirit and fail to __Endure Stress__. You are despairing or distraught.\n  • **Unprepared** is marked when you __Sacrifice Resources__ and are reduced to 0 supply. You are not properly equipped for the dangers of the Forge. Because you and your allies share the same supply value, you mark unprepared together.\n\nAs with all impacts, **misfortunes** affect your max momentum and momentum reset. In addition, if you are wounded, shaken, or unprepared, you cannot increase the associated meter.\n\n• If you are wounded, you cannot increase health.\n• If you are shaken, you cannot increase spirit.\n• If you are unprepared, you cannot increase supply.\n\nIf a move gives you an opportunity to raise your health, spirit, or supply while the associated misfortune is marked, you can’t take that option. You must clear the impact before improving the related condition meter.\n\nWounded, shaken, and unprepared can be cleared when you succeed on an appropriate recover move. For example, scoring a hit on the __Heal__ move can clear the wounded impact. Once you clear the misfortune, you restore your max momentum and momentum reset, and you can once again increase the associated meter through moves."
+        },
+        {
+          "Name": "Burdens",
+          "Aliases": ["doomed", "indebted", "tormented", "burden"],
+          "Text": "  • **Doomed** is marked when you __Face Death__ and return with a soul-bound quest. This burden can only be cleared by completing the quest.\n  • **Tormented** is marked when you __Face Desolation__ and undertake a quest to prevent a dire future.\n  • **Indebted** is marked when you __Overcome Destruction__ and take on a duty-bound quest to repay a debt.\n\n**Burdens** are a result of life-changing experiences that leave you bound to vows. Clearing a burden can only be accomplished by resolving the quest.\n\nWhen you are doomed, tormented, or indebted, you should envision the physical and emotional manifestations of these impacts. You have seen what lies beyond death, suffered visions of your greatest fears, or barely escaped the destruction of your prized starship. How does it change you?"
+        },
+        {
+          "Name": "Lasting Effects",
+          "Aliases": ["permanently harmed", "traumatized", "lasting effect"],
+          "Text": "  • **Permanently harmed** may be marked when you are at 0 health and fail to __Endure Harm__. You have suffered a wound which you must reckon with, such as the loss of an eye or hand. Or, you bear physical scars which are a constant reminder of a harrowing incident.\n  • **Traumatized** may be marked when you are at 0 spirit and fail to __Endure Stress__. Your experiences have left you emotionally or mentally scarred.\n\n**Lasting effects** are permanent. They forever impact your character through the momentum adjustment and—more importantly—through the narrative impact of being permanently harmed or traumatized. You should factor this impact into how you perform moves and how you interact with the world.\n\nEnvision the nature of the lasting effect. You may have physical, emotional, or mental factors you must take into account. Your outlook may change. Your goals and methods may change. How others behave toward you may change."
+        },
+        {
+          "Name": "Vehicle Troubles",
+          "Aliases": ["battered", "cursed", "vehicle trouble"],
+          "Text": "  • **Battered** may be marked when your vehicle is at 0 integrity, and you fail to __Withstand Damage__. The vehicle is barely holding together.\n  • **Cursed** may be marked when your command vehicle (STARSHIP asset) is at 0 integrity and you fail to __Withstand Damage__. This is a permanent impact. Your ship will never be quite right again.\n\nVehicle troubles are linked to a specific vehicle, either your command vehicle asset or a support vehicle asset, These impacts are only a factor when you are piloting or aboard that vehicle. Otherwise, they do not count as an impact and do not affect your maximum momentum and momentum reset.\n\nBattered can be overcome when you successfully __Repair__ that vehicle and clear the trouble. Until you do so, you cannot raise the vehicle's integrity. Cursed is a permanent impact and will forever plague your STARSHIP."
+        }
+      ]
+    }
   ]
 }
