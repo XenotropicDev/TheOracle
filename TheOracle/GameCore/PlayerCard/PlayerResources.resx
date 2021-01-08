@@ -120,6 +120,12 @@
   <data name="ActiveStat" xml:space="preserve">
     <value>Active Stat</value>
   </data>
+  <data name="Debilities" xml:space="preserve">
+    <value>Debilities</value>
+  </data>
+  <data name="DebilityMissingPlayerCard" xml:space="preserve">
+    <value>Please reply to a player card to set the debilities for that card.</value>
+  </data>
   <data name="Edge" xml:space="preserve">
     <value>Edge</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="Spirit" xml:space="preserve">
     <value>Spirit</value>
+  </data>
+  <data name="StarforgedDebilities" xml:space="preserve">
+    <value>Impacts</value>
   </data>
   <data name="Stats" xml:space="preserve">
     <value>Stats</value>

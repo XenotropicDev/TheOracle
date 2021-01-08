@@ -85,6 +85,8 @@ Builds an interactive post for keeping track of player resources
   6. :airplane: | Sets momentum as your active stat.
   7. :fire: | Burns/resets your momentum to 2.
 * *Sample usage:* `!PlayerCard Sneaky Archer`
+#### PlayerCard Sub Commands
+  1. `!SetDebilities` - "Use an inline reply to set the number of debilities to a character card. The number of debilities are usually between 0 and 2.
 
 ### `!Asset`
 Creates an interactive post for asset tracking and reference.

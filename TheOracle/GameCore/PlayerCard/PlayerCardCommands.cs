@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 
@@ -27,6 +25,7 @@ namespace TheOracle.GameCore.PlayerCard
         public Emoji threeEmoji = new Emoji("\u0033\u20E3");
         public Emoji twoEmoji = new Emoji("\u0032\u20E3");
         public Emoji upEmoji = new Emoji("🔼");
+
         public PlayerCardCommands(IServiceProvider services)
         {
             Services = services;
@@ -84,12 +83,33 @@ namespace TheOracle.GameCore.PlayerCard
             }).ConfigureAwait(false);
         }
 
+        [Summary("Sets the Debilities for a player card")]
+        [Command("SetDebilities")]
+        [Alias("SetDebility")]
+        [Remarks("Use an inline reply to set the number of debilities to a character card. The number of debilities are usually between 0 and 2")]
+        public async Task SetDebilities(int numberOfDebilities)
+        {
+            var message = Context.Message.ReferencedMessage;
+            if (message == null || message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle)
+            {
+                await ReplyAsync(PlayerResources.DebilityMissingPlayerCard).ConfigureAwait(false);
+                return;
+            }
+
+            var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+            var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
+            player.Debilities = numberOfDebilities;
+
+            await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
+        }
+
         private async Task BurnMomentumReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle) return;
-            
-            var player = new Player().PopulateFromEmbed(message.Embeds.First());
-            player.Momentum = 2;
+
+            var cs = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
+            var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
+            player.Momentum = 2 - player.Debilities;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -183,11 +203,12 @@ namespace TheOracle.GameCore.PlayerCard
             if (reaction.Emote.Name == upEmoji.Name) direction = 1;
             if (reaction.Emote.Name == downEmoji.Name) direction = -1;
 
-            var player = new Player().PopulateFromEmbed(message.Embeds.First());
-            if (healthActive.Result) player.Health = player.Health + direction;
-            if (supplyActive.Result) player.Supply = player.Supply + direction;
-            if (spiritActive.Result) player.Spirit = player.Spirit + direction;
-            if (momentumActive.Result) player.Momentum = player.Momentum + direction;
+            var cs = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
+            var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
+            if (healthActive.Result) player.Health += direction;
+            if (supplyActive.Result) player.Supply += direction;
+            if (spiritActive.Result) player.Spirit += direction;
+            if (momentumActive.Result) player.Momentum += direction;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build());
         }

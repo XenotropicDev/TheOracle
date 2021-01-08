@@ -1,6 +1,8 @@
 ﻿using Discord;
+using Discord.WebSocket;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using TheOracle.BotCore;
 
 namespace TheOracle.GameCore.PlayerCard
@@ -23,9 +25,16 @@ namespace TheOracle.GameCore.PlayerCard
         public int Supply { get => supply; set => supply = (value >= 0 && value <= 5) ? value : supply; }
         public int Momentum { get => momentum; set => momentum = (value >= -6 && value <= 10) ? value : momentum; }
         public string AvatarUrl { get; set; }
+        public int Debilities { get; set; } = 0;
+        public ChannelSettings ChannelSettings { get; internal set; }
+
+        public Player()
+        {
+        }
 
         public EmbedBuilder GetEmbedBuilder()
         {
+            string debilitiesTitle = (ChannelSettings?.DefaultGame == GameName.Starforged) ? PlayerResources.StarforgedDebilities : PlayerResources.Debilities;
             var builder = new EmbedBuilder();
 
             string statsString = String.Format(PlayerResources.StatsFormat,
@@ -43,7 +52,9 @@ namespace TheOracle.GameCore.PlayerCard
             builder.AddField(PlayerResources.Spirit, Spirit, true);
             builder.AddField(PlayerResources.Supply, Supply, true);
 
-            builder.AddField(PlayerResources.Momentum, Momentum, false);
+            builder.AddField(PlayerResources.Momentum, Momentum, true);
+
+            if (Debilities > 0) builder.AddField(debilitiesTitle, Debilities, true);
 
             return builder;
         }
@@ -77,6 +88,16 @@ namespace TheOracle.GameCore.PlayerCard
             Supply = supply;
             Momentum = momentum;
 
+            EmbedField? debilityField = embed.Fields.FirstOrDefault(fld => fld.Name.Equals(PlayerResources.Debilities) || fld.Name.Equals(PlayerResources.StarforgedDebilities));
+            if (debilityField.HasValue && int.TryParse(debilityField.Value.Value, out int debilities))
+                Debilities = debilities;
+
+            return this;
+        }
+
+        internal Player WithChannelSettings(ChannelSettings channelSettings)
+        {
+            ChannelSettings = channelSettings;
             return this;
         }
     }

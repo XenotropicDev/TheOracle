@@ -70,6 +70,24 @@ namespace TheOracle.GameCore.PlayerCard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debilities.
+        /// </summary>
+        internal static string Debilities {
+            get {
+                return ResourceManager.GetString("Debilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please reply to a player card to set the debilities for that card..
+        /// </summary>
+        internal static string DebilityMissingPlayerCard {
+            get {
+                return ResourceManager.GetString("DebilityMissingPlayerCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edge.
         /// </summary>
         internal static string Edge {
@@ -147,6 +165,15 @@ namespace TheOracle.GameCore.PlayerCard {
         internal static string Spirit {
             get {
                 return ResourceManager.GetString("Spirit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Impacts.
+        /// </summary>
+        internal static string StarforgedDebilities {
+            get {
+                return ResourceManager.GetString("StarforgedDebilities", resourceCulture);
             }
         }
         
