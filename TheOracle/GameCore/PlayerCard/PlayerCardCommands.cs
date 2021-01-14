@@ -175,11 +175,6 @@ namespace TheOracle.GameCore.PlayerCard
             if (message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle) return;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
-            if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata healthMetadata)) return;
-            if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata supplyMetadata)) return;
-            if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata spiritMetadata)) return;
-            if (!message.Reactions.TryGetValue(healthEmoji, out ReactionMetadata momentumMetadata)) return;
-
             var healthActive = message.GetReactionUsersAsync(healthEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var spiritActive = message.GetReactionUsersAsync(spiritEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
             var supplyActive = message.GetReactionUsersAsync(supplyEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
