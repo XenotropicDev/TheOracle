@@ -85,7 +85,7 @@ namespace TheOracle.GameCore.PlayerCard
 
         [Summary("Sets the Debilities for a player card")]
         [Command("SetDebilities")]
-        [Alias("SetDebility")]
+        [Alias("SetDebility", "SetImpact", "SetImpacts")]
         [Remarks("Use an inline reply to set the number of debilities to a character card. The number of debilities are usually between 0 and 2")]
         public async Task SetDebilities(int numberOfDebilities)
         {
