@@ -17,5 +17,6 @@
         public bool DelveReactions { get; internal set; }
         public bool SceneChallengeReactions { get; internal set; }
         public bool NPCReationsLoaded { get; internal set; }
+        public bool PlayerShipReactions { get; internal set; }
     }
 }

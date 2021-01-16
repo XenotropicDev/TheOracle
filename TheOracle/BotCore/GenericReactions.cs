@@ -63,7 +63,7 @@ namespace TheOracle.BotCore
             var embed = message.Embeds.FirstOrDefault();
             if (embed != default)
             {
-                var helper = await channel.SendMessageAsync(GenericReactionResources.AddThumbnailHelperMessage).ConfigureAwait(false);
+                var helper = await channel.SendMessageAsync(GenericCommandResources.AddThumbnailHelperMessage).ConfigureAwait(false);
                 var urlMessage = await reaction.Channel.NextChannelMessageAsync(client, user: user, timeout: TimeSpan.FromSeconds(20));
                 if (urlMessage != null)
                 {

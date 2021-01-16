@@ -117,7 +117,72 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddThumbnailHelperMessage" xml:space="preserve">
-    <value>Please reply in this channel with a URL that links directly to a discord supported image (JPG, PNG)</value>
+  <data name="HelperFooter" xml:space="preserve">
+    <value>Reply in this channel with the requested information</value>
+  </data>
+  <data name="HelperIncludeSupply" xml:space="preserve">
+    <value>Do you want to use your starship to keep track of you/your crew's supply? Reply with `Yes` to enable, or `No` to disable.</value>
+  </data>
+  <data name="HelperSetHistory" xml:space="preserve">
+    <value>Give your starship some history. Type something about how you got the ship, or its history. To use the Ship history oracle table reply with `random`. To leave this blank reply with `skip`.</value>
+  </data>
+  <data name="HelperSetLooks" xml:space="preserve">
+    <value>Describe what your starship looks like. Type something about how your starship looks, or what gives it character. To use the Envision Your Starship oracle table reply with `random`. To leave this blank reply with `skip`.</value>
+  </data>
+  <data name="HelperSetShipName" xml:space="preserve">
+    <value>What's the name of your ship?</value>
+  </data>
+  <data name="HelperTitle" xml:space="preserve">
+    <value>Command Ship Helper</value>
+  </data>
+  <data name="Impacts" xml:space="preserve">
+    <value>Impacts</value>
+  </data>
+  <data name="Integrity" xml:space="preserve">
+    <value>Integrity</value>
+  </data>
+  <data name="IntegrityTrack" xml:space="preserve">
+    <value>Integrity Track</value>
+  </data>
+  <data name="Modules" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="RandomWords" xml:space="preserve">
+    <value>Random, Rand</value>
+    <comment>seperated by comma, capitalization ignored</comment>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Ship So Far</value>
+  </data>
+  <data name="ShipCardTitle" xml:space="preserve">
+    <value>Command Starship</value>
+  </data>
+  <data name="ShipHistory" xml:space="preserve">
+    <value>History: {0}</value>
+    <comment>{0} will be replaced with the user's input history</comment>
+  </data>
+  <data name="ShipLooks" xml:space="preserve">
+    <value>Description: {0}</value>
+    <comment>{0} will be replaced with the user's input ship look</comment>
+  </data>
+  <data name="SkipWords" xml:space="preserve">
+    <value>Skip</value>
+    <comment>seperated by comma, capitalization ignored</comment>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>Supply</value>
+  </data>
+  <data name="SupplyTrack" xml:space="preserve">
+    <value>Supply Track</value>
+  </data>
+  <data name="Vehicles" xml:space="preserve">
+    <value>Vehicles</value>
+  </data>
+  <data name="YesWords" xml:space="preserve">
+    <value>Yes, True</value>
+    <comment>seperated by comma, capitalization ignored</comment>
   </data>
 </root>

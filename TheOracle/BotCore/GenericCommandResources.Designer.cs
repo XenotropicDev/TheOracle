@@ -22,24 +22,24 @@ namespace TheOracle.BotCore {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class GenericReactionResources {
+    public class GenericCommandResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GenericReactionResources() {
+        internal GenericCommandResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.BotCore.GenericReactionResources", typeof(GenericReactionResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.BotCore.GenericCommandResources", typeof(GenericCommandResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace TheOracle.BotCore {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,36 @@ namespace TheOracle.BotCore {
         /// <summary>
         ///   Looks up a localized string similar to Please reply in this channel with a URL that links directly to a discord supported image (JPG, PNG).
         /// </summary>
-        internal static string AddThumbnailHelperMessage {
+        public static string AddThumbnailHelperMessage {
             get {
                 return ResourceManager.GetString("AddThumbnailHelperMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can&apos;t edit that message..
+        /// </summary>
+        public static string CannotEditFields {
+            get {
+                return ResourceManager.GetString("CannotEditFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can&apos;t find the field.
+        /// </summary>
+        public static string CannotFindField {
+            get {
+                return ResourceManager.GetString("CannotFindField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description, Desc.
+        /// </summary>
+        public static string DescriptionNames {
+            get {
+                return ResourceManager.GetString("DescriptionNames", resourceCulture);
             }
         }
     }
