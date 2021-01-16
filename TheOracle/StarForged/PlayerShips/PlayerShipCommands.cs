@@ -105,7 +105,7 @@ namespace TheOracle.StarForged.PlayerShips
         [Command("PlayerShip", RunMode = RunMode.Async)]
         [Alias("CommandShip")]
         [Remarks("🟦 - Decrease Integrity stat\n☑️ - Increase Integrity\n🟩 - Decrease Supply\n✅ - Increase Supply\n\u0032\u20E3 - Not implemented yet\n\u0033\u20E3 - Not implemented yet")]
-        public async Task CreatePlayerShip([Remainder] string ShipNameInput)
+        public async Task CreatePlayerShip([Remainder] string ShipNameInput = "")
         {
             string[] randomWords = PlayerShipResources.RandomWords.Split(',');
             for (int i = 0; i < randomWords.Length; i++) randomWords[i] = randomWords[i].Trim();
