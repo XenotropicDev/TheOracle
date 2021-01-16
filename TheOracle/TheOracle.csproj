@@ -141,12 +141,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.8.6</Version>
+    <Version>0.8.7</Version>
     <Description>A Discord bot the Ironsworn game system</Description>
     <RepositoryUrl>https://github.com/XenotropicDev/TheOracle.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>0.8.6.0</AssemblyVersion>
-    <FileVersion>0.8.6.0</FileVersion>
+    <AssemblyVersion>0.8.7.0</AssemblyVersion>
+    <FileVersion>0.8.7.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -226,10 +226,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="BotCore\GenericReactionResources.Designer.cs">
+    <Compile Update="BotCore\GenericCommandResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>GenericReactionResources.resx</DependentUpon>
+      <DependentUpon>GenericCommandResources.resx</DependentUpon>
     </Compile>
     <Compile Update="BotCore\HelpResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -327,6 +327,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PlanetResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="StarForged\PlayerShips\PlayerShipResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PlayerShipResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StarForged\Settlements\SettlementResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -340,9 +345,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="BotCore\GenericReactionResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GenericReactionResources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="BotCore\GenericCommandResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GenericCommandResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="BotCore\HelpResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -411,6 +416,10 @@
     <EmbeddedResource Update="StarForged\Planets\PlanetResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PlanetResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StarForged\PlayerShips\PlayerShipResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PlayerShipResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="StarForged\Settlements\SettlementResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
