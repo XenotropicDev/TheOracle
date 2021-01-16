@@ -37,7 +37,20 @@ namespace TheOracle
                     helperText += AddHelp(mod);
                 }
 
-                await ReplyAsync(helperText);
+                while (true)
+                {
+                    if (helperText.Length > 2000)
+                    {
+                        var reply = helperText.Substring(0, helperText.Substring(0, 2000).LastIndexOf('\n'));
+                        helperText = helperText.Substring(reply.Length);
+                        await ReplyAsync(reply);
+                    }
+                    else
+                    {
+                        await ReplyAsync(helperText);
+                        break;
+                    }
+                }
             }
             else
             {
