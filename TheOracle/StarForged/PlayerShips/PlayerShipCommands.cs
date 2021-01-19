@@ -50,11 +50,15 @@ namespace TheOracle.StarForged.PlayerShips
 
         private async Task EnableAssetThree(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
+            var ship = new PlayerShip(Services).PopulateFromEmbed(message.Embeds.FirstOrDefault());
+            if (ship == null) return;
             await channel.SendMessageAsync("This feature isn't ready, but the reaction is in place so that you don't have to recreate the card in the future.");
         }
 
         private async Task EnableAssetTwo(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
+            var ship = new PlayerShip(Services).PopulateFromEmbed(message.Embeds.FirstOrDefault());
+            if (ship == null) return;
             await channel.SendMessageAsync("This feature isn't ready, but the reaction is in place so that you don't have to recreate the card in the future.");
         }
 
