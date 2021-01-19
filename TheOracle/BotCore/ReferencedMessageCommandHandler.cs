@@ -19,7 +19,7 @@ namespace TheOracle
                 if (!messageHasUrl) url = new Uri(message.Attachments.First().Url);
                 var embed = (message.ReferencedMessage as IUserMessage).Embeds.First();
                 await message.ReferencedMessage.ModifyAsync(msg => msg.Embed = embed.ToEmbedBuilder().WithThumbnailUrl(url.ToString()).Build());
-                await message.DeleteAsync().ConfigureAwait(false);
+                if (messageHasUrl) await message.DeleteAsync().ConfigureAwait(false);
                 return true;
             }
 
