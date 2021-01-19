@@ -34,7 +34,7 @@ Shows all the commands. Use `!Help ModuleName` to get more specific details abou
 * *Sample usage:* `!Help ActionCommand`
 
 ### `!SetDefaultGame`
-Allows players to set the default game for a discord channel. This command only needs to be run once per channel, or if you ever want to change the default game.
+Allows players to set the default game for a discord channel. This command only needs to be run once per channel, or if you ever want to change the default game. Additionally most commands assume Ironsworn as the base game.
 * *Command Aliases:* None
 * *Sample usage:* `!SetDefaultGame Ironsworn`
 
@@ -154,7 +154,19 @@ Creates a challenge scene tracking post.
 Rolls the specified dice for things like assets that let you reroll a die.
 * *Command Aliases:* `!Dice`
 * *Parameters:* Die notation value, Number of times to roll (optional, default is 1)
-* *Sample usage:* `!Roll 1d10 2`
+* *Sample usage:* `!Roll 1d6+2`
+
+## Bot Message Modification Commands
+### `!ReplaceField`
+*Special Note: This command has the potential to break bot features if used incorrectly.* The bot often relies on the embed fields being certain values/formatting for future reactions/actions. In general just follow the existing formating and you should be fine.
+
+Allows users to edit embeds created by the bot.
+* *Command Aliases:* `!Field`, `!SetField`, `!EditField`
+* *Parameters:* Field Name, Field Value
+* *Sample usage:* `!ReplaceField Stats Edge: 1, Heart: 1, Iron: 3, Shadow: 2, Wits: 2`
+
+### `Reply to bot message with image url or image`
+Attaches the image from the URL or message image to any bot message with an embed in it to have the bot set the thumbnail icon for the post. Useful for things like character sheets, NPCs, delve sites, and progress trackers
 
 ## Generic Message Reactions
 Apply one of these reactions to any of the bot's posts to help you manage your game and keep your channel up to date and free of clutter.
@@ -191,12 +203,26 @@ Creates a Starforged settlement with a name (given, or random from the settlemen
 * *Sample usage:* `!Settlement Outlands Deep Space Nine`
 
 ### `!GenerateStarship`
-Creates a starforged starship, *Note: this command is still a work in progress*
+Creates a starforged starship, *Note: this command is still a work in progress.
 * *Command Aliases:* `!Starship`, `!Spaceship`, `!Ship`
 * *Parameters:* SpaceRegion (optional), Name (optional [Adds a name from a small random list until official starship names are added])
 * *Reactions:*
   1. :exclamation: | Adds/reveals the starship's mission
 * *Sample usage:* `!Starship Terminus Serenity`
+
+### `!PlayerShip`
+Creates a version of the Command Vehicle Starship asset card with a name, history, and quirks. As well as options for Modules, Impacts, and Vehicles
+* *Command Aliases:* `!CommandShip`
+* *Parameters:* Ship name (optional)
+* *Notes:* Use the `!ReplaceField` command as an inline reply to change the Modules, Impacts, and Vehicles. Example: `!ReplaceField Modules Heavy Cannons`
+* *Reactions:*
+  1. :blue_square: | Removes 1 integrity from the integrity track
+  2. :ballot_box_with_check: | Adds 1 integrity to the integrity track
+  3. :gree_square: | Removes 1 supply from the supply track (if using)
+  4. :white_check_mark: | Adds 1 supply to the supply track (if using)
+  5. :two: | Enables the second asset feature from the Starship asset
+  6. :three: | Enables the third asset feature from the Starship asset
+* *Sample usage:* `!PlayerShip The Dovescape`
 
 ### `!CreateNPC Starforged`
 Similar to the Ironsworn command, but with some additional emoji reactions available to add results from Starforged's Character Oracles.
