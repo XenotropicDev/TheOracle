@@ -218,7 +218,7 @@ Creates a version of the Command Vehicle Starship asset card with a name, histor
 * *Reactions:*
   1. :blue_square: | Removes 1 integrity from the integrity track
   2. :ballot_box_with_check: | Adds 1 integrity to the integrity track
-  3. :gree_square: | Removes 1 supply from the supply track (if using)
+  3. :green_square: | Removes 1 supply from the supply track (if using)
   4. :white_check_mark: | Adds 1 supply to the supply track (if using)
   5. :two: | Enables the second asset feature from the Starship asset
   6. :three: | Enables the third asset feature from the Starship asset
