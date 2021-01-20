@@ -13,7 +13,6 @@ namespace TheOracle.BotCore
 {
     public class GenericReactions
     {
-        public const string addThumbnailEmoji = "🖼️";
         public const string pinPostEmoji = "📌";
         public const string recreatePostEmoji = "⏬";
         private TimeSpan _defaultTimeout = TimeSpan.FromSeconds(30);
@@ -34,16 +33,12 @@ namespace TheOracle.BotCore
         {
             var reactionService = Service.GetRequiredService<ReactionService>();
 
-            ReactionEvent addThumbReaction = new ReactionEventBuilder().WithEmoji(addThumbnailEmoji).WithEvent(addThumbnail).Build();
-
             ReactionEvent moveDownReaction = new ReactionEventBuilder().WithEmoji(recreatePostEmoji).WithEvent(movePostDown).Build();
             ReactionEvent deleteReaction = new ReactionEventBuilder().WithEmoji("❌").WithEvent(deletePostStart).Build();
             ReactionEvent confrimDeleteReaction = new ReactionEventBuilder().WithEmoji("☑️").WithEvent(deletePostConfirm).Build();
 
             ReactionEvent pinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithEvent(pinMessage).Build();
             ReactionEvent unpinMessageReaction = new ReactionEventBuilder().WithEmoji(pinPostEmoji).WithRemoveEvent(unpinMessage).Build();
-
-            reactionService.reactionList.Add(addThumbReaction);
 
             reactionService.reactionList.Add(moveDownReaction);
             reactionService.reactionList.Add(deleteReaction);
