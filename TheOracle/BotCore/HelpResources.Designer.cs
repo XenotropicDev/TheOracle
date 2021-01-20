@@ -70,7 +70,13 @@ namespace TheOracle.BotCore {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use `!Help &lt;command&gt;` for detailed information or check the GitHub Page: https://github.com/XenotropicDev/TheOracle.
+        ///   Looks up a localized string similar to Use `!Help &lt;command&gt;` for detailed information or check the GitHub Page: https://github.com/XenotropicDev/TheOracle
+        ///
+        ///To add images to bot messages use an inline reply with a picture attachement, or a direct URL to an image (note: message must have an embed to add the image to).
+        ///
+        ///Use one of the following reactions on any message from TheOracle:
+        ///📌 - `:push_pin:` Pin the message in the channel (remove your reaction to unpin).
+        ///⏬ - `:arrow_double_down:` Recreates a bot message at the bottom of the chat, a [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AdditionalInfo {
             get {

@@ -83,7 +83,7 @@ namespace TheOracle.GameCore.PlayerCard
             }).ConfigureAwait(false);
         }
 
-        [Summary("Sets the Debilities for a player card")]
+        [Summary("Uses inline replies to set the Debilities for a player card in the replied to message")]
         [Command("SetDebilities")]
         [Alias("SetDebility", "SetImpact", "SetImpacts")]
         [Remarks("Use an inline reply to set the number of debilities to a character card. The number of debilities are usually between 0 and 2")]

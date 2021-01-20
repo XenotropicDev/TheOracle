@@ -11,7 +11,7 @@ namespace TheOracle.BotCore
     {
         [Command("ReplaceField")]
         [Alias("Field", "SetField", "EditField")]
-        [Summary("Replaces the content of a field on an embed.")]
+        [Summary("Uses inline replies to replace the content of a field on an embed in the message replied to.")]
         [Remarks("**This command comes with no warranty, and can break some bot features.**" +
             "\nThe FieldName parameter just needs to match up to the first space. Use a FieldName of 'Description' to modify the embed's description.")]
         public async Task EditField(string FieldName, [Remainder] string FieldValue)

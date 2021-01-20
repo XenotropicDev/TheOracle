@@ -28,10 +28,9 @@ namespace TheOracle
         {
             if (path == "")
             {
-                string helperText = string.Empty;
-                helperText += HelpResources.Title + "\n";
-                helperText += HelpResources.AdditionalInfo + "\n\n";
+                await ReplyAsync(HelpResources.Title + "\n" + HelpResources.AdditionalInfo);
 
+                string helperText = string.Empty;
                 foreach (var mod in _commands.Modules.Where(m => m.Parent == null))
                 {
                     helperText += AddHelp(mod);
