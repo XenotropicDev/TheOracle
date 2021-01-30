@@ -1900,7 +1900,7 @@
     "Oracles": [
       {
         "Chance": 40,
-        "Description": "[Asteroids]"
+        "Description": "[Asteroid Type/Asteroid Material]"
       },
       {
         "Chance": 50,
