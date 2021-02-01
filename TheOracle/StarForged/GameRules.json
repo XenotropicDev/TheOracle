@@ -13,18 +13,18 @@
           "Name": "Swear an Iron Vow",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Iron Vow"
           ],
-          "Text": "**When you swear upon iron to complete a quest**, write your vow and give it a rank. Then, roll +heart. If you swear this vow to a connection, add +1; if you share a bond, add +2.\n\nOn a **strong hit**, you are emboldened and it is clear what you must do next (__Ask the Oracle__ if unsure). Take +2 momentum.\n\nOn a **weak hit**, you are determined but begin your quest with more questions than answers. Take +1 momentum, and envision what you do to find a path forward.\n\nOn a **miss**, you face a significant obstacle before you can begin your quest. Envision what stands in your way (__Ask the Oracle__ if unsure), and do what you must to overcome this obstacle."
+          "Text": "**When you swear upon iron to complete a quest**, write your vow and give it a rank. Then, roll +heart. If you swear this vow to a connection, add +1; if you share a bond, add +2.\n\nOn a **strong hit**, you are emboldened and it is clear what you must do next (__Ask the Oracle__ if unsure). Take +2 momentum.\n\nOn a **weak hit**, you are determined but begin your quest with more questions than answers. Take +1 momentum, and envision what you do to find a path forward.\n\nOn a **miss**, you face a significant obstacle before you can make progress on your quest. Envision what stands in your way (__Ask the Oracle__ if unsure), and do what you must to overcome this obstacle."
         },
         {
           "Name": "Reach a Milestone",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Milestone"
@@ -35,7 +35,7 @@
           "Name": "Forsake Your Vow",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Forsake"
@@ -46,12 +46,12 @@
           "Name": "Fulfill Your Vow",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Fulfill"
           ],
-          "Text": "***Progress Move***\n\n**When you reach the end of your quest**, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\n\nOn a **strong hit**, your vow is fulfilled. Mark a reward on your quests legacy track per the vow’s rank: troublesome=1 tick; dangerous=2 ticks; formidable=1 box; extreme=2 boxes; epic=3 boxes.\n\nOn a **weak hit**, as above, but there is more to be done or you realize the truth of your quest. If you __Swear an Iron Vow__ to set things right, take your full legacy reward. Otherwise, make the reward one rank lower.\n\nOn a **miss**, your quest is undone. Envision what happens (__Ask the Oracle__ if unsure), and choose one.\n\n  • Recommit: Clear all but one progress box, and raise the vow’s rank by one (if not already epic).\n  • Give up: __Forsake Your Vow__."
+          "Text": "***Progress Move***\n\n**When you reach the end of your quest**, roll the challenge dice and compare to your progress.\n\nOn a **strong hit**, your vow is fulfilled. Mark a reward on your quests legacy track per the vow’s rank: troublesome=1 tick; dangerous=2 ticks; formidable=1 box; extreme=2 boxes; epic=3 boxes.\n\nOn a **weak hit**, as above, but there is more to be done or you realize the truth of your quest. If you __Swear an Iron Vow__ to set things right, take your full legacy reward. Otherwise, make the reward one rank lower.\n\nOn a **miss**, your quest is undone. Envision what happens (__Ask the Oracle__ if unsure), and choose one.\n\n  • Recommit: Clear all but one progress box, and raise the vow’s rank by one (if not already epic).\n  • Give up: __Forsake Your Vow__."
         }
       ]
     },
@@ -67,31 +67,31 @@
           "Name": "Face Danger",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "face",
             "danger"
           ],
-          "Text": "**When you attempt something risky or react to an imminent threat**, envision your action and roll. If you act...\n\n  • With speed, mobility, or agility: Roll +edge\n  • With charm, loyalty, courage, or command: Roll +heart\n  • With strength, endurance, or aggression: Roll +iron\n  • With deception, stealth, or trickery: Roll +shadow\n  • With expertise, focus, or observation: Roll +wits\n\nOn a **strong hit**, you are successful. Take +1 momentum.\n\nOn a **weak hit**, you succeed, but at a troublesome cost. Make a suffer move (-1).\n\nOn a **miss**, you fail, or a momentary success is undermined by a dire turn of events. __Pay the Price__."
+          "Text": "**When you attempt something risky or react to an imminent threat**, envision your action and roll. If you act...\n\n  • With speed, mobility, or agility: Roll +edge\n  • With resolve, command, or sociability: Roll +heart\n  • With strength, endurance, or aggression: Roll +iron\n  • With deception, stealth, or trickery: Roll +shadow\n  • With expertise, focus, or observation: Roll +wits\n\nOn a **strong hit**, you are successful. Take +1 momentum.\n\nOn a **weak hit**, you succeed, but at a troublesome cost. Make a suffer move (-1).\n\nOn a **miss**, you fail, or a momentary success is undermined by a dire turn of events. __Pay the Price__."
         },
         {
           "Name": "Secure an Advantage",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "secure",
             "advantage"
           ],
-          "Text": "**When you assess a situation, make preparations, or attempt to gain leverage**, envision your action and roll. If you act...\n\n  • With speed, mobility, or agility: Roll +edge\n  • With charm, loyalty, courage, or command: Roll +heart\n  • With strength, endurance, aggression: Roll +iron\n  • With deception, stealth, or trickery: Roll +shadow\n  • With expertise, focus, or observation: Roll +wits\n\nOn a **strong hit**, take both. On a **weak hit**, choose one.\n\n  • Take +2 momentum\n  • Add +1 on your next move (not a progress move)\n\nOn a **miss**, you fail or your assumptions betray you. __Pay the Price__."
+          "Text": "**When you assess a situation, make preparations, or attempt to gain leverage**, envision your action and roll. If you act...\n\n  • With speed, mobility, or agility: Roll +edge\n  • With resolve, command, or sociability: Roll +heart\n  • With strength, endurance, aggression: Roll +iron\n  • With deception, stealth, or trickery: Roll +shadow\n  • With expertise, focus, or observation: Roll +wits\n\nOn a **strong hit**, take both. On a **weak hit**, choose one.\n\n  • Take +2 momentum\n  • Add +1 on your next move (not a progress move)\n\nOn a **miss**, you fail or your assumptions betray you. __Pay the Price__."
         },
         {
           "Name": "Gather Information",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "info",
@@ -104,7 +104,7 @@
           "Name": "Compel",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Text": "**When you try to persuade someone or make them an offer**, envision your approach. If you...\n\n  • Charm, pacify, encourage, or barter: Roll +heart\n  • Threaten or incite: Roll +iron\n  • Lie or swindle: Roll +shadow\n\nOn a **strong hit**, they’ll do what you want or agree to your conditions. Take +1 momentum.\n\nOn a **weak hit**, as above, but their agreement comes with a condition or complication. Envision their counteroffer (__Ask the Oracle__ if unsure).\n\nOn a **miss**, they refuse or make a demand which costs you greatly. __Pay the Price__."
         },
@@ -112,7 +112,7 @@
           "Name": "Aid Your Ally",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Aid"
@@ -123,7 +123,7 @@
           "Name": "Check Your Gear",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Gear"
@@ -143,7 +143,7 @@
           "Name": "Pay the Price",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Star Price",
@@ -155,7 +155,7 @@
           "Name": "Ask the Oracle",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Ask",
@@ -177,7 +177,7 @@
           "Name": "Make a Connection",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Connection"
@@ -188,29 +188,29 @@
           "Name": "Develop Your Relationship",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Relationship"
           ],
-          "Text": "**When you reinforce your relationship with a connection** by doing any of the following...\n\n  • swearing a vow to undertake a perilous quest in their service\n  • completing a quest to their benefit\n  • leveraging their help in desperate circumstance\n  • giving them something of worth\n  • sharing a profound moment\n  • standing with them against hardship\n  • overcoming a test of your relationship\n\n...you may mark progress per the rank of the connection."
+          "Text": "**When you reinforce your relationship with a connection** by doing any of the following...\n\n  • swearing a vow to undertake a perilous quest in their service\n  • completing a quest to their benefit\n  • leveraging their help\n  • giving them something of worth\n  • sharing a profound moment\n  • standing with them against hardship\n  • overcoming a test of your relationship\n\n...you may mark progress per the rank of the connection."
         },
         {
           "Name": "Forge a Bond",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Forge"
           ],
-          "Text": "***Progress Move***\n\n**When your relationship with a connection is ready to evolve**, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\n\nOn a **strong hit**, you now share a bond. Mark a reward on your bonds legacy track per the connection’s rank: troublesome=1 tick; dangerous=2 ticks; formidable=1 box; extreme=2 boxes; epic=3 boxes. Then, choose one.\n\n  • Bolster their influence: When your connection aids you on a move closely associated with their role, add +2 instead of +1.\n  • Expand their role: Give your connection an additional role. When your connection aids you on a move closely associated with their new role, add +1 and take +1 momentum on a hit.\n\nOn a **weak hit**, as above, but they ask something more of you first. To gain the bond and the legacy reward, envision the nature of the request (__Ask the Oracle__ if unsure), and do it (or __Swear an Iron Vow__ to see it done).\n\nOn a **miss**, they reveal a motivation or background which puts you at odds. If you recommit to this relationship, clear all but one progress box and raise the rank of the connection by one (if not already epic)."
+          "Text": "***Progress Move***\n\n**When your relationship with a connection is ready to evolve**, roll the challenge dice and compare to your progress.\n\nOn a **strong hit**, you now share a bond. Mark a reward on your bonds legacy track per the connection’s rank: troublesome=1 tick; dangerous=2 ticks; formidable=1 box; extreme=2 boxes; epic=3 boxes. Then, choose one.\n\n  • Bolster their influence: When your connection aids you on a move closely associated with their role, add +2 instead of +1.\n  • Expand their role: Give your connection an additional role. When your connection aids you on a move closely associated with their new role, add +1 and take +1 momentum on a hit.\n\nOn a **weak hit**, as above, but they ask something more of you first. To gain the bond and the legacy reward, envision the nature of the request (__Ask the Oracle__ if unsure), and do it (or __Swear an Iron Vow__ to see it done).\n\nOn a **miss**, they reveal a motivation or background which puts you at odds. If you recommit to this relationship, clear all but one progress box and raise the rank of the connection by one (if not already epic)."
         },
         {
           "Name": "Test Your Relationship",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Test"
@@ -230,15 +230,18 @@
           "Name": "Undertake an Expedition",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
+          "Aliases": [
+            "Expedition"
+          ],
           "Text": "**When you trailblaze a route through perilous space, journey over unexplored terrain, or survey a mysterious site**, give the expedition a name and rank.\n\nThen, for each segment of the expedition, envision your approach. If you...\n\n  • Move at speed: Roll +edge\n  • Keep under the radar: Roll +shadow\n  • Stay vigilant: Roll +wits\n\nOn a **strong hit**, you reach a waypoint. Envision it (__Ask the Oracle__ if unsure) and mark progress per the rank of your expedition.\n\nOn a **weak hit**, you reach a waypoint and mark progress, but must also choose one.\n\n  • Suffer costs en route: Make a suffer move (-2), or two suffer moves (-1).\n  • Face a complication at the waypoint: Envision what you encounter (__Ask the Oracle__ if unsure).\n\nOn a **miss**, you are waylaid by a crisis, or arrive at a waypoint to confront a dire threat. Do not mark progress, and __Pay the Price__."
         },
         {
           "Name": "Explore a Waypoint",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Explore"
@@ -249,18 +252,18 @@
           "Name": "Finish an Expedition",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Finish"
           ],
-          "Text": "***Progress Move***\n\n**When your expedition comes to an end**, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\n\nOn a **strong hit**, you reach your destination or complete your survey. Mark a reward on your discoveries legacy track per expedition’s rank: troublesome=1 tick; dangerous=2 ticks; formidable=1 box; extreme=2 boxes; epic=3 boxes.\n\nOn a **weak hit**, as above, but you face an unforeseen complication at the end of your expedition. Make the legacy reward one rank lower, and envision what you find (__Ask the Oracle__ if unsure).\n\nOn a **miss**, your destination is lost to you, or you come to understand the true nature or cost of the expedition. If you recommit to the expedition, clear all but one progress box, and raise the rank by one (if not already epic)."
+          "Text": "***Progress Move***\n\n**When your expedition comes to an end**, roll the challenge dice and compare to your progress.\n\nOn a **strong hit**, you reach your destination or complete your survey. Mark a reward on your discoveries legacy track per expedition’s rank: troublesome=1 tick; dangerous=2 ticks; formidable=1 box; extreme=2 boxes; epic=3 boxes.\n\nOn a **weak hit**, as above, but you face an unforeseen complication at the end of your expedition. Make the legacy reward one rank lower, and envision what you find (__Ask the Oracle__ if unsure).\n\nOn a **miss**, your destination is lost to you, or you come to understand the true nature or cost of the expedition. If you recommit to the expedition, clear all but one progress box, and raise the rank by one (if not already epic)."
         },
         {
           "Name": "Set a Course",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Course"
@@ -271,7 +274,7 @@
           "Name": "Make a Discovery",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Discover"
@@ -282,7 +285,7 @@
           "Name": "Confront Chaos",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Confront",
@@ -303,7 +306,7 @@
           "Name": "Enter the Fray",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Fray",
@@ -315,15 +318,15 @@
           "Name": "Gain Ground",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
-          "Text": "**When you are in control and take action in a fight to reinforce your position or move towards an objective**, envision your approach and roll. If you are...\n\n  • In pursuit, fleeing, or maneuvering: Roll +edge\n  • Charging boldly into action, coming to the aid of others, negotiating, or commanding: Roll +heart\n  • Gaining leverage with force, powering through, or making a threat: Roll +iron\n  • Hiding, preparing an ambush, or misdirecting: Roll +shadow\n  • Coordinating a plan, studying a situation, or cleverly creating an opportunity: Roll +wits\n\nOn a hit, you stay in control. On a **strong hit**, choose two. On a **weak hit**, choose one.\n\n  • Mark progress\n  • Take +2 momentum\n  • Add +1 on your next move (not a progress move)\n\nOn a **miss**, your foe gains the upper hand, the fight moves to a new location, or you encounter a new complication. You are in a bad spot and must __Pay the Price__."
+          "Text": "**When you are in control and take action in a fight to reinforce your position or move towards an objective**, envision your approach and roll. If you are...\n\n  • In pursuit, fleeing, or maneuvering: Roll +edge\n  • Charging boldly into action, coming to the aid of others, negotiating, or commanding: Roll +heart\n  • Gaining leverage with force, powering through, or making a threat: Roll +iron\n  • Hiding, preparing an ambush, or misdirecting: Roll +shadow\n  • Coordinating a plan, studying a situation, or cleverly creating an opportunity: Roll +wits\n\nOn a **hit**, you stay in control. On a **strong hit**, choose two. On a **weak hit**, choose one.\n\n  • Mark progress\n  • Take +2 momentum\n  • Add +1 on your next move (not a progress move)\n\nOn a **miss**, your foe gains the upper hand, the fight moves to a new location, or you encounter a new complication. You are in a bad spot and must __Pay the Price__."
         },
         {
           "Name": "React Under Fire",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Under Fire",
@@ -335,7 +338,7 @@
           "Name": "Strike",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Text": "**When you are in control and assault a foe at close-quarters**, roll +iron; **when you attack at a distance**, roll +edge.\n\nOn a **strong hit**, mark extra progress. You dominate your foe and stay in control. On a **weak hit**, mark extra progress, but you expose yourself to danger. You are in a bad spot.\n\nOn a **miss**, the fight turns against you. You are in a bad spot and must __Pay the Price__."
         },
@@ -343,7 +346,7 @@
           "Name": "Clash",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Text": "**When you are in a bad spot and fight back against a foe at close-quarters**, roll +iron; **when you exchange fire at a distance**, roll +edge.\n\nOn a **strong hit**, mark extra progress. You overwhelm your foe and are in control. On a **weak hit**, mark progress, but you are dealt a counterblow or setback. You stay in a bad spot and must __Pay the Price__.\n\nOn a **miss**, your foe dominates this exchange. You stay in a bad spot and must __Pay the Price__."
         },
@@ -351,30 +354,30 @@
           "Name": "Face Defeat",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Defeat"
           ],
-          "Text": "**When you abandon or are deprived of an objective, envision the consequence of this failure**, clear the objective, and __Pay the Price__.\n\nIf the fight continues, you may create a new objective and give it a rank to represent the changing situation. If any objectives remain, the fight continues and you are in a bad spot."
+          "Text": "**When you abandon or are deprived of an objective**, envision the consequence of this failure, clear the objective, and __Pay the Price__.\n\nIf the fight continues, you may create a new objective and give it a rank to represent the changing situation. If any objectives remain, the fight continues and you are in a bad spot."
         },
         {
           "Name": "Take Decisive Action",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Take Action",
             "Decisive"
           ],
-          "Text": "***Progress Move***\n\n**When you seize an objective in a fight**, envision how you take decisive action. Then, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\n\nIf you are in control, check the result as normal. If you are in a bad spot, count a strong hit as a weak hit, and a weak hit as a miss.\n\nOn a **strong hit**, you prevail. Take +1 momentum. If any objectives remain and the fight continues, you are in control.\n\nOn a **weak hit**, you achieve your objective, but not without cost. Roll on the table below or choose one. If the fight continues, you are in a bad spot.\n\n`01-40` It’s worse than you thought: You or an ally make a suffer move (-2)\n`41-52` The victory is short-lived: A new complication or foe is revealed\n`53-64` You face collateral damage: Something is lost, damaged, or broken\n`65-76` Others pay the price: Someone else suffers the cost\n`77-88` Others won’t forget: You are marked for vengeance\n`89-00` It gets complicated: The true nature of a foe or objective is revealed\n\nOn a **miss**, you are defeated or your objective is lost. __Pay the Price__."
+          "Text": "***Progress Move***\n\n**When you seize an objective in a fight**, envision how you take decisive action. Then, roll the challenge dice and compare to your progress.\n\nIf you are in control, check the result as normal. If you are in a bad spot, count a strong hit as a weak hit, and a weak hit as a miss.\n\nOn a **strong hit**, you prevail. Take +1 momentum. If any objectives remain and the fight continues, you are in control.\n\nOn a **weak hit**, you achieve your objective, but not without cost. Roll on the table below or choose one. If the fight continues, you are in a bad spot.\n\n`01-40` It’s worse than you thought: You or an ally make a suffer move (-2)\n`41-52` The victory is short-lived: A new complication or foe is revealed\n`53-64` You face collateral damage: Something is lost, damaged, or broken\n`65-76` Others pay the price: Someone else suffers the cost\n`77-88` Others won’t forget: You are marked for vengeance\n`89-00` It gets complicated: The true nature of a foe or objective is revealed\n\nOn a **miss**, you are defeated or your objective is lost. __Pay the Price__."
         },
         {
           "Name": "Battle",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Text": "**When you fight a battle and it happens in a blur**, envision your objective and roll. If you primarily...\n\n  • Fight at range, or using your speed and the environment to your advantage: Roll +edge.\n  • Fight depending on your courage, leadership, or companions: Roll +heart.\n  • Fight in close to overpower your foe: Roll +iron.\n  • Fight using trickery to befuddle your foe: Roll +shadow.\n  • Fight using careful tactics to outsmart your foe: Roll +wits.\n\nOn a **strong hit**, you achieve your objective unconditionally. You and any allies who joined the battle may take +2 momentum.\n\nOn a **weak hit**, you achieve your objective, but not without cost. __Pay the Price__. On a **miss**, you are defeated or the objective is lost to you. __Pay the Price__."
         }
@@ -391,7 +394,7 @@
           "Name": "Lose Momentum",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Momentum",
@@ -403,7 +406,7 @@
           "Name": "Endure Harm",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Harm",
@@ -415,7 +418,7 @@
           "Name": "Endure Stress",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Stress",
@@ -427,7 +430,7 @@
           "Name": "Withstand Damage",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Vehicle Damage",
@@ -439,18 +442,18 @@
           "Name": "Companion Takes a Hit",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Companion"
           ],
-          "Text": "**When your companion faces physical hardship**, they suffer -1 health for minor harm, -2 for serious harm, or -3 for major harm. If your companion’s health is 0, __Lose Momentum__ equal to any remaining harm.\n\nThen, if their health is 0 or you choose to test their resilience, roll +your companion’s +health.\n\nOn a **strong hit**, your companion rallies. Give them +1 health.\n\nOn a **weak hit**, if your companion’s health is not 0, you may __Lose Momentum (-1)__ and give them +1 health. Otherwise, they press on.\n\nOn a **miss**, it’s worse than you thought. They suffer an additional -1 health or you __Lose Momentum (-2)__. If your companion’s health is 0, they are out of action until given aid. If their health is 0 and you rolled a **miss with a match** on this move, they are dead or destroyed; discard the asset."
+          "Text": "**When your companion faces physical hardship**, they suffer -1 health for minor harm, -2 for serious harm, or -3 for major harm. If your companion’s health is 0, __Lose Momentum__ equal to any remaining harm.\n\nThen, if their health is 0 or you choose to test their resilience, roll +your companion’s +health.\n\nOn a **strong hit**, your companion rallies. Give them +1 health.\n\nOn a **weak hit**, if your companion’s health is not 0, you may __Lose Momentum (-1)__ and give them +1 health. Otherwise, they press on.\n\nOn a **miss**, it’s worse than you thought. They suffer an additional -1 health or you __Lose Momentum (-2)__. If your companion’s health is 0, they are out of action until given aid. If their health is 0 and you rolled a miss with a match on this move, they are dead or destroyed; discard the asset."
         },
         {
           "Name": "Sacrifice Resources",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Resources"
@@ -470,7 +473,7 @@
           "Name": "Face Death",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Death"
@@ -481,7 +484,7 @@
           "Name": "Face Desolation",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Desolation"
@@ -492,12 +495,12 @@
           "Name": "Overcome Destruction",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Overcome"
           ],
-          "Text": "***Progress Move***\n\n**When your command vehicle is destroyed**, you must discard the asset, along with any modules and docked support vehicles.\n\nIf you survive, you may use your connections to replace some of what was lost. To learn the cost, roll the challenge dice and compare to the progress on your bonds legacy track. Momentum is ignored on this roll.\n\nOn a **strong hit**, you may call in a favor. This comes without conditions.\n\nOn a **weak hit**, you owe someone. You must mark **indebted** and __Swear an Iron Vow__ to complete an extreme quest in their service. When you complete the duty- bound quest, clear the impact.\n\nOn a **miss**, as with the weak hit result, but this quest is against your nature, forces you to __Forsake Your Vow__ on another quest, or is in the service of an enemy.\n\nIf you accept the cost, take 1 experience for every marked ability on the discarded assets (minimum 3 experience). Spend this experience only on a new command vehicle, modules, and support vehicles."
+          "Text": "***Progress Move***\n\n**When your command vehicle is destroyed**, you must discard the asset, along with any modules and docked support vehicles.\n\nIf you survive, you may use your connections to replace some of what was lost. To learn the cost, roll the challenge dice and compare to the progress on your bonds legacy track.\n\nOn a **strong hit**, you may call in a favor. This comes without conditions.\n\nOn a **weak hit**, you owe someone. You must mark **indebted** and __Swear an Iron Vow__ to complete an extreme quest in their service. When you complete the duty- bound quest, clear the impact.\n\nOn a **miss**, as with the weak hit result, but this quest is against your nature, forces you to __Forsake Your Vow__ on another quest, or is in the service of an enemy.\n\nIf you accept the cost, take 1 experience for every marked ability on the discarded assets (minimum 3 experience). Spend this experience only on a new command vehicle, modules, and support vehicles."
         }
       ]
     },
@@ -512,15 +515,15 @@
           "Name": "Sojourn",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
-          "Text": "**When you spend time recovering within a community**, roll +heart.\n\nOn a **strong hit**, you are safe here. You and your allies may each choose two recover moves: __Heal__, __Hearten__, __Repair__, or __Resupply__. Instead of rolling, assume an automatic strong hit for each. An individual move can be taken more than once.\n\nOn a **weak hit**, as above, but time is short or resources are strained. You and your allies each make one recover move instead of two, with no more than three moves total among the group.\n\nOn a **miss**, choose one.\n\n  • The community needs your help, or makes a costly demand in exchange for safe harbor. Envision what they ask of you (__Ask the Oracle__ if unsure). If you do it, or __Swear an Iron Vow__ to see it done, resolve this move as a strong hit.\n  • You find no relief, and the situation grows worse. __Pay the Price__."
+          "Text": "**When you spend time recovering within a community**, roll +heart.\n\nOn a **strong hit**, this is a safe refuge. You and your allies may each choose two recover moves: __Heal__, __Hearten__, __Repair__, or __Resupply__. Instead of rolling, assume an automatic strong hit for each. An individual move can be taken more than once.\n\nOn a **weak hit**, as above, but time is short or resources are strained. You and your allies each make one recover move instead of two, with no more than three moves total among the group.\n\nOn a **miss**, choose one.\n\n  • The community needs your help, or makes a costly demand in exchange for safe harbor. Envision what they ask of you (__Ask the Oracle__ if unsure). If you do it, or __Swear an Iron Vow__ to see it done, resolve this move as a strong hit.\n  • You find no relief, and the situation grows worse. __Pay the Price__."
         },
         {
           "Name": "Heal",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Text": "**When you receive medical care or provide treatment**, envision the situation and roll. If you...\n\n  • Receive treatment from someone (not an ally): Roll +iron\n  • Mend your own wounds: Roll +iron or +wits, whichever is lower\n  • Obtain treatment for a companion: Roll +heart\n  • Provide care: Roll +wits\n\nOn a **strong hit**, the care is helpful. If you (or the ally under your care) are wounded, clear the impact and take or give +2 health. Otherwise, take or give +3 health.\n\nOn a **weak hit**, as above, but the recovery costs extra time or resources. Choose one: __Lose Momentum (-2)__ or __Sacrifice Resources (-2)__.\n\nOn a **miss**, the aid is ineffective and the situation worsens. __Pay the Price__."
         },
@@ -528,7 +531,7 @@
           "Name": "Hearten",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Socialize"
@@ -539,20 +542,20 @@
           "Name": "Repair",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
-          "Text": "**When you make repairs to your vehicles, modules, mechanical companions, or other equipment**, envision the situation and roll.\n\n  • Making your own repairs, or direct a companion to make repairs: Roll +wits\n  • Obtaining repairs from someone (not an ally): Roll +supply and __Sacrifice Resources (-1)__.\n\nOn a hit, you gain repair points as appropriate to the situation, per the table below.\n\n```Situation     | Strong Hit | Weak Hit\n--------------|------------|---------\nAt a facility | 5 points   | 3 points\nIn the field  | 4 points   | 2 points\nUnder fire    | 3 points   | 1 point```\n\nAdditionally, you may __Sacrifice Resources (-1)__, and add 1 repair point.\n\nIf you are repairing a battered vehicle, first spend 2 repair points to clear that impact. Then, spend each point to do one of the following: take +1 integrity for a vehicle, give a mechanical companion +1 health, or restore one broken module. If you are repairing something other than those options, spend 5 points to bring it back to full working condition, or 3 points to repair with a complication or persistent malfunction. Unused points are discarded.\n\nOn a **miss**, the repairs are not made and the situation worsens. __Pay the Price__."
+          "Text": "**When you make repairs to your vehicles, modules, mechanical companions, or other devices**, envision the situation and roll. If you...\n\n  • Make your own repairs, or direct a companion to make repairs: Roll +wits\n  • Obtain repairs from someone (not an ally): Roll +supply\n\nOn a **hit**, you gain repair points as appropriate to the situation, per the table below. Additionally, you may __Sacrifice Resources__ and exchange each -1 of supply for 1 extra repair point (up to 3 points).\n\n```Situation     | Strong Hit | Weak Hit\n--------------|------------|---------\nAt a facility | 5 points   | 3 points\nIn the field  | 3 points   | 1 points\nUnder fire    | 2 points   | 0 points```\n\nSpend repair points as follows. Unused points are discarded.\n\n  • Clear the **battered** impact on a vehicle: 2 points\n  • Fix one broken module: 2 points\n  • Take +1 integrity on a vehicle: 1 point\n  • Take +1 health for a mechanical companion: 1 point\n  • __Repair__ any other device: 3 points\n  • __Repair__ any other device, but with a complication or malfunction: 2 points\n\nOn a **miss**, the repairs are not made and the situation worsens. __Pay the Price__."
         },
         {
           "Name": "Resupply",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Aliases": [
             "Bolster"
           ],
-          "Text": "**When you attempt to bolster your readiness**, envision the opportunity and your approach. If you...\n\n  • Barter or make an appeal: Roll +heart\n  • Threaten: Roll +iron\n  • Steal or swindle: Roll +shadow\n  • Scavenge: Roll +wits\n\nOn a **strong hit**, choose one:\n\n  • If you are unprepared, clear the impact and take +1 supply. Otherwise, take +2 supply.\n  • If you are in need of a specific item or resource which can reasonably be obtained here, you acquire it. Take +1 momentum.\n\nOn a **weak hit**, as above, but you must first deal with a cost, complication, or demand. Envision the nature of this obstacle (__Ask the Oracle__ if unsure).\n\nOn a **miss**, you encounter an unexpected complication. __Pay the Price__."
+          "Text": "**When you attempt to bolster your readiness**, envision the opportunity and your approach. If you...\n\n  • Barter or make an appeal: Roll +heart\n  • Threaten or seize: Roll +iron\n  • Steal or swindle: Roll +shadow\n  • Scavenge or craft: Roll +wits\n\nOn a **strong hit**, choose one:\n\n  • If you are unprepared, clear the impact and take +1 supply. Otherwise, take +2 supply.\n  • If you are in need of a specific item or resource which can reasonably be obtained, you acquire it. Take +1 momentum.\n\nOn a **weak hit**, as above, but you must first deal with a cost, complication, or demand. Envision the nature of this obstacle (__Ask the Oracle__ if unsure).\n\nOn a **miss**, you encounter an unexpected complication. __Pay the Price__."
         }
       ]
     },
@@ -567,7 +570,7 @@
           "Name": "Advance",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
           "Text": "**When you fill a box (four ticks) on any legacy track**, take 2 experience. You may spend 2 experience to upgrade an asset, or 3 experience to add a new asset.\n\nOnce you completely fill the tenth box on any legacy track, clear that track. You may start again marking progress on the cleared track, but earn experience at a reduced rate of 1 experience (instead of 2) for each filled progress box. If you make a progress roll against this track, resolve the outcome as if at 10 progress."
         },
@@ -575,9 +578,9 @@
           "Name": "Continue a Legacy",
           "Source": {
             "Name": "Starforged Playtest Moves",
-            "Version": "122020"
+            "Version": "012521"
           },
-          "Text": "***Progress Move***\n\nWhen you retire from your life as Ironsworn, or succumb to death or desolation, you may create a new character in your established setting. If you do, roll the challenge dice against each of the former character’s legacy tracks: Quests, bonds, and discoveries (one roll per track). Momentum is ignored on these rolls.\n\nFor each **strong hit**, choose one from below, or one from the weak hit or miss options.\n\n  • Follow their path: Take one path or companion asset from the former character (at no cost), including any marked abilities.\n  • Share a connection: Take one connection from the former character, including any accrued progress or bond benefits.\n  • Accept an inheritance: Take the former character’s command vehicle and one module or support vehicle (at no cost), including any marked abilities.\n\nFor each **weak hit**, choose one from below, or one from the miss options.\n\n  • See it through: Choose one of the former character’s unfinished quests, and __Swear an Iron Vow__ (with an automatic strong hit) to see it done. You may immediately mark up to half their earned progress (round down) on this quest.\n  • Rebuild a connection: Name one of the former character’s connections, and envision how time or circumstances have changed them in a dramatic way. __Make a Connection__ with them, and take an automatic strong hit.\n  • Explore familiar ground: Name a location which was meaningful to the former character. When you first visit that place, envision how it has changed or is endangered. Then, mark two ticks on your discoveries legacy track.\n\nFor each **miss**, choose one.\n\n  • Deal with the aftermath: Envision how one of your former character’s foes has taken advantage of a forsaken or unfulfilled vow to gain power or influence.\n  • Switch loyalties: Envision how you begin in opposition to your former character’s beliefs, goals, or allegiances.\n  • Open Pandora’s Box: Envision how an advancement or discovery has unleashed unexpectedly dire consequences."
+          "Text": "***Progress Move***\n\n**When you retire from your life as Ironsworn, or succumb to death or desolation**, you may create a new character in your established setting. If you do, roll the challenge dice and compare to each of the former character’s legacy tracks: Quests, bonds, and discoveries (one roll per track).\n\nFor each **strong hit**, choose one from below, or one from the weak hit or miss options.\n\n  • Follow their path: Take one path or companion asset from the former character (at no cost), including any marked abilities.\n  • Share a connection: Take one connection from the former character, including any accrued progress or bond benefits.\n  • Accept an inheritance: Take the former character’s command vehicle and one module or support vehicle (at no cost), including any marked abilities.\n\nFor each **weak hit**, choose one from below, or one from the miss options.\n\n  • See it through: Choose one of the former character’s unfinished quests, and __Swear an Iron Vow__ (with an automatic strong hit) to see it done. You may immediately mark up to half their earned progress (round down) on this quest.\n  • Rebuild a connection: Name one of the former character’s connections, and envision how time or circumstances have changed them in a dramatic way. When you __Make a Connection__ with them, take an automatic strong hit and mark two ticks on your bonds legacy track.\n  • Explore familiar ground: Name a location which was meaningful to the former character. When you first visit that place, envision how it has changed or is endangered. Then, mark two ticks on your discoveries legacy track.\n\nFor each **miss**, choose one.\n\n  • Deal with the aftermath: Envision how one of your former character’s foes has gained power or influence.\n  • Switch loyalties: Envision how you begin in opposition to your former character’s beliefs, goals, or allegiances.\n  • Open Pandora’s Box: Envision how an advancement or discovery has unleashed unexpectedly dire consequences."
         }
       ]
     }
@@ -592,22 +595,42 @@
       "Impacts": [
         {
           "Name": "Misfortunes",
-          "Aliases": ["wounded", "shaken", "unprepared", "wound", "wounds", "misfortune"],
+          "Aliases": [
+            "wounded",
+            "shaken",
+            "unprepared",
+            "wound",
+            "wounds",
+            "misfortune"
+          ],
           "Text": "  • **Wounded** may be marked when you are at 0 health and fail to __Endure Harm__. You are severely injured.\n  • **Shaken** may be marked when you are at 0 spirit and fail to __Endure Stress__. You are despairing or distraught.\n  • **Unprepared** is marked when you __Sacrifice Resources__ and are reduced to 0 supply. You are not properly equipped for the dangers of the Forge. Because you and your allies share the same supply value, you mark unprepared together.\n\nAs with all impacts, **misfortunes** affect your max momentum and momentum reset. In addition, if you are wounded, shaken, or unprepared, you cannot increase the associated meter.\n\n• If you are wounded, you cannot increase health.\n• If you are shaken, you cannot increase spirit.\n• If you are unprepared, you cannot increase supply.\n\nIf a move gives you an opportunity to raise your health, spirit, or supply while the associated misfortune is marked, you can’t take that option. You must clear the impact before improving the related condition meter.\n\nWounded, shaken, and unprepared can be cleared when you succeed on an appropriate recover move. For example, scoring a hit on the __Heal__ move can clear the wounded impact. Once you clear the misfortune, you restore your max momentum and momentum reset, and you can once again increase the associated meter through moves."
         },
         {
           "Name": "Burdens",
-          "Aliases": ["doomed", "indebted", "tormented", "burden"],
+          "Aliases": [
+            "doomed",
+            "indebted",
+            "tormented",
+            "burden"
+          ],
           "Text": "  • **Doomed** is marked when you __Face Death__ and return with a soul-bound quest. This burden can only be cleared by completing the quest.\n  • **Tormented** is marked when you __Face Desolation__ and undertake a quest to prevent a dire future.\n  • **Indebted** is marked when you __Overcome Destruction__ and take on a duty-bound quest to repay a debt.\n\n**Burdens** are a result of life-changing experiences that leave you bound to vows. Clearing a burden can only be accomplished by resolving the quest.\n\nWhen you are doomed, tormented, or indebted, you should envision the physical and emotional manifestations of these impacts. You have seen what lies beyond death, suffered visions of your greatest fears, or barely escaped the destruction of your prized starship. How does it change you?"
         },
         {
           "Name": "Lasting Effects",
-          "Aliases": ["permanently harmed", "traumatized", "lasting effect"],
+          "Aliases": [
+            "permanently harmed",
+            "traumatized",
+            "lasting effect"
+          ],
           "Text": "  • **Permanently harmed** may be marked when you are at 0 health and fail to __Endure Harm__. You have suffered a wound which you must reckon with, such as the loss of an eye or hand. Or, you bear physical scars which are a constant reminder of a harrowing incident.\n  • **Traumatized** may be marked when you are at 0 spirit and fail to __Endure Stress__. Your experiences have left you emotionally or mentally scarred.\n\n**Lasting effects** are permanent. They forever impact your character through the momentum adjustment and—more importantly—through the narrative impact of being permanently harmed or traumatized. You should factor this impact into how you perform moves and how you interact with the world.\n\nEnvision the nature of the lasting effect. You may have physical, emotional, or mental factors you must take into account. Your outlook may change. Your goals and methods may change. How others behave toward you may change."
         },
         {
           "Name": "Vehicle Troubles",
-          "Aliases": ["battered", "cursed", "vehicle trouble"],
+          "Aliases": [
+            "battered",
+            "cursed",
+            "vehicle trouble"
+          ],
           "Text": "  • **Battered** may be marked when your vehicle is at 0 integrity, and you fail to __Withstand Damage__. The vehicle is barely holding together.\n  • **Cursed** may be marked when your command vehicle (STARSHIP asset) is at 0 integrity and you fail to __Withstand Damage__. This is a permanent impact. Your ship will never be quite right again.\n\nVehicle troubles are linked to a specific vehicle, either your command vehicle asset or a support vehicle asset, These impacts are only a factor when you are piloting or aboard that vehicle. Otherwise, they do not count as an impact and do not affect your maximum momentum and momentum reset.\n\nBattered can be overcome when you successfully __Repair__ that vehicle and clear the trouble. Until you do so, you cannot raise the vehicle's integrity. Cursed is a permanent impact and will forever plague your STARSHIP."
         }
       ]
