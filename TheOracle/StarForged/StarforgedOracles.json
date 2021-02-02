@@ -4076,13 +4076,13 @@
     ]
   },
   {
-    "Name": "Pay The Price",
+    "Name": "Pay the Price",
     "Source": {
       "Name": "Starforged Playtest Oracles",
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Star Price",
       "Sptp"
@@ -4938,6 +4938,7 @@
     },
     "Game": "Starforged",
     "Category": "Ship Oracles",
+    "d": "200",
     "Aliases": [
       "Ship Name"
     ],
@@ -5341,6 +5342,406 @@
       {
         "Chance": 100,
         "Description": "Sun Chariot"
+      },
+      {
+        "Chance": 101,
+        "Description": "The Albatross"
+      },
+      {
+        "Chance": 102,
+        "Description": "The Antelope"
+      },
+      {
+        "Chance": 103,
+        "Description": "The Barracuda"
+      },
+      {
+        "Chance": 104,
+        "Description": "The Bearded Dragon"
+      },
+      {
+        "Chance": 105,
+        "Description": "The Beluga"
+      },
+      {
+        "Chance": 106,
+        "Description": "The Black Mamba"
+      },
+      {
+        "Chance": 107,
+        "Description": "The Black Widow"
+      },
+      {
+        "Chance": 108,
+        "Description": "The Blue Jay"
+      },
+      {
+        "Chance": 109,
+        "Description": "The Buzzard"
+      },
+      {
+        "Chance": 110,
+        "Description": "The Caiman"
+      },
+      {
+        "Chance": 111,
+        "Description": "The Caracal"
+      },
+      {
+        "Chance": 112,
+        "Description": "The Caribou"
+      },
+      {
+        "Chance": 113,
+        "Description": "The Chameleon"
+      },
+      {
+        "Chance": 114,
+        "Description": "The Cheetah"
+      },
+      {
+        "Chance": 115,
+        "Description": "The Clouded Leopard"
+      },
+      {
+        "Chance": 116,
+        "Description": "The Coelacanth"
+      },
+      {
+        "Chance": 117,
+        "Description": "The Condor"
+      },
+      {
+        "Chance": 118,
+        "Description": "The Copperhead"
+      },
+      {
+        "Chance": 119,
+        "Description": "The Cormorant"
+      },
+      {
+        "Chance": 120,
+        "Description": "The Coyote"
+      },
+      {
+        "Chance": 121,
+        "Description": "The Crane"
+      },
+      {
+        "Chance": 122,
+        "Description": "The Dark Horse"
+      },
+      {
+        "Chance": 123,
+        "Description": "The Dogfish"
+      },
+      {
+        "Chance": 124,
+        "Description": "The Dolphin"
+      },
+      {
+        "Chance": 125,
+        "Description": "The Dragonfly"
+      },
+      {
+        "Chance": 126,
+        "Description": "The Egret"
+      },
+      {
+        "Chance": 127,
+        "Description": "The Electric Eel"
+      },
+      {
+        "Chance": 128,
+        "Description": "The Emperor Penguin"
+      },
+      {
+        "Chance": 129,
+        "Description": "The Fennec"
+      },
+      {
+        "Chance": 130,
+        "Description": "The Frilled Agama"
+      },
+      {
+        "Chance": 131,
+        "Description": "The Gazelle"
+      },
+      {
+        "Chance": 132,
+        "Description": "The Gharial"
+      },
+      {
+        "Chance": 133,
+        "Description": "The Golden Eagle"
+      },
+      {
+        "Chance": 134,
+        "Description": "The Grey Whale"
+      },
+      {
+        "Chance": 135,
+        "Description": "The Grizzly"
+      },
+      {
+        "Chance": 136,
+        "Description": "The Hammerhead"
+      },
+      {
+        "Chance": 137,
+        "Description": "The Harlequin Duck"
+      },
+      {
+        "Chance": 138,
+        "Description": "The Harp Seal"
+      },
+      {
+        "Chance": 139,
+        "Description": "The Harrier"
+      },
+      {
+        "Chance": 140,
+        "Description": "The Harvestman"
+      },
+      {
+        "Chance": 141,
+        "Description": "The Hawkmoth"
+      },
+      {
+        "Chance": 142,
+        "Description": "The Heron"
+      },
+      {
+        "Chance": 143,
+        "Description": "The Hornet"
+      },
+      {
+        "Chance": 144,
+        "Description": "The Hummingbird"
+      },
+      {
+        "Chance": 145,
+        "Description": "The Hyena"
+      },
+      {
+        "Chance": 146,
+        "Description": "The Ibex"
+      },
+      {
+        "Chance": 147,
+        "Description": "The Ibis"
+      },
+      {
+        "Chance": 148,
+        "Description": "The Jackal"
+      },
+      {
+        "Chance": 149,
+        "Description": "The Javelina"
+      },
+      {
+        "Chance": 150,
+        "Description": "The Jellyfish"
+      },
+      {
+        "Chance": 151,
+        "Description": "The Kestrel"
+      },
+      {
+        "Chance": 152,
+        "Description": "The King Cobra"
+      },
+      {
+        "Chance": 153,
+        "Description": "The Kingfisher"
+      },
+      {
+        "Chance": 154,
+        "Description": "The Lightning Bug"
+      },
+      {
+        "Chance": 155,
+        "Description": "The Lionfish"
+      },
+      {
+        "Chance": 156,
+        "Description": "The Locust"
+      },
+      {
+        "Chance": 157,
+        "Description": "The Luna Moth"
+      },
+      {
+        "Chance": 158,
+        "Description": "The Lynx"
+      },
+      {
+        "Chance": 159,
+        "Description": "The Mantis Shrimp"
+      },
+      {
+        "Chance": 160,
+        "Description": "The Marlin"
+      },
+      {
+        "Chance": 161,
+        "Description": "The Meerkat"
+      },
+      {
+        "Chance": 162,
+        "Description": "The Merlin"
+      },
+      {
+        "Chance": 163,
+        "Description": "The Mongoose"
+      },
+      {
+        "Chance": 164,
+        "Description": "The Mosquito"
+      },
+      {
+        "Chance": 165,
+        "Description": "The Narwhal"
+      },
+      {
+        "Chance": 166,
+        "Description": "The Nautilus"
+      },
+      {
+        "Chance": 167,
+        "Description": "The Nighthawk"
+      },
+      {
+        "Chance": 168,
+        "Description": "The Octopus"
+      },
+      {
+        "Chance": 169,
+        "Description": "The Orb Weaver"
+      },
+      {
+        "Chance": 170,
+        "Description": "The Orca"
+      },
+      {
+        "Chance": 171,
+        "Description": "The Osprey"
+      },
+      {
+        "Chance": 172,
+        "Description": "The Otter"
+      },
+      {
+        "Chance": 173,
+        "Description": "The Pelican"
+      },
+      {
+        "Chance": 174,
+        "Description": "The Peregrine Falcon"
+      },
+      {
+        "Chance": 175,
+        "Description": "The Porpoise"
+      },
+      {
+        "Chance": 176,
+        "Description": "The Praying Mantis"
+      },
+      {
+        "Chance": 177,
+        "Description": "The Quetzal"
+      },
+      {
+        "Chance": 178,
+        "Description": "The Raven"
+      },
+      {
+        "Chance": 179,
+        "Description": "The Rook"
+      },
+      {
+        "Chance": 180,
+        "Description": "The Sabretooth"
+      },
+      {
+        "Chance": 181,
+        "Description": "The Salamander"
+      },
+      {
+        "Chance": 182,
+        "Description": "The Scarab"
+      },
+      {
+        "Chance": 183,
+        "Description": "The Scorpion"
+      },
+      {
+        "Chance": 184,
+        "Description": "The Sea Lion"
+      },
+      {
+        "Chance": 185,
+        "Description": "The Sea Turtle"
+      },
+      {
+        "Chance": 186,
+        "Description": "The Shrike"
+      },
+      {
+        "Chance": 187,
+        "Description": "The Skua"
+      },
+      {
+        "Chance": 188,
+        "Description": "The Snow Goose"
+      },
+      {
+        "Chance": 189,
+        "Description": "The Snowy Owl"
+      },
+      {
+        "Chance": 190,
+        "Description": "The Spider Crab"
+      },
+      {
+        "Chance": 191,
+        "Description": "The Stingray"
+      },
+      {
+        "Chance": 192,
+        "Description": "The Swallowtail"
+      },
+      {
+        "Chance": 193,
+        "Description": "The Swordfish"
+      },
+      {
+        "Chance": 194,
+        "Description": "The Tarantula"
+      },
+      {
+        "Chance": 195,
+        "Description": "The Tarpan"
+      },
+      {
+        "Chance": 196,
+        "Description": "The Thresher"
+      },
+      {
+        "Chance": 197,
+        "Description": "The Timber Wolf"
+      },
+      {
+        "Chance": 198,
+        "Description": "The Trumpeter Swan"
+      },
+      {
+        "Chance": 199,
+        "Description": "The Vulture"
+      },
+      {
+        "Chance": 200,
+        "Description": "The Walrus"
       }
     ]
   },
@@ -6343,13 +6744,13 @@
     ]
   },
   {
-    "Name": "Make A Discovery",
+    "Name": "Make a Discovery",
     "Source": {
       "Name": "Starforged Playtest Moves",
       "Version": "112220"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Discovery"
     ],
@@ -6455,7 +6856,7 @@
       "Version": "112220"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Chaos"
     ],
@@ -6561,7 +6962,7 @@
       "Version": "112220"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Decisive Action",
       "Decisive"
@@ -6600,7 +7001,7 @@
       "Version": "112220"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Endure Harm",
       "Harm"
@@ -6651,7 +7052,7 @@
       "Version": "112220"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Endure Stress",
       "Stress"
@@ -6698,7 +7099,7 @@
       "Version": "112220"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Move Oracles",
     "Aliases": [
       "Withstand Damage",
       "Damage"
@@ -6987,7 +7388,7 @@
       "Page": "47"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Campaign Oracles",
     "Oracles": [
       {
         "Chance": 5,
@@ -7079,7 +7480,7 @@
       "Page": "55"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Campaign Oracles",
     "Oracles": [
       {
         "Chance": 5,
@@ -7160,6 +7561,153 @@
       {
         "Chance": 100,
         "Description": "Transport a displaced people to their new home"
+      }
+    ]
+  },
+  {
+    "Name": "Spaceborne Complication",
+    "Source": {
+      "Name": "Discord",
+      "URL": "https://discord.com/channels/751199753433514076/751199754293084192/805876140035145769"
+    },
+    "Game": "Starforged",
+    "Category": "Danger and Oppurtunity Oracles",
+    "Oracles": [
+      {
+        "Chance": 3,
+        "Description": "Atmosphere generator malfunctions"
+      },
+      {
+        "Chance": 6,
+        "Description": "Automated beacon warns of a danger"
+      },
+      {
+        "Chance": 9,
+        "Description": "Automated defenses or mines protect this region"
+      },
+      {
+        "Chance": 12,
+        "Description": "Contagion or illness poses a threat"
+      },
+      {
+        "Chance": 15,
+        "Description": "Debris field blocks your path"
+      },
+      {
+        "Chance": 18,
+        "Description": "Dust clouds imperil navigation"
+      },
+      {
+        "Chance": 21,
+        "Description": "Energy storm looms"
+      },
+      {
+        "Chance": 24,
+        "Description": "Familiar foe appears or sends and ominous message"
+      },
+      {
+        "Chance": 27,
+        "Description": "Gravitational fields captures your ship"
+      },
+      {
+        "Chance": 30,
+        "Description": "Gravity generator malfunctions"
+      },
+      {
+        "Chance": 33,
+        "Description": "Gravity waves buffet the ship"
+      },
+      {
+        "Chance": 36,
+        "Description": "Imperiled ship needs your help"
+      },
+      {
+        "Chance": 39,
+        "Description": "Important device fails or becomes unstable"
+      },
+      {
+        "Chance": 42,
+        "Description": "Infestation is revealed"
+      },
+      {
+        "Chance": 45,
+        "Description": "Intruder makes their presence known"
+      },
+      {
+        "Chance": 48,
+        "Description": "Isolation or fear presses in"
+      },
+      {
+        "Chance": 51,
+        "Description": "Meteoroid storm fills the sky"
+      },
+      {
+        "Chance": 54,
+        "Description": "Mysterious ship lurks in your wake"
+      },
+      {
+        "Chance": 57,
+        "Description": "Navigation equipment guides you to an unexpected destination"
+      },
+      {
+        "Chance": 60,
+        "Description": "Nearby settlement calls for help"
+      },
+      {
+        "Chance": 63,
+        "Description": "Old repair or patch fails"
+      },
+      {
+        "Chance": 66,
+        "Description": "Pirates hunt for easy prey"
+      },
+      {
+        "Chance": 69,
+        "Description": "Power fails"
+      },
+      {
+        "Chance": 72,
+        "Description": "Precursor site or device emits a stranger signal"
+      },
+      {
+        "Chance": 75,
+        "Description": "Primary drive malfunctions"
+      },
+      {
+        "Chance": 78,
+        "Description": "Ship compartment catches fire or is breache"
+      },
+      {
+        "Chance": 81,
+        "Description": "Spaceborne creature draws near"
+      },
+      {
+        "Chance": 84,
+        "Description": "Stellar object emits hazardous energies"
+      },
+      {
+        "Chance": 87,
+        "Description": "Swarming creatures surround you"
+      },
+      {
+        "Chance": 90,
+        "Description": "Troubling visions or apparitions appear"
+      },
+      {
+        "Chance": 93,
+        "Description": "True nature of a cargo or passenger is revealed"
+      },
+      {
+        "Chance": 96,
+        "Description": "Unsettling sounds or disturbances manifest within the ship"
+      },
+      {
+        "Chance": 99,
+        "Description": "Wrecked starship portends a new danger"
+      },
+      {
+        "Chance": 100,
+        "Description": "Roll twice"
       }
     ]
   }
