@@ -1540,7 +1540,7 @@
     "NumericAssetTrack": {
       "Name": "Health",
       "Min": 0,
-      "Max": 2,
+      "Max": 3,
       "ActiveNumber": 2
     }
   },
