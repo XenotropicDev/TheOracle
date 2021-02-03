@@ -27,6 +27,7 @@ namespace TheOracle.GameCore.PlayerCard
         public string AvatarUrl { get; set; }
         public int Debilities { get; set; } = 0;
         public ChannelSettings ChannelSettings { get; internal set; }
+        public string DescriptionField { get; private set; }
 
         public Player()
         {
@@ -46,6 +47,7 @@ namespace TheOracle.GameCore.PlayerCard
 
             builder.WithAuthor(Name);
             builder.WithThumbnailUrl(AvatarUrl);
+            if (DescriptionField.Length > 0) builder.WithDescription(DescriptionField);
             builder.WithTitle(PlayerResources.PlayerCardTitle);
             builder.AddField(PlayerResources.Stats, statsString, false);
             builder.AddField(PlayerResources.Health, Health, true);
@@ -87,6 +89,8 @@ namespace TheOracle.GameCore.PlayerCard
             Spirit = spirit;
             Supply = supply;
             Momentum = momentum;
+
+            DescriptionField = embed.Description;
 
             EmbedField? debilityField = embed.Fields.FirstOrDefault(fld => fld.Name.Equals(PlayerResources.Debilities) || fld.Name.Equals(PlayerResources.StarforgedDebilities));
             if (debilityField.HasValue && int.TryParse(debilityField.Value.Value, out int debilities))
