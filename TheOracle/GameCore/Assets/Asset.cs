@@ -39,6 +39,7 @@ namespace TheOracle.GameCore.Assets
 
         public string Name { get; set; }
         public string Description { get; set; }
+        public string UserDescription { get; set; }
         public string IconUrl { get; set; }
         public string AssetType { get; set; }
         public GameName Game { get; set; }
@@ -76,12 +77,14 @@ namespace TheOracle.GameCore.Assets
             var game = Utilities.GetGameContainedInString(embed.Footer.Value.Text ?? string.Empty);
             var asset = Services.GetRequiredService<List<Asset>>().Single(a => embed.Title.Contains(a.Name) && a.Game == game).DeepCopy();
 
-            foreach (var assetField in asset.AssetFields)
+            for (int i = 0; i < asset.AssetFields.Count; i++)
             {
-                EmbedField embedField = embed.Fields.FirstOrDefault(fld => fld.Value.Contains(assetField.Text));
-                if (embedField.Equals(default)) continue;
+                EmbedField embedField = embed.Fields.FirstOrDefault(fld => fld.Name.Contains((i + 1).ToString()));
 
-                assetField.Enabled = embedField.Name.Contains(AssetEnabledEmoji);
+                if (embedField.Value == null) embedField = embed.Fields.FirstOrDefault(fld => fld.Value.Contains(asset.AssetFields[i].Text)); //match old style assets
+                if (embedField.Value == null) continue;
+
+                asset.AssetFields[i].Enabled = embedField.Name.Contains(AssetEnabledEmoji);
             }
 
             if (asset.NumericAssetTrack != null)
@@ -128,6 +131,7 @@ namespace TheOracle.GameCore.Assets
             }
 
             asset.IconUrl = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : asset.IconUrl;
+            asset.UserDescription = embed.Description;
 
             return asset;
         }
@@ -144,24 +148,25 @@ namespace TheOracle.GameCore.Assets
             string fullDesc = string.Empty;
             foreach (var fld in InputFields)
             {
-                string userVal = (arguments.Length - 1 >= nextArgument) ? arguments[nextArgument] : string.Empty.PadLeft(8);
+                string userVal = (arguments.Length - 1 >= nextArgument) ? arguments[nextArgument] : string.Empty.PadLeft(24, '_');
                 fullDesc += String.Format(AssetResources.UserInputField, fld, userVal) + "\n";
                 nextArgument++;
             }
             fullDesc += (fullDesc.Length > 0) ? "\n" + Description : Description;
 
-            builder.WithDescription(fullDesc);
+            if (UserDescription == null || UserDescription.Length == 0) builder.WithDescription(fullDesc);
+            else builder.WithDescription(UserDescription);
 
             foreach (var fld in AssetFields)
             {
-                string label = (fld.Enabled) ? AssetEnabledEmoji : AssetDisabledEmoji;
+                string label = $"{AssetFields.IndexOf(fld) + 1}. {(fld.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
 
                 string inputField = string.Empty;
                 if (fld.InputFields?.Count > 0)
                 {
                     foreach (var inputItem in fld.InputFields)
                     {
-                        string userVal = (arguments.Length - 1 >= nextArgument) ? arguments[nextArgument] : string.Empty.PadLeft(8);
+                        string userVal = (arguments.Length - 1 >= nextArgument) ? arguments[nextArgument] : string.Empty.PadLeft(24, '_');
                         inputField += "\n" + String.Format(AssetResources.UserInputField, inputItem, userVal);
                         nextArgument++;
                     }
