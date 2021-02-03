@@ -430,8 +430,8 @@
     "NumericAssetTrack": {
       "Name": "Integrity",
       "Min": 0,
-      "Max": 5,
-      "ActiveNumber": 5
+      "Max": 4,
+      "ActiveNumber": 4
     }
   },
   {
