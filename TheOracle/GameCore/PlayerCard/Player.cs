@@ -47,7 +47,7 @@ namespace TheOracle.GameCore.PlayerCard
 
             builder.WithAuthor(Name);
             builder.WithThumbnailUrl(AvatarUrl);
-            if (DescriptionField.Length > 0) builder.WithDescription(DescriptionField);
+            if (DescriptionField?.Length > 0) builder.WithDescription(DescriptionField);
             builder.WithTitle(PlayerResources.PlayerCardTitle);
             builder.AddField(PlayerResources.Stats, statsString, false);
             builder.AddField(PlayerResources.Health, Health, true);
