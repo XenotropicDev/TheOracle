@@ -124,6 +124,8 @@ namespace TheOracle.GameCore.Oracle
                     entries += entry;
                 }
 
+                splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
+
                 foreach (var s in splitUpList)
                 {
                     string title = "Title";
