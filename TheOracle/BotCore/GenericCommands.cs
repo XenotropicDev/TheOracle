@@ -31,10 +31,10 @@ namespace TheOracle.BotCore
             }
             else
             {
-                if (!builder.Fields.Any(fld => fld.Name.Contains(FieldName))) throw new ArgumentException($"Unknown Field '{FieldName}'");
-                if (builder.Fields.Count(fld => fld.Name.Contains(FieldName)) > 1) throw new ArgumentException($"Too many fields with name '{FieldName}'");
+                if (!builder.Fields.Any(fld => fld.Name.Contains(FieldName, StringComparison.OrdinalIgnoreCase))) throw new ArgumentException($"Unknown Field '{FieldName}'");
+                if (builder.Fields.Count(fld => fld.Name.Contains(FieldName, StringComparison.OrdinalIgnoreCase)) > 1) throw new ArgumentException($"Too many fields with name '{FieldName}'");
 
-                builder.Fields.FirstOrDefault(fld => fld.Name.Contains(FieldName)).Value = FieldValue;
+                builder.Fields.FirstOrDefault(fld => fld.Name.Contains(FieldName, StringComparison.OrdinalIgnoreCase)).Value = FieldValue;
             }
 
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
