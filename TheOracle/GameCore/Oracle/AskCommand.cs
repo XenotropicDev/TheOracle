@@ -14,12 +14,6 @@ namespace TheOracle.GameCore.Oracle
 {
     public class AskCommand : ModuleBase<SocketCommandContext>
     {
-        public const string oneEmoji = "\u0031\u20E3";
-        public const string twoEmoji = "\u0032\u20E3";
-        public const string threeEmoji = "\u0033\u20E3";
-        public const string fourEmoji = "\u0034\u20E3";
-        public const string fiveEmoji = "\u0035\u20E3";
-
         public AskCommand(ServiceProvider service)
         {
             Service = service;
@@ -28,11 +22,11 @@ namespace TheOracle.GameCore.Oracle
             if (!hooks.AskTheOracleReactions)
             {
                 var reactionService = Service.GetRequiredService<ReactionService>();
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(HelperHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(HelperHandler).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(HelperHandler).Build();
-                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmoji(fourEmoji).WithEvent(HelperHandler).Build();
-                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmoji(fiveEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(GenericReactions.fourEmoji).WithEvent(HelperHandler).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmote(GenericReactions.fiveEmoji).WithEvent(HelperHandler).Build();
 
                 reactionService.reactionList.Add(reaction1);
                 reactionService.reactionList.Add(reaction2);
@@ -65,11 +59,11 @@ namespace TheOracle.GameCore.Oracle
             {
                 await message.RemoveAllReactionsAsync();
 
-                if (reaction.Emote.Name == oneEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(90, OracleResources.AlmostCertain); msg.Embed = null; });
-                if (reaction.Emote.Name == twoEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(75, OracleResources.Likely); msg.Embed = null; });
-                if (reaction.Emote.Name == threeEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(50, OracleResources.FiftyFifty); msg.Embed = null; });
-                if (reaction.Emote.Name == fourEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(25, OracleResources.Unlikely); msg.Embed = null; });
-                if (reaction.Emote.Name == fiveEmoji) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(10, OracleResources.SmallChance); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(90, OracleResources.AlmostCertain); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(75, OracleResources.Likely); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(50, OracleResources.FiftyFifty); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(25, OracleResources.Unlikely); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.fiveEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(10, OracleResources.SmallChance); msg.Embed = null; });
             });
 
             return;
@@ -105,11 +99,11 @@ namespace TheOracle.GameCore.Oracle
 
             _ = Task.Run(async () =>
             {
-                await msg.AddReactionAsync(new Emoji(oneEmoji));
-                await msg.AddReactionAsync(new Emoji(twoEmoji));
-                await msg.AddReactionAsync(new Emoji(threeEmoji));
-                await msg.AddReactionAsync(new Emoji(fourEmoji));
-                await msg.AddReactionAsync(new Emoji(fiveEmoji));
+                await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                await msg.AddReactionAsync(GenericReactions.threeEmoji);
+                await msg.AddReactionAsync(GenericReactions.fourEmoji);
+                await msg.AddReactionAsync(GenericReactions.fiveEmoji);
             }).ConfigureAwait(false);
 
             return;

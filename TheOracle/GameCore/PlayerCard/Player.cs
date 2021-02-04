@@ -45,10 +45,10 @@ namespace TheOracle.GameCore.PlayerCard
                 PlayerResources.Shadow, Shadow,
                 PlayerResources.Wits, Wits);
 
-            builder.WithAuthor(Name);
+            builder.WithTitle(Name);
             builder.WithThumbnailUrl(AvatarUrl);
             if (DescriptionField?.Length > 0) builder.WithDescription(DescriptionField);
-            builder.WithTitle(PlayerResources.PlayerCardTitle);
+            builder.WithAuthor(PlayerResources.PlayerCardTitle);
             builder.AddField(PlayerResources.Stats, statsString, false);
             builder.AddField(PlayerResources.Health, Health, true);
             builder.AddField(PlayerResources.Spirit, Spirit, true);
@@ -63,7 +63,15 @@ namespace TheOracle.GameCore.PlayerCard
 
         public Player PopulateFromEmbed(IEmbed embed)
         {
-            this.Name = embed.Author.Value.Name;
+            if (embed.Author.HasValue && embed.Author.Value.Name == PlayerResources.PlayerCardTitle)
+            {
+                this.Name = embed.Title;
+            }
+            else
+            {
+                this.Name = embed.Author.Value.Name;
+            }
+
             this.AvatarUrl = embed.Thumbnail?.Url;
 
             embed.Fields.First(fld => fld.Name == PlayerResources.Stats).Value.UndoFormatString(PlayerResources.StatsFormat, out string[] statsValues, true);

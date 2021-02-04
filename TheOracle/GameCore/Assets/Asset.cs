@@ -12,8 +12,10 @@ namespace TheOracle.GameCore.Assets
 {
     public class Asset : IAsset
     {
-        public const string AssetEnabledEmoji = "\\⏺️";
-        public const string AssetDisabledEmoji = "\\🟦";
+        public const string OldAssetEnabledEmoji = "\\⏺️";
+        public const string AssetEnabledEmoji = "⏺️";
+        
+        public const string AssetDisabledEmoji = "🟦";
 
         public Asset()
         {
@@ -84,7 +86,7 @@ namespace TheOracle.GameCore.Assets
                 if (embedField.Value == null) embedField = embed.Fields.FirstOrDefault(fld => fld.Value.Contains(asset.AssetFields[i].Text)); //match old style assets
                 if (embedField.Value == null) continue;
 
-                asset.AssetFields[i].Enabled = embedField.Name.Contains(AssetEnabledEmoji);
+                asset.AssetFields[i].Enabled = embedField.Name.Contains(AssetEnabledEmoji) || embedField.Name.Contains(OldAssetEnabledEmoji);
             }
 
             if (asset.NumericAssetTrack != null)
@@ -197,7 +199,7 @@ namespace TheOracle.GameCore.Assets
                 builder.AddField(NumericAssetTrack.Name, trackText);
             }
 
-            builder.WithFooter(Game.ToString());
+            builder.WithFooter(String.Format(AssetResources.GameAssetFormat, Game, AssetResources.Asset));
 
             return builder.Build();
         }

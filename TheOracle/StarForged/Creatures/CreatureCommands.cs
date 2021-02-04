@@ -13,11 +13,6 @@ namespace TheOracle.StarForged.Creatures
     public class StarforgedCreatureCommands : ModuleBase<SocketCommandContext>
     {
         public Emoji revealAspectEmoji = new Emoji("🦋");
-        public Emoji oneEmoji = new Emoji("\u0031\u20E3");
-        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
-        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
-        public Emoji fourEmoji = new Emoji("\u0034\u20E3");
-        public Emoji fiveEmoji = new Emoji("\u0035\u20E3");
         public Emoji randomEmoji = new Emoji("🎲");
 
         public StarforgedCreatureCommands(ServiceProvider services)
@@ -28,11 +23,11 @@ namespace TheOracle.StarForged.Creatures
             {
                 var reactionService = services.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(CreatureReactionHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(CreatureReactionHandler).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(CreatureReactionHandler).Build();
-                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(fourEmoji).WithEvent(CreatureReactionHandler).Build();
-                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmote(fiveEmoji).WithEvent(CreatureReactionHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(CreatureReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(CreatureReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(CreatureReactionHandler).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(GenericReactions.fourEmoji).WithEvent(CreatureReactionHandler).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmote(GenericReactions.fiveEmoji).WithEvent(CreatureReactionHandler).Build();
                 ReactionEvent randomRoll = new ReactionEventBuilder().WithEmote(randomEmoji).WithEvent(CreatureReactionHandler).Build();
 
                 ReactionEvent reveal = new ReactionEventBuilder().WithEmote(revealAspectEmoji).WithEvent(CreatureReactionHandler).Build();
@@ -58,7 +53,7 @@ namespace TheOracle.StarForged.Creatures
             if (CreatureHelperEmbed != null)
             {
                 CreatureEnvironment environment = StarforgedUtilites.CreatureEnvironmentFromEmote(reaction.Emote.Name);
-                if (reaction.Emote.Name == randomEmoji.Name)
+                if (reaction.Emote.IsSameAs(randomEmoji))
                 {
                     string lookupValue = Services.GetRequiredService<OracleService>().RandomRow("Creature Environment").Description;
                     environment = StarforgedUtilites.GetAnyEnvironment(lookupValue);
@@ -92,7 +87,7 @@ namespace TheOracle.StarForged.Creatures
 
             var creature = Creature.FromEmbed(creatureEmbed, Services, channel.Id);
 
-            if (reaction.Emote.Name == revealAspectEmoji.Name) creature.AddRandomAspect();
+            if (reaction.Emote.IsSameAs(revealAspectEmoji)) creature.AddRandomAspect();
 
             await message.ModifyAsync(msg => msg.Embed = creature.GetEmbedBuilder().Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -120,11 +115,11 @@ namespace TheOracle.StarForged.Creatures
                 var msg = await ReplyAsync(embed: builder.Build());
                 _ = Task.Run(async () =>
                 {
-                    await msg.AddReactionAsync(oneEmoji);
-                    await msg.AddReactionAsync(twoEmoji);
-                    await msg.AddReactionAsync(threeEmoji);
-                    await msg.AddReactionAsync(fourEmoji);
-                    await msg.AddReactionAsync(fiveEmoji);
+                    await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                    await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                    await msg.AddReactionAsync(GenericReactions.threeEmoji);
+                    await msg.AddReactionAsync(GenericReactions.fourEmoji);
+                    await msg.AddReactionAsync(GenericReactions.fiveEmoji);
                     await msg.AddReactionAsync(randomEmoji);
                 }).ConfigureAwait(false);
 

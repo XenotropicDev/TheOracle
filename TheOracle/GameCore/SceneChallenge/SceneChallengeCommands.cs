@@ -14,17 +14,12 @@ namespace TheOracle.GameCore.SceneChallenge
 {
     public class SceneChallengeCommands : ModuleBase<SocketCommandContext>
     {
-        public const string DecreaseEmoji = "\u25C0";
-        public const string emptyChallengeEmoji = "🟩";
-        public const string fiveEmoji = "\u0035\u20E3";
-        public const string fourEmoji = "\u0034\u20E3";
-        public const string fullChallengeEmoji = "❎";
-        public const string FullEmoji = "\u0023\u20E3";
-        public const string IncreaseEmoji = "\u25B6";
-        public const string oneEmoji = "\u0031\u20E3";
-        public const string RollEmoji = "\uD83C\uDFB2";
-        public const string threeEmoji = "\u0033\u20E3";
-        public const string twoEmoji = "\u0032\u20E3";
+        public Emoji DecreaseEmoji = new Emoji("\u25C0");
+        public Emoji emptyChallengeEmoji = new Emoji("🟩");
+        public Emoji fullChallengeEmoji = new Emoji("❎");
+        public Emoji FullEmoji = new Emoji("\u0023\u20E3");
+        public Emoji IncreaseEmoji = new Emoji("\u25B6");
+        public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
 
         public SceneChallengeCommands(IServiceProvider services)
         {
@@ -37,18 +32,18 @@ namespace TheOracle.GameCore.SceneChallenge
                 hooks.SceneChallengeReactions = true;
                 var reactionService = Services.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmoji(fourEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmoji(fiveEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(GenericReactions.fourEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmote(GenericReactions.fiveEmoji).WithEvent(ProgressBuilderReactions).Build();
 
-                ReactionEvent decrease = new ReactionEventBuilder().WithEmoji(DecreaseEmoji).WithEvent(ReactionDecreaseProgressEvent).Build();
-                ReactionEvent increase = new ReactionEventBuilder().WithEmoji(IncreaseEmoji).WithEvent(ReactionIncreaseProgressEvent).Build();
-                ReactionEvent fullMark = new ReactionEventBuilder().WithEmoji(FullEmoji).WithEvent(ReactionFullMarkEvent).Build();
-                ReactionEvent challengeDecrease = new ReactionEventBuilder().WithEmoji(emptyChallengeEmoji).WithEvent(ReactionDecreaseChallengeEvent).Build();
-                ReactionEvent challengeIncrease = new ReactionEventBuilder().WithEmoji(fullChallengeEmoji).WithEvent(ReactionIncreaseChallengeEvent).Build();
-                ReactionEvent roll = new ReactionEventBuilder().WithEmoji(RollEmoji).WithEvent(ReactionResolveScene).Build();
+                ReactionEvent decrease = new ReactionEventBuilder().WithEmote(DecreaseEmoji).WithEvent(ReactionDecreaseProgressEvent).Build();
+                ReactionEvent increase = new ReactionEventBuilder().WithEmote(IncreaseEmoji).WithEvent(ReactionIncreaseProgressEvent).Build();
+                ReactionEvent fullMark = new ReactionEventBuilder().WithEmote(FullEmoji).WithEvent(ReactionFullMarkEvent).Build();
+                ReactionEvent challengeDecrease = new ReactionEventBuilder().WithEmote(emptyChallengeEmoji).WithEvent(ReactionDecreaseChallengeEvent).Build();
+                ReactionEvent challengeIncrease = new ReactionEventBuilder().WithEmote(fullChallengeEmoji).WithEvent(ReactionIncreaseChallengeEvent).Build();
+                ReactionEvent roll = new ReactionEventBuilder().WithEmote(RollEmoji).WithEvent(ReactionResolveScene).Build();
 
                 reactionService.reactionList.Add(decrease);
                 reactionService.reactionList.Add(increase);
@@ -75,11 +70,11 @@ namespace TheOracle.GameCore.SceneChallenge
                 .WithFields(new EmbedFieldBuilder()
                 {
                     Name = ProgressResources.Reactions,
-                    Value = $"{oneEmoji} = {ProgressResources.Troublesome}" +
-                            $"\n{twoEmoji} = {ProgressResources.Dangerous}" +
-                            $"\n{threeEmoji} = {ProgressResources.Formidable}" +
-                            $"\n{fourEmoji} = {ProgressResources.Extreme}" +
-                            $"\n{fiveEmoji} = {ProgressResources.Epic}"
+                    Value = $"{GenericReactions.oneEmoji} = {ProgressResources.Troublesome}" +
+                            $"\n{GenericReactions.twoEmoji} = {ProgressResources.Dangerous}" +
+                            $"\n{GenericReactions.threeEmoji} = {ProgressResources.Formidable}" +
+                            $"\n{GenericReactions.fourEmoji} = {ProgressResources.Extreme}" +
+                            $"\n{GenericReactions.fiveEmoji} = {ProgressResources.Epic}"
                 })
                 .WithFooter(SceneChallengeResources.HelperAdditionalInfo);
 
@@ -87,11 +82,11 @@ namespace TheOracle.GameCore.SceneChallenge
 
             _ = Task.Run(async () =>
             {
-                await msg.AddReactionAsync(new Emoji(oneEmoji));
-                await msg.AddReactionAsync(new Emoji(twoEmoji));
-                await msg.AddReactionAsync(new Emoji(threeEmoji));
-                await msg.AddReactionAsync(new Emoji(fourEmoji));
-                await msg.AddReactionAsync(new Emoji(fiveEmoji));
+                await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                await msg.AddReactionAsync(GenericReactions.threeEmoji);
+                await msg.AddReactionAsync(GenericReactions.fourEmoji);
+                await msg.AddReactionAsync(GenericReactions.fiveEmoji);
             }).ConfigureAwait(false);
 
             return;
@@ -105,11 +100,11 @@ namespace TheOracle.GameCore.SceneChallenge
 
             await Task.Run(async () =>
             {
-                if (reaction.Emote.Name == oneEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == twoEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == threeEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == fourEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.fiveEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
             }).ConfigureAwait(false);
 
             return;
@@ -162,12 +157,12 @@ namespace TheOracle.GameCore.SceneChallenge
 
             _ = Task.Run(async () =>
             {
-                await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(FullEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(emptyChallengeEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(fullChallengeEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(RollEmoji));
+                await messageToEdit.AddReactionAsync(DecreaseEmoji);
+                await messageToEdit.AddReactionAsync(IncreaseEmoji);
+                await messageToEdit.AddReactionAsync(FullEmoji);
+                await messageToEdit.AddReactionAsync(emptyChallengeEmoji);
+                await messageToEdit.AddReactionAsync(fullChallengeEmoji);
+                await messageToEdit.AddReactionAsync(RollEmoji);
             }).ConfigureAwait(false);
 
             return;

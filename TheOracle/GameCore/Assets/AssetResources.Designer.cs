@@ -61,6 +61,24 @@ namespace TheOracle.GameCore.Assets {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset.
+        /// </summary>
+        internal static string Asset {
+            get {
+                return ResourceManager.GetString("Asset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string GameAssetFormat {
+            get {
+                return ResourceManager.GetString("GameAssetFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An asset name couldn&apos;t be found in the entered command.
         /// </summary>
         internal static string UnknownAssetError {

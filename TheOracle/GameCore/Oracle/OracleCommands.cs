@@ -150,7 +150,7 @@ namespace TheOracle.GameCore.Oracle
             if (message.Author.Id != _client.CurrentUser.Id) return;
 
             var pairEmoji = new Emoji("\uD83E\uDDE6");
-            if (reaction.Emote.Name == pairEmoji.Name)
+            if (reaction.Emote.IsSameAs(pairEmoji))
             {
                 await message.RemoveReactionAsync(pairEmoji, user).ConfigureAwait(false);
                 await message.RemoveReactionAsync(pairEmoji, message.Author).ConfigureAwait(false);

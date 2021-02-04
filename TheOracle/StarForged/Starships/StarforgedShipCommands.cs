@@ -15,9 +15,6 @@ namespace TheOracle.StarForged.Starships
     public class StarforgedShipCommands : ModuleBase<SocketCommandContext>
     {
         public Emoji missionEmoji = new Emoji("❗");
-        public Emoji oneEmoji = new Emoji("\u0031\u20E3");
-        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
-        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
 
         public StarforgedShipCommands(ServiceProvider services)
         {
@@ -29,9 +26,9 @@ namespace TheOracle.StarForged.Starships
 
                 var reactionService = services.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(ShipReactionHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(ShipReactionHandler).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(ShipReactionHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(ShipReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(ShipReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(ShipReactionHandler).Build();
 
                 ReactionEvent misison = new ReactionEventBuilder().WithEmote(missionEmoji).WithEvent(ShipReactionHandler).Build();
 
@@ -74,7 +71,7 @@ namespace TheOracle.StarForged.Starships
             
             Starship ship = new Starship(Services, channel.Id).FromEmbed(shipEmbed);
 
-            if (reaction.Emote.Name == missionEmoji.Name)
+            if (reaction.Emote.IsSameAs(missionEmoji))
             {
                 ship.AddMission();
                 await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
@@ -105,9 +102,9 @@ namespace TheOracle.StarForged.Starships
                 if (StarShipCommand.Length > 0) builder.WithFields(new EmbedFieldBuilder().WithName(StarShipResources.StarshipName).WithValue(StarShipCommand));
 
                 var msg = await ReplyAsync(embed: builder.Build());
-                await msg.AddReactionAsync(oneEmoji);
-                await msg.AddReactionAsync(twoEmoji);
-                await msg.AddReactionAsync(threeEmoji);
+                await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                await msg.AddReactionAsync(GenericReactions.threeEmoji);
                 return;
             }
 

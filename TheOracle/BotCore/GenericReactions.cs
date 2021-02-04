@@ -15,6 +15,13 @@ namespace TheOracle.BotCore
     {
         public const string pinPostEmoji = "📌";
         public const string recreatePostEmoji = "⏬";
+
+        public static Emoji oneEmoji = new Emoji("1️⃣");
+        public static Emoji twoEmoji = new Emoji("2️⃣");
+        public static Emoji threeEmoji = new Emoji("3️⃣");
+        public static Emoji fourEmoji = new Emoji("4️⃣");
+        public static Emoji fiveEmoji = new Emoji("5️⃣");
+
         private TimeSpan _defaultTimeout = TimeSpan.FromSeconds(30);
 
         public GenericReactions(IServiceProvider service)

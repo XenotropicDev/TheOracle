@@ -21,7 +21,7 @@ namespace TheOracle.BotCore
         public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var reactionHandler = Service.GetRequiredService<ReactionService>();
-            if (!reactionHandler.reactionList.Any(item => item.Emote.Name == reaction.Emote.Name)) return;
+            if (!reactionHandler.reactionList.Any(item => item.Emote.IsSameAs(reaction.Emote))) return;
 
             IUser user = (reaction.User.IsSpecified) ? reaction.User.Value : await Client.Rest.GetUserAsync(reaction.UserId);
             if (user.IsBot) return;
@@ -30,7 +30,7 @@ namespace TheOracle.BotCore
 
             var message = await userMessage.GetOrDownloadAsync();
 
-            var processList = reactionHandler.reactionList.Where(react => react.Emote.Name == reaction.Emote.Name);
+            var processList = reactionHandler.reactionList.Where(react => react.Emote.IsSameAs(reaction.Emote));
             Parallel.ForEach(processList, (item) =>
             {
                 _ = item.ReactionAddedEvent.InvokeAsync(message, channel, reaction, user).ConfigureAwait(false);
@@ -40,7 +40,7 @@ namespace TheOracle.BotCore
         public async Task RemovedReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var reactionHandler = Service.GetRequiredService<ReactionService>();
-            if (!reactionHandler.reactionRemovedList.Any(item => item.Emote.Name == reaction.Emote.Name)) return;
+            if (!reactionHandler.reactionRemovedList.Any(item => item.Emote.IsSameAs(reaction.Emote))) return;
 
             IUser user = (reaction.User.IsSpecified) ? reaction.User.Value : await Client.Rest.GetUserAsync(reaction.UserId);
             if (user.IsBot) return;
@@ -49,7 +49,7 @@ namespace TheOracle.BotCore
 
             var message = await userMessage.GetOrDownloadAsync();
 
-            var processList = reactionHandler.reactionRemovedList.Where(react => react.Emote.Name == reaction.Emote.Name);
+            var processList = reactionHandler.reactionRemovedList.Where(react => react.Emote.IsSameAs(reaction.Emote));
             Parallel.ForEach(processList, (item) =>
             {
                 try

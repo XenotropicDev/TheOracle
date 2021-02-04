@@ -15,15 +15,10 @@ namespace TheOracle.GameCore.PlayerCard
     {
         public Emoji burnEmoji = new Emoji("🔥");
         public Emoji downEmoji = new Emoji("🔽");
-        public Emoji fiveEmoji = new Emoji("\u0035\u20E3");
-        public Emoji fourEmoji = new Emoji("\u0034\u20E3");
         public Emoji healthEmoji = new Emoji("❤️");
         public Emoji momentumEmoji = new Emoji("✈️");
-        public Emoji oneEmoji = new Emoji("\u0031\u20E3");
         public Emoji spiritEmoji = new Emoji("✨");
         public Emoji supplyEmoji = new Emoji("🎒");
-        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
-        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
         public Emoji upEmoji = new Emoji("🔼");
 
         public PlayerCardCommands(IServiceProvider services)
@@ -36,10 +31,10 @@ namespace TheOracle.GameCore.PlayerCard
             {
                 var reactionService = services.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(HelperReactionHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(HelperReactionHandler).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(HelperReactionHandler).Build();
-                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(fourEmoji).WithEvent(HelperReactionHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(HelperReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(HelperReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(HelperReactionHandler).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(GenericReactions.fourEmoji).WithEvent(HelperReactionHandler).Build();
 
                 ReactionEvent upReaction = new ReactionEventBuilder().WithEmote(upEmoji).WithEvent(ResourceChangeHandler).Build();
                 ReactionEvent downReaction = new ReactionEventBuilder().WithEmote(downEmoji).WithEvent(ResourceChangeHandler).Build();
@@ -76,10 +71,10 @@ namespace TheOracle.GameCore.PlayerCard
 
             _ = Task.Run(async () =>
             {
-                await message.AddReactionAsync(oneEmoji);
-                await message.AddReactionAsync(twoEmoji);
-                await message.AddReactionAsync(threeEmoji);
-                await message.AddReactionAsync(fourEmoji);
+                await message.AddReactionAsync(GenericReactions.oneEmoji);
+                await message.AddReactionAsync(GenericReactions.twoEmoji);
+                await message.AddReactionAsync(GenericReactions.threeEmoji);
+                await message.AddReactionAsync(GenericReactions.fourEmoji);
             }).ConfigureAwait(false);
         }
 
@@ -90,7 +85,7 @@ namespace TheOracle.GameCore.PlayerCard
         public async Task SetDebilities(int numberOfDebilities)
         {
             var message = Context.Message.ReferencedMessage;
-            if (message == null || message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle)
+            if (!IsPlayerCardPost(message))
             {
                 await ReplyAsync(PlayerResources.DebilityMissingPlayerCard).ConfigureAwait(false);
                 return;
@@ -105,7 +100,7 @@ namespace TheOracle.GameCore.PlayerCard
 
         private async Task BurnMomentumReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle) return;
+            if (!IsPlayerCardPost(message)) return;
 
             var cs = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
             var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
@@ -121,11 +116,11 @@ namespace TheOracle.GameCore.PlayerCard
             if (embed.Title != PlayerResources.HelperTitle) return;
 
             int StatValue = 0;
-            if (reaction.Emote.Name == oneEmoji.Name) StatValue = 1;
-            if (reaction.Emote.Name == twoEmoji.Name) StatValue = 2;
-            if (reaction.Emote.Name == threeEmoji.Name) StatValue = 3;
-            if (reaction.Emote.Name == fourEmoji.Name) StatValue = 4;
-            if (reaction.Emote.Name == fiveEmoji.Name) StatValue = 5;
+            if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) StatValue = 1;
+            if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) StatValue = 2;
+            if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) StatValue = 3;
+            if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) StatValue = 4;
+            if (reaction.Emote.IsSameAs(GenericReactions.fiveEmoji)) StatValue = 5;
 
             var stats = Array.ConvertAll(embed.Description.Split(','), int.Parse);
 
@@ -172,7 +167,7 @@ namespace TheOracle.GameCore.PlayerCard
 
         private async Task ResourceChangeHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
-            if (message.Embeds.FirstOrDefault()?.Title != PlayerResources.PlayerCardTitle) return;
+            if (!IsPlayerCardPost(message)) return;
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
             var healthActive = message.GetReactionUsersAsync(healthEmoji, 5).AnyAsync(col => col.Any(u => u.Id == user.Id));
@@ -195,8 +190,8 @@ namespace TheOracle.GameCore.PlayerCard
             }
 
             int direction = 0;
-            if (reaction.Emote.Name == upEmoji.Name) direction = 1;
-            if (reaction.Emote.Name == downEmoji.Name) direction = -1;
+            if (reaction.Emote.IsSameAs(upEmoji)) direction = 1;
+            if (reaction.Emote.IsSameAs(downEmoji)) direction = -1;
 
             var cs = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
             var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
@@ -206,6 +201,13 @@ namespace TheOracle.GameCore.PlayerCard
             if (momentumActive.Result) player.Momentum += direction;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build());
+        }
+
+        private bool IsPlayerCardPost(IUserMessage message)
+        {
+            if (message.Embeds.FirstOrDefault()?.Author?.Name == PlayerResources.PlayerCardTitle) return true;
+            if (message.Embeds.FirstOrDefault()?.Title == PlayerResources.PlayerCardTitle) return true; //Matching for old style cards.
+            return false;
         }
     }
 }

@@ -15,8 +15,6 @@ namespace TheOracle.StarForged.PlayerShips
     {
         public Emoji DecreaseIntegrityEmoji = new Emoji("🟦");
         public Emoji IncreaseIntegrityEmoji = new Emoji("☑️");
-        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
-        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
         public Emoji SupplyDownEmoji = new Emoji("🟩");
         public Emoji SupplyUpEmoji = new Emoji("✅");
 
@@ -34,8 +32,8 @@ namespace TheOracle.StarForged.PlayerShips
                 ReactionEvent IncreaseIntegrityEvent = new ReactionEventBuilder().WithEmote(IncreaseIntegrityEmoji).WithEvent(IncreaseIntegrity).Build();
                 ReactionEvent SupplyUpEvent = new ReactionEventBuilder().WithEmote(SupplyUpEmoji).WithEvent(SupplyUp).Build();
                 ReactionEvent SupplyDownEvent = new ReactionEventBuilder().WithEmote(SupplyDownEmoji).WithEvent(SupplyDown).Build();
-                ReactionEvent AssetTwoEvent = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(EnableAssetTwo).Build();
-                ReactionEvent AssetThreeEvent = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(EnableAssetThree).Build();
+                ReactionEvent AssetTwoEvent = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(EnableAssetTwo).Build();
+                ReactionEvent AssetThreeEvent = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(EnableAssetThree).Build();
 
                 reactionService.reactionList.Add(DecreaseIntegrityEvent);
                 reactionService.reactionList.Add(IncreaseIntegrityEvent);
@@ -181,8 +179,8 @@ namespace TheOracle.StarForged.PlayerShips
                 await post.AddReactionAsync(IncreaseIntegrityEmoji);
                 if (ship.UseSupply) await post.AddReactionAsync(SupplyDownEmoji);
                 if (ship.UseSupply) await post.AddReactionAsync(SupplyUpEmoji);
-                await post.AddReactionAsync(twoEmoji);
-                await post.AddReactionAsync(threeEmoji);
+                await post.AddReactionAsync(GenericReactions.twoEmoji);
+                await post.AddReactionAsync(GenericReactions.threeEmoji);
             }).ConfigureAwait(false);
         }
 

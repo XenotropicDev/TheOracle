@@ -12,9 +12,9 @@ namespace TheOracle.StarForged.Planets
 {
     public class PlanetCommands : ModuleBase<SocketCommandContext>
     {
-        public const string oneEmoji = "\u0031\u20E3";
-        public const string twoEmoji = "\u0032\u20E3";
-        public const string threeEmoji = "\u0033\u20E3";
+        public Emoji lookEmoji = new Emoji("🔍");
+        public Emoji lifeEmoji = new Emoji("\U0001F996");
+        public Emoji biomeEmoji = new Emoji("\uD83C\uDF0D");
 
         public PlanetCommands(ServiceProvider services)
         {
@@ -25,13 +25,13 @@ namespace TheOracle.StarForged.Planets
                 hooks.PlanetReactions = true;
                 var reactionService = services.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(PlanetReactionHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(PlanetReactionHandler).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(PlanetReactionHandler).Build();
 
-                ReactionEvent look = new ReactionEventBuilder().WithEmoji("🔍").WithEvent(PlanetReactionHandler).Build();
-                ReactionEvent Life = new ReactionEventBuilder().WithEmoji("\U0001F996").WithEvent(PlanetReactionHandler).Build();
-                ReactionEvent biome = new ReactionEventBuilder().WithEmoji("\uD83C\uDF0D").WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent look = new ReactionEventBuilder().WithEmote(lookEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent Life = new ReactionEventBuilder().WithEmote(lifeEmoji).WithEvent(PlanetReactionHandler).Build();
+                ReactionEvent biome = new ReactionEventBuilder().WithEmote(biomeEmoji).WithEvent(PlanetReactionHandler).Build();
 
                 reactionService.reactionList.Add(reaction1);
                 reactionService.reactionList.Add(reaction2);
@@ -68,9 +68,9 @@ namespace TheOracle.StarForged.Planets
                         );
 
                 var msg = await ReplyAsync(embed: palceHolderEmbed.Build());
-                await msg.AddReactionAsync(new Emoji(oneEmoji));
-                await msg.AddReactionAsync(new Emoji(twoEmoji));
-                await msg.AddReactionAsync(new Emoji(threeEmoji));
+                await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                await msg.AddReactionAsync(GenericReactions.threeEmoji);
                 return;
             }
 
@@ -93,13 +93,12 @@ namespace TheOracle.StarForged.Planets
 
             _ = Task.Run(async () =>
             {
-                await message.AddReactionAsync(new Emoji("🔍"));
-                await message.AddReactionAsync(new Emoji("\U0001F996"));
+                await message.AddReactionAsync(lookEmoji);
+                await message.AddReactionAsync(lifeEmoji);
 
                 if (planet.NumberOfBiomes > 1)
                 {
-                    var biome = new Emoji("\uD83C\uDF0D");
-                    await message.AddReactionAsync(biome);
+                    await message.AddReactionAsync(biomeEmoji);
                 }
             }).ConfigureAwait(false);
         }
@@ -172,17 +171,17 @@ namespace TheOracle.StarForged.Planets
         private async Task PlanetReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsPlanetMessage(message)) return;
-            if (reaction.Emote.Name == "🔍") await CloserLook(message, channel, reaction, user).ConfigureAwait(false);
-            if (reaction.Emote.Name == "\U0001F996") await Life(message, channel, reaction, user).ConfigureAwait(false);
-            if (reaction.Emote.Name == "\uD83C\uDF0D") await Biome(message, channel, reaction, user).ConfigureAwait(false);
+            if (reaction.Emote.IsSameAs(lookEmoji)) await CloserLook(message, channel, reaction, user).ConfigureAwait(false);
+            if (reaction.Emote.IsSameAs(lifeEmoji)) await Life(message, channel, reaction, user).ConfigureAwait(false);
+            if (reaction.Emote.IsSameAs(biomeEmoji)) await Biome(message, channel, reaction, user).ConfigureAwait(false);
 
             if (message.Embeds.FirstOrDefault()?.Title.Contains(PlanetResources.PlanetHelperTitle) ?? false)
             {
                 string PlanetName = message.Embeds.First().Description;
 
-                if (reaction.Emote.Name == oneEmoji) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, channel.Id, message: message).ConfigureAwait(false);
-                if (reaction.Emote.Name == twoEmoji) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, channel.Id, message: message).ConfigureAwait(false);
-                if (reaction.Emote.Name == threeEmoji) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, channel.Id, message: message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, channel.Id, message: message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, channel.Id, message: message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, channel.Id, message: message).ConfigureAwait(false);
             }
 
             return;

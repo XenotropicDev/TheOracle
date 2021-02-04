@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -45,6 +46,7 @@ namespace TheOracle.BotCore
             else
                 return null;
         }
+
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
         {
             if (culture == default) culture = CultureInfo.CurrentCulture;
@@ -64,6 +66,47 @@ namespace TheOracle.BotCore
 
             var convertedValue = decimal.Parse(percentValue, NumberStyles.Currency, nfi);
             return convertedValue / 100m;
+        }
+
+        public static bool Contains(this IEmote source, IEmote[] emotesToCheck)
+        {
+            return emotesToCheck.Any(check => check.Name == source.Name);
+        }
+
+        public static bool Contains(this IEmote source, IEmote emoteToCheck)
+        {
+            return source.Name == emoteToCheck.Name;
+        }
+
+        public static bool IsSameAs(this IEmote source, IEmote emoteToCheck)
+        {
+            if (source.Name == emoteToCheck.Name) return true;
+
+            List<Tuple<IEmote, IEmote>> EmotesThatAreTheSame = new List<Tuple<IEmote, IEmote>>
+            {
+                new Tuple<IEmote, IEmote>(new Emoji("0️⃣"), new Emoji("\u0030\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("1️⃣"), new Emoji("\u0031\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("2️⃣"), new Emoji("\u0032\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("3️⃣"), new Emoji("\u0033\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("4️⃣"), new Emoji("\u0034\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("5️⃣"), new Emoji("\u0035\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("6️⃣"), new Emoji("\u0036\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("7️⃣"), new Emoji("\u0037\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("8️⃣"), new Emoji("\u0038\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("9️⃣"), new Emoji("\u0039\u20E3")),
+                new Tuple<IEmote, IEmote>(new Emoji("\\⏺️"), new Emoji("⏺️")),
+            };
+
+            foreach (var tuple in EmotesThatAreTheSame)
+            {
+                if ((source.Contains(tuple.Item1) || source.Contains(tuple.Item2)) && (emoteToCheck.Contains(tuple.Item1) || emoteToCheck.Contains(tuple.Item2))) return true;
+            }
+            return false;
+        }
+
+        public static bool IsSameAs(this IEmote source, string emoteToCheck)
+        {
+            return source.IsSameAs(new Emoji(emoteToCheck));
         }
 
         public static GameName GetGameContainedInString(string value)

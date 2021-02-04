@@ -14,12 +14,12 @@ namespace TheOracle.IronSworn.Delve
 {
     public class DelveCommands : InteractiveBase
     {
-        public const string DangerEmoji = "\u26A0";
-        public const string FeatureEmoji = "\uD83C\uDF40";
-        public const string DecreaseEmoji = "\u25C0";
-        public const string FullEmoji = "\u0023\u20E3";
-        public const string IncreaseEmoji = "\u25B6";
-        public const string RollEmoji = "\uD83C\uDFB2";
+        public Emoji DangerEmoji = new Emoji("\u26A0");
+        public Emoji FeatureEmoji = new Emoji("\uD83C\uDF40");
+        public Emoji DecreaseEmoji = new Emoji("\u25C0");
+        public Emoji FullEmoji = new Emoji("\u0023\u20E3");
+        public Emoji IncreaseEmoji = new Emoji("\u25B6");
+        public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
 
         public DelveCommands(IServiceProvider services)
         {
@@ -32,12 +32,12 @@ namespace TheOracle.IronSworn.Delve
             {
                 var reactionService = Services.GetRequiredService<ReactionService>();
 
-                ReactionEvent decrease = new ReactionEventBuilder().WithEmoji(DecreaseEmoji).WithEvent(ReactionDecreaseEvent).Build();
-                ReactionEvent increase = new ReactionEventBuilder().WithEmoji(IncreaseEmoji).WithEvent(ReactionIncreaseEvent).Build();
-                ReactionEvent fullMark = new ReactionEventBuilder().WithEmoji(FullEmoji).WithEvent(ReactionFullMarkEvent).Build();
-                ReactionEvent Danger = new ReactionEventBuilder().WithEmoji(DangerEmoji).WithEvent(ReactionDangerEvent).Build();
-                ReactionEvent Feature = new ReactionEventBuilder().WithEmoji(FeatureEmoji).WithEvent(ReactionFeatureEvent).Build();
-                ReactionEvent roll = new ReactionEventBuilder().WithEmoji(RollEmoji).WithEvent(ReactionLocateObjectiveEvent).Build();
+                ReactionEvent decrease = new ReactionEventBuilder().WithEmote(DecreaseEmoji).WithEvent(ReactionDecreaseEvent).Build();
+                ReactionEvent increase = new ReactionEventBuilder().WithEmote(IncreaseEmoji).WithEvent(ReactionIncreaseEvent).Build();
+                ReactionEvent fullMark = new ReactionEventBuilder().WithEmote(FullEmoji).WithEvent(ReactionFullMarkEvent).Build();
+                ReactionEvent Danger = new ReactionEventBuilder().WithEmote(DangerEmoji).WithEvent(ReactionDangerEvent).Build();
+                ReactionEvent Feature = new ReactionEventBuilder().WithEmote(FeatureEmoji).WithEvent(ReactionFeatureEvent).Build();
+                ReactionEvent roll = new ReactionEventBuilder().WithEmote(RollEmoji).WithEvent(ReactionLocateObjectiveEvent).Build();
 
                 reactionService.reactionList.Add(decrease);
                 reactionService.reactionList.Add(increase);
@@ -173,12 +173,12 @@ namespace TheOracle.IronSworn.Delve
             DelveInfo delve = builder.Build();
             await helperMessage.ModifyAsync(msg => { msg.Content = null; msg.Embed = delve.BuildEmbed() as Embed; });
 
-            await helperMessage.AddReactionAsync(new Emoji(DecreaseEmoji));
-            await helperMessage.AddReactionAsync(new Emoji(IncreaseEmoji));
-            await helperMessage.AddReactionAsync(new Emoji(FullEmoji));
-            await helperMessage.AddReactionAsync(new Emoji(FeatureEmoji));
-            await helperMessage.AddReactionAsync(new Emoji(DangerEmoji));
-            await helperMessage.AddReactionAsync(new Emoji(RollEmoji));
+            await helperMessage.AddReactionAsync(DecreaseEmoji);
+            await helperMessage.AddReactionAsync(IncreaseEmoji);
+            await helperMessage.AddReactionAsync(FullEmoji);
+            await helperMessage.AddReactionAsync(FeatureEmoji);
+            await helperMessage.AddReactionAsync(DangerEmoji);
+            await helperMessage.AddReactionAsync(RollEmoji);
         }
 
         private bool IsDelveMessage(IUserMessage message)

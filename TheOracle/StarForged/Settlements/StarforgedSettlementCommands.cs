@@ -16,9 +16,6 @@ namespace TheOracle.StarForged.Settlements
         public Emoji projectEmoji = new Emoji("\uD83D\uDEE0");
         public Emoji contactEmoji = new Emoji("☎️");
         public Emoji troubleEmoji = new Emoji("🔥");
-        public Emoji oneEmoji = new Emoji("\u0031\u20E3");
-        public Emoji twoEmoji = new Emoji("\u0032\u20E3");
-        public Emoji threeEmoji = new Emoji("\u0033\u20E3");
 
         public StarforgedSettlementCommands(IServiceProvider services)
         {
@@ -30,9 +27,9 @@ namespace TheOracle.StarForged.Settlements
 
                 var reactionService = services.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(oneEmoji).WithEvent(SettlementReactionHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(twoEmoji).WithEvent(SettlementReactionHandler).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(threeEmoji).WithEvent(SettlementReactionHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(SettlementReactionHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(SettlementReactionHandler).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(SettlementReactionHandler).Build();
 
                 ReactionEvent project = new ReactionEventBuilder().WithEmote(projectEmoji).WithEvent(ProjectReactionHandler).Build();
                 ReactionEvent contact = new ReactionEventBuilder().WithEmote(contactEmoji).WithEvent(ContactReactionHandler).Build();
@@ -148,9 +145,9 @@ namespace TheOracle.StarForged.Settlements
                 if (SettlementCommand.Length > 0) builder.WithFields(new EmbedFieldBuilder().WithName(SettlementResources.SettlementName).WithValue(SettlementCommand));
 
                 var msg = await ReplyAsync(embed: builder.Build());
-                await msg.AddReactionAsync(oneEmoji);
-                await msg.AddReactionAsync(twoEmoji);
-                await msg.AddReactionAsync(threeEmoji);
+                await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                await msg.AddReactionAsync(GenericReactions.threeEmoji);
                 return;
             }
 

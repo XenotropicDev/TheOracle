@@ -9,8 +9,8 @@ namespace TheOracle.GameCore.InitiativeTracker
 {
     public class InitiativeTrackerCommands : ModuleBase<SocketCommandContext>
     {
-        public const string AdvantageEmoji = "\u25C0";
-        public const string DisadvantageEmoji = "\u25B6";
+        public Emoji AdvantageEmoji = new Emoji("\u25C0");
+        public Emoji DisadvantageEmoji = new Emoji("\u25B6");
 
         public InitiativeTrackerCommands(ServiceProvider services)
         {
@@ -19,8 +19,8 @@ namespace TheOracle.GameCore.InitiativeTracker
             var hooks = Services.GetRequiredService<HookedEvents>();
             if (!hooks.InitiativeReactions)
             {
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(AdvantageEmoji).WithEvent(InitiativeReactionsHandler).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(DisadvantageEmoji).WithEvent(InitiativeReactionsHandler).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(AdvantageEmoji).WithEvent(InitiativeReactionsHandler).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(DisadvantageEmoji).WithEvent(InitiativeReactionsHandler).Build();
 
                 services.GetRequiredService<ReactionService>().reactionList.Add(reaction1);
                 services.GetRequiredService<ReactionService>().reactionList.Add(reaction2);
@@ -41,8 +41,8 @@ namespace TheOracle.GameCore.InitiativeTracker
             InitiativeTracker tracker = new InitiativeTracker(channelSettings);
             tracker.Description = Description;
             var msg = await ReplyAsync(embed: tracker.GetEmbedBuilder().Build());
-            await msg.AddReactionAsync(new Emoji(AdvantageEmoji));
-            await msg.AddReactionAsync(new Emoji(DisadvantageEmoji));
+            await msg.AddReactionAsync(AdvantageEmoji);
+            await msg.AddReactionAsync(DisadvantageEmoji);
 
             return;
         }
@@ -57,7 +57,7 @@ namespace TheOracle.GameCore.InitiativeTracker
 
             InitiativeTracker tracker = InitiativeTracker.FromMessage(message).WithChannelSettings(channelSettings);
 
-            if (reaction.Emote.Name == DisadvantageEmoji)
+            if (reaction.Emote.IsSameAs(DisadvantageEmoji))
             {
                 if (!tracker.Disadvantage.Contains(user.ToString()))
                 {
@@ -67,7 +67,7 @@ namespace TheOracle.GameCore.InitiativeTracker
                     return;
                 }
             }
-            if (reaction.Emote.Name == AdvantageEmoji)
+            if (reaction.Emote.IsSameAs(AdvantageEmoji))
             {
                 if (!tracker.Advantage.Contains(user.ToString()))
                 {

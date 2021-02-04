@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Asset" xml:space="preserve">
+    <value>Asset</value>
+  </data>
+  <data name="GameAssetFormat" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>{0} will be replaced with the game, and {1} will be replaced with the Asset value in this document</comment>
+  </data>
   <data name="UnknownAssetError" xml:space="preserve">
     <value>An asset name couldn't be found in the entered command</value>
   </data>

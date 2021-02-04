@@ -7,23 +7,18 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.Core;
 using TheOracle.GameCore.Action;
 
 namespace TheOracle.GameCore.ProgressTracker
 {
     public class ProgressTrackCommands : ModuleBase<SocketCommandContext>
     {
-        public const string DecreaseEmoji = "\u25C0";
-        public const string fiveEmoji = "\u0035\u20E3";
-        public const string fourEmoji = "\u0034\u20E3";
-        public const string FullEmoji = "\u0023\u20E3";
-        public const string IncreaseEmoji = "\u25B6";
-        public const string oldFullEmoji = "\u2714";
-        public const string oneEmoji = "\u0031\u20E3";
-        public const string RollEmoji = "\uD83C\uDFB2";
-        public const string threeEmoji = "\u0033\u20E3";
-        public const string twoEmoji = "\u0032\u20E3";
+        public Emoji DecreaseEmoji = new Emoji("\u25C0");
+
+        public Emoji FullEmoji = new Emoji("\u0023\u20E3");
+        public Emoji IncreaseEmoji = new Emoji("\u25B6");
+        public Emoji oldFullEmoji = new Emoji("\u2714");
+        public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
 
         public ProgressTrackCommands(IServiceProvider service)
         {
@@ -36,17 +31,17 @@ namespace TheOracle.GameCore.ProgressTracker
                 hooks.ProgressReactions = true;
                 var reactionService = Service.GetRequiredService<ReactionService>();
 
-                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmoji(oneEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmoji(twoEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmoji(threeEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmoji(fourEmoji).WithEvent(ProgressBuilderReactions).Build();
-                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmoji(fiveEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction1 = new ReactionEventBuilder().WithEmote(GenericReactions.oneEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction2 = new ReactionEventBuilder().WithEmote(GenericReactions.twoEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(GenericReactions.fourEmoji).WithEvent(ProgressBuilderReactions).Build();
+                ReactionEvent reaction5 = new ReactionEventBuilder().WithEmote(GenericReactions.fiveEmoji).WithEvent(ProgressBuilderReactions).Build();
 
-                ReactionEvent decrease = new ReactionEventBuilder().WithEmoji(DecreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
-                ReactionEvent increase = new ReactionEventBuilder().WithEmoji(IncreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
-                ReactionEvent fullMark2 = new ReactionEventBuilder().WithEmoji(oldFullEmoji).WithEvent(ProgressInteractiveReactions).Build();
-                ReactionEvent fullMark = new ReactionEventBuilder().WithEmoji(FullEmoji).WithEvent(ProgressInteractiveReactions).Build();
-                ReactionEvent roll = new ReactionEventBuilder().WithEmoji(RollEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent decrease = new ReactionEventBuilder().WithEmote(DecreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent increase = new ReactionEventBuilder().WithEmote(IncreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent fullMark2 = new ReactionEventBuilder().WithEmote(oldFullEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent fullMark = new ReactionEventBuilder().WithEmote(FullEmoji).WithEvent(ProgressInteractiveReactions).Build();
+                ReactionEvent roll = new ReactionEventBuilder().WithEmote(RollEmoji).WithEvent(ProgressInteractiveReactions).Build();
 
                 reactionService.reactionList.Add(reaction1);
                 reactionService.reactionList.Add(reaction2);
@@ -73,11 +68,11 @@ namespace TheOracle.GameCore.ProgressTracker
 
             await Task.Run(async () =>
             {
-                if (reaction.Emote.Name == oneEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == twoEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == threeEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == fourEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
-                if (reaction.Emote.Name == fiveEmoji) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Troublesome, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Dangerous, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Formidable, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Extreme, ThingToTrack, message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.fiveEmoji)) await BuildProgressTrackerPostAsync(ChallengeRank.Epic, ThingToTrack, message).ConfigureAwait(false);
             }).ConfigureAwait(false);
 
             return;
@@ -87,22 +82,22 @@ namespace TheOracle.GameCore.ProgressTracker
         {
             if (!ProgressTrackerInfo.IsProgressTrackerMessage(message)) return;
 
-            if (reaction.Emote.Name == DecreaseEmoji)
+            if (reaction.Emote.IsSameAs(DecreaseEmoji))
             {
                 DecreaseProgress(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
-            if (reaction.Emote.Name == IncreaseEmoji)
+            if (reaction.Emote.IsSameAs(IncreaseEmoji))
             {
                 IncreaseProgress(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
-            if (reaction.Emote.Name == oldFullEmoji || reaction.Emote.Name == FullEmoji)
+            if (reaction.Emote.IsSameAs(oldFullEmoji) || reaction.Emote.IsSameAs(FullEmoji))
             {
                 IncreaseProgressFullCheck(message);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
-            if (reaction.Emote.Name == RollEmoji)
+            if (reaction.Emote.IsSameAs(RollEmoji))
             {
                 var tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
                 var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Description}");
@@ -157,10 +152,10 @@ namespace TheOracle.GameCore.ProgressTracker
 
             _ = Task.Run(async () =>
             {
-                await messageToEdit.AddReactionAsync(new Emoji(DecreaseEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(IncreaseEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(FullEmoji));
-                await messageToEdit.AddReactionAsync(new Emoji(RollEmoji));
+                await messageToEdit.AddReactionAsync(DecreaseEmoji);
+                await messageToEdit.AddReactionAsync(IncreaseEmoji);
+                await messageToEdit.AddReactionAsync(FullEmoji);
+                await messageToEdit.AddReactionAsync(RollEmoji);
                 await messageToEdit.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
             }).ConfigureAwait(false);
 
@@ -175,22 +170,22 @@ namespace TheOracle.GameCore.ProgressTracker
                 .WithFields(new EmbedFieldBuilder()
                 {
                     Name = ProgressResources.Reactions,
-                    Value = $"{oneEmoji} = {ProgressResources.Troublesome}" +
-                            $"\n{twoEmoji} = {ProgressResources.Dangerous}" +
-                            $"\n{threeEmoji} = {ProgressResources.Formidable}" +
-                            $"\n{fourEmoji} = {ProgressResources.Extreme}" +
-                            $"\n{fiveEmoji} = {ProgressResources.Epic}"
+                    Value = $"{GenericReactions.oneEmoji} = {ProgressResources.Troublesome}" +
+                            $"\n{GenericReactions.twoEmoji} = {ProgressResources.Dangerous}" +
+                            $"\n{GenericReactions.threeEmoji} = {ProgressResources.Formidable}" +
+                            $"\n{GenericReactions.fourEmoji} = {ProgressResources.Extreme}" +
+                            $"\n{GenericReactions.fiveEmoji} = {ProgressResources.Epic}"
                 });
 
             var msg = await ReplyAsync(embed: embed.Build());
 
             _ = Task.Run(async () =>
             {
-                await msg.AddReactionAsync(new Emoji(oneEmoji));
-                await msg.AddReactionAsync(new Emoji(twoEmoji));
-                await msg.AddReactionAsync(new Emoji(threeEmoji));
-                await msg.AddReactionAsync(new Emoji(fourEmoji));
-                await msg.AddReactionAsync(new Emoji(fiveEmoji));
+                await msg.AddReactionAsync(GenericReactions.oneEmoji);
+                await msg.AddReactionAsync(GenericReactions.twoEmoji);
+                await msg.AddReactionAsync(GenericReactions.threeEmoji);
+                await msg.AddReactionAsync(GenericReactions.fourEmoji);
+                await msg.AddReactionAsync(GenericReactions.fiveEmoji);
             }).ConfigureAwait(false);
 
             return;
