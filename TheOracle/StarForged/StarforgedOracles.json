@@ -8,7 +8,7 @@
     "Type": "paired",
     "Pair": "Theme",
     "Game": "Starforged",
-    "Category": "Interpretative Oracles",
+    "Category": "Prompt Oracles",
     "Aliases": [
       "Star Action"
     ],
@@ -424,7 +424,7 @@
     "Type": "paired",
     "Pair": "Action",
     "Game": "Starforged",
-    "Category": "Interpretative Oracles",
+    "Category": "Prompt Oracles",
     "Aliases": [
       "Star Theme"
     ],
@@ -840,7 +840,7 @@
     "Type": "paired",
     "Pair": "Focus",
     "Game": "Starforged",
-    "Category": "Interpretative Oracles",
+    "Category": "Prompt Oracles",
     "Aliases": [
       "Desc",
       "Star Desc"
@@ -1257,7 +1257,7 @@
     "Type": "paired",
     "Pair": "Descriptor",
     "Game": "Starforged",
-    "Category": "Interpretative Oracles",
+    "Category": "Prompt Oracles",
     "Aliases": [
       "Star Focus"
     ],
@@ -1674,7 +1674,7 @@
       "sst"
     ],
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 20,
@@ -1728,7 +1728,7 @@
       "sso"
     ],
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 24,
@@ -1782,7 +1782,7 @@
       "sse"
     ],
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 24,
@@ -1833,7 +1833,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 20,
@@ -1896,7 +1896,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 40,
@@ -1940,7 +1940,7 @@
       "Asteroids"
     ],
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 25,
@@ -1965,7 +1965,7 @@
     "Type": "paired",
     "Pair": "Asteroid Type",
     "Game": "Starforged",
-    "Category": "Space Oracles",
+    "Category": "Location Oracles",
     "Oracles": [
       {
         "Chance": 40,
@@ -4177,7 +4177,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship Type",
       "Starship Types"
@@ -4295,7 +4295,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship Fleet",
       "Starship Fleet"
@@ -4342,7 +4342,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship Contact",
       "Starship Contact"
@@ -4405,7 +4405,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship First Look",
       "Ship Look"
@@ -4508,7 +4508,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship Mission Terminus",
       "Terminus Mission"
@@ -4651,7 +4651,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship Mission Outlands",
       "Outlands Mission"
@@ -4794,7 +4794,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Aliases": [
       "Ship Mission Expanse",
       "Expanse Mission"
@@ -4937,7 +4937,7 @@
       "Version": "091420"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "d": "200",
     "Aliases": [
       "Ship Name"
@@ -7168,7 +7168,7 @@
       "Page": "27"
     },
     "Game": "Starforged",
-    "Category": "Oracles",
+    "Category": "Background Oracles",
     "Oracles": [
       {
         "Chance": 7,
@@ -7236,7 +7236,7 @@
       "Page": "29"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Oracles": [
       {
         "Chance": 8,
@@ -7296,7 +7296,7 @@
       "Page": "30"
     },
     "Game": "Starforged",
-    "Category": "Ship Oracles",
+    "Category": "Starship Oracles",
     "Oracles": [
       {
         "Chance": 5,
@@ -7388,7 +7388,7 @@
       "Page": "47"
     },
     "Game": "Starforged",
-    "Category": "Campaign Oracles",
+    "Category": "Background Oracles",
     "Oracles": [
       {
         "Chance": 5,
@@ -7480,7 +7480,7 @@
       "Page": "55"
     },
     "Game": "Starforged",
-    "Category": "Campaign Oracles",
+    "Category": "Background Oracles",
     "Oracles": [
       {
         "Chance": 5,
@@ -7571,7 +7571,7 @@
       "URL": "https://discord.com/channels/751199753433514076/751199754293084192/805876140035145769"
     },
     "Game": "Starforged",
-    "Category": "Danger and Oppurtunity Oracles",
+    "Category": "Danger and Opportunity Oracles",
     "Oracles": [
       {
         "Chance": 3,
