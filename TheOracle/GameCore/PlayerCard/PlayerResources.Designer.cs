@@ -70,6 +70,15 @@ namespace TheOracle.GameCore.PlayerCard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} burned their momentum ({1}).
+        /// </summary>
+        internal static string BurnMomentumMessage {
+            get {
+                return ResourceManager.GetString("BurnMomentumMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Debilities.
         /// </summary>
         internal static string Debilities {

@@ -104,10 +104,12 @@ namespace TheOracle.GameCore.PlayerCard
 
             var cs = await ChannelSettings.GetChannelSettingsAsync(channel.Id);
             var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
+            int startingMomentum = player.Momentum;
             player.Momentum = 2 - player.Debilities;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            await message.ReplyAsync(String.Format(PlayerResources.BurnMomentumMessage, player.Name, startingMomentum));
         }
 
         private async Task HelperReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)

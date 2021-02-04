@@ -120,6 +120,10 @@
   <data name="ActiveStat" xml:space="preserve">
     <value>Active Stat</value>
   </data>
+  <data name="BurnMomentumMessage" xml:space="preserve">
+    <value>{0} burned their momentum ({1})</value>
+    <comment>{0} is the name from the player card, and {1} is the amount being burned</comment>
+  </data>
   <data name="Debilities" xml:space="preserve">
     <value>Debilities</value>
   </data>

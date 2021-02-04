@@ -1,8 +1,7 @@
 ﻿using Discord;
-using Discord.WebSocket;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using TheOracle.BotCore;
 
 namespace TheOracle.GameCore.PlayerCard
@@ -28,6 +27,7 @@ namespace TheOracle.GameCore.PlayerCard
         public int Debilities { get; set; } = 0;
         public ChannelSettings ChannelSettings { get; internal set; }
         public string DescriptionField { get; private set; }
+        public string StatsField { get; private set; }
 
         public Player()
         {
@@ -48,8 +48,12 @@ namespace TheOracle.GameCore.PlayerCard
             builder.WithTitle(Name);
             builder.WithThumbnailUrl(AvatarUrl);
             if (DescriptionField?.Length > 0) builder.WithDescription(DescriptionField);
+            
             builder.WithAuthor(PlayerResources.PlayerCardTitle);
-            builder.AddField(PlayerResources.Stats, statsString, false);
+
+            if (StatsField?.Length > 0) builder.AddField(PlayerResources.Stats, StatsField, false); 
+            else builder.AddField(PlayerResources.Stats, statsString, false);
+
             builder.AddField(PlayerResources.Health, Health, true);
             builder.AddField(PlayerResources.Spirit, Spirit, true);
             builder.AddField(PlayerResources.Supply, Supply, true);
@@ -74,19 +78,21 @@ namespace TheOracle.GameCore.PlayerCard
 
             this.AvatarUrl = embed.Thumbnail?.Url;
 
-            embed.Fields.First(fld => fld.Name == PlayerResources.Stats).Value.UndoFormatString(PlayerResources.StatsFormat, out string[] statsValues, true);
+            var stats = Regex.Matches(embed.Fields.FirstOrDefault(fld => fld.Name == PlayerResources.Stats).Value, @"\d+");
+            if (stats.Count >= 5)
+            {
+                int.TryParse(stats[0].Value, out int edge);
+                int.TryParse(stats[1].Value, out int heart);
+                int.TryParse(stats[2].Value, out int iron);
+                int.TryParse(stats[3].Value, out int shadow);
+                int.TryParse(stats[4].Value, out int wits);
 
-            if (!int.TryParse(statsValues[1], out int edge)) throw new ArgumentException($"{statsValues[0]} is in an unknown format {statsValues[1]}");
-            if (!int.TryParse(statsValues[3], out int heart)) throw new ArgumentException($"{statsValues[2]} is in an unknown format {statsValues[3]}");
-            if (!int.TryParse(statsValues[5], out int iron)) throw new ArgumentException($"{statsValues[4]} is in an unknown format {statsValues[5]}");
-            if (!int.TryParse(statsValues[7], out int shadow)) throw new ArgumentException($"{statsValues[6]} is in an unknown format {statsValues[7]}");
-            if (!int.TryParse(statsValues[9], out int wits)) throw new ArgumentException($"{statsValues[8]} is in an unknown format {statsValues[9]}");
-
-            Edge = edge;
-            Heart = heart;
-            Iron = iron;
-            Shadow = shadow;
-            Wits = wits;
+                Edge = edge;
+                Heart = heart;
+                Iron = iron;
+                Shadow = shadow;
+                Wits = wits;
+            }
 
             if (!int.TryParse(embed.Fields.First(fld => fld.Name == PlayerResources.Health).Value, out int health)) throw new ArgumentException($"Unknown value for {PlayerResources.Health}");
             if (!int.TryParse(embed.Fields.First(fld => fld.Name == PlayerResources.Spirit).Value, out int spirit)) throw new ArgumentException($"Unknown value for {PlayerResources.Spirit}");
@@ -99,6 +105,7 @@ namespace TheOracle.GameCore.PlayerCard
             Momentum = momentum;
 
             DescriptionField = embed.Description;
+            StatsField = embed.Fields.FirstOrDefault(fld => fld.Name == PlayerResources.Stats).Value;
 
             EmbedField? debilityField = embed.Fields.FirstOrDefault(fld => fld.Name.Equals(PlayerResources.Debilities) || fld.Name.Equals(PlayerResources.StarforgedDebilities));
             if (debilityField.HasValue && int.TryParse(debilityField.Value.Value, out int debilities))
