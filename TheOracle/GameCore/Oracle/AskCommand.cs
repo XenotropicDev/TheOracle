@@ -40,14 +40,14 @@ namespace TheOracle.GameCore.Oracle
             //Todo turn this into a localization friendly data structure
             ChanceLookUp = new List<Tuple<string, int>>
             {
-                new Tuple<string, int>(OracleResources.AlmostCertain, 90),
-                new Tuple<string, int>("Certain", 90),
-                new Tuple<string, int>(OracleResources.Likely, 75 ),
+                new Tuple<string, int>(OracleResources.AlmostCertain, 10),
+                new Tuple<string, int>("Certain", 10),
+                new Tuple<string, int>(OracleResources.Likely, 25 ),
                 new Tuple<string, int>(OracleResources.FiftyFifty, 50 ),
                 new Tuple<string, int>("5050", 50 ),
-                new Tuple<string, int>(OracleResources.Unlikely, 25 ),
-                new Tuple<string, int>(OracleResources.SmallChance, 10 ),
-                new Tuple<string, int>("Small", 10 ),
+                new Tuple<string, int>(OracleResources.Unlikely, 75 ),
+                new Tuple<string, int>(OracleResources.SmallChance, 90 ),
+                new Tuple<string, int>("Small", 90 ),
             };
         }
 
@@ -59,11 +59,11 @@ namespace TheOracle.GameCore.Oracle
             {
                 await message.RemoveAllReactionsAsync();
 
-                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(90, OracleResources.AlmostCertain); msg.Embed = null; });
-                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(75, OracleResources.Likely); msg.Embed = null; });
-                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(50, OracleResources.FiftyFifty); msg.Embed = null; });
-                if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(25, OracleResources.Unlikely); msg.Embed = null; });
-                if (reaction.Emote.IsSameAs(GenericReactions.fiveEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithChance(10, OracleResources.SmallChance); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithValue(10, OracleResources.AlmostCertain); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithValue(25, OracleResources.Likely); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithValue(50, OracleResources.FiftyFifty); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithValue(75, OracleResources.Unlikely); msg.Embed = null; });
+                if (reaction.Emote.IsSameAs(GenericReactions.fiveEmoji)) await message.ModifyAsync(msg => { msg.Content = AskTheOracleWithValue(90, OracleResources.SmallChance); msg.Embed = null; });
             });
 
             return;
@@ -90,7 +90,7 @@ namespace TheOracle.GameCore.Oracle
             var lookupResult = ChanceLookUp.OrderByDescending(tup => tup.Item1.Length).ToList().Find(chance => Likelihood.Contains(chance.Item1, StringComparison.OrdinalIgnoreCase));
             if (lookupResult != null)
             {
-                await ReplyAsync(AskTheOracleWithChance(lookupResult.Item2, lookupResult.Item1));
+                await ReplyAsync(AskTheOracleWithValue(lookupResult.Item2, lookupResult.Item1));
                 return;
             }
 
@@ -109,10 +109,17 @@ namespace TheOracle.GameCore.Oracle
             return;
         }
 
-        private string AskTheOracleWithChance(int chance, string descriptor = "")
+        private string AskTheOracleWithChance(int chance)
         {
             int roll = BotRandom.Instance.Next(1, 101);
-            string result = (roll > chance) ? OracleResources.No : OracleResources.Yes;
+            string result = (roll >= 100 - chance) ? OracleResources.Yes : OracleResources.No;
+            return $"You rolled {roll} {OracleResources.Verus} {chance}% chance\n**{result}**.";
+        }
+
+        private string AskTheOracleWithValue(int chance, string descriptor)
+        {
+            int roll = BotRandom.Instance.Next(1, 101);
+            string result = (roll < chance) ? OracleResources.No : OracleResources.Yes;
             if (descriptor.Length > 0) descriptor = $" ({descriptor.Trim()})";
             return $"{OracleResources.AskResult} {roll} {OracleResources.Verus} **{chance}**{descriptor}\n**{result}**.";
         }
