@@ -25,9 +25,14 @@ namespace TheOracle.BotCore
             var builder = message.Embeds.First().ToEmbedBuilder();
 
             var descNames = GenericCommandResources.DescriptionNames.Split(',');
+            var titleNames = GenericCommandResources.TitleNames.Split(',');
             if (descNames.Any(desc => desc.Trim().Equals(FieldName, StringComparison.OrdinalIgnoreCase)))
             {
                 builder.WithDescription(FieldValue);
+            }
+            else if (titleNames.Any(desc => desc.Trim().Equals(FieldName, StringComparison.OrdinalIgnoreCase)))
+            {
+                builder.WithTitle(FieldValue);
             }
             else
             {

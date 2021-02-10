@@ -95,5 +95,14 @@ namespace TheOracle.BotCore {
                 return ResourceManager.GetString("DescriptionNames", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string TitleNames {
+            get {
+                return ResourceManager.GetString("TitleNames", resourceCulture);
+            }
+        }
     }
 }

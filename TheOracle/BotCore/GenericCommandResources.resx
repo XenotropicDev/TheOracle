@@ -130,4 +130,8 @@
     <value>Description, Desc</value>
     <comment>Case-insensitive, seperate each entry by a comma. A match for any of these will always edit the embed's description field.</comment>
   </data>
+  <data name="TitleNames" xml:space="preserve">
+    <value>Title</value>
+    <comment>Case-insensitive, seperate each entry by a comma. A match for any of these will always edit the embed's title field.</comment>
+  </data>
 </root>
