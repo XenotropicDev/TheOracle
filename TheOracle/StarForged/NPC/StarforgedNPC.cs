@@ -156,7 +156,7 @@ namespace TheOracle.StarForged.NPC
 
         public bool IsStarNPC(IUserMessage message)
         {
-            var embed = message.Embeds.FirstOrDefault();
+            var embed = message?.Embeds?.FirstOrDefault();
             if (embed == null) return false;
 
             return (embed.Title.Contains(NPCResources.NPCTitle) && embed.Footer.HasValue && embed.Footer.Value.Text.Contains(GameName.Starforged.ToString(), StringComparison.OrdinalIgnoreCase));
