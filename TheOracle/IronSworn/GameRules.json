@@ -20,19 +20,21 @@
           },
           "Aliases": [
             "face",
-            "danger"
+            "danger",
+            "FD"
           ],
           "Text": "When **you attempt something risky or react to an imminent threat**, envision your action and roll. If you act...\n  • With speed, agility, or precision: Roll +edge.\n  • With charm, loyalty, or courage: Roll +heart.\n  • With aggressive action, forceful defense, strength, or endurance: Roll +iron.\n  • With deception, stealth, or trickery: Roll +shadow.\n  • With expertise, insight, or observation: Roll +wits.\n\nOn a **strong hit**, you are successful. Take +1 momentum.\n\nOn a **weak hit**, you succeed, but face a troublesome cost. Choose one.\n  • You are delayed, lose advantage, or face a new danger: Suffer -1 momentum.\n  • You are tired or hurt: _Endure Harm_ (1 harm).\n  • You are dispirited or afraid: _Endure Stress_ (1 stress).\n  • You sacrifice resources: Suffer -1 supply.\n\nOn a **miss**, you fail, or your progress is undermined by a dramatic and costly turn of events. _Pay the Price_."
         },
         {
-          "Name": "Secure An Advantage",
+          "Name": "Secure an Advantage",
           "Source": {
             "Name": "Ironsworn Rulebook",
             "Page": "61"
           },
           "Aliases": [
             "secure",
-            "advantage"
+            "advantage",
+            "SaA"
           ],
           "Text": "When **you assess a situation, make preparations, or attempt to gain leverage**, envision your action and roll. If you act...\n  • With speed, agility, or precision: Roll +edge.\n  • With charm, loyalty, or courage: Roll +heart.\n  • With aggressive action, forceful defense, strength, or endurance: Roll +iron.\n  • With deception, stealth, or trickery: Roll +shadow.\n  • With expertise, insight, or observation: Roll +wits.\n\nOn a **strong hit**, you gain advantage. Choose one.\n  • Take control: Make another move now (not a _progress move_), and add +1.\n  • Prepare to act: Take +2 momentum.\n\nOn a **weak hit**, your advantage is short-lived. Take +1 momentum.\n\nOn a **miss**, you fail or your assumptions betray you. _Pay the Price_."
         },
@@ -45,7 +47,8 @@
           "Aliases": [
             "info",
             "gather",
-            "information"
+            "information",
+            "GI"
           ],
           "Text": "When **you search an area, ask questions, conduct an investigation, or follow a track**, roll +wits. If you act within a community or ask questions of a person with whom you share a bond, add +1.\n\nOn a **strong hit**, you discover something helpful and specific. The path you must follow or action you must take to make progress is made clear. Envision what you learn (_Ask the Oracle_ if unsure), and take +2 momentum.\n\nOn a **weak hit**, the information complicates your quest or introduces a new danger. Envision what you discover (_Ask the Oracle_ if unsure), and take +1 momentum.\n\nOn a **miss**, your investigation unearths a dire threat or reveals an unwelcome truth that undermines your quest. _Pay the Price_."
         },
@@ -84,7 +87,9 @@
           },
           "Aliases": [
             "journey",
-            "undertake"
+            "undertake",
+            "travel",
+            "UaJ"
           ],
           "Text": "When **you travel across hazardous or unfamiliar lands**, set the rank of your journey.\n  • Troublesome journey: 3 progress per waypoint.\n  • Dangerous journey: 2 progress per waypoint.\n  • Formidable journey: 1 progress per waypoint.\n  • Extreme journey: 2 ticks per waypoint.\n  • Epic journey: 1 tick per waypoint.  \nThen, for each segment of your journey, roll +wits. If you are setting off from a community with which you share a bond, add +1 to your initial roll.\n\nOn a **strong hit**, you reach a waypoint. If the waypoint is unknown to you, envision it (_Ask the Oracle_ if unsure). Then, choose one.\n  • You make good use of your resources: Mark progress.\n  • You move at speed: Mark progress and take +1 momentum, but suffer -1 supply.\n\nOn a **weak hit**, you reach a waypoint and mark progress, but suffer -1 supply.\n\nOn a **miss**, you are waylaid by a perilous event. _Pay the Price_."
         },
@@ -96,7 +101,8 @@
           },
           "Aliases": [
             "dest",
-            "arrive"
+            "arrive",
+            "RYD"
           ],
           "Text": "_Progress Move_\nWhen **your journey comes to an end**, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\n\nOn a **strong hit**, the situation at your destination favors you. Choose one.\n  • Make another move now (not a _progress move_), and add +1.\n  • Take +1 momentum.\n\nOn a **weak hit**, you arrive but face an unforeseen hazard or complication. Envision what you find (_Ask the Oracle_ if unsure).\n\nOn a **miss**, you have gone hopelessly astray, your objective is lost to you, or you were misled about your destination. If your journey continues, clear all but one filled progress, and raise the journey’s rank by one (if not already epic)."
         }
@@ -109,7 +115,7 @@
         "Page": "69"
       },
       "Aliases": [
-        "Relationship",
+        "relationship",
         "rm"
       ],
       "Game": "Ironsworn",
@@ -138,18 +144,21 @@
           },
           "Aliases": [
             "draw",
-            "circle"
+            "circle",
+            "duel",
+            "DtC"
           ],
           "Text": "When **you challenge someone to a formal duel, or accept a challenge**, roll +heart. If you share a bond with this community, add +1.\n\nOn a **strong hit**, take +1 momentum. You may also choose up to two boasts and take +1 momentum for each.\n\nOn a **weak hit**, you may choose one boast in exchange for +1 momentum.\n  • Grant first strike: Your foe has initiative.\n  • Bare yourself: Take no benefit of armor or shield; your foe’s harm is +1.\n  • Hold no iron: Take no benefit of weapons; your harm is 1.\n  • Bloody yourself: _Endure Harm_ (1 harm).\n  • To the death: One way or another, this fight must end with death.\n\nOn a **miss**, you begin the duel at a disadvantage. Your foe has initiative. _Pay the Price_. Then, make moves to resolve the fight. If you are the victor, you may make a lawful demand, and your opponent must comply or forfeit their honor and standing. If you refuse the challenge, surrender, or are defeated, they make a demand of you."
         },
         {
-          "Name": "Forge A Bond",
+          "Name": "Forge a Bond",
           "Source": {
             "Name": "Ironsworn Rulebook",
             "Page": "74"
           },
           "Aliases": [
-            "forge"
+            "forge",
+            "FaB"
           ],
           "Text": "When **you spend significant time with a person or community, stand together to face hardships, or make sacrifices for their cause**, you can attempt to create a bond. When you do, roll +heart. If you make this move after you successfully _Fulfill Your Vow_ to their benefit, you may reroll any dice.\n\nOn a **strong hit**, make note of the bond, mark a tick on your bond progress track, and choose one.\n  • Take +1 spirit.\n  • Take +2 momentum.\n\nOn a **weak hit**, they ask something more of you first. Envision what it is (_Ask the Oracle_ if unsure), do it (or _Swear an Iron Vow_), and mark the bond. If you refuse or fail, _Pay the Price_.\n\nOn a **miss**, they reject you. _Pay the Price_."
         },
@@ -160,7 +169,8 @@
             "Page": "75"
           },
           "Aliases": [
-            "test"
+            "test",
+            "TYB"
           ],
           "Text": "When **your bond is tested through conflict, betrayal, or circumstance**, roll +heart.\n\nOn a **strong hit**, this test has strengthened your bond. Choose one.\n  • Take +1 spirit.\n  • Take +2 momentum.\n\nOn a **weak hit**, your bond is fragile and you must prove your loyalty. Envision what they ask of you (_Ask the Oracle_ if unsure), and do it (or _Swear an Iron Vow_). If you refuse or fail, clear the bond and _Pay the Price_.\n\nOn a **miss**, or if you have no interest in maintaining this relationship, clear the bond and _Pay the Price_."
         },
@@ -171,7 +181,8 @@
             "Page": "76"
           },
           "Aliases": [
-            "aid"
+            "aid",
+            "AYA"
           ],
           "Text": "When **you _Secure an Advantage_ in direct support of an ally**, and score a hit, they (instead of you) can take the benefits of the move. If you are in combat and score a strong hit, you and your ally have initiative."
         },
@@ -183,7 +194,8 @@
           },
           "Aliases": [
             "write",
-            "Epilogue"
+            "epilogue",
+            "WYE"
           ],
           "Text": "_Progress Move_\nWhen **you retire from your life as Ironsworn**, envision two things: What you hope for, and what you fear. Then, roll the challenge dice and compare to your bonds. Momentum is ignored on this roll.\n\nOn a **strong hit**, things come to pass as you hoped.\n\nOn a **weak hit**, your life takes an unexpected turn, but not necessarily for the worse. You find yourself spending your days with someone or in a place you did not foresee. Envision it (_Ask the Oracle_ if unsure).\n\nOn a **miss**, your fears are realized. "
         }
@@ -202,14 +214,15 @@
       "Game": "Ironsworn",
       "Moves": [
         {
-          "Name": "Enter The Fray",
+          "Name": "Enter the Fray",
           "Source": {
             "Name": "Ironsworn Rulebook",
             "Page": "78"
           },
           "Aliases": [
             "enter",
-            "fray"
+            "fray",
+            "ETF"
           ],
           "Text": "When **you enter into combat**, set the rank of each of your foes.\n  • Troublesome foe: 3 progress per harm; inflicts 1 harm.\n  • Dangerous foe: 2 progress per harm; inflicts 2 harm.\n  • Formidable foe: 1 progress per harm; inflicts 3 harm.\n  • Extreme foe: 2 ticks per harm; inflicts 4 harm.\n  • Epic foe: 1 tick per harm; inflicts 5 harm. Then, roll to determine who is in control. If you are...\n  • Facing off against your foe: Roll +heart.\n  • Moving into position against an unaware foe, or striking without warning: Roll +shadow.\n  • Ambushed: Roll +wits.\n\nOn a **strong hit**, take +2 momentum. You have initiative.\n\nOn a **weak hit**, choose one.\n  • Bolster your position: Take +2 momentum.\n  • Prepare to act: Take initiative.\n\nOn a **miss**, combat begins with you at a disadvantage. _Pay the Price_. Your foe has initiative."
         },
@@ -237,7 +250,8 @@
           },
           "Aliases": [
             "turn",
-            "tide"
+            "tide",
+            "TtT"
           ],
           "Text": "Once per fight, when you **risk it all**, you may steal initiative from your foe to make a move (not a _progress move_). When you do, add +1 and take +1 momentum on a hit. If you fail to score a hit on that move, you must suffer a dire outcome. _Pay the Price_."
         },
@@ -269,7 +283,7 @@
         "Page": "90"
       },
       "Aliases": [
-        "Suffer",
+        "suffer",
         "sm"
       ],
       "Game": "Ironsworn",
@@ -281,7 +295,8 @@
             "Page": "91"
           },
           "Aliases": [
-            "harm"
+            "harm",
+            "EH"
           ],
           "Text": "When **you face physical damage**, suffer -health equal to your foe’s rank or as appropriate to the situation. If your health is 0, suffer -momentum equal to any remaining -health. Then, roll +health or +iron, whichever is higher.\n\nOn a **strong hit**, choose one.\n  • Shake it off: If your health is greater than 0, suffer -1 momentum in exchange for +1 health.\n  • Embrace the pain: Take +1 momentum.\n\nOn a **weak hit**, you press on.\n\nOn a **miss**, also suffer -1 momentum. If you are at 0 health, you must mark wounded or maimed (if currently unmarked) or roll on the following table. ```Roll \tResult\n1-10 \tThe harm is mortal. Face Death.\n11-20\tYou are dying. You need to Heal within an hour or two, or Face Death.\n21-35\tYou are unconscious and out of action. If left alone, you come back to your senses in an hour or two. If you are vulnerable to a foe not inclined to show mercy, Face Death.\n36-50\tYou are reeling and fighting to stay conscious. If you engage in any vigorous activity (such as running or fighting) before taking a breather for a few minutes, roll on this table again (before resolving the other move).\n51-00\tYou are battered but still standing.```"
         },
@@ -302,6 +317,10 @@
             "Name": "Ironsworn Rulebook",
             "Page": "94"
           },
+          "Aliases": [
+            "companion",
+            "CEH"
+          ],
           "Text": "When **your companion faces physical damage**, they suffer -health equal to the amount of harm inflicted. If your companion’s health is 0, exchange any leftover -health for -momentum. Then, roll +heart or +your companion’s health, whichever is higher.\n\nOn a **strong hit**, your companion rallies. Give them +1 health.\n\nOn a **weak hit**, your companion is battered. If their health is 0, they cannot assist you until they gain at least +1 health.\n\nOn a **miss**, also suffer -1 momentum. If your companion’s health is 0, they are gravely wounded and out of action. Without aid, they die in an hour or two. If you roll a miss with a 1 on your action die, and your companion’s health is 0, they are now dead. Take 1 experience for each marked ability on your companion asset, and remove it."
         },
         {
@@ -311,7 +330,8 @@
             "Page": "95"
           },
           "Aliases": [
-            "stress"
+            "stress",
+            "ES"
           ],
           "Text": "When **you face mental shock or despair**, suffer -spirit equal to your foe’s rank or as appropriate to the situation. If your spirit is 0, suffer -momentum equal to any remaining -spirit. Then, roll +spirit or +heart, whichever is higher.\n\nOn a **strong hit**, choose one.\n  • Shake it off: If your spirit is greater than 0, suffer -1 momentum in exchange for +1 spirit\n  • Embrace the darkness: Take +1 momentum\nOn a **weak hit**, you press on.\n\nOn a **miss**, also suffer -1 momentum. If you are at 0 spirit, you must mark shaken or corrupted (if currently unmarked) or roll on the following table. Roll Result```\n1-10\tYou are overwhelmed. Face Desolation.\n11-25\tYou give up. _Forsake Your Vow_ (if possible, one relevant to your current crisis).\n26-50\tYou give in to a fear or compulsion, and act against your better instincts.\n51-00\tYou persevere.```"
         },
@@ -334,7 +354,8 @@
             "Page": "97"
           },
           "Aliases": [
-            "supply"
+            "supply",
+            "OoS"
           ],
           "Text": "When **your supply is exhausted** (reduced to 0), mark unprepared. If you suffer additional -supply while unprepared, you must exchange each additional -supply for any combination of -health, -spirit or -momentum as appropriate to the circumstances."
         },
@@ -345,8 +366,9 @@
             "Page": "97"
           },
           "Aliases": [
-            "face",
-            "setback"
+            "momentum",
+            "setback",
+            "FaS"
           ],
           "Text": "When **your momentum is at its minimum** (-6), and you suffer additional -momentum, choose one.\n  • Exchange each additional -momentum for any combination of -health, -spirit, or -supply as appropriate to the circumstances.\n  • Envision an event or discovery (_Ask the Oracle_ if unsure) which undermines your progress in a current quest, journey or fight. Then, for each additional -momentum, clear 1 unit of progress on that track per its rank (troublesome=clear 3 progress; dangerous=clear 2 progress; formidable=clear 1 progress; extreme=clear 2 ticks; epic=clear 1 tick)."
         }
@@ -359,6 +381,9 @@
         "Page": "98"
       },
       "Aliases": [
+        "vows",
+        "vow Moves",
+        "quests",
         "quest",
         "qm"
       ],
@@ -371,8 +396,10 @@
             "Page": "98"
           },
           "Aliases": [
-            "Swear",
-            "vow"
+            "iron vow",
+            "swear",
+            "vow",
+            "SaIV"
           ],
           "Text": "When **you swear upon iron to complete a quest**, write your vow and give the quest a rank. Then, roll +heart. If you make this vow to a person or community with whom you share a bond, add +1.\n\nOn a **strong hit**, you are emboldened and it is clear what you must do next (_Ask the Oracle_ if unsure). Take +2 momentum.\n\nOn a **weak hit**, you are determined but begin your quest with more questions than answers. Take +1 momentum, and envision what you do to find a path forward.\n\nOn a **miss**, you face a significant obstacle before you can begin your quest. Envision what stands in your way (_Ask the Oracle_ if unsure), and choose one.\n  • You press on: Suffer -2 momentum, and do what you must to overcome this obstacle.\n  • You give up: _Forsake Your Vow_."
         },
@@ -383,7 +410,8 @@
             "Page": "100"
           },
           "Aliases": [
-            "Milestone"
+            "milestone",
+            "RaM"
           ],
           "Text": "When **you make significant progress in your quest by overcoming a critical obstacle, completing a perilous journey, solving a complex mystery, defeating a powerful threat, gaining vital support, or acquiring a crucial item**, you may mark progress.\n  • Troublesome quest: Mark 3 progress.\n  • Dangerous quest: Mark 2 progress.\n  • Formidable quest: Mark 1 progress.\n  • Extreme quest: Mark 2 ticks.\n  • Epic quest: Mark 1 tick."
         },
@@ -394,7 +422,8 @@
             "Page": "101"
           },
           "Aliases": [
-            "Fulfill"
+            "fulfill",
+            "FYV"
           ],
           "Text": "_Progress Move_\nWhen **you achieve what you believe to be the fulfillment of your vow**, roll the challenge dice and compare to your progress. Momentum is ignored on this roll.\n\nOn a **strong hit**, your quest is complete. Mark experience (troublesome=1; dangerous=2; formidable=3; extreme=4; epic=5).\n\nOn a **weak hit**, there is more to be done or you realize the truth of your quest. Envision what you discover (_Ask the Oracle_ if unsure). Then, mark experience (troublesome=0; dangerous=1; formidable=2; extreme=3; epic=4). You may _Swear an Iron Vow_ to set things right. If you do, add +1.\n\nOn a **miss**, your quest is undone. Envision what happens (_Ask the Oracle_ if unsure), and choose one.\n  • You recommit: Clear all but one filled progress, and raise the quest’s rank by one (if not already epic).\n  • You give up: _Forsake Your Vow_."
         },
@@ -405,7 +434,7 @@
             "Page": "102"
           },
           "Aliases": [
-            "Forsake"
+            "forsake"
           ],
           "Text": "When **you renounce your quest, betray your promise, or the goal is lost to you**, clear the vow and _Endure Stress_. You suffer -spirit equal to the rank of your quest (troublesome=1; dangerous=2; formidable=3; extreme=4; epic=5). If the vow was made to a person or community with whom you share a bond, Test Your Bond when you next meet."
         },
@@ -426,7 +455,7 @@
         "Page": "104"
       },
       "Aliases": [
-        "Fate",
+        "fate",
         "fm"
       ],
       "Game": "Ironsworn",
@@ -438,7 +467,7 @@
             "Page": "105"
           },
           "Aliases": [
-            "ptp"
+            "PtP"
           ],
           "Text": "When **you suffer the outcome of a move**, choose one.\n  • Make the most obvious negative outcome happen.\n  • Envision two negative outcomes. Rate one as ‘likely’, and _Ask the Oracle_ using the yes/no table. On a ‘yes’, make that outcome happen. Otherwise, make it the other.\n  • Roll on the following table. If you have difficulty interpreting the result to fit the current situation, roll again. Roll Result\n```1-2  \tRoll again and apply that result but make it worse. If you roll this result yet again, think of something dreadful that changes the course of your quest (Ask the Oracle if unsure) and make it happen.\n3-5  \tA person or community you trusted loses faith in you, or acts against you.\n6-9  \tA person or community you care about is exposed to danger.\n10-16\tYou are separated from something or someone.\n17-23\tYour action has an unintended effect.\n24-32\tSomething of value is lost or destroyed.\n33-41\tThe current situation worsens.\n42-50\tA new danger or foe is revealed.\n51-59\tIt causes a delay or puts you at a disadvantage.\n60-68\tIt is harmful.\n69-76\tIt is stressful.\n77-85\tA surprising development complicates your quest.\n86-90\tIt wastes resources.\n91-94\tIt forces you to act against your best intentions.\n95-98\tA friend, companion, or ally is put in harm’s way (or you are, if alone).\n99-00\tRoll twice more on this table. Both results occur. If they are the same result, make it worse.```"
         },
@@ -450,7 +479,7 @@
           },
           "Aliases": [
             "ask",
-            "Oracle"
+            "oracle"
           ],
           "Text": "When **you seek to resolve questions, discover details in the world, determine how other characters respond, or trigger encounters or events**, you may…\n  • Draw a conclusion: Decide the answer based on the most interesting and obvious result.\n  • Ask a yes/no question: Decide the odds of a ‘yes’, and roll on the table below to check the answer.\n  • Pick two: Envision two options. Rate one as ‘likely’, and roll on the table below to see if it is true. If not, it is the other.\n  • Spark an idea: Brainstorm or use a random prompt. \n```Odds          \tThe answer is ‘yes’ if you roll... \nAlmost Certain\t11 or greater \nLikely        \t26 or greater \n50/50         \t51 or greater \nUnlikely      \t76 or greater \nSmall Chance  \t91 or greater\nOn a match, an extreme result or twist has occurred.```"
         }
@@ -516,8 +545,8 @@
             "Page": "38"
           },
           "Aliases": [
-            "Gear",
-            "Check Gear",
+            "gear",
+            "check gear",
             "check"
           ],
           "Text": "When **you check to see if you have a specific helpful item**, and you have at least +1 supply, roll +supply.\n\nOn a **strong hit**, you have it. Take +1 momentum.\n\nOn a **weak hit**, you have it, but your resources are diminished. Take +1 momentum and suffer -1 supply.\n\nOn a **miss**, you don’t have it and the situation grows more perilous. *Pay the Price*."
@@ -556,6 +585,9 @@
         "Name": "Ironsworn: Delve",
         "Page": "68"
       },
+      "Aliases": [
+        "optional"
+      ],
       "Game": "Ironsworn",
       "Moves": [
         {
