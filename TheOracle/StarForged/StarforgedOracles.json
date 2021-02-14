@@ -4085,7 +4085,8 @@
     "Category": "Move Oracles",
     "Aliases": [
       "Star Price",
-      "Sptp"
+      "Sptp",
+      "Ptp"
     ],
     "Oracles": [
       {
