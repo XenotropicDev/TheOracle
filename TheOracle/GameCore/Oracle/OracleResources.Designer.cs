@@ -175,15 +175,6 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oracle Table.
-        /// </summary>
-        internal static string OracleTable {
-            get {
-                return ResourceManager.GetString("OracleTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Outcome.
         /// </summary>
         internal static string Outcome {

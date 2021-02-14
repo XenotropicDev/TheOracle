@@ -13,6 +13,7 @@ namespace TheOracle.GameCore.Oracle
         public string Description { get; set; }
         public string Prompt { get; set; }
         public List<StandardOracle> Oracles { get; set; }
+        public string Thumbnail { get; set; }
 
         /// <summary>
         /// Gets the result of a oracle roll, and any rolls that would result from it.

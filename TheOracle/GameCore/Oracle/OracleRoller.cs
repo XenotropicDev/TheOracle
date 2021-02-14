@@ -48,18 +48,24 @@ namespace TheOracle.GameCore.Oracle
 
         public Embed GetEmbed()
         {
-            string gameName = (Game != GameName.None) ? Game.ToString() + " " : string.Empty;
+            string gameName = (Game != GameName.None) ? Game.ToString() : string.Empty;
 
-            EmbedBuilder embed = new EmbedBuilder().WithTitle($"__{gameName}{OracleResources.OracleResult}__");
+            EmbedBuilder embed = new EmbedBuilder().WithTitle($"{OracleResources.OracleResult}").WithAuthor(gameName);
             var footer = new EmbedFooterBuilder();
             foreach (var item in RollResultList)
             {
-                embed.AddField($"{OracleResources.OracleTable} {item?.ParentTable?.Name} [{item.Roll}]", item.Result.Description, item.ShouldInline);
+                string rollDisplay = item.ParentTable.DisplayChances ? $" [{item.Roll}]" : string.Empty;
+                embed.AddField($"{item?.ParentTable?.Name}{rollDisplay}", item.Result.Description, item.ShouldInline);
 
                 if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
                 {
                     footer.Text = (footer.Text == null || footer.Text.Length == 0) ? $"{OracleResources.PairedTable} {item.ParentTable.Pair}" : $"{CultureInfo.CurrentCulture.TextInfo.ListSeparator} {item.ParentTable.Pair}";
                     embed.WithFooter(footer);
+                }
+
+                if (item.Result.Thumbnail?.Length > 0 && embed.ThumbnailUrl == null)
+                {
+                    embed.WithThumbnailUrl(item.Result.Thumbnail);
                 }
             }
 
@@ -111,11 +117,11 @@ namespace TheOracle.GameCore.Oracle
 
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)
         {
-            var roller = new OracleRoller(oracleService, Utilities.GetGameContainedInString(embed.Title));
+            var roller = new OracleRoller(oracleService, Utilities.GetGameContainedInString(embed.Author.Name));
 
             foreach (var field in embed.Fields)
             {
-                var titleElementsRegex = Regex.Match(field.Name, OracleResources.OracleTable + @" ?(.*)\[(\d+)\]");
+                var titleElementsRegex = Regex.Match(field.Name, @" ?(.*)\[(\d+)\]");
                 var sourceTable = oracleService.OracleList.Find(oracle => oracle.Name == titleElementsRegex.Groups[1].Value.Trim());
 
                 var oracleResult = oracleService.OracleList.Find(tbl => tbl.Name == sourceTable.Name)?.Oracles?.Find(oracle => oracle.Description == field.Value.ToString()) ?? null;
@@ -169,6 +175,8 @@ namespace TheOracle.GameCore.Oracle
                 this.Game = GameName.None;
                 RollFacade(table, depth, additionalSearchTerms);
             }
+
+            if (this.Game == GameName.None) this.Game = TablesToRoll.First().Game ?? GameName.None;
 
             foreach (var oracleTable in TablesToRoll)
             {

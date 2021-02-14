@@ -11,6 +11,7 @@ namespace TheOracle.GameCore.Oracle
         public int d { get; set; } = 100;
         public string Category { get; set; }
         public string DisplayMode { get; set; }
+        public bool DisplayChances { get; set; } = true;
         public GameName? Game { get; set; }
         public string Name { get; set; }
         public List<StandardOracle> Oracles { get; set; }

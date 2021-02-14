@@ -27,6 +27,7 @@ namespace TheOracle.GameCore.Oracle
 
             var ironOraclesPath = Path.Combine("IronSworn", "oracles.json");
             var starOraclesPath = Path.Combine("StarForged", "StarforgedOracles.json");
+            var tarotOraclesPath = Path.Combine("IronSworn", "tarot_oracles.json");
             if (File.Exists(ironOraclesPath))
             {
                 var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(ironOraclesPath));
@@ -36,6 +37,23 @@ namespace TheOracle.GameCore.Oracle
             {
                 var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
                 OracleList.AddRange(starForged);
+            }
+            if (File.Exists(tarotOraclesPath))
+            {
+                var tarot = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(tarotOraclesPath));
+                OracleList.AddRange(tarot);
+            }
+
+            foreach (var oracleSet in this.OracleList)
+            {
+                if (oracleSet.Oracles.All(o => o.Chance == 0))
+                {
+                    for (int i = 0; i < oracleSet.Oracles.Count; i++)
+                    {
+                        oracleSet.Oracles[i].Chance = i + 1;
+                    }
+                    oracleSet.d = oracleSet.Oracles.Count;
+                }
             }
 
             return this;

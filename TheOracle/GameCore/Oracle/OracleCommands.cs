@@ -152,10 +152,10 @@ namespace TheOracle.GameCore.Oracle
             var pairEmoji = new Emoji("\uD83E\uDDE6");
             if (reaction.Emote.IsSameAs(pairEmoji))
             {
+                await message.ModifyAsync(msg => msg.Embed = AddRollToExisting(message)).ConfigureAwait(false);
+
                 await message.RemoveReactionAsync(pairEmoji, user).ConfigureAwait(false);
                 await message.RemoveReactionAsync(pairEmoji, message.Author).ConfigureAwait(false);
-
-                await message.ModifyAsync(msg => msg.Embed = AddRollToExisting(message)).ConfigureAwait(false);
             }
 
             return;

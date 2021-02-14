@@ -161,9 +161,6 @@
   <data name="OracleResult" xml:space="preserve">
     <value>Oracle Result</value>
   </data>
-  <data name="OracleTable" xml:space="preserve">
-    <value>Oracle Table</value>
-  </data>
   <data name="Outcome" xml:space="preserve">
     <value>Outcome</value>
   </data>
