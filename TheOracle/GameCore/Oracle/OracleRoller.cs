@@ -54,7 +54,7 @@ namespace TheOracle.GameCore.Oracle
             var footer = new EmbedFooterBuilder();
             foreach (var item in RollResultList)
             {
-                string rollDisplay = item.ParentTable.DisplayChances ? $" [{item.Roll}]" : string.Empty;
+                string rollDisplay = (item.ParentTable?.DisplayChances ?? true) ? $" [{item.Roll}]" : string.Empty;
                 embed.AddField($"{item?.ParentTable?.Name}{rollDisplay}", item.Result.Description, item.ShouldInline);
 
                 if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
@@ -176,7 +176,7 @@ namespace TheOracle.GameCore.Oracle
                 RollFacade(table, depth, additionalSearchTerms);
             }
 
-            if (this.Game == GameName.None) this.Game = TablesToRoll.First().Game ?? GameName.None;
+            if (this.Game == GameName.None) this.Game = TablesToRoll?.FirstOrDefault()?.Game ?? GameName.None;
 
             foreach (var oracleTable in TablesToRoll)
             {
@@ -195,7 +195,7 @@ namespace TheOracle.GameCore.Oracle
                 //Check if we have any nested oracles
                 if (oracleResult.Oracles != null)
                 {
-                    RollNested(oracleResult, depth: 1);
+                    RollNested(oracleResult, depth: 1, oracleTable);
                 }
 
                 //Check if we need to roll another oracle
@@ -235,7 +235,7 @@ namespace TheOracle.GameCore.Oracle
             }
         }
 
-        private void RollNested(StandardOracle oracleResult, int depth)
+        private void RollNested(StandardOracle oracleResult, int depth, OracleTable parentTable)
         {
             if (oracleResult == null || oracleResult.Oracles == null) return;
 
@@ -245,11 +245,11 @@ namespace TheOracle.GameCore.Oracle
 
             if (innerRow == null) return;
 
-            RollResultList.Add(new RollResult { Roll = roll, Result = innerRow, Depth = depth });
+            RollResultList.Add(new RollResult { Roll = roll, Result = innerRow, Depth = depth, ParentTable = parentTable });
 
             if (innerRow.Oracles != null)
             {
-                RollNested(innerRow, depth + 1);
+                RollNested(innerRow, depth + 1, parentTable);
             }
         }
     }
