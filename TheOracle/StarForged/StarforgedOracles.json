@@ -2,13 +2,12 @@
   "Name": "Action",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821"
   },
   "Type": "paired",
   "Pair": "Theme",
   "Game": "Starforged",
-  "Category": "Prompt Oracles",
-  "Aliases": [ "Star Action" ],
+  "Category": "Creative Prompt Oracles",
   "Oracles": [ {
     "Chance": 1,
     "Description": "Abandon"
@@ -314,13 +313,12 @@
   "Name": "Theme",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821"
   },
   "Type": "paired",
   "Pair": "Action",
   "Game": "Starforged",
-  "Category": "Prompt Oracles",
-  "Aliases": [ "Star Theme" ],
+  "Category": "Creative Prompt Oracles",
   "Oracles": [ {
     "Chance": 1,
     "Description": "Ability"
@@ -353,73 +351,73 @@
     "Description": "Burden"
   }, {
     "Chance": 11,
-    "Description": "Clan"
-  }, {
-    "Chance": 12,
     "Description": "Commerce"
   }, {
-    "Chance": 13,
+    "Chance": 12,
     "Description": "Community"
   }, {
-    "Chance": 14,
+    "Chance": 13,
     "Description": "Corruption"
   }, {
-    "Chance": 15,
+    "Chance": 14,
     "Description": "Creation"
   }, {
-    "Chance": 16,
+    "Chance": 15,
     "Description": "Crime"
   }, {
-    "Chance": 17,
+    "Chance": 16,
     "Description": "Culture"
   }, {
-    "Chance": 18,
+    "Chance": 17,
     "Description": "Cure"
   }, {
-    "Chance": 19,
+    "Chance": 18,
     "Description": "Danger"
   }, {
-    "Chance": 20,
+    "Chance": 19,
     "Description": "Death"
   }, {
-    "Chance": 21,
+    "Chance": 20,
     "Description": "Debt"
   }, {
-    "Chance": 22,
+    "Chance": 21,
     "Description": "Decay"
   }, {
-    "Chance": 23,
+    "Chance": 22,
     "Description": "Deception"
   }, {
-    "Chance": 24,
+    "Chance": 23,
     "Description": "Defense"
   }, {
-    "Chance": 25,
+    "Chance": 24,
     "Description": "Destiny"
   }, {
-    "Chance": 26,
+    "Chance": 25,
     "Description": "Disaster"
   }, {
-    "Chance": 27,
+    "Chance": 26,
     "Description": "Discovery"
   }, {
-    "Chance": 28,
+    "Chance": 27,
     "Description": "Disease"
   }, {
-    "Chance": 29,
+    "Chance": 28,
     "Description": "Dominion"
   }, {
-    "Chance": 30,
+    "Chance": 29,
     "Description": "Dream"
   }, {
-    "Chance": 31,
+    "Chance": 30,
     "Description": "Duty"
   }, {
-    "Chance": 32,
+    "Chance": 31,
     "Description": "Enemy"
   }, {
-    "Chance": 33,
+    "Chance": 32,
     "Description": "Expedition"
+  }, {
+    "Chance": 33,
+    "Description": "Faction"
   }, {
     "Chance": 34,
     "Description": "Fame"
@@ -491,19 +489,19 @@
     "Description": "Memory"
   }, {
     "Chance": 57,
-    "Description": "Mysticism"
-  }, {
-    "Chance": 58,
     "Description": "Nature"
   }, {
-    "Chance": 59,
+    "Chance": 58,
     "Description": "Opportunity"
   }, {
-    "Chance": 60,
+    "Chance": 59,
     "Description": "Passage"
   }, {
-    "Chance": 61,
+    "Chance": 60,
     "Description": "Peace"
+  }, {
+    "Chance": 61,
+    "Description": "Phenomenon"
   }, {
     "Chance": 62,
     "Description": "Possession"
@@ -626,13 +624,13 @@
   "Name": "Descriptor",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821"
   },
   "Type": "paired",
   "Pair": "Focus",
   "Game": "Starforged",
-  "Category": "Prompt Oracles",
-  "Aliases": [ "Desc", "Star Desc" ],
+  "Category": "Creative Prompt Oracles",
+  "Aliases": [ "Desc" ],
   "Oracles": [ {
     "Chance": 1,
     "Description": "Abandoned"
@@ -677,157 +675,157 @@
     "Description": "Captured"
   }, {
     "Chance": 15,
-    "Description": "Civilized"
+    "Description": "Chaotic"
   }, {
     "Chance": 16,
-    "Description": "Collapsed"
+    "Description": "Civilized"
   }, {
     "Chance": 17,
-    "Description": "Colossal"
+    "Description": "Collapsed"
   }, {
     "Chance": 18,
-    "Description": "Confined"
+    "Description": "Colossal"
   }, {
     "Chance": 19,
-    "Description": "Conspicuous"
+    "Description": "Confined"
   }, {
     "Chance": 20,
-    "Description": "Constructed"
+    "Description": "Conspicuous"
   }, {
     "Chance": 21,
-    "Description": "Contested"
+    "Description": "Constructed"
   }, {
     "Chance": 22,
-    "Description": "Corrupted"
+    "Description": "Contested"
   }, {
     "Chance": 23,
-    "Description": "Created"
+    "Description": "Corrupted"
   }, {
     "Chance": 24,
-    "Description": "Damaged"
+    "Description": "Created"
   }, {
     "Chance": 25,
-    "Description": "Dead"
+    "Description": "Damaged"
   }, {
     "Chance": 26,
-    "Description": "Deadly"
+    "Description": "Dead"
   }, {
     "Chance": 27,
-    "Description": "Decaying"
+    "Description": "Deadly"
   }, {
     "Chance": 28,
-    "Description": "Defended"
+    "Description": "Decaying"
   }, {
     "Chance": 29,
-    "Description": "Depleted"
+    "Description": "Defended"
   }, {
     "Chance": 30,
-    "Description": "Desolate"
+    "Description": "Depleted"
   }, {
     "Chance": 31,
-    "Description": "Destroyed"
+    "Description": "Desolate"
   }, {
     "Chance": 32,
-    "Description": "Diverse"
+    "Description": "Destroyed"
   }, {
     "Chance": 33,
-    "Description": "Empty"
+    "Description": "Diverse"
   }, {
     "Chance": 34,
-    "Description": "Engulfed"
+    "Description": "Empty"
   }, {
     "Chance": 35,
-    "Description": "Ensnaring"
+    "Description": "Engulfed"
   }, {
     "Chance": 36,
-    "Description": "Expansive"
+    "Description": "Ensnaring"
   }, {
     "Chance": 37,
-    "Description": "Exposed"
+    "Description": "Expansive"
   }, {
     "Chance": 38,
-    "Description": "Fiery"
+    "Description": "Exposed"
   }, {
     "Chance": 39,
-    "Description": "Foreboding"
+    "Description": "Fiery"
   }, {
     "Chance": 40,
-    "Description": "Forgotten"
+    "Description": "Foreboding"
   }, {
     "Chance": 41,
-    "Description": "Forsaken"
+    "Description": "Forgotten"
   }, {
     "Chance": 42,
-    "Description": "Fortified"
+    "Description": "Forsaken"
   }, {
     "Chance": 43,
-    "Description": "Foul"
+    "Description": "Fortified"
   }, {
     "Chance": 44,
-    "Description": "Fragile"
+    "Description": "Foul"
   }, {
     "Chance": 45,
-    "Description": "Frozen"
+    "Description": "Fragile"
   }, {
     "Chance": 46,
-    "Description": "Functional"
+    "Description": "Frozen"
   }, {
     "Chance": 47,
-    "Description": "Grim"
+    "Description": "Functional"
   }, {
     "Chance": 48,
-    "Description": "Guarded"
+    "Description": "Grim"
   }, {
     "Chance": 49,
-    "Description": "Haunted"
+    "Description": "Guarded"
   }, {
     "Chance": 50,
-    "Description": "Hidden"
+    "Description": "Haunted"
   }, {
     "Chance": 51,
-    "Description": "High-Tech"
+    "Description": "Hidden"
   }, {
     "Chance": 52,
-    "Description": "Hoarded"
+    "Description": "High-Tech"
   }, {
     "Chance": 53,
-    "Description": "Hostile"
+    "Description": "Hoarded"
   }, {
     "Chance": 54,
-    "Description": "Immersed"
+    "Description": "Hostile"
   }, {
     "Chance": 55,
-    "Description": "Inaccessible"
+    "Description": "Immersed"
   }, {
     "Chance": 56,
-    "Description": "Infested"
+    "Description": "Inaccessible"
   }, {
     "Chance": 57,
-    "Description": "Inhabited"
+    "Description": "Infested"
   }, {
     "Chance": 58,
-    "Description": "Isolated"
+    "Description": "Inhabited"
   }, {
     "Chance": 59,
-    "Description": "Lush"
+    "Description": "Isolated"
   }, {
     "Chance": 60,
-    "Description": "Makeshift"
+    "Description": "Lush"
   }, {
     "Chance": 61,
-    "Description": "Mechanical"
+    "Description": "Makeshift"
   }, {
     "Chance": 62,
-    "Description": "Misleading"
+    "Description": "Mechanical"
   }, {
     "Chance": 63,
-    "Description": "Moving"
+    "Description": "Misleading"
   }, {
     "Chance": 64,
-    "Description": "Mysterious"
+    "Description": "Moving"
   }, {
     "Chance": 65,
-    "Description": "Mystical"
+    "Description": "Mysterious"
   }, {
     "Chance": 66,
     "Description": "Natural"
@@ -938,13 +936,12 @@
   "Name": "Focus",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821"
   },
   "Type": "paired",
   "Pair": "Descriptor",
   "Game": "Starforged",
-  "Category": "Prompt Oracles",
-  "Aliases": [ "Star Focus" ],
+  "Category": "Creative Prompt Oracles",
   "Oracles": [ {
     "Chance": 1,
     "Description": "AI"
@@ -1250,7 +1247,7 @@
   "Name": "Space Sighting Terminus",
   "Source": {
     "Name": "Discord",
-    "Version": "021621",
+    "Version": "022821-wip",
     "URL": "https://discord.com/channels/751199753433514076/751199754293084192/811440366611202058"
   },
   "Aliases": [ "sst" ],
@@ -1321,7 +1318,7 @@
   "Name": "Space Sighting Outlands",
   "Source": {
     "Name": "Discord",
-    "Version": "021621",
+    "Version": "022821-wip",
     "URL": "https://discord.com/channels/751199753433514076/751199754293084192/811440366611202058"
   },
   "Aliases": [ "sso" ],
@@ -1392,7 +1389,7 @@
   "Name": "Space Sighting Expanse",
   "Source": {
     "Name": "Discord",
-    "Version": "021621",
+    "Version": "022821-wip",
     "URL": "https://discord.com/channels/751199753433514076/751199754293084192/811440366611202058"
   },
   "Aliases": [ "sse" ],
@@ -1463,7 +1460,7 @@
   "Name": "Stellar Object",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Location Oracles",
@@ -1511,7 +1508,7 @@
   "Name": "Settlement Location",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Aliases": [ "Settlement Loc", "SFSL", "SLoc" ],
@@ -1530,7 +1527,7 @@
   "Name": "Settlement Population Terminus",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1555,7 +1552,7 @@
   "Name": "Settlement Population Outlands",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1580,7 +1577,7 @@
   "Name": "Settlement Population Expanse",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1605,7 +1602,7 @@
   "Name": "Settlement First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1678,7 +1675,7 @@
   "Name": "Settlement Initial Contact",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1721,7 +1718,7 @@
   "Name": "Settlement Authority",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1752,7 +1749,7 @@
   "Name": "Settlement Projects",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1861,7 +1858,7 @@
   "Name": "Settlement Trouble",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -1961,7 +1958,7 @@
   "Name": "Settlement Name",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Settlement Oracles",
@@ -2271,7 +2268,7 @@
   "Name": "Creature Environment",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2296,7 +2293,7 @@
   "Name": "Creature Scale",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2327,7 +2324,7 @@
   "Name": "Ultra-scale",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2346,7 +2343,7 @@
   "Name": "Basic Form Void",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2410,7 +2407,7 @@
   "Name": "Basic Form Interior",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2474,7 +2471,7 @@
   "Name": "Basic Form Land",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2538,7 +2535,7 @@
   "Name": "Basic Form Liquid",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2602,7 +2599,7 @@
   "Name": "Basic Form Air",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2666,7 +2663,7 @@
   "Name": "Creature First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2826,7 +2823,7 @@
   "Name": "Creature Encountered Behavior",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2899,7 +2896,7 @@
   "Name": "Creature Revealed Aspects",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -3059,7 +3056,7 @@
   "Name": "Pay the Price",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -3129,7 +3126,7 @@
   "Name": "Starship Type",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3221,7 +3218,7 @@
   "Name": "Fleet",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3255,7 +3252,7 @@
   "Name": "Starship Initial Contact",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3301,7 +3298,7 @@
   "Name": "Starship First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3377,7 +3374,7 @@
   "Name": "Starship Mission Terminus",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3483,7 +3480,7 @@
   "Name": "Starship Mission Outlands",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3589,7 +3586,7 @@
   "Name": "Starship Mission Expanse",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3695,7 +3692,7 @@
   "Name": "Starship Name",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -4306,7 +4303,7 @@
   "Name": "Character First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4406,7 +4403,7 @@
   "Name": "Disposition",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4452,7 +4449,7 @@
   "Name": "Character Role",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4606,7 +4603,7 @@
   "Name": "Character Goal",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4736,7 +4733,7 @@
   "Name": "Character Aspects",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -5046,7 +5043,7 @@
   "Name": "Make a Discovery",
   "Source": {
     "Name": "Starforged Playtest Moves",
-    "Version": "112220"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5125,7 +5122,7 @@
   "Name": "Confront Chaos",
   "Source": {
     "Name": "Starforged Playtest Moves",
-    "Version": "112220"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5204,7 +5201,7 @@
   "Name": "Decisive Action Cost",
   "Source": {
     "Name": "Starforged Playtest Moves",
-    "Version": "112220"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5232,7 +5229,7 @@
   "Name": "Endure Harm Miss",
   "Source": {
     "Name": "Starforged Playtest Moves",
-    "Version": "112220"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5269,7 +5266,7 @@
   "Name": "Endure Stress Miss",
   "Source": {
     "Name": "Starforged Playtest Moves",
-    "Version": "112220"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5303,7 +5300,7 @@
   "Name": "Withstand Damage Miss",
   "Source": {
     "Name": "Starforged Playtest Moves",
-    "Version": "112220"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5337,7 +5334,7 @@
   "Name": "Character Name",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "091420"
+    "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -5351,7 +5348,7 @@
   "Aliases": [ "backstory" ],
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "112220",
+    "Version": "022821-wip",
     "Page": "27"
   },
   "Game": "Starforged",
@@ -5403,7 +5400,7 @@
   "Name": "Starship History",
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "112220",
+    "Version": "022821-wip",
     "Page": "29"
   },
   "Game": "Starforged",
@@ -5449,7 +5446,7 @@
   "Name": "Starship Quirks",
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "112220",
+    "Version": "022821-wip",
     "Page": "30"
   },
   "Game": "Starforged",
@@ -5519,7 +5516,7 @@
   "Name": "Sector Trouble",
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "112220",
+    "Version": "022821-wip",
     "Page": "47"
   },
   "Game": "Starforged",
@@ -5589,7 +5586,7 @@
   "Name": "Inciting Incident",
   "Source": {
     "Name": "Launching Your Campaign",
-    "Version": "112620",
+    "Version": "022821-wip",
     "Page": "55"
   },
   "Game": "Starforged",
