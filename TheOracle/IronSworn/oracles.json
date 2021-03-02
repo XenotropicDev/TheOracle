@@ -6776,6 +6776,7 @@
     "Description": "To give an NPC or faction a task or objective, use the Activity oracle. For more detail, you can combine this prompt with the Focus oracle or Theme oracle.",
     "Source": {
       "Name": "Ironsworn: Delve",
+      "Pair": "Focus",
       "Page": "213"
     },
     "Oracles": [
