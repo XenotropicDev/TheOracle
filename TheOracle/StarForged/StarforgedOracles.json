@@ -2610,7 +2610,7 @@
   "Aliases": [ "ce" ],
   "Oracles": [ {
     "Chance": 5,
-    "Description": "Void"
+    "Description": "Space"
   }, {
     "Chance": 15,
     "Description": "Interior"
@@ -2675,14 +2675,14 @@
     "Description": "Vast (planet-sized)"
   } ]
 }, {
-  "Name": "Basic Form Void",
+  "Name": "Basic Form Space",
   "Source": {
     "Name": "Starforged Playtest Oracles",
     "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
-  "Aliases": [ "bfv" ],
+  "Aliases": [ "bfs" ],
   "Oracles": [ {
     "Chance": 5,
     "Description": "Amoeba / pseudopods"
@@ -2736,7 +2736,7 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Basic Form Interior",
@@ -2800,7 +2800,7 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Basic Form Land",
@@ -2864,7 +2864,7 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Basic Form Liquid",
@@ -2928,7 +2928,7 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Basic Form Air",
@@ -2992,7 +2992,7 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Creature First Look",
@@ -3005,148 +3005,148 @@
   "Aliases": [ "cfl" ],
   "Oracles": [ {
     "Chance": 2,
-    "Description": "Antennae / sensory organs "
+    "Description": "Antennae / sensory organs"
   }, {
     "Chance": 4,
-    "Description": "Armored "
+    "Description": "Armored"
   }, {
     "Chance": 6,
-    "Description": "Beautiful "
+    "Description": "Beautiful"
   }, {
     "Chance": 8,
-    "Description": "Biotech "
+    "Description": "Biotech"
   }, {
     "Chance": 10,
-    "Description": "Bony / gaunt "
+    "Description": "Bony / gaunt"
   }, {
     "Chance": 12,
-    "Description": "Brutish / muscled "
+    "Description": "Brutish / muscled"
   }, {
     "Chance": 14,
-    "Description": "Camouflaged "
+    "Description": "Camouflaged"
   }, {
     "Chance": 16,
-    "Description": "Claws / talons "
+    "Description": "Claws / talons"
   }, {
     "Chance": 18,
-    "Description": "Compound eyes "
+    "Description": "Compound eyes"
   }, {
     "Chance": 20,
-    "Description": "Made of many creatures "
+    "Description": "Comprised of many creatures"
   }, {
     "Chance": 22,
-    "Description": "Corrupted "
+    "Description": "Corrupted"
   }, {
     "Chance": 24,
-    "Description": "Crystalline "
+    "Description": "Crystalline"
   }, {
     "Chance": 26,
-    "Description": "Dead / undead "
+    "Description": "Dead / undead"
   }, {
     "Chance": 28,
-    "Description": "Distinctive markings "
+    "Description": "Distinctive markings"
   }, {
     "Chance": 30,
-    "Description": "Distinctive smell "
+    "Description": "Distinctive smell"
   }, {
     "Chance": 32,
-    "Description": "Distinctive sound "
+    "Description": "Distinctive sound"
   }, {
     "Chance": 34,
-    "Description": "Dripping mucus "
+    "Description": "Dripping mucus"
   }, {
     "Chance": 36,
-    "Description": "Elongated Neck "
+    "Description": "Elongated Neck"
   }, {
     "Chance": 38,
-    "Description": "Extra limbs "
+    "Description": "Energy emissions"
   }, {
     "Chance": 40,
-    "Description": "Faceless / inexpressive "
+    "Description": "Extra limbs"
   }, {
     "Chance": 42,
-    "Description": "Fangs / rows of teeth "
+    "Description": "Faceless / inexpressive"
   }, {
     "Chance": 44,
-    "Description": "Feathered"
+    "Description": "Fangs / rows of teeth"
   }, {
     "Chance": 46,
-    "Description": "Fungal growth"
+    "Description": "Feathered"
   }, {
     "Chance": 48,
-    "Description": "Fur / hair / filaments"
+    "Description": "Fungal growth"
   }, {
     "Chance": 50,
-    "Description": "Graceful"
+    "Description": "Fur / hair / filaments"
   }, {
     "Chance": 52,
-    "Description": "Hideous"
+    "Description": "Graceful"
   }, {
     "Chance": 54,
-    "Description": "Hooded / crested"
+    "Description": "Hideous"
   }, {
     "Chance": 56,
-    "Description": "Immobile / trapped"
+    "Description": "Hooded / crested"
   }, {
     "Chance": 58,
-    "Description": "Injured / scarred"
+    "Description": "Immobile / trapped"
   }, {
     "Chance": 60,
-    "Description": "Iridescent"
+    "Description": "Injured / scarred"
   }, {
     "Chance": 62,
-    "Description": "Long-limbed"
+    "Description": "Iridescent"
   }, {
     "Chance": 64,
-    "Description": "Luminescent"
+    "Description": "Long-limbed"
   }, {
     "Chance": 66,
-    "Description": "Mandibles / pincers"
+    "Description": "Luminescent"
   }, {
     "Chance": 68,
-    "Description": "Many-eyed"
+    "Description": "Mandibles / pincers"
   }, {
     "Chance": 70,
-    "Description": "Mineral / metallic"
+    "Description": "Many-eyed"
   }, {
     "Chance": 72,
-    "Description": "Multi-jointed"
+    "Description": "Mineral / metallic"
   }, {
     "Chance": 74,
-    "Description": "Multi-segmented body"
+    "Description": "Multi-jointed"
   }, {
     "Chance": 76,
-    "Description": "Ornamented / colorful"
+    "Description": "Multi-segmented body"
   }, {
     "Chance": 78,
-    "Description": "Oversized mouth"
+    "Description": "Ornamented / colorful"
   }, {
     "Chance": 80,
-    "Description": "Prominent tail"
+    "Description": "Oversized mouth"
   }, {
     "Chance": 82,
-    "Description": "Prominent wings / fins"
+    "Description": "Prominent tail"
   }, {
     "Chance": 84,
-    "Description": "Ridges / plates"
+    "Description": "Prominent wings / fins"
   }, {
     "Chance": 86,
-    "Description": "Scaled"
+    "Description": "Ridges / plates"
   }, {
     "Chance": 88,
-    "Description": "Single eye / oversized eyes"
+    "Description": "Scaled"
   }, {
     "Chance": 90,
-    "Description": "Spikes / spines"
+    "Description": "Single eye / oversized eyes"
   }, {
     "Chance": 92,
-    "Description": "Stinger / barbs"
+    "Description": "Spikes / spines"
   }, {
     "Chance": 94,
-    "Description": "Tentacles / tendrils"
+    "Description": "Stinger / barbs"
   }, {
     "Chance": 96,
-    "Description": "Threat display"
+    "Description": "Tentacles / tendrils"
   }, {
     "Chance": 98,
     "Description": "Translucent"
@@ -3155,14 +3155,13 @@
     "Description": "Visible symbiote"
   } ]
 }, {
-  "Name": "Creature Encountered Behavior",
+  "Name": "Creature Behavior",
   "Source": {
     "Name": "Starforged Playtest Oracles",
     "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
-  "Aliases": [ "ceb", "Creature Behavior" ],
   "Oracles": [ {
     "Chance": 5,
     "Description": "Ambusher"
@@ -3225,17 +3224,17 @@
     "Description": "Trapper"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
-  "Name": "Creature Revealed Aspects",
+  "Name": "Creature Aspects",
   "Source": {
     "Name": "Starforged Playtest Oracles",
     "Version": "022821-wip"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
-  "Aliases": [ "cra", "Creature Revealed Aspect" ],
+  "Aliases": [ "ca" ],
   "Oracles": [ {
     "Chance": 2,
     "Description": "Alternative environment"
@@ -3322,7 +3321,7 @@
     "Description": "Infested with parasites"
   }, {
     "Chance": 58,
-    "Description": "Intimidating vocalization"
+    "Description": "Intimidating threat display"
   }, {
     "Chance": 60,
     "Description": "Limited sense"
