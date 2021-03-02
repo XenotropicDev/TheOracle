@@ -1246,9 +1246,8 @@
 }, {
   "Name": "Space Sighting Terminus",
   "Source": {
-    "Name": "Discord",
-    "Version": "022821-wip",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/811440366611202058"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Aliases": [ "sst" ],
   "Game": "Starforged",
@@ -1258,19 +1257,19 @@
     "Description": "[Stellar Object]"
   }, {
     "Chance": 35,
-    "Description": "[Planet]"
+    "Description": "Planet"
   }, {
     "Chance": 45,
-    "Description": "[Settlement (deep space)]"
+    "Description": "Settlement (deep space)"
   }, {
     "Chance": 55,
-    "Description": "[Starship]"
+    "Description": "Starship"
   }, {
     "Chance": 57,
-    "Description": "[Creature (space)]"
+    "Description": "Creature (space)"
   }, {
     "Chance": 60,
-    "Description": "[Anomalous Site (deep space)]"
+    "Description": "Anomalous Site (deep space)"
   }, {
     "Chance": 65,
     "Description": "[Descriptor/Focus]"
@@ -1309,17 +1308,16 @@
     "Description": "Dense nebula cloud"
   }, {
     "Chance": 99,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   }, {
     "Chance": 100,
-    "Description": "[Roll three times]"
+    "Description": "[3x]"
   } ]
 }, {
   "Name": "Space Sighting Outlands",
   "Source": {
-    "Name": "Discord",
-    "Version": "022821-wip",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/811440366611202058"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Aliases": [ "sso" ],
   "Game": "Starforged",
@@ -1329,19 +1327,19 @@
     "Description": "[Stellar Object]"
   }, {
     "Chance": 35,
-    "Description": "[Planet]"
+    "Description": "Planet"
   }, {
     "Chance": 37,
-    "Description": "[Settlement (deep space)]"
+    "Description": "Settlement (deep space)"
   }, {
     "Chance": 39,
-    "Description": "[Starship]"
+    "Description": "Starship"
   }, {
     "Chance": 43,
-    "Description": "[Creature (space)]"
+    "Description": "Creature (space)"
   }, {
     "Chance": 48,
-    "Description": "[Anomalous Site (deep space)]"
+    "Description": "Anomalous Site (deep space)"
   }, {
     "Chance": 55,
     "Description": "[Descriptor/Focus]"
@@ -1380,17 +1378,16 @@
     "Description": "Dense nebula cloud"
   }, {
     "Chance": 99,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   }, {
     "Chance": 100,
-    "Description": "[Roll three times]"
+    "Description": "[3x]"
   } ]
 }, {
   "Name": "Space Sighting Expanse",
   "Source": {
-    "Name": "Discord",
-    "Version": "022821-wip",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/811440366611202058"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Aliases": [ "sse" ],
   "Game": "Starforged",
@@ -1400,19 +1397,19 @@
     "Description": "[Stellar Object]"
   }, {
     "Chance": 35,
-    "Description": "[Planet]"
+    "Description": "Planet"
   }, {
     "Chance": 40,
-    "Description": "[Settlement (deep space)]"
+    "Description": "Settlement (deep space)"
   }, {
     "Chance": 47,
-    "Description": "[Starship]"
+    "Description": "Starship"
   }, {
     "Chance": 50,
-    "Description": "[Creature (space)]"
+    "Description": "Creature (space)"
   }, {
     "Chance": 54,
-    "Description": "[Anomalous Site (deep space)]"
+    "Description": "Anomalous Site (deep space)"
   }, {
     "Chance": 60,
     "Description": "[Descriptor/Focus]"
@@ -1451,16 +1448,16 @@
     "Description": "Dense nebula cloud"
   }, {
     "Chance": 99,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   }, {
     "Chance": 100,
-    "Description": "[Roll three times]"
+    "Description": "[3x]"
   } ]
 }, {
   "Name": "Stellar Object",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Space Oracles",
@@ -2287,7 +2284,7 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Settlement Name",
@@ -2603,7 +2600,7 @@
   "Name": "Creature Environment",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2628,7 +2625,7 @@
   "Name": "Creature Scale",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2659,7 +2656,7 @@
   "Name": "Ultra-scale",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2678,7 +2675,7 @@
   "Name": "Basic Form Space",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2736,13 +2733,13 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Basic Form Interior",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2800,13 +2797,13 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Basic Form Land",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2864,13 +2861,13 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Basic Form Liquid",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2928,13 +2925,13 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Basic Form Air",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -2992,13 +2989,13 @@
     "Description": "Worm / slug / larva"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Creature First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -3158,7 +3155,7 @@
   "Name": "Creature Behavior",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
@@ -3224,17 +3221,16 @@
     "Description": "Trapper"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Creature Aspects",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
-  "Aliases": [ "ca" ],
   "Oracles": [ {
     "Chance": 2,
     "Description": "Alternative environment"
@@ -3390,7 +3386,7 @@
   "Name": "Pay the Price",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -3460,7 +3456,7 @@
   "Name": "Starship Type",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3546,13 +3542,13 @@
     "Description": "[Fleet]"
   }, {
     "Chance": 100,
-    "Description": "Ships in conflict [roll twice]"
+    "Description": "Ships in conflict (roll twice)"
   } ]
 }, {
   "Name": "Fleet",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3586,7 +3582,7 @@
   "Name": "Starship Initial Contact",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3632,7 +3628,7 @@
   "Name": "Starship First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3708,7 +3704,7 @@
   "Name": "Starship Mission Terminus",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3808,13 +3804,13 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Starship Mission Outlands",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -3914,13 +3910,13 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Starship Mission Expanse",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -4020,14 +4016,10 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Starship Name",
-  "Source": {
-    "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
-  },
   "Game": "Starforged",
   "Category": "Starship Oracles",
   "d": "200",
@@ -4637,7 +4629,7 @@
   "Name": "Character First Look",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4737,7 +4729,7 @@
   "Name": "Disposition",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4783,7 +4775,7 @@
   "Name": "Character Role",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -4931,13 +4923,13 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Character Goal",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -5061,13 +5053,13 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[Roll twice]"
+    "Description": "[2x]"
   } ]
 }, {
   "Name": "Character Aspects",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -5376,8 +5368,8 @@
 }, {
   "Name": "Make a Discovery",
   "Source": {
-    "Name": "Starforged Playtest Moves",
-    "Version": "022821-wip"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5455,8 +5447,8 @@
 }, {
   "Name": "Confront Chaos",
   "Source": {
-    "Name": "Starforged Playtest Moves",
-    "Version": "022821-wip"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5534,8 +5526,8 @@
 }, {
   "Name": "Decisive Action Cost",
   "Source": {
-    "Name": "Starforged Playtest Moves",
-    "Version": "022821-wip"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5562,8 +5554,8 @@
 }, {
   "Name": "Endure Harm Miss",
   "Source": {
-    "Name": "Starforged Playtest Moves",
-    "Version": "022821-wip"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5599,8 +5591,8 @@
 }, {
   "Name": "Endure Stress Miss",
   "Source": {
-    "Name": "Starforged Playtest Moves",
-    "Version": "022821-wip"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5633,8 +5625,8 @@
 }, {
   "Name": "Withstand Damage Miss",
   "Source": {
-    "Name": "Starforged Playtest Moves",
-    "Version": "022821-wip"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Move Oracles",
@@ -5668,7 +5660,7 @@
   "Name": "Character Name",
   "Source": {
     "Name": "Starforged Playtest Oracles",
-    "Version": "022821-wip"
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Character Oracles",
@@ -5681,9 +5673,8 @@
   "Name": "Backstory Prompts",
   "Aliases": [ "backstory" ],
   "Source": {
-    "Name": "Launching Your Campaign",
-    "Version": "022821-wip",
-    "Page": "27"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Background Oracles",
@@ -5733,9 +5724,8 @@
 }, {
   "Name": "Starship History",
   "Source": {
-    "Name": "Launching Your Campaign",
-    "Version": "022821-wip",
-    "Page": "29"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -5779,9 +5769,8 @@
 }, {
   "Name": "Starship Quirks",
   "Source": {
-    "Name": "Launching Your Campaign",
-    "Version": "022821-wip",
-    "Page": "30"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Starship Oracles",
@@ -5849,9 +5838,8 @@
 }, {
   "Name": "Sector Trouble",
   "Source": {
-    "Name": "Launching Your Campaign",
-    "Version": "022821-wip",
-    "Page": "47"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Background Oracles",
@@ -5919,9 +5907,8 @@
 }, {
   "Name": "Inciting Incident",
   "Source": {
-    "Name": "Launching Your Campaign",
-    "Version": "022821-wip",
-    "Page": "55"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Background Oracles",
@@ -5987,14 +5974,14 @@
     "Description": "Transport a displaced people to their new home"
   } ]
 }, {
-  "Name": "Spaceborne Peril",
-  "Aliases": [ "spacebourne peril", "space peril" ],
+  "Name": "Spaceborne Complication",
+  "Aliases": [ "spacebourne complication", "space complication" ],
   "Source": {
-    "Name": "Discord",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/810645315338240012"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
-  "Category": "Danger and Opportunity Oracles",
+  "Category": "Space Oracles",
   "Oracles": [ {
     "Chance": 3,
     "Description": "Artificial gravity generator malfunctions"
@@ -6033,7 +6020,7 @@
     "Description": "Infestation is revealed"
   }, {
     "Chance": 39,
-    "Description": "Intruder or stowaway causes trouble"
+    "Description": "Intruder or stowaway creates trouble"
   }, {
     "Chance": 42,
     "Description": "Isolation or fear presses in"
@@ -6087,7 +6074,7 @@
     "Description": "Troubling visions or apparitions"
   }, {
     "Chance": 93,
-    "Description": "True nature of a cargo, occupant, or passenger revealed"
+    "Description": "True nature of a cargo, occupant, or passenger is revealed"
   }, {
     "Chance": 96,
     "Description": "Unsettling sounds or disturbances"
@@ -6102,8 +6089,8 @@
   "Name": "Spaceborne Opportunity",
   "Aliases": [ "spacebourne opportunity", "space opp" ],
   "Source": {
-    "Name": "Discord",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/810645315338240012"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Danger and Opportunity Oracles",
@@ -6127,7 +6114,7 @@
     "Description": "Clue offers insight into a current quest or mystery"
   }, {
     "Chance": 28,
-    "Description": "Clue to a lifeform’s nature or vulnerabilities"
+    "Description": "Clue to the nature or vulnerability of a lifeform"
   }, {
     "Chance": 32,
     "Description": "Derelict ripe for the picking"
@@ -6148,7 +6135,7 @@
     "Description": "Friendly starship crosses your path"
   }, {
     "Chance": 56,
-    "Description": "Helpful/encouraging message from acquaintance "
+    "Description": "Helpful or encouraging message from an acquaintance"
   }, {
     "Chance": 60,
     "Description": "Impressive vista offers comfort or inspiration"
@@ -6172,7 +6159,7 @@
     "Description": "Probe or beacon with useful data"
   }, {
     "Chance": 88,
-    "Description": "Refuge offers a place to hide, plan or recover"
+    "Description": "Refuge offers a place to hide, plan, or recover"
   }, {
     "Chance": 92,
     "Description": "Sensors pinpoint a lurking foe"
@@ -6184,11 +6171,11 @@
     "Description": "Vehicle or equipment performs beyond expectations"
   } ]
 }, {
-  "Name": "Lifebearing Planetside Peril",
-  "Aliases": [ "life planet peril" ],
+  "Name": "Lifebearing Planetside Complication",
+  "Aliases": [ "life planet complication" ],
   "Source": {
-    "Name": "Discord",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/810645315338240012"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Danger and Opportunity Oracles",
@@ -6197,7 +6184,7 @@
     "Description": "Corrupted or mutated lifeform"
   }, {
     "Chance": 6,
-    "Description": "Signs of a lifeform’s power or cunning"
+    "Description": "Signs of a lifeform's power or cunning"
   }, {
     "Chance": 9,
     "Description": "Hazardous plant life or malignant spores"
@@ -6224,7 +6211,7 @@
     "Description": "Automated defenses protect this area"
   }, {
     "Chance": 33,
-    "Description": "Blocked or impassable path"
+    "Description": "Blocked or impassible path"
   }, {
     "Chance": 36,
     "Description": "Corrosive substance or environment"
@@ -6296,11 +6283,11 @@
     "Description": "[2x]"
   } ]
 }, {
-  "Name": "Lifeless Planetside Peril",
-  "Aliases": [ "lifeless planet peril" ],
+  "Name": "Lifeless Planetside Complication",
+  "Aliases": [ "lifeless planet complication" ],
   "Source": {
-    "Name": "Discord",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/810645315338240012"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Danger and Opportunity Oracles",
@@ -6312,7 +6299,7 @@
     "Description": "Automated defenses protect this area"
   }, {
     "Chance": 11,
-    "Description": "Blocked or impassable path"
+    "Description": "Blocked or impassible path"
   }, {
     "Chance": 15,
     "Description": "Corrosive substance or environment"
@@ -6387,14 +6374,14 @@
   "Name": "Lifebearing Planetside Opportunity",
   "Aliases": [ "life planet opp" ],
   "Source": {
-    "Name": "Discord",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/810645315338240012"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Danger and Opportunity Oracles",
   "Oracles": [ {
     "Chance": 4,
-    "Description": "Clue to a lifeform’s nature or vulnerabilities"
+    "Description": "Clue to a lifeform's nature or vulnerabilities"
   }, {
     "Chance": 8,
     "Description": "Friendly interaction with a benign lifeform"
@@ -6439,7 +6426,7 @@
     "Description": "Fortuitous change in the weather or atmosphere"
   }, {
     "Chance": 64,
-    "Description": "Friendly traveller crosses your path"
+    "Description": "Friendly traveler crosses your path"
   }, {
     "Chance": 68,
     "Description": "Helpful resource is in ample supply"
@@ -6454,7 +6441,7 @@
     "Description": "Moment of fellowship or inner peace"
   }, {
     "Chance": 84,
-    "Description": "Opening to distract, escape or avoid foes"
+    "Description": "Opening to distract, escape, or avoid foes"
   }, {
     "Chance": 88,
     "Description": "Opening to get the drop on a foe"
@@ -6463,7 +6450,7 @@
     "Description": "Plea for help from a potential benefactor"
   }, {
     "Chance": 96,
-    "Description": "Refuge offers a place to hide, plan or recover"
+    "Description": "Refuge offers a place to hide, plan, or recover"
   }, {
     "Chance": 100,
     "Description": "Vantage point reveals the lay of the land"
@@ -6472,8 +6459,8 @@
   "Name": "Lifeless Planetside Opportunity",
   "Aliases": [ "lifeless planet opp" ],
   "Source": {
-    "Name": "Discord",
-    "URL": "https://discord.com/channels/751199753433514076/751199754293084192/810645315338240012"
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
   },
   "Game": "Starforged",
   "Category": "Danger and Opportunity Oracles",
@@ -6509,7 +6496,7 @@
     "Description": "Fortuitous change in the weather or atmosphere"
   }, {
     "Chance": 55,
-    "Description": "Friendly traveller crosses your path"
+    "Description": "Friendly traveler crosses your path"
   }, {
     "Chance": 60,
     "Description": "Helpful resource is in ample supply"
@@ -6524,7 +6511,7 @@
     "Description": "Moment of fellowship or inner peace"
   }, {
     "Chance": 80,
-    "Description": "Opening to distract, escape or avoid foes"
+    "Description": "Opening to distract, escape, or avoid foes"
   }, {
     "Chance": 85,
     "Description": "Opening to get the drop on a foe"
@@ -6533,7 +6520,7 @@
     "Description": "Plea for help from a potential benefactor"
   }, {
     "Chance": 95,
-    "Description": "Refuge offers a place to hide, plan or recover"
+    "Description": "Refuge offers a place to hide, plan, or recover"
   }, {
     "Chance": 100,
     "Description": "Vantage point reveals the lay of the land"
