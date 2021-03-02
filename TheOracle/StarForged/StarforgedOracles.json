@@ -4731,7 +4731,7 @@
     "Description": "Wounded"
   }, {
     "Chance": 100,
-    "Description": "Youthful "
+    "Description": "Youthful"
   } ]
 }, {
   "Name": "Disposition",
@@ -4931,7 +4931,7 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Character Goal",
@@ -5061,7 +5061,7 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Character Aspects",
