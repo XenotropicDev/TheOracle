@@ -3546,7 +3546,7 @@
     "Description": "[Fleet]"
   }, {
     "Chance": 100,
-    "Description": "Ships in conflict (roll twice)"
+    "Description": "Ships in conflict [roll twice]"
   } ]
 }, {
   "Name": "Fleet",
@@ -3574,7 +3574,7 @@
     "Description": "Salvager hive"
   }, {
     "Chance": 80,
-    "Description": "Raider clan"
+    "Description": "Raider horde"
   }, {
     "Chance": 90,
     "Description": "Battle fleet"
@@ -3808,7 +3808,7 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Starship Mission Outlands",
@@ -3914,7 +3914,7 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Starship Mission Expanse",
@@ -4020,7 +4020,7 @@
     "Description": "[Action/Theme]"
   }, {
     "Chance": 100,
-    "Description": "[2x]"
+    "Description": "[Roll twice]"
   } ]
 }, {
   "Name": "Starship Name",
