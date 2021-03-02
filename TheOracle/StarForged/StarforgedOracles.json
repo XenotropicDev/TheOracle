@@ -6093,7 +6093,7 @@
     "Version": "022821"
   },
   "Game": "Starforged",
-  "Category": "Danger and Opportunity Oracles",
+  "Category": "Space Oracles",
   "Oracles": [ {
     "Chance": 4,
     "Description": "Advance warning of an environmental threat"
@@ -6178,7 +6178,7 @@
     "Version": "022821"
   },
   "Game": "Starforged",
-  "Category": "Danger and Opportunity Oracles",
+  "Category": "Planet Oracles",
   "Oracles": [ {
     "Chance": 3,
     "Description": "Corrupted or mutated lifeform"
@@ -6290,7 +6290,7 @@
     "Version": "022821"
   },
   "Game": "Starforged",
-  "Category": "Danger and Opportunity Oracles",
+  "Category": "Planet Oracles",
   "Oracles": [ {
     "Chance": 3,
     "Description": "Life is revealed or takes an unexpected form"
@@ -6378,7 +6378,7 @@
     "Version": "022821"
   },
   "Game": "Starforged",
-  "Category": "Danger and Opportunity Oracles",
+  "Category": "Planet Oracles",
   "Oracles": [ {
     "Chance": 4,
     "Description": "Clue to a lifeform's nature or vulnerabilities"
@@ -6463,7 +6463,7 @@
     "Version": "022821"
   },
   "Game": "Starforged",
-  "Category": "Danger and Opportunity Oracles",
+  "Category": "Planet Oracles",
   "Oracles": [ {
     "Chance": 5,
     "Description": "Abandoned camp or vehicle"
