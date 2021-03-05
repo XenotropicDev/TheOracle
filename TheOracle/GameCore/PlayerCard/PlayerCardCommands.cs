@@ -84,8 +84,7 @@ namespace TheOracle.GameCore.PlayerCard
         [Remarks("Use an inline reply to set the number of debilities to a character card. The number of debilities are usually between 0 and 2")]
         public async Task SetDebilities(int numberOfDebilities)
         {
-            var message = Context.Message.ReferencedMessage;
-            if (!IsPlayerCardPost(message))
+            if (!(Context.Message.ReferencedMessage is IUserMessage message) || !IsPlayerCardPost(message))
             {
                 await ReplyAsync(PlayerResources.DebilityMissingPlayerCard).ConfigureAwait(false);
                 return;
