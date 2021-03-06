@@ -164,7 +164,7 @@ namespace TheOracle.BotCore
 
             if (tokenCount != (match.Groups.Count - 1))
             {
-                values = new string[] { };
+                values = null;
                 return false;
             }
             else
