@@ -2679,7 +2679,7 @@
   },
   "Game": "Starforged",
   "Category": "Creature Oracles",
-  "Aliases": [ "bfs" ],
+  "Aliases": [ "bfs", "Basic Form Void" ],
   "Oracles": [ {
     "Chance": 5,
     "Description": "Amoeba / pseudopods"

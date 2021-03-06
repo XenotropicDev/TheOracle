@@ -13,7 +13,7 @@ namespace TheOracle.StarForged.Creatures
     public enum CreatureEnvironment
     {
         None,
-        Void,
+        Space,
         Interior,
         Land,
         Liquid,

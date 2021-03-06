@@ -116,7 +116,7 @@ namespace TheOracle.StarForged.Creatures {
         
         /// <summary>
         ///   Looks up a localized string similar to Please pick the creature&apos;s environment:
-        ///1️⃣ - Void
+        ///1️⃣ - Space
         ///2️⃣ - Interior
         ///3️⃣ - Land
         ///4️⃣ - Liquid
