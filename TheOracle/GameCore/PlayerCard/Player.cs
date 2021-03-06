@@ -29,6 +29,18 @@ namespace TheOracle.GameCore.PlayerCard
         public string DescriptionField { get; private set; }
         public string StatsField { get; private set; }
 
+        public string XPDisplay
+        {
+            get
+            {
+                if (SpentXp > 0) return string.Format(PlayerResources.XPDisplayFormatWithSpent, UnspentXp, SpentXp);
+                return string.Format(PlayerResources.XPDisplayFormatWithoutSpent, UnspentXp);
+            }
+        }
+
+        public int UnspentXp { get; set; }
+        public int SpentXp { get; set; }
+
         public Player()
         {
         }
@@ -48,10 +60,10 @@ namespace TheOracle.GameCore.PlayerCard
             builder.WithTitle(Name);
             builder.WithThumbnailUrl(AvatarUrl);
             if (DescriptionField?.Length > 0) builder.WithDescription(DescriptionField);
-            
+
             builder.WithAuthor(PlayerResources.PlayerCardTitle);
 
-            if (StatsField?.Length > 0) builder.AddField(PlayerResources.Stats, StatsField, false); 
+            if (StatsField?.Length > 0) builder.AddField(PlayerResources.Stats, StatsField, false);
             else builder.AddField(PlayerResources.Stats, statsString, false);
 
             builder.AddField(PlayerResources.Health, Health, true);
@@ -61,6 +73,8 @@ namespace TheOracle.GameCore.PlayerCard
             builder.AddField(PlayerResources.Momentum, Momentum, true);
 
             if (Debilities > 0) builder.AddField(debilitiesTitle, Debilities, true);
+
+            builder.AddField(PlayerResources.XP, XPDisplay, true);
 
             return builder;
         }
@@ -111,7 +125,26 @@ namespace TheOracle.GameCore.PlayerCard
             if (debilityField.HasValue && int.TryParse(debilityField.Value.Value, out int debilities))
                 Debilities = debilities;
 
+            EmbedField XPField = embed.Fields.FirstOrDefault(fld => fld.Name.Equals(PlayerResources.XP));
+            if (XPField.Value != null) this.SetXPFromField(XPField);
+
             return this;
+        }
+
+        private void SetXPFromField(EmbedField xPField)
+        {
+            if (Utilities.UndoFormatString(xPField.Value, PlayerResources.XPDisplayFormatWithSpent, out string[] spentValues))
+            {
+                if (int.TryParse(spentValues[0], out int unspent) && int.TryParse(spentValues[1], out int spent))
+                {
+                    UnspentXp = unspent;
+                    SpentXp = spent;
+                }
+            }
+            else if (Utilities.UndoFormatString(xPField.Value, PlayerResources.XPDisplayFormatWithoutSpent, out string[] unspentValue))
+            {
+                if (int.TryParse(unspentValue[0], out int unspent)) UnspentXp = unspent;
+            }
         }
 
         internal Player WithChannelSettings(ChannelSettings channelSettings)

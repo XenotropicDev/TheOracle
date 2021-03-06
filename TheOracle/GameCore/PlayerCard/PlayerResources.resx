@@ -127,9 +127,6 @@
   <data name="Debilities" xml:space="preserve">
     <value>Debilities</value>
   </data>
-  <data name="DebilityMissingPlayerCard" xml:space="preserve">
-    <value>Please reply to a player card to set the debilities for that card.</value>
-  </data>
   <data name="Edge" xml:space="preserve">
     <value>Edge</value>
   </data>
@@ -141,6 +138,9 @@
   </data>
   <data name="HelperTitle" xml:space="preserve">
     <value>Player Card Helper</value>
+  </data>
+  <data name="InlineReplyMissingError" xml:space="preserve">
+    <value>Please reply to a player card to use that command</value>
   </data>
   <data name="Iron" xml:space="preserve">
     <value>Iron</value>
@@ -175,5 +175,16 @@
   </data>
   <data name="Wits" xml:space="preserve">
     <value>Wits</value>
+  </data>
+  <data name="XP" xml:space="preserve">
+    <value>XP</value>
+  </data>
+  <data name="XPDisplayFormatWithoutSpent" xml:space="preserve">
+    <value>{0}</value>
+    <comment>{0} will be replaced with the XP value. This is used if a player has never spent XP or has opted out of the spent XP tracking feature.</comment>
+  </data>
+  <data name="XPDisplayFormatWithSpent" xml:space="preserve">
+    <value>Unspent: {0} Spent: {1}</value>
+    <comment>{0} will be replaced with the XP value, {1} will be replaced with the spent XP value</comment>
   </data>
 </root>

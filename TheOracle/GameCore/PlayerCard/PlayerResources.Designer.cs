@@ -88,15 +88,6 @@ namespace TheOracle.GameCore.PlayerCard {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please reply to a player card to set the debilities for that card..
-        /// </summary>
-        internal static string DebilityMissingPlayerCard {
-            get {
-                return ResourceManager.GetString("DebilityMissingPlayerCard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Edge.
         /// </summary>
         internal static string Edge {
@@ -129,6 +120,15 @@ namespace TheOracle.GameCore.PlayerCard {
         internal static string HelperTitle {
             get {
                 return ResourceManager.GetString("HelperTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please reply to a player card to use that command.
+        /// </summary>
+        internal static string InlineReplyMissingError {
+            get {
+                return ResourceManager.GetString("InlineReplyMissingError", resourceCulture);
             }
         }
         
@@ -228,6 +228,33 @@ namespace TheOracle.GameCore.PlayerCard {
         internal static string Wits {
             get {
                 return ResourceManager.GetString("Wits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XP.
+        /// </summary>
+        internal static string XP {
+            get {
+                return ResourceManager.GetString("XP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        internal static string XPDisplayFormatWithoutSpent {
+            get {
+                return ResourceManager.GetString("XPDisplayFormatWithoutSpent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unspent: {0} Spent: {1}.
+        /// </summary>
+        internal static string XPDisplayFormatWithSpent {
+            get {
+                return ResourceManager.GetString("XPDisplayFormatWithSpent", resourceCulture);
             }
         }
     }

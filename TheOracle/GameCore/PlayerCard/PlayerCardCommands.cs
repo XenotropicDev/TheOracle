@@ -86,13 +86,52 @@ namespace TheOracle.GameCore.PlayerCard
         {
             if (!(Context.Message.ReferencedMessage is IUserMessage message) || !IsPlayerCardPost(message))
             {
-                await ReplyAsync(PlayerResources.DebilityMissingPlayerCard).ConfigureAwait(false);
+                await ReplyAsync(PlayerResources.InlineReplyMissingError).ConfigureAwait(false);
                 return;
             }
 
             var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
             var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
             player.Debilities = numberOfDebilities;
+
+            await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
+        }
+
+        [Summary("Uses inline replies to set add XP for a player card in the replied to message.")]
+        [Command("AddXP")]
+        [Alias("XP")]
+        [Remarks("Use a negative number to remove XP.")]
+        public async Task AddXP(int amount)
+        {
+            if (!(Context.Message.ReferencedMessage is IUserMessage message) || !IsPlayerCardPost(message))
+            {
+                await ReplyAsync(PlayerResources.InlineReplyMissingError).ConfigureAwait(false);
+                return;
+            }
+
+            var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+            var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
+            player.UnspentXp += amount;
+
+            await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
+        }
+
+        [Summary("Uses inline replies to mark XP as spent for a player card in the replied to message.")]
+        [Command("SpendXP")]
+        [Alias("Spend")]
+        [Remarks("Use a negative value to undo/modify things. To directly set the spent and unspent XP use the `!EditField XP` command")]
+        public async Task SpendXP(int amount)
+        {
+            if (!(Context.Message.ReferencedMessage is IUserMessage message) || !IsPlayerCardPost(message))
+            {
+                await ReplyAsync(PlayerResources.InlineReplyMissingError).ConfigureAwait(false);
+                return;
+            }
+
+            var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+            var player = new Player().WithChannelSettings(cs).PopulateFromEmbed(message.Embeds.First());
+            player.UnspentXp -= amount;
+            player.SpentXp += amount;
 
             await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
         }
