@@ -49,7 +49,7 @@ namespace TheOracle.StarForged.Creatures
 
             creature.BasicForm = oracles.RandomOracleResult($"Basic Form {environment}", serviceProvider, GameName.Starforged, rnd);
             creature.Environment = environment;
-            creature.EncounteredBehavior = oracles.RandomOracleResult("Creature Encountered Behavior", serviceProvider, GameName.Starforged, rnd);
+            creature.EncounteredBehavior = oracles.RandomOracleResult("Creature Behavior", serviceProvider, GameName.Starforged, rnd);
 
             int firstLookCount = rnd.Next(2, 4); //random.Next doesn't include the max value
             for (int i = 0; i < firstLookCount; i++)
