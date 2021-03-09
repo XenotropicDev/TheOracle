@@ -130,8 +130,16 @@
     <value>Description, Desc</value>
     <comment>Case-insensitive, seperate each entry by a comma. A match for any of these will always edit the embed's description field.</comment>
   </data>
+  <data name="SpecifyField" xml:space="preserve">
+    <value>Which field number (1-{0}) should I use?</value>
+    <comment>{0} will be replaced with the number of fields that match a search query for a field manipulation command</comment>
+  </data>
   <data name="TitleNames" xml:space="preserve">
     <value>Title</value>
     <comment>Case-insensitive, seperate each entry by a comma. A match for any of these will always edit the embed's title field.</comment>
+  </data>
+  <data name="UnknownFieldNumber" xml:space="preserve">
+    <value>Unknown field number '{0}' please try again.</value>
+    <comment>{0} will be replaced with the use input value. Error message if the value the user input isn't valid.</comment>
   </data>
 </root>

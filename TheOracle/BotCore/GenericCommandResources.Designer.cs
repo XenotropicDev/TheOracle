@@ -97,11 +97,29 @@ namespace TheOracle.BotCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Which field number (1-{0}) should I use?.
+        /// </summary>
+        public static string SpecifyField {
+            get {
+                return ResourceManager.GetString("SpecifyField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string TitleNames {
             get {
                 return ResourceManager.GetString("TitleNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown field number &apos;{0}&apos; please try again..
+        /// </summary>
+        public static string UnknownFieldNumber {
+            get {
+                return ResourceManager.GetString("UnknownFieldNumber", resourceCulture);
             }
         }
     }
