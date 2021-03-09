@@ -24,7 +24,9 @@ Easily keep track of who has initiative, and who is in trouble.
 
 ## Contributing
 If you find a bug or have an idea for a feature add it as a github issue.
+
 If you want to help out there are tasks that can be completed by someone with or without code experience. Just ask in the Official Ironsworn discord's bot-development channel, and we can figure out what would suit your skills.
+
 If you want to send some money to help hosting costs, and maybe caffine that will go directly into more features here's a link to my [Ko-fi](https://ko-fi.com/xeno0964)
 
 ## Commands
