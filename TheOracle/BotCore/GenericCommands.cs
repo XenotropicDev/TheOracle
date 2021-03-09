@@ -2,6 +2,7 @@
 using Discord.Addons.Interactive;
 using Discord.Commands;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,19 +43,10 @@ namespace TheOracle.BotCore
                 int fieldToEdit = 0;
                 if (matchingFields.Count() > 1)
                 {
-                    //Ask the user which field to edit if there is more than one match.
-                    var helperMessage = await ReplyAsync(string.Format(GenericCommandResources.SpecifyField, matchingFields.Count())).ConfigureAwait(false);
-                    var userResponse = await NextMessageAsync(false, timeout: TimeSpan.FromMinutes(1));
-                    if (userResponse == null) return;
-                    if (!int.TryParse(userResponse.Content, out fieldToEdit) || fieldToEdit < 1 || fieldToEdit > matchingFields.Count())
-                    {
-                        await ReplyAsync(string.Format(GenericCommandResources.UnknownFieldNumber, userResponse.Content));
-                        return;
-                    }
-                    await helperMessage.DeleteAsync().ConfigureAwait(false);
-                    await userResponse.DeleteAsync().ConfigureAwait(false);
+                    fieldToEdit = await AskForFieldNumber(matchingFields);
+                    if (fieldToEdit < 0) return;
                 }
-                matchingFields.ElementAt(fieldToEdit - 1).Value = FieldValue;
+                matchingFields.ElementAt(fieldToEdit).Value = FieldValue;
             }
 
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
@@ -85,25 +77,37 @@ namespace TheOracle.BotCore
                 if (!builder.Fields.Any(fld => fld.Name.Contains(FieldName, StringComparison.OrdinalIgnoreCase))) throw new ArgumentException($"Unknown Field '{FieldName}'");
 
                 var matchingFields = builder.Fields.Where(fld => fld.Name.Contains(FieldName, StringComparison.OrdinalIgnoreCase));
-                if (matchingFields.Count() > 1 && (FieldNumber < 1 || FieldNumber > matchingFields.Count()))
+                if (matchingFields.Count() > 1 && (FieldNumber <= 0 || FieldNumber > matchingFields.Count()))
                 {
-                    //Ask the user which field to edit if there is more than one match.
-                    var helperMessage = await ReplyAsync(string.Format(GenericCommandResources.SpecifyField, matchingFields.Count())).ConfigureAwait(false);
-                    var userResponse = await NextMessageAsync(false, timeout: TimeSpan.FromMinutes(1));
-                    if (userResponse == null) return;
-                    if (!int.TryParse(userResponse.Content, out FieldNumber) || FieldNumber < 1 || FieldNumber > matchingFields.Count())
-                    {
-                        await ReplyAsync(string.Format(GenericCommandResources.UnknownFieldNumber, userResponse.Content));
-                        return;
-                    }
-                    await helperMessage.DeleteAsync().ConfigureAwait(false);
-                    await userResponse.DeleteAsync().ConfigureAwait(false);
+                    FieldNumber = await AskForFieldNumber(matchingFields);
+                    if (FieldNumber < 0) return;
                 }
-                else FieldNumber = 1;
-                builder.Fields.Remove(matchingFields.ElementAt(FieldNumber - 1));
+                else if (FieldNumber > 0) FieldNumber--;
+                builder.Fields.Remove(matchingFields.ElementAt(FieldNumber));
             }
 
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
+        }
+
+        private async Task<int> AskForFieldNumber(IEnumerable<EmbedFieldBuilder> matchingFields)
+        {
+            int fieldToEdit;
+            string fieldNumbersAndValues = string.Empty;
+            for (int i = 0; i < matchingFields.Count(); i++)
+            {
+                fieldNumbersAndValues += $"{i + 1} - {matchingFields.ElementAt(i).Name} : {matchingFields.ElementAt(i).Value}\r\n";
+            }
+            var helperMessage = await ReplyAsync(string.Format(GenericCommandResources.SpecifyField, fieldNumbersAndValues)).ConfigureAwait(false);
+            var userResponse = await NextMessageAsync(false, timeout: TimeSpan.FromMinutes(1));
+            if (userResponse == null) return -1;
+            if (!int.TryParse(userResponse.Content, out fieldToEdit) || fieldToEdit < 1 || fieldToEdit > matchingFields.Count())
+            {
+                await ReplyAsync(string.Format(GenericCommandResources.UnknownFieldNumber, userResponse.Content));
+                return -1;
+            }
+            await helperMessage.DeleteAsync().ConfigureAwait(false);
+            await userResponse.DeleteAsync().ConfigureAwait(false);
+            return fieldToEdit - 1;
         }
     }
 }

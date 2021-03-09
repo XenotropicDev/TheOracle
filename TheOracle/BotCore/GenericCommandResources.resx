@@ -131,8 +131,10 @@
     <comment>Case-insensitive, seperate each entry by a comma. A match for any of these will always edit the embed's description field.</comment>
   </data>
   <data name="SpecifyField" xml:space="preserve">
-    <value>Which field number (1-{0}) should I use?</value>
-    <comment>{0} will be replaced with the number of fields that match a search query for a field manipulation command</comment>
+    <value>Please reply with the number only of the field you would like to change:
+
+{0}</value>
+    <comment>{0} will be replaced with the number and values for each field that match a search query for a field manipulation command</comment>
   </data>
   <data name="TitleNames" xml:space="preserve">
     <value>Title</value>

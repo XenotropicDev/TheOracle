@@ -97,7 +97,9 @@ namespace TheOracle.BotCore {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Which field number (1-{0}) should I use?.
+        ///   Looks up a localized string similar to Please reply with the number only of the field you would like to change:
+        ///
+        ///{0}.
         /// </summary>
         public static string SpecifyField {
             get {
