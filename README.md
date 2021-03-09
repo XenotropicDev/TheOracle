@@ -22,8 +22,10 @@ Quickly and easily add things like settlements, and NPCs to your game. TheOracle
 ### Initiative Tracker
 Easily keep track of who has initiative, and who is in trouble.
 
-### Localization Support (Full support scheduled for v1.0.0)
-TheOracle is written in a way that makes it easier to localize into your native language. Just fork the project, edit the resource files, and add a pull request and you localization will be added.
+## Contributing
+If you find a bug or have an idea for a feature add it as a github issue.
+If you want to help out there are tasks that can be completed by someone with or without code experience. Just ask in the Official Ironsworn discord's bot-development channel, and we can figure out what would suit your skills.
+If you want to send some money to help hosting costs, and maybe caffine that will go directly into more features here's a link to my [Ko-fi](https://ko-fi.com/xeno0964)
 
 ## Commands
 Most commands and oracle tables names have shorter hand versions of them, but command clarity is one of the goals of this bot so overly cryptic and short commands are avoided. If a command needs more information such as a progress tracker difficulty a helper post will give you options to select from.
