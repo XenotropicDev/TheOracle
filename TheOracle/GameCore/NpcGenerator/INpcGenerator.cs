@@ -11,5 +11,6 @@ namespace TheOracle.GameCore.NpcGenerator
         public INpcGenerator Build(string NPCCreationOptions);
 
         public IEmote[] ReactionsToAdd { get; set; }
+        string EmbedDesc { get; }
     }
 }
