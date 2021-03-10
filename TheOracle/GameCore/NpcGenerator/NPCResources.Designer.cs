@@ -61,11 +61,29 @@ namespace TheOracle.GameCore.NpcGenerator {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activity.
+        /// </summary>
+        internal static string Activity {
+            get {
+                return ResourceManager.GetString("Activity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descriptor.
         /// </summary>
         internal static string Descriptor {
             get {
                 return ResourceManager.GetString("Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disposition.
+        /// </summary>
+        internal static string Disposition {
+            get {
+                return ResourceManager.GetString("Disposition", resourceCulture);
             }
         }
         

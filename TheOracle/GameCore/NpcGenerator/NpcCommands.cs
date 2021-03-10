@@ -39,7 +39,7 @@ namespace TheOracle.GameCore.NpcGenerator
         [Command("NPC")]
         [Alias("CreateNPC", "NewNPC")]
         [Summary("Creates a NPC for the specified game, or default game if none is specified")]
-        [Remarks("Sample usage: `!NPC Ironsworn Tom Bombadil`")]
+        [Remarks("Use `!NPC elf` (Giant or Varou also work) to create with a name from that table\n\n🔍 - Adds a description or aspect\n👋 - Adds a disposition\n👀 - Adds a first look (Starforged)\n💃 - Adds an activity (Ironsworn/Delve)\n❗ - Adds a goal\n🎭 - Adds a role")]
         public async Task NPCPost([Remainder] string NPCNameAndOptionalGame = "")
         {
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);

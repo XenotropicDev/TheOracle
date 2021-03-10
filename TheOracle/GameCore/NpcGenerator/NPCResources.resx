@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
   <data name="Descriptor" xml:space="preserve">
     <value>Descriptor</value>
+  </data>
+  <data name="Disposition" xml:space="preserve">
+    <value>Disposition</value>
   </data>
   <data name="Goal" xml:space="preserve">
     <value>Goal</value>

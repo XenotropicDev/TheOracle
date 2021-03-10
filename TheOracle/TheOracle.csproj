@@ -314,6 +314,11 @@
     <Compile Update="IronSworn\Delve\Theme.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Update="IronSworn\NPC\IronNPCResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IronNPCResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StarForged\Creatures\CreatureResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -407,6 +412,10 @@
     <EmbeddedResource Update="IronSworn\Delve\DelveResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DelveResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="IronSworn\NPC\IronNPCResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IronNPCResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="StarForged\Creatures\CreatureResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

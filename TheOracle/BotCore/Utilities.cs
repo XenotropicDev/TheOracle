@@ -176,5 +176,13 @@ namespace TheOracle.BotCore
                 return true;
             }
         }
+
+        public static List<EmbedFieldBuilder> EmbedFieldBuilderFromList(this IList<string> list, string FieldName, bool Inline = false)
+        {
+            List<EmbedFieldBuilder> embedFields = new List<EmbedFieldBuilder>();
+            foreach (var item in list) embedFields.Add(new EmbedFieldBuilder().WithIsInline(Inline).WithName(FieldName).WithValue(item));
+
+            return embedFields;
+        }
     }
 }
