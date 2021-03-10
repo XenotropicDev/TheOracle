@@ -58,6 +58,7 @@ namespace TheOracle.StarForged.NPC
 
         public string Name { get; set; }
         public string IconUrl { get; private set; }
+        public string EmbedDesc { get; private set; }
         public IEmote[] ReactionsToAdd { get; set; }
 
         public List<string> Roles { get; set; } = new List<string>();
@@ -122,6 +123,7 @@ namespace TheOracle.StarForged.NPC
             foreach (var role in embed.Fields.Where(fld => fld.Name == NPCResources.Role)) Roles.Add(role.Value);
             Name = embed.Fields.FirstOrDefault(fld => fld.Name == NPCResources.Name).Value;
             IconUrl = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : null;
+            EmbedDesc = embed.Description;
         }
 
         public Embed GetEmbed()
@@ -151,6 +153,7 @@ namespace TheOracle.StarForged.NPC
                 .WithFields(goalFields)
                 .WithFields(AspectFields)
                 .WithFooter(GameName.Starforged.ToString())
+                .WithDescription(EmbedDesc)
                 .Build();
         }
 

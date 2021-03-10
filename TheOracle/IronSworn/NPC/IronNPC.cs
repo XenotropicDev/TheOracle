@@ -22,6 +22,7 @@ namespace TheOracle.GameCore.NpcGenerator
         private IServiceProvider Services { get; }
         public IEmote[] ReactionsToAdd { get; set; } = null;
         public string IconUrl { get; private set; }
+        public string EmbedDesc { get; private set; }
 
         private Emoji descEmoji = new Emoji("🔍");
         private Emoji dispositionEmoji = new Emoji("👋");
@@ -67,6 +68,7 @@ namespace TheOracle.GameCore.NpcGenerator
                 .WithFields(Activities.EmbedFieldBuilderFromList(NPCResources.Activity, true))
                 .WithFields(Dispositions.EmbedFieldBuilderFromList(NPCResources.Disposition, true))
                 .WithFooter(GameName.Ironsworn.ToString())
+                .WithDescription(EmbedDesc)
                 .Build();
         }
 
@@ -79,6 +81,7 @@ namespace TheOracle.GameCore.NpcGenerator
             foreach (var desc in embed.Fields.Where(fld => fld.Name == NPCResources.Descriptor)) Descriptors.Add(desc.Value);
             Name = embed.Fields.FirstOrDefault(fld => fld.Name == NPCResources.Name).Value;
             IconUrl = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : null;
+            EmbedDesc = embed.Description;
         }
 
         public INpcGenerator Build(string NPCCreationOptions)
