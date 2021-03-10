@@ -38,7 +38,7 @@ namespace TheOracle.BotCore
             var descNames = GenericCommandResources.DescriptionNames.Split(',');
             var titleNames = GenericCommandResources.TitleNames.Split(',');
 
-            var match = Regex.Match(FieldValue, @"\[\[([\w\s]+)\]\]");
+            var match = Regex.Match(FieldValue, @"^\[\[([\w\s]+)\]\]$");
             if (match.Success)
             {
                 var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
