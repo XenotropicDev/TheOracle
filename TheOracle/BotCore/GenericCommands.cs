@@ -1,15 +1,25 @@
 ﻿using Discord;
 using Discord.Addons.Interactive;
 using Discord.Commands;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.BotCore
 {
     public class GenericCommands : InteractiveBase
     {
+        public GenericCommands(IServiceProvider services)
+        {
+            Services = services;
+        }
+
+        public IServiceProvider Services { get; }
+
         [Command("ReplaceField", RunMode = RunMode.Async)]
         [Alias("Field", "SetField", "EditField")]
         [Summary("Uses inline replies to replace the content of a field on an embed in the message replied to.")]
@@ -27,6 +37,15 @@ namespace TheOracle.BotCore
 
             var descNames = GenericCommandResources.DescriptionNames.Split(',');
             var titleNames = GenericCommandResources.TitleNames.Split(',');
+
+            var match = Regex.Match(FieldValue, @"\[\[([\w\s]+)\]\]");
+            if (match.Success)
+            {
+                var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+                var oracles = Services.GetRequiredService<OracleService>();
+                FieldValue = oracles.RandomRow(match.Groups[1].Value, cs.GetDefaultGame(false)).Description;
+            }
+
             if (descNames.Any(desc => desc.Trim().Equals(FieldName, StringComparison.OrdinalIgnoreCase)))
             {
                 builder.WithDescription(FieldValue);

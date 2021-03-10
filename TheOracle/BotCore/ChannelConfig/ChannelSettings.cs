@@ -31,5 +31,12 @@ namespace TheOracle.BotCore
             }
             return settings;
         }
+
+        public GameName GetDefaultGame(bool AllowNone = true)
+        {
+            if (AllowNone) return DefaultGame;
+            if (DefaultGame == GameName.None) return GameName.Ironsworn;
+            return DefaultGame;
+        }
     }
 }
