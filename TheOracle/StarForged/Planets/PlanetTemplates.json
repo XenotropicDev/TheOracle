@@ -1308,6 +1308,52 @@
     "Chance": 100,
     "Description": "No Biomes"
   } ],
+  "CloserLooks": [ {
+    "Chance": 7,
+    "Description": "Crystalline formations"
+  }, {
+    "Chance": 14,
+    "Description": "Crystalline caves"
+  }, {
+    "Chance": 21,
+    "Description": "Exposed mineral deposits"
+  }, {
+    "Chance": 28,
+    "Description": "Geometric terrain features"
+  }, {
+    "Chance": 35,
+    "Description": "Geothermal vents"
+  }, {
+    "Chance": 42,
+    "Description": "Glassy impact craters"
+  }, {
+    "Chance": 49,
+    "Description": "Massive dust dunes"
+  }, {
+    "Chance": 56,
+    "Description": "Powerful magnetic fields"
+  }, {
+    "Chance": 63,
+    "Description": "Rubble-strewn lava fields"
+  }, {
+    "Chance": 70,
+    "Description": "Steam-heated caves"
+  }, {
+    "Chance": 77,
+    "Description": "Subsurface magma flows"
+  }, {
+    "Chance": 84,
+    "Description": "Swirling low-lying gases"
+  }, {
+    "Chance": 91,
+    "Description": "Towering rocky spires"
+  }, {
+    "Chance": 98,
+    "Description": "[Descriptor/Focus]"
+  }, {
+    "Chance": 100,
+    "Description": "Anomalous Site (planetside)"
+  } ],
   "PossibleLife": [ {
     "Chance": 55,
     "Description": "None"
