@@ -3,7 +3,7 @@
 A bot written with [Discord.Net](https://discord.foxbot.me/stable/) for [Ironsworn](https://www.ironswornrpg.com/) and its derived games, with a focus on play-by-post games.
 
 ## Joining the bot to your discord server
-To add TheOracle to a discord server click [this link](https://discordapp.com/oauth2/authorize?&client_id=704480988561932389&scope=bot&permissions=523328) and then select the server you wish to add the bot to.
+To add TheOracle to a discord server click [this link](https://discordapp.com/oauth2/authorize?&client_id=704480988561932389&scope=bot&permissions=2148006976) and then select the server you wish to add the bot to.
 
 ## Features
 
