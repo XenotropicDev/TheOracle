@@ -1525,12 +1525,6 @@
     "Description": "Anomalous site (planetside)"
   } ],
   "PossibleLife": [ {
-    "Chance": 35,
-    "Description": "None"
-  }, {
-    "Chance": 80,
-    "Description": "Extinct"
-  }, {
     "Chance": 10,
     "Description": "Simple"
   }, {
@@ -1539,6 +1533,12 @@
   }, {
     "Chance": 17,
     "Description": "Diverse"
+  }, {
+    "Chance": 35,
+    "Description": "None"
+  }, {
+    "Chance": 80,
+    "Description": "Extinct"
   } ]
 }, {
   "PlanetType": "Tainted World",
