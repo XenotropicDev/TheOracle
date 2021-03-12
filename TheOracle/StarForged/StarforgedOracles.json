@@ -6525,4 +6525,114 @@
     "Chance": 100,
     "Description": "Vantage point reveals the lay of the land"
   } ]
+}, {
+  "Name": "Desert World Names",
+  "Aliases": [ "Desert name", "Desert" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Abalos", "Audun", "Bishop", "Datura", "Desolation", "Dykuma", "Fallow", "Helios", "Mirage", "Morricone", "Nux", "Ordos", "Petra", "Pyla", "Sabulo", "Sirocco", "Solitude", "Sulis", "Torrid", "Umber" ]
+}, {
+  "Name": "Furnace World Names",
+  "Aliases": [ "Furnace name", "Furnace" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Ash", "Azula", "Cinder", "Cinerarium", "Cyrus", "Draconus", "Effigy", "Ember", "Flint", "Hades", "Hera", "Ignis", "Inferno", "Ishum", "Kresnik", "Nemesis", "Pyre", "Scorch", "Tana", "Vesta" ]
+}, {
+  "Name": "Grave World Names",
+  "Aliases": [ "Grave name", "Grave" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Anubis", "Banshee", "Barrow", "Cairn", "Cerberus", "Charon", "Corvus", "Erra", "Keen", "Kur", "Lament", "Mantus", "Morrigan", "Mourn", "Necropolis", "Orcus", "Osiris", "Styx", "Thrace", "Veris" ]
+}, {
+  "Name": "Ice World Names",
+  "Aliases": [ "Ice name", "Ice" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Argent", "Beira", "Boreas", "Caradhras", "Cicero", "Demetria", "Enten", "Fissure", "Frost", "Jotunn", "Kanna", "Karn", "Kheimon", "Moroz", "Nix", "Olwen", "Osolok", "Taiga", "Thule", "Varnholme" ]
+}, {
+  "Name": "Jovian World Names",
+  "Aliases": [ "Jovian name", "Jovian" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Aether", "Arrokoth", "Esen", "Hanish", "Magnus", "Magonia", "Mistral", "Nephele", "Nimbus", "Nuada", "Nubium", "Serein", "Stratus", "Taranis", "Tempest", "Tenzin", "Tyr", "Veil", "Velum", "Zephyr" ]
+}, {
+  "Name": "Jungle World Names",
+  "Aliases": [ "Jungle name", "Jungle" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Acacia", "Aster", "Beryl", "Celadon", "Ceres", "Damu", "Dryad", "Flora", "Imbrium", "Iridum", "Iris", "Kishar", "Penumbra", "Roris", "Sylva", "Tangle", "Thorn", "Verdure", "Veris", "Viridian" ]
+}, {
+  "Name": "Ocean World Names",
+  "Aliases": [ "Ocean name", "Ocean" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Abyss", "Aegir", "Alon", "Clarion", "Darya", "Eldoris", "Horizon", "Hydra", "Kai", "Lotan", "Mira", "Navini", "Nerida", "Oceanus", "Pelagic", "Proteus", "Russalka", "Siren", "Thalassa", "Triton" ]
+}, {
+  "Name": "Rocky World Names",
+  "Aliases": [ "Rocky name", "Rocky" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Artemis", "Asteria", "Capella", "Desolation", "Dusk", "Hecate", "Imbrium", "Latona", "Losna", "Orpheus", "Ory", "Quietus", "Selene", "Silas", "Silex", "Slate", "Solitude", "Themis", "Umbra", "Vesta" ]
+}, {
+  "Name": "Shattered World Names",
+  "Aliases": [ "Shattered name", "Shattered" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Chrysalis", "Fragment", "Havoc", "Keres", "Lacuna", "Maelstrom", "Nemain", "Praxis", "Riven", "Schism", "Shell", "Slag", "Sliver", "Sunder", "Torment", "Vestige", "Vigrid", "Vortex", "Wrath", "Zix" ]
+}, {
+  "Name": "Tainted World Names",
+  "Aliases": [ "Tainted name", "Tainted" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Achlys", "Animus", "Bane", "Blight", "Carrion", "Chitin", "Datura", "Dreck", "Erra", "Febris", "Malacia", "Miasma", "Morbus", "Pathosis", "Pestis", "Scourge", "Telium", "Timoris", "Verus", "Xanthous" ]
+}, {
+  "Name": "Vital World Names",
+  "Aliases": [ "Vital name", "Vital" ],
+  "Source": {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "022821"
+  },
+  "Game": "Starforged",
+  "Category": "Planet Sample Names",
+  "Oracles": [ "Chiron", "Demeter", "Erebos", "Erembour", "Feronia", "Fortuna", "Gaia", "Harbinger", "Haven", "Hope", "Kishar", "Morpheus", "Nemus", "Oasis", "Serenity", "Sif", "Silva", "Sirona", "Vale", "Valinor" ]
 } ]
