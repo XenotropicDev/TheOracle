@@ -98,36 +98,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "Desert"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 25,
-    "Description": "None"
-  }, {
-    "Chance": 45,
-    "Description": "Extinct"
-  }, {
-    "Chance": 60,
-    "Description": "Simple"
-  }, {
-    "Chance": 80,
-    "Description": "Sparse"
-  }, {
-    "Chance": 90,
-    "Description": "Diverse"
-  }, {
-    "Chance": 97,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Cavernous sinkholes"
@@ -173,6 +143,36 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 25,
+    "Description": "None"
+  }, {
+    "Chance": 45,
+    "Description": "Extinct"
+  }, {
+    "Chance": 60,
+    "Description": "Simple"
+  }, {
+    "Chance": 80,
+    "Description": "Sparse"
+  }, {
+    "Chance": 90,
+    "Description": "Diverse"
+  }, {
+    "Chance": 97,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "Desert"
   } ]
 }, {
   "PlanetType": "Furnace World",
@@ -271,36 +271,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "Furnace"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 30,
-    "Description": "None"
-  }, {
-    "Chance": 50,
-    "Description": "Extinct"
-  }, {
-    "Chance": 70,
-    "Description": "Simple"
-  }, {
-    "Chance": 85,
-    "Description": "Sparse"
-  }, {
-    "Chance": 95,
-    "Description": "Diverse"
-  }, {
-    "Chance": 98,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Blinding ash storms"
@@ -346,6 +316,36 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 30,
+    "Description": "None"
+  }, {
+    "Chance": 50,
+    "Description": "Extinct"
+  }, {
+    "Chance": 70,
+    "Description": "Simple"
+  }, {
+    "Chance": 85,
+    "Description": "Sparse"
+  }, {
+    "Chance": 95,
+    "Description": "Diverse"
+  }, {
+    "Chance": 98,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "Furnace"
   } ]
 }, {
   "PlanetType": "Grave World",
@@ -438,27 +438,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 25,
-    "Description": "None"
-  }, {
-    "Chance": 85,
-    "Description": "Extinct"
-  }, {
-    "Chance": 95,
-    "Description": "Simple"
-  }, {
-    "Chance": 100,
-    "Description": "Sparse"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Acid pools"
@@ -504,6 +483,27 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 25,
+    "Description": "None"
+  }, {
+    "Chance": 85,
+    "Description": "Extinct"
+  }, {
+    "Chance": 95,
+    "Description": "Simple"
+  }, {
+    "Chance": 100,
+    "Description": "Sparse"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Ice World",
@@ -605,36 +605,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 25,
-    "Description": "None"
-  }, {
-    "Chance": 45,
-    "Description": "Extinct"
-  }, {
-    "Chance": 60,
-    "Description": "Simple"
-  }, {
-    "Chance": 75,
-    "Description": "Sparse"
-  }, {
-    "Chance": 90,
-    "Description": "Diverse"
-  }, {
-    "Chance": 97,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Abyssal ice fissures"
@@ -680,6 +650,36 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 25,
+    "Description": "None"
+  }, {
+    "Chance": 45,
+    "Description": "Extinct"
+  }, {
+    "Chance": 60,
+    "Description": "Simple"
+  }, {
+    "Chance": 75,
+    "Description": "Sparse"
+  }, {
+    "Chance": 90,
+    "Description": "Diverse"
+  }, {
+    "Chance": 97,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Jovian World",
@@ -775,36 +775,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 50,
-    "Description": "None"
-  }, {
-    "Chance": 55,
-    "Description": "Extinct"
-  }, {
-    "Chance": 70,
-    "Description": "Simple"
-  }, {
-    "Chance": 82,
-    "Description": "Sparse"
-  }, {
-    "Chance": 92,
-    "Description": "Diverse"
-  }, {
-    "Chance": 97,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Clouds of metal particles"
@@ -850,6 +820,36 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 50,
+    "Description": "None"
+  }, {
+    "Chance": 55,
+    "Description": "Extinct"
+  }, {
+    "Chance": 70,
+    "Description": "Simple"
+  }, {
+    "Chance": 82,
+    "Description": "Sparse"
+  }, {
+    "Chance": 92,
+    "Description": "Diverse"
+  }, {
+    "Chance": 97,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Jungle World",
@@ -954,30 +954,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 5,
-    "Description": "Simple"
-  }, {
-    "Chance": 20,
-    "Description": "Sparse"
-  }, {
-    "Chance": 45,
-    "Description": "Diverse"
-  }, {
-    "Chance": 80,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Bioluminescent flora"
@@ -1023,6 +999,30 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 5,
+    "Description": "Simple"
+  }, {
+    "Chance": 20,
+    "Description": "Sparse"
+  }, {
+    "Chance": 45,
+    "Description": "Diverse"
+  }, {
+    "Chance": 80,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Ocean World",
@@ -1130,36 +1130,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 5,
-    "Description": "None"
-  }, {
-    "Chance": 15,
-    "Description": "Extinct"
-  }, {
-    "Chance": 25,
-    "Description": "Simple"
-  }, {
-    "Chance": 45,
-    "Description": "Sparse"
-  }, {
-    "Chance": 70,
-    "Description": "Diverse"
-  }, {
-    "Chance": 90,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Abyssal trenches"
@@ -1205,6 +1175,36 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 5,
+    "Description": "None"
+  }, {
+    "Chance": 15,
+    "Description": "Extinct"
+  }, {
+    "Chance": 25,
+    "Description": "Simple"
+  }, {
+    "Chance": 45,
+    "Description": "Sparse"
+  }, {
+    "Chance": 70,
+    "Description": "Diverse"
+  }, {
+    "Chance": 90,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Rocky World",
@@ -1300,14 +1300,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Crystalline formations"
@@ -1375,6 +1367,14 @@
   }, {
     "Chance": 100,
     "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Shattered World",
@@ -1470,14 +1470,6 @@
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Broken cities"
@@ -1539,6 +1531,14 @@
   }, {
     "Chance": 100,
     "Description": "Diverse"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Tainted World",
@@ -1628,30 +1628,6 @@
     "Chance": 100,
     "Description": "Anomalous site (orbital)"
   } ],
-  "NumberOfBiomes": [ {
-    "Chance": 100,
-    "Amount": 0
-  } ],
-  "PossibleBiomes": [ {
-    "Chance": 100,
-    "Description": "No Biomes"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 5,
-    "Description": "Simple"
-  }, {
-    "Chance": 15,
-    "Description": "Sparse"
-  }, {
-    "Chance": 30,
-    "Description": "Diverse"
-  }, {
-    "Chance": 55,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
   "CloserLooks": [ {
     "Chance": 7,
     "Description": "Caustic gas storms"
@@ -1697,6 +1673,30 @@
   }, {
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 5,
+    "Description": "Simple"
+  }, {
+    "Chance": 15,
+    "Description": "Sparse"
+  }, {
+    "Chance": 30,
+    "Description": "Diverse"
+  }, {
+    "Chance": 55,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
+  "NumberOfBiomes": [ {
+    "Chance": 100,
+    "Amount": 0
+  } ],
+  "PossibleBiomes": [ {
+    "Chance": 100,
+    "Description": "No Biomes"
   } ]
 }, {
   "PlanetType": "Vital World",
@@ -1795,6 +1795,65 @@
     "Chance": 100,
     "Description": "Anomalous site (planetside)"
   } ],
+  "CloserLooks": [ {
+    "Chance": 7,
+    "Description": "Background radiation"
+  }, {
+    "Chance": 14,
+    "Description": "Chaotically juxtaposed biomes"
+  }, {
+    "Chance": 21,
+    "Description": "Creature boneyards"
+  }, {
+    "Chance": 28,
+    "Description": "Creature lairs or watering holes"
+  }, {
+    "Chance": 35,
+    "Description": "Crystalline formations"
+  }, {
+    "Chance": 42,
+    "Description": "Fierce electrical storms"
+  }, {
+    "Chance": 49,
+    "Description": "Floating terrain"
+  }, {
+    "Chance": 56,
+    "Description": "Frequent seismic activity"
+  }, {
+    "Chance": 63,
+    "Description": "Magnetic disturbances"
+  }, {
+    "Chance": 70,
+    "Description": "Scarred or excavated terrain"
+  }, {
+    "Chance": 77,
+    "Description": "Signs of an engineered biosphere"
+  }, {
+    "Chance": 84,
+    "Description": "Sudden weather fluctuations"
+  }, {
+    "Chance": 91,
+    "Description": "Towering geological formations"
+  }, {
+    "Chance": 98,
+    "Description": "[Descriptor/Focus]"
+  }, {
+    "Chance": 100,
+    "Description": "Anomalous site (planetside)"
+  } ],
+  "PossibleLife": [ {
+    "Chance": 10,
+    "Description": "Sparse"
+  }, {
+    "Chance": 45,
+    "Description": "Diverse"
+  }, {
+    "Chance": 85,
+    "Description": "Bountiful"
+  }, {
+    "Chance": 100,
+    "Description": "Overrun"
+  } ],
   "NumberOfBiomes": [ {
     "Chance": 20,
     "Amount": 2
@@ -1868,64 +1927,5 @@
   }, {
     "Chance": 100,
     "Description": "Wetland"
-  } ],
-  "PossibleLife": [ {
-    "Chance": 10,
-    "Description": "Sparse"
-  }, {
-    "Chance": 45,
-    "Description": "Diverse"
-  }, {
-    "Chance": 85,
-    "Description": "Bountiful"
-  }, {
-    "Chance": 100,
-    "Description": "Overrun"
-  } ],
-  "CloserLooks": [ {
-    "Chance": 7,
-    "Description": "Background radiation"
-  }, {
-    "Chance": 14,
-    "Description": "Chaotically juxtaposed biomes"
-  }, {
-    "Chance": 21,
-    "Description": "Creature boneyards"
-  }, {
-    "Chance": 28,
-    "Description": "Creature lairs or watering holes"
-  }, {
-    "Chance": 35,
-    "Description": "Crystalline formations"
-  }, {
-    "Chance": 42,
-    "Description": "Fierce electrical storms"
-  }, {
-    "Chance": 49,
-    "Description": "Floating terrain"
-  }, {
-    "Chance": 56,
-    "Description": "Frequent seismic activity"
-  }, {
-    "Chance": 63,
-    "Description": "Magnetic disturbances"
-  }, {
-    "Chance": 70,
-    "Description": "Scarred or excavated terrain"
-  }, {
-    "Chance": 77,
-    "Description": "Signs of an engineered biosphere"
-  }, {
-    "Chance": 84,
-    "Description": "Sudden weather fluctuations"
-  }, {
-    "Chance": 91,
-    "Description": "Towering geological formations"
-  }, {
-    "Chance": 98,
-    "Description": "[Descriptor/Focus]"
-  }, {
-    "Chance": 100,
-    "Description": "Anomalous site (planetside)"
   } ]
 } ]
