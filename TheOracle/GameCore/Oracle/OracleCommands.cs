@@ -38,6 +38,15 @@ namespace TheOracle.GameCore.Oracle
 
         public IServiceProvider Services { get; }
 
+        [Command("PayThePrice")]
+        [Alias("Ptp")]
+        [Summary("Alias for the command `!OracleTable Pay The Price`")]
+        [NoHelp]
+        public async Task PayThePriceCommand()
+        {
+            await OracleRollCommand("Pay The Price");
+        }
+
         [Command("OracleTable")]
         [Summary("Rolls an Oracle")]
         [Alias("Oracle", "Table")]
