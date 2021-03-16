@@ -8921,7 +8921,7 @@
     ]
   },
   {
-    "Name": "Cold climate weather oracle",
+    "Name": "Cold Climate Weather",
     "Aliases": [
       "cold climate",
       "cold weather"
@@ -8964,7 +8964,7 @@
     ]
   },
   {
-    "Name": "Temperate climate weather oracle",
+    "Name": "Temperate Climate Weather",
     "Description": "Temperate includes forest, hills, marsh, mountains, plains, and warm aquatic.",
     "Aliases": [
       "temperate climate",
@@ -9008,7 +9008,7 @@
     ]
   },
   {
-    "Name": "Desert weather oracle",
+    "Name": "Desert Climate Weather",
     "Aliases": [
       "desert climate",
       "desert weather"
