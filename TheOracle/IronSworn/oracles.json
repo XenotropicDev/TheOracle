@@ -8919,5 +8919,119 @@
         "Description": "The threat makes a dramatic and immediate move, or a major event reveals new complications. Mark menace twice."
       }
     ]
+  },
+  {
+    "Name": "Cold climate weather oracle",
+    "Aliases": [
+      "cold climate",
+      "cold weather"
+    ],
+    "Category": "Place Oracles",
+    "Game": "Ironsworn",
+    "Oracles": [
+      {
+        "Chance": 70,
+        "Description": "Normal weather : *Calm, Cold*, slightly colder at night"
+      },
+      {
+        "Chance": 73,
+        "Description": "Abnormal weather : *Heat wave*"
+      },
+      {
+        "Chance": 80,
+        "Description": "Abnormal weather : *Cold snap*"
+      },
+      {
+        "Chance": 83,
+        "Description": "Inclement weather with precipitation (snow) : *fog*. Whether in the form of a low-lying cloud or a mist rising from the ground, fog obscures all sight beyond 5 feet."
+      },
+      {
+        "Chance": 89,
+        "Description": "Inclement weather with precipitation (snow) : *rain/snow*. Rain reduces visibility. It has the same effect on flames, ranged weapon attacks, and listening as severe wind."
+      },
+      {
+        "Chance": 90,
+        "Description": "Inclement weather with precipitation (snow) : *sleet/hail*. Essentially frozen rain, sleet has the same effect as rain while falling and the same effect as snow once on the ground. Hail does not reduce visibility, but the sound of falling hail makes listening more difficult. Sometimes hail can become large enough to deal lethal damage to anything in the open. Once on the ground, hail has the same effect on movement as snow."
+      },
+      {
+        "Chance": 99,
+        "Description": "*Snowstorm* : in addition to the wind and precipitation common to other storms, snowstorms leave snow on the ground afterward."
+      },
+      {
+        "Chance": 100,
+        "Description": "*Blizzard* : the combination of high winds, heavy snow, and bitter cold make blizzards deadly for all who are unprepared for them."
+      }
+    ]
+  },
+  {
+    "Name": "Temperate climate weather oracle",
+    "Description": "Temperate includes forest, hills, marsh, mountains, plains, and warm aquatic.",
+    "Aliases": [
+      "temperate climate",
+      "temperate weather"
+    ],
+    "Category": "Place Oracles",
+    "Game": "Ironsworn",
+    "Oracles": [
+      {
+        "Chance": 70,
+        "Description": "*Normal for season* : Winter is cold, summer is warm, spring and autumn are temperate. Marsh regions are slightly warmer in winter."
+      },
+      {
+        "Chance": 75,
+        "Description": "Abnormal weather : *Heat wave*"
+      },
+      {
+        "Chance": 80,
+        "Description": "Abnormal weather : *Cold snap*"
+      },
+      {
+        "Chance": 83,
+        "Description": "Inclement weather with precipitation (normal for season) : *fog*. Whether in the form of a low-lying cloud or a mist rising from the ground, fog obscures all sight beyond 5 feet."
+      },
+      {
+        "Chance": 89,
+        "Description": "Inclement weather with precipitation (normal for season) : *rain/snow*. Rain reduces visibility. It has the same effect on flames, ranged weapon attacks, and listening as severe wind."
+      },
+      {
+        "Chance": 90,
+        "Description": "Inclement weather with precipitation (normal for season) : *sleet/hail*. Essentially frozen rain, sleet has the same effect as rain while falling and the same effect as snow once on the ground. Hail does not reduce visibility, but the sound of falling hail makes listening more difficult. Sometimes hail can become large enough to deal lethal damage to anything in the open. Once on the ground, hail has the same effect on movement as snow."
+      },
+      {
+        "Chance": 99,
+        "Description": "*Thunderstorm, snowstorm* : in addition to the wind and precipitation common to other storms, snowstorms leave snow on the ground afterward. In addition to wind and precipitation (usually rain, but sometimes also hail), thunderstorms are accompanied by lightning that can pose a hazard to characters without proper shelter."
+      },
+      {
+        "Chance": 100,
+        "Description": "*Windstorm, blizzard, hurricane, tornado*"
+      }
+    ]
+  },
+  {
+    "Name": "Desert weather oracle",
+    "Aliases": [
+      "desert climate",
+      "desert weather"
+    ],
+    "Category": "Place Oracles",
+    "Game": "Ironsworn",
+    "Oracles": [
+      {
+        "Chance": 70,
+        "Description": "*Hot, calm*"
+      },
+      {
+        "Chance": 90,
+        "Description": "*Hot, windy*"
+      },
+      {
+        "Chance": 99,
+        "Description": "*Duststorm* : These desert storms differ from other storms in that they have no precipitation. Instead, a duststorm blows fine grains of sand that obscure vision, smother unprotected flames, and can even choke protected flames. Most duststorms are accompanied by severe winds and leave behind a deposit of sand."
+      },
+      {
+        "Chance": 100,
+        "Description": "*Downpour* : Treat as rain, but conceals as fog. Can create floods."
+      }
+    ]
   }
 ]
