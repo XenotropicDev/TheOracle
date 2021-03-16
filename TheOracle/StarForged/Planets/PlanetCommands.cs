@@ -4,6 +4,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.StarForged;
@@ -48,14 +49,19 @@ namespace TheOracle.StarForged.Planets
 
         [Command("GeneratePlanet", ignoreExtraArgs: true)]
         [Summary("Creates an interactive post for a new Starforged planet")]
-        [Remarks("Reactions:\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms\n\uD83C\uDF0D Adds a biome (vital worlds only)")]
+        [Remarks("PlannetCommand Options: World Type, Planet Name, Space Region\n\nReactions:\n🔍 Adds a Closer Look\n\U0001F996 Reveals any life-forms\n\uD83C\uDF0D Adds a biome (vital worlds only)")]
         [Alias("Planet")]
         public async Task PlanetPost([Remainder] string PlanetCommand = "")
         {
             SpaceRegion spaceRegion = StarforgedUtilites.GetAnySpaceRegion(PlanetCommand);
+            
+            var planetTypes = PlanetTemplate.GetPlanetTemplates().Select(t => t.PlanetType.Replace(PlanetResources.World, string.Empty).Trim());
+            string planetType = planetTypes.FirstOrDefault(p => PlanetCommand.Contains(p, StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+            if (planetType?.Length > 0) PlanetCommand = PlanetCommand.Replace(planetType, string.Empty, StringComparison.OrdinalIgnoreCase).Replace(PlanetResources.World, string.Empty, StringComparison.OrdinalIgnoreCase);
 
-            string PlanetName = PlanetCommand.Replace(spaceRegion.ToString(), "", StringComparison.OrdinalIgnoreCase).Trim();
+            string PlanetName = PlanetCommand.Replace(spaceRegion.ToString(), string.Empty, StringComparison.OrdinalIgnoreCase).Trim();
             if (PlanetName == string.Empty) PlanetName = $"P-{DateTime.Now.Ticks.ToString().Substring(7)}";
+            else PlanetName = Regex.Replace(PlanetName, @"  +", " ");
 
             if (spaceRegion == SpaceRegion.None)
             {
@@ -65,7 +71,8 @@ namespace TheOracle.StarForged.Planets
                     .WithFields(new EmbedFieldBuilder()
                         .WithName(PlanetResources.HelperOptions)
                         .WithValue(PlanetResources.HelperText)
-                        );
+                        )
+                    .WithFooter(planetType);
 
                 var msg = await ReplyAsync(embed: palceHolderEmbed.Build());
                 await msg.AddReactionAsync(GenericReactions.oneEmoji);
@@ -74,12 +81,12 @@ namespace TheOracle.StarForged.Planets
                 return;
             }
 
-            await MakePlanetPost(spaceRegion, PlanetName, Context.Channel.Id);
+            await MakePlanetPost(spaceRegion, PlanetName, Context.Channel.Id, PlanetType: planetType);
         }
 
-        private async Task MakePlanetPost(SpaceRegion region, string PlanetName, ulong channelId, IUserMessage message = null)
+        private async Task MakePlanetPost(SpaceRegion region, string PlanetName, ulong channelId, IUserMessage message = null, string PlanetType = "")
         {
-            Planet planet = Planet.GeneratePlanet(PlanetName, region, Services, channelId);
+            Planet planet = Planet.GeneratePlanet(PlanetName, region, Services, channelId, PlanetType);
 
             if (message != null)
             {
@@ -178,10 +185,11 @@ namespace TheOracle.StarForged.Planets
             if (message.Embeds.FirstOrDefault()?.Title.Contains(PlanetResources.PlanetHelperTitle) ?? false)
             {
                 string PlanetName = message.Embeds.First().Description;
+                string PlanetType = message.Embeds.First().Footer.Value.Text ?? string.Empty;
 
-                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, channel.Id, message: message).ConfigureAwait(false);
-                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, channel.Id, message: message).ConfigureAwait(false);
-                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, channel.Id, message: message).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, channel.Id, message: message, PlanetType: PlanetType).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, channel.Id, message: message, PlanetType: PlanetType).ConfigureAwait(false);
+                if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) await MakePlanetPost(SpaceRegion.Expanse, PlanetName, channel.Id, message: message, PlanetType: PlanetType).ConfigureAwait(false);
             }
 
             return;

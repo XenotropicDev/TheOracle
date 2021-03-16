@@ -36,14 +36,16 @@ namespace TheOracle.StarForged.Planets
         public string Thumbnail { get; set; }
         public ulong ChannelId { get; }
 
-        public static Planet GeneratePlanet(string planetName, SpaceRegion region, IServiceProvider services, ulong channelId)
+        public static Planet GeneratePlanet(string planetName, SpaceRegion region, IServiceProvider services, ulong channelId, string planetType = "")
         {
             var p = new Planet(services, channelId);
 
             int seed = planetName.GetDeterministicHashCode();
             Random PlanetRandom = new Random(seed);
 
-            PlanetTemplate Template = PlanetTemplate.GetPlanetTemplates().GetRandomRow(PlanetRandom);
+            PlanetTemplate Template = null;
+            if (planetType?.Length == 0) Template = PlanetTemplate.GetPlanetTemplates().GetRandomRow(PlanetRandom);
+            else Template = PlanetTemplate.GetPlanetTemplates().FirstOrDefault(t => t.PlanetType.Contains(planetType, StringComparison.OrdinalIgnoreCase));
 
             p.Atmosphere = Template.Atmospheres.GetRandomRow(PlanetRandom).Description;
             p.Biomes = Biome.GetFromTemplate(Template, PlanetRandom).Select(biome => biome.Description).ToList();
@@ -88,7 +90,7 @@ namespace TheOracle.StarForged.Planets
             planet.SpaceRegion = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
             planet.Thumbnail = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : string.Empty;
 
-            planet.Biomes = Planet.GeneratePlanet(planet.Name, planet.SpaceRegion, services, channelId).Biomes; //Unfortunately we have to reuse the planet generator here so that we don't end up with a different number of biomes each roll
+            planet.Biomes = Planet.GeneratePlanet(planet.Name, planet.SpaceRegion, services, channelId, planet.PlanetType).Biomes; //Unfortunately we have to reuse the planet generator here so that we don't end up with a different number of biomes each roll
 
             return planet;
         }
