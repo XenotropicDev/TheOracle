@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
+using TheOracle.GameCore.Oracle;
 
 namespace TheOracle
 {
@@ -31,7 +32,7 @@ namespace TheOracle
                 await ReplyAsync(HelpResources.Title + "\n" + HelpResources.AdditionalInfo);
 
                 string helperText = string.Empty;
-                foreach (var mod in _commands.Modules.Where(m => m.Parent == null))
+                foreach (var mod in _commands.Modules.Where(m => m.Parent == null && !m.Attributes.Any(a => a.GetType() == typeof(NoHelpAttribute))))
                 {
                     helperText += AddHelp(mod);
                 }
@@ -79,7 +80,7 @@ namespace TheOracle
             string helpText = string.Empty;
             foreach (var sub in module.Submodules) helpText += AddHelp(sub);
 
-            foreach (var command in module.Commands)
+            foreach (var command in module.Commands.Where(c => !c.Attributes.Any(a => a.GetType() == typeof(NoHelpAttribute))))
             {
                 helpText += $"__{command.Name}__";
                 helpText += !string.IsNullOrEmpty(command.Summary) ? $" - {command.Summary}" : string.Empty;
