@@ -189,7 +189,7 @@ React to a bot message with :pushpin: `:pushpin:` and the bot will pin the messa
 ### `!GeneratePlanet`
 Creates a planet with a name (given or a random P-number), and the planet features that detectable from space. It also adds reaction buttons for revealing more features as you explore the planet
 * *Command Aliases:* `!Planet`
-* *Parameters:* SpaceRegion (optional), Name (optional [generates a name like P-123456 if none is provided])
+* *Parameters:* SpaceRegion (optional), World Type (optional), Name (optional [generates a name like P-123456 if none is provided])
 * *Reactions:*
   1. 🔍 | Closer look
   2. 🦖 | Reveals the planet's life (if any)
