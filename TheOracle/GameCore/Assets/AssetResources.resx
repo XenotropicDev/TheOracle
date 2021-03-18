@@ -120,12 +120,18 @@
   <data name="Asset" xml:space="preserve">
     <value>Asset</value>
   </data>
+  <data name="DidYouMean" xml:space="preserve">
+    <value>Did you mean `{0}`?</value>
+    <comment>{0} will be replaced with a spelling suggestion if any</comment>
+  </data>
   <data name="GameAssetFormat" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>{0} will be replaced with the game, and {1} will be replaced with the Asset value in this document</comment>
   </data>
   <data name="UnknownAssetError" xml:space="preserve">
-    <value>An asset name couldn't be found in the entered command</value>
+    <value>An asset name couldn't be found in the entered command.
+{0}</value>
+    <comment>{0} will be replaced with the text from "DidYouMean" in this file</comment>
   </data>
   <data name="UserInputField" xml:space="preserve">
     <value>__{0} : {1}__</value>

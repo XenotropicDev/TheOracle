@@ -70,6 +70,15 @@ namespace TheOracle.GameCore.Assets {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Did you mean `{0}`?.
+        /// </summary>
+        internal static string DidYouMean {
+            get {
+                return ResourceManager.GetString("DidYouMean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         internal static string GameAssetFormat {
@@ -80,6 +89,7 @@ namespace TheOracle.GameCore.Assets {
         
         /// <summary>
         ///   Looks up a localized string similar to An asset name couldn&apos;t be found in the entered command.
+        ///{0}.
         /// </summary>
         internal static string UnknownAssetError {
             get {

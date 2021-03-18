@@ -169,7 +169,15 @@ namespace TheOracle.GameCore.Assets
             var asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)", RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
             if (asset == default) asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game));
             if (asset == default) asset = assets.FirstOrDefault(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
-            if (asset == default) throw new ArgumentException(AssetResources.UnknownAssetError);
+            
+            if (asset == default)
+            {
+                var dict = Services.GetRequiredService<WeCantSpell.Hunspell.WordList>();
+                var suggestions = dict.Suggest(AssetCommand);
+                string suggestion = (suggestions?.Count() > 0) ? string.Format(AssetResources.DidYouMean, suggestions.FirstOrDefault()) : string.Empty;
+                await ReplyAsync(string.Format(AssetResources.UnknownAssetError, suggestion));
+                return;
+            }
 
             string additionalInputsRaw = AssetCommand.ReplaceFirst(asset.Name, "", StringComparison.OrdinalIgnoreCase).Replace("  ", " ").Trim();
 
@@ -244,7 +252,11 @@ namespace TheOracle.GameCore.Assets
             }
             else
             {
-                await ReplyAsync(AssetResources.UnknownAssetError);
+                var dict = Services.GetRequiredService<WeCantSpell.Hunspell.WordList>();
+                var suggestions = dict.Suggest(AssetListOptions);
+                string suggestion = (suggestions?.Count() > 0) ? string.Format(AssetResources.DidYouMean, suggestions.FirstOrDefault()) : string.Empty;
+                await ReplyAsync(string.Format(AssetResources.UnknownAssetError, suggestion));
+                return;
             }
         }
     }

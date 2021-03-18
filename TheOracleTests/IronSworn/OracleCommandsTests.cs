@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TheOracle.IronSworn;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TheOracle.Core;
+using WeCantSpell.Hunspell;
 
 namespace TheOracle.IronSworn.Tests
 {
@@ -19,6 +15,16 @@ namespace TheOracle.IronSworn.Tests
             //Console.WriteLine(commands.RollOracleFacade("Action"));
 
             //Assert.ThrowsException<ArgumentException>(() => commands.RollOracleFacade("Action"));
+        }
+
+        [TestMethod()]
+        public void OracleRollSpellChecker()
+        {
+            var words = "the quick brown fox jumps over the lazy dog".Split(' ');
+            var dictionary = WordList.CreateFromWords(words);
+            var suggestion = dictionary.Suggest("teh");
+            Assert.IsFalse(dictionary.Check("teh"));
+            Assert.IsTrue(dictionary.Check("Fox"));
         }
     }
 }

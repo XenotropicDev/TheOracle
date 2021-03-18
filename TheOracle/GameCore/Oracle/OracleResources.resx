@@ -138,6 +138,10 @@
   <data name="AskResult" xml:space="preserve">
     <value>The result of</value>
   </data>
+  <data name="DidYouMean" xml:space="preserve">
+    <value>Did you mean `{0}`?</value>
+    <comment>If there are any spelling recomendations {0} will be replaced with the first result</comment>
+  </data>
   <data name="FiftyFifty" xml:space="preserve">
     <value>50/50</value>
   </data>
@@ -183,7 +187,7 @@ To avoid this error in the future you can set your default game with the `!SetDe
     <comment>{0} will be replaced with a list of games installed on the bot</comment>
   </data>
   <data name="UnknownTableError" xml:space="preserve">
-    <value>Unknown Oracle Table:</value>
+    <value>Unknown Oracle Table: </value>
   </data>
   <data name="Unlikely" xml:space="preserve">
     <value>Unlikely</value>

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.Core;
 using TheOracle.GameCore.Oracle;
+using WeCantSpell.Hunspell;
 
 namespace TheOracle.GameCore.Oracle
 {
@@ -72,8 +73,13 @@ namespace TheOracle.GameCore.Oracle
             }
             catch (ArgumentException ex)
             {
+                string word = ex.Message.Replace(OracleResources.UnknownTableError, "");
+                var dict = Services.GetService<WordList>();
+                var suggestions = dict.Suggest(word);
                 Console.WriteLine($"{Context.User} triggered an ArgumentException: {ex.Message}");
-                await ReplyAsync(ex.Message);
+
+                string suggest = (suggestions?.Count() > 0) ? $"\n{String.Format(OracleResources.DidYouMean, suggestions.FirstOrDefault())}" : string.Empty;
+                await ReplyAsync($"{ex.Message}{suggest}");
             }
         }
 

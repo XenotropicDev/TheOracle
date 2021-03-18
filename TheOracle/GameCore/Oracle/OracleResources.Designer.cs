@@ -112,6 +112,15 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Did you mean `{0}`?.
+        /// </summary>
+        internal static string DidYouMean {
+            get {
+                return ResourceManager.GetString("DidYouMean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 50/50.
         /// </summary>
         internal static string FiftyFifty {
@@ -230,7 +239,7 @@ namespace TheOracle.GameCore.Oracle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Oracle Table:.
+        ///   Looks up a localized string similar to Unknown Oracle Table: .
         /// </summary>
         internal static string UnknownTableError {
             get {
