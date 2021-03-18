@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.GameCore;
+using TheOracle.GameCore.Assets;
+using TheOracle.GameCore.Oracle;
+using WeCantSpell.Hunspell;
 
 namespace TheOracle.BotCore
 {
@@ -183,6 +186,45 @@ namespace TheOracle.BotCore
             foreach (var item in list) embedFields.Add(new EmbedFieldBuilder().WithIsInline(Inline).WithName(FieldName).WithValue(item));
 
             return embedFields;
+        }
+
+        public static WordList CreateDictionaryFromOracles(OracleService oracles = null, List<Asset> Assets = null)
+        {
+            var words = new List<string>();
+
+            if (oracles != null)
+            {
+                foreach (var oracle in oracles?.OracleList)
+                {
+                    words.Add(oracle.Name);
+                    if (oracle.Aliases?.Count() > 0) words.AddRange(oracle.Aliases);
+                    words.Add(oracle.Category);
+                }
+            }
+
+            if (Assets != null)
+            {
+                foreach(var asset in Assets)
+                {
+                    words.Add(asset.Name);
+                    words.Add(asset.AssetType);
+                }
+            }
+
+            //var SingleWords = new List<string>();
+            //foreach (var s in words.Where(w => w != null)) SingleWords.AddRange(s.Split(' '));
+
+            try
+            {
+                var wordList = WordList.CreateFromWords(words.Where(w => w != null));
+                return wordList;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
     }
 }
