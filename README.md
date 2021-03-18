@@ -53,6 +53,7 @@ Rolls the provided oracle table. Use `!OracleTable [table1/table2]` to roll mult
 * *Command Aliases:* `!Table`, `!Oracle`
 * *Parameters:* TableName (required)
 * *Sample usage:* `!OracleTable Pay The Price`
+* *Shortcut commands:* `!PayThePrice`, `!PTP` - A shortcut for the command `!OracleTable Pay The Price`
 
 ### `!OracleList`
 Lists the available oracle tables, and their aliases
