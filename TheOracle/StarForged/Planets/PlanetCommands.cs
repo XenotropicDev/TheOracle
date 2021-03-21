@@ -185,7 +185,7 @@ namespace TheOracle.StarForged.Planets
             if (message.Embeds.FirstOrDefault()?.Title.Contains(PlanetResources.PlanetHelperTitle) ?? false)
             {
                 string PlanetName = message.Embeds.First().Description;
-                string PlanetType = message.Embeds.First().Footer.Value.Text ?? string.Empty;
+                string PlanetType = message.Embeds.First().Footer.HasValue ? message.Embeds.First().Footer.Value.Text : string.Empty;
 
                 if (reaction.Emote.IsSameAs(GenericReactions.oneEmoji)) await MakePlanetPost(SpaceRegion.Terminus, PlanetName, channel.Id, message: message, PlanetType: PlanetType).ConfigureAwait(false);
                 if (reaction.Emote.IsSameAs(GenericReactions.twoEmoji)) await MakePlanetPost(SpaceRegion.Outlands, PlanetName, channel.Id, message: message, PlanetType: PlanetType).ConfigureAwait(false);
