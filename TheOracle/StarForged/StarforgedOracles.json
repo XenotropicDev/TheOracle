@@ -9770,7 +9770,7 @@
   } ]
 },
 {
-  "Name": "Derelict Type",
+  "Name": "Derelict Type Planetside",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
   "Location": "Planetside",
@@ -9785,7 +9785,7 @@
   } ]
 },
 {
-  "Name": "Derelict Type",
+  "Name": "Derelict Type Orbital",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
   "Location": "Orbital",
@@ -9800,7 +9800,7 @@
   } ]
 },
 {
-  "Name": "Derelict Type",
+  "Name": "Derelict Type Deep Space",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
   "Location": "Deep Space",
