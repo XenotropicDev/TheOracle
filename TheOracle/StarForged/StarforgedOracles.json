@@ -10094,7 +10094,7 @@
 },
 {
   "Name": "Derelict Access Area",
-  "Aliases": [ "Access Area" ],
+  "Aliases": [ "Access Area", "Access" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
