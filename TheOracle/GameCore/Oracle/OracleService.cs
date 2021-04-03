@@ -46,14 +46,23 @@ namespace TheOracle.GameCore.Oracle
 
             foreach (var oracleSet in this.OracleList)
             {
-                if (oracleSet.Oracles.All(o => o.Chance == 0))
+                try
                 {
-                    for (int i = 0; i < oracleSet.Oracles.Count; i++)
+                    if (oracleSet.Oracles.All(o => o.Chance == 0))
                     {
-                        oracleSet.Oracles[i].Chance = i + 1;
+                        for (int i = 0; i < oracleSet.Oracles.Count; i++)
+                        {
+                            oracleSet.Oracles[i].Chance = i + 1;
+                        }
+                        oracleSet.d = oracleSet.Oracles.Count;
                     }
-                    oracleSet.d = oracleSet.Oracles.Count;
                 }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Error Loading oracle: {oracleSet.Name}");
+                    throw;
+                }
+
             }
 
             return this;

@@ -10101,7 +10101,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 50,
     "Description": "Corridor"
@@ -10144,7 +10144,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 5,
     "Description": "Abandoned gear"
@@ -10235,7 +10235,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Alarm / failsafe is triggered"
@@ -10290,7 +10290,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Directions, shortcut or alternate path"
@@ -10321,7 +10321,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Bar / club"
@@ -10380,7 +10380,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Ad-hoc memorials"
@@ -10439,7 +10439,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Biological infestation"
@@ -10494,7 +10494,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Culturally signifigant item or artifact"
@@ -10525,7 +10525,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Control room"
@@ -10584,7 +10584,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Cluttered workbench"
@@ -10643,7 +10643,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Corrosive leak"
@@ -10698,7 +10698,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Advanced or experimental equipment"
@@ -10729,7 +10729,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Food storage"
@@ -10788,7 +10788,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Abandoned pet"
@@ -10847,7 +10847,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Booby trap"
@@ -10902,7 +10902,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Culturally significant item or artifact"
@@ -10933,7 +10933,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Crematorium"
@@ -10992,7 +10992,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Autopsied corpse"
@@ -11051,7 +11051,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Disgusting sight or smell"
@@ -11106,7 +11106,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Cache of medicine"
@@ -11137,7 +11137,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Admin / command offices"
@@ -11196,7 +11196,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Automated warning"
@@ -11255,7 +11255,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Alarm klaxon suddenly begins blaring"
@@ -11310,7 +11310,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Cache of weapons or ammo"
@@ -11341,7 +11341,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Airlock / staging area"
@@ -11400,7 +11400,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Broken machinery"
@@ -11459,7 +11459,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Claustrophobic spaces"
@@ -11514,7 +11514,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Helpful vehicle or transport"
@@ -11545,7 +11545,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Clean room"
@@ -11604,7 +11604,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 8,
     "Description": "Aquarium / tank"
@@ -11663,7 +11663,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Biological infestation"
@@ -11718,7 +11718,7 @@
     "Version": "032821"
   },
   "Category": "Derelict Zone Oracles",
-  "Oracle Table": [
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Helpful research data"
