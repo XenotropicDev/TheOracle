@@ -9755,7 +9755,7 @@
   "Name": "Derelict Location",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 30,
     "Description": "Planetside"
@@ -9767,14 +9767,14 @@
   {
     "Chance": 100,
     "Description": "Deep Space"
-  }
+  } ]
 },
 {
   "Name": "Derelict Type",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
   "Location": "Planetside",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 25,
     "Description": "Derelict starship"
@@ -9782,14 +9782,14 @@
   {
     "Chance": 100,
     "Description": "Derelict settlement"
-  }
+  } ]
 },
 {
   "Name": "Derelict Type",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
   "Location": "Orbital",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 40,
     "Description": "Derelict starship"
@@ -9797,14 +9797,14 @@
   {
     "Chance": 100,
     "Description": "Derelict settlement"
-  }
+  } ]
 },
 {
   "Name": "Derelict Type",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
   "Location": "Deep Space",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 75,
     "Description": "Derelict starship"
@@ -9812,13 +9812,13 @@
   {
     "Chance": 100,
     "Description": "Derelict settlement"
-  }
+  } ]
 },
 {
   "Name": "Derelict Condition",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 10,
     "Description": "Functional"
@@ -9842,13 +9842,13 @@
   {
     "Chance": 100,
     "Description": "Impending destruction"
-  }
+  } ]
 },
 {
   "Name": "Derelict Outer first look",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 15,
     "Description": "Automated message"
@@ -9888,13 +9888,13 @@
   {
     "Chance": 100,
     "Description": "Trapped / entangled"
-  }
+  } ]
 },
 {
   "Name": "Derelict Inner first look",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 3,
     "Description": "Abnormal gravity"
@@ -10022,13 +10022,13 @@
   {
     "Chance": 100,
     "Description": "Descriptor/Focus"
-  }
+  } ]
 },
 {
   "Name": "Derelict Starship Zone",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 5,
     "Description": "Community"
@@ -10056,13 +10056,13 @@
   {
     "Chance": 100,
     "Description": "Research"
-  }
+  } ]
 },
 {
   "Name": "Derelict Settlement Zone",
   "Game": "Starforged",
   "Category": "Derelict Oracles",
-  "Oracles":
+  "Oracles": [
   {
     "Chance": 20,
     "Description": "Community"
@@ -10090,5 +10090,1653 @@
   {
     "Chance": 100,
     "Description": "Research"
-  }
+  } ]
+},
+{
+  "Name": "Derelict Access Area",
+  "Aliases": [ "Access Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 50,
+    "Description": "Corridor"
+  },
+  {
+    "Chance": 60,
+    "Description": "Stairs"
+  },
+  {
+    "Chance": 70,
+    "Description": "Lift / elevator"
+  },
+  {
+    "Chance": 80,
+    "Description": "Catwalk / bridge"
+  },
+  {
+    "Chance": 85,
+    "Description": "Vertical shaft / ladder"
+  },
+  {
+    "Chance": 90,
+    "Description": "Hub / intersection"
+  },
+  {
+    "Chance": 95,
+    "Description": "Crawl space / duct"
+  },
+  {
+    "Chance": 100,
+    "Description": "Airlock / external"
+  } ]
+},
+{
+  "Name": "Derelict Access Feature",
+  "Aliases": [ "Access Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 5,
+    "Description": "Abandoned gear"
+  },
+  {
+    "Chance": 10,
+    "Description": "Blood trail"
+  },
+  {
+    "Chance": 15,
+    "Description": "Breached door / hatch"
+  },
+  {
+    "Chance": 20,
+    "Description": "Control / terminal station"
+  },
+  {
+    "Chance": 25,
+    "Description": "Corpse"
+  },
+  {
+    "Chance": 30,
+    "Description": "Dismantled equipment"
+  },
+  {
+    "Chance": 35,
+    "Description": "Flashing strobes"
+  },
+  {
+    "Chance": 40,
+    "Description": "Leaking pipes"
+  },
+  {
+    "Chance": 45,
+    "Description": "Makeshift barricade"
+  },
+  {
+    "Chance": 50,
+    "Description": "Opened / missing panels"
+  },
+  {
+    "Chance": 55,
+    "Description": "Organic growths"
+  },
+  {
+    "Chance": 60,
+    "Description": "Ruined bot"
+  },
+  {
+    "Chance": 65,
+    "Description": "Scrawled warning"
+  },
+  {
+    "Chance": 70,
+    "Description": "Sealed breach"
+  },
+  {
+    "Chance": 75,
+    "Description": "Sounds of movement"
+  },
+  {
+    "Chance": 80,
+    "Description": "Steam / smoke"
+  },
+  {
+    "Chance": 85,
+    "Description": "Wandering bot"
+  },
+  {
+    "Chance": 90,
+    "Description": "Windows / viewports"
+  },
+  {
+    "Chance": 95,
+    "Description": "Wrecked passage / debris"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Access Peril",
+  "Aliases": [ "Access Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Alarm / failsafe is triggered"
+  },
+  {
+    "Chance": 20,
+    "Description": "Automated defenses"
+  },
+  {
+    "Chance": 30,
+    "Description": "Blocked / sealed path"
+  },
+  {
+    "Chance": 40,
+    "Description": "Dreadful scene of death or violence"
+  },
+  {
+    "Chance": 50,
+    "Description": "Foe closes in"
+  },
+  {
+    "Chance": 60,
+    "Description": "Gear is failing or broken"
+  },
+  {
+    "Chance": 70,
+    "Description": "Hazardous environmental change"
+  },
+  {
+    "Chance": 80,
+    "Description": "Path is trapped"
+  },
+  {
+    "Chance": 90,
+    "Description": "Unsettling sound / disturbance"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Access Opportunity",
+  "Aliases": [ "Access Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Directions, shortcut or alternate path"
+  },
+  {
+    "Chance": 40,
+    "Description": "Encounter with a friendly survivor, explorer, or denizen"
+  },
+  {
+    "Chance": 60,
+    "Description": "Hopeful signs of life"
+  },
+  {
+    "Chance": 80,
+    "Description": "Opening to outmaneuver or escape a threat or foe"
+  },
+  {
+    "Chance": 100,
+    "Description": "Useful equipment or weapons"
+  } ]
+},
+{
+  "Name": "Derelict Community Area",
+  "Aliases": [ "Community Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Bar / club"
+  },
+  {
+    "Chance": 16,
+    "Description": "Temple / chapel"
+  },
+  {
+    "Chance": 24,
+    "Description": "Classroom / education"
+  },
+  {
+    "Chance": 32,
+    "Description": "Concourse / hub"
+  },
+  {
+    "Chance": 40,
+    "Description": "Entertainment"
+  },
+  {
+    "Chance": 48,
+    "Description": "Park / garden"
+  },
+  {
+    "Chance": 56,
+    "Description": "Gym / fitness"
+  },
+  {
+    "Chance": 64,
+    "Description": "Market / trade"
+  },
+  {
+    "Chance": 72,
+    "Description": "Promenade / overlook"
+  },
+  {
+    "Chance": 80,
+    "Description": "Restaurant / dining"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Community Feature",
+  "Aliases": [ "Community Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Ad-hoc memorials"
+  },
+  {
+    "Chance": 16,
+    "Description": "Art depicting historic event"
+  },
+  {
+    "Chance": 24,
+    "Description": "Artificial environment"
+  },
+  {
+    "Chance": 32,
+    "Description": "Automated announcements"
+  },
+  {
+    "Chance": 40,
+    "Description": "Barricaded area"
+  },
+  {
+    "Chance": 48,
+    "Description": "Gaming devices / interfaces"
+  },
+  {
+    "Chance": 56,
+    "Description": "Graffiti or vandalization"
+  },
+  {
+    "Chance": 64,
+    "Description": "Guard post / surveillance"
+  },
+  {
+    "Chance": 72,
+    "Description": "Mass grave / corpses"
+  },
+  {
+    "Chance": 80,
+    "Description": "Panoramic viewport"
+  },
+  {
+    "Chance": 88,
+    "Description": "Rubble / debris"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Community Peril",
+  "Aliases": [ "Community Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Biological infestation"
+  },
+  {
+    "Chance": 20,
+    "Description": "Breached / broken structure"
+  },
+  {
+    "Chance": 30,
+    "Description": "Distressing signs of mass violence / death"
+  },
+  {
+    "Chance": 40,
+    "Description": "Flooded environment"
+  },
+  {
+    "Chance": 50,
+    "Description": "Foe lurks within concealment"
+  },
+  {
+    "Chance": 60,
+    "Description": "Fragile structural integrity"
+  },
+  {
+    "Chance": 70,
+    "Description": "Haunting vision of life before the fall"
+  },
+  {
+    "Chance": 80,
+    "Description": "Hazardous environmental change"
+  },
+  {
+    "Chance": 90,
+    "Description": "Heartbreaking memento of lost lives"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Community Opportunity",
+  "Aliases": [ "Community Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Culturally signifigant item or artifact"
+  },
+  {
+    "Chance": 40,
+    "Description": "Salvageable goods or resources"
+  },
+  {
+    "Chance": 60,
+    "Description": "Secure area offers a moment of peace"
+  },
+  {
+    "Chance": 80,
+    "Description": "Terminal with access to site details or status"
+  },
+  {
+    "Chance": 100,
+    "Description": "Valuable item or artifact"
+  } ]
+},
+{
+  "Name": "Derelict Engineering Area",
+  "Aliases": [ "Engineering Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Control room"
+  },
+  {
+    "Chance": 16,
+    "Description": "Engine room / power core"
+  },
+  {
+    "Chance": 24,
+    "Description": "Engineering offices"
+  },
+  {
+    "Chance": 32,
+    "Description": "Equipment storage"
+  },
+  {
+    "Chance": 40,
+    "Description": "Fuel / coolant tanks"
+  },
+  {
+    "Chance": 48,
+    "Description": "Life support"
+  },
+  {
+    "Chance": 56,
+    "Description": "Maintenance tube"
+  },
+  {
+    "Chance": 64,
+    "Description": "Vehicle bay / garage"
+  },
+  {
+    "Chance": 72,
+    "Description": "Water processing"
+  },
+  {
+    "Chance": 80,
+    "Description": "Workshop"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Engineering Feature",
+  "Aliases": [ "Engineering Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Cluttered workbench"
+  },
+  {
+    "Chance": 16,
+    "Description": "Control terminal"
+  },
+  {
+    "Chance": 24,
+    "Description": "Crane / lift"
+  },
+  {
+    "Chance": 32,
+    "Description": "Disassembled equipment"
+  },
+  {
+    "Chance": 40,
+    "Description": "Flickering status monitors"
+  },
+  {
+    "Chance": 48,
+    "Description": "Jury-rigged equipment"
+  },
+  {
+    "Chance": 56,
+    "Description": "Multilevel layout"
+  },
+  {
+    "Chance": 64,
+    "Description": "Pipes and valves"
+  },
+  {
+    "Chance": 72,
+    "Description": "Sharp ozone smell"
+  },
+  {
+    "Chance": 80,
+    "Description": "Unfinished project"
+  },
+  {
+    "Chance": 88,
+    "Description": "Utility bots"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Engineering Peril",
+  "Aliases": [ "Engineering Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Corrosive leak"
+  },
+  {
+    "Chance": 20,
+    "Description": "Erratic utility bots"
+  },
+  {
+    "Chance": 30,
+    "Description": "Fire / energy surge"
+  },
+  {
+    "Chance": 40,
+    "Description": "Precarious / broken path"
+  },
+  {
+    "Chance": 50,
+    "Description": "Radioactive hotspot"
+  },
+  {
+    "Chance": 60,
+    "Description": "Sabotaged equipment"
+  },
+  {
+    "Chance": 70,
+    "Description": "Sparking conduit / wire"
+  },
+  {
+    "Chance": 80,
+    "Description": "Superheated gas rupture"
+  },
+  {
+    "Chance": 90,
+    "Description": "Unstable / failing power core"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Engineering Opportunity",
+  "Aliases": [ "Engineering Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Advanced or experimental equipment"
+  },
+  {
+    "Chance": 40,
+    "Description": "Chance to restore power or function"
+  },
+  {
+    "Chance": 60,
+    "Description": "Helpful plans or schematics"
+  },
+  {
+    "Chance": 80,
+    "Description": "Helpful utility bot"
+  },
+  {
+    "Chance": 100,
+    "Description": "Useful tool or device"
+  } ]
+},
+{
+  "Name": "Derelict Living Area",
+  "Aliases": [ "Living Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Food storage"
+  },
+  {
+    "Chance": 16,
+    "Description": "Galley / kitchen"
+  },
+  {
+    "Chance": 24,
+    "Description": "Laundry"
+  },
+  {
+    "Chance": 32,
+    "Description": "Locker room / storage"
+  },
+  {
+    "Chance": 40,
+    "Description": "Mess hall / dining"
+  },
+  {
+    "Chance": 48,
+    "Description": "Observation lounge"
+  },
+  {
+    "Chance": 56,
+    "Description": "Quarters (individual)"
+  },
+  {
+    "Chance": 64,
+    "Description": "Quarters (communal)"
+  },
+  {
+    "Chance": 72,
+    "Description": "Restroom / showers"
+  },
+  {
+    "Chance": 80,
+    "Description": "Sleeping pods"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Living Feature",
+  "Aliases": [ "Living Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Abandoned pet"
+  },
+  {
+    "Chance": 16,
+    "Description": "Audible music"
+  },
+  {
+    "Chance": 24,
+    "Description": "Cherished personal item"
+  },
+  {
+    "Chance": 32,
+    "Description": "Failed barricade"
+  },
+  {
+    "Chance": 40,
+    "Description": "Family photographs / videos"
+  },
+  {
+    "Chance": 48,
+    "Description": "Half-eaten food"
+  },
+  {
+    "Chance": 56,
+    "Description": "Ransacked belongings"
+  },
+  {
+    "Chance": 64,
+    "Description": "Remains of the dead"
+  },
+  {
+    "Chance": 72,
+    "Description": "Scuttling vermin"
+  },
+  {
+    "Chance": 80,
+    "Description": "Shrine / altar"
+  },
+  {
+    "Chance": 88,
+    "Description": "Unusual art"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Living Peril",
+  "Aliases": [ "Living Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Booby trap"
+  },
+  {
+    "Chance": 20,
+    "Description": "Distressing written message"
+  },
+  {
+    "Chance": 30,
+    "Description": "Disturbing evidence of exploitive living conditions"
+  },
+  {
+    "Chance": 40,
+    "Description": "Dreadful scene of death or violence"
+  },
+  {
+    "Chance": 50,
+    "Description": "Hidden foe"
+  },
+  {
+    "Chance": 60,
+    "Description": "Sealed door or hatch blocks access"
+  },
+  {
+    "Chance": 70,
+    "Description": "Signs that unwelcome invaders now inhabit this place"
+  },
+  {
+    "Chance": 80,
+    "Description": "Unsettling sound or disturbance"
+  },
+  {
+    "Chance": 90,
+    "Description": "Video or audio recording reveals a dire threat"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Living Opportunity",
+  "Aliases": [ "Living Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Culturally significant item or artifact"
+  },
+  {
+    "Chance": 40,
+    "Description": "Hidden stash of valuable contraband"
+  },
+  {
+    "Chance": 60,
+    "Description": "Intact barricade or protected area"
+  },
+  {
+    "Chance": 80,
+    "Description": "Recorded message reveals new aspects of this site"
+  },
+  {
+    "Chance": 100,
+    "Description": "Useful personal gear"
+  } ]
+},
+{
+  "Name": "Derelict Medical Area",
+  "Aliases": [ "Medical Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Crematorium"
+  },
+  {
+    "Chance": 16,
+    "Description": "Emergency / triage"
+  },
+  {
+    "Chance": 24,
+    "Description": "Isolation / containment"
+  },
+  {
+    "Chance": 32,
+    "Description": "Medical lab"
+  },
+  {
+    "Chance": 40,
+    "Description": "Medical offices"
+  },
+  {
+    "Chance": 48,
+    "Description": "Morgue"
+  },
+  {
+    "Chance": 56,
+    "Description": "Operating room"
+  },
+  {
+    "Chance": 64,
+    "Description": "Pharmacy / drug locker"
+  },
+  {
+    "Chance": 72,
+    "Description": "Prosthetics workshop"
+  },
+  {
+    "Chance": 80,
+    "Description": "Ward / clinic"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Medical Feature",
+  "Aliases": [ "Medical Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Autopsied corpse"
+  },
+  {
+    "Chance": 16,
+    "Description": "Biological specimens"
+  },
+  {
+    "Chance": 24,
+    "Description": "Blood spatter / pools"
+  },
+  {
+    "Chance": 32,
+    "Description": "Bloody medical supplies"
+  },
+  {
+    "Chance": 40,
+    "Description": "Broken prosthetics"
+  },
+  {
+    "Chance": 48,
+    "Description": "Corpse of a healer"
+  },
+  {
+    "Chance": 56,
+    "Description": "Dissected specimen"
+  },
+  {
+    "Chance": 64,
+    "Description": "Improvised overflow beds"
+  },
+  {
+    "Chance": 72,
+    "Description": "Medical monitors"
+  },
+  {
+    "Chance": 80,
+    "Description": "Medical records / scans"
+  },
+  {
+    "Chance": 88,
+    "Description": "Stacks of body bags"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Medical Peril",
+  "Aliases": [ "Medical Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Disgusting sight or smell"
+  },
+  {
+    "Chance": 20,
+    "Description": "Disturbing evidence of medical misconduct"
+  },
+  {
+    "Chance": 30,
+    "Description": "Erratic medical bots"
+  },
+  {
+    "Chance": 40,
+    "Description": "Evidence of a virulent disease"
+  },
+  {
+    "Chance": 50,
+    "Description": "Evidence of broken containment"
+  },
+  {
+    "Chance": 60,
+    "Description": "Malfunctioning medical equipment"
+  },
+  {
+    "Chance": 70,
+    "Description": "Repercussions of a medical experiment"
+  },
+  {
+    "Chance": 80,
+    "Description": "Restless dead"
+  },
+  {
+    "Chance": 90,
+    "Description": "Signs of a horrific death"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Medical Opportunity",
+  "Aliases": [ "Medical Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Cache of medicine"
+  },
+  {
+    "Chance": 40,
+    "Description": "Clues to a medical mystery"
+  },
+  {
+    "Chance": 60,
+    "Description": "Helpful medical bot"
+  },
+  {
+    "Chance": 80,
+    "Description": "Unusual or rare specimen"
+  },
+  {
+    "Chance": 100,
+    "Description": "Useful medical equipment"
+  } ]
+},
+{
+  "Name": "Derelict Operations Area",
+  "Aliases": [ "Operations Area", "ops area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Admin / command offices"
+  },
+  {
+    "Chance": 16,
+    "Description": "Armory"
+  },
+  {
+    "Chance": 24,
+    "Description": "Bridge / command center"
+  },
+  {
+    "Chance": 32,
+    "Description": "Brig / cells"
+  },
+  {
+    "Chance": 40,
+    "Description": "Comms center"
+  },
+  {
+    "Chance": 48,
+    "Description": "Computer core"
+  },
+  {
+    "Chance": 56,
+    "Description": "Conference / briefing room"
+  },
+  {
+    "Chance": 64,
+    "Description": "Landing bay / hangar"
+  },
+  {
+    "Chance": 72,
+    "Description": "Lounge"
+  },
+  {
+    "Chance": 80,
+    "Description": "Security"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Operations Feature",
+  "Aliases": [ "Operations Feature", "ops feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Automated warning"
+  },
+  {
+    "Chance": 16,
+    "Description": "Buckled blast doors"
+  },
+  {
+    "Chance": 24,
+    "Description": "Control terminal"
+  },
+  {
+    "Chance": 32,
+    "Description": "Emergency lighting"
+  },
+  {
+    "Chance": 40,
+    "Description": "EV suit storage"
+  },
+  {
+    "Chance": 48,
+    "Description": "Hissing comms channel"
+  },
+  {
+    "Chance": 56,
+    "Description": "Intricate control panels"
+  },
+  {
+    "Chance": 64,
+    "Description": "Map of the site"
+  },
+  {
+    "Chance": 72,
+    "Description": "Recorded message"
+  },
+  {
+    "Chance": 80,
+    "Description": "Video surveillance monitors"
+  },
+  {
+    "Chance": 88,
+    "Description": "Written logs"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Operations Peril",
+  "Aliases": [ "Operations Peril", "ops peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Alarm klaxon suddenly begins blaring"
+  },
+  {
+    "Chance": 20,
+    "Description": "Area protected by a trap or alarm"
+  },
+  {
+    "Chance": 30,
+    "Description": "Automated defenses"
+  },
+  {
+    "Chance": 40,
+    "Description": "Coded message or puzzling security device"
+  },
+  {
+    "Chance": 50,
+    "Description": "Disturbing evidence of failed or corrupt leadership"
+  },
+  {
+    "Chance": 60,
+    "Description": "Failing power"
+  },
+  {
+    "Chance": 70,
+    "Description": "Hostile AI"
+  },
+  {
+    "Chance": 80,
+    "Description": "Sealed blast doors"
+  },
+  {
+    "Chance": 90,
+    "Description": "Worrying sensor readings"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Operations Opportunity",
+  "Aliases": [ "Operations Opportunity", "ops opportunity", "ops opp" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Cache of weapons or ammo"
+  },
+  {
+    "Chance": 40,
+    "Description": "Helpful AI"
+  },
+  {
+    "Chance": 60,
+    "Description": "Keycard or access code"
+  },
+  {
+    "Chance": 80,
+    "Description": "Log offers insight into this site's downfall or nature"
+  },
+  {
+    "Chance": 100,
+    "Description": "Secure area offers a moment of peace"
+  } ]
+},
+{
+  "Name": "Derelict Production Area",
+  "Aliases": [ "Production Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Airlock / staging area"
+  },
+  {
+    "Chance": 16,
+    "Description": "Assembly / processing"
+  },
+  {
+    "Chance": 24,
+    "Description": "Cargo bay"
+  },
+  {
+    "Chance": 32,
+    "Description": "Equipment storage"
+  },
+  {
+    "Chance": 40,
+    "Description": "Exosuit bay"
+  },
+  {
+    "Chance": 48,
+    "Description": "Harvesting / mining platform"
+  },
+  {
+    "Chance": 56,
+    "Description": "Monitoring / control room"
+  },
+  {
+    "Chance": 64,
+    "Description": "Processed goods storage"
+  },
+  {
+    "Chance": 72,
+    "Description": "Raw materials storage"
+  },
+  {
+    "Chance": 80,
+    "Description": "Scrapyard"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Production Feature",
+  "Aliases": [ "Production Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Broken machinery"
+  },
+  {
+    "Chance": 16,
+    "Description": "Cargo lifts"
+  },
+  {
+    "Chance": 24,
+    "Description": "Control panels"
+  },
+  {
+    "Chance": 32,
+    "Description": "Elevated walkways"
+  },
+  {
+    "Chance": 40,
+    "Description": "Environment suits"
+  },
+  {
+    "Chance": 48,
+    "Description": "Heavy machinery"
+  },
+  {
+    "Chance": 56,
+    "Description": "Heavy machinery"
+  },
+  {
+    "Chance": 64,
+    "Description": "Sealed / locked containers"
+  },
+  {
+    "Chance": 72,
+    "Description": "Tools"
+  },
+  {
+    "Chance": 80,
+    "Description": "Vats of chemicals or gas"
+  },
+  {
+    "Chance": 88,
+    "Description": "Written manifest"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Production Peril",
+  "Aliases": [ "Production Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Claustrophobic spaces"
+  },
+  {
+    "Chance": 20,
+    "Description": "Dangerous machinery"
+  },
+  {
+    "Chance": 30,
+    "Description": "Disturbing evidence of exploited labor"
+  },
+  {
+    "Chance": 40,
+    "Description": "Hazardous materials"
+  },
+  {
+    "Chance": 50,
+    "Description": "Impending industrial disaster"
+  },
+  {
+    "Chance": 60,
+    "Description": "Malfunctioning automation"
+  },
+  {
+    "Chance": 70,
+    "Description": "Precarious / broken path"
+  },
+  {
+    "Chance": 80,
+    "Description": "Rivals seek to secure these resources"
+  },
+  {
+    "Chance": 90,
+    "Description": "Signs of an unearthed or manufactured threat"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Production Opportunity",
+  "Aliases": [ "Production Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Helpful vehicle or transport"
+  },
+  {
+    "Chance": 40,
+    "Description": "Rare or valuable resource"
+  },
+  {
+    "Chance": 60,
+    "Description": "Salvageable materials"
+  },
+  {
+    "Chance": 80,
+    "Description": "Useful equipment"
+  },
+  {
+    "Chance": 100,
+    "Description": "Valuable cargo"
+  } ]
+},
+{
+  "Name": "Derelict Research Area",
+  "Aliases": [ "Research Area" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Clean room"
+  },
+  {
+    "Chance": 16,
+    "Description": "Cold storage"
+  },
+  {
+    "Chance": 24,
+    "Description": "Creature / animal pens"
+  },
+  {
+    "Chance": 32,
+    "Description": "Decontamination Room"
+  },
+  {
+    "Chance": 40,
+    "Description": "Hazardous material storage"
+  },
+  {
+    "Chance": 48,
+    "Description": "Hydroponics / agriculture"
+  },
+  {
+    "Chance": 56,
+    "Description": "Isolation / containment"
+  },
+  {
+    "Chance": 64,
+    "Description": "Lab"
+  },
+  {
+    "Chance": 72,
+    "Description": "Library / records"
+  },
+  {
+    "Chance": 80,
+    "Description": "Secure vault"
+  },
+  {
+    "Chance": 85,
+    "Description": "New zone"
+  },
+  {
+    "Chance": 100,
+    "Description": "New zone via [Access]"
+  } ]
+},
+{
+  "Name": "Derelict Research Feature",
+  "Aliases": [ "Research Feature" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 8,
+    "Description": "Aquarium / tank"
+  },
+  {
+    "Chance": 16,
+    "Description": "Biological specimens"
+  },
+  {
+    "Chance": 24,
+    "Description": "Bones / fossils"
+  },
+  {
+    "Chance": 32,
+    "Description": "Broken equipment"
+  },
+  {
+    "Chance": 40,
+    "Description": "Cryptic research notes"
+  },
+  {
+    "Chance": 48,
+    "Description": "Hastily destroyed data"
+  },
+  {
+    "Chance": 56,
+    "Description": "Hazmat suits"
+  },
+  {
+    "Chance": 64,
+    "Description": "Inscrutable artifact"
+  },
+  {
+    "Chance": 72,
+    "Description": "Invasive plant growth"
+  },
+  {
+    "Chance": 80,
+    "Description": "Recorded research log"
+  },
+  {
+    "Chance": 88,
+    "Description": "Spilled chemicals"
+  },
+  {
+    "Chance": 100,
+    "Description": "[Descriptor/Focus]"
+  } ]
+},
+{
+  "Name": "Derelict Research Peril",
+  "Aliases": [ "Research Peril" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 10,
+    "Description": "Biological infestation"
+  },
+  {
+    "Chance": 20,
+    "Description": "Dangerous specimen"
+  },
+  {
+    "Chance": 30,
+    "Description": "Disturbing outcome of a failed experiment"
+  },
+  {
+    "Chance": 40,
+    "Description": "Evidence of sinister experiments"
+  },
+  {
+    "Chance": 50,
+    "Description": "Fragile vault holds a dire threat"
+  },
+  {
+    "Chance": 60,
+    "Description": "Radiation leak"
+  },
+  {
+    "Chance": 70,
+    "Description": "Threat escapes containment"
+  },
+  {
+    "Chance": 80,
+    "Description": "Toxic environment"
+  },
+  {
+    "Chance": 90,
+    "Description": "Unstable technology"
+  },
+  {
+    "Chance": 98,
+    "Description": "[Action/Theme]"
+  },
+  {
+    "Chance": 100,
+    "Description": "[2x]"
+  } ]
+},
+{
+  "Name": "Derelict Research Opportunity",
+  "Aliases": [ "Research Opportunity" ],
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
+  "Category": "Derelict Zone Oracles",
+  "Oracle Table": [
+  {
+    "Chance": 20,
+    "Description": "Helpful research data"
+  },
+  {
+    "Chance": 40,
+    "Description": "Records of a notable discovery"
+  },
+  {
+    "Chance": 60,
+    "Description": "Specialized research tools"
+  },
+  {
+    "Chance": 80,
+    "Description": "Unique prototype"
+  },
+  {
+    "Chance": 100,
+    "Description": "Useful navigational data"
+  } ]
 } ]
