@@ -1,6 +1,7 @@
 {
-  "Title": "Precursor Vault Oracles",
-  "Aliases": [ "precursor vault", "vault", "precursor" ],
+  "Name": "Precursor Vault",
+  "Type": "Oracles",
+  "Aliases": [ "vault", "precursor" ],
   "Source":
   {
     "Name": "Derelict-Precursor-Vault-Oracles",

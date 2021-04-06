@@ -1,5 +1,6 @@
 {
-  "Title": "Starship Oracles",
+  "Name": "Starship",
+  "Type": "Oracles",
   "Aliases": [ "starship", "ship" ],
   "Source":
   {

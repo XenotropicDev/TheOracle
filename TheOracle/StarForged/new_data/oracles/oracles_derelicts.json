@@ -1,5 +1,6 @@
 {
-  "Title": "Derelict Oracles",
+  "Name": "Derelict",
+  "Type": "Oracles",
   "Aliases": [ "derelict" ],
   "Source":
   {

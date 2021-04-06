@@ -1,6 +1,7 @@
 {
-  "Title": "Creative Prompt Oracles",
-  "Aliases": [ "creative prompt", "prompt" ],
+  "Name": "Creative Prompt",
+  "Type": "Oracles",
+  "Aliases": [ "prompt" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",

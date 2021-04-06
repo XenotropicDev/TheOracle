@@ -1,6 +1,6 @@
 {
-  "Title": "Space Oracles",
-  "Aliases": [ "space" ],
+  "Name": "Space",
+  "Type": "Oracles",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -771,6 +771,11 @@
   },
   {
     "Name": "Spaceborne Complication",
+    "Requires":
+    {
+      "Property": "Location",
+      "Value": [ "Orbital", "Deep Space" ]
+    },
     "Description": "Use this oracle as an alternative to the __Pay the Price__ table and the creative prompt oracles when you want inspiration for a trouble on an interstellar journey, or to generate a perilous event at a spaceborne facility.",
     "Oracle Table": [
     {
@@ -912,6 +917,11 @@
   },
   {
     "Name": "Spaceborne Opportunity",
+    "Requires":
+    {
+      "Property": "Location",
+      "Value": [ "Orbital", "Deep Space" ]
+    },
     "Description": "Roll on this table when you need inspiration for a beneficial encounter or event on a spaceborne journey, such as when you roll a strong hit with a match as you __Undertake an Expedition__, or if you __Explore a Waypoint__ and find an opportunity.",
     "Oracle Table": [
     {

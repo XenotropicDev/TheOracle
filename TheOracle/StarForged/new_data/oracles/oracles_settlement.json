@@ -1,6 +1,6 @@
 {
-  "Title": "Settlement Oracles",
-  "Aliases": [ "settlement", "town", "city" ],
+  "Name": "Settlement",
+  "Type": "Oracles",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",

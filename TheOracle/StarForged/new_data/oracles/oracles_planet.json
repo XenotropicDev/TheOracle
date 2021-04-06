@@ -1,6 +1,7 @@
 {
-  "Title": "Planet Oracles",
-  "Aliases": [ "planet", "world" ],
+  "Name": "Planet",
+  "Type": "Oracles",
+  "Aliases": [ "world" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -57,6 +58,11 @@
   },
   {
     "Name": "Lifebearing Planetside Complication",
+    "Requires":
+    {
+      "Property": "Life",
+      "Value": [ "Simple", "Sparse", "Diverse", "Bountiful", "Overrun" ]
+    },
     "Oracle Table": [
     {
       "Chance": 3,
@@ -197,6 +203,11 @@
   },
   {
     "Name": "Lifeless Planetside Complication",
+    "Requires":
+    {
+      "Property": "Life",
+      "Value": [ "None", "Extinct" ]
+    },
     "Oracle Table": [
     {
       "Chance": 3,
@@ -305,6 +316,11 @@
   },
   {
     "Name": "Lifebearing Planetside Opportunity",
+    "Requires":
+    {
+      "Property": "Life",
+      "Value": [ "Simple", "Sparse", "Diverse", "Bountiful", "Overrun" ]
+    },
     "Oracle Table": [
     {
       "Chance": 4,
@@ -409,6 +425,11 @@
   },
   {
     "Name": "Lifeless Planetside Opportunity",
+    "Requires":
+    {
+      "Property": "Life",
+      "Value": [ "None", "Extinct" ]
+    },
     "Oracle Table": [
     {
       "Chance": 5,

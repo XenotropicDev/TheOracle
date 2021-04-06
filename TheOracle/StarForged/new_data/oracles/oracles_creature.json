@@ -1,6 +1,7 @@
 {
-  "Title": "Creature Oracles",
-  "Aliases": [ "creature", "monster" ],
+  "Name": "Creature",
+  "Type": "Oracles",
+  "Aliases": [ "monster" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",

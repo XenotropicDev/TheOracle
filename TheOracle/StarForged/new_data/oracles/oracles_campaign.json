@@ -1,6 +1,7 @@
 {
-  "Title": "Campaign Oracles",
-  "Aliases": [ "campaign", "start" ],
+  "Name": "Campaign",
+  "Type": "Oracles",
+  "Aliases": [ "start" ],
   "Source":
   {
     "Name": "Launching Your Campaign",

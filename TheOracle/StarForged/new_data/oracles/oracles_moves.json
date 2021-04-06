@@ -1,6 +1,6 @@
 {
-  "Title": "Move Oracles",
-  "Aliases": [ "move" ],
+  "Name": "Move",
+  "Type": "Oracles",
   "Source":
   {
     "Name": "Starforged Playtest Moves",
