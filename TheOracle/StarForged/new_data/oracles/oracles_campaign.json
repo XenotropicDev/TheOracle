@@ -1,5 +1,6 @@
 {
   "Title": "Campaign Oracles",
+  "Aliases": [ "campaign", "start" ],
   "Source":
   {
     "Name": "Launching Your Campaign",
@@ -8,7 +9,8 @@
   },
   "Oracles": [
   {
-    "Name": "Backstory Prompts",
+    "Name": "Backstory Prompt",
+    "Aliases": [ "backstory", "background" ],
     "Oracle Table": [
     {
       "Chance": 7,

@@ -1,5 +1,6 @@
 {
   "Title": "Starship Oracles",
+  "Aliases": [ "starship", "ship" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -299,7 +300,11 @@
   },
   {
     "Name": "Mission",
-    "Region": "Terminus",
+    "Requires":
+    {
+      "Property": "Region",
+      "Value": "Terminus"
+    },
     "Oracle Table": [
     {
       "Chance": 3,
@@ -432,7 +437,11 @@
   },
   {
     "Name": "Mission",
-    "Region": "Outlands",
+    "Requires":
+    {
+      "Property": "Region",
+      "Value": "Outlands"
+    },
     "Oracle Table": [
     {
       "Chance": 2,
@@ -565,7 +574,11 @@
   },
   {
     "Name": "Mission",
-    "Region": "Expanse",
+    "Requires":
+    {
+      "Property": "Region",
+      "Value": "Expanse"
+    },
     "Oracle Table": [
     {
       "Chance": 2,

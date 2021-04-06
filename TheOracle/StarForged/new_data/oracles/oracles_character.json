@@ -1,5 +1,6 @@
 {
   "Title": "Character Oracles",
+  "Aliases": [ "character", "char", "npc" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",

@@ -1,5 +1,6 @@
 {
   "Title": "Derelict Oracles",
+  "Aliases": [ "derelict" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -26,7 +27,11 @@
   },
   {
     "Name": "Type",
-    "Location": "Planetside",
+    "Requires":
+    {
+      "Property": "Location",
+      "Value": "Planetside"
+    },
     "Initial": true,
     "Oracle Table": [
     {
@@ -40,7 +45,11 @@
   },
   {
     "Name": "Type",
-    "Location": "Orbital",
+    "Requires":
+    {
+      "Property": "Location",
+      "Value": "Orbital"
+    },
     "Initial": true,
     "Oracle Table": [
     {
@@ -54,7 +63,11 @@
   },
   {
     "Name": "Type",
-    "Location": "Deep Space",
+    "Requires":
+    {
+      "Property": "Location",
+      "Value": "Deep Space"
+    },
     "Initial": true,
     "Oracle Table": [
     {
@@ -274,7 +287,12 @@
     } ]
   },
   {
-    "Name": "Starship Zone",
+    "Name": "Zone",
+    "Requires":
+    {
+      "Property": "Type",
+      "Value": "Starship"
+    },
     "Oracle Table": [
     {
       "Chance": 5,
@@ -306,7 +324,12 @@
     } ]
   },
   {
-    "Name": "Settlement Zone",
+    "Name": "Zone",
+    "Requires":
+    {
+      "Property": "Type",
+      "Value": "Settlement"
+    },
     "Oracle Table": [
     {
       "Chance": 20,

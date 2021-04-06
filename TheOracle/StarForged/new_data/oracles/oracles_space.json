@@ -1,5 +1,6 @@
 {
   "Title": "Space Oracles",
+  "Aliases": [ "space" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -8,7 +9,11 @@
   "Oracles": [
   {
     "Name": "Space Sighting",
-    "Region": "Terminus",
+    "Requires":
+    {
+      "Property": "Region",
+      "Value": "Terminus"
+    },
     "Oracle Table": [
     {
       "Chance": 15,
@@ -93,7 +98,11 @@
   },
   {
     "Name": "Space Sighting",
-    "Region": "Outlands",
+    "Requires":
+    {
+      "Property": "Region",
+      "Value": "Outlands"
+    },
     "Oracle Table": [
     {
       "Chance": 15,
@@ -178,7 +187,11 @@
   },
   {
     "Name": "Space Sighting",
-    "Region": "Expanse",
+    "Requires":
+    {
+      "Property": "Region",
+      "Value": "Expanse"
+    },
     "Oracle Table": [
     {
       "Chance": 15,

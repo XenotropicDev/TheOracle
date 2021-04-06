@@ -1,5 +1,6 @@
 {
   "Title": "Creature Oracles",
+  "Aliases": [ "creature", "monster" ],
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -80,7 +81,11 @@
   },
   {
     "Name": "Basic Form",
-    "Environment": "Space",
+    "Requires":
+    {
+      "Property": "Environment",
+      "Value": "Space"
+    },
     "Oracle Table": [
     {
       "Chance": 5,
@@ -157,7 +162,11 @@
   },
   {
     "Name": "Basic Form",
-    "Environment": "Interior",
+    "Requires":
+    {
+      "Property": "Environment",
+      "Value": "Interior"
+    },
     "Oracle Table": [
     {
       "Chance": 3,
@@ -234,7 +243,11 @@
   },
   {
     "Name": "Basic Form",
-    "Environment": "Land",
+    "Requires":
+    {
+      "Property": "Environment",
+      "Value": "Land"
+    },
     "Oracle Table": [
     {
       "Chance": 2,
@@ -311,7 +324,11 @@
   },
   {
     "Name": "Basic Form",
-    "Environment": "Liquid",
+    "Requires":
+    {
+      "Property": "Environment",
+      "Value": "Liquid"
+    },
     "Oracle Table": [
     {
       "Chance": 5,
@@ -388,7 +405,11 @@
   },
   {
     "Name": "Basic Form",
-    "Environment": "Air",
+    "Requires":
+    {
+      "Property": "Environment",
+      "Value": "Air"
+    },
     "Oracle Table": [
     {
       "Chance": 2,
