@@ -9754,6 +9754,11 @@
 {
   "Name": "Derelict Location",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Oracles": [
   {
@@ -9770,8 +9775,13 @@
   } ]
 },
 {
-  "Name": "Derelict Type",
+  "Name": "Derelict Type Planetside",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Location": "Planetside",
   "Oracles": [
@@ -9785,8 +9795,13 @@
   } ]
 },
 {
-  "Name": "Derelict Type",
+  "Name": "Derelict Type Orbital",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Location": "Orbital",
   "Oracles": [
@@ -9800,8 +9815,13 @@
   } ]
 },
 {
-  "Name": "Derelict Type",
+  "Name": "Derelict Type Deep Space",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Location": "Deep Space",
   "Oracles": [
@@ -9817,6 +9837,11 @@
 {
   "Name": "Derelict Condition",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Oracles": [
   {
@@ -9847,6 +9872,11 @@
 {
   "Name": "Derelict Outer first look",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Oracles": [
   {
@@ -9893,6 +9923,11 @@
 {
   "Name": "Derelict Inner first look",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Oracles": [
   {
@@ -10027,6 +10062,11 @@
 {
   "Name": "Derelict Starship Zone",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Oracles": [
   {
@@ -10061,6 +10101,11 @@
 {
   "Name": "Derelict Settlement Zone",
   "Game": "Starforged",
+  "Source":
+  {
+    "Name": "Starforged Playtest Oracles",
+    "Version": "032821"
+  },
   "Category": "Derelict Oracles",
   "Oracles": [
   {
@@ -10095,6 +10140,7 @@
 {
   "Name": "Derelict Access Area",
   "Aliases": [ "Access Area", "Access" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10138,6 +10184,7 @@
 {
   "Name": "Derelict Access Feature",
   "Aliases": [ "Access Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10229,6 +10276,7 @@
 {
   "Name": "Derelict Access Peril",
   "Aliases": [ "Access Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10284,6 +10332,7 @@
 {
   "Name": "Derelict Access Opportunity",
   "Aliases": [ "Access Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10315,6 +10364,7 @@
 {
   "Name": "Derelict Community Area",
   "Aliases": [ "Community Area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10374,6 +10424,7 @@
 {
   "Name": "Derelict Community Feature",
   "Aliases": [ "Community Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10433,6 +10484,7 @@
 {
   "Name": "Derelict Community Peril",
   "Aliases": [ "Community Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10488,6 +10540,7 @@
 {
   "Name": "Derelict Community Opportunity",
   "Aliases": [ "Community Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10519,6 +10572,7 @@
 {
   "Name": "Derelict Engineering Area",
   "Aliases": [ "Engineering Area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10578,6 +10632,7 @@
 {
   "Name": "Derelict Engineering Feature",
   "Aliases": [ "Engineering Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10637,6 +10692,7 @@
 {
   "Name": "Derelict Engineering Peril",
   "Aliases": [ "Engineering Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10692,6 +10748,7 @@
 {
   "Name": "Derelict Engineering Opportunity",
   "Aliases": [ "Engineering Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10723,6 +10780,7 @@
 {
   "Name": "Derelict Living Area",
   "Aliases": [ "Living Area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10782,6 +10840,7 @@
 {
   "Name": "Derelict Living Feature",
   "Aliases": [ "Living Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10841,6 +10900,7 @@
 {
   "Name": "Derelict Living Peril",
   "Aliases": [ "Living Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10896,6 +10956,7 @@
 {
   "Name": "Derelict Living Opportunity",
   "Aliases": [ "Living Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10927,6 +10988,7 @@
 {
   "Name": "Derelict Medical Area",
   "Aliases": [ "Medical Area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -10986,6 +11048,7 @@
 {
   "Name": "Derelict Medical Feature",
   "Aliases": [ "Medical Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11045,6 +11108,7 @@
 {
   "Name": "Derelict Medical Peril",
   "Aliases": [ "Medical Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11100,6 +11164,7 @@
 {
   "Name": "Derelict Medical Opportunity",
   "Aliases": [ "Medical Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11131,6 +11196,7 @@
 {
   "Name": "Derelict Operations Area",
   "Aliases": [ "Operations Area", "ops area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11190,6 +11256,7 @@
 {
   "Name": "Derelict Operations Feature",
   "Aliases": [ "Operations Feature", "ops feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11249,6 +11316,7 @@
 {
   "Name": "Derelict Operations Peril",
   "Aliases": [ "Operations Peril", "ops peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11304,6 +11372,7 @@
 {
   "Name": "Derelict Operations Opportunity",
   "Aliases": [ "Operations Opportunity", "ops opportunity", "ops opp" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11335,6 +11404,7 @@
 {
   "Name": "Derelict Production Area",
   "Aliases": [ "Production Area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11394,6 +11464,7 @@
 {
   "Name": "Derelict Production Feature",
   "Aliases": [ "Production Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11453,6 +11524,7 @@
 {
   "Name": "Derelict Production Peril",
   "Aliases": [ "Production Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11508,6 +11580,7 @@
 {
   "Name": "Derelict Production Opportunity",
   "Aliases": [ "Production Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11539,6 +11612,7 @@
 {
   "Name": "Derelict Research Area",
   "Aliases": [ "Research Area" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11598,6 +11672,7 @@
 {
   "Name": "Derelict Research Feature",
   "Aliases": [ "Research Feature" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11657,6 +11732,7 @@
 {
   "Name": "Derelict Research Peril",
   "Aliases": [ "Research Peril" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
@@ -11712,6 +11788,7 @@
 {
   "Name": "Derelict Research Opportunity",
   "Aliases": [ "Research Opportunity" ],
+  "Game": "Starforged",
   "Source":
   {
     "Name": "Starforged Playtest Oracles",
