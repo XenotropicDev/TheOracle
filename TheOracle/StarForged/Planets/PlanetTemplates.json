@@ -33,7 +33,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Dry seabeds" },
       { "Chance": 22, "Description": "Expansive dune seas" },
@@ -44,8 +44,9 @@
       { "Chance": 77, "Description": "Vast plateaus" },
       { "Chance": 88, "Description": "Vibrant terrain colors" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Cavernous sinkholes" },
       { "Chance": 14, "Description": "Engulfing sandstorms" },
@@ -61,7 +62,7 @@
       { "Chance": 84, "Description": "Violent electrical storms" },
       { "Chance": 91, "Description": "Windborne metallic sand" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 25, "Description": "None" },
@@ -108,7 +109,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Fiery world-spanning chasms" },
       { "Chance": 22, "Description": "Glowing rivers of lava" },
@@ -119,8 +120,9 @@
       { "Chance": 77, "Description": "Towering mountain ranges" },
       { "Chance": 88, "Description": "World-spanning fissures" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Blinding ash storms" },
       { "Chance": 14, "Description": "Catastrophic earthquakes" },
@@ -133,10 +135,10 @@
       { "Chance": 63, "Description": "Rocky islands adrift on magma" },
       { "Chance": 70, "Description": "Roiling clouds of superheated gas" },
       { "Chance": 77, "Description": "Scalding geysers" },
-      { "Chance": 84, "Description": "Silica / metal storms" },
+      { "Chance": 84, "Description": "Silica or metal storms" },
       { "Chance": 91, "Description": "Steaming mudflats" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 30, "Description": "None" },
@@ -181,7 +183,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Broken moon" },
       { "Chance": 22, "Description": "Cratered surface" },
@@ -192,8 +194,9 @@
       { "Chance": 77, "Description": "Sky-breaching ruins" },
       { "Chance": 88, "Description": "Vast wastelands" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Acid pools" },
       { "Chance": 14, "Description": "Ash dunes" },
@@ -209,7 +212,7 @@
       { "Chance": 84, "Description": "Ship graveyards" },
       { "Chance": 91, "Description": "Whispers of the dead" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 25, "Description": "None" },
@@ -237,7 +240,7 @@
       "Terminus": [
         { "Chance": 50, "Description": "None" },
         { "Chance": 60, "Description": "Orbital settlement" },
-        { "Chance": 85, "Description": "Planetside settlement" },
+        { "Chance": 80, "Description": "Planetside settlement" },
         { "Chance": 92, "Description": "Multiple settlements" },
         { "Chance": 100, "Description": "Settlements in conflict" }
       ],
@@ -254,7 +257,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Feeble sunlight" },
       { "Chance": 22, "Description": "Frozen oceans" },
@@ -265,8 +268,9 @@
       { "Chance": 77, "Description": "Vibrantly colored ice" },
       { "Chance": 88, "Description": "World-spanning ice canyon" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Abyssal ice fissures" },
       { "Chance": 14, "Description": "Blinding snow storms" },
@@ -282,7 +286,7 @@
       { "Chance": 84, "Description": "Vibrant auroras" },
       { "Chance": 91, "Description": "Wind-carved ice formations" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 25, "Description": "None" },
@@ -328,7 +332,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Complex ring system" },
       { "Chance": 22, "Description": "Intense gravity well" },
@@ -339,8 +343,9 @@
       { "Chance": 77, "Description": "Superheated atmosphere" },
       { "Chance": 88, "Description": "Unusual atmospheric colors" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Clouds of metal particles" },
       { "Chance": 14, "Description": "Crystalline rains" },
@@ -356,7 +361,7 @@
       { "Chance": 84, "Description": "Violent turbulence" },
       { "Chance": 91, "Description": "Zones of localized atmosphere" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 50, "Description": "None" },
@@ -405,10 +410,10 @@
         { "Chance": 100, "Description": "Settlements in conflict" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Cloud-breaching trees" },
-      { "Chance": 22, "Description": "Expansive rivers / wetlands" },
+      { "Chance": 22, "Description": "Expansive rivers or wetlands" },
       { "Chance": 33, "Description": "Inland seas" },
       { "Chance": 44, "Description": "Massive canyons" },
       { "Chance": 55, "Description": "Persistent cloud cover" },
@@ -416,8 +421,9 @@
       { "Chance": 77, "Description": "Unbroken canopy" },
       { "Chance": 88, "Description": "Unusual vegetation color" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Bioluminescent flora" },
       { "Chance": 14, "Description": "Deep river gorges" },
@@ -433,7 +439,7 @@
       { "Chance": 84, "Description": "Violent electrical storms" },
       { "Chance": 91, "Description": "Waterlogged caves" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 5, "Description": "Simple" },
@@ -481,7 +487,7 @@
         { "Chance": 100, "Description": "Settlements in conflict" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Complex reef systems" },
       { "Chance": 22, "Description": "Emerging volcanoes" },
@@ -492,15 +498,16 @@
       { "Chance": 77, "Description": "Semi-frozen oceans" },
       { "Chance": 88, "Description": "Unusual water color" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Abyssal trenches" },
       { "Chance": 14, "Description": "Living islands" },
-      { "Chance": 21, "Description": "Roaming icebergs" },
-      { "Chance": 28, "Description": "Shallow-water plains" },
-      { "Chance": 35, "Description": "Subsurface volcanoes" },
-      { "Chance": 42, "Description": "Superheated geysers" },
+      { "Chance": 21, "Description": "Luminescent seas" },
+      { "Chance": 28, "Description": "Roaming icebergs" },
+      { "Chance": 35, "Description": "Shallow-water plains" },
+      { "Chance": 42, "Description": "Subsurface volcanoes" },
       { "Chance": 49, "Description": "Titanic waves" },
       { "Chance": 56, "Description": "Undersea air pockets" },
       { "Chance": 63, "Description": "Undersea caves" },
@@ -509,7 +516,7 @@
       { "Chance": 84, "Description": "Violent currents" },
       { "Chance": 91, "Description": "Windborne waterspouts" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 5, "Description": "None" },
@@ -555,7 +562,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Barren plains" },
       { "Chance": 22, "Description": "Constant asteroid strikes" },
@@ -566,8 +573,9 @@
       { "Chance": 77, "Description": "Perpetual night" },
       { "Chance": 88, "Description": "Towering plateaus" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Crystalline formations" },
       { "Chance": 14, "Description": "Crystalline caves" },
@@ -583,7 +591,7 @@
       { "Chance": 84, "Description": "Swirling low-lying gases" },
       { "Chance": 91, "Description": "Towering rocky spires" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 55, "Description": "None" },
@@ -625,11 +633,11 @@
       ],
       "Expanse": [
         { "Chance": 95, "Description": "None" },
-        { "Chance": 98, "Description": "Orbital settlement" },
+        { "Chance": 99, "Description": "Orbital settlement" },
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Demolished space fleet" },
       { "Chance": 22, "Description": "Dense ring system" },
@@ -640,8 +648,9 @@
       { "Chance": 77, "Description": "Swirling debris field" },
       { "Chance": 88, "Description": "Unbroken moon" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Broken cities" },
       { "Chance": 14, "Description": "Colliding fragments" },
@@ -653,11 +662,11 @@
       { "Chance": 56, "Description": "Phantom visions of the past" },
       { "Chance": 63, "Description": "Pocket atmosphere" },
       { "Chance": 70, "Description": "Residual energy storms" },
-      { "Chance": 77, "Description": "Swirling corrosive gasses" },
+      { "Chance": 77, "Description": "Swirling corrosive gases" },
       { "Chance": 84, "Description": "Unstable and fracturing terrain" },
       { "Chance": 91, "Description": "Venting magma" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 30, "Description": "None" },
@@ -699,7 +708,7 @@
         { "Chance": 100, "Description": "Planetside settlement" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Expansive fungal plains" },
       { "Chance": 22, "Description": "Fungal forests" },
@@ -710,8 +719,9 @@
       { "Chance": 77, "Description": "Thick, murky atmosphere" },
       { "Chance": 88, "Description": "Toxic seas" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Caustic gas storms" },
       { "Chance": 14, "Description": "Corrosive, low-lying fog" },
@@ -727,7 +737,7 @@
       { "Chance": 84, "Description": "Toxic rain" },
       { "Chance": 91, "Description": "Virulent fungal infestations" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 5, "Description": "Simple" },
@@ -772,7 +782,7 @@
         { "Chance": 100, "Description": "Settlements in conflict" }
       ]
     },
-    "MaxSpaceObservations": 3,
+    "MaxSpaceObservations": 2,
     "SpaceObservations": [
       { "Chance": 11, "Description": "Complex ring system" },
       { "Chance": 22, "Description": "Dramatic seasonal variation" },
@@ -780,11 +790,12 @@
       { "Chance": 44, "Description": "Large moon" },
       { "Chance": 55, "Description": "Narrow livable band" },
       { "Chance": 66, "Description": "Numerous small moons" },
-      { "Chance": 77, "Description": "Unusual day/night cycle" },
+      { "Chance": 77, "Description": "Unusual day or night cycle" },
       { "Chance": 88, "Description": "Vibrantly colored landscapes" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (orbital)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (orbital)" }
     ],
+    "MaxCloserLooks": 2,
     "CloserLooks": [
       { "Chance": 7, "Description": "Background radiation" },
       { "Chance": 14, "Description": "Chaotically juxtaposed biomes" },
@@ -800,7 +811,7 @@
       { "Chance": 84, "Description": "Sudden weather fluctuations" },
       { "Chance": 91, "Description": "Towering geological formations" },
       { "Chance": 98, "Description": "[Descriptor/Focus]" },
-      { "Chance": 100, "Description": "[Anomalous Site (planetside)]" }
+      { "Chance": 100, "Description": "▶️Precursor Vault (planetside)" }
     ],
     "PossibleLife": [
       { "Chance": 10, "Description": "Sparse" },
@@ -809,16 +820,16 @@
       { "Chance": 100, "Description": "Overrun" }
     ],
     "NumberOfBiomes": [
-      { "Chance": 20, "Amount": 2 },
-      { "Chance": 70, "Amount": 3 },
-      { "Chance": 90, "Amount": 4 },
-      { "Chance": 100, "Amount": 5 }
+      { "Chance": 20 },
+      { "Chance": 70 },
+      { "Chance": 90 },
+      { "Chance": 100 }
     ],
     "PossibleBiomes": [
       { "Chance": 5, "Description": "Caves" },
       { "Chance": 10, "Description": "Cold forest" },
       { "Chance": 15, "Description": "Fungal" },
-      { "Chance": 20, "Description": "Glacial / snow" },
+      { "Chance": 20, "Description": "Glacial or snow" },
       { "Chance": 25, "Description": "Grassland" },
       { "Chance": 30, "Description": "Islands" },
       { "Chance": 35, "Description": "Jungle" },
