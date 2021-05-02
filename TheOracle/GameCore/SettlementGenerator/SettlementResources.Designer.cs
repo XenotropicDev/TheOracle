@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheOracle.StarForged.Settlements {
+namespace TheOracle.GameCore.SettlementGenerator {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TheOracle.StarForged.Settlements {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.StarForged.Settlements.SettlementResources", typeof(SettlementResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.GameCore.SettlementGenerator.SettlementResources", typeof(SettlementResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -127,15 +127,6 @@ namespace TheOracle.StarForged.Settlements {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settlement Helper.
-        /// </summary>
-        internal static string SettlementHelper {
-            get {
-                return ResourceManager.GetString("SettlementHelper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Settlement Name.
         /// </summary>
         internal static string SettlementName {
@@ -168,6 +159,15 @@ namespace TheOracle.StarForged.Settlements {
         internal static string SettlementTrouble {
             get {
                 return ResourceManager.GetString("SettlementTrouble", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starforged Settlement Helper.
+        /// </summary>
+        internal static string StarforgedHelper {
+            get {
+                return ResourceManager.GetString("StarforgedHelper", resourceCulture);
             }
         }
     }
