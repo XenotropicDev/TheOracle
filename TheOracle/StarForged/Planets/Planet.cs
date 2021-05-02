@@ -78,13 +78,14 @@ namespace TheOracle.StarForged.Planets
 
             planet.Atmosphere = embed.Fields.FirstOrDefault(fld => fld.Name == PlanetResources.Atmosphere).Value;
             planet.CloserLooks = embed.Fields.Where(fld => fld.Name == PlanetResources.CloserLook)?.Select(item => item.Value).ToList() ?? new List<string>();
+            planet.CloserLooks = embed.Fields.Where(fld => fld.Name == PlanetResources.Feature)?.Select(item => item.Value).ToList() ?? new List<string>();
             planet.Description = embed.Fields.FirstOrDefault(fld => fld.Name.Contains(PlanetResources.World)).Value;
             planet.LifeRevealed = embed.Fields.Any(fld => fld.Name == PlanetResources.Life);
             planet.Life = (planet.LifeRevealed) ? embed.Fields.FirstOrDefault(fld => fld.Name == PlanetResources.Life).Value : string.Empty;
             planet.Name = embed.Title.Replace("__", "");
             planet.PlanetType = embed.Fields.FirstOrDefault(fld => fld.Name.Contains(PlanetResources.World)).Name;
             planet.RevealedBiomes = embed.Fields.Count(field => field.Name == PlanetResources.Biome);
-            planet.RevealedLooks = embed.Fields.Count(field => field.Name == PlanetResources.CloserLook);
+            planet.RevealedLooks = embed.Fields.Count(field => field.Name == PlanetResources.Feature) + embed.Fields.Count(field => field.Name == PlanetResources.CloserLook);
             planet.Settlements = embed.Fields.FirstOrDefault(fld => fld.Name == PlanetResources.Settlements).Value;
             planet.SpaceObservations = embed.Fields.Where(fld => fld.Name.Contains(String.Format(PlanetResources.SpaceObservation, string.Empty).Trim()))?.Select(item => item.Value).ToList() ?? new List<string>();
             planet.SpaceRegion = StarforgedUtilites.GetAnySpaceRegion(embed.Description);
@@ -134,7 +135,7 @@ namespace TheOracle.StarForged.Planets
 
             if (LifeRevealed) builder.AddField(PlanetResources.Life, Life, true);
             
-            for (int i = 0; i < RevealedLooks; i++) builder.AddField(PlanetResources.CloserLook, CloserLooks[i], true);
+            for (int i = 0; i < RevealedLooks; i++) builder.AddField(PlanetResources.Feature, CloserLooks[i], true);
             
             for (int i = 0; i < RevealedBiomes; i++) builder.AddField(PlanetResources.Biome, Biomes[i], true);
 
@@ -154,7 +155,7 @@ namespace TheOracle.StarForged.Planets
             if (fieldName.Contains(string.Format(PlanetResources.SpaceObservation, 1))) return 11;
             if (fieldName.Contains(string.Format(PlanetResources.SpaceObservation, 2))) return 12;
             if (fieldName.Contains(string.Format(PlanetResources.SpaceObservation, 3))) return 13;
-            if (fieldName.Contains(PlanetResources.CloserLook)) return 15;
+            if (fieldName.Contains(PlanetResources.Feature)) return 15;
             return 100;
         }
     }
