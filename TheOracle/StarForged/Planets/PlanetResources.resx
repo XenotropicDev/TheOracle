@@ -124,7 +124,8 @@
     <value>Biome</value>
   </data>
   <data name="CloserLook" xml:space="preserve">
-    <value>Closer Look</value>
+    <value>Feature</value>
+    <!-- changed from closer look to 'planetside feature', simplifying to 'feature' because it's more concise in context and to keep its connection to other available feature tables obvious -->
   </data>
   <data name="HelperOptions" xml:space="preserve">
     <value>Options:</value>
