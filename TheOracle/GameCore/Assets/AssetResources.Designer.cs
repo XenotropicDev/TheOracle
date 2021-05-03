@@ -88,6 +88,15 @@ namespace TheOracle.GameCore.Assets {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Too many assets match &apos;{0}&apos; please specify a game in the command or use the `!setdefaultgame` command..
+        /// </summary>
+        internal static string TooManyAssetsError {
+            get {
+                return ResourceManager.GetString("TooManyAssetsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An asset name couldn&apos;t be found in the entered command.
         ///{0}.
         /// </summary>

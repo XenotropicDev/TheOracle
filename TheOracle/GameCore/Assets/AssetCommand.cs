@@ -166,10 +166,8 @@ namespace TheOracle.GameCore.Assets
             if (game != GameName.None) AssetCommand = Utilities.RemoveGameNamesFromString(AssetCommand);
             if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
-            var asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)", RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
-            if (asset == default) asset = assets.FirstOrDefault(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game));
-            if (asset == default) asset = assets.FirstOrDefault(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
-            
+            Asset asset = FindMatchingAsset(AssetCommand, assets, game);
+
             if (asset == default)
             {
                 var dict = Services.GetRequiredService<WeCantSpell.Hunspell.WordList>();
@@ -217,6 +215,23 @@ namespace TheOracle.GameCore.Assets
                     if (i == 3) await message.AddReactionAsync(GenericReactions.fourEmoji);
                 }
             }).ConfigureAwait(false);
+        }
+
+        public Asset FindMatchingAsset(string AssetCommand, List<Asset> assets, GameName game)
+        {
+            var asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)", RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
+            if (asset.Count() == 0) asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game));
+            if (asset.Count() == 0) asset = assets.Where(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
+
+            if (asset.Count() == 0)
+            {
+                if (game == GameName.None) return default;
+                return FindMatchingAsset(AssetCommand, assets, GameName.None);
+            }
+
+            if (asset.Count() > 1) throw new ArgumentException(string.Format(AssetResources.TooManyAssetsError, AssetCommand));
+
+            return asset.FirstOrDefault();
         }
 
         [Command("AssetList")]

@@ -128,6 +128,9 @@
     <value>{0} {1}</value>
     <comment>{0} will be replaced with the game, and {1} will be replaced with the Asset value in this document</comment>
   </data>
+  <data name="TooManyAssetsError" xml:space="preserve">
+    <value>Too many assets match '{0}' please specify a game in the command or use the `!setdefaultgame` command.</value>
+  </data>
   <data name="UnknownAssetError" xml:space="preserve">
     <value>An asset name couldn't be found in the entered command.
 {0}</value>

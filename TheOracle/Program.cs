@@ -17,7 +17,6 @@ using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.Oracle;
 using TheOracle.GameCore.RulesReference;
 using TheOracle.IronSworn.Delve;
-using WeCantSpell.Hunspell;
 
 namespace TheOracle
 {
@@ -80,16 +79,11 @@ namespace TheOracle
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService(commandConfig);
 
-            var ironAssetsPath = Path.Combine("IronSworn", "assets.json");
-            var starAssetsPath = Path.Combine("StarForged", "assets.json");
-            var AssetList = new List<Asset>();
-            if (File.Exists(ironAssetsPath)) AssetList.AddRange(JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath)));
-            if (File.Exists(starAssetsPath)) AssetList.AddRange(JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(starAssetsPath)));
-
             var delveThemePath = Path.Combine("IronSworn", "themes.json");
             var delveDomainPath = Path.Combine("IronSworn", "domains.json");
             var delveService = DelveService.Load(new string[] { delveThemePath }, new string[] { delveDomainPath });
             var oracleService = new OracleService().Load();
+            var AssetList = Asset.LoadAssetList();
             var spellingDictionary = Utilities.CreateDictionaryFromOracles(oracleService, AssetList);
 
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())

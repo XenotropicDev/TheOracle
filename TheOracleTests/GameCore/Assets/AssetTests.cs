@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using TheOracle.BotCore;
 
 namespace TheOracle.GameCore.Assets.Tests
 {
@@ -54,6 +56,21 @@ namespace TheOracle.GameCore.Assets.Tests
         {
             var assets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText("IronSworn\\assets.json"));
             Assert.IsTrue(assets.Count > 1);
+        }
+
+        [TestMethod()]
+        public void FindAssetTest()
+        {
+            var AssetList = Asset.LoadAssetList();
+            var services = new ServiceCollection()
+                .AddSingleton(AssetList)
+                .AddSingleton<HookedEvents>()
+                .AddSingleton<ReactionService>()
+                .BuildServiceProvider();
+
+            var assets = new AssetCommands(services).FindMatchingAsset("Seer", AssetList, GameName.Ironsworn);
+            Assert.AreEqual("Seer", assets.Name);
+            Assert.AreEqual(GameName.Starforged, assets.Game);
         }
     }
 }

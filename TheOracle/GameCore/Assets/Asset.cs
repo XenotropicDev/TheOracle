@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.BotCore;
@@ -202,6 +203,27 @@ namespace TheOracle.GameCore.Assets
             builder.WithFooter(String.Format(AssetResources.GameAssetFormat, Game, AssetResources.Asset));
 
             return builder.Build();
+        }
+
+        public static List<Asset> LoadAssetList()
+        {
+            var ironAssetsPath = Path.Combine("IronSworn", "assets.json");
+            var starAssetsPath = Path.Combine("StarForged", "assets.json");
+            var AssetList = new List<Asset>();
+            if (File.Exists(ironAssetsPath))
+            {
+                var ironAssets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
+                ironAssets.ForEach(a => a.Game = GameCore.GameName.Ironsworn);
+                AssetList.AddRange(ironAssets);
+            }
+            if (File.Exists(starAssetsPath))
+            {
+                var starAssets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(starAssetsPath));
+                starAssets.ForEach(a => a.Game = GameCore.GameName.Starforged);
+                AssetList.AddRange(starAssets);
+            }
+
+            return AssetList;
         }
     }
 }
