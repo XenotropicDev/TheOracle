@@ -19,5 +19,6 @@
         public bool NPCReationsLoaded { get; internal set; }
         public bool PlayerShipReactions { get; internal set; }
         public bool IronNpcReactions { get; internal set; }
+        public bool IronSettlmentReactions { get; internal set; }
     }
 }

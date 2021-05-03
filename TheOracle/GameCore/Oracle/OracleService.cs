@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.Core;
-using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.GameCore.Oracle
 {
@@ -21,8 +20,26 @@ namespace TheOracle.GameCore.Oracle
 
         public OracleService Load()
         {
-            foreach (var file in new DirectoryInfo("IronSworn").GetFiles("oracles.??.json"))
+            var ironOraclesDir = new DirectoryInfo(Path.Combine("IronSworn", "Oracles"));
+            if (ironOraclesDir.Exists)
             {
+                foreach (var file in ironOraclesDir.GetFiles("*.json"))
+                {
+                    var oracles = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(file.FullName));
+                    oracles.ForEach(o => o.Game = GameName.Ironsworn);
+                    OracleList.AddRange(oracles);
+                }
+            }
+
+            DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Oracles"));
+            if (starOraclesDir.Exists)
+            {
+                foreach (var file in starOraclesDir.GetFiles("*.json"))
+                {
+                    var oracles = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(file.FullName));
+                    oracles.ForEach(o => o.Game = GameName.Starforged);
+                    OracleList.AddRange(oracles);
+                }
             }
 
             var ironOraclesPath = Path.Combine("IronSworn", "oracles.json");
@@ -31,11 +48,13 @@ namespace TheOracle.GameCore.Oracle
             if (File.Exists(ironOraclesPath))
             {
                 var ironSworn = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(ironOraclesPath));
+                ironSworn.ForEach(o => o.Game = GameName.Ironsworn);
                 OracleList.AddRange(ironSworn);
             }
             if (File.Exists(starOraclesPath))
             {
                 var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
+                starForged.ForEach(o => o.Game = GameName.Starforged);
                 OracleList.AddRange(starForged);
             }
             if (File.Exists(tarotOraclesPath))
@@ -62,7 +81,6 @@ namespace TheOracle.GameCore.Oracle
                     Console.WriteLine($"Error Loading oracle: {oracleSet.Name}");
                     throw;
                 }
-
             }
 
             return this;
@@ -135,7 +153,7 @@ namespace TheOracle.GameCore.Oracle
                 }
                 lookup = lookup.Replace($"{match.Groups[1]}x", string.Join("/", ReplaceMultiRollTables));
             }
-            
+
             var oracleService = serviceProvider.GetRequiredService<OracleService>();
             var roller = new OracleRoller(oracleService, game, rand);
             var tables = roller.ParseOracleTables(lookup);

@@ -88,6 +88,15 @@ namespace TheOracle.StarForged.Planets {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feature.
+        /// </summary>
+        internal static string Feature {
+            get {
+                return ResourceManager.GetString("Feature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options:.
         /// </summary>
         internal static string HelperOptions {

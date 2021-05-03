@@ -145,14 +145,20 @@
     <Description>A Discord bot the Ironsworn game system</Description>
     <RepositoryUrl>https://github.com/XenotropicDev/TheOracle.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>0.8.14.1</AssemblyVersion>
-    <FileVersion>0.8.14.0</FileVersion>
+    <AssemblyVersion>0.8.15.0</AssemblyVersion>
+    <FileVersion>0.8.15.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Migrations\20201026235150_Initial.cs" />
     <Compile Remove="Migrations\20201026235150_Initial.Designer.cs" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="StarForged\Data\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="2.3.1" />
@@ -210,7 +216,7 @@
     <None Update="IronSworn\GameRules.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="IronSworn\oracles.json">
+    <None Update="IronSworn\Oracles\oracles.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="IronSworn\tarot_oracles.json">
@@ -220,6 +226,144 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="StarForged\assets.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\glossary\glossary_asset_type.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\glossary\glossary_atmosphere.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\glossary\glossary_condition_meter.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\glossary\glossary_impact.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\glossary\glossary_region.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\glossary\glossary_stat.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_adventure.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_combat.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_connection.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_exploration.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_fate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_legacy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_quest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_recover.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_suffer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\moves\moves_threshold.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_access.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_community.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_engineering.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_living.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_medical.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_operations.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\derelict_zones\zone_research.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_campaign.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_character.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_creative_prompt.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_creature.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_derelicts.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_moves.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_planet.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_precursor_vault.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_settlement.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_space.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\oracles_starship.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_desert.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_furnace.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_grave.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_ice.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_jovian.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_jungle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_ocean.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_rocky.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_shattered.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_tainted.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StarForged\Data\oracles\planet_dashboards\world_vital.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="StarForged\GameRules.json">
@@ -345,7 +489,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PlayerShipResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="StarForged\Settlements\SettlementResources.Designer.cs">
+    <Compile Update="GameCore\SettlementGenerator\SettlementResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SettlementResources.resx</DependentUpon>
@@ -438,7 +582,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlayerShipResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="StarForged\Settlements\SettlementResources.resx">
+    <EmbeddedResource Update="GameCore\SettlementGenerator\SettlementResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SettlementResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

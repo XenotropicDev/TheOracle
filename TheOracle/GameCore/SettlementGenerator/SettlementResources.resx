@@ -141,9 +141,6 @@
   <data name="Settlement" xml:space="preserve">
     <value>Settlement</value>
   </data>
-  <data name="SettlementHelper" xml:space="preserve">
-    <value>Settlement Helper</value>
-  </data>
   <data name="SettlementName" xml:space="preserve">
     <value>Settlement Name</value>
   </data>
@@ -155,5 +152,8 @@
   </data>
   <data name="SettlementTrouble" xml:space="preserve">
     <value>Settlement Trouble</value>
+  </data>
+  <data name="StarforgedHelper" xml:space="preserve">
+    <value>Starforged Settlement Helper</value>
   </data>
 </root>
