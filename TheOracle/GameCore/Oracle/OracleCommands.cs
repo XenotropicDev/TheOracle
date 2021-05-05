@@ -89,8 +89,11 @@ namespace TheOracle.GameCore.Oracle
         public async Task OracleList([Remainder]string OracleListOptions = "")
         {
             var ShowPostInChannel = OracleResources.ShowListInChannel.Split(',').Any(s => OracleListOptions.Contains(s, StringComparison.OrdinalIgnoreCase));
+            if (ShowPostInChannel) foreach(var s in OracleResources.ShowListInChannel.Split(',')) OracleListOptions = OracleListOptions.Replace(s, "", StringComparison.OrdinalIgnoreCase);
 
             var UserGame = Utilities.GetGameContainedInString(OracleListOptions);
+            OracleListOptions = Utilities.RemoveGameNamesFromString(OracleListOptions);
+
             if (UserGame == GameName.None)
             {
                 ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
@@ -100,6 +103,11 @@ namespace TheOracle.GameCore.Oracle
             var baseList = _oracleService.OracleList.Where(orc => UserGame == GameName.None || orc.Game == UserGame);
             baseList.ToList().ForEach(o => { if (o.Category == null || o.Category.Length == 0) o.Category = o.Game?.ToString() ?? "Misc"; });
 
+            IEnumerable<string> catsToShow = null;
+            if (!string.IsNullOrEmpty(OracleListOptions)) catsToShow = baseList
+                        .Where(o => o.Category.Contains(OracleListOptions, StringComparison.OrdinalIgnoreCase))
+                        .Select(o => o.Category);
+
             foreach (var game in baseList.GroupBy(o => o.Game).Select(o => o.First().Game))
             {
                 EmbedBuilder builder = new EmbedBuilder().WithTitle(String.Format(OracleResources.OracleListTitle, game));
@@ -107,14 +115,14 @@ namespace TheOracle.GameCore.Oracle
                 string entries = string.Empty;
                 List<string> splitUpList = new List<string>();
 
-                foreach (var oracle in baseList.Where(o => o.Game == game).OrderBy(o => o.Category))
+                foreach (var oracle in baseList.Where(o => (o.Game == game || o.Game == GameName.None) && (catsToShow == default || catsToShow.Contains(o.Category))).OrderBy(o => o.Category))
                 {
                     if (oracle.Category != currentCategory)
                     {
                         currentCategory = oracle.Category;
                         string catValue = $"\n**{currentCategory}**\n";
 
-                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we are less likely up with duplicated top level entries
+                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we are less likely to end up with duplicated top level entries
                         {
                             splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
                             entries = string.Empty;
@@ -150,8 +158,18 @@ namespace TheOracle.GameCore.Oracle
                     {
                         title = string.Format(OracleResources.OracleListFieldTitle, match[0].Groups[1], match.Last().Groups[1]);
                     }
+
+                    if (builder.Length + title.Length + s.Length > EmbedBuilder.MaxEmbedLength)
+                    {
+                        if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
+                        else await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
+                        builder.Fields = new List<EmbedFieldBuilder>();
+                    }
+
                     builder.AddField(title, s, true);
                 }
+
+                if (splitUpList.Count <= 2) ShowPostInChannel = true;
 
                 if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
                 else await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
