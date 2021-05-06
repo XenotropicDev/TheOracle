@@ -17,6 +17,7 @@ namespace TheOracle.IronSworn.Settlements
         private IServiceProvider Services;
         private OracleService oracles;
         private Emoji troubleEmoji = new Emoji("🔥");
+        private Emoji regionEmoji = new Emoji("🔥");
 
         public List<string> SettlementTrouble { get; set; } = new List<string>();
 
@@ -38,10 +39,12 @@ namespace TheOracle.IronSworn.Settlements
 
         public string Name { get; set; }
         public string IconUrl { get; private set; }
-        public object LocationDesc { get; private set; }
+        public string LocationDesc { get; private set; }
+        public string Region { get; set; }
 
         public async Task AfterMessageCreated(IUserMessage msg)
         {
+            await msg.AddReactionAsync(troubleEmoji);
             await msg.AddReactionAsync(troubleEmoji);
             return;
         }
@@ -55,6 +58,11 @@ namespace TheOracle.IronSworn.Settlements
             foreach (var trouble in embed.Fields.Where(fld => fld.Name == SettlementResources.SettlementTrouble))
             {
                 SettlementTrouble.Add(trouble.Value);
+            }
+
+            if (embed.Fields.Any(fld => fld.Name == SettlementResources.Region))
+            {
+                Region = embed.Fields.First(fld => fld.Name == SettlementResources.Region).Value;
             }
 
             return this;
@@ -73,6 +81,8 @@ namespace TheOracle.IronSworn.Settlements
             {
                 embedBuilder.AddField(SettlementResources.SettlementTrouble, trouble);
             }
+
+            if (Region?.Length > 0) embedBuilder.AddField(SettlementResources.Region, Region);
 
             return embedBuilder;
         }

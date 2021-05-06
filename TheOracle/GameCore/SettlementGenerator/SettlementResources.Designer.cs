@@ -118,6 +118,15 @@ namespace TheOracle.GameCore.SettlementGenerator {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        internal static string Region {
+            get {
+                return ResourceManager.GetString("Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settlement.
         /// </summary>
         internal static string Settlement {

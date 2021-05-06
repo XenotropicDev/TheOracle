@@ -108,6 +108,8 @@ namespace TheOracle.GameCore.Oracle
                         .Where(o => o.Category.Contains(OracleListOptions, StringComparison.OrdinalIgnoreCase))
                         .Select(o => o.Category);
 
+            if (catsToShow?.Count() == 0) throw new ArgumentException($"I don't know any oracles with category '{OracleListOptions}'.");
+
             foreach (var game in baseList.GroupBy(o => o.Game).Select(o => o.First().Game))
             {
                 EmbedBuilder builder = new EmbedBuilder().WithTitle(String.Format(OracleResources.OracleListTitle, game));

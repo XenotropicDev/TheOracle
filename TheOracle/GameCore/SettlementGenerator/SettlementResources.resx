@@ -138,6 +138,9 @@
   <data name="Population" xml:space="preserve">
     <value>Population</value>
   </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
   <data name="Settlement" xml:space="preserve">
     <value>Settlement</value>
   </data>
