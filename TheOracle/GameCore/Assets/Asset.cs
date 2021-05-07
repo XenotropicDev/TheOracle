@@ -46,6 +46,7 @@ namespace TheOracle.GameCore.Assets
         public string IconUrl { get; set; }
         public string AssetType { get; set; }
         public GameName Game { get; set; }
+        public SourceInfo Source { get; set; }
 
         public List<AssetField> AssetFields { get; set; }
 
@@ -200,7 +201,8 @@ namespace TheOracle.GameCore.Assets
                 builder.AddField(NumericAssetTrack.Name, trackText);
             }
 
-            builder.WithFooter(String.Format(AssetResources.GameAssetFormat, Game, AssetResources.Asset));
+            string source = (Source != null) ? Source.ToString() : string.Empty;
+            builder.WithFooter(String.Format(AssetResources.FooterFormat, Game, AssetResources.Asset, source));
 
             return builder.Build();
         }

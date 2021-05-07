@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheOracle.GameCore.RulesReference {
+namespace TheOracle.GameCore.DataSourceInfo {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TheOracle.GameCore.RulesReference {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RulesResources {
+    internal class SourceInfoResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RulesResources() {
+        internal SourceInfoResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TheOracle.GameCore.RulesReference {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.GameCore.RulesReference.RulesResources", typeof(RulesResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheOracle.GameCore.DataSourceInfo.SourceInfoResources", typeof(SourceInfoResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace TheOracle.GameCore.RulesReference {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Source: {0}{1}{2}.
         /// </summary>
-        internal static string EditorNote {
+        internal static string SourceField {
             get {
-                return ResourceManager.GetString("EditorNote", resourceCulture);
+                return ResourceManager.GetString("SourceField", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No moves in {0}.
+        ///   Looks up a localized string similar to  - pg. {0}.
         /// </summary>
-        internal static string NoMovesError {
+        internal static string SourcePageField {
             get {
-                return ResourceManager.GetString("NoMovesError", resourceCulture);
+                return ResourceManager.GetString("SourcePageField", resourceCulture);
             }
         }
         
@@ -88,11 +88,11 @@ namespace TheOracle.GameCore.RulesReference {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown move: &apos;{0}&apos;.
+        ///   Looks up a localized string similar to  - Version: {0}.
         /// </summary>
-        internal static string UnknownMoveError {
+        internal static string VersionField {
             get {
-                return ResourceManager.GetString("UnknownMoveError", resourceCulture);
+                return ResourceManager.GetString("VersionField", resourceCulture);
             }
         }
     }

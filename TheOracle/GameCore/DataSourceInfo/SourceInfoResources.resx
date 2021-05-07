@@ -117,28 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Asset" xml:space="preserve">
-    <value>Asset</value>
+  <data name="SourceField" xml:space="preserve">
+    <value>Source: {0}{1}{2}</value>
+    <comment>{0} will be replaced with the source name. 
+{1} will be the SourcePageField in this document if there is any page.
+{2} will be the VersionField in this document if there is any version info.</comment>
   </data>
-  <data name="DidYouMean" xml:space="preserve">
-    <value>Did you mean `{0}`?</value>
-    <comment>{0} will be replaced with a spelling suggestion if any</comment>
+  <data name="SourcePageField" xml:space="preserve">
+    <value> - pg. {0}</value>
+    <comment>{0} will be replaced with the page number if any.</comment>
   </data>
-  <data name="FooterFormat" xml:space="preserve">
-    <value>{0} {1}
-{2}</value>
-    <comment>{0} will be replaced with the game, {1} will be replaced with the Asset value in this document, and {2} will be replaced with the asset's source information (if any)</comment>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
-  <data name="TooManyAssetsError" xml:space="preserve">
-    <value>Too many assets match '{0}' please specify a game in the command or use the `!setdefaultgame` command.</value>
-  </data>
-  <data name="UnknownAssetError" xml:space="preserve">
-    <value>An asset name couldn't be found in the entered command.
-{0}</value>
-    <comment>{0} will be replaced with the text from "DidYouMean" in this file</comment>
-  </data>
-  <data name="UserInputField" xml:space="preserve">
-    <value>__{0} : {1}__</value>
-    <comment>{0} will be replaced with the name of the field from the asset, {1} will be replaced with the user's input value.</comment>
+  <data name="VersionField" xml:space="preserve">
+    <value> - Version: {0}</value>
+    <comment>{0} is replaced with the version info/number. This gets used by the SourceField only if there is something in the version field from the data's source info.</comment>
   </data>
 </root>

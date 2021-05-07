@@ -145,8 +145,8 @@
     <Description>A Discord bot the Ironsworn game system</Description>
     <RepositoryUrl>https://github.com/XenotropicDev/TheOracle.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>0.8.15.2</AssemblyVersion>
-    <FileVersion>0.8.15.2</FileVersion>
+    <AssemblyVersion>0.8.15.3</AssemblyVersion>
+    <FileVersion>0.8.15.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -408,6 +408,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Update="GameCore\DataSourceInfo\SourceInfoResources.Designer.cs">
+      <DependentUpon>SourceInfoResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="GameCore\DiceRoller\RollResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -521,6 +526,10 @@
     <EmbeddedResource Update="GameCore\Assets\Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GameCore\DataSourceInfo\SourceInfoResources.resx">
+      <LastGenOutput>SourceInfoResources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="GameCore\DiceRoller\RollResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

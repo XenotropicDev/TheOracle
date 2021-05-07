@@ -79,11 +79,12 @@ namespace TheOracle.GameCore.Assets {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} {1}.
+        ///   Looks up a localized string similar to {0} {1}
+        ///{2}.
         /// </summary>
-        internal static string GameAssetFormat {
+        internal static string FooterFormat {
             get {
-                return ResourceManager.GetString("GameAssetFormat", resourceCulture);
+                return ResourceManager.GetString("FooterFormat", resourceCulture);
             }
         }
         
