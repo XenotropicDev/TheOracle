@@ -98,7 +98,7 @@ namespace TheOracle.GameCore.SettlementGenerator {
         
         /// <summary>
         ///   Looks up a localized string similar to Please pick a space region:
-        ///1️⃣ - Termnius
+        ///1️⃣ - Terminus
         ///2️⃣ - Outlands
         ///3️⃣ - Expanse.
         /// </summary>
