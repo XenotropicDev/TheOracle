@@ -17,7 +17,7 @@ namespace TheOracle.IronSworn.Settlements
         private IServiceProvider Services;
         private OracleService oracles;
         private Emoji troubleEmoji = new Emoji("🔥");
-        private Emoji regionEmoji = new Emoji("🔥");
+        private Emoji regionEmoji = new Emoji("📍");
 
         public List<string> SettlementTrouble { get; set; } = new List<string>();
 
@@ -31,7 +31,9 @@ namespace TheOracle.IronSworn.Settlements
                 var reactionService = services.GetRequiredService<ReactionService>();
 
                 ReactionEvent trouble = new ReactionEventBuilder().WithEmote(troubleEmoji).WithEvent(TroubleReactionHandler).Build();
+                ReactionEvent region = new ReactionEventBuilder().WithEmote(regionEmoji).WithEvent(RegionReactionHandler).Build();
                 reactionService.reactionList.Add(trouble);
+                reactionService.reactionList.Add(region);
 
                 hooks.IronSettlmentReactions = true;
             }
@@ -45,7 +47,7 @@ namespace TheOracle.IronSworn.Settlements
         public async Task AfterMessageCreated(IUserMessage msg)
         {
             await msg.AddReactionAsync(troubleEmoji);
-            await msg.AddReactionAsync(troubleEmoji);
+            await msg.AddReactionAsync(regionEmoji);
             return;
         }
 
@@ -125,6 +127,28 @@ namespace TheOracle.IronSworn.Settlements
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
             return;
+        }
+
+        private async Task RegionReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            if (!IsIronSettlementPost(message)) return;
+
+            var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
+            if (settlmentEmbed == null) return;
+
+            var settlement = new IronSettlement(Services, channel.Id).FromEmbed(settlmentEmbed) as IronSettlement;
+
+            settlement.RevealRegion();
+
+            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+
+            return;
+        }
+
+        private void RevealRegion()
+        {
+            Region = oracles.RandomOracleResult("Region", Services, GameName.Ironsworn);
         }
 
         private void RevealTrouble()
