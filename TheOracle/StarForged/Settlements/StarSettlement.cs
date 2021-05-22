@@ -324,7 +324,7 @@ namespace TheOracle.StarForged.Settlements
             if (embed.Title.Contains(SettlementResources.StarforgedHelper)) return true;
 
             if (embed.Footer.HasValue && embed.Footer.Value.Text.Contains(GameName.Ironsworn.ToString())) return false;
-            if (!embed.Description.Contains(SettlementResources.Settlement)) return false;
+            if (embed.Description?.Contains(SettlementResources.Settlement) ?? false == false) return false;
 
             if (embed.Fields.Any(fld => fld.Name == SettlementResources.Authority)) return true;
 
