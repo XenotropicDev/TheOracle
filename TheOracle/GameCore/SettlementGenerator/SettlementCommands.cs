@@ -31,7 +31,12 @@ namespace TheOracle.GameCore.SettlementGenerator
 
         [Command("GenerateSettlement", ignoreExtraArgs: true)]
         [Summary("Creates an interactive post for a settlement")]
-        [Remarks("\uD83D\uDEE0 - Adds a settlement project\n☎️ - Adds a settlement contact\n🔥 - Adds a settlement trouble")]
+        [Remarks("\uD83D\uDEE0 - Adds a settlement project\n" +
+            "☎️ - Adds a settlement contact\n" +
+            "🔥 - Adds a settlement trouble" +
+            "📍 - Adds/rerolls the ironlands region (Ironsworn only)"
+            )]
+
         [Alias("Settlement")]
         public async Task SettlementPost([Remainder] string SettlementNameAndOptions = "")
         {
