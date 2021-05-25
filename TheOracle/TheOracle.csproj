@@ -601,4 +601,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StarForged\Data\" />
+  </ItemGroup>
+
 </Project>
