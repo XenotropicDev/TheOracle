@@ -7,11 +7,17 @@ using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.GameCore.Oracle
 {
-    public class StandardOracle : IOracleEntry
+    public partial class StandardOracle : IOracleEntry
     {
+        public StandardOracle()
+        {
+
+        }
+
         public int Chance { get; set; }
         public string Description { get; set; }
         public string Prompt { get; set; }
+        public string QuestStarter { get; private set; }
         public List<StandardOracle> Oracles { get; set; }
         public string Thumbnail { get; set; }
 

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheOracle.GameCore.Oracle.DataSworn;
 using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.Oracle
 {
-    public class OracleTable
+    public partial class OracleTable
     {
+        public OracleInfo OracleInfo { get; set; }
         public string[] Aliases { get; set; }
         public int d { get; set; } = 100;
         public string Category { get; set; }
@@ -24,10 +26,10 @@ namespace TheOracle.GameCore.Oracle
             return this.Name.Equals(table, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => alias.Equals(table, StringComparison.OrdinalIgnoreCase)) == true;
         }
 
-        internal bool ContainsTableAlias(string tableName, string[] additionalSearchTerms)
+        internal bool ContainsTableAlias(string tableName, string[] additionalSearchTerms = null)
         {
-            var temp1 = this.Name.Contains(tableName, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => alias.Contains(tableName, StringComparison.OrdinalIgnoreCase)) == true;
-            var temp2 = additionalSearchTerms.Any(s => Name.Contains(s) || Aliases?.Contains(s) == true);
+            var temp1 = tableName.Contains(this.Name, StringComparison.OrdinalIgnoreCase) || this.Aliases?.Any(alias => tableName.Contains(alias, StringComparison.OrdinalIgnoreCase)) == true;
+            var temp2 = (additionalSearchTerms == null) ? true : additionalSearchTerms.Any(s => Name.Contains(s, StringComparison.OrdinalIgnoreCase) || Aliases?.Contains(s) == true);
             return temp1 && temp2;
         }
     }

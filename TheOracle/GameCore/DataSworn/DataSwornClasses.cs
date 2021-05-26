@@ -88,11 +88,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class Oracle
     {
+        private string description;
+
         public string[] Aliases { get; set; }
 
         public string Character { get; set; }
 
-        public string Description { get; set; }
+        public string Description { get => (description == "[Roll three times]") ? "[3x]" : description; set => description = value; }
 
         public bool Initial { get; set; }
 
@@ -140,10 +142,6 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string[] Tags { get; set; }
         public string Thumbnail { get; set; }
         public string Type { get; set; }
-
-        public void TestDesialization()
-        {
-        }
     }
 
     public class Requires
@@ -170,6 +168,12 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public string[] Type { get; set; }
         public string[] Zone { get; set; }
+
+        //Todo
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 
     public class Source
@@ -181,12 +185,15 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class Table
     {
+        private string description;
+
         public int Chance { get; set; }
 
         [JsonProperty(PropertyName = "Table")]
         public List<Table> ChildTable { get; set; }
 
-        public string Description { get; set; }
+        public string Description { get => (description == "[Roll three times]") ? "[3x]" : description; set => description = value; }
+
         public int Value { get; set; }
         public string Details { get; set; }
 
@@ -198,9 +205,12 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class Tables
     {
+        private string description;
+
         public string[] Aliases { get; set; }
         public int Chance { get; set; }
-        public string Description { get; set; }
+        public string Description { get => (description == "[Roll three times]") ? "[3x]" : description; set => description = value; }
+
         public bool Initial { get; set; }
         public Requires Requires { get; set; }
         public List<Table> Table { get; set; }

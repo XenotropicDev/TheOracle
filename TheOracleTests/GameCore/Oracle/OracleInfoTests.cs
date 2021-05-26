@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Schema.Generation;
 
 namespace TheOracle.GameCore.Oracle.DataSworn.Tests
 {
@@ -92,12 +91,12 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 }
             }
 
-            var generator = new JSchemaGenerator();
+            //var generator = new JSchemaGenerator();
 
-            System.IO.File.WriteAllText("OraclesSchema.json", generator.Generate(typeof(OracleInfo)).ToString());
-            System.IO.File.WriteAllText("MovesSchema.json", generator.Generate(typeof(MoveInfo)).ToString());
-            System.IO.File.WriteAllText("GlossarySchema.json", generator.Generate(typeof(GlossaryInfo)).ToString());
-            System.IO.File.WriteAllText("AssetsSchema.json", generator.Generate(typeof(AssetInfo)).ToString());
+            //System.IO.File.WriteAllText("OraclesSchema.json", generator.Generate(typeof(OracleInfo)).ToString());
+            //System.IO.File.WriteAllText("MovesSchema.json", generator.Generate(typeof(MoveInfo)).ToString());
+            //System.IO.File.WriteAllText("GlossarySchema.json", generator.Generate(typeof(GlossaryInfo)).ToString());
+            //System.IO.File.WriteAllText("AssetsSchema.json", generator.Generate(typeof(AssetInfo)).ToString());
         }
     }
 }

@@ -29,8 +29,8 @@ namespace TheOracle.GameCore.Oracle.Tests
             for (int i = 0; i < 100; i++)
             {
                 var rand = new Random(i);
-                var roller = new OracleRoller(services, GameName.Starforged, rand).BuildRollResults("sso");
-                Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result.Description)));
+                var roller = new OracleRoller(services, GameName.Starforged, rand).BuildRollResults("Space Sighting Outlands");
+                Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result?.Description)));
             }
         }
 

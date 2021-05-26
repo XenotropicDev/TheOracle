@@ -31,19 +31,24 @@ namespace TheOracle.GameCore.Oracle
                 }
             }
 
-            DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Oracles"));
+            DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Data", "oracles"));
             if (starOraclesDir.Exists)
             {
                 foreach (var file in starOraclesDir.GetFiles("*.json"))
                 {
-                    var oracles = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(file.FullName));
-                    oracles.ForEach(o => o.Game = GameName.Starforged);
-                    OracleList.AddRange(oracles);
+                    var oracleInfo = JsonConvert.DeserializeObject<DataSworn.OracleInfo>(File.ReadAllText(file.FullName));
+
+                    var loader = new DataSwornTableLoader();
+                    
+                    foreach(var oracle in oracleInfo.Oracles)
+                    {
+                        OracleList.AddRange(loader.GetTables(oracleInfo, oracle, GameName.Starforged));
+                    }
                 }
             }
 
             var ironOraclesPath = Path.Combine("IronSworn", "oracles.json");
-            var starOraclesPath = Path.Combine("StarForged", "StarforgedOracles.json");
+            //var starOraclesPath = Path.Combine("StarForged", "StarforgedOracles.json");
             var tarotOraclesPath = Path.Combine("IronSworn", "tarot_oracles.json");
             if (File.Exists(ironOraclesPath))
             {
@@ -51,12 +56,12 @@ namespace TheOracle.GameCore.Oracle
                 ironSworn.ForEach(o => o.Game = GameName.Ironsworn);
                 OracleList.AddRange(ironSworn);
             }
-            if (File.Exists(starOraclesPath))
-            {
-                var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
-                starForged.ForEach(o => o.Game = GameName.Starforged);
-                OracleList.AddRange(starForged);
-            }
+            //if (File.Exists(starOraclesPath))
+            //{
+            //    var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
+            //    starForged.ForEach(o => o.Game = GameName.Starforged);
+            //    OracleList.AddRange(starForged);
+            //}
             if (File.Exists(tarotOraclesPath))
             {
                 var tarot = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(tarotOraclesPath));
@@ -67,7 +72,7 @@ namespace TheOracle.GameCore.Oracle
             {
                 try
                 {
-                    if (oracleSet.Oracles.All(o => o.Chance == 0))
+                    if (oracleSet.Oracles?.All(o => o.Chance == 0) ?? false)
                     {
                         for (int i = 0; i < oracleSet.Oracles.Count; i++)
                         {
@@ -91,10 +96,25 @@ namespace TheOracle.GameCore.Oracle
             if (rand == null) rand = BotRandom.Instance;
             try
             {
-                return OracleList.Single(ot => ot.MatchTableAlias(TableName) && (ot.Game == game || game == GameName.None)).Oracles.GetRandomRow(rand);
+                var item = OracleList.SingleOrDefault(ot => ot.MatchTableAlias(TableName) && (ot.Game == game || game == GameName.None))?.Oracles?.GetRandomRow(rand);
+
+                if (item == default)
+                {
+                    var catMatch = OracleList.Where(ot => ot.Category != null && TableName.Contains(ot.Category, StringComparison.OrdinalIgnoreCase));
+                    var match = catMatch.SingleOrDefault(ot => ot.MatchTableAlias(TableName.Replace(ot.Category, "").Trim()));
+                    item = match?.Oracles?.GetRandomRow(rand);
+
+                    if (item == default)
+                    {
+                        Console.WriteLine("debug");
+                    }
+                }
+
+                return item;
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 ArgumentException argEx = new ArgumentException($"Error retrieving oracle '{TableName}' for game '{game}'", ex);
                 throw argEx;
             }
@@ -105,7 +125,13 @@ namespace TheOracle.GameCore.Oracle
             if (rand == null) rand = BotRandom.Instance;
             var row = RandomRow(TableName, game, rand);
 
-            var tableData = OracleList.Single(ot => ot.Name == TableName && (ot.Game == game || game == GameName.None));
+            var tableData = OracleList.SingleOrDefault(ot => ot.Name == TableName && (ot.Game == game || game == GameName.None));
+            if (tableData == default)
+            {
+                var catMatch = OracleList.Where(ot => ot.Category != null && TableName.Contains(ot.Category, StringComparison.OrdinalIgnoreCase));
+                tableData = catMatch.Single(ot => ot.ContainsTableAlias(TableName));
+            }
+
             game = tableData.Game ?? GameName.None;
 
             string lookup = row.Description;

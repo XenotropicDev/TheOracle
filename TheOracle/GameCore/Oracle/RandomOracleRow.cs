@@ -25,7 +25,7 @@ namespace TheOracle.GameCore.Oracle
 
         public static StandardOracle LookupOracle(this List<StandardOracle> source, int roll)
         {
-            if (source.Count() == 0) return default;
+            if (source == null || source.Count() == 0) return default;
             return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll).DeepClone();
         }
 

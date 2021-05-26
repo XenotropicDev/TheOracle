@@ -145,10 +145,10 @@ namespace TheOracle.GameCore.Oracle
             int numberOfRolls;
 
             // Match [2x] style entries
-            if (Regex.IsMatch(value, @"\[\d+x\]"))
+            if (Regex.IsMatch(value, @"\[(\d+x|Roll Twice)\]", RegexOptions.IgnoreCase))
             {
                 var match = Regex.Match(value, @"\[(\d+)x\]");
-                int.TryParse(match.Groups[1].Value, out numberOfRolls);
+                if (!int.TryParse(match.Groups[1].Value, out numberOfRolls)) numberOfRolls = 2;
             }
             else
             {
@@ -192,6 +192,8 @@ namespace TheOracle.GameCore.Oracle
                         ParentTable = oracleTable
                     });
 
+                if (oracleResult == null) continue;
+
                 //Check if we have any nested oracles
                 if (oracleResult.Oracles != null)
                 {
@@ -203,7 +205,7 @@ namespace TheOracle.GameCore.Oracle
                 if (match.Success)
                 {
                     string nextTable = match.Groups[0].Value;
-                    if (Regex.IsMatch(nextTable, @"^\[\d+x\]"))
+                    if (Regex.IsMatch(nextTable, @"^\[(\d+x|Roll Twice)\]", RegexOptions.IgnoreCase))
                     {
                         MultiRollFacade(nextTable, oracleTable, depth);
                         return;
@@ -229,7 +231,7 @@ namespace TheOracle.GameCore.Oracle
             }
 
             string output = string.Empty;
-            foreach (var rollResult in RollResultList)
+            foreach (var rollResult in RollResultList.Where(rr => rr.Result != null))
             {
                 output += $"{OracleResources.Roll}: {rollResult.Roll} {OracleResources.Outcome}: {rollResult.Result.Description}\n";
             }
