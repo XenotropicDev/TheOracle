@@ -4,5 +4,7 @@
     {
         public string Name { get; set; }
         public int StartingValue { get; set; }
+
+        ICountingAssetTrack DeepCopy();
     }
 }

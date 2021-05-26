@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using TheOracle.BotCore;
 
 namespace TheOracle.GameCore.Assets
 {
@@ -7,14 +10,16 @@ namespace TheOracle.GameCore.Assets
     {
         public MultiFieldAssetTrack()
         {
-            Fields = new List<AssetEmbedField>();
+            Fields = new List<IAssetEmbedField>();
         }
-        public List<AssetEmbedField> Fields { get; set; }
 
-        internal MultiFieldAssetTrack DeepCopy()
+        [JsonConverter(typeof(ConcreteListTypeConverter<IAssetEmbedField, AssetEmbedField>))]
+        public IList<IAssetEmbedField> Fields { get; set; }
+
+        public IMultiFieldAssetTrack DeepCopy()
         {
             var track = (MultiFieldAssetTrack)this.MemberwiseClone();
-            track.Fields = this.Fields.ConvertAll(item => item);
+            track.Fields = this.Fields.Select(item => item).ToList();
 
             return track;
         }

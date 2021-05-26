@@ -69,7 +69,7 @@ namespace TheOracle.GameCore.Assets
             if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) asset.AssetFields[2].Enabled = false;
             if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) asset.AssetFields[3].Enabled = false;
 
-            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
         }
 
         private async Task AssetFieldEventAdd(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -83,7 +83,7 @@ namespace TheOracle.GameCore.Assets
             if (reaction.Emote.IsSameAs(GenericReactions.threeEmoji)) asset.AssetFields[2].Enabled = true;
             if (reaction.Emote.IsSameAs(GenericReactions.fourEmoji)) asset.AssetFields[3].Enabled = true;
 
-            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
         }
 
         private async Task CountingTrackDown(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -93,7 +93,7 @@ namespace TheOracle.GameCore.Assets
             asset.CountingAssetTrack.StartingValue--;
 
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
         }
 
         private async Task CountingTrackUp(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -103,7 +103,7 @@ namespace TheOracle.GameCore.Assets
             asset.CountingAssetTrack.StartingValue++;
 
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
         }
 
         private async Task MultiTrackRight(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -113,7 +113,7 @@ namespace TheOracle.GameCore.Assets
             //TODO
 
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
         }
 
         private async Task MultiTrackLeft(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -123,7 +123,7 @@ namespace TheOracle.GameCore.Assets
             //TODO
 
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
         }
 
         private async Task NumericTrackDecrease(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
@@ -133,7 +133,7 @@ namespace TheOracle.GameCore.Assets
             if (asset.NumericAssetTrack.ActiveNumber - 1 >= asset.NumericAssetTrack.Min)
             {
                 asset.NumericAssetTrack.ActiveNumber--;
-                await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+                await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
             }
 
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -146,7 +146,7 @@ namespace TheOracle.GameCore.Assets
             if (asset.NumericAssetTrack.ActiveNumber + 1 <= asset.NumericAssetTrack.Max)
             {
                 asset.NumericAssetTrack.ActiveNumber++;
-                await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed(asset.arguments.ToArray())).ConfigureAwait(false);
+                await message.ModifyAsync(msg => msg.Embed = asset.GetEmbed()).ConfigureAwait(false);
             }
 
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
@@ -159,14 +159,14 @@ namespace TheOracle.GameCore.Assets
         [Remarks("Use `!Asset <Asset Name> First asset text, second asset text` to populate the asset card with text fields.")]
         public async Task StandardAsset([Remainder] string AssetCommand)
         {
-            var assets = Services.GetRequiredService<List<Asset>>();
+            var assets = Services.GetRequiredService<List<IAsset>>();
 
             ChannelSettings channelSettings = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
             var game = Utilities.GetGameContainedInString(AssetCommand);
             if (game != GameName.None) AssetCommand = Utilities.RemoveGameNamesFromString(AssetCommand);
             if (game == GameName.None && channelSettings != null) game = channelSettings.DefaultGame;
 
-            Asset asset = FindMatchingAsset(AssetCommand, assets, game);
+            IAsset asset = FindMatchingAsset(AssetCommand, assets, game);
 
             if (asset == default)
             {
@@ -183,8 +183,9 @@ namespace TheOracle.GameCore.Assets
             if (additionalInputsRaw.Contains(",") || additionalInputsRaw.Contains("\n")) additionalInputsRaw.Replace("\"", string.Empty);
 
             string[] arguments = additionalInputsRaw.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+            asset.Arguments = arguments;
 
-            var message = await ReplyAsync(embed: asset.GetEmbed(arguments));
+            var message = await ReplyAsync(embed: asset.GetEmbed());
 
             await Task.Run(async () =>
             {
@@ -217,7 +218,7 @@ namespace TheOracle.GameCore.Assets
             }).ConfigureAwait(false);
         }
 
-        public Asset FindMatchingAsset(string AssetCommand, List<Asset> assets, GameName game)
+        public IAsset FindMatchingAsset(string AssetCommand, List<IAsset> assets, GameName game)
         {
             var asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)", RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
             if (asset.Count() == 0) asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game));
@@ -247,8 +248,8 @@ namespace TheOracle.GameCore.Assets
                 game = settings?.DefaultGame ?? GameName.None;
             }
 
-            var sourceList = Services.GetRequiredService<List<Asset>>().Where(a => a.Game == game || game == GameName.None).ToList();
-            var assetList = new List<Asset>();
+            var sourceList = Services.GetRequiredService<List<IAsset>>().Where(a => a.Game == game || game == GameName.None).ToList();
+            var assetList = new List<IAsset>();
 
             if (AssetListOptions.Length > 0)
             {
@@ -257,7 +258,7 @@ namespace TheOracle.GameCore.Assets
             }
             else
             {
-                assetList = new List<Asset>(sourceList);
+                assetList = new List<IAsset>(sourceList);
             }
 
             if (assetList.Count > 0)

@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Discord;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using TheOracle.GameCore.Assets;
 
 namespace TheOracle.GameCore.Oracle.DataSworn
 {

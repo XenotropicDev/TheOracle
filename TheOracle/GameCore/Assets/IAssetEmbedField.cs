@@ -4,6 +4,11 @@ namespace TheOracle.GameCore.Assets
 {
     public interface IAssetEmbedField
     {
+        public string Name { get; set; }
+        string ActiveText { get; set; }
+        string InactiveText { get; set; }
+        bool IsActive { get; set; }
+
         public EmbedField ToDiscordEmbedField();
     }
 

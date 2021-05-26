@@ -188,7 +188,7 @@ namespace TheOracle.BotCore
             return embedFields;
         }
 
-        public static WordList CreateDictionaryFromOracles(OracleService oracles = null, List<Asset> Assets = null)
+        public static WordList CreateDictionaryFromOracles(OracleService oracles = null, List<IAsset> Assets = null)
         {
             var words = new List<string>();
 
