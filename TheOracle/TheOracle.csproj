@@ -145,8 +145,8 @@
     <Description>A Discord bot the Ironsworn game system</Description>
     <RepositoryUrl>https://github.com/XenotropicDev/TheOracle.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>0.8.16.0</AssemblyVersion>
-    <FileVersion>0.8.16.0</FileVersion>
+    <AssemblyVersion>0.8.16.1</AssemblyVersion>
+    <FileVersion>0.8.16.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -599,6 +599,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StarShipResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="StarForged\Data\" />
   </ItemGroup>
 
 </Project>

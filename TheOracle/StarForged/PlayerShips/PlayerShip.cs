@@ -35,7 +35,7 @@ namespace TheOracle.StarForged.PlayerShips
 
         public Embed GetEmbed()
         {
-            var starshipAsset = ServiceProvider.GetRequiredService<List<Asset>>()
+            var starshipAsset = ServiceProvider.GetRequiredService<List<IAsset>>()
                 .FirstOrDefault(a => a.Name.Equals("Starship", StringComparison.OrdinalIgnoreCase) && a.Game == GameName.Starforged);
 
             var builder = new EmbedBuilder();

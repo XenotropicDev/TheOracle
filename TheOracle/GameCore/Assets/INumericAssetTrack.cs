@@ -7,5 +7,8 @@ namespace TheOracle.GameCore.Assets
         public int Min { get; set; }
         public int Max { get; set; }
         public int ActiveNumber { get; set; }
+        string Name { get; set; }
+
+        INumericAssetTrack DeepCopy();
     }
 }

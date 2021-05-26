@@ -19,7 +19,7 @@ namespace TheOracle.GameCore.Assets
             }
         }
 
-        internal NumericAssetTrack DeepCopy()
+        public INumericAssetTrack DeepCopy()
         {
             var track = (NumericAssetTrack)this.MemberwiseClone();
 

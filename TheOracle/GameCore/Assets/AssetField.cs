@@ -8,12 +8,12 @@ namespace TheOracle.GameCore.Assets
     {
         public string Text { get; set; }
         public bool Enabled { get; set; }
-        public List<string> InputFields { get; set; }
+        public IEnumerable<string> InputFields { get; set; }
 
-        public AssetField ShallowCopy()
+        public IAssetField ShallowCopy()
         {
             var instance = (AssetField)this.MemberwiseClone();
-            if (InputFields != null) instance.InputFields = InputFields.ConvertAll(s => s).ToList();
+            if (InputFields != null) instance.InputFields = InputFields.Select(s => s).ToList();
 
             return instance;
         }

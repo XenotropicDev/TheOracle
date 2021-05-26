@@ -10,13 +10,13 @@ namespace TheOracle.GameCore.Oracle.Tests
     public class OracleRollerTests
     {
         [TestMethod()]
-        [TestCategory("Integration")]
         public void BuildRollResultsTest()
         {
             var oracleService = new OracleService().Load();
 
-            oracleService.RandomRow("Action", GameName.Ironsworn);
-            oracleService.RandomRow("Theme", GameName.Ironsworn);
+            Assert.IsTrue(oracleService.RandomRow("Action", GameName.Ironsworn).Description.Length > 0);
+            Assert.IsTrue(oracleService.RandomRow("Theme", GameName.Ironsworn).Description.Length > 0);
+            Assert.IsTrue(oracleService.RandomRow("Derelict Type Planetside", GameName.Starforged).Description.Length > 0);
 
             Assert.ThrowsException<ArgumentException>(() => oracleService.RandomRow("Action"));
         }
@@ -29,8 +29,8 @@ namespace TheOracle.GameCore.Oracle.Tests
             for (int i = 0; i < 100; i++)
             {
                 var rand = new Random(i);
-                var roller = new OracleRoller(services, GameName.Starforged, rand).BuildRollResults("sso");
-                Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result.Description)));
+                var roller = new OracleRoller(services, GameName.Starforged, rand).BuildRollResults("Space Sighting Outlands");
+                Console.WriteLine(string.Join(", ", roller.RollResultList.Select(rr => rr.Result?.Description)));
             }
         }
 

@@ -68,9 +68,11 @@ namespace TheOracle.GameCore.Assets.Tests
                 .AddSingleton<ReactionService>()
                 .BuildServiceProvider();
 
-            var assets = new AssetCommands(services).FindMatchingAsset("Seer", AssetList, GameName.Ironsworn);
-            Assert.AreEqual("Seer", assets.Name);
-            Assert.AreEqual(GameName.Starforged, assets.Game);
+            var asset = new AssetCommands(services).FindMatchingAsset("Seer", AssetList, GameName.Ironsworn);
+            Assert.AreEqual("Seer", asset.Name);
+            Assert.AreEqual(GameName.Starforged, asset.Game);
+
+            asset.GetEmbed();
         }
     }
 }

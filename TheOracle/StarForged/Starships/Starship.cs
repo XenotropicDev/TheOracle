@@ -56,7 +56,7 @@ namespace TheOracle.StarForged.Starships
         public Starship AddMission()
         {
             var oracles = Services.GetRequiredService<OracleService>();
-            this.Mission = oracles.RandomRow($"Starship Mission {SpaceRegion}", GameName.Starforged).Description;
+            this.Mission = oracles.RandomRow($"Mission {SpaceRegion}", GameName.Starforged).Description;
             this.MissionRevealed = true;
 
             return this;
