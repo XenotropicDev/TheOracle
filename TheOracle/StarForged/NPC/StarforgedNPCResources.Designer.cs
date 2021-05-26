@@ -70,6 +70,15 @@ namespace TheOracle.StarForged.NPC {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; .
+        /// </summary>
+        internal static string CallSignFormat {
+            get {
+                return ResourceManager.GetString("CallSignFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disposition.
         /// </summary>
         internal static string Disposition {
@@ -102,6 +111,15 @@ namespace TheOracle.StarForged.NPC {
         internal static string FirstLook {
             get {
                 return ResourceManager.GetString("FirstLook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {2}{1}.
+        /// </summary>
+        internal static string NameFormat {
+            get {
+                return ResourceManager.GetString("NameFormat", resourceCulture);
             }
         }
     }

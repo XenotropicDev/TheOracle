@@ -120,6 +120,10 @@
   <data name="Aspect" xml:space="preserve">
     <value>Aspect</value>
   </data>
+  <data name="CallSignFormat" xml:space="preserve">
+    <value>'{0}' </value>
+    <comment>{0} will be replaced with their call sign. Special note leave a space after the formatting to properly format the NameFormat field if your language needs it.</comment>
+  </data>
   <data name="Disposition" xml:space="preserve">
     <value>Disposition</value>
   </data>
@@ -131,5 +135,11 @@
   </data>
   <data name="FirstLook" xml:space="preserve">
     <value>First Look</value>
+  </data>
+  <data name="NameFormat" xml:space="preserve">
+    <value>{0} {2}{1}</value>
+    <comment>{0} will be replaced with a given name
+{1} will be replaced with a family name (if any)
+{2} will be replaced with their call sign (if any) using the CallSignFormat</comment>
   </data>
 </root>

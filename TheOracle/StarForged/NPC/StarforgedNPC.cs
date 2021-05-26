@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
+using TheOracle.Core;
 using TheOracle.GameCore;
 using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.Oracle;
@@ -106,10 +107,25 @@ namespace TheOracle.StarForged.NPC
 
             var oracles = Services.GetRequiredService<OracleService>();
 
-            if (FirstLooks.Count == 0) FirstLooks.Add(oracles.RandomOracleResult("Character First Look", Services, GameName.Starforged));
+            if (FirstLooks.Count == 0)
+            {
+                FirstLooks.Add(oracles.RandomOracleResult("Character First Look", Services, GameName.Starforged));
+                FirstLooks.Add(oracles.RandomOracleResult("Character First Look", Services, GameName.Starforged));
+            }
 
-            //TODO make this starforged name when available
-            Name = (NPCCreationOptions.Trim().Length > 0) ? NPCCreationOptions : oracles.RandomRow("Ironlander Names", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
+            Name = NPCCreationOptions.Trim();
+            if (Name.Length == 0)
+            {
+                var givenName = oracles.RandomRow("Character Given Name", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
+                var familyName = oracles.RandomRow("Character Family Name", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
+                var callSign = oracles.RandomRow("Character Family Name", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
+
+                var randomDouble = BotRandom.Instance.NextDouble();
+                if (randomDouble > .98d) Name = string.Format(StarforgedNPCResources.NameFormat, givenName, familyName, String.Format(StarforgedNPCResources.CallSignFormat, callSign));
+                else if (randomDouble > .95d) Name = string.Format(String.Format(StarforgedNPCResources.CallSignFormat, callSign));
+                else if (randomDouble > .80d) Name = string.Format(StarforgedNPCResources.NameFormat, givenName, familyName, string.Empty);
+                else Name = givenName;
+            }
 
             return this;
         }
