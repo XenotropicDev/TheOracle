@@ -12,10 +12,12 @@ namespace TheOracle.GameCore.Oracle
     public class OracleService
     {
         public List<OracleTable> OracleList { get; set; }
+        public List<DataSworn.OracleInfo> OracleInfo { get; set; }
 
         public OracleService()
         {
             OracleList = new List<OracleTable>();
+            OracleInfo = new List<DataSworn.OracleInfo>();
         }
 
         public OracleService Load()
@@ -34,16 +36,17 @@ namespace TheOracle.GameCore.Oracle
             DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Data", "oracles"));
             if (starOraclesDir.Exists)
             {
-                foreach (var file in starOraclesDir.GetFiles("*.json"))
+                foreach (var file in starOraclesDir.GetFiles("*.json", SearchOption.AllDirectories))
                 {
-                    var oracleInfo = JsonConvert.DeserializeObject<DataSworn.OracleInfo>(File.ReadAllText(file.FullName));
+                    var oracleInfoFile = JsonConvert.DeserializeObject<DataSworn.OracleInfo>(File.ReadAllText(file.FullName));
 
                     var loader = new DataSwornTableLoader();
                     
-                    foreach(var oracle in oracleInfo.Oracles)
+                    foreach(var oracle in oracleInfoFile.Oracles)
                     {
-                        OracleList.AddRange(loader.GetTables(oracleInfo, oracle, GameName.Starforged));
+                        OracleList.AddRange(loader.GetTables(oracleInfoFile, oracle, GameName.Starforged));
                     }
+                    OracleInfo.Add(oracleInfoFile);
                 }
             }
 
