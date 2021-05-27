@@ -98,7 +98,8 @@ namespace TheOracle.StarForged.Planets
 
         public Planet RevealLife()
         {
-            this.Life = PlanetTemplate.GetPlanetTemplates().First(pt => pt.PlanetType == this.PlanetType).PossibleLife.GetRandomRow().GetOracleResult(Services, GameName.Starforged);
+            var lifeRow = PlanetTemplate.GetPlanetTemplates().First(pt => pt.PlanetType == this.PlanetType).PossibleLife.GetRandomRow();
+            Life = lifeRow.GetOracleResult(Services, GameName.Starforged);
             this.LifeRevealed = true;
             return this;
         }
