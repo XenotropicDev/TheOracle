@@ -9,7 +9,8 @@
       "Tables": [
         {
           "Requires": { "Region": ["Terminus"] },
-          "Tags": ["fragment"],
+          "Tags": [ "fragment" ],
+          "Aliases": ["SST"],
           "Table": [
             { "Chance": 15, "Description": "▶️Stellar Object" },
             { "Chance": 35, "Description": "▶️Planet" },
@@ -39,7 +40,8 @@
         },
         {
           "Requires": { "Region": ["Outlands"] },
-          "Tags": ["fragment"],
+          "Tags": [ "fragment" ],
+          "Aliases": ["SSO"],
           "Table": [
             { "Chance": 15, "Description": "▶️Stellar Object" },
             { "Chance": 35, "Description": "▶️Planet" },
@@ -69,6 +71,7 @@
         },
         {
           "Requires": { "Region": ["Expanse"] },
+          "Aliases": ["SSE"],
           "Tags": ["fragment"],
           "Table": [
             { "Chance": 15, "Description": "▶️Stellar Object" },
