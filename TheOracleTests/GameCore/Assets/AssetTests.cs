@@ -14,6 +14,9 @@ namespace TheOracle.GameCore.Assets.Tests
         public void AssetToJson()
         {
             var asset1 = new Asset();
+            asset1.MultiFieldAssetTrack = new MultiFieldAssetTrack();
+            asset1.MultiFieldAssetTrack.Fields = new List<IAssetEmbedField>();
+
             asset1.Name = "IRONCLAD";
             asset1.Description = "If you wear armor...";
             asset1.AssetType = "COMBAT TALENT";
