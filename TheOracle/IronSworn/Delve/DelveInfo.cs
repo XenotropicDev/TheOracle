@@ -261,6 +261,7 @@ namespace TheOracle.IronSworn.Delve
             oracleTable.Aliases = new string[] { "Feature" };
             oracleTable.d = 100;
             oracleTable.Oracles = new List<StandardOracle>();
+            oracleTable.Game = GameName.Ironsworn;
 
             oracleTable.Oracles.AddRange(Themes[0].Features.Select(f => f.AsStandardOracle()));
             oracleTable.Oracles.AddRange(Domains[0].Features.Select(f => f.AsStandardOracle()));
