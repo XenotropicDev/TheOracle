@@ -78,7 +78,14 @@ namespace TheOracle.GameCore.Assets
 
         public static bool IsAssetMessage(IUserMessage message, IServiceProvider services)
         {
-            return services.GetRequiredService<List<IAsset>>().Any(a => message.Embeds.Any(embed => embed.Title.Contains(a.Name)));
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed.Footer.HasValue && embed.Footer.Value.Text.Contains(AssetResources.Asset)) return true;
+
+            //TODO: this can probably be removed in the future. It's for old asset message support.
+            var assets = services.GetRequiredService<List<IAsset>>();
+            if (assets.Any(a => embed.Title?.Contains(a.Name) ?? false)) return true;
+            
+            return false;
         }
 
         public static IAsset FromEmbed(IServiceProvider Services, IEmbed embed)
