@@ -1,5 +1,4 @@
 ﻿using Discord;
-using Discord.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.BotCore;
 using TheOracle.Core;
-using TheOracle.IronSworn;
 
 namespace TheOracle.GameCore.Oracle
 {
@@ -55,7 +53,10 @@ namespace TheOracle.GameCore.Oracle
             foreach (var item in RollResultList)
             {
                 string rollDisplay = (item.ParentTable?.DisplayChances ?? true) ? $" [{item.Roll}]" : string.Empty;
-                embed.AddField($"{item?.ParentTable?.Name}{rollDisplay}", item.Result.Description, item.ShouldInline);
+                //string ParentParent = (item.ParentTable?.Parent != null) ? $"{item.ParentTable.Parent} " : string.Empty;
+                string Requires = (item.ParentTable?.Requires != null) ? $" {item.ParentTable.Requires}" : string.Empty;
+                string DisplayValue = $"{item?.ParentTable?.Name}{Requires}{rollDisplay}";
+                embed.AddField(DisplayValue, item.Result.Description, item.ShouldInline);
 
                 if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
                 {
@@ -72,24 +73,30 @@ namespace TheOracle.GameCore.Oracle
             return embed.Build();
         }
 
-        public List<OracleTable> ParseOracleTables(string tableName, string[] additionalSearchTerms = null)
+        public List<OracleTable> ParseOracleTables(string tableName, string[] additionalSearchTerms = null, bool StrictParsing = false)
         {
             var result = new List<OracleTable>();
 
             // Match [table1/table2] style entries
-            var match = Regex.Match(tableName, @"\[.*\]");
+            var match = Regex.Match(tableName, @"(\[.*\]|^▶️)");
+
+            if (StrictParsing && !match.Success) return result;
+
             if (match.Success)
             {
-                var splits = tableName.Replace("[", "").Replace("]", "").Split('/');
+                var seperators = new string[] { "/", "+" };
+                var splits = tableName.Replace("[", "").Replace("]", "").Replace("▶️", "").Split(seperators, StringSplitOptions.None);
                 foreach (var item in splits)
                 {
-                    var tables = TableMatchList(OracleService.OracleList, item, additionalSearchTerms);
-                    result.AddRange(tables);
+                    var table = FindTable(OracleService.OracleList, item, additionalSearchTerms);
+                    if (table != default) result.Add(table);
+
                 }
             }
             else
             {
-                result = TableMatchList(OracleService.OracleList, tableName, additionalSearchTerms).ToList();
+                var table = FindTable(OracleService.OracleList, tableName, additionalSearchTerms);
+                if (table != default) result.Add(table);
             }
 
             if (result.GroupBy(t => t.Game).Count() > 1)
@@ -103,16 +110,26 @@ namespace TheOracle.GameCore.Oracle
             return result;
         }
 
-        private IEnumerable<OracleTable> TableMatchList(List<OracleTable> oracleList, string tableName, string[] additionalSearchTerms = null)
+        private OracleTable FindTable(List<OracleTable> oracleList, string tableName, string[] additionalSearchTerms = null)
         {
             var tables = oracleList.Where(o => o.MatchTableAlias(tableName) && (Game == GameName.None || Game == o.Game));
 
-            if (tables.Count() == 0 && additionalSearchTerms != null)
+            if (tables.Count() == 0)
             {
-                tables = oracleList.Where(o => o.ContainsTableAlias(tableName, additionalSearchTerms) && (Game == GameName.None || Game == o.Game));
+                tables = oracleList.Where(ot => ot.MatchAll(tableName.Split(' '))
+                    && (additionalSearchTerms == null || ot.MatchAll(additionalSearchTerms))
+                    && (Game == GameName.None || Game == ot.Game));
             }
 
-            return tables;
+            if (tables.Count() > 1)
+            {
+                var withRequirement = tables.SingleOrDefault(ot => RollResultList.Count() > 0 && ot.Requires == RollResultList.Last().ParentTable.Requires);
+                if (withRequirement != default) return withRequirement;
+
+                throw new MultipleOraclesException(tables);
+            }
+
+            return tables.SingleOrDefault();
         }
 
         internal static OracleRoller RebuildRoller(OracleService oracleService, EmbedBuilder embed)

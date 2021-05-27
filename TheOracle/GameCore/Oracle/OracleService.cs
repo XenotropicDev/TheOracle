@@ -59,12 +59,7 @@ namespace TheOracle.GameCore.Oracle
                 ironSworn.ForEach(o => o.Game = GameName.Ironsworn);
                 OracleList.AddRange(ironSworn);
             }
-            //if (File.Exists(starOraclesPath))
-            //{
-            //    var starForged = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(starOraclesPath));
-            //    starForged.ForEach(o => o.Game = GameName.Starforged);
-            //    OracleList.AddRange(starForged);
-            //}
+
             if (File.Exists(tarotOraclesPath))
             {
                 var tarot = JsonConvert.DeserializeObject<List<OracleTable>>(File.ReadAllText(tarotOraclesPath));
@@ -96,6 +91,7 @@ namespace TheOracle.GameCore.Oracle
 
         public IOracleEntry RandomRow(string TableName, GameName game = GameName.None, Random rand = null)
         {
+            string errorMessage = string.Empty;
             if (rand == null) rand = BotRandom.Instance;
             try
             {
@@ -103,23 +99,26 @@ namespace TheOracle.GameCore.Oracle
 
                 if (item == default)
                 {
-                    var catMatch = OracleList.Where(ot => ot.Category != null && TableName.Contains(ot.Category, StringComparison.OrdinalIgnoreCase));
-                    var match = catMatch.SingleOrDefault(ot => ot.MatchTableAlias(TableName.Replace(ot.Category, "").Trim()));
-                    item = match?.Oracles?.GetRandomRow(rand);
-
-                    if (item == default)
+                    var filteredList = OracleList.Where(ot => ot.MatchAll(TableName.Split(' ')));
+                    
+                    if (filteredList.Count() > 1)
                     {
-                        Console.WriteLine("debug");
+                        errorMessage = "Multiple possible results:\n";
+                        foreach (var ot in filteredList) errorMessage += $"{ot.Parent} {ot.Category} {ot.Name} {ot.Requires}\n";
                     }
+
+                    item = filteredList.Single().Oracles?.GetRandomRow(rand);
                 }
 
                 return item;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                ArgumentException argEx = new ArgumentException($"Error retrieving oracle '{TableName}' for game '{game}'", ex);
-                throw argEx;
+                if (errorMessage.Length > 0)
+                {
+                    throw new ArgumentException(errorMessage, ex);
+                }
+                throw new ArgumentException($"Error retrieving oracle '{TableName}' for game '{game}'", ex);
             }
         }
 
@@ -131,8 +130,8 @@ namespace TheOracle.GameCore.Oracle
             var tableData = OracleList.SingleOrDefault(ot => ot.Name == TableName && (ot.Game == game || game == GameName.None));
             if (tableData == default)
             {
-                var catMatch = OracleList.Where(ot => ot.Category != null && TableName.Contains(ot.Category, StringComparison.OrdinalIgnoreCase));
-                tableData = catMatch.Single(ot => ot.ContainsTableAlias(TableName));
+                var catMatch = OracleList.Where(ot => ot.MatchAll(TableName.Split(' ')) && (ot.Game == game || game == GameName.None));
+                tableData = catMatch.Single();
             }
 
             game = tableData.Game ?? GameName.None;
@@ -152,7 +151,7 @@ namespace TheOracle.GameCore.Oracle
 
             var oracleService = serviceProvider.GetRequiredService<OracleService>();
             var roller = new OracleRoller(oracleService, game, rand);
-            var tables = roller.ParseOracleTables(lookup);
+            var tables = roller.ParseOracleTables(lookup, StrictParsing: true);
             if (tables.Count == 0) return row.Description;
             roller.BuildRollResults(lookup);
 

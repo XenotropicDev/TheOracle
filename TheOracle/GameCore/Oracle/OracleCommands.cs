@@ -1,4 +1,5 @@
 ﻿using Discord;
+using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,13 +9,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
-using TheOracle.Core;
-using TheOracle.GameCore.Oracle;
 using WeCantSpell.Hunspell;
 
 namespace TheOracle.GameCore.Oracle
 {
-    public class OracleCommands : ModuleBase<SocketCommandContext>
+    public class OracleCommands : InteractiveBase
     {
         //OracleService is loaded from DI
         public OracleCommands(IServiceProvider services)
@@ -48,7 +47,7 @@ namespace TheOracle.GameCore.Oracle
             await OracleRollCommand("Pay The Price");
         }
 
-        [Command("OracleTable")]
+        [Command("OracleTable", RunMode = RunMode.Async)]
         [Summary("Rolls an Oracle")]
         [Alias("Oracle", "Table")]
         [Remarks("\uD83E\uDDE6 - Rolls the paired oracle table, and adds it to the post")]
@@ -81,15 +80,48 @@ namespace TheOracle.GameCore.Oracle
                 string suggest = (suggestions?.Count() > 0) ? $"\n{String.Format(OracleResources.DidYouMean, suggestions.FirstOrDefault())}" : string.Empty;
                 await ReplyAsync($"{ex.Message}{suggest}");
             }
+            catch (MultipleOraclesException ex)
+            {
+                string tableOptions = string.Empty;
+                int i = 0;
+                foreach (var ot in ex.Tables)
+                {
+                    i++;
+                    tableOptions += $"{i}. {ot.Parent} {ot.Category} {ot.Name} {ot.Requires}\n".Replace("  ", " ");
+                }
+
+                var message = await ReplyAsync($"Multiple possible results. Reply with the number of the table you want:\n{tableOptions}");
+                var response = await NextMessageAsync(timeout: TimeSpan.FromMinutes(60));
+
+                if (response != null)
+                {
+                    if (!int.TryParse(response.Content, out int value)) throw new ArgumentException($"Unknown input value");
+
+                    var ot = ex.Tables.ElementAt(value - 1);
+                    string tableLookup = $"{ot.Parent} {ot.Category} {ot.Name} {ot.Requires}\n".Replace("  ", " ").Trim();
+
+                    await message.ModifyAsync(msg =>
+                    {
+                        msg.Content = "";
+                        msg.Embed = roller.BuildRollResults(tableLookup).GetEmbed();
+                    });
+
+                    if (roller.RollResultList.Count == 1 && roller.RollResultList[0].ParentTable.Pair?.Length > 0)
+                    {
+                        await message.AddReactionAsync(new Emoji("\uD83E\uDDE6"));
+                    }
+                    await response.DeleteAsync();
+                }
+            }
         }
 
         [Command("OracleList", ignoreExtraArgs: false)]
         [Summary("Lists Available Oracles")]
         [Alias("List")]
-        public async Task OracleList([Remainder]string OracleListOptions = "")
+        public async Task OracleList([Remainder] string OracleListOptions = "")
         {
             var ShowPostInChannel = OracleResources.ShowListInChannel.Split(',').Any(s => OracleListOptions.Contains(s, StringComparison.OrdinalIgnoreCase));
-            if (ShowPostInChannel) foreach(var s in OracleResources.ShowListInChannel.Split(',')) OracleListOptions = OracleListOptions.Replace(s, "", StringComparison.OrdinalIgnoreCase);
+            if (ShowPostInChannel) foreach (var s in OracleResources.ShowListInChannel.Split(',')) OracleListOptions = OracleListOptions.Replace(s, "", StringComparison.OrdinalIgnoreCase);
 
             var UserGame = Utilities.GetGameContainedInString(OracleListOptions);
             OracleListOptions = Utilities.RemoveGameNamesFromString(OracleListOptions);

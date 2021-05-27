@@ -17,12 +17,6 @@ namespace TheOracle.GameCore.Oracle
             return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
         }
 
-        //public static T LookupOracle<T>(this IEnumerable<T> source, int roll) where T : IOracleEntry
-        //{
-        //    if (source.Count() == 0) return default;
-        //    return source.OrderBy(item => item.Chance).FirstOrDefault(item => item.Chance >= roll);
-        //}
-
         public static StandardOracle LookupOracle(this List<StandardOracle> source, int roll)
         {
             if (source == null || source.Count() == 0) return default;

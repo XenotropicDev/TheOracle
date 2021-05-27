@@ -33,7 +33,7 @@ namespace TheOracle.GameCore.Oracle
         public static string GetOracleResult(this IOracleEntry oracle, IServiceProvider services, GameName game, Random rnd = null)
         {
             var roller = new OracleRoller(services, game, rnd);
-            var tables = roller.ParseOracleTables(oracle.Description);
+            var tables = roller.ParseOracleTables(oracle.Description, StrictParsing: true);
 
             if (tables.Count == 0) return oracle.Description;
 

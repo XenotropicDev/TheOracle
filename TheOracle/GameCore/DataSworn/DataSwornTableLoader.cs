@@ -10,17 +10,42 @@ namespace TheOracle.GameCore.Oracle
         {
             List<OracleTable> tables = new List<OracleTable>();
 
-            var topTable = new OracleTable()
+            if (info.Requires != null)
             {
-                OracleInfo = info,
-                Aliases = oracle.Aliases,
-                Category = info.Category ?? info.Name,
-                Game = game,
-                Name = oracle.Name,
-                Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table)
-            };
-
-            tables.Add(topTable);
+                foreach (var prop in typeof(Requires).GetProperties())
+                {
+                    if (prop.GetValue(info.Requires) is IEnumerable<string> values)
+                    {
+                        foreach (var req in values)
+                        {
+                            tables.Add(new OracleTable()
+                            {
+                                OracleInfo = info,
+                                Aliases = oracle.Aliases,
+                                Parent = info.Name,
+                                Category = info.Category,
+                                Game = game,
+                                Name = oracle.Name,
+                                Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table),
+                                Requires = req
+                            });
+                        }
+                    }
+                }
+            }
+            else
+            {
+                tables.Add(new OracleTable()
+                {
+                    OracleInfo = info,
+                    Aliases = oracle.Aliases,
+                    Parent = info.Name,
+                    Category = info.Category,
+                    Game = game,
+                    Name = oracle.Name,
+                    Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table)
+                });
+            }
 
             //Todo refactor this
             //This builds a oracle entry for each distinct table and requirement array value
@@ -28,6 +53,23 @@ namespace TheOracle.GameCore.Oracle
             {
                 foreach (var childTable in oracle.Tables)
                 {
+                    if (childTable.Requires == null)
+                    {
+                        tables.Add(new OracleTable()
+                        {
+                            OracleInfo = info,
+                            Aliases = childTable.Aliases,
+                            Category = info.Category,
+                            Parent = info.Name,
+                            Game = game,
+                            Name = oracle.Name,
+                            Requires = null,
+                            Oracles = ConverterHelpers.DataSwornTableToStandardOracle(childTable.Table)
+                        });
+
+                        continue;
+                    }
+
                     //Use reflection to get each property
                     foreach (var prop in typeof(Requires).GetProperties())
                     {
@@ -39,9 +81,11 @@ namespace TheOracle.GameCore.Oracle
                                 {
                                     OracleInfo = info,
                                     Aliases = childTable.Aliases,
-                                    Category = info.Category ?? info.Name,
+                                    Category = info.Category,
+                                    Parent = info.Name,
                                     Game = game,
-                                    Name = $"{oracle.Name} {req}",
+                                    Name = oracle.Name,
+                                    Requires = req,
                                     Oracles = ConverterHelpers.DataSwornTableToStandardOracle(childTable.Table)
                                 });
                             }

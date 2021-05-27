@@ -1,13 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TheOracle.StarForged;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using TheOracle.Core;
-using TheOracle.StarForged.Planets;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TheOracle.GameCore.Oracle;
-using System.Linq;
+using TheOracle.StarForged.Planets;
 
 namespace TheOracle.StarForged.Tests
 {
@@ -17,7 +11,7 @@ namespace TheOracle.StarForged.Tests
         [TestMethod()]
         public void GeneratePlanetTest()
         {
-            var services = new ServiceCollection().AddSingleton( new OracleService().Load()).BuildServiceProvider();
+            var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
             for (int i = 0; i < 1000; i++)
             {
