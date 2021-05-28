@@ -179,6 +179,7 @@ namespace TheOracle.IronSworn.Delve
             await helperMessage.AddReactionAsync(FeatureEmoji);
             await helperMessage.AddReactionAsync(DangerEmoji);
             await helperMessage.AddReactionAsync(RollEmoji);
+            await helperMessage.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
         }
 
         private bool IsDelveMessage(IUserMessage message)

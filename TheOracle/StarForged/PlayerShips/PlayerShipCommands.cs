@@ -181,6 +181,7 @@ namespace TheOracle.StarForged.PlayerShips
                 if (ship.UseSupply) await post.AddReactionAsync(SupplyUpEmoji);
                 await post.AddReactionAsync(GenericReactions.twoEmoji);
                 await post.AddReactionAsync(GenericReactions.threeEmoji);
+                await post.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
             }).ConfigureAwait(false);
         }
 
