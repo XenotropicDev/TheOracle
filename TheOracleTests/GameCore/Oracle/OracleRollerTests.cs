@@ -67,7 +67,8 @@ namespace TheOracle.GameCore.Oracle.Tests
         [DataRow("access zone feature", GameName.Starforged)]
         [DataRow("Character First Look", GameName.Starforged)]
         [DataRow("Area Access", GameName.Starforged)]
-        //[DataRow("", GameName.Starforged)]
+        [DataRow("Lifeless Planetside Opportunity", GameName.Starforged)] //Alias value test
+        [DataRow("Planet Opportunity Lifeless", GameName.Starforged)]
         public void OracleTests(string oracleName, GameName game)
         {
             var roller = new OracleRoller(ServiceProvider, game);

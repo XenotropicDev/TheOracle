@@ -14,6 +14,17 @@ namespace TheOracle.GameCore.Oracle
 
         }
 
+        public override bool Equals(object obj)
+        {
+            var oracle = obj as StandardOracle;
+            if (oracle == default) return false;
+
+            return Chance == oracle.Chance 
+                && Description == oracle.Description 
+                && Prompt == oracle.Prompt 
+                && Oracles?.Count() == oracle.Oracles?.Count();
+        }
+
         public int Chance { get; set; }
         public string Description { get; set; }
         public string Prompt { get; set; }

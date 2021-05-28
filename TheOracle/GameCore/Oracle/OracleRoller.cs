@@ -124,7 +124,11 @@ namespace TheOracle.GameCore.Oracle
             if (tables.Count() > 1)
             {
                 var withRequirement = tables.Where(ot => RollResultList.Count() > 0 && ot.Requires == RollResultList.Last().ParentTable.Requires);
+                if (withRequirement?.Count() == 0) withRequirement = tables.Where(ot => ot.Requires != null && tableName.Contains(ot.Requires));
                 if (withRequirement?.Count() == 1) return withRequirement.First();
+
+                //Check if they are just different aliases for the same data.
+                if (withRequirement?.Count() > 1 && withRequirement.All(tbl => tbl.Oracles.SequenceEqual(withRequirement.First().Oracles))) return withRequirement.First();
 
                 var exactMatch = tables.Where(ot => tableName.Contains(ot.Name, StringComparison.OrdinalIgnoreCase) || ot.Aliases?.Any(a => tableName.Contains(a, StringComparison.OrdinalIgnoreCase)) == true);
                 if (exactMatch?.Count() == 1) return exactMatch.First();
