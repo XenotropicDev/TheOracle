@@ -163,6 +163,8 @@ namespace TheOracle.GameCore.SceneChallenge
                 await messageToEdit.AddReactionAsync(emptyChallengeEmoji);
                 await messageToEdit.AddReactionAsync(fullChallengeEmoji);
                 await messageToEdit.AddReactionAsync(RollEmoji);
+                await messageToEdit.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
+
             }).ConfigureAwait(false);
 
             return;

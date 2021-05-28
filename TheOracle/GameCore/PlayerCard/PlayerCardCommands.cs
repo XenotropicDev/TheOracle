@@ -186,7 +186,8 @@ namespace TheOracle.GameCore.PlayerCard
 
                 await message.ModifyAsync(msg => msg.Embed = player.GetEmbedBuilder().Build()).ConfigureAwait(false);
 
-                Emoji[] playerCardControlEmojis = new Emoji[] { upEmoji, downEmoji, healthEmoji, spiritEmoji, supplyEmoji, momentumEmoji, burnEmoji };
+                var remake = new Emoji(GenericReactions.recreatePostEmoji);
+                Emoji[] playerCardControlEmojis = new Emoji[] { upEmoji, downEmoji, healthEmoji, spiritEmoji, supplyEmoji, momentumEmoji, burnEmoji, remake };
 
                 await Task.Run(async () =>
                 {

@@ -43,6 +43,7 @@ namespace TheOracle.GameCore.InitiativeTracker
             var msg = await ReplyAsync(embed: tracker.GetEmbedBuilder().Build());
             await msg.AddReactionAsync(AdvantageEmoji);
             await msg.AddReactionAsync(DisadvantageEmoji);
+            await msg.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
 
             return;
         }

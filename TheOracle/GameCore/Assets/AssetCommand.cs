@@ -215,6 +215,8 @@ namespace TheOracle.GameCore.Assets
                     if (i == 2) await message.AddReactionAsync(GenericReactions.threeEmoji);
                     if (i == 3) await message.AddReactionAsync(GenericReactions.fourEmoji);
                 }
+
+                await message.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
             }).ConfigureAwait(false);
         }
 
