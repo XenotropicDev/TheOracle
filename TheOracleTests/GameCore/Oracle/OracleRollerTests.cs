@@ -61,6 +61,8 @@ namespace TheOracle.GameCore.Oracle.Tests
         }
 
         [TestMethod()]
+        [DataRow("Derelict Operations Feature", GameName.Starforged)]
+        [DataRow("creature scale", GameName.Starforged)]
         [DataRow("Settlement Authority", GameName.Starforged)]
         [DataRow("access zone feature", GameName.Starforged)]
         [DataRow("Character First Look", GameName.Starforged)]
@@ -68,7 +70,8 @@ namespace TheOracle.GameCore.Oracle.Tests
         //[DataRow("", GameName.Starforged)]
         public void OracleTests(string oracleName, GameName game)
         {
-            Assert.IsTrue(oracleService.RandomRow(oracleName, game).Description.Length > 0);
+            var roller = new OracleRoller(ServiceProvider, game);
+            roller.BuildRollResults(oracleName);
         }
     }
 }

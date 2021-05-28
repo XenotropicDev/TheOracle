@@ -7,6 +7,7 @@ namespace TheOracle.GameCore.Oracle
 {
     public partial class OracleTable
     {
+        public List<string> SearchTags { get; set; } = new List<string>();
         public OracleInfo OracleInfo { get; set; }
         public string[] Aliases { get; set; }
         public int d { get; set; } = 100;
@@ -44,6 +45,7 @@ namespace TheOracle.GameCore.Oracle
                 if (Game?.ToString().Contains(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
                 if (Requires?.ToString().Contains(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
                 if (Aliases?.Any(a => a.Contains(s, StringComparison.OrdinalIgnoreCase)) ?? false) continue;
+                if (SearchTags?.Any(tag => tag?.Contains(s, StringComparison.OrdinalIgnoreCase) ?? false) ?? false) continue;
 
                 return false;
             }

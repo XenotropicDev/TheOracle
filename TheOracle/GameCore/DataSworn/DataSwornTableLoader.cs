@@ -23,6 +23,7 @@ namespace TheOracle.GameCore.Oracle
                                 OracleInfo = info,
                                 Aliases = oracle.Aliases,
                                 Parent = info.Name,
+                                SearchTags = new List<string>() {info.Name, info.Parent },
                                 Category = info.Category,
                                 Game = game,
                                 Name = oracle.Name,
@@ -43,6 +44,7 @@ namespace TheOracle.GameCore.Oracle
                     Category = info.Category,
                     Game = game,
                     Name = oracle.Name,
+                    SearchTags = new List<string>() {info.Name, info.Parent },
                     Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table)
                 });
             }
@@ -64,6 +66,7 @@ namespace TheOracle.GameCore.Oracle
                             Game = game,
                             Name = oracle.Name,
                             Requires = null,
+                            SearchTags = new List<string>() {info.Name, info.Parent, oracle.Name },
                             Oracles = ConverterHelpers.DataSwornTableToStandardOracle(childTable.Table)
                         });
 
@@ -86,6 +89,7 @@ namespace TheOracle.GameCore.Oracle
                                     Game = game,
                                     Name = oracle.Name,
                                     Requires = req,
+                                    SearchTags = new List<string>() { info.Name, info.Parent, oracle.Name },
                                     Oracles = ConverterHelpers.DataSwornTableToStandardOracle(childTable.Table)
                                 });
                             }
