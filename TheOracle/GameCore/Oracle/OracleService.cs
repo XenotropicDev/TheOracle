@@ -99,10 +99,22 @@ namespace TheOracle.GameCore.Oracle
 
                 if (item == default)
                 {
-                    var filteredList = OracleList.Where(ot => ot.MatchAll(TableName.Split(' ')));
+                    var filteredList = OracleList.Where(ot => ot.MatchAll(TableName.Split(' ')) && (ot.Game == game || game == GameName.None));
                     
                     if (filteredList.Count() > 1)
                     {
+                        var exactMatch = filteredList.Where(ot => TableName.Contains(ot.Name, StringComparison.OrdinalIgnoreCase) || ot.Aliases?.Any(a => TableName.Contains(a, StringComparison.OrdinalIgnoreCase)) == true);
+                        if (exactMatch?.Count() == 1 || exactMatch?.All(tbl => tbl.Oracles.SequenceEqual(exactMatch.First().Oracles)) == true) 
+                            return exactMatch.First().Oracles?.GetRandomRow(rand); 
+                        
+                        var withRequirement = filteredList.Where(ot => ot.Requires != null && TableName.Contains(ot.Requires));
+                        if (withRequirement?.Count() == 1) 
+                            return withRequirement.First().Oracles?.GetRandomRow(rand);
+
+                        //Check if they are just different aliases for the same data.
+                        if (withRequirement?.Count() > 1 && withRequirement.All(tbl => tbl.Oracles.SequenceEqual(withRequirement.First().Oracles))) 
+                            return withRequirement.First().Oracles?.GetRandomRow(rand);
+
                         errorMessage = "Multiple possible results:\n";
                         foreach (var ot in filteredList) errorMessage += $"{ot.Parent} {ot.Category} {ot.Name} {ot.Requires}\n";
                     }
