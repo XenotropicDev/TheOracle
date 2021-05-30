@@ -137,7 +137,7 @@ namespace TheOracle.StarForged.Settlements
             if (isGenerated) return this;
 
             var oracleService = Services.GetRequiredService<OracleService>();
-            if (Name == string.Empty)
+            if (String.IsNullOrEmpty(Name))
                 Name = oracleService.RandomRow("Settlement Name", GameName.Starforged).Description;
 
             if (this.Region == SpaceRegion.None) throw new ArgumentException($"Unknown space region for settlement");
@@ -217,15 +217,15 @@ namespace TheOracle.StarForged.Settlements
 
             var RegionString = (Region != SpaceRegion.None) ? Region.ToString() : string.Empty;
 
-            string match = null;
+            string match = string.Empty;
             if (RegionString.Length + Location.Length > 0)
             {
-                match = RegionString.Length > 0 && Location.Length > 0 ? $"({RegionString}|{Location})" : null;
-                if (match?.Length == 0 && RegionString.Length > 0) match = RegionString;
-                else if (match?.Length == 0 && Location.Length > 0) match = Location;
+                match = RegionString.Length > 0 && Location.Length > 0 ? $"({RegionString}|{Location})" : string.Empty;
+                if (match.Length == 0 && RegionString.Length > 0) match = RegionString;
+                else if (match.Length == 0 && Location.Length > 0) match = Location;
             }
 
-            if (match != null) Name = Regex.Replace(Regex.Replace(options, match, string.Empty, RegexOptions.IgnoreCase), "  +", " ").Trim();
+            if (match.Length > 0) Name = Regex.Replace(Regex.Replace(options, match, string.Empty, RegexOptions.IgnoreCase), "  +", " ").Trim();
             else Name = options;
             return this;
         }
