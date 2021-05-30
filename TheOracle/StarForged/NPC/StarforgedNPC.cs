@@ -116,9 +116,9 @@ namespace TheOracle.StarForged.NPC
             Name = NPCCreationOptions.Trim();
             if (Name.Length == 0)
             {
-                var givenName = oracles.RandomRow("Character Given Name", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
-                var familyName = oracles.RandomRow("Character Family Name", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
-                var callSign = oracles.RandomRow("Character Family Name", GameName.Ironsworn).GetOracleResult(Services, GameName.Starforged);
+                var givenName = oracles.RandomRow("Character Given Name", GameName.Starforged).GetOracleResult(Services, GameName.Starforged);
+                var familyName = oracles.RandomRow("Character Family Name", GameName.Starforged).GetOracleResult(Services, GameName.Starforged);
+                var callSign = oracles.RandomRow("Character Family Name", GameName.Starforged).GetOracleResult(Services, GameName.Starforged);
 
                 var randomDouble = BotRandom.Instance.NextDouble();
                 if (randomDouble > .98d) Name = string.Format(StarforgedNPCResources.NameFormat, givenName, familyName, String.Format(StarforgedNPCResources.CallSignFormat, callSign));
