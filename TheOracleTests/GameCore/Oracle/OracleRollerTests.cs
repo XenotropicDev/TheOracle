@@ -24,6 +24,7 @@ namespace TheOracle.GameCore.Oracle.Tests
             Assert.IsTrue(oracleService.RandomRow("Action", GameName.Ironsworn).Description.Length > 0);
             Assert.IsTrue(oracleService.RandomRow("Theme", GameName.Ironsworn).Description.Length > 0);
             Assert.IsTrue(oracleService.RandomRow("Derelict Type Planetside", GameName.Starforged).Description.Length > 0);
+            Assert.IsTrue(oracleService.RandomRow("Settlement Name", GameName.Starforged).Description.Length > 0);
 
             Assert.ThrowsException<ArgumentException>(() => oracleService.RandomRow("Action"));
         }
@@ -69,6 +70,7 @@ namespace TheOracle.GameCore.Oracle.Tests
         [DataRow("Area Access", GameName.Starforged)]
         [DataRow("Lifeless Planetside Opportunity", GameName.Starforged)] //Alias value test
         [DataRow("Planet Opportunity Lifeless", GameName.Starforged)]
+        [DataRow("Settlement Name", GameName.Starforged)]
         public void OracleTests(string oracleName, GameName game)
         {
             var roller = new OracleRoller(ServiceProvider, game);
