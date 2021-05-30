@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Addons.Interactive;
 using Discord.Commands;
+using Discord.Net;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -196,7 +197,11 @@ namespace TheOracle.GameCore.Oracle
                     if (builder.Length + title.Length + s.Length > EmbedBuilder.MaxEmbedLength)
                     {
                         if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
-                        else await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
+                        else
+                        {
+                            await SendDMWithFailover(Context.User, Context.Channel, embed: builder.Build());
+                        }
+
                         builder.Fields = new List<EmbedFieldBuilder>();
                     }
 
@@ -206,10 +211,24 @@ namespace TheOracle.GameCore.Oracle
                 if (splitUpList.Count <= 2) ShowPostInChannel = true;
 
                 if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
-                else await Context.User.SendMessageAsync(embed: builder.Build()).ConfigureAwait(false);
+                else await SendDMWithFailover(Context.User, Context.Channel, embed: builder.Build()).ConfigureAwait(false);
             }
 
             if (!ShowPostInChannel) await ReplyAsync(OracleResources.ListSentInDM).ConfigureAwait(false);
+        }
+
+        private async Task SendDMWithFailover(SocketUser user, ISocketMessageChannel channel, string msg = null, Embed embed = null)
+        {
+            try
+            {
+                await user.SendMessageAsync(msg, embed: embed);
+            }
+            catch (HttpException ex)
+            {
+                if (ex.DiscordCode != 50007) throw;
+
+                await channel.SendMessageAsync(msg, embed: embed);
+            }
         }
 
         private async Task PairedTableReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
