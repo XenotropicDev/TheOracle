@@ -1,7 +1,5 @@
-﻿using Discord;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using TheOracle.GameCore.Assets;
 
 namespace TheOracle.GameCore.Oracle.DataSworn
 {
@@ -94,9 +92,15 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public string[] Aliases { get; set; }
 
+        [JsonProperty(PropertyName = "Allow duplicate rolls")]
+        public bool AllowDuplicateRolls { get; set; }
+
         public string Character { get; set; }
 
         public string Description { get => (description == "[Roll three times]") ? "[3x]" : description; set => description = value; }
+
+        [JsonProperty(PropertyName = "Display name")]
+        public string DisplayName { get; set; }
 
         public bool Initial { get; set; }
 
@@ -115,6 +119,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public List<Table> Table { get; set; }
         public List<Tables> Tables { get; set; }
         public string[] Tags { get; set; }
+
+        [JsonProperty(PropertyName = "Use with")]
+        public List<UseWith> UseWith { get; set; }
     }
 
     public class OracleInfo
@@ -126,6 +133,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string[] Children { get; set; }
 
         public string Description { get; set; }
+
+        [JsonProperty(PropertyName = "Display name")]
+        public string DisplayName { get; set; }
 
         public List<Inherit> Inherits { get; set; }
 
@@ -196,13 +206,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public string Description { get => (description == "[Roll three times]") ? "[3x]" : description; set => description = value; }
 
-        public int Value { get; set; }
         public string Details { get; set; }
 
         [JsonProperty(PropertyName = "Quest Starter")]
         public string QuestStarter { get; set; }
 
         public string Thumbnail { get; set; }
+        public int Value { get; set; }
     }
 
     public class Tables
@@ -210,8 +220,15 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         private string description;
 
         public string[] Aliases { get; set; }
+
+        [JsonProperty(PropertyName = "Allow duplicate rolls")]
+        public bool AllowDuplicateRolls { get; set; }
+
         public int Chance { get; set; }
         public string Description { get => (description == "[Roll three times]") ? "[3x]" : description; set => description = value; }
+
+        [JsonProperty(PropertyName = "Display name")]
+        public string DisplayName { get; set; }
 
         public bool Initial { get; set; }
         public Requires Requires { get; set; }
@@ -228,5 +245,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public int StartsAt { get; set; }
 
         public int Value { get; set; }
+    }
+
+    public class UseWith
+    {
+        public string Category { get; set; }
+        public string Name { get; set; }
     }
 }

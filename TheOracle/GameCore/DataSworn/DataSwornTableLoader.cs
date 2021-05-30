@@ -22,6 +22,7 @@ namespace TheOracle.GameCore.Oracle
                             {
                                 OracleInfo = info,
                                 Aliases = oracle.Aliases,
+                                DisplayName = oracle.DisplayName,
                                 Parent = info.Name,
                                 SearchTags = new List<string>() {info.Name, info.Parent },
                                 Category = info.Category,
@@ -40,6 +41,7 @@ namespace TheOracle.GameCore.Oracle
                 {
                     OracleInfo = info,
                     Aliases = oracle.Aliases,
+                    DisplayName = oracle.DisplayName,
                     Parent = info.Name,
                     Category = info.Category,
                     Game = game,
@@ -61,6 +63,7 @@ namespace TheOracle.GameCore.Oracle
                         {
                             OracleInfo = info,
                             Aliases = childTable.Aliases,
+                            DisplayName = childTable.DisplayName,
                             Category = info.Category,
                             Parent = info.Name,
                             Game = game,
@@ -84,6 +87,7 @@ namespace TheOracle.GameCore.Oracle
                                 {
                                     OracleInfo = info,
                                     Aliases = childTable.Aliases,
+                                    DisplayName = childTable.DisplayName,
                                     Category = info.Category,
                                     Parent = info.Name,
                                     Game = game,
