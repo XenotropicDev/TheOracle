@@ -55,7 +55,7 @@ namespace TheOracle.GameCore.Oracle
                 string rollDisplay = (item.ParentTable?.DisplayChances ?? true) ? $" [{item.Roll}]" : string.Empty;
                 //string ParentParent = (item.ParentTable?.Parent != null) ? $"{item.ParentTable.Parent} " : string.Empty;
                 string Requires = (item.ParentTable?.Requires != null) ? $" {item.ParentTable.Requires}" : string.Empty;
-                string DisplayValue = $"{item?.ParentTable?.Name}{Requires}{rollDisplay}";
+                string DisplayValue = (item.ParentTable?.DisplayName != null) ? $"{item.ParentTable.DisplayName}{rollDisplay}" : $"{item.ParentTable?.Name}{Requires}{rollDisplay}";
                 embed.AddField(DisplayValue, item.Result.Description, item.ShouldInline);
 
                 if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))

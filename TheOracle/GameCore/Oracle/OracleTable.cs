@@ -21,7 +21,8 @@ namespace TheOracle.GameCore.Oracle
         public string Pair { get; set; } = string.Empty;
         public bool ShowResult { get; set; } = true;
         public OracleType Type { get; set; } = OracleType.standard;
-        public string Requires { get; internal set; }
+        public string Requires { get; set; }
+        public string DisplayName { get; set; }
 
         public bool MatchTableAlias(string table)
         {

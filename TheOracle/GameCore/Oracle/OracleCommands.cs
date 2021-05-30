@@ -116,6 +116,18 @@ namespace TheOracle.GameCore.Oracle
             }
         }
 
+        private class OracleListEntry
+        {
+            public OracleListEntry(string category, string entry)
+            {
+                Category = category;
+                Entry = entry;
+            }
+
+            public string Category { get; set; }
+            public string Entry { get; set; }
+        }
+
         [Command("OracleList", ignoreExtraArgs: false)]
         [Summary("Lists Available Oracles")]
         [Alias("List")]
@@ -133,8 +145,11 @@ namespace TheOracle.GameCore.Oracle
                 UserGame = channelSettings?.DefaultGame ?? GameName.None;
             }
 
-            var baseList = _oracleService.OracleList.Where(orc => UserGame == GameName.None || orc.Game == UserGame);
-            baseList.ToList().ForEach(o => { if (o.Category == null || o.Category.Length == 0) o.Category = o.Game?.ToString() ?? "Misc"; });
+            var baseList = _oracleService.OracleList.Where(orc => UserGame == GameName.None || orc.Game == UserGame || orc.Game == GameName.None);
+            baseList.ToList().ForEach(o => 
+            { 
+                if (o.Category == null || o.Category.Length == 0) o.Category = o.Parent ?? o.Game?.ToString() ?? "Misc"; 
+            });
 
             IEnumerable<string> catsToShow = null;
             if (!string.IsNullOrEmpty(OracleListOptions)) catsToShow = baseList
@@ -143,72 +158,61 @@ namespace TheOracle.GameCore.Oracle
 
             if (catsToShow?.Count() == 0) throw new ArgumentException($"I don't know any oracles with category '{OracleListOptions}'.");
 
+            List<OracleListEntry> categoryEntryList = new List<OracleListEntry>();
+
             foreach (var game in baseList.GroupBy(o => o.Game).Select(o => o.First().Game))
             {
                 EmbedBuilder builder = new EmbedBuilder().WithTitle(String.Format(OracleResources.OracleListTitle, game));
                 string currentCategory = string.Empty;
-                string entries = string.Empty;
-                List<string> splitUpList = new List<string>();
 
                 foreach (var oracle in baseList.Where(o => (o.Game == game || o.Game == GameName.None) && (catsToShow == default || catsToShow.Contains(o.Category))).OrderBy(o => o.Category))
                 {
-                    if (oracle.Category != currentCategory)
-                    {
-                        currentCategory = oracle.Category;
-                        string catValue = $"\n**{currentCategory}**\n";
-
-                        if (entries.Length + catValue.Length > 950) //Keep it under 1024 so we are less likely to end up with duplicated top level entries
-                        {
-                            splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
-                            entries = string.Empty;
-                        }
-                        entries += catValue;
-                    }
-
                     string aliases = string.Empty;
                     if (oracle.Aliases != null)
                     {
                         aliases = $" • {string.Join("\n• ", oracle.Aliases)}";
                     }
+                    if (aliases.Length > 0) aliases = $"\n{aliases}";
 
-                    string entry = $" __`{oracle.Name}`__\n{aliases}\n";
+                    string entry = $" __`{oracle.Name}`__{aliases}";
 
-                    if (entries.Length + entry.Length > 1024)
-                    {
-                        splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
-                        entries = $"**{currentCategory}**\n";
-                    }
-
-                    entries += entry;
+                    categoryEntryList.Add(new OracleListEntry(oracle.Category ?? oracle.Parent, entry));
                 }
 
-                splitUpList.Add(entries.Replace("\n\n\n", "\n\n"));
+                var distinctCatList = categoryEntryList.DistinctBy(c => new { c.Category, c.Entry });
+                if (distinctCatList.Count() <= 2) ShowPostInChannel = true;
 
-                foreach (var s in splitUpList)
+                
+                foreach (var groupEntries in distinctCatList.GroupBy(ol => ol.Category))
                 {
-                    string title = "Title";
-                    string temp = Utilities.RemoveGameNamesFromString(s);
-                    var match = Regex.Matches(temp, @"\*\*([a-zA-Z0-9\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])");
-                    if (match.Count > 0)
-                    {
-                        title = string.Format(OracleResources.OracleListFieldTitle, match[0].Groups[1], match.Last().Groups[1]);
-                    }
+                    string content = string.Empty;
 
-                    if (builder.Length + title.Length + s.Length > EmbedBuilder.MaxEmbedLength)
+                    foreach (var entry in groupEntries)
                     {
-                        if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
-                        else
+                        if (builder.Length + groupEntries.Key.Length + content.Length + entry.Entry.Length > EmbedBuilder.MaxEmbedLength || builder.Fields.Count() + 1 > EmbedBuilder.MaxFieldCount)
                         {
-                            await SendDMWithFailover(Context.User, Context.Channel, embed: builder.Build());
+                            if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
+                            else
+                            {
+                                await SendDMWithFailover(Context.User, Context.Channel, embed: builder.Build());
+                            }
+
+                            builder.Fields = new List<EmbedFieldBuilder>();
+                            content = string.Empty;
                         }
 
-                        builder.Fields = new List<EmbedFieldBuilder>();
+                        if (content.Length + entry.Entry.Length + 5 > EmbedFieldBuilder.MaxFieldValueLength)
+                        {
+                            builder.AddField(groupEntries.Key, content, true);
+                            content = string.Empty;
+                        }
+
+                        content += $"{entry.Entry}\n";
                     }
 
-                    builder.AddField(title, s, true);
-                }
+                    builder.AddField(groupEntries.Key, content, true);
 
-                if (splitUpList.Count <= 2) ShowPostInChannel = true;
+                }
 
                 if (ShowPostInChannel) await ReplyAsync(embed: builder.Build()).ConfigureAwait(false);
                 else await SendDMWithFailover(Context.User, Context.Channel, embed: builder.Build()).ConfigureAwait(false);
