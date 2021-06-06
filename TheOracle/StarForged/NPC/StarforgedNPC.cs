@@ -188,7 +188,7 @@ namespace TheOracle.StarForged.NPC
             npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Aspects.Add(oracles.RandomOracleResult("Character Aspects", Services, GameName.Starforged));
+            npc.Aspects.Add(oracles.RandomOracleResult("Revealed Character Aspect", Services, GameName.Starforged));
             await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }

@@ -71,6 +71,23 @@ namespace TheOracle.BotCore
             return convertedValue / 100m;
         }
 
+        public static int CountOccurrences(this string source, string val)
+        {
+            int count = 0;
+            int n = 0;
+
+            if (val != "")
+            {
+                while ((n = source.IndexOf(val, n, StringComparison.InvariantCulture)) != -1)
+                {
+                    n += val.Length;
+                    ++count;
+                }
+            }
+
+            return count;
+        }
+
         public static bool Contains(this IEmote source, IEmote[] emotesToCheck)
         {
             return emotesToCheck.Any(check => check.Name == source.Name);

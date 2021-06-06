@@ -56,47 +56,22 @@ namespace TheOracle.GameCore.RulesReference
 
             if (specRules.GroupBy(r => r.Game).Count() > 1) specRules = specRules.Where(r => r.Game == game || game == GameName.None);
 
+            int replies = 0;
             foreach (var rules in specRules)
             {
                 var actualGame = rules.Game;
                 foreach (var move in rules.Moves.Where(m => MatchNameOrAlias(m, query)))
                 {
-                    string sourceText = (move.Source != null) ? $"{move.Source}\n\n" : string.Empty;
-                    string temp = $"__{actualGame} - **{move.Name}**__\n{move.Text}\n\n{sourceText}".Replace("\n\n\n", "\n\n");
-                    if (specificMovesReply.Length + temp.Length > DiscordConfig.MaxMessageSize)
-                    {
-                        if (specificMovesReply.Length > 0)
-                        {
-                            await ReplyAsync(specificMovesReply);
-                            specificMovesReply = string.Empty;
-                        }
-
-                        temp.Replace("\n\n\n", "\n\n");
-                        if (temp.Length > DiscordConfig.MaxMessageSize)
-                        {
-                            int messageCutoff = temp.Substring(0, DiscordConfig.MaxMessageSize).LastIndexOf("\n");
-
-                            var matches = Regex.Matches(temp, "```");
-                            if (matches.Count > 0)
-                            {
-                                var match = matches.LastOrDefault(m => m.Index < DiscordConfig.MaxMessageSize && m.Index > temp.Length - DiscordConfig.MaxMessageSize);
-                                if (match != default) messageCutoff = match.Index;
-                            }
-                            await ReplyAsync(temp.Substring(0, messageCutoff));
-                            temp = temp.Substring(messageCutoff);
-                        }
-                    }
-                    specificMovesReply += temp;
+                    replies++;
+                    foreach (var embed in move.AsEmbed(rules)) await ReplyAsync(embed: embed).ConfigureAwait(false);
                 }
             }
 
-            if (specificMovesReply.Length == 0)
+            if (replies == 0)
             {
                 await ReplyAsync(string.Format(RulesResources.UnknownMoveError, query));
                 return;
             }
-
-            await ReplyAsync(specificMovesReply);
         }
 
         private bool MatchNameOrAlias(Move move, string name)

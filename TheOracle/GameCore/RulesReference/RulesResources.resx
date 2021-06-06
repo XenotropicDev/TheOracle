@@ -125,6 +125,9 @@
     <value>No moves in {0}</value>
     <comment>{0} is replaced with the user's serach input</comment>
   </data>
+  <data name="ProgressMove" xml:space="preserve">
+    <value>Progress Move</value>
+  </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>

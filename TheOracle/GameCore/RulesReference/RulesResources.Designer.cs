@@ -79,6 +79,15 @@ namespace TheOracle.GameCore.RulesReference {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progress Move.
+        /// </summary>
+        internal static string ProgressMove {
+            get {
+                return ResourceManager.GetString("ProgressMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown.
         /// </summary>
         internal static string Unknown {
