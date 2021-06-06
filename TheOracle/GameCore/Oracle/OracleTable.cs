@@ -53,5 +53,23 @@ namespace TheOracle.GameCore.Oracle
 
             return true;
         }
+
+        public bool MatchAllExact(string[] query)
+        {
+            foreach (var s in query)
+            {
+                if (Category?.Equals(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
+                if (Parent?.Equals(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
+                if (Name?.Equals(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
+                if (Game?.ToString().Equals(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
+                if (Requires?.ToString().Equals(s, StringComparison.OrdinalIgnoreCase) ?? false) continue;
+                if (Aliases?.Any(a => a.Equals(s, StringComparison.OrdinalIgnoreCase)) ?? false) continue;
+                if (SearchTags?.Any(tag => tag?.Equals(s, StringComparison.OrdinalIgnoreCase) ?? false) ?? false) continue;
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }

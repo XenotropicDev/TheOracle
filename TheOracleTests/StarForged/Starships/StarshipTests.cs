@@ -13,7 +13,7 @@ namespace TheOracle.StarForged.Starships.Tests
         {
             var services = new ServiceCollection().AddSingleton(new OracleService().Load()).BuildServiceProvider();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 try
                 {
@@ -21,6 +21,8 @@ namespace TheOracle.StarForged.Starships.Tests
                     ship.AddMission();
 
                     ship.GetEmbedBuilder();
+                    Assert.IsTrue(!ship.Mission.Contains("2x"));
+                    Assert.IsTrue(!ship.Mission.Contains("Roll twice"));
                 }
                 catch (Exception)
                 {

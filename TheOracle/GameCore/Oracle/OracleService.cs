@@ -143,7 +143,14 @@ namespace TheOracle.GameCore.Oracle
             if (tableData == default)
             {
                 var catMatch = OracleList.Where(ot => ot.MatchAll(TableName.Split(' ')) && (ot.Game == game || game == GameName.None));
-                tableData = catMatch.Single();
+                if (catMatch.Count() > 1)
+                {
+                    var exactMatch = catMatch.Where(ot => TableName.Contains(ot.Name, StringComparison.OrdinalIgnoreCase) || ot.Aliases?.Any(a => TableName.Contains(a, StringComparison.OrdinalIgnoreCase)) == true);
+                    if (exactMatch?.Count() == 1) catMatch = exactMatch;
+
+                    if (catMatch.Count() > 1) throw new MultipleOraclesException(catMatch);
+                }
+                tableData = catMatch.FirstOrDefault();
             }
 
             game = tableData.Game ?? GameName.None;
