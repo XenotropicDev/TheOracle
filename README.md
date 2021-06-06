@@ -165,6 +165,8 @@ Rolls the specified dice for things like assets that let you reroll a die.
 ### `!ReplaceField`
 *Special Note: This command has the potential to break bot features if used incorrectly.* The bot often relies on the embed fields being certain values/formatting for future reactions/actions. In general just follow the existing formating and you should be fine.
 
+The FieldName parameter just needs to match up to the first space. Use a FieldName of 'Description' or 'Title' to modify those fields.
+
 Allows users to edit embeds created by the bot.
 * *Command Aliases:* `!Field`, `!SetField`, `!EditField`
 * *Parameters:* Field Name, Field Value
