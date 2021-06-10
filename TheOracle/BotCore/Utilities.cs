@@ -228,18 +228,8 @@ namespace TheOracle.BotCore
                 }
             }
 
-            //var SingleWords = new List<string>();
-            //foreach (var s in words.Where(w => w != null)) SingleWords.AddRange(s.Split(' '));
-
-            try
-            {
-                var wordList = WordList.CreateFromWords(words.Where(w => w != null));
-                return wordList;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            var wordList = WordList.CreateFromWords(words.Where(w => w != null));
+            return wordList;
         }
     }
 
@@ -303,7 +293,7 @@ namespace TheOracle.BotCore
         /// If null, the default equality comparer for <c>TSource</c> is used.</param>
         /// <returns>A sequence consisting of distinct elements from the source sequence,
         /// comparing them by the specified key projection.</returns>
-
+        #nullable enable
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
         {
@@ -320,5 +310,6 @@ namespace TheOracle.BotCore
                 }
             }
         }
+        #nullable disable
     }
 }
