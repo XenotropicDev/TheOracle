@@ -52,6 +52,7 @@ namespace TheOracle.BotCore
 
         public static string FormatMarkdownLinks(string text, string replacementFormater = "__$1__")
         {
+            if (string.IsNullOrEmpty(text)) return text;
             return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormater);
         }
 

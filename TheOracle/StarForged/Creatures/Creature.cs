@@ -25,7 +25,7 @@ namespace TheOracle.StarForged.Creatures
         private IServiceProvider serviceProvider;
         private ulong channelId;
 
-        public string BasicForm { get; set; }
+        public List<string> BasicForm { get; set; } = new List<string>();
         public CreatureEnvironment Environment { get; set; }
         public string EncounteredBehavior { get; set; }
         public List<string> FirstLook { get; set; } = new List<string>();
@@ -47,7 +47,7 @@ namespace TheOracle.StarForged.Creatures
 
             if (environment == CreatureEnvironment.None) Enum.TryParse(oracles.RandomRow("Creature Environment", GameName.Starforged, rnd).Description, out environment);
 
-            creature.BasicForm = oracles.RandomOracleResult($"Basic Form {environment}", serviceProvider, GameName.Starforged, rnd);
+            creature.BasicForm.AddRandomOracleRow($"Basic Form {environment}", GameName.Starforged, serviceProvider);
             creature.Environment = environment;
             creature.EncounteredBehavior = oracles.RandomOracleResult("Creature Behavior", serviceProvider, GameName.Starforged, rnd);
 
@@ -67,7 +67,7 @@ namespace TheOracle.StarForged.Creatures
             var creature = new Creature(serviceProvider, ChannelId);
             creature.Environment = StarforgedUtilites.GetAnyEnvironment(embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.Environment).Value);
             creature.Scale = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.Scale).Value;
-            creature.BasicForm = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.BasicForm).Value;
+            creature.BasicForm = embed.Fields.Where(fld => fld.Name == CreatureResources.BasicForm || fld.Name == "BasicForm").Select(e => e.Value).ToList(); //todo: BasicForm is for an old typo, and can be removed in the future
             creature.FirstLook = embed.Fields.Where(fld => fld.Name == CreatureResources.FirstLook).Select(fld => fld.Value).ToList();
             creature.EncounteredBehavior = embed.Fields.FirstOrDefault(fld => fld.Name == CreatureResources.EncounteredBehavior).Value;
             creature.RevealedAspectsList = embed.Fields.Where(fld => fld.Name == CreatureResources.RevealedAspect).Select(fld => fld.Value).ToList();
@@ -89,7 +89,7 @@ namespace TheOracle.StarForged.Creatures
 
             builder.AddField(CreatureResources.Environment, Environment.ToString(), true);
             builder.AddField(CreatureResources.Scale, Scale, true);
-            builder.AddField(CreatureResources.BasicForm, BasicForm, true);
+            foreach (var form in BasicForm) builder.AddField(CreatureResources.BasicForm, form, true);
             foreach (var s in FirstLook) builder.AddField(CreatureResources.FirstLook, s, true);
             builder.AddField(CreatureResources.EncounteredBehavior, EncounteredBehavior, true);
             for (int i = 0; i < RevealedAspectsList.Count; i++) builder.AddField(CreatureResources.RevealedAspect, RevealedAspectsList[i], true);

@@ -61,7 +61,7 @@ namespace TheOracle.StarForged.Creatures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BasicForm.
+        ///   Looks up a localized string similar to Basic Form.
         /// </summary>
         internal static string BasicForm {
             get {
