@@ -78,7 +78,7 @@ namespace TheOracle.StarForged.Creatures
 
         public Creature AddRandomAspect()
         {
-            this.RevealedAspectsList.AddRandomOracleRow("Creature Revealed Aspects", GameName.Starforged, serviceProvider, channelId);
+            this.RevealedAspectsList.AddRandomOracleRow("Creature Revealed Aspect", GameName.Starforged, serviceProvider, channelId);
             return this;
         }
 
