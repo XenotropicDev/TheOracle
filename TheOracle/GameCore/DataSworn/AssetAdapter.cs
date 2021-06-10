@@ -1,6 +1,7 @@
 ﻿using Discord;
 using System.Collections.Generic;
 using System.Linq;
+using TheOracle.BotCore;
 using TheOracle.GameCore.Assets;
 
 namespace TheOracle.GameCore.Oracle.DataSworn
@@ -38,7 +39,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
             get => countingAssetTrack ?? ((data.Counter != null) ? new CounterAdapter(data.Counter) : null); 
             set => countingAssetTrack = value;
         }
-        public string Description { get => data.Description; set => data.Description = value; }
+        public string Description { get => Utilities.FormatMarkdownLinks(data.Description); set => data.Description = value; }
         public GameName Game { get; set; }
         public string IconUrl { get; set; }
         public IList<string> InputFields { get => data.Fields; set => data.Fields = value?.ToArray(); }
@@ -117,7 +118,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
             data = ability;
         }
 
-        public string Text { get => data.Text; set => data.Text = value; }
+        public string Text { get => Utilities.FormatMarkdownLinks(data.Text); set => data.Text = value; }
         public bool Enabled { get => data.Enabled; set => data.Enabled = value; }
         public IEnumerable<string> InputFields { get => data.Fields; set => data.Fields = value?.ToArray(); }
 

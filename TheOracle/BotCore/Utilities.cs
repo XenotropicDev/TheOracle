@@ -50,6 +50,11 @@ namespace TheOracle.BotCore
                 return null;
         }
 
+        public static string FormatMarkdownLinks(string text, string replacementFormater = "__$1__")
+        {
+            return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormater);
+        }
+
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
         {
             if (culture == default) culture = CultureInfo.CurrentCulture;

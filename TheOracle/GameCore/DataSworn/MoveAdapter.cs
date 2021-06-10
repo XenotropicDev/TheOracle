@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using TheOracle.BotCore;
 using TheOracle.GameCore.Oracle.DataSworn;
 
 namespace TheOracle.GameCore.DataSworn
@@ -14,7 +15,7 @@ namespace TheOracle.GameCore.DataSworn
             this.Game = game;
             
             string text = move.Text.Replace("  * ", "  • ");
-            text = Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", "__$1__"); //removes link markdown for discord
+            text = Utilities.FormatMarkdownLinks(text);
             if (Regex.IsMatch(text, @"\| ?:?---")) //markdown table
             {
                 /* repair point (up to 3 points).\n\n
