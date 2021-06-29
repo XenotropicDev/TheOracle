@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Discord;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
+using TheOracle.Core;
 
 namespace TheOracle.GameCore.Oracle.DataSworn
 {
@@ -122,10 +125,46 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         [JsonProperty(PropertyName = "Use with")]
         public List<UseWith> UseWith { get; set; }
+
+        public string Roll(EmbedBuilder existingEmbed = null)
+        {
+            var random = BotRandom.Instance;
+
+            //todo - write this
+            throw new System.NotImplementedException();
+        }
     }
 
     public class OracleInfo
     {
+        public EmbedBuilder RollInitialEmbed()
+        {
+            var possibleRequirements = GetPossibleRequirements();
+            
+            var builder = new EmbedBuilder().WithTitle(this.Name).WithDescription(this.Description); //These can be overwritten by the template
+            foreach (var initialElement in this.Oracles.Where(o => o.Initial))
+            {
+                var result = initialElement.Roll();
+                builder.AddField(initialElement.DisplayName, result, true);
+            }
+
+            return builder;
+        }
+
+        public List<Requires> GetPossibleRequirements()
+        {
+            var requirements = new List<Requires>();
+            if (this.Requires != default) requirements.Add(this.Requires);
+
+            foreach (var oracle in this.Oracles)
+            {
+                if (oracle.Requires != default) requirements.Add(oracle.Requires);
+                requirements.AddRange(oracle.Tables?.Where(tbl => tbl.Requires != default).Select(t => t.Requires));
+            }
+
+            return requirements.Count() > 0 ? requirements : null;
+        }
+
         public string[] Aliases { get; set; }
 
         public string Category { get; set; }

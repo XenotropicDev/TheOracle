@@ -13,10 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.Assets;
-using TheOracle.GameCore.NpcGenerator;
 using TheOracle.GameCore.Oracle;
 using TheOracle.GameCore.RulesReference;
-using TheOracle.IronSworn.Delve;
 
 namespace TheOracle
 {
@@ -81,10 +79,8 @@ namespace TheOracle
 
             var delveThemePath = Path.Combine("IronSworn", "themes.json");
             var delveDomainPath = Path.Combine("IronSworn", "domains.json");
-            var delveService = DelveService.Load(new string[] { delveThemePath }, new string[] { delveDomainPath });
             var oracleService = new OracleService().Load();
             var AssetList = Asset.LoadAssetList();
-            var spellingDictionary = Utilities.CreateDictionaryFromOracles(oracleService, AssetList);
 
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("token.json", optional: true, reloadOnChange: true)
@@ -100,10 +96,7 @@ namespace TheOracle
                 .AddSingleton<HookedEvents>()
                 .AddSingleton<ReactionService>()
                 .AddSingleton(AssetList)
-                .AddSingleton(delveService)
-                .AddScoped<NpcFactory>()
                 .AddSingleton<InteractiveService>()
-                .AddSingleton(spellingDictionary)
                 .BuildServiceProvider();
         }
     }

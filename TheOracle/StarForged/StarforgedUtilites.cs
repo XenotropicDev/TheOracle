@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TheOracle.BotCore;
-using TheOracle.StarForged.Creatures;
 
 namespace TheOracle.StarForged
 {
@@ -32,26 +31,6 @@ namespace TheOracle.StarForged
             if (GenericReactions.twoEmoji.IsSameAs(reactionName)) return SpaceRegion.Outlands;
             if (GenericReactions.threeEmoji.IsSameAs(reactionName)) return SpaceRegion.Expanse;
             return SpaceRegion.None;
-        }
-
-        public static CreatureEnvironment GetAnyEnvironment(string value)
-        {
-            if (value.Contains("Space", StringComparison.OrdinalIgnoreCase) || value.Contains("Void", StringComparison.OrdinalIgnoreCase)) return CreatureEnvironment.Space;
-            if (value.Contains("Interior", StringComparison.OrdinalIgnoreCase)) return CreatureEnvironment.Interior;
-            if (value.Contains("Land", StringComparison.OrdinalIgnoreCase)) return CreatureEnvironment.Land;
-            if (value.Contains("Liquid", StringComparison.OrdinalIgnoreCase)) return CreatureEnvironment.Liquid;
-            if (value.Contains("Air", StringComparison.OrdinalIgnoreCase)) return CreatureEnvironment.Air;
-            return CreatureEnvironment.None;
-        }
-
-        public static CreatureEnvironment CreatureEnvironmentFromEmote(string reactionName)
-        {
-            if (GenericReactions.oneEmoji.IsSameAs(reactionName)) return CreatureEnvironment.Space;
-            if (GenericReactions.twoEmoji.IsSameAs(reactionName)) return CreatureEnvironment.Interior;
-            if (GenericReactions.threeEmoji.IsSameAs(reactionName)) return CreatureEnvironment.Land;
-            if (GenericReactions.fourEmoji.IsSameAs(reactionName)) return CreatureEnvironment.Liquid;
-            if (GenericReactions.fiveEmoji.IsSameAs(reactionName)) return CreatureEnvironment.Air;
-            return CreatureEnvironment.None;
         }
 
         /// <summary>

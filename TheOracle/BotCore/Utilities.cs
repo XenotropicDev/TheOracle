@@ -210,33 +210,6 @@ namespace TheOracle.BotCore
 
             return embedFields;
         }
-
-        public static WordList CreateDictionaryFromOracles(OracleService oracles = null, List<IAsset> Assets = null)
-        {
-            var words = new List<string>();
-
-            if (oracles != null)
-            {
-                foreach (var oracle in oracles?.OracleList)
-                {
-                    words.Add(oracle.Name);
-                    if (oracle.Aliases?.Count() > 0) words.AddRange(oracle.Aliases);
-                    words.Add(oracle.Category);
-                }
-            }
-
-            if (Assets != null)
-            {
-                foreach (var asset in Assets)
-                {
-                    words.Add(asset.Name);
-                    words.Add(asset.AssetType);
-                }
-            }
-
-            var wordList = WordList.CreateFromWords(words.Where(w => w != null));
-            return wordList;
-        }
     }
 
     #region License and Terms

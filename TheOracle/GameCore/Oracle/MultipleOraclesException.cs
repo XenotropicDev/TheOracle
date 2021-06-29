@@ -7,15 +7,12 @@ namespace TheOracle.GameCore.Oracle
     [Serializable]
     public class MultipleOraclesException : Exception
     {
-        public IEnumerable<OracleTable> Tables;
-
         public MultipleOraclesException()
         {
         }
 
-        public MultipleOraclesException(IEnumerable<OracleTable> tables)
+        public MultipleOraclesException(object tables)
         {
-            this.Tables = tables;
         }
 
         public MultipleOraclesException(string message) : base(message)

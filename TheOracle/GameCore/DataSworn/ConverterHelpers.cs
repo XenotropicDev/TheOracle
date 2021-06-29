@@ -8,13 +8,13 @@ namespace TheOracle.GameCore.DataSworn
 {
     public static class ConverterHelpers
     {
-        internal static List<StandardOracle> DataSwornTableToStandardOracle(List<Table> tables)
+        internal static List<object> DataSwornTableToStandardOracle(List<Table> tables)
         {
             if (tables == null || tables.Count == 0) return null;
 
-            var list = new List<StandardOracle>();
+            var list = new List<object>();
 
-            foreach (var table in tables) list.Add(new StandardOracle(table));
+            foreach (var table in tables) list.Add(table);
 
             return list;
         }

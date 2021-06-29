@@ -43,7 +43,6 @@ namespace TheOracle.BotCore
             {
                 var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
                 var oracles = Services.GetRequiredService<OracleService>();
-                FieldValue = oracles.RandomRow(match.Groups[1].Value, cs.GetDefaultGame(false)).Description;
             }
 
             if (descNames.Any(desc => desc.Trim().Equals(FieldName, StringComparison.OrdinalIgnoreCase)))
