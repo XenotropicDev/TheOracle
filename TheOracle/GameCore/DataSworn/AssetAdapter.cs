@@ -112,7 +112,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class AbilityAdapter : IAssetField
     {
-        private readonly Ability data;
+        private Ability data;
         public AbilityAdapter(Ability ability)
         {
             data = ability;
@@ -124,7 +124,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public IAssetField ShallowCopy()
         {
-            return (IAssetField)this.MemberwiseClone();
+            var clone = (AbilityAdapter)this.MemberwiseClone();
+            clone.data = this.data.DeepCopy();
+            return clone;
         }
     }
 }

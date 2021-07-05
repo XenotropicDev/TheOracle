@@ -140,13 +140,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Version>0.8.18</Version>
     <Description>A Discord bot the Ironsworn game system</Description>
     <RepositoryUrl>https://github.com/XenotropicDev/TheOracle.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>0.8.18.1</AssemblyVersion>
-    <FileVersion>0.8.18.1</FileVersion>
+    <AssemblyVersion>0.8.18.2</AssemblyVersion>
+    <FileVersion>0.8.18.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -11,11 +11,25 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public bool Enabled { get; set; }
         public string[] Fields { get; set; }
         public string Text { get; set; }
+
+        public Ability DeepCopy()
+        {
+            var abililty = (Ability)this.MemberwiseClone();
+            abililty.AlterProperties = this.AlterProperties?.DeepCopy();
+            return abililty;
+        }
     }
 
     public class AlterProperties
     {
         public Track Track { get; set; }
+
+        public AlterProperties DeepCopy()
+        {
+            var clone = (AlterProperties)this.MemberwiseClone();
+            clone.Track = this.Track.DeepCopy();
+            return clone;
+        }
     }
 
     public class Asset
@@ -245,6 +259,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public int StartsAt { get; set; }
 
         public int Value { get; set; }
+
+        public Track DeepCopy()
+        {
+            return (Track)this.MemberwiseClone();
+        }
     }
 
     public class UseWith
