@@ -349,3 +349,4 @@ healthchecksdb
 .DS_Store
 .vscode/launch.json
 .vscode/tasks.json
+/TheOracle/ChannelSettings.sqlite
