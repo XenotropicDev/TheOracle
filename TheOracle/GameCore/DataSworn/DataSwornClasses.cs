@@ -89,6 +89,8 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         [JsonProperty(PropertyName = "Progress Move")]
         public bool ProgressMove { get; set; }
 
+        public Stats[] Stats { get; set; }
+
         public string Text { get; set; }
     }
 
@@ -270,5 +272,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
     {
         public string Category { get; set; }
         public string Name { get; set; }
+    }
+
+    public class Stats
+    {
+        public string Trigger { get; set; }
+        public string Stat { get; set; }
     }
 }

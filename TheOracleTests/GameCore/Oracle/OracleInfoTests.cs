@@ -27,7 +27,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 }
                 catch (Exception ex)
                 {
-                    Assert.Fail($"{file.Name} {ex.Message}");
+                    Assert.Fail($"{file.FullName} {ex.Message}");
                     Console.WriteLine($"{file.Name} {ex.Message}");
                 }
             }
@@ -47,7 +47,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
             //    }
             //}
 
-            foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data\\moves").GetFiles("*.json", System.IO.SearchOption.AllDirectories))
+            foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data\\").GetFiles("move*.json", System.IO.SearchOption.TopDirectoryOnly))
             {
                 try
                 {
@@ -57,7 +57,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 }
                 catch (Exception ex)
                 {
-                    Assert.Fail($"{file.Name} {ex.Message}");
+                    Assert.Fail($"{file.FullName} {ex.Message}");
                     Console.WriteLine($"{file.Name} {ex.Message}");
                 }
             }
@@ -77,7 +77,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 }
             }
 
-            foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data\\assets").GetFiles("*.json", System.IO.SearchOption.AllDirectories))
+            foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data").GetFiles("asset*.json", System.IO.SearchOption.TopDirectoryOnly))
             {
                 try
                 {
