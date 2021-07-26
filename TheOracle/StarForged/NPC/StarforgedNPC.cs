@@ -178,7 +178,7 @@ namespace TheOracle.StarForged.NPC
             var embed = message?.Embeds?.FirstOrDefault();
             if (embed == null) return false;
 
-            return (embed.Title.Contains(NPCResources.NPCTitle) && embed.Footer.HasValue && embed.Footer.Value.Text.Contains(GameName.Starforged.ToString(), StringComparison.OrdinalIgnoreCase));
+            return (embed.Title?.Contains(NPCResources.NPCTitle) == true && embed.Footer.HasValue && embed.Footer.Value.Text.Contains(GameName.Starforged.ToString(), StringComparison.OrdinalIgnoreCase));
         }
 
         private async Task AspectHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)

@@ -126,7 +126,7 @@ namespace TheOracle.GameCore.NpcGenerator
             var embed = message?.Embeds?.FirstOrDefault();
             if (embed == null) return false;
 
-            return (embed.Title.Contains(NPCResources.NPCTitle) && embed.Footer.HasValue && embed.Footer.Value.Text.Contains(GameName.Ironsworn.ToString(), StringComparison.OrdinalIgnoreCase));
+            return (embed.Title?.Contains(NPCResources.NPCTitle) == true && embed.Footer.HasValue && embed.Footer.Value.Text.Contains(GameName.Ironsworn.ToString(), StringComparison.OrdinalIgnoreCase));
         }
 
         private async Task DescHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
