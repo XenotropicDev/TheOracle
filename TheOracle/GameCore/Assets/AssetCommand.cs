@@ -232,7 +232,13 @@ namespace TheOracle.GameCore.Assets
                 return FindMatchingAsset(AssetCommand, assets, GameName.None);
             }
 
-            if (asset.Count() > 1) throw new ArgumentException(string.Format(AssetResources.TooManyAssetsError, AssetCommand));
+            if (asset.Count() > 1)
+            {
+                if (asset.Count(a => a.Name.Equals(AssetCommand, StringComparison.OrdinalIgnoreCase)) == 1) 
+                    return asset.Single(a => a.Name.Equals(AssetCommand, StringComparison.OrdinalIgnoreCase));
+                
+                throw new ArgumentException(string.Format(AssetResources.TooManyAssetsError, AssetCommand));
+            }
 
             return asset.FirstOrDefault();
         }

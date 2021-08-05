@@ -62,7 +62,10 @@ namespace TheOracle.GameCore.Assets.Tests
         }
 
         [TestMethod()]
-        public void FindAssetTest()
+        [DataRow("Seer", GameName.Ironsworn)] //Get asset for different game test
+        [DataRow("Stealth Tech", GameName.Starforged)] //Tests multiple assets with similar names (1)
+        [DataRow("Tech", GameName.Starforged)] //Tests multiple assets with similar names (1)
+        public void FindAssetTest(string assetName, GameName game)
         {
             var AssetList = Asset.LoadAssetList();
             var services = new ServiceCollection()
@@ -71,9 +74,8 @@ namespace TheOracle.GameCore.Assets.Tests
                 .AddSingleton<ReactionService>()
                 .BuildServiceProvider();
 
-            var asset = new AssetCommands(services).FindMatchingAsset("Seer", AssetList, GameName.Ironsworn);
-            Assert.AreEqual("Seer", asset.Name);
-            Assert.AreEqual(GameName.Starforged, asset.Game);
+            var asset = new AssetCommands(services).FindMatchingAsset(assetName, AssetList, game);
+            Assert.AreEqual(assetName, asset.Name);
 
             asset.GetEmbed();
         }
