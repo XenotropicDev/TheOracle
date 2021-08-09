@@ -135,6 +135,15 @@ namespace TheOracle.BotCore
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
         }
 
+        [Command("MakeEmbed")]
+        [Alias("AddEmbed", "Note")]
+        [Summary("A blank embed for use with other commands to make custom game objects, or keep notes.")]
+        [Remarks("Use `!AddField` and `!EditField` commands to add items to this message")]
+        public async Task BlankEmbed([Remainder] string Title)
+        {
+            await ReplyAsync(embed: new EmbedBuilder().WithTitle(Title).Build()).ConfigureAwait(false);
+        }
+
         private async Task<int> AskForFieldNumber(IEnumerable<EmbedFieldBuilder> matchingFields)
         {
             int fieldToEdit;
