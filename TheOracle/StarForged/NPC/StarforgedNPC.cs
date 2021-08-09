@@ -184,60 +184,80 @@ namespace TheOracle.StarForged.NPC
         private async Task AspectHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsStarNPC(message)) return;
-            var npc = new StarforgedNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Aspects.Add(oracles.RandomOracleResult("Revealed Character Aspect", Services, GameName.Starforged));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Revealed Character Aspect", Services, GameName.Starforged);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(StarforgedNPCResources.Aspect, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task DispositionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsStarNPC(message)) return;
-            var npc = new StarforgedNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Dispositions.Add(oracles.RandomOracleResult("Disposition", Services, GameName.Starforged));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Disposition", Services, GameName.Starforged);
+            
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(StarforgedNPCResources.Disposition, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task FirstLookHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsStarNPC(message)) return;
-            var npc = new StarforgedNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.FirstLooks.Add(oracles.RandomOracleResult("Character First Look", Services, GameName.Starforged));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character First Look", Services, GameName.Starforged);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(StarforgedNPCResources.FirstLook, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task GoalHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsStarNPC(message)) return;
-            var npc = new StarforgedNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Goals.Add(oracles.RandomOracleResult("Character Goal", Services, GameName.Starforged));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Goal", Services, GameName.Starforged);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Goal, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task RoleHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsStarNPC(message)) return;
-            var npc = new StarforgedNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Roles.Add(oracles.RandomOracleResult("Character Role", Services, GameName.Starforged));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Role", Services, GameName.Starforged);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Role, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
     }

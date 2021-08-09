@@ -132,60 +132,80 @@ namespace TheOracle.GameCore.NpcGenerator
         private async Task DescHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsIronNPC(message)) return;
-            var npc = new IronNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Descriptors.Add(oracles.RandomOracleResult("Character Descriptor", Services, GameName.Ironsworn));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Descriptor", Services, GameName.Ironsworn);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Descriptor, result, true);
+            
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task DispositionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsIronNPC(message)) return;
-            var npc = new IronNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Dispositions.Add(oracles.RandomOracleResult("Character Disposition", Services, GameName.Ironsworn));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Disposition", Services, GameName.Ironsworn);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Disposition, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task ActivityHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsIronNPC(message)) return;
-            var npc = new IronNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Activities.Add(oracles.RandomOracleResult("Character Activity", Services, GameName.Ironsworn));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Activity", Services, GameName.Ironsworn);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Activity, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task GoalHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsIronNPC(message)) return;
-            var npc = new IronNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Goals.Add(oracles.RandomOracleResult("Character Goal", Services, GameName.Ironsworn));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Goal", Services, GameName.Ironsworn);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Goal, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
 
         private async Task RoleHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
         {
             if (!IsIronNPC(message)) return;
-            var npc = new IronNPC(Services);
-            npc.BuildNPCFromEmbed(message.Embeds.First() as Embed);
+            var embed = message.Embeds.FirstOrDefault();
+            if (embed == null) return;
 
             var oracles = Services.GetRequiredService<OracleService>();
-            npc.Roles.Add(oracles.RandomOracleResult("Character Role", Services, GameName.Ironsworn));
-            await message.ModifyAsync(msg => msg.Embed = npc.GetEmbed());
+            var result = oracles.RandomOracleResult("Character Role", Services, GameName.Ironsworn);
+
+            var builder = embed.ToEmbedBuilder();
+            builder.AddField(NPCResources.Role, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build());
             await message.RemoveReactionAsync(reaction.Emote, user);
         }
     }

@@ -130,7 +130,7 @@ namespace TheOracle.BotCore
                 FieldValue = oracles.RandomRow(match.Groups[1].Value, cs.GetDefaultGame(false)).Description;
             }
 
-            builder.AddField(FieldName, FieldValue);
+            builder.AddField(FieldName, FieldValue, true);
 
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
         }

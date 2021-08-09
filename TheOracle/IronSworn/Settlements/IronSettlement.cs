@@ -119,11 +119,10 @@ namespace TheOracle.IronSworn.Settlements
             var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
             if (settlmentEmbed == null) return;
 
-            var settlement = new IronSettlement(Services, channel.Id).FromEmbed(settlmentEmbed) as IronSettlement;
+            var result = oracles.RandomOracleResult("Settlement Trouble", Services, GameName.Ironsworn);
+            var builder = settlmentEmbed.ToEmbedBuilder().AddField(SettlementResources.SettlementTrouble, result, true);
 
-            settlement.RevealTrouble();
-
-            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
             return;
@@ -136,24 +135,13 @@ namespace TheOracle.IronSworn.Settlements
             var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
             if (settlmentEmbed == null) return;
 
-            var settlement = new IronSettlement(Services, channel.Id).FromEmbed(settlmentEmbed) as IronSettlement;
+            var result = oracles.RandomOracleResult("Region", Services, GameName.Ironsworn);
+            var builder = settlmentEmbed.ToEmbedBuilder().AddField(SettlementResources.Region, result, true);
 
-            settlement.RevealRegion();
-
-            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
             return;
-        }
-
-        private void RevealRegion()
-        {
-            Region = oracles.RandomOracleResult("Region", Services, GameName.Ironsworn);
-        }
-
-        private void RevealTrouble()
-        {
-            SettlementTrouble.Add(oracles.RandomOracleResult("Settlement Trouble", Services, GameName.Ironsworn));
         }
     }
 }

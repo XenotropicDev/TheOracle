@@ -194,22 +194,6 @@ namespace TheOracle.StarForged.Settlements
             return embedBuilder;
         }
 
-        public StarSettlement RevealInitialContact()
-        {
-            var oracleService = Services.GetRequiredService<OracleService>();
-            InitialContact = oracleService.RandomOracleResult($"Settlement Initial Contact", Services, GameName.Starforged);
-            InitialContactRevealed = true;
-            return this;
-        }
-
-        public StarSettlement RevealTrouble()
-        {
-            var oracleService = Services.GetRequiredService<OracleService>();
-            SettlementTrouble = oracleService.RandomOracleResult($"Settlement Trouble", Services, GameName.Starforged);
-            SettlementTroubleRevealed = true;
-            return this;
-        }
-
         public ISettlement SetupFromUserOptions(string options)
         {
             Region = StarforgedUtilites.GetAnySpaceRegion(options);
@@ -255,11 +239,12 @@ namespace TheOracle.StarForged.Settlements
             var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
             if (settlmentEmbed == null) return;
 
-            var settlement = new StarSettlement(Services, channel.Id).FromEmbed(settlmentEmbed) as StarSettlement;
+            var oracles = Services.GetRequiredService<OracleService>();
+            var result = oracles.RandomOracleResult("Settlement Initial Contact", Services, GameName.Starforged);
 
-            settlement.RevealInitialContact();
+            var builder = settlmentEmbed.ToEmbedBuilder().AddField(SettlementResources.InitialContact, result, true);
 
-            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
         }
@@ -271,10 +256,12 @@ namespace TheOracle.StarForged.Settlements
             var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
             if (settlmentEmbed == null) return;
 
-            var settlement = new StarSettlement(Services, channel.Id).FromEmbed(settlmentEmbed) as StarSettlement;
-            settlement.AddProject();
+            var oracles = Services.GetRequiredService<OracleService>();
+            var result = oracles.RandomOracleResult("Settlement Project", Services, GameName.Starforged);
 
-            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            var builder = settlmentEmbed.ToEmbedBuilder().AddField(SettlementResources.SettlementProjects, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
             return;
@@ -338,11 +325,12 @@ namespace TheOracle.StarForged.Settlements
             var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
             if (settlmentEmbed == null) return;
 
-            var settlement = new StarSettlement(Services, channel.Id).FromEmbed(settlmentEmbed) as StarSettlement;
+            var oracles = Services.GetRequiredService<OracleService>();
+            var result = oracles.RandomOracleResult("Settlement Trouble", Services, GameName.Starforged);
 
-            settlement.RevealTrouble();
+            var builder = settlmentEmbed.ToEmbedBuilder().AddField(SettlementResources.SettlementTrouble, result, true);
 
-            await message.ModifyAsync(msg => msg.Embed = settlement.GetEmbedBuilder().Build()).ConfigureAwait(false);
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
 
