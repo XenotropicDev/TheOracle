@@ -68,6 +68,7 @@ namespace TheOracle
 
         private Task LogAsync(LogMessage msg)
         {
+            if (msg.Message?.Contains("GUILD_APPLICATION_COMMAND_COUNTS_UPDATE") == true) return Task.CompletedTask; //This is a spammy message that's new to discord and not supported by discord.net yet.
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
