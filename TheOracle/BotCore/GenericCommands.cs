@@ -108,6 +108,33 @@ namespace TheOracle.BotCore
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
         }
 
+        [Command("AddField", RunMode = RunMode.Async)]
+        [Summary("Uses inline replies to add a field on an embed in the message replied to.")]
+        [Remarks("**This command comes with no warranty, and can break some bot features.**" +
+            "Use quotes around the field name if it is more than one word. Use [[Oracle Name]] to roll an oracle for the new field")]
+        public async Task AddField(string FieldName, [Remainder] string FieldValue)
+        {
+            var message = Context.Message.ReferencedMessage;
+            if (message == null || message.Author.Id != Context.Client.CurrentUser.Id || message.Embeds.Count() != 1)
+            {
+                await ReplyAsync(GenericCommandResources.CannotEditFields).ConfigureAwait(false);
+                return;
+            }
+            var builder = message.Embeds.First().ToEmbedBuilder();
+
+            var match = Regex.Match(FieldValue, @"^\[\[([\w\s]+)\]\]$");
+            if (match.Success)
+            {
+                var cs = await ChannelSettings.GetChannelSettingsAsync(Context.Channel.Id);
+                var oracles = Services.GetRequiredService<OracleService>();
+                FieldValue = oracles.RandomRow(match.Groups[1].Value, cs.GetDefaultGame(false)).Description;
+            }
+
+            builder.AddField(FieldName, FieldValue);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
+        }
+
         private async Task<int> AskForFieldNumber(IEnumerable<EmbedFieldBuilder> matchingFields)
         {
             int fieldToEdit;
