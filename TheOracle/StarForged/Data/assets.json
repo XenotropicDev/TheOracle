@@ -8,7 +8,9 @@
     {
       "Name": "Sprite",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your sprite companion alters its delicate, crystalline form to fly, swim, or scurry, and can covertly navigate even the harshest of environments. When you make a move by sending it to perform trickery (such as creating a distraction, sneaking into a protected location, or stealing an object) add +its health.",
@@ -29,7 +31,9 @@
     {
       "Name": "Bonded",
       "Category": "Deed",
-      "Fields": ["Bond-mate"],
+      "Fields": [
+        "Bond-mate"
+      ],
       "Description": "One time only, once you [Forge a Bond](#Forge-a-Bond) with a special individual...",
       "Abilities": [
         {
@@ -63,7 +67,9 @@
     {
       "Name": "Protocol Bot",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your protocol bot is programmed with knowledge of cultures, languages, and customs. When you are aided by your bot as you make a move in a formal social interaction, add +1. On a strong hit with a match, you learn something which builds understanding or empathy; also mark 1 tick on your bonds track.",
@@ -104,7 +110,9 @@
     },
     {
       "Name": "Skiff",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Category": "Support Vehicle",
       "Abilities": [
         {
@@ -191,7 +199,10 @@
     {
       "Name": "Augmented",
       "Category": "Path",
-      "Fields": ["One", "Two"],
+      "Fields": [
+        "One",
+        "Two"
+      ],
       "Abilities": [
         {
           "Text": "You are equipped with an advanced prosthetic, implant, or mechanical enhancement. When you make a move directly aided by the augment, envision how it gives you exceptional capabilities and add +1. On a strong hit with a match, your augment exceeds expectations; take +2 momentum. On a miss with a match, the augment is broken; you must [Repair](#Repair) and spend 3 repair points to bring it back to working condition.",
@@ -208,7 +219,9 @@
     {
       "Name": "Bannersworn",
       "Category": "Path",
-      "Fields": ["Ideology"],
+      "Fields": [
+        "Ideology"
+      ],
       "Abilities": [
         {
           "Text": "You are bound to a clan, faction, or creed. When you [Swear an Iron Vow](#Swear-an-Iron-Vow) in service to this ideology, reroll any dice. On a hit, mark 1 tick on your bonds legacy track.",
@@ -225,7 +238,9 @@
     {
       "Name": "Banshee",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your banshee accompanies you on planetside missions, using its echolocation to help guide the way. When you ride your banshee as you [Undertake an Expedition](#Undertake-an-Expedition) or [Set a Course](#Set-a-Course), you may roll +its health.",
@@ -253,7 +268,7 @@
           "Enabled": true
         },
         {
-          "Text": "If you [Gain Ground](#Gain-Ground) by moving into close- quarters against your foe, choose your approach.\n\n* Charge: Roll +heart, and mark progress on a hit.\n* Evade: Roll +edge, and take +1 momentum on a hit."
+          "Text": "If you [Gain Ground](#Gain-Ground) by moving into close- quarters against your foe, choose your approach.\n\n  * Charge: Roll +heart, and mark progress on a hit.\n  * Evade: Roll +edge, and take +1 momentum on a hit."
         },
         {
           "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) and bind the oath to your blade, add +1. On a hit, take +2 momentum or +2 spirit."
@@ -269,7 +284,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Gather Information](#Gather-Information) related to a bounty, add +2. On a strong hit with a match, you reveal a surprising aspect of the contract; envision what you discover, and choose one.\n\n\u001f * Forge ahead: Mark progress twice.\n\u001f * Change loyalties: [Forsake Your Vow](#Forsake-Your-Vow) and mark 2 ticks on your bonds legacy track."
+          "Text": "When you [Gather Information](#Gather-Information) related to a bounty, add +2. On a strong hit with a match, you reveal a surprising aspect of the contract; envision what you discover, and choose one.\n\n  * Forge ahead: Mark progress twice.\n  * Change loyalties: [Forsake Your Vow](#Forsake-Your-Vow) and mark 2 ticks on your bonds legacy track."
         },
         {
           "Text": "When you [Take Decisive Action](#Take-Decisive-Action) in a fight against a bounty target or their agents, you may reroll one challenge die."
@@ -286,7 +301,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Clash](#Clash) in close-quarters, you may draw on your momentum to gain advantage. If you do, [Lose Momentum](#Lose-Momentum) (-2) and choose one (before rolling).\n\n* Aggressive: Count a weak hit as a strong hit.\n* Defensive: Count a miss as a weak hit."
+          "Text": "When you [Clash](#Clash) in close-quarters, you may draw on your momentum to gain advantage. If you do, [Lose Momentum](#Lose-Momentum) (-2) and choose one (before rolling).\n\n  * Aggressive: Count a weak hit as a strong hit.\n  * Defensive: Count a miss as a weak hit."
         },
         {
           "Text": "When you [Enter the Fray](#Enter-the-Fray) already positioned in close-quarters against your foe, mark progress on a hit. On a strong hit with a match, your initial assault leaves them stunned; also take +2 momentum."
@@ -296,7 +311,9 @@
     {
       "Name": "Combat Bot",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your combat bot fights at your side. When you [Strike](#Strike) aided by your bot, add +1; if you [Clash](#Clash), take +1 momentum on a hit.",
@@ -335,7 +352,7 @@
       "Category": "Path",
       "Abilities": [
         {
-          "Text": "When you Swear an Iron Vow to transport and protect something precious, set its safety to 5. When you Undertake an Expedition or Set a Course and score a weak hit or miss, you may suffer -1 safety as the cost. On a miss with a match, you must suffer -2 safety as the cost. When safety falls to 0, envision a major complication related to this mission. If you overcome the threat, mark progress twice on this quest. Then, set safety to 3.",
+          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) to transport and protect something precious, set its safety to 5. When you [Undertake an Expedition](#Undertake-an-Expedition) or [Set a Course](#Set-a-Course) and score a weak hit or miss, you may suffer -1 safety as the cost. On a miss with a match, you must suffer -2 safety as the cost. When safety falls to 0, envision a major complication related to this mission. If you overcome the threat, mark progress twice on this quest. Then, set safety to 3.",
           "Enabled": true
         },
         {
@@ -353,7 +370,10 @@
     {
       "Name": "Devotant",
       "Category": "Path",
-      "Fields": ["Name", "Linked Stat"],
+      "Fields": [
+        "Name",
+        "Linked Stat"
+      ],
       "Abilities": [
         {
           "Text": "You worship a god, power, or entity. Give it a name and choose one of your stats to represent its nature. When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by calling on it for guidance or blessings, roll +linked stat. On a hit, take +1 momentum or +1 spirit. On a strong hit with a match, a miracle or sign manifests; take another +1 momentum or +1 spirit.",
@@ -372,7 +392,7 @@
       "Category": "Path",
       "Abilities": [
         {
-          "Text": "When you Swear an Iron Vow to resolve a dispute, negotiate an agreement, or gather allies, add +1. On a strong hit, mark progress. When you [Fulfill Your Vow](#Fulfill-Your-Vow) on a diplomatic mission (formidable or greater) and score a hit, also mark 2 ticks on your bonds legacy track.",
+          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) to resolve a dispute, negotiate an agreement, or gather allies, add +1. On a strong hit, mark progress. When you [Fulfill Your Vow](#Fulfill-Your-Vow) on a diplomatic mission (formidable or greater) and score a hit, also mark 2 ticks on your bonds legacy track.",
           "Enabled": true
         },
         {
@@ -414,7 +434,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Enter the Fray](#Enter-the-Fray), choose one (before rolling).\n\n* Maneuver: Add +1 and take +1 momentum on a strong hit.\n* Boost: Take +2 momentum on a hit."
+          "Text": "When you [Enter the Fray](#Enter-the-Fray), choose one (before rolling).\n\n  * Maneuver: Add +1 and take +1 momentum on a strong hit.\n  * Boost: Take +2 momentum on a hit."
         },
         {
           "Text": "When you make a desperate move to pursue a foe, escape a threat, or get in range, you may push your engines to their limit. If you do (decide after rolling), reroll any dice and count a weak hit as a strong hit. Then, [Withstand Damage](#Withstand-Damage) (-2)."
@@ -424,7 +444,9 @@
     {
       "Name": "Exosuit",
       "Category": "Support Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your lumbering rig houses one pilot, is sealed against hostile environments, and is armed with fixed or held weapons. When you make a forceful, damaging, or resistant move, you may (after rolling) replace the value of your action die with the rig’s integrity; if you do, [Lose Momentum](#Lose-Momentum) (-1).",
@@ -472,7 +494,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you come across a wondrous sight or phenomenon, such as an extraordinary planet, majestic creature, or dazzling stellar object, choose one:\n\n* Find inspiration: Take +1 momentum\n* Soak it all in: [Hearten](#Hearten); add +1, and take +1 momentum on a hit."
+          "Text": "When you come across a wondrous sight or phenomenon, such as an extraordinary planet, majestic creature, or dazzling stellar object, choose one:\n\n  * Find inspiration: Take +1 momentum\n  * Soak it all in: [Hearten](#Hearten); add +1, and take +1 momentum on a hit."
         },
         {
           "Text": "When you [Secure an Advantage](#Secure-an-Advantage) by studying a newfound place from a safe position, add +1 and take +1 momentum on a hit. On a strong hit with a match, take another +1 momentum and envision an unusual aspect of the site."
@@ -534,14 +556,16 @@
           "Text": "When you [Gather Information](#Gather-Information) by studying or disassembling a piece of equipment or technology, or if you [Resupply](#Resupply) by breaking down and repurposing an item, add +1 and take +1 momentum on a hit."
         },
         {
-          "Text": "When you [Face Danger](#Face-Danger) to rig, modify, or enhance a device for a powerful but limited function, envision your approach and add +1. On a hit, the device is ready for use. One time only, if you make a move in a critical moment aided by the device, do all of the the following.\n\n* Reroll any dice\n* Take +1 momentum on a hit\n* On a strong hit, mark 1 tick on your quests legacy track"
+          "Text": "When you [Face Danger](#Face-Danger) to rig, modify, or enhance a device for a powerful but limited function, envision your approach and add +1. On a hit, the device is ready for use. One time only, if you make a move in a critical moment aided by the device, do all of the the following.\n\n  * Reroll any dice\n  * Take +1 momentum on a hit\n  * On a strong hit, mark 1 tick on your quests legacy track"
         }
       ]
     },
     {
       "Name": "Glowcat",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your glowcat companion perceives the inner emotions and intentions of people and creatures in its vicinity, and embodies those impressions through the colors and intensity of its luminescent fur. When you [Secure an Advantage](#Secure-an-Advantage) by studying your glowcat’s reactions in a charged situation, you may add +your companion’s health.",
@@ -565,7 +589,7 @@
       "Description": "If you wield a heavy ranged personal weapon...",
       "Abilities": [
         {
-          "Text": "When you [Strike](#Strike), choose one (before rolling).\n\n* Pin them down: Add +1 and take +1 momentum on a hit.\n* Make them hurt: Mark progress on a hit.",
+          "Text": "When you [Strike](#Strike), choose one (before rolling).\n\n  * Pin them down: Add +1 and take +1 momentum on a hit.\n  * Make them hurt: Mark progress on a hit.",
           "Enabled": true
         },
         {
@@ -573,7 +597,9 @@
         },
         {
           "Text": "Give your favorite gun a name. When you [Clash](#Clash) with it, add +1. When you [Enter the Fray](#Enter-the-Fray) or [Endure Stress](#Endure-Stress) while wielding it, add +1 and take +1 momentum on a hit.",
-          "Fields": ["Name"]
+          "Fields": [
+            "Name"
+          ]
         }
       ]
     },
@@ -606,7 +632,7 @@
           "Text": "When you [Face Death](#Face-Death) guided by the spirit, add +1. On a strong hit, envision what you learn from them or about them, and mark 2 ticks on your bonds legacy track."
         },
         {
-          "Text": "One time only, when you [Fulfill Your Vow](#Fulfill-Your-Vow) (extreme or greater) in service to the spirit, take this ability at no cost and choose one.\n\n* Let them go: Mark 2 ticks on your bonds legacy track for each marked ability, and discard this asset.\n* Bolster your link: When you leverage an asset ability, take +1 momentum on a hit."
+          "Text": "One time only, when you [Fulfill Your Vow](#Fulfill-Your-Vow) (extreme or greater) in service to the spirit, take this ability at no cost and choose one.\n\n  * Let them go: Mark 2 ticks on your bonds legacy track for each marked ability, and discard this asset.\n  * Bolster your link: When you leverage an asset ability, take +1 momentum on a hit."
         }
       ]
     },
@@ -631,7 +657,7 @@
       "Category": "Module",
       "Abilities": [
         {
-          "Text": "When you aim your cannons and use them to [Strike](#Strike), choose one.\n\n* Strafing run: Add +1 and take +1 momentum on a hit.\n* Focus fire: Mark progress on a hit, but [Lose Momentum](#Lose-Momentum) (-1).",
+          "Text": "When you aim your cannons and use them to [Strike](#Strike), choose one.\n\n  * Strafing run: Add +1 and take +1 momentum on a hit.\n  * Focus fire: Mark progress on a hit, but [Lose Momentum](#Lose-Momentum) (-1).",
           "Enabled": true
         },
         {
@@ -645,7 +671,9 @@
     {
       "Name": "Homesteader",
       "Category": "Deed",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Description": "Once you fill 4 boxes on your bonds legacy track...",
       "Abilities": [
         {
@@ -653,7 +681,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Sojourn](#Sojourn) in your home, choose one.\n* Don’t linger: Take an automatic weak hit\n* Stay a bit: Add +1 and take +1 momentum on a hit"
+          "Text": "When you [Sojourn](#Sojourn) in your home, choose one.\n  * Don’t linger: Take an automatic weak hit\n  * Stay a bit: Add +1 and take +1 momentum on a hit"
         },
         {
           "Text": "When you [Set a Course](#Set-a-Course) for home, you may reroll your action die if its value is less than your spirit."
@@ -663,7 +691,9 @@
     {
       "Name": "Hoverbike",
       "Category": "Support Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your unarmed hoverbike provides speedy planetside ground transport, and is equipped to carry up to two people and their gear. When you [Underake an Expedition](#Underake-an-Expedition) (+edge), take +1 momentum on a hit. On a strong hit with a match, you also surge ahead or find a new path; mark progress.",
@@ -737,7 +767,9 @@
     {
       "Name": "Marked",
       "Category": "Deed",
-      "Fields": ["Identifier"],
+      "Fields": [
+        "Identifier"
+      ],
       "Description": "Once you fill 5 boxes on your quests legacy track...",
       "Abilities": [
         {
@@ -764,7 +796,7 @@
           "Text": "When you or an ally mark the permanently harmed impact and are brought to the medbay without delay (less than an hour or so), you have a shot at making things right. If you [Heal](#Heal) and score a strong hit, clear the impact (in addition to the other benefits of the move). Then, envision the scar that now serves as a reminder of the incident."
         },
         {
-          "Text": "When you Face Danger by performing a risky medical procedure, or if you Gather Information through an autopsy or medical examination, reroll any dice and take +1 momentum on a hit."
+          "Text": "When you [Face Danger](#Face-Danger) by performing a risky medical procedure, or if you [Gather Information](#Gather-Information) through an autopsy or medical examination, reroll any dice and take +1 momentum on a hit."
         }
       ]
     },
@@ -825,7 +857,7 @@
       "Category": "Path",
       "Abilities": [
         {
-          "Text": "When you [Set a Course](#Set-a-Course), choose one.\n\n* Follow the fastest path: Take +2 momentum on a hit.\n* Follow the safest path: Add +1\n\nOn a strong hit with a match, you charted a new path during the journey; mark 1 tick on your discoveries legacy track.",
+          "Text": "When you [Set a Course](#Set-a-Course), choose one.\n\n  * Follow the fastest path: Take +2 momentum on a hit.\n  * Follow the safest path: Add +1\n\nOn a strong hit with a match, you charted a new path during the journey; mark 1 tick on your discoveries legacy track.",
           "Enabled": true
         },
         {
@@ -877,7 +909,9 @@
     {
       "Name": "Overseer",
       "Category": "Module",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your AI module keeps watch over the vehicle’s systems and sensor data. When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by talking through a situation with the overseer, you may roll +integrity. If you do, take +1 momentum on a hit.",
@@ -919,7 +953,7 @@
           "Text": "When you [Face Danger](#Face-Danger) to isolate or secure a hazardous specimen, reroll any dice."
         },
         {
-          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) to undertake a long-term research project (extreme or greater), reroll any dice. When you obtain crucial samples, equipment, or data, mark progress on the quest and take +2 momentum. When you devote extended time to the project in your lab, [Face Danger](#Face-Danger) and add +1. On a hit, mark progress. On a strong hit with a match, mark progress twice. When you Fulfill Your Vow and score a hit, also mark one box on your discoveries legacy track."
+          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) to undertake a long-term research project (extreme or greater), reroll any dice. When you obtain crucial samples, equipment, or data, mark progress on the quest and take +2 momentum. When you devote extended time to the project in your lab, [Face Danger](#Face-Danger) and add +1. On a hit, mark progress. On a strong hit with a match, mark progress twice. When you [Fulfill Your Vow](#Fulfill-Your-Vow) and score a hit, also mark one box on your discoveries legacy track."
         }
       ]
     },
@@ -943,7 +977,9 @@
     {
       "Name": "Rockhorn",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your rockhorn uses its resilient, stone-like hide and brute strength to overcome threats. When you make a move by sending your rockhorn to directly attack a foe or smash an obstacle, roll +its health.",
@@ -964,7 +1000,9 @@
     {
       "Name": "Rover",
       "Category": "Support Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your unarmed rover provides protected planetside transport. When you [Undertake an Expedition](#Undertake-an-Expedition) or [Set a Course](#Set-a-Course), add +1. When you [Finish an Expedition](#Finish-an-Expedition) in your rover, you may reroll one challenge die.",
@@ -1039,7 +1077,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gather Information](#Gather-Information) by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n\n* Manual scan: Add +1\n* Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
+          "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gather Information](#Gather-Information) by scanning your vehicle’s surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n\n  * Manual scan: Add +1\n  * Automated scan: Instead of rolling the action die, make it the value of your vehicle’s integrity"
         },
         {
           "Text": "When you [Enter the Fray](#Enter-the-Fray) against an ambush, or [Face Danger](#Face-Danger) to detect a hidden threat, you may roll +integrity. If you do, reroll any dice and take +1 momentum on a hit."
@@ -1049,19 +1087,16 @@
     {
       "Name": "Service Pod",
       "Category": "Support Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
-          "Text": "Your utility vehicle houses one pilot for short- range, low gravity operations. When you make a move using the pod’s manipulator arms to perform a delicate or forceful task, add +1 and take +1 momentum on a hit.",
+          "Text": "Your utility vehicle houses one pilot for short-range, low gravity operations. When you make a move using the pod’s manipulator arms to perform a delicate or forceful task, add +1 and take +1 momentum on a hit.",
           "Enabled": true
         },
         {
-          "Text": "When you [Face Danger](#Face-Danger), [Gain Ground](#Gain-Ground), or [React Under Fire](#React-Under-Fire) by maneuvering your pod through a hazardous or obstructed area, choose an approach and roll +integrity.\n\n* Careful: Add +2 and [Lose Momentum](#Lose-Momentum) (-1)\n* Reckless: Take +1 momentum on a hit",
-          "Alternate stat": {
-            "Moves": ["Face Danger", "Gain Ground", "React Under Fire"],
-            "Stat": "Asset Track",
-            "Trigger": "When you [Face Danger](#Face-Danger), [Gain Ground](#Gain-Ground), or [React Under Fire](#React-Under-Fire) by maneuvering your pod through a hazardous or obstructed area"
-          }
+          "Text": "When you [Face Danger](#Face-Danger), [Gain Ground](#Gain-Ground), or [React Under Fire](#React-Under-Fire) by maneuvering your pod through a hazardous or obstructed area, choose an approach and roll +integrity.\n\n  * Careful: Add +2 and [Lose Momentum](#Lose-Momentum) (-1)\n  * Reckless: Take +1 momentum on a hit"
         },
         {
           "Text": "When you make a move while controlling the pod and push its capabilities to the limit, you may take an automatic strong hit. If you do, [Withstand Damage](#Withstand-Damage) (-2)."
@@ -1105,7 +1140,10 @@
             "Name": "Shields",
             "Category": "Asset Moves",
             "Stat": null,
-            "Highest of": ["Command Vehicle Integrity", "Wits"],
+            "Highest of": [
+              "Command Vehicle Integrity",
+              "Wits"
+            ],
             "Text": "When you raise your shields, roll +your vehicle’s integrity or +wits. On a strong hit, set your shields to +4. On a weak hit, make them +3. On a miss, make them +2 but [Lose Momentum](#Lose-Momentum) (-1). Then, if you [Withstand Damage](#Withstand-Damage), ignore damage up to the value of your shields and suffer -1 shields. Raised shields last for a few minutes. If reduced to 0, they cannot be raised again for an hour or so."
           }
         },
@@ -1125,7 +1163,9 @@
     {
       "Name": "Shuttle",
       "Category": "Support Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your unarmed shuttle provides short-range transport for several people and equipment through space or atmosphere. When you travel to a location (not your command vehicle), you and your allies may take +1 momentum when you arrive.",
@@ -1146,7 +1186,10 @@
     {
       "Name": "Sidekick",
       "Category": "Companion",
-      "Fields": ["Name", "Expertise"],
+      "Fields": [
+        "Name",
+        "Expertise"
+      ],
       "Abilities": [
         {
           "Text": "Your sidekick has a helpful expertise. When you make a move outside of a fight directly aided by their expertise, you may reroll your action die if its value is less than your sidekick’s health. If you then score a strong hit with a match, mark 1 tick on your bonds legacy track.",
@@ -1200,7 +1243,9 @@
     {
       "Name": "Snub Fighter",
       "Category": "Support Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your snub fighter carries a single pilot for space or atmospheric flight and combat. When you [Enter the Fray](#Enter-the-Fray), you may roll +integrity; if you do, take +2 momentum on a hit.",
@@ -1225,7 +1270,9 @@
     {
       "Name": "Starship",
       "Category": "Command Vehicle",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your armed, multipurpose starship is suited for interstellar and atmospheric flight. It can comfortably transport several people, has space for cargo, and can carry and launch support vehicles. When you [Advance](#Advance), you may spend experience to equip this vehicle with module assets.",
@@ -1255,14 +1302,16 @@
           "Text": "When you [Undertake an Expedition](#Undertake-an-Expedition) (+shadow), and roll a 1 on your action die, you may reroll it."
         },
         {
-          "Text": "When you are poised to [Strike](#Strike) from hiding, you may roll +shadow. If you do, choose one (before rolling).\n* Strike true: Reroll any dice.\n* Strike hard: Mark progress on a hit. \n\nOn a strong hit with a match, you also remain totally undetected; take +2 momentum and add +1 on your next [Strike](#Strike)."
+          "Text": "When you are poised to [Strike](#Strike) from hiding, you may roll +shadow. If you do, choose one (before rolling).\n  * Strike true: Reroll any dice.\n  * Strike hard: Mark progress on a hit. \n\nOn a strong hit with a match, you also remain totally undetected; take +2 momentum and add +1 on your next [Strike](#Strike)."
         }
       ]
     },
     {
       "Name": "Survey Bot",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your survey bot scans the path ahead. When you [Undertake an Expedition](#Undertake-an-Expedition) (+wits) overland or within a site, add +1.",
@@ -1283,7 +1332,9 @@
     {
       "Name": "Symbiote",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "You are physically bound to a being with +2 health. When you make aggressive moves while giving yourself to the symbiote’s power, add +its health. If you face physical harm, choose either the [Endure Harm](#Endure-Harm) or [Companion Takes a Hit](#Companion-Takes-a-Hit) move. To restore the symbiote’s health, you must [Endure Stress](#Endure-Stress) and give the symbiote +health equal to the -spirit you face. If you make a move aided by the symbiote and roll a 1 on your action die, your fragile bond is broken for several hours.",
@@ -1341,7 +1392,9 @@
     {
       "Name": "Utility Bot",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your utility bot has helpful tools at-hand. When you make a move by directing it to access a system, cut through an obstacle, analyze a mechanical issue, or assemble or disassemble a device, roll +its health and take +1 momentum on a hit. On a strong hit with a match, it reveals an unexpected advantage or insight; take another +1 momentum.",
@@ -1401,7 +1454,9 @@
     {
       "Name": "Vestige",
       "Category": "Path",
-      "Fields": ["Last of"],
+      "Fields": [
+        "Last of"
+      ],
       "Abilities": [
         {
           "Text": "You are all that remains of a people, culture, or tradition. When you [Face Death](#Face-Death) or [Face Desolation](#Face-Desolation), memories or visions of your heritage give you the strength to carry on. Envision how this manifests, and reroll any dice. On a strong hit with a match, a surprising new aspect of your heritage is revealed; take +2 momentum and mark 2 ticks on your bonds legacy track.",
@@ -1424,7 +1479,7 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Make a Connection](#Make-a-Connection), add +1. If you roll a match, you have a history.\n* On a strong hit with a match, you once fought beside them, and they owe you a favor. Mark 1 tick on your bonds legacy track, and [Develop Your Relationship](#Develop-Your-Relationship) now.\n* On a miss with a match, you once fought against them, and they hold a grudge."
+          "Text": "When you [Make a Connection](#Make-a-Connection), add +1. If you roll a match, you have a history.\n  * On a strong hit with a match, you once fought beside them, and they owe you a favor. Mark 1 tick on your bonds legacy track, and [Develop Your Relationship](#Develop-Your-Relationship) now.\n  * On a miss with a match, you once fought against them, and they hold a grudge."
         },
         {
           "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by recounting or recalling a hard-won lesson from your battlefield experiences, envision the memory and add +1. On a hit, take +1 momentum."
@@ -1450,7 +1505,9 @@
     {
       "Name": "Voidglider",
       "Category": "Companion",
-      "Fields": ["Name"],
+      "Fields": [
+        "Name"
+      ],
       "Abilities": [
         {
           "Text": "Your voidglider cruises in your starship’s energy wake, and helps guide the way on spacebound expeditions. When you [Undertake an Expedition](#Undertake-an-Expedition) and roll a strong hit, take +1 momentum.",
@@ -1496,7 +1553,7 @@
           "Text": "When you make a move in your workshop to craft, modify, deactivate, or disassemble a device or machine, you may reroll your action die if its value is less than your vehicle’s integrity."
         },
         {
-          "Text": "When you Swear an Iron Vow to undertake a long-term engineering project (extreme or greater), reroll any dice. When you obtain a crucial part or resource, mark progress on the quest and take +2 momentum. When you devote extended time to the project in your workshop, Face Danger and add +1. On a hit, mark progress. On a strong hit with a match, mark progress twice. When you Fulfill Your Vow and score a hit, mark one extra box on your quests legacy track."
+          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) to undertake a long-term engineering project (extreme or greater), reroll any dice. When you obtain a crucial part or resource, mark progress on the quest and take +2 momentum. When you devote extended time to the project in your workshop, Face Danger and add +1. On a hit, mark progress. On a strong hit with a match, mark progress twice. When you [Fulfill Your Vow](#Fulfill-Your-Vow) and score a hit, mark one extra box on your quests legacy track."
         }
       ]
     }
