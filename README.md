@@ -5,6 +5,8 @@ A bot written with [Discord.Net](https://discord.foxbot.me/stable/) for [Ironswo
 ## Joining the bot to your discord server
 To add TheOracle to a discord server click [this link](https://discord.com/api/oauth2/authorize?client_id=704480988561932389&permissions=259846044736&scope=bot%20applications.commands) and then select the server you wish to add the bot to.
 
+If you need a discord server for your game you can use [this link](https://discord.new/hevebmEhcjCa) to get started with a prexisting discord server template.
+
 ## Features
 
 ### Oracle Tables
