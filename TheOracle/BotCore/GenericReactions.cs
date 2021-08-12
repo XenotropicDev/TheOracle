@@ -113,6 +113,11 @@ namespace TheOracle.BotCore
                     await Task.Delay(300); //Manual delay to avoid the rate limiter
                 }
 
+                if (message.IsPinned)
+                {
+                    await newMessage.PinAsync();
+                }
+
                 await message.DeleteAsync();
             }).ConfigureAwait(false);
 
