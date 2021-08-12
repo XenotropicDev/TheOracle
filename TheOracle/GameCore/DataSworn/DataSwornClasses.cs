@@ -16,8 +16,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         {
             var abililty = (Ability)this.MemberwiseClone();
             abililty.AlterProperties = this.AlterProperties?.DeepCopy();
+            abililty.Move = this.Move?.DeepCopy();
             return abililty;
         }
+
+        public AssetMove Move { get; set; }
     }
 
     public class AlterProperties
@@ -93,6 +96,17 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public string Text { get; set; }
     }
+
+
+    public class AssetMove
+    {
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Stat { get; set; }
+        public string Text { get; set; }
+        public AssetMove DeepCopy() => (AssetMove)this.MemberwiseClone();
+    }
+
 
     public class MoveInfo
     {
@@ -255,10 +269,12 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class Track
     {
+        private int? startsAt;
+
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "Starts At")]
-        public int StartsAt { get; set; }
+        public int StartsAt { get => startsAt ?? Value; set => startsAt = value; }
 
         public int Value { get; set; }
 
