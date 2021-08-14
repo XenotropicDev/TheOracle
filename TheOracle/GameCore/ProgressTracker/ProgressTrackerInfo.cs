@@ -84,6 +84,7 @@ namespace TheOracle.GameCore.ProgressTracker
         {
             return new EmbedBuilder()
                 .WithTitle(ProgressResources.Progress_Tracker)
+                .WithAuthor(ProgressResources.Progress_Tracker)
                 .WithThumbnailUrl(IconUrl)
                 .WithDescription(Description)
                 .WithFields(new EmbedFieldBuilder()
@@ -112,7 +113,6 @@ namespace TheOracle.GameCore.ProgressTracker
         {
             Ticks -= TicksPerProgress;
         }
-
         public void AddProgress(int amount = 1)
         {
             Ticks += TicksPerProgress;
