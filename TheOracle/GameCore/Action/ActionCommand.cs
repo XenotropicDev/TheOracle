@@ -29,7 +29,10 @@ namespace TheOracle.GameCore.Action
 			}
 
 			var roll = new ActionRoll(mod.ToArray());
-			await ReplyAsync(roll.ToString());
+      // this is the old version, sent via message
+      // await ReplyAsync(roll.ToString());
+
+      await ReplyAsync(embed: roll.toEmbed().WithAuthor($"Action Roll").Build()).ConfigureAwait(false);
 		}
 
 		[Command("ProgressRoll", ignoreExtraArgs: true)]
@@ -42,7 +45,7 @@ namespace TheOracle.GameCore.Action
 			if (match.Success && Int32.TryParse(match.Groups[0].Value, out int temp))
             {
 				var roll = new ActionRoll(0, temp);
-				await ReplyAsync(roll.ToString());
+				await ReplyAsync(embed: roll.toEmbed().WithAuthor($"Action Roll").Build()).ConfigureAwait(false);
 			}
 		}
 	}
