@@ -58,6 +58,11 @@ namespace TheOracle.GameCore.Oracle
                 string DisplayValue = (item.ParentTable?.DisplayName != null) ? $"{item.ParentTable.DisplayName}{rollDisplay}" : $"{item.ParentTable?.Name}{Requires}{rollDisplay}";
                 embed.AddField(DisplayValue, item.Result.Description, item.ShouldInline);
 
+                if (!string.IsNullOrWhiteSpace(item.Result.Prompt))
+                {
+                    embed.AddField("Details", item.Result.Prompt, item.ShouldInline);
+                }
+
                 if (item.ParentTable?.Pair?.Length > 0 && !RollResultList.Any(rr => rr.ParentTable.Name == item.ParentTable.Pair))
                 {
                     footer.Text = (footer.Text == null || footer.Text.Length == 0) ? $"{OracleResources.PairedTable} {item.ParentTable.Pair}" : $"{CultureInfo.CurrentCulture.TextInfo.ListSeparator} {item.ParentTable.Pair}";
