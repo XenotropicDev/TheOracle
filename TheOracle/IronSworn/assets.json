@@ -1,7 +1,8 @@
 {
   "Name": "Assets",
   "Source": {
-    "Name": "Ironsworn Assets Master Set (February 2020)"
+    "Name": "Ironsworn Assets Master Set",
+    "Date": "February 2020"
   },
   "Assets": [
     {
@@ -1395,7 +1396,8 @@
       "Game": "Ironsworn",
       "Category": "Path",
       "Source": {
-        "Name": "Ironsworn Bonus Assets (July 2020)",
+        "Name": "Ironsworn Bonus Assets",
+        "Date": "July 2020",
         "Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
       },
       "Abilities": [
@@ -1420,7 +1422,8 @@
       "Game": "Ironsworn",
       "Category": "Path",
       "Source": {
-        "Name": "Ironsworn Bonus Assets - July 2020",
+        "Name": "Ironsworn Bonus Assets",
+        "Date": "July 2020",
         "Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
       },
       "Abilities": [
@@ -1441,7 +1444,8 @@
       "Game": "Ironsworn",
       "Category": "Path",
       "Source": {
-        "Name": "Ironsworn Bonus Assets - July 2020",
+        "Name": "Ironsworn Bonus Assets",
+        "Date": "July 2020",
         "Url": "https://drive.google.com/file/d/1bWyWxJzV_SVtyE_SeEGS4TMJ1ZBHfrdv/view"
       },
       "Abilities": [

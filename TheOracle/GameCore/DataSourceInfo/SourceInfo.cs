@@ -9,8 +9,9 @@ namespace TheOracle.GameCore
         public string Page { get; set; }
         public string Url { get; set; }
         public string Version { get; set; }
+        public string Date { get; set; }
 
-        public override string ToString()
+    public override string ToString()
         {
             if (Name.Length == 0) Name = SourceInfoResources.Unknown;
 
@@ -19,8 +20,8 @@ namespace TheOracle.GameCore
             if (pageDisplay.Length == 0 && Page?.Length > 0) pageDisplay = string.Format(SourceInfoResources.SourcePageField, Page);
 
             string versionDisplay = (Version?.Length > 0) ? string.Format(SourceInfoResources.VersionField, Version) : string.Empty;
-
-            return string.Format(SourceInfoResources.SourceField, Name, pageDisplay, versionDisplay);
+            string dateDisplay = (Date?.Length > 0) ? Date : string.Empty;
+            return string.Format(SourceInfoResources.SourceField, Name, pageDisplay, versionDisplay, dateDisplay);
         }
     }
 }

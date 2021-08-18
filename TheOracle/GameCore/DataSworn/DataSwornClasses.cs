@@ -58,8 +58,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         [JsonProperty(PropertyName = "Condition Meter")]
         public ConditionMeter ConditionMeter { get; set; }
-        // [JsonProperty(PropertyName = "Radio Select")]
-        // public AssetRadioSelect RadioSelect { get; set; }
+        public Source Source { get; set; }
+    // [JsonProperty(PropertyName = "Radio Select")]
+    // public AssetRadioSelect RadioSelect { get; set; }
   }
 
     public class AssetInfo
@@ -242,6 +243,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Name { get; set; }
         public string Page { get; set; }
         public string Version { get; set; }
+        public string Date { get; set; }
         public string Url { get; set; }
   }
 

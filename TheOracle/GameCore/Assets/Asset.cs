@@ -237,7 +237,7 @@ namespace TheOracle.GameCore.Assets
                 var ironAssets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText(ironAssetsPath));
                 foreach (var asset in ironAssets.Assets)
                 {
-                    AssetList.Add(new AssetAdapter(asset, GameName.Ironsworn, ironAssets.Source));
+                    AssetList.Add(new AssetAdapter(asset, GameName.Ironsworn, asset.Source ?? ironAssets.Source));
                 }
                 // var ironAssets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
                 // ironAssets.ForEach(a => a.Game = GameCore.GameName.Ironsworn);
@@ -248,7 +248,7 @@ namespace TheOracle.GameCore.Assets
                 var starAssets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText(starAssetsPath));
                 foreach (var asset in starAssets.Assets)
                 {
-                    AssetList.Add(new AssetAdapter(asset, GameName.Starforged, starAssets.Source));
+                    AssetList.Add(new AssetAdapter(asset, GameName.Starforged, asset.Source ?? starAssets.Source));
                 }
             }
 
