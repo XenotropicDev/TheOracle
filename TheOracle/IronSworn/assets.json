@@ -943,20 +943,17 @@
           "Text": "When you *Compel* in a situation where strength of arms is a factor, add +2."
         }
       ],
-      "Radio Select": [
-        {
-          "Name": "Armor",
-          "ActiveText": "Lightly Geared",
-          "InactiveText": "-",
-          "IsActive": false
-        },
-        {
-          "Name": "Armor",
-          "ActiveText": "Armored for War",
-          "InactiveText": "-",
-          "IsActive": false
-        }
-      ]
+      "Radio Select": {
+        "Name": "Armor",
+        "Options": [
+          {
+            "Text": "Lightly Geared"
+          },
+          {
+            "Text": "Armored for War"
+          }
+        ]
+      }
     },
     {
       "Name": "Long-Arm",
