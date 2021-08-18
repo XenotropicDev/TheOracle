@@ -238,11 +238,10 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         }
     }
 
-    public class Source
+    public class Source : ISourceInfo
     {
         public string Name { get; set; }
         public string Page { get; set; }
-        public string Version { get; set; }
         public string Date { get; set; }
         public string Url { get; set; }
   }

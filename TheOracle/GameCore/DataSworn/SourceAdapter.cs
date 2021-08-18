@@ -8,7 +8,7 @@ namespace TheOracle.GameCore.DataSworn
         {
             Name = source.Name;
             Page = source.Page;
-            Version = source.Version;
+            Date = source.Date;
             Url = source.Url;
         }
     }
