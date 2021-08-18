@@ -16,26 +16,26 @@ namespace TheOracle.GameCore.Assets
     {
         public const string OldAssetEnabledEmoji = "\\⏺️";
         public const string AssetEnabledEmoji = "⏺️";
-        
+
         public const string AssetDisabledEmoji = "🟦";
 
         public Asset()
         {
-            AssetFields = new List<IAssetField>();
-            InputFields = new List<string>();
-            MultiFieldAssetTrack = null;
-            NumericAssetTrack = null;
-            CountingAssetTrack = null;
+            AssetAbilities = new List<IAssetAbility>();
+            AssetTextInput = new List<string>();
+            // AssetRadioSelect = null;
+            AssetConditionMeter = null;
+            AssetCounter = null;
         }
 
         public IAsset DeepCopy()
         {
             var asset = (Asset)this.MemberwiseClone();
 
-            asset.AssetFields = asset.AssetFields.Select(fld => fld.ShallowCopy()).ToList();
-            asset.MultiFieldAssetTrack = asset.MultiFieldAssetTrack?.DeepCopy() ?? null;
-            asset.NumericAssetTrack = asset.NumericAssetTrack?.DeepCopy() ?? null;
-            asset.CountingAssetTrack = asset.CountingAssetTrack?.DeepCopy() ?? null;
+            asset.AssetAbilities = asset.AssetAbilities.Select(fld => fld.ShallowCopy()).ToList();
+            // asset.AssetRadioSelect = asset.AssetRadioSelect?.DeepCopy() ?? null;
+            asset.AssetConditionMeter = asset.AssetConditionMeter?.DeepCopy() ?? null;
+            asset.AssetCounter = asset.AssetCounter?.DeepCopy() ?? null;
             asset.Arguments = new List<string>();
 
             return asset;
@@ -45,28 +45,28 @@ namespace TheOracle.GameCore.Assets
         public string Description { get; set; }
         public string UserDescription { get; set; }
         public string IconUrl { get; set; }
-        public string AssetType { get; set; }
+        public string Category { get; set; }
         public GameName Game { get; set; }
         public SourceInfo Source { get; set; }
 
         [DefaultValue(null)]
-        [JsonConverter(typeof(ConcreteListTypeConverter<IAssetField, AssetField>))]
-        public IList<IAssetField> AssetFields { get; set; }
+        [JsonConverter(typeof(ConcreteListTypeConverter<IAssetAbility, AssetAbility>))]
+        public IList<IAssetAbility> AssetAbilities { get; set; }
+
+        // [DefaultValue(null)]
+        // [JsonConverter(typeof(ConcreteListTypeConverter<IAssetRadioOption, AssetRadioOption>))]
+        // public IList<IAssetRadioOption> AssetRadioSelect { get; set; } = null;
 
         [DefaultValue(null)]
-        [JsonConverter(typeof(ConcreteTypeConverter<MultiFieldAssetTrack>))]
-        public IMultiFieldAssetTrack MultiFieldAssetTrack { get; set; } = null;
+        [JsonConverter(typeof(ConcreteTypeConverter<AssetCounter>))]
+        public IAssetCounter AssetCounter { get; set; } = null;
 
         [DefaultValue(null)]
-        [JsonConverter(typeof(ConcreteTypeConverter<CountingAssetTrack>))]
-        public ICountingAssetTrack CountingAssetTrack { get; set; } = null;
+        [JsonConverter(typeof(ConcreteTypeConverter<AssetConditionMeter>))]
+        public IAssetConditionMeter AssetConditionMeter { get; set; } = null;
 
         [DefaultValue(null)]
-        [JsonConverter(typeof(ConcreteTypeConverter<NumericAssetTrack>))]
-        public INumericAssetTrack NumericAssetTrack { get; set; } = null;
-
-        [DefaultValue(null)]
-        public IList<string> InputFields { get; set; }
+        public IList<string> AssetTextInput { get; set; }
 
         [DefaultValue(null)]
         public IList<string> Arguments { get; set; } = new List<string>();
@@ -84,56 +84,57 @@ namespace TheOracle.GameCore.Assets
             //TODO: this can probably be removed in the future. It's for old asset message support.
             var assets = services.GetRequiredService<List<IAsset>>();
             if (assets.Any(a => embed.Title?.Contains(a.Name) ?? false)) return true;
-            
+
             return false;
         }
 
         public static IAsset FromEmbed(IServiceProvider Services, IEmbed embed)
         {
             var game = Utilities.GetGameContainedInString(embed.Footer.Value.Text ?? string.Empty);
+            // TODO:
             var asset = Services.GetRequiredService<List<IAsset>>().Single(a => embed.Title.Contains(a.Name) && a.Game == game).DeepCopy();
 
-            for (int i = 0; i < asset.AssetFields.Count; i++)
+            for (int i = 0; i < asset.AssetAbilities.Count; i++)
             {
                 EmbedField embedField = embed.Fields.FirstOrDefault(fld => fld.Name.Contains((i + 1).ToString()));
 
-                if (embedField.Value == null) embedField = embed.Fields.FirstOrDefault(fld => fld.Value.Contains(asset.AssetFields[i].Text)); //match old style assets
+                if (embedField.Value == null) embedField = embed.Fields.FirstOrDefault(fld => fld.Value.Contains(asset.AssetAbilities[i].Text)); //match old style assets
                 if (embedField.Value == null) continue;
 
-                asset.AssetFields[i].Enabled = embedField.Name.Contains(AssetEnabledEmoji) || embedField.Name.Contains(OldAssetEnabledEmoji);
+                asset.AssetAbilities[i].Enabled = embedField.Name.Contains(AssetEnabledEmoji) || embedField.Name.Contains(OldAssetEnabledEmoji);
             }
 
-            if (asset.NumericAssetTrack != null)
+            if (asset.AssetConditionMeter != null)
             {
-                var field = embed.Fields.First(f => f.Name == asset.NumericAssetTrack.Name);
+                var field = embed.Fields.First(f => f.Name == asset.AssetConditionMeter.Name);
                 var match = Regex.Match(field.Value, @"__\*\*(\d+)\*\*__");
                 int value = 0;
                 if (match.Success) int.TryParse(match.Groups[1].Value, out value);
-                asset.NumericAssetTrack.ActiveNumber = value;
+                asset.AssetConditionMeter.ActiveNumber = value;
             }
 
-            if (asset.CountingAssetTrack != null)
+            if (asset.AssetCounter != null)
             {
-                var field = embed.Fields.First(f => f.Name == asset.CountingAssetTrack.Name);
+                var field = embed.Fields.First(f => f.Name == asset.AssetCounter.Name);
                 var match = Regex.Match(field.Value, @"-?\d+");
                 int value = 0;
                 if (match.Success) int.TryParse(match.Groups[0].Value, out value);
-                asset.CountingAssetTrack.StartingValue = value;
+                asset.AssetCounter.StartingValue = value;
             }
 
-            if (asset.MultiFieldAssetTrack != null)
-            {
-                foreach (var assetField in asset.MultiFieldAssetTrack.Fields)
-                {
-                    assetField.IsActive = embed.Fields.Any(f => assetField.Name.Contains(f.Name, StringComparison.OrdinalIgnoreCase) && assetField.ActiveText.Contains(f.Value, StringComparison.OrdinalIgnoreCase));
-                }
-            }
+            // if (asset.AssetRadioSelect != null)
+            // {
+            //     foreach (var radioOption in asset.AssetRadioSelect.Options)
+            //     {
+            //         radioOption.IsActive = embed.Fields.Any(f => radioOption.Name.Contains(f.Name, StringComparison.OrdinalIgnoreCase) && radioOption.ActiveText.Contains(f.Value, StringComparison.OrdinalIgnoreCase));
+            //     }
+            // }
 
-            foreach (var input in asset.InputFields ?? new List<string>())
+            foreach (var input in asset.AssetTextInput ?? new List<string>())
             {
-                string partialFormated = string.Format(AssetResources.UserInputField, input, ".*");
+                string partialFormated = string.Format(AssetResources.UserTextInput, input, ".*");
                 var match = Regex.Match(embed.Description, partialFormated);
-                if (match.Success && match.Value.UndoFormatString(AssetResources.UserInputField, out string[] descValues, true))
+                if (match.Success && match.Value.UndoFormatString(AssetResources.UserTextInput, out string[] descValues, true))
                 {
                     asset.Arguments.Add(descValues[1]);
                 }
@@ -142,7 +143,7 @@ namespace TheOracle.GameCore.Assets
 
                 EmbedField field = embed.Fields.First(f => f.Value.Contains(input));
 
-                if (!field.Value.UndoFormatString(AssetResources.UserInputField, out string[] fldValues, true)) continue;
+                if (!field.Value.UndoFormatString(AssetResources.UserTextInput, out string[] fldValues, true)) continue;
                 asset.Arguments.Add(fldValues[1]);
             }
 
@@ -162,15 +163,15 @@ namespace TheOracle.GameCore.Assets
             int nextArgument = 0;
 
             EmbedBuilder builder = new EmbedBuilder();
-            builder.WithAuthor(asset.AssetType);
+            builder.WithAuthor($"Asset: {asset.Category}");
             builder.WithThumbnailUrl(asset.IconUrl);
             builder.WithTitle(asset.Name);
 
             string fullDesc = string.Empty;
-            foreach (var fld in asset.InputFields ?? new List<string>())
+            foreach (var fld in asset.AssetTextInput ?? new List<string>())
             {
                 string userVal = (asset.Arguments.Count() - 1 >= nextArgument) ? asset.Arguments.ElementAt(nextArgument) : string.Empty.PadLeft(24, '_');
-                fullDesc += String.Format(AssetResources.UserInputField, fld, userVal) + "\n";
+                fullDesc += String.Format(AssetResources.UserTextInput, fld, userVal) + "\n";
                 nextArgument++;
             }
             fullDesc += (fullDesc.Length > 0) ? "\n" + asset.Description : asset.Description;
@@ -179,18 +180,18 @@ namespace TheOracle.GameCore.Assets
             else builder.WithDescription(asset.UserDescription);
 
             int fieldNumber = 0;
-            foreach (var fld in asset.AssetFields ?? new List<IAssetField>())
+            foreach (var fld in asset.AssetAbilities ?? new List<IAssetAbility>())
             {
                 fieldNumber++;
                 string label = $"{fieldNumber}. {(fld.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
 
                 string inputField = string.Empty;
-                if (fld.InputFields?.Count() > 0)
+                if (fld.AssetTextInput?.Count() > 0)
                 {
-                    foreach (var inputItem in fld.InputFields)
+                    foreach (var inputItem in fld.AssetTextInput)
                     {
                         string userVal = (asset.Arguments.Count() - 1 >= nextArgument) ? asset.Arguments.ElementAt(nextArgument) : string.Empty.PadLeft(24, '_');
-                        inputField += "\n" + String.Format(AssetResources.UserInputField, inputItem, userVal);
+                        inputField += "\n" + String.Format(AssetResources.UserTextInput, inputItem, userVal);
                         nextArgument++;
                     }
                 }
@@ -198,26 +199,26 @@ namespace TheOracle.GameCore.Assets
                 builder.AddField(label, fld.Text + inputField);
             }
 
-            if (asset.MultiFieldAssetTrack?.Fields != null)
+            // if (asset.AssetRadioSelect?.Options != null)
+            // {
+            //     foreach (var radioOption in asset.AssetRadioSelect.Options)
+            //     {
+            //         string text = (radioOption.IsActive) ? radioOption.ActiveText : radioOption.InactiveText;
+            //         builder.AddField(radioOption.Name, text, true);
+            //     }
+            // }
+
+            if (asset.AssetCounter?.Name != null)
             {
-                foreach (var trackItem in asset.MultiFieldAssetTrack.Fields)
-                {
-                    string text = (trackItem.IsActive) ? trackItem.ActiveText : trackItem.InactiveText;
-                    builder.AddField(trackItem.Name, text, true);
-                }
+                builder.AddField(asset.AssetCounter.Name, asset.AssetCounter.StartingValue);
             }
 
-            if (asset.CountingAssetTrack?.Name != null)
+            if (asset.AssetConditionMeter != null && !(asset.AssetConditionMeter.Max == 0 && asset.AssetConditionMeter.Min == 0))
             {
-                builder.AddField(asset.CountingAssetTrack.Name, asset.CountingAssetTrack.StartingValue);
-            }
-
-            if (asset.NumericAssetTrack != null && !(asset.NumericAssetTrack.Max == 0 && asset.NumericAssetTrack.Min == 0))
-            {
-                string trackText = string.Empty;
-                for (int i = asset.NumericAssetTrack.Min; i <= asset.NumericAssetTrack.Max; i++) trackText += $"{i} ";
-                trackText = trackText.Trim().Replace(asset.NumericAssetTrack.ActiveNumber.ToString(), $"__**{asset.NumericAssetTrack.ActiveNumber}**__");
-                builder.AddField(asset.NumericAssetTrack.Name, trackText);
+                string meterText = string.Empty;
+                for (int i = asset.AssetConditionMeter.Min; i <= asset.AssetConditionMeter.Max; i++) meterText += $"{i} ";
+                meterText = meterText.Trim().Replace(asset.AssetConditionMeter.ActiveNumber.ToString(), $"__**{asset.AssetConditionMeter.ActiveNumber}**__");
+                builder.AddField(asset.AssetConditionMeter.Name, meterText);
             }
 
             string source = (asset.Source != null) ? asset.Source.ToString() : string.Empty;
@@ -233,9 +234,14 @@ namespace TheOracle.GameCore.Assets
             var AssetList = new List<IAsset>();
             if (File.Exists(ironAssetsPath))
             {
-                var ironAssets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
-                ironAssets.ForEach(a => a.Game = GameCore.GameName.Ironsworn);
-                AssetList.AddRange(ironAssets);
+                var ironAssets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText(ironAssetsPath));
+                foreach (var asset in ironAssets.Assets)
+                {
+                    AssetList.Add(new AssetAdapter(asset, GameName.Ironsworn, ironAssets.Source));
+                }
+                // var ironAssets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
+                // ironAssets.ForEach(a => a.Game = GameCore.GameName.Ironsworn);
+                // AssetList.AddRange(ironAssets);
             }
             if (File.Exists(starAssetsPath))
             {

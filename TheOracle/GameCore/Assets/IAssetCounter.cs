@@ -1,10 +1,10 @@
 ﻿namespace TheOracle.GameCore.Assets
 {
-    public interface ICountingAssetTrack
+    public interface IAssetCounter
     {
         public string Name { get; set; }
         public int StartingValue { get; set; }
 
-        ICountingAssetTrack DeepCopy();
+        IAssetCounter DeepCopy();
     }
 }

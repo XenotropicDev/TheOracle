@@ -230,7 +230,7 @@ namespace TheOracle.BotCore
                 foreach (var asset in Assets)
                 {
                     words.Add(asset.Name);
-                    words.Add(asset.AssetType);
+                    words.Add(asset.Category);
                 }
             }
 

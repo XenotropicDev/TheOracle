@@ -2,13 +2,13 @@
 
 namespace TheOracle.GameCore.Assets
 {
-    public interface INumericAssetTrack
+    public interface IAssetConditionMeter
     {
         public int Min { get; set; }
         public int Max { get; set; }
         public int ActiveNumber { get; set; }
         string Name { get; set; }
 
-        INumericAssetTrack DeepCopy();
+        IAssetConditionMeter DeepCopy();
     }
 }

@@ -2,12 +2,12 @@
 
 namespace TheOracle.GameCore.Assets
 {
-    public interface IAssetField
+    public interface IAssetAbility
     {
         public string Text { get; set; }
         public bool Enabled { get; set; }
-        IEnumerable<string> InputFields { get; set; }
+        IEnumerable<string> AssetTextInput { get; set; }
 
-        IAssetField ShallowCopy();
+        IAssetAbility ShallowCopy();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TheOracle.GameCore.Assets
 {
-    public class NumericAssetTrack : INumericAssetTrack
+    public class AssetConditionMeter : IAssetConditionMeter
     {
         private int activeNumber;
 
@@ -19,9 +19,9 @@ namespace TheOracle.GameCore.Assets
             }
         }
 
-        public INumericAssetTrack DeepCopy()
+        public IAssetConditionMeter DeepCopy()
         {
-            var track = (NumericAssetTrack)this.MemberwiseClone();
+            var track = (AssetConditionMeter)this.MemberwiseClone();
 
             return track;
         }

@@ -10,8 +10,8 @@
 
 namespace TheOracle.GameCore.Assets {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace TheOracle.GameCore.Assets {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AssetResources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal AssetResources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace TheOracle.GameCore.Assets {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace TheOracle.GameCore.Assets {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Asset.
         /// </summary>
@@ -68,7 +68,7 @@ namespace TheOracle.GameCore.Assets {
                 return ResourceManager.GetString("Asset", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Did you mean `{0}`?.
         /// </summary>
@@ -77,7 +77,7 @@ namespace TheOracle.GameCore.Assets {
                 return ResourceManager.GetString("DidYouMean", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} {1}
         ///{2}.
@@ -87,7 +87,7 @@ namespace TheOracle.GameCore.Assets {
                 return ResourceManager.GetString("FooterFormat", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Too many assets match &apos;{0}&apos; please specify a game in the command or use the `!setdefaultgame` command..
         /// </summary>
@@ -96,7 +96,7 @@ namespace TheOracle.GameCore.Assets {
                 return ResourceManager.GetString("TooManyAssetsError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to An asset name couldn&apos;t be found in the entered command.
         ///{0}.
@@ -106,13 +106,13 @@ namespace TheOracle.GameCore.Assets {
                 return ResourceManager.GetString("UnknownAssetError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to __{0} : {1}__.
         /// </summary>
-        internal static string UserInputField {
+        internal static string UserTextInput {
             get {
-                return ResourceManager.GetString("UserInputField", resourceCulture);
+                return ResourceManager.GetString("UserTextInput", resourceCulture);
             }
         }
     }
