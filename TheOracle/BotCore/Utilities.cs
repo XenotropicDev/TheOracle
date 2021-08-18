@@ -49,13 +49,17 @@ namespace TheOracle.BotCore
             else
                 return null;
         }
-
-        public static string FormatMarkdownLinks(string text, string replacementFormatter = "__$1__")
+    public static string FormatMarkdown(string text)
+    {
+      if (string.IsNullOrEmpty(text)) return text;
+      return FormatMarkdownUnorderedList(FormatMarkdownLinks(text));
+    }
+    public static string FormatMarkdownLinks(string text, string replacementFormatter = "__$1__")
         {
             if (string.IsNullOrEmpty(text)) return text;
             return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormatter);
         }
-        public static string FormatMarkdownUnorderedList(string text, string replacementFormatter = "  • $1")
+        public static string FormatMarkdownUnorderedList(string text, string replacementFormatter = "\n  • $1")
         {
             if (string.IsNullOrEmpty(text)) return text;
             return Regex.Replace(text, @"^\n+ +\* ", replacementFormatter);

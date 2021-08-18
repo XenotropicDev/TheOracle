@@ -40,7 +40,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
             get => assetCounter ?? ((data.Counter != null) ? new CounterAdapter(data.Counter) : null);
             set => assetCounter = value;
         }
-        public string Description { get => Utilities.FormatMarkdownLinks(data.Description); set => data.Description = value; }
+        public string Description { get => Utilities.FormatMarkdown(data.Description); set => data.Description = value; }
         public GameName Game { get; set; }
         public string IconUrl { get; set; }
         public IList<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
@@ -120,7 +120,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
             data = ability;
         }
 
-        public string Text { get => Utilities.FormatMarkdownLinks(data.Text); set => data.Text = value; }
+        public string Text { get => Utilities.FormatMarkdown(data.Text); set => data.Text = value; }
         public bool Enabled { get => data.Enabled; set => data.Enabled = value; }
         public IEnumerable<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
 
