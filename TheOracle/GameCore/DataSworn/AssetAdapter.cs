@@ -44,7 +44,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public GameName Game { get; set; }
         public string IconUrl { get; set; }
         public IList<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
-        private IAssetConditionMeter assetRadioSelect = null;
+        // private IAssetRadioSelect assetRadioSelect = null;
         // public IAssetRadioSelect AssetRadioSelect { get; set; }
         public string Name { get => data.Name; set => data.Name = value; }
 
