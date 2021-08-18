@@ -79,6 +79,10 @@ namespace TheOracle.GameCore.Assets
         public static bool IsAssetMessage(IUserMessage message, IServiceProvider services)
         {
             var embed = message.Embeds.FirstOrDefault();
+
+            if (embed.Author.HasValue && embed.Author.Value.Name.Contains(AssetResources.Asset)) return true;
+            // for new standard with embed content type being noted in author field
+
             if (embed.Footer.HasValue && embed.Footer.Value.Text.Contains(AssetResources.Asset)) return true;
 
             //TODO: this can probably be removed in the future. It's for old asset message support.
@@ -183,7 +187,8 @@ namespace TheOracle.GameCore.Assets
             foreach (var abl in asset.AssetAbilities ?? new List<IAssetAbility>())
             {
                 abilityNumber++;
-                string label = $"{abilityNumber}. {(abl.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
+                string abilityText = Utilities.FormatMarkdown(abl.Text);
+        string label = $"{abilityNumber}. {(abl.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
 
                 string textInput = string.Empty;
                 if (abl.AssetTextInput?.Count() > 0)
@@ -196,7 +201,7 @@ namespace TheOracle.GameCore.Assets
                     }
                 }
 
-                builder.AddField(label, abl.Text + textInput);
+                builder.AddField(label, abilityText + textInput);
             }
 
             // if (asset.AssetRadioSelect?.Options != null)

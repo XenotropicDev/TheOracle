@@ -59,10 +59,10 @@ namespace TheOracle.BotCore
             if (string.IsNullOrEmpty(text)) return text;
             return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormatter);
         }
-        public static string FormatMarkdownUnorderedList(string text, string replacementFormatter = "\n  • $1")
+        public static string FormatMarkdownUnorderedList(string text, string replacementFormatter = "\n  • ")
         {
             if (string.IsNullOrEmpty(text)) return text;
-            return Regex.Replace(text, @"^\n+ +\* ", replacementFormatter);
+            return Regex.Replace(text, @"\n+  \* ", replacementFormatter);
         }
 
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
