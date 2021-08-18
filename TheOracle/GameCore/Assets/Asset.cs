@@ -179,24 +179,24 @@ namespace TheOracle.GameCore.Assets
             if (asset.UserDescription == null || asset.UserDescription.Length == 0) builder.WithDescription(fullDesc);
             else builder.WithDescription(asset.UserDescription);
 
-            int fieldNumber = 0;
-            foreach (var fld in asset.AssetAbilities ?? new List<IAssetAbility>())
+            int abilityNumber = 0;
+            foreach (var abl in asset.AssetAbilities ?? new List<IAssetAbility>())
             {
-                fieldNumber++;
-                string label = $"{fieldNumber}. {(fld.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
+                abilityNumber++;
+                string label = $"{abilityNumber}. {(abl.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
 
-                string inputField = string.Empty;
-                if (fld.AssetTextInput?.Count() > 0)
+                string textInput = string.Empty;
+                if (abl.AssetTextInput?.Count() > 0)
                 {
-                    foreach (var inputItem in fld.AssetTextInput)
+                    foreach (var inputItem in abl.AssetTextInput)
                     {
                         string userVal = (asset.Arguments.Count() - 1 >= nextArgument) ? asset.Arguments.ElementAt(nextArgument) : string.Empty.PadLeft(24, '_');
-                        inputField += "\n" + String.Format(AssetResources.UserTextInput, inputItem, userVal);
+                        textInput += "\n" + String.Format(AssetResources.UserTextInput, inputItem, userVal);
                         nextArgument++;
                     }
                 }
 
-                builder.AddField(label, fld.Text + inputField);
+                builder.AddField(label, abl.Text + textInput);
             }
 
             // if (asset.AssetRadioSelect?.Options != null)
