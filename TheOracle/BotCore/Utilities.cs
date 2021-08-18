@@ -50,10 +50,15 @@ namespace TheOracle.BotCore
                 return null;
         }
 
-        public static string FormatMarkdownLinks(string text, string replacementFormater = "__$1__")
+        public static string FormatMarkdownLinks(string text, string replacementFormatter = "__$1__")
         {
             if (string.IsNullOrEmpty(text)) return text;
-            return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormater);
+            return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormatter);
+        }
+        public static string FormatMarkdownUnorderedList(string text, string replacementFormatter = "  • $1")
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            return Regex.Replace(text, @"^\n+ +\* ", replacementFormatter);
         }
 
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
