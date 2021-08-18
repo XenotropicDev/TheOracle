@@ -17,7 +17,20 @@
           "Text": "When you [Gain Ground](#Gain-Ground) by maneuvering your vehicle against a foe, add +1. If you roll a strong hit with a 4, 5, or 6 on the action die, you may put yourself in firing position. If you do, set side the action die or note its value. If you or an ally [Strike](#Strike) using the vehicle's weapons, use that value for the action die (rolling only the challenge dice). This persists until you fail to score a strong hit on that move, or until you make another move which changes your vehicle's position."
         },
         {
-          "Text": "When you must [Endure Stress](#Endure-Stress) while piloting a vehicle, you may roll +integrity. If you do, take +1 momentum on a strong hit."
+          "Text": "When you must [Endure Stress](#Endure-Stress) while piloting a vehicle, you may roll +integrity. If you do, take +1 momentum on a strong hit.",
+          "Alter Moves": [
+            {
+              "Name": "Endure Stress",
+              "Triggers": [
+                {
+                  "Text": "When you must [Endure Stress](#Endure-Stress) while piloting a vehicle",
+                  "Stat": {
+                    "Options": ["Support Vehicle Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -33,7 +46,20 @@
           "Text": "When you [Face Danger](#Face-Danger) or [Secure an Advantage](#Secure-an-Advantage) to establish a false identity, add +1. On a hit, you may add +1 when using that identity to deceive or influence others. If you roll a miss with a match when using that identity, your deception is completely and dramatically undone."
         },
         {
-          "Text": "When you covertly [Gather Information](#Gather-Information), you may roll +shadow. If you do, take +1 momentum on a hit. On a strong hit with a match, you also uncover a surprising aspect of an adversary's plan or a connection to another quest or relationship; mark progress twice on a related quest."
+          "Text": "When you covertly [Gather Information](#Gather-Information), you may roll +shadow. If you do, take +1 momentum on a hit. On a strong hit with a match, you also uncover a surprising aspect of an adversary's plan or a connection to another quest or relationship; mark progress twice on a related quest.",
+          "Alter Moves": [
+            {
+              "Name": "Gather Inforation",
+              "Triggers": [
+                {
+                  "Text": "When you covertly [Gather Information](#Gather-Information)",
+                  "Stat": {
+                    "Options": ["Shadow"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -46,19 +72,41 @@
           "Move": {
             "Name": "Craft Projectiles",
             "Category": "Asset Moves",
+            "Triggers": [
+              {
+                "Text": "When replenish your ammo by crafting projectiles",
+                "Stat": ["Wits"]
+              }
+            ],
             "Asset": "Archer",
-            "Stats": ["Wits"],
             "Text": "Your bow has 6 ammo. When you [Strike](#Strike) or [Clash](#Clash), you may add +1 or +2 and suffer that amount as -ammo. To replenish your ammo by crafting projectiles, roll +wits. On a strong hit, take your action die value as +ammo. On a weak hit, as above, but [Sacrifice Resources](#Sacrifice-Resources) (-1). On a miss, [Sacrifice Resources](#Sacrifice-Resources) (-1)."
           },
           "Enabled": true
         },
         {
-          "Text": "You may [Enter the Fray](#Enter-the-Fray) by unleashing a volley of bow shots. If you do, roll +ammo and suffer -1 ammo. On a hit, mark progress."
+          "Text": "You may [Enter the Fray](#Enter-the-Fray) by unleashing a volley of bow shots. If you do, roll +ammo and suffer -1 ammo. On a hit, mark progress.",
+          "Alter Moves": [
+            {
+              "Name": "Enter the Fray",
+              "Triggers": [
+                {
+                  "Text": "When you [Enter the Fray](#Enter-the-Fray) by unleashing a volley of bow shots",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you load a specialized projectile such as a zip line, explosive, or electromagnetic disrupter, suffer -1 ammo. When you then take your shot by making a move, you may set the value of your action die to 5. On a hit, envision the effects and take +1 momentum."
         }
-      ]
+      ],
+      "Condition Meter": {
+        "Name": "Ammo",
+        "Value": 6
+      }
     },
     {
       "Name": "Armored",
@@ -118,6 +166,30 @@
       "Abilities": [
         {
           "Text": "Your banshee companion accompanies you on planetside missions, using its echolocation to help guide the way. When you ride your banshee as you [Undertake an Expedition](#Undertake-an-Expedition) or [Set a Course](#Set-a-Course), you may roll +its health.",
+          "Alter Moves": [
+            {
+              "Name": "Undertake an Expedition",
+              "Triggers": [
+                {
+                  "Text": "When you ride your banshee as you [Undertake an Expedition](#Undertake-an-Expedition)",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Set a Course",
+              "Triggers": [
+                {
+                  "Text": "When you ride your banshee as you [Set a Course](#Set-a-Course)",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ],
           "Enabled": true
         },
         {
@@ -127,7 +199,7 @@
           "Text": "When you make a combat move and roll a 1 on your action die, the banshee senses the danger and emits a powerful scream to alert you or distract your foes. You may reroll that die, but must first [Lose Momentum](#Lose-Momentum) (-1)."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 4
       }
@@ -138,11 +210,11 @@
       "Description": "If you wield a bladed weapon...",
       "Abilities": [
         {
-          "Text": "When you [Clash](#Clash) or [Strike](#Strike) in close-quarters, add +1. On a strong hit with a match, mark progress. Also, once per fight, you may reroll any dice as you make a move to attack or defend using your blade.",
+          "Text": "When you [Clash](#Clash) or [Strike](#Strike) in close quarters, add +1. On a strong hit with a match, mark progress. Also, once per fight, you may reroll any dice as you make a move to attack or defend using your blade.",
           "Enabled": true
         },
         {
-          "Text": "If you [Gain Ground](#Gain-Ground) by moving into close- quarters against your foe, choose your approach.\n\n  * Charge: Roll +heart, and mark progress on a hit.\n  * Evade: Roll +edge, and take +1 momentum on a hit."
+          "Text": "If you [Gain Ground](#Gain-Ground) by moving into close quarters against your foe, choose your approach.\n\n  * Charge: Roll +heart, and mark progress on a hit.\n  * Evade: Roll +edge, and take +1 momentum on a hit."
         },
         {
           "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) and bind the oath to your blade, add +1. On a hit, take +2 momentum or +2 spirit."
@@ -186,17 +258,17 @@
     {
       "Name": "Brawler",
       "Category": "Path",
-      "Description": "If you fight unarmed or with a close-quarters weapon...",
+      "Description": "If you fight unarmed or with a close quarters weapon...",
       "Abilities": [
         {
           "Text": "When you [Gain Ground](#Gain-Ground) by attempting to disarm, trip, shove, grapple, or stun your foe, add +1 and take +1 momentum on a hit.",
           "Enabled": true
         },
         {
-          "Text": "When you [Clash](#Clash) in close-quarters, you may draw on your momentum to gain advantage. If you do, [Lose Momentum](#Lose-Momentum) (-2) and choose one (before rolling).\n\n  * Aggressive: Count a weak hit as a strong hit.\n  * Defensive: Count a miss as a weak hit."
+          "Text": "When you [Clash](#Clash) in close quarters, you may draw on your momentum to gain advantage. If you do, [Lose Momentum](#Lose-Momentum) (-2) and choose one (before rolling).\n\n  * Aggressive: Count a weak hit as a strong hit.\n  * Defensive: Count a miss as a weak hit."
         },
         {
-          "Text": "When you [Enter the Fray](#Enter-the-Fray) already positioned in close-quarters against your foe, mark progress on a hit. On a strong hit with a match, your initial assault leaves them stunned; also take +2 momentum."
+          "Text": "When you [Enter the Fray](#Enter-the-Fray) already positioned in close quarters against your foe, mark progress on a hit. On a strong hit with a match, your initial assault leaves them stunned; also take +2 momentum."
         }
       ]
     },
@@ -210,13 +282,50 @@
           "Enabled": true
         },
         {
-          "Text": "When you use the threat of violence to [Compel](#Compel) or [Gain Ground](#Gain-Ground) while the bot brings its weapons to bear, you may roll +its health. If you do, take +1 momentum on a hit. On a strong hit with a match, the bot's display is especially persuasive; take another +1 momentum."
+          "Text": "When you use the threat of violence to [Compel](#Compel) or [Gain Ground](#Gain-Ground) while the bot brings its weapons to bear, you may roll +its health. If you do, take +1 momentum on a hit. On a strong hit with a match, the bot's display is especially persuasive; take another +1 momentum.",
+          "Alter Moves": [
+            {
+              "Name": "Compel",
+              "Triggers": [
+                {
+                  "Text": "When you use the threat of violence to [Compel](#Compel)",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Gain Ground",
+              "Triggers": [
+                {
+                  "Text": "When you [Gain Ground](#Gain-Ground) while the bot brings its weapons to bear",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "Text": "Once per fight, when you [React Under Fire](#React-Under-Fire) by using the bot to draw fire or create a diversion, roll +its health. On a strong hit, mark progress. On a weak hit, face the cost as normal, but then you are in control."
+          "Text": "Once per fight, when you [React Under Fire](#React-Under-Fire) by using the bot to draw fire or create a diversion, roll +its health. On a strong hit, mark progress. On a weak hit, face the cost as normal, but then you are in control.",
+          "Alter Moves": [
+            {
+              "Name": "React Under Fire",
+              "Triggers": [
+                {
+                  "Text": "Once per fight, when you [React Under Fire](#React-Under-Fire) by using the bot to draw fire or create a diversion",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 5
       }
@@ -246,13 +355,26 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Sojourn](#Sojourn) during a courier mission, you may roll +safety. On a strong hit, take +1 safety or +1 momentum."
+          "Text": "When you [Sojourn](#Sojourn) during a courier mission, you may roll +safety. On a strong hit, take +1 safety or +1 momentum.",
+          "Alter Moves": [
+            {
+              "Name": "Sojourn",
+              "Triggers": [
+                {
+                  "Text": "When you [Sojourn](#Sojourn) during a courier mission",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you [Fulfill Your Vow](#Fulfill-Your-Vow) to a connection by finishing a courier mission, you may [Develop Your Relationship](#Develop-Your-Relationship) and mark progress twice."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Safety",
         "Value": 5
       }
@@ -264,13 +386,63 @@
       "Abilities": [
         {
           "Text": "You worship a god, power, or entity. Give it a name and choose one of your stats to represent its nature. When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by calling on it for guidance or blessings, roll +linked stat. On a hit, take +1 momentum or +1 spirit. On a strong hit with a match, a miracle or sign manifests; take another +1 momentum or +1 spirit.",
-          "Enabled": true
+          "Enabled": true,
+          "Alter Moves": [
+            {
+              "Name": "Secure an Advantage",
+              "Triggers": [
+                {
+                  "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by calling on it for guidance or blessings",
+                  "Stat": {
+                    "Options": ["Asset Linked Stat"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Gain Ground",
+              "Triggers": [
+                {
+                  "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by calling on it for guidance or blessings",
+                  "Stat": {
+                    "Options": ["Asset Linked Stat"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) in service to your faith, roll +linked stat. On a strong hit, mark progress. When you [Fulfill Your Vow](#Fulfill-Your-Vow) on a divine quest (formidable or greater) and score a hit, also mark 2 ticks on your bonds legacy track."
+          "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) in service to your faith, roll +linked stat. On a strong hit, mark progress. When you [Fulfill Your Vow](#Fulfill-Your-Vow) on a divine quest (formidable or greater) and score a hit, also mark 2 ticks on your bonds legacy track.",
+          "Alter Moves": [
+            {
+              "Name": "Swear an Iron Vow",
+              "Triggers": [
+                {
+                  "Text": "When you [Swear an Iron Vow](#Swear-an-Iron-Vow) in service to your faith",
+                  "Stat": {
+                    "Options": ["Asset Linked Stat"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "Text": "When you [Hearten](#Hearten) through contemplation or sharing of your faith, you may roll +linked stat. If you do, take +1 spirit or +1 momentum on a strong hit."
+          "Text": "When you [Hearten](#Hearten) through contemplation or sharing of your faith, you may roll +linked stat. If you do, take +1 spirit or +1 momentum on a strong hit.",
+          "Alter Moves": [
+            {
+              "Name": "Hearten",
+              "Triggers": [
+                {
+                  "Text": "When you [Hearten](#Hearten) through contemplation or sharing of your faith",
+                  "Stat": {
+                    "Options": ["Asset Linked Stat"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -301,7 +473,14 @@
             "Name": "Read Heart",
             "Category": "Asset Moves",
             "Asset": "Empath",
-            "Stats": ["Heart"],
+            "Triggers": [
+              {
+                "Text": "When you read the intent, emotions, or memories of a nearby being",
+                "Stat": {
+                  "Options": ["Heart"]
+                }
+              }
+            ],
             "Text": "When you read the intent, emotions, or memories of a nearby being, roll +heart. On a strong hit, you glimpse a helpful aspect of their inner self. Envision what you learn, take +2 momentum, and add +1 if you use that insight while making a move to interact with them in this scene. On a weak hit, the visions are murky; take +1 momentum. On a miss, you reveal a troubling motive or secret; [Pay the Price](#Pay-the-Price)."
           }
         },
@@ -309,7 +488,20 @@
           "Text": "As above, and if you score a hit as you read them, you may subtly influence their attitude or actions, such as making a hostile being hestitate. Take another +1 momentum. If in a fight, mark progress."
         },
         {
-          "Text": "When you [Face Danger](#Face-Danger) to soothe a being's distress by creating an empathic bond, roll +spirit and take +1 momentum on a hit. If they are an ally, also give them +2 spirit on a hit."
+          "Text": "When you [Face Danger](#Face-Danger) to soothe a being's distress by creating an empathic bond, roll +spirit and take +1 momentum on a hit. If they are an ally, also give them +2 spirit on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) to soothe a being's distress by creating an empathic bond",
+                  "Stat": {
+                    "Options": ["Spirit"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -345,7 +537,7 @@
           "Text": "When you [Withstand Damage](#Withstand-Damage), you may reroll one challenge die."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 6
       }
@@ -365,7 +557,7 @@
           "Text": "When you make a move to outrun a threat and have at least 1 cargo, you may first lighten your load by dropping cargo. If you do, suffer -cargo by the amount dropped, add +that amount, and take +2 momentum on a hit."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Cargo",
         "Value": 3,
         "Starts At": 0
@@ -414,7 +606,14 @@
             "Name": "Gather Energy",
             "Category": "Asset Moves",
             "Asset": "Firebrand",
-            "Stats": ["Spirit"],
+            "Triggers": [
+              {
+                "Text": "When you rest and meditate to gather fiery energy",
+                "Stat": {
+                  "Options": ["Spirit"]
+                }
+              }
+            ],
             "Text": "You wield fiery energy. When you rest and meditate to gather this energy, roll +spirit. On a strong hit, take up to +3 fire. On a weak hit, take +2. On a miss, take +2 fire but [Endure Harm](#Endure-Harm) (-2). Your max fire is +5. When you make moves aided by this energy to attack or overcome obstacles, add +2 and suffer -1 fire."
           }
         },
@@ -425,7 +624,7 @@
           "Text": "When you have at least +3 fire, you may [Gain Ground](#Gain-Ground) or [Strike](#Strike) by unleashing hell. If you do, take an automatic strong hit and mark progress. Then, set your fire to 0."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Fire",
         "Value": 5,
         "Starts At": 0
@@ -446,7 +645,7 @@
           "Text": "When you [Fulfill Your Vow](#Fulfill-Your-Vow) (extreme or greater) by clearing your name or defeating the power or authority who marked you as a fugitive, gain this ability at no cost. You may then exchange this asset for another with the same number of marked abilities."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Fugitive",
         "Value": 3,
         "Starts At": 0
@@ -484,7 +683,7 @@
           "Text": "When you [Endure Stress](#Endure-Stress) in the company of the glowcat, add +1. On a strong hit with a match, take +momentum equal to their health."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 3
       }
@@ -499,7 +698,15 @@
             "Name": "Ready Grappler",
             "Category": "Asset Moves",
             "Asset": "Grappler",
-            "Stats": ["Command Vehicle Integrity", "Wits"],
+            "Triggers": [
+              {
+                "Text": "When you take a minute or so to ready the grappler",
+                "Stat": {
+                  "Method": "highest",
+                  "Options": ["Attached Asset Condition Meter", "Wits"]
+                }
+              }
+            ],
             "Text": "Your grappler can disrupt systems and snare machines and vehicles with a magnetic tether. When you take a minute or so to ready the grappler, roll +integrity or +wits. On a strong hit, the grappler is charged and may be fired. On a weak hit, charging requires extra time or focus and you [Lose Momentum](#Lose-Momentum) (-1). On a miss, charging fails and you must [Withstand Damage](#Withstand-Damage) (-2). If you make a move to attack a foe or overcome an obstacle by firing the grappler, take an automatic strong hit."
           }
         },
@@ -625,10 +832,10 @@
           "Text": "When you fire the bike's afterburner and make a move to perform a risky maneuver, you may add +integrity and take +2 momentum on a strong hit. If you do, count a weak hit as a miss."
         },
         {
-          "Text": "When you make a move while maneuvering your bike and burn momentum to improve your result, roll your action die. On a 5 or 6, do not reset momentum.NAME"
+          "Text": "When you make a move while maneuvering your bike and burn momentum to improve your result, roll your action die. On a 5 or 6, do not reset momentum."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 3
       }
@@ -647,7 +854,14 @@
             "Name": "Draw Reserves",
             "Category": "Asset Moves",
             "Asset": "Internal Refit",
-            "Stats": ["Command Vehicle Integrity"],
+            "Triggers": [
+              {
+                "Text": "When you [Sacrifice Resources](#Sacrifice-Resources) and your supply is reduced to 0",
+                "Stat": {
+                  "Options": ["Attached Asset Condition Meter"]
+                }
+              }
+            ],
             "Text": "Your vessel is stocked with reserves. When you [Sacrifice Resources](#Sacrifice-Resources) and your supply is reduced to 0, first roll +integrity instead of marking unprepared. On a strong hit, take +1 supply. Otherwise, mark unprepared."
           }
         },
@@ -716,7 +930,10 @@
           "Enabled": true
         },
         {
-          "Text": "When you risk your reputation to overcome failure, reroll any dice. If you score a miss, make a mark on this asset. When you have 5 such marks, discard this asset."
+          "Text": "When you risk your reputation to overcome failure, reroll any dice. If you score a miss, make a mark on this asset. When you have 5 such marks, discard this asset.",
+          "Counter": {
+            "Name": "Marks"
+          }
         },
         {
           "Text": "Once per fight, when you [Gain Ground](#Gain-Ground) through threat or leadership, you may reroll any dice and mark progress on a hit."
@@ -770,7 +987,7 @@
           "Text": "When you have at least 3 ammo and [Take Decisive Action](#Take-Decisive-Action) by unleashing all of your missiles, roll an action die before making the progress roll. If your action die is equal to or less than ammo, you may reroll each challenge die. Then, set ammo to 0."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Ammo",
         "Value": 5
       }
@@ -838,7 +1055,12 @@
             "Name": "Scrape By",
             "Category": "Asset Moves",
             "Asset": "Outcast",
-            "Stats": ["Wits"],
+            "Triggers": [
+              {
+                "Text": "When you [Sacrifice Resources](#Sacrifice-Resources) and your supply is reduced to 0",
+                "Stat": ["Wits"]
+              }
+            ],
             "Text": "When you [Sacrifice Resources](#Sacrifice-Resources) and your supply is reduced to 0, roll +wits. On a strong hit, you manage to scrape by and take +1 supply. On a weak hit, you may [Lose Momentum](#Lose-Momentum) (-1) in exchange for +1 supply. On a miss, your supply remains at 0 and you [Lose Momentum](#Lose-Momentum) (-1)."
           }
         },
@@ -854,13 +1076,50 @@
       "Abilities": [
         {
           "Text": "Your AI module keeps watch over the vehicle's systems and sensor data. When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by talking through a situation with the overseer, you may roll +integrity. If you do, take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Secure an Advantage",
+              "Triggers": [
+                {
+                  "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by talking through a situation with the overseer",
+                  "Stat": {
+                    "Options": ["Attached Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Gain Ground",
+              "Triggers": [
+                {
+                  "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gain Ground](#Gain-Ground) by talking through a situation with the overseer",
+                  "Stat": {
+                    "Options": ["Attached Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ],
           "Enabled": true
         },
         {
           "Text": "When you [Withstand Damage](#Withstand-Damage) and roll on the miss table, the overseer will do what it can to help. Roll twice on the table and choose either result."
         },
         {
-          "Text": "The overseer can pilot the vehicle independently. When you [Face Danger](#Face-Danger) by handing over control to the AI in an emergency, or to summon the vehicle remotely within a hazardous situation, you may roll +integrity. If you do, take +1 momentum on a hit."
+          "Text": "The overseer can pilot the vehicle independently. When you [Face Danger](#Face-Danger) by handing over control to the AI in an emergency, or to summon the vehicle remotely within a hazardous situation, you may roll +integrity. If you do, take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) by handing over control to the AI in an emergency, or to summon the vehicle remotely within a hazardous situation",
+                  "Stat": {
+                    "Options": ["Attached Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -880,7 +1139,7 @@
           "Text": "If you make a move in a charged interaction and the value of your action die is less than the bot's health, you may reroll it as the bot interjects with their commentary or advice."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 3
       }
@@ -930,7 +1189,20 @@
           "Text": "When you [Take Decisive Action](#Take-Decisive-Action) by bringing death to a foe, you may burn momentum to zero out one (not both) of the challenge dice if your momentum is greater than the value of that die. If you do, [Endure Stress](#Endure-Stress) (-2)."
         },
         {
-          "Text": "When you [Gather Information](#Gather-Information) by studying a place where death left its mark, you may roll +heart. If you do, take +1 momentum on a hit. On a strong hit with a match, you experience a detailed vision or insightful revelation of what occurred here; take +1 momentum more."
+          "Text": "When you [Gather Information](#Gather-Information) by studying a place where death left its mark, you may roll +heart. If you do, take +1 momentum on a hit. On a strong hit with a match, you experience a detailed vision or insightful revelation of what occurred here; take +1 momentum more.",
+          "Alter Moves": [
+            {
+              "Name": "Gather Information",
+              "Triggers": [
+                {
+                  "Text": "When you [Gather Information](#Gather-Information) by studying a place where death left its mark",
+                  "Stat": {
+                    "Options": ["Heart"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -941,6 +1213,18 @@
       "Abilities": [
         {
           "Text": "Your rockhorn companion uses its resilient, stone-like hide and brute strength to overcome threats. When you make a move by sending the rockhorn to directly attack a foe or smash an obstacle, roll +its health.",
+          "Alter Moves": [
+            {
+              "Triggers": [
+                {
+                  "Text": "When you make a move by sending the rockhorn to directly attack a foe or smash an obstacle",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ],
           "Enabled": true
         },
         {
@@ -950,7 +1234,7 @@
           "Text": "The rockhorn will come to your aid in your most vulnerable moments. When you [Endure Harm](#Endure-Harm) or [Endure Stress](#Endure-Stress) and roll a miss, you may reroll your action die if its value is less than the rockhorn's health."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 5
       }
@@ -965,13 +1249,37 @@
           "Enabled": true
         },
         {
-          "Text": "You may equip your rover with one module asset at no extra cost. When you WithstandDamage, the module can be broken or destroyed as with a command vehicle. If you reconfigure your rover, spend 1 experience, discard the module, and equip another with the same number of marked abilities."
+          "Text": "You may equip your rover with one module asset at no extra cost. When you [Withstand Damage](#Withstand-Damage), the module can be broken or destroyed as with a command vehicle. If you reconfigure your rover, spend 1 experience, discard the module, and equip another with the same number of marked abilities."
         },
         {
-          "Text": "When you [Face Danger](#Face-Danger) or [React Under Fire](#React-Under-Fire) by taking a hit or crashing through an obstacle, you may roll +integrity. If you do, take +1 momentum on a hit."
+          "Text": "When you [Face Danger](#Face-Danger) or [React Under Fire](#React-Under-Fire) by taking a hit or crashing through an obstacle, you may roll +integrity. If you do, take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) or [React Under Fire](#React-Under-Fire) by taking a hit or crashing through an obstacle",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "React Under Fire",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) or [React Under Fire](#React-Under-Fire) by taking a hit or crashing through an obstacle",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 5
       }
@@ -988,7 +1296,20 @@
           "Text": "When you [Face Danger](#Face-Danger) to cobble together an ad hoc tool, device, or weapon, envision what you intend to create. On a hit, you may add +1 when making a move aided by the item. If you roll a 1 on your action die while using the item, it is permanently broken, lost, or depleted."
         },
         {
-          "Text": "When you [Check Your Gear](#Check-Your-Gear), roll +wits or +supply (whichever is highest) and take +1 momentum on a hit."
+          "Text": "When you [Check Your Gear](#Check-Your-Gear), roll +wits or +supply (whichever is highest) and take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Check Your Gear",
+              "Triggers": [
+                {
+                  "Text": "When you [Check Your Gear](#Check-Your-Gear)",
+                  "Stat": {
+                    "Options": ["Wits", "Supply"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1001,7 +1322,20 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Make a Connection](#Make-a-Connection) to search out a new contact, you may roll +shadow. If you do, reroll any dice on a miss and envision how your reputation or underworld contacts lead you to a disreputable connection."
+          "Text": "When you [Make a Connection](#Make-a-Connection) to search out a new contact, you may roll +shadow. If you do, reroll any dice on a miss and envision how your reputation or underworld contacts lead you to a disreputable connection.",
+          "Alter Moves": [
+            {
+              "Name": "Make a Connection",
+              "Triggers": [
+                {
+                  "Text": "When you [Make a Connection](#Make-a-Connection) to search out a new contact",
+                  "Stat": {
+                    "Options": ["Shadow"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you make a quick escape or con your way out of a situation and burn momentum to gain a strong hit, take +1 momentum after you reset. If you envision how this momentary success leaves you fated for future trouble, mark 2 ticks on your quests legacy track."
@@ -1017,7 +1351,20 @@
           "Enabled": true
         },
         {
-          "Text": "When you focus or medidate to [Gather Information](#Gather-Information) about a place, being, or situation (in person or remotely), roll +spirit and take +1 momentum on a hit."
+          "Text": "When you focus or medidate to [Gather Information](#Gather-Information) about a place, being, or situation (in person or remotely), roll +spirit and take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Gather Information",
+              "Triggers": [
+                {
+                  "Text": "When you focus or medidate to [Gather Information](#Gather-Information) about a place, being, or situation (in person or remotely)",
+                  "Stat": {
+                    "Options": ["Spirit"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you or an ally roll a match as you [Sojourn](#Sojourn) in a community or [Undertake an Expedition](#Undertake-an-Expedition) within a site, you may envision gaining sudden and unbidden insight about the location. If you do, take +2 momentum."
@@ -1036,7 +1383,31 @@
           "Text": "When you [Secure an Advantage](#Secure-an-Advantage) or [Gather Information](#Gather-Information) by scanning your vehicle's surroundings or analyzing a nearby object, choose one and take +1 momentum on a hit.\n\n  * Manual scan: Add +1\n  * Automated scan: Instead of rolling the action die, make it the value of your vehicle's integrity"
         },
         {
-          "Text": "When you [Enter the Fray](#Enter-the-Fray) against an ambush, or [Face Danger](#Face-Danger) to detect a hidden threat, you may roll +integrity. If you do, reroll any dice and take +1 momentum on a hit."
+          "Text": "When you [Enter the Fray](#Enter-the-Fray) against an ambush, or [Face Danger](#Face-Danger) to detect a hidden threat, you may roll +integrity. If you do, reroll any dice and take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Enter the Fray",
+              "Triggers": [
+                {
+                  "Text": "When you [Enter the Fray](#Enter-the-Fray) against an ambush",
+                  "Stat": {
+                    "Options": ["Attached Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) to detect a hidden threat",
+                  "Stat": {
+                    "Options": ["Attached Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1050,13 +1421,48 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Face Danger](#Face-Danger), [Gain Ground](#Gain-Ground), or [React Under Fire](#React-Under-Fire) by maneuvering your pod through a hazardous or obstructed area, choose an approach and roll +integrity.\n\n  * Careful: Add +2 and [Lose Momentum](#Lose-Momentum) (-1)\n  * Reckless: Take +1 momentum on a hit"
+          "Text": "When you [Face Danger](#Face-Danger), [Gain Ground](#Gain-Ground), or [React Under Fire](#React-Under-Fire) by maneuvering your pod through a hazardous or obstructed area, choose an approach and roll +integrity.\n\n  * Careful: Add +2 and [Lose Momentum](#Lose-Momentum) (-1)\n  * Reckless: Take +1 momentum on a hit",
+          "Alter Moves": [
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) by maneuvering your pod through a hazardous or obstructed area",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Gain Ground",
+              "Triggers": [
+                {
+                  "Text": "When you [Gain Ground](#Gain-Ground) by maneuvering your pod through a hazardous or obstructed area",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "React Under Fire",
+              "Triggers": [
+                {
+                  "Text": "When you [React Under Fire](#React-Under-Fire) by maneuvering your pod through a hazardous or obstructed area",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you make a move while controlling the pod and push its capabilities to the limit, you may take an automatic strong hit. If you do, [Withstand Damage](#Withstand-Damage) (-2)."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 4
       }
@@ -1075,7 +1481,14 @@
             "Name": "Shroud in Darkness",
             "Category": "Asset Moves",
             "Asset": "Shade",
-            "Stats": ["Asset Track"],
+            "Triggers": [
+              {
+                "Text": "When you expand your veil to immerse your surroundings in darkness",
+                "Stat": {
+                  "Options": ["Shadow"]
+                }
+              }
+            ],
             "Text": "When you expand your veil to immerse your surroundings in darkness, roll +shadow. On a strong hit, the darkness extends to all adjacent spaces. On a weak hit, only your immediate surroundings are made dark. On a miss, you fail and draw unwanted attention."
           }
         },
@@ -1095,22 +1508,38 @@
             "Name": "Raise Shields",
             "Category": "Asset Moves",
             "Asset": "Shields",
-            "Stats": [
+            "Triggers": [
               {
-                "Highest of": ["Command Vehicle Integrity", "Wits"]
+                "Text": "When you raise your shields",
+                "Stat": {
+                  "Options": ["Attached Asset Condition Meter", "Wits"]
+                }
               }
             ],
             "Text": "When you raise your shields, roll +your vehicle's integrity or +wits. On a strong hit, set your shields to 4. On a weak hit, make them 3. On a miss, make them 2 but [Lose Momentum](#Lose-Momentum) (-1). Then, if you [Withstand Damage](#Withstand-Damage), ignore damage up to the value of your shields and suffer -1 shields. Raised shields last for a few minutes. If reduced to 0, they cannot be raised again for an hour or so."
           }
         },
         {
-          "Text": "You may [React Under Fire](#React-Under-Fire) by letting your shields take the blow. If you do, roll +shields and take +2 momentum on a hit."
+          "Text": "You may [React Under Fire](#React-Under-Fire) by letting your shields take the blow. If you do, roll +shields and take +2 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "React Under Fire",
+              "Triggers": [
+                {
+                  "Text": "When you [React Under Fire](#React-Under-Fire) by letting your shields take the blow",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you [Enter the Fray](#Enter-the-Fray) and score a strong hit, you may raise your shields to 3 without rolling. If you do, take +1 momentum."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Shields",
         "Value": 4,
         "Starts At": 0
@@ -1132,7 +1561,7 @@
           "Text": "You shuttle is sealed against high pressure environments, can travel underwater, and is more resistant to damage; when you [Withstand Damage](#Withstand-Damage), add +1."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 4
       }
@@ -1144,16 +1573,64 @@
       "Abilities": [
         {
           "Text": "Your unarmed flatbed hover-vehicle carries several people, gear, and cargo over land or water. When you [Undertake an Expedition](#Undertake-an-Expedition) or [Set a Course](#Set-a-Course), you may rely on the skiff's simple reliability and roll +integrity. If you do, take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Undertake an Expedition",
+              "Triggers": [
+                {
+                  "Text": "When you [Undertake an Expedition](#Undertake-an-Expedition) and rely on the skiff's simple reliability",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Set a Course",
+              "Triggers": [
+                {
+                  "Text": "When you [Set a Course](#Set-a-Course) and rely on the skiff's simple reliability",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ],
           "Enabled": true
         },
         {
-          "Text": "Your skiff is armed with a turreted cannon. When you [Strike](#Strike) or [Clash](#Clash) by firing the cannon, roll +integrity and take +1 momentum on a hit. On a strong hit with a match, your shots cause extra destruction or create havoc; mark progress."
+          "Text": "Your skiff is armed with a turreted cannon. When you [Strike](#Strike) or [Clash](#Clash) by firing the cannon, roll +integrity and take +1 momentum on a hit. On a strong hit with a match, your shots cause extra destruction or create havoc; mark progress.",
+          "Alter Moves": [
+            {
+              "Name": "Strike",
+              "Triggers": [
+                {
+                  "Text": "When you [Strike](#Strike) by firing the skiff's cannon",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Clash",
+              "Triggers": [
+                {
+                  "Text": "When you [Clash](#Clash) by firing the skiff's cannon",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "Your skiff is fully stocked. When you [Check Your Gear](#Check-Your-Gear), add +1 and take +1 momentum on a hit."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 4
       }
@@ -1171,10 +1648,34 @@
           "Text": "When you [Enter the Fray](#Enter-the-Fray) with the support of your sidekick, take +2 momentum on a hit. When you [Clash](#Clash) together, add +1."
         },
         {
-          "Text": "When your sidekick acts to get you out of a tough spot, you may [Face Danger](#Face-Danger) or [React Under Fire](#React-Under-Fire) and roll +their health (instead of your own stat). On a hit, take +1 momentum."
+          "Text": "When your sidekick acts to get you out of a tough spot, you may [Face Danger](#Face-Danger) or [React Under Fire](#React-Under-Fire) and roll +their health (instead of your own stat). On a hit, take +1 momentum.",
+          "Alter Moves": [
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When your sidekick acts to get you out of a tough spot",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "React Under Fire",
+              "Triggers": [
+                {
+                  "Text": "When your sidekick acts to get you out of a tough spot",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 4
       }
@@ -1205,7 +1706,20 @@
           "Enabled": true
         },
         {
-          "Text": "When you [Strike](#Strike) from a distance with time enough to line up your shot, you may roll +wits. If you do, mark progress on a hit."
+          "Text": "When you [Strike](#Strike) from a distance with time enough to line up your shot, you may roll +wits. If you do, mark progress on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Strike",
+              "Triggers": [
+                {
+                  "Text": "When you [Strike](#Strike) from a distance with time enough to line up your shot",
+                  "Stat": {
+                    "Options": ["Wits"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you [Secure an Advantage](#Secure-an-Advantage) by studying a distant situation through the scope of your rifle, or [Gain Ground](#Gain-Ground) by readying your shot and taking careful aim, you may sacrifice time in exchange for greater certainty. If you do (decide before rolling), [Lose Momentum](#Lose-Momentum) (-1, -2, or -3) and add that amount. Then, take +1 momentum on a strong hit."
@@ -1219,6 +1733,19 @@
       "Abilities": [
         {
           "Text": "Your snub fighter carries a single pilot for space or atmospheric flight and combat. When you [Enter the Fray](#Enter-the-Fray), you may roll +integrity; if you do, take +2 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Enter the Fray",
+              "Triggers": [
+                {
+                  "Text": "When you [Enter the Fray](#Enter-the-Fray) in your snub fighter",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ],
           "Enabled": true
         },
         {
@@ -1228,13 +1755,12 @@
           "Text": "When you personally defeat a notable foe in your snub fighter, envision the victory mark you make on the fuselage. Track your victories in this box. For every five, mark 2 ticks on your quests legacy track."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 4
       },
       "Counter": {
-        "Name": "Victory Marks",
-        "Starts At": 0
+        "Name": "Victory Marks"
       }
     },
     {
@@ -1253,7 +1779,7 @@
           "Text": "With a moment's rest, the sprite can mend its form and return automatically to max health."
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 2
       }
@@ -1271,10 +1797,23 @@
           "Text": "When you [Finish an Expedition](#Finish-an-Expedition) (dangerous or greater) in your starship and score a hit, this journey strengthened your ties to your ship and any fellow travelers. You and your allies may mark 1 tick on your bonds legacy track."
         },
         {
-          "Text": "When you [Withstand Damage](#Withstand-Damage), you may roll +heart. If you do, [Endure Stress](#Endure-Stress) (-1) on a weak hit or miss."
+          "Text": "When you [Withstand Damage](#Withstand-Damage), you may roll +heart. If you do, [Endure Stress](#Endure-Stress) (-1) on a weak hit or miss.",
+          "Alter Moves": [
+            {
+              "Name": "Withstand Damage",
+              "Triggers": [
+                {
+                  "Text": "When you [Withstand Damage](#Withstand-Damage) to your starship",
+                  "Stat": {
+                    "Options": ["Heart"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Integrity",
         "Value": 5
       }
@@ -1291,7 +1830,20 @@
           "Text": "When you [Undertake an Expedition](#Undertake-an-Expedition) (+shadow), and roll a 1 on your action die, you may reroll it."
         },
         {
-          "Text": "When you are poised to [Strike](#Strike) from hiding, you may roll +shadow. If you do, choose one (before rolling).\n\n  * Strike true: Reroll any dice.\n  * Strike hard: Mark progress on a hit.\n\nOn a strong hit with a match, you also remain totally undetected; take +2 momentum and add +1 on your next [Strike](#Strike)."
+          "Text": "When you are poised to [Strike](#Strike) from hiding, you may roll +shadow. If you do, choose one (before rolling).\n\n  * Strike true: Reroll any dice.\n  * Strike hard: Mark progress on a hit.\n\nOn a strong hit with a match, you also remain totally undetected; take +2 momentum and add +1 on your next [Strike](#Strike).",
+          "Alter Moves": [
+            {
+              "Name": "Strike",
+              "Triggers": [
+                {
+                  "Text": "When you are poised to [Strike](#Strike) from hiding",
+                  "Stat": {
+                    "Options": ["Shadow"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1305,13 +1857,50 @@
           "Enabled": true
         },
         {
-          "Text": "Once per expedition, when you [Secure an Advantage](#Secure-an-Advantage) by sending the bot to scout ahead, roll +its health. On a hit, also mark progress on the expedition. On a strong hit with a match, the bot uncovers an unexpected feature or location; envision what it reveals and mark one tick on your discoveries legacy track."
+          "Text": "Once per expedition, when you [Secure an Advantage](#Secure-an-Advantage) by sending the bot to scout ahead, roll +its health. On a hit, also mark progress on the expedition. On a strong hit with a match, the bot uncovers an unexpected feature or location; envision what it reveals and mark one tick on your discoveries legacy track.",
+          "Alter Moves": [
+            {
+              "Name": "Secure an Advantage",
+              "Triggers": [
+                {
+                  "Text": "Once per expedition, when you [Secure an Advantage](#Secure-an-Advantage) by sending the bot to scout ahead",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "Text": "When you [Explore a Waypoint](#Explore-a-Waypoint) aided by the bot's sensors, or [Face Danger](#Face-Danger) to detect a threat, roll +its health and take +1 momentum on a hit."
+          "Text": "When you [Explore a Waypoint](#Explore-a-Waypoint) aided by the bot's sensors, or [Face Danger](#Face-Danger) to detect a threat, roll +its health and take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Explore a Waypoint",
+              "Triggers": [
+                {
+                  "Text": "When you [Explore a Waypoint](#Explore-a-Waypoint) aided by the bot's sensors",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Face Danger",
+              "Triggers": [
+                {
+                  "Text": "When you [Face Danger](#Face-Danger) to detect a threat",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 3
       }
@@ -1331,13 +1920,14 @@
         {
           "Text": "The symbiote gains power and has +3 health.",
           "Alter Properties": {
-            "Track": null,
-            "Name": "Health",
-            "Value": 3
+            "Condition Meter": {
+              "Name": "Health",
+              "Value": 3
+            }
           }
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 2
       }
@@ -1364,6 +1954,30 @@
       "Abilities": [
         {
           "Text": "When you [Sojourn](#Sojourn) or [Compel](#Compel), you may roll +supply. If you do, [Sacrifice Resources](#Sacrifice-Resources) (-1).",
+          "Alter Moves": [
+            {
+              "Name": "Sojourn",
+              "Triggers": [
+                {
+                  "Text": "When you [Sojourn](#Sojourn)",
+                  "Stat": {
+                    "Options": ["Supply"]
+                  }
+                }
+              ]
+            },
+            {
+              "Name": "Compel",
+              "Triggers": [
+                {
+                  "Text": "When you [Compel](#Compel)",
+                  "Stat": {
+                    "Options": ["Supply"]
+                  }
+                }
+              ]
+            }
+          ],
           "Enabled": true
         },
         {
@@ -1381,16 +1995,41 @@
       "Abilities": [
         {
           "Text": "Your utility bot companion has helpful tools at-hand. When you make a move by directing it to access a system, cut through an obstacle, analyze a mechanical issue, or assemble or disassemble a device, roll +its health and take +1 momentum on a hit. On a strong hit with a match, it reveals an unexpected advantage or insight; take another +1 momentum.",
-          "Enabled": true
+          "Enabled": true,
+          "Alter Moves": [
+            {
+              "Triggers": [
+                {
+                  "Text": "When you make a move by directing the utility bot to access a system, cut through an obstacle, analyze a mechanical issue, or assemble or disassemble a device",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "Text": "When you [Repair](#Repair) aided by the bot, add +1. On a miss, it reveals an alternative approach which will take extra time; you may reroll any dice, but first [Lose Momentum](#Lose-Momentum) (-2)."
         },
         {
-          "Text": "When you [Check Your Gear](#Check-Your-Gear) to see if the bot has a specific tool or technique available, roll +its health and take +1 momentum on a hit."
+          "Text": "When you [Check Your Gear](#Check-Your-Gear) to see if the bot has a specific tool or technique available, roll +its health and take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Check Your Gear",
+              "Triggers": [
+                {
+                  "Text": "When you [Check Your Gear](#Check-Your-Gear) to see if the bot has a specific tool or technique available",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 4
       }
@@ -1407,6 +2046,14 @@
             "Name": "Seek Safe Haven",
             "Category": "Asset Moves",
             "Asset": "Vanguard",
+            "Triggers": [
+              {
+                "Text": "When you seek safe haven in a remote environment",
+                "Stat": {
+                  "Options": ["Discoveries"]
+                }
+              }
+            ],
             "Progress Move": true,
             "Text": "When you seek safe haven in a remote environment, make a progress roll against your discoveries legacy track. On a strong hit, you find or establish a safe location and may add +2 whenever you make a recovery move there. If you roll a miss when making a recovery move, the place is no longer safe. On a weak hit, as above, but add +1 when you make a recovery move. On a miss, you are drawn into a bad situation and must [Pay the Price](#Pay-the-Price)."
           }
@@ -1415,7 +2062,20 @@
           "Text": "When you make a move +wits and score a strong hit with a match, your hard-won experience lends insight; take +1 momentum."
         },
         {
-          "Text": "When you [Endure Stress](#Endure-Stress), you may roll +wits. If you do, take +1 momentum on a hit."
+          "Text": "When you [Endure Stress](#Endure-Stress), you may roll +wits. If you do, take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Endure Stress",
+              "Triggers": [
+                {
+                  "Text": "When you [Endure Stress](#Endure-Stress)",
+                  "Stat": {
+                    "Options": ["Wits"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1494,13 +2154,37 @@
           "Enabled": true
         },
         {
-          "Text": "The voidglider is harnessed and trained as a mount, and can be ridden for short-range spacebound transport. When you are riding the voidglider and make a move to detect or evade a threat by relying on its instincts, roll +its health."
+          "Text": "The voidglider is harnessed and trained as a mount, and can be ridden for short-range spacebound transport. When you are riding the voidglider and make a move to detect or evade a threat by relying on its instincts, roll +its health.",
+          "Alter Moves": [
+            {
+              "Triggers": [
+                {
+                  "Text": "When you are riding the voidglider and make a move to detect or evade a threat by relying on its instincts",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "Text": "When you make a move by signaling the voidglider to distract or attack a spacebound foe, roll +its health and take +1 momentum on a hit."
+          "Text": "When you make a move by signaling the voidglider to distract or attack a spacebound foe, roll +its health and take +1 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Triggers": [
+                {
+                  "Text": "When you make a move by signaling the voidglider to distract or attack a spacebound foe",
+                  "Stat": {
+                    "Options": ["Asset Condition Meter"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
-      "Track": {
+      "Condition Meter": {
         "Name": "Health",
         "Value": 4
       }
@@ -1517,7 +2201,20 @@
           "Text": "When you [Strike](#Strike) using a personal weapon which has limited ammo or a single-use mode, add +1 and mark progress on a hit. Then, [Sacrifice Resources](#Sacrifice-Resources) (-1). If you score a strong hit on this attack and immediately [Take Decisive Action](#Take-Decisive-Action), you may retain the value of one challenge die from your [Strike](#Strike) action instead of rolling that die."
         },
         {
-          "Text": "When you [Secure an Advantage](#Secure-an-Advantage) by suiting up and gathering your gear for a perilous encounter or mission, you may roll +supply. If you do, take +2 momentum on a hit."
+          "Text": "When you [Secure an Advantage](#Secure-an-Advantage) by suiting up and gathering your gear for a perilous encounter or mission, you may roll +supply. If you do, take +2 momentum on a hit.",
+          "Alter Moves": [
+            {
+              "Name": "Secure an Advantage",
+              "Triggers": [
+                {
+                  "Text": "When you [Secure an Advantage](#Secure-an-Advantage) by suiting up and gathering your gear for a perilous encounter or mission",
+                  "Stat": {
+                    "Options": ["Supply"]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
