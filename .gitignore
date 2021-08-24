@@ -350,3 +350,4 @@ healthchecksdb
 .vscode/launch.json
 .vscode/tasks.json
 /TheOracle/ChannelSettings.sqlite
+.env
