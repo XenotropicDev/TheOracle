@@ -1,6 +1,6 @@
 {
   "Name": "Moves",
-  "Source": { "Name": "Starforged Backer Preview", "Date": "081921" },
+  "Source": { "Name": "Starforged Backer Preview", "Version": "081921" },
   "Moves": [
     {
       "Name": "Begin a Session",

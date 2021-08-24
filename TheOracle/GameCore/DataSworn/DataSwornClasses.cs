@@ -25,6 +25,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class AlterProperties
     {
+        [JsonProperty(PropertyName = "Condition Meter")]
         public Track Track { get; set; }
 
         public AlterProperties DeepCopy()
@@ -43,6 +44,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Description { get; set; }
         public string[] Fields { get; set; }
         public string Name { get; set; }
+        [JsonProperty(PropertyName = "Condition Meter")]
         public Track Track { get; set; }
     }
 
