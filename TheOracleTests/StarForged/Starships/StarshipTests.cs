@@ -22,7 +22,6 @@ namespace TheOracle.StarForged.Starships.Tests
 
                     ship.GetEmbedBuilder();
                     Assert.IsTrue(!ship.Mission.Contains("2x"));
-                    Assert.IsTrue(!ship.Mission.Contains("Roll twice"));
                 }
                 catch (Exception)
                 {

@@ -351,6 +351,3 @@ healthchecksdb
 .vscode/tasks.json
 /TheOracle/ChannelSettings.sqlite
 .env
-.gitignore
-.prettierignore
-ChannelSettings.sqlite
