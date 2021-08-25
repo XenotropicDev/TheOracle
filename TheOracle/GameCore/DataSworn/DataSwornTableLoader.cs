@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TheOracle.GameCore.DataSworn;
 using TheOracle.GameCore.Oracle.DataSworn;
 
@@ -18,6 +19,8 @@ namespace TheOracle.GameCore.Oracle
                     {
                         foreach (var req in values)
                         {
+
+
                             tables.Add(new OracleTable()
                             {
                                 OracleInfo = info,
@@ -31,12 +34,18 @@ namespace TheOracle.GameCore.Oracle
                                 Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table),
                                 Requires = req
                             });
+
+
                         }
                     }
                 }
             }
             else
             {
+                List<string> searchTags = new List<string>() { info.Name, info.Parent };
+                searchTags.AddRange(info.Requires?.Life ?? Array.Empty<string>());
+                searchTags.AddRange(info.Requires?.Location ?? Array.Empty<string>());
+
                 tables.Add(new OracleTable()
                 {
                     OracleInfo = info,
@@ -46,7 +55,7 @@ namespace TheOracle.GameCore.Oracle
                     Category = info.Category,
                     Game = game,
                     Name = oracle.Name,
-                    SearchTags = new List<string>() {info.Name, info.Parent },
+                    SearchTags = searchTags,
                     Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table)
                 });
             }
@@ -59,6 +68,10 @@ namespace TheOracle.GameCore.Oracle
                 {
                     if (childTable.Requires == null)
                     {
+                        List<string> searchTags = new List<string>() { info.Name, info.Parent, oracle.Name };
+                        searchTags.AddRange(childTable.Requires?.Life ?? Array.Empty<string>());
+                        searchTags.AddRange(childTable.Requires?.Location ?? Array.Empty<string>());
+                        
                         tables.Add(new OracleTable()
                         {
                             OracleInfo = info,
@@ -69,7 +82,7 @@ namespace TheOracle.GameCore.Oracle
                             Game = game,
                             Name = oracle.Name,
                             Requires = null,
-                            SearchTags = new List<string>() {info.Name, info.Parent, oracle.Name },
+                            SearchTags = searchTags,
                             Oracles = ConverterHelpers.DataSwornTableToStandardOracle(childTable.Table)
                         });
 
@@ -83,6 +96,10 @@ namespace TheOracle.GameCore.Oracle
                         {
                             foreach (var req in values)
                             {
+                                List<string> searchTags = new List<string>() { info.Name, info.Parent, oracle.Name };
+                                searchTags.AddRange(childTable.Requires?.Life ?? Array.Empty<string>());
+                                searchTags.AddRange(childTable.Requires?.Location ?? Array.Empty<string>());
+
                                 tables.Add(new OracleTable()
                                 {
                                     OracleInfo = info,
@@ -93,7 +110,7 @@ namespace TheOracle.GameCore.Oracle
                                     Game = game,
                                     Name = oracle.Name,
                                     Requires = req,
-                                    SearchTags = new List<string>() { info.Name, info.Parent, oracle.Name },
+                                    SearchTags = searchTags,
                                     Oracles = ConverterHelpers.DataSwornTableToStandardOracle(childTable.Table)
                                 });
                             }
