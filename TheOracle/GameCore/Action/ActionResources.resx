@@ -126,6 +126,9 @@
   <data name="Miss" xml:space="preserve">
     <value>Miss</value>
   </data>
+  <data name="MissImageURL" xml:space="preserve">
+    <value>https://i.imgur.com/3bAS1Rx.png</value>
+  </data>
   <data name="Opportunity" xml:space="preserve">
     <value>Strong Hit with a Match</value>
   </data>
@@ -136,10 +139,16 @@
   <data name="Strong Hit" xml:space="preserve">
     <value>Strong Hit</value>
   </data>
+  <data name="StrongHitImageURL" xml:space="preserve">
+    <value>https://i.imgur.com/yQeM5dI.png</value>
+  </data>
   <data name="VS" xml:space="preserve">
     <value>vs.</value>
   </data>
   <data name="Weak Hit" xml:space="preserve">
     <value>Weak Hit</value>
+  </data>
+  <data name="WeakHitImageURL" xml:space="preserve">
+    <value>https://i.imgur.com/xrKLiNC.png</value>
   </data>
 </root>

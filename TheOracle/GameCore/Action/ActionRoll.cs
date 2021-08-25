@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Discord;
+using System;
 using System.Linq;
 using TheOracle.Core;
-using Discord;
-using TheOracle.GameCore.Action;
 
 namespace TheOracle.GameCore.Action
 {
@@ -14,6 +13,24 @@ namespace TheOracle.GameCore.Action
         public int ChallengeDie1 { get; set; }
         public int ChallengeDie2 { get; set; }
         public int ActionScore { get => ActionDie + Modifiers.Sum() <= 10 ? ActionDie + Modifiers.Sum() : 10; }
+
+        public ActionRollResult RollResult
+        {
+            get
+            {
+                if (ActionScore > ChallengeDie1 && ActionScore > ChallengeDie2)
+                {
+                    if (ChallengeDie1 == ChallengeDie2) return ActionRollResult.MatchHit;
+                    return ActionRollResult.StrongHit;
+                }
+                if (ActionScore <= ChallengeDie1 && ActionScore <= ChallengeDie2)
+                {
+                    if (ChallengeDie1 == ChallengeDie2) return ActionRollResult.MatchMiss;
+                    return ActionRollResult.Miss;
+                }
+                return ActionRollResult.WeakHit;
+            }
+        }
 
         /// <summary>
         /// Rolls dice for a Ironsworn game action.
@@ -45,58 +62,53 @@ namespace TheOracle.GameCore.Action
 
         public string ResultText()
         {
-            // strong hit
-            if (ActionScore > ChallengeDie1 && ActionScore > ChallengeDie2)
+            return RollResult switch
             {
-                // match
-                if (ChallengeDie1 == ChallengeDie2) return $"{ActionResources.Opportunity}";
-                return ActionResources.Strong_Hit;
-            }
-            // miss
-            if (ActionScore <= ChallengeDie1 && ActionScore <= ChallengeDie2)
-            {
-              // match
-                if (ChallengeDie1 == ChallengeDie2) return $"{ActionResources.Complication}";
-                return ActionResources.Miss;
-            }
-            return ActionResources.Weak_Hit;
+                ActionRollResult.Miss => ActionResources.Miss,
+                ActionRollResult.WeakHit => ActionResources.Weak_Hit,
+                ActionRollResult.StrongHit => ActionResources.Strong_Hit,
+                ActionRollResult.MatchHit => ActionResources.Opportunity,
+                ActionRollResult.MatchMiss => ActionResources.Complication,
+                _ => "ERROR",
+            };
         }
-        public Color ResultColor() {
-      
-            if (ActionScore > ChallengeDie1 && ActionScore > ChallengeDie2)
-            // strong hit (Starforged blue)
+
+        public Color ResultColor()
+        {
+            return RollResult switch
             {
-              return new Color(0x47AEDD);
-            }
-            if (ActionScore <= ChallengeDie1 && ActionScore <= ChallengeDie2)
-            // miss (Starforged red)
-            {
-              return new Color(0xC50933);
-            }
-            // weak hit (Starforged purple)
-            return new Color(0x842A8C);
-    }
-            public string ResultIcon() {
-      
-            // strong hit
-            if (ActionScore > ChallengeDie1 && ActionScore > ChallengeDie2)
-            {
-              return new string("https://i.imgur.com/yQeM5dI.png");
-            }
-            // miss
-            if (ActionScore <= ChallengeDie1 && ActionScore <= ChallengeDie2)
-            {
-              return new string("https://i.imgur.com/3bAS1Rx.png");
-            }
-            // weak hit
-            return new string("https://i.imgur.com/xrKLiNC.png");
-    }
-    public EmbedBuilder toEmbed() {
-      return new EmbedBuilder().WithColor(ResultColor()).WithThumbnailUrl(ResultIcon()).WithTitle(ResultText()).WithDescription(ToString()).WithFooter(OverMaxMessage()).WithAuthor("Roll");
-    }
-        public string OverMaxMessage(){
-          return (ActionDie + Modifiers.Sum() > 10) ? "\n" + String.Format(ActionResources.OverMaxMessage, ActionDie + Modifiers.Sum()) : string.Empty;
+                ActionRollResult.Miss => new Color(0xC50933),
+                ActionRollResult.WeakHit => new Color(0x842A8C),
+                ActionRollResult.StrongHit => new Color(0x47AEDD),
+                ActionRollResult.MatchHit => new Color(0x47AEDD),
+                ActionRollResult.MatchMiss => new Color(0xC50933),
+                _ => new Color(0x842A8C),
+            };
         }
+
+        public string ResultIcon()
+        {
+            return RollResult switch
+            {
+                ActionRollResult.Miss => ActionResources.MissImageURL,
+                ActionRollResult.WeakHit => ActionResources.WeakHitImageURL,
+                ActionRollResult.StrongHit => ActionResources.StrongHitImageURL,
+                ActionRollResult.MatchHit => ActionResources.StrongHitImageURL,
+                ActionRollResult.MatchMiss => ActionResources.MissImageURL,
+                _ => ActionResources.MissImageURL,
+            };
+        }
+
+        public EmbedBuilder ToEmbed()
+        {
+            return new EmbedBuilder().WithColor(ResultColor()).WithThumbnailUrl(ResultIcon()).WithTitle(ResultText()).WithDescription(ToString()).WithFooter(OverMaxMessage()).WithAuthor("Roll");
+        }
+
+        public string OverMaxMessage()
+        {
+            return (ActionDie + Modifiers.Sum() > 10) ? "\n" + String.Format(ActionResources.OverMaxMessage, ActionDie + Modifiers.Sum()) : string.Empty;
+        }
+
         public override string ToString()
         {
             string modString = string.Empty;
