@@ -121,25 +121,34 @@
     <value>and</value>
   </data>
   <data name="Complication" xml:space="preserve">
-    <value>**Complication**</value>
+    <value>Miss with a Match</value>
   </data>
   <data name="Miss" xml:space="preserve">
-    <value>_Miss_</value>
+    <value>Miss</value>
+  </data>
+  <data name="MissImageURL" xml:space="preserve">
+    <value>https://i.imgur.com/3bAS1Rx.png</value>
   </data>
   <data name="Opportunity" xml:space="preserve">
-    <value>**Opportunity**</value>
+    <value>Strong Hit with a Match</value>
   </data>
   <data name="OverMaxMessage" xml:space="preserve">
     <value>Your action score was greater than 10, and has been adjusted to 10 (Ironsworn rule book page 8)</value>
     <comment>optional {0} will be replaced with the unmodified roll result, if included</comment>
   </data>
   <data name="Strong Hit" xml:space="preserve">
-    <value>_Strong Hit_</value>
+    <value>Strong Hit</value>
+  </data>
+  <data name="StrongHitImageURL" xml:space="preserve">
+    <value>https://i.imgur.com/yQeM5dI.png</value>
   </data>
   <data name="VS" xml:space="preserve">
     <value>vs.</value>
   </data>
   <data name="Weak Hit" xml:space="preserve">
-    <value>_Weak Hit_</value>
+    <value>Weak Hit</value>
+  </data>
+  <data name="WeakHitImageURL" xml:space="preserve">
+    <value>https://i.imgur.com/xrKLiNC.png</value>
   </data>
 </root>

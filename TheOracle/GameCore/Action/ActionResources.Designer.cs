@@ -19,7 +19,7 @@ namespace TheOracle.GameCore.Action {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ActionResources {
@@ -70,7 +70,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to **Complication**.
+        ///   Looks up a localized string similar to Miss with a Match.
         /// </summary>
         public static string Complication {
             get {
@@ -79,7 +79,7 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Miss_.
+        ///   Looks up a localized string similar to Miss.
         /// </summary>
         public static string Miss {
             get {
@@ -88,7 +88,16 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to **Opportunity**.
+        ///   Looks up a localized string similar to https://i.imgur.com/3bAS1Rx.png.
+        /// </summary>
+        public static string MissImageURL {
+            get {
+                return ResourceManager.GetString("MissImageURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strong Hit with a Match.
         /// </summary>
         public static string Opportunity {
             get {
@@ -106,11 +115,20 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Strong Hit_.
+        ///   Looks up a localized string similar to Strong Hit.
         /// </summary>
         public static string Strong_Hit {
             get {
                 return ResourceManager.GetString("Strong Hit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://i.imgur.com/yQeM5dI.png.
+        /// </summary>
+        public static string StrongHitImageURL {
+            get {
+                return ResourceManager.GetString("StrongHitImageURL", resourceCulture);
             }
         }
         
@@ -124,11 +142,20 @@ namespace TheOracle.GameCore.Action {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Weak Hit_.
+        ///   Looks up a localized string similar to Weak Hit.
         /// </summary>
         public static string Weak_Hit {
             get {
                 return ResourceManager.GetString("Weak Hit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://i.imgur.com/xrKLiNC.png.
+        /// </summary>
+        public static string WeakHitImageURL {
+            get {
+                return ResourceManager.GetString("WeakHitImageURL", resourceCulture);
             }
         }
     }
