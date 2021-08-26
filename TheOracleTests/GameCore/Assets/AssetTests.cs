@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using TheOracle.BotCore;
+using TheOracle.GameCore.Oracle.DataSworn;
 
 namespace TheOracle.GameCore.Assets.Tests
 {
@@ -57,8 +58,8 @@ namespace TheOracle.GameCore.Assets.Tests
         [TestMethod()]
         public void JsonToAssets()
         {
-            var assets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText("IronSworn\\assets.json"));
-            Assert.IsTrue(assets.Count > 1);
+            var assets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText("IronSworn\\assets.json"));
+            Assert.IsTrue(assets.Assets.Count > 1);
         }
 
         [TestMethod()]
