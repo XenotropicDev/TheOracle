@@ -33,7 +33,7 @@ namespace TheOracle.GameCore.Assets
         {
             var asset = (Asset)this.MemberwiseClone();
 
-            asset.AssetAbilities = asset.AssetAbilities.Select(fld => fld.ShallowCopy()).ToList();
+            asset.AssetAbilities = asset.AssetAbilities.Select(abl => abl.ShallowCopy()).ToList();
             // asset.AssetRadioSelect = asset.AssetRadioSelect?.DeepCopy() ?? null;
             asset.AssetConditionMeter = asset.AssetConditionMeter?.DeepCopy() ?? null;
             asset.AssetCounter = asset.AssetCounter?.DeepCopy() ?? null;
@@ -160,10 +160,10 @@ namespace TheOracle.GameCore.Assets
             builder.WithTitle(asset.Name);
 
             string fullDesc = string.Empty;
-            foreach (var fld in asset.AssetTextInput ?? new List<string>())
+            foreach (var inputLabel in asset.AssetTextInput ?? new List<string>())
             {
                 string userVal = (asset.Arguments.Count() - 1 >= nextArgument) ? asset.Arguments.ElementAt(nextArgument) : string.Empty.PadLeft(24, '_');
-                fullDesc += String.Format(AssetResources.UserTextInput, fld, userVal) + "\n";
+                fullDesc += String.Format(AssetResources.UserTextInput, inputLabel, userVal) + "\n";
                 nextArgument++;
             }
             fullDesc += (fullDesc.Length > 0) ? "\n" + asset.Description : asset.Description;
