@@ -5,21 +5,24 @@ namespace TheOracle.GameCore.Assets
 {
     public interface IAsset
     {
-        IList<IAssetField> AssetFields { get; set; }
-        string AssetType { get; set; }
-        ICountingAssetTrack CountingAssetTrack { get; set; }
+        IList<IAssetAbility> AssetAbilities { get; set; }
+        string Category { get; set; }
+        IAssetCounter AssetCounter { get; set; }
         string Description { get; set; }
         GameName Game { get; set; }
         string IconUrl { get; set; }
-        IList<string> InputFields { get; set; }
-        IMultiFieldAssetTrack MultiFieldAssetTrack { get; set; }
+        IList<string> AssetTextInput { get; set; }
+
+        // IAssetRadioSelect AssetRadioSelect { get; set; }
         string Name { get; set; }
-        INumericAssetTrack NumericAssetTrack { get; set; }
+
+        IAssetConditionMeter AssetConditionMeter { get; set; }
         IList<string> Arguments { get; set; }
         string UserDescription { get; set; }
         SourceInfo Source { get; set; }
 
         IAsset DeepCopy();
+
         Embed GetEmbed();
     }
 }
