@@ -101,7 +101,7 @@ namespace TheOracle.GameCore.ProgressTracker
             {
                 var tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
                 var roll = new ActionRoll(0, tracker.ActionDie, tracker.Description);
-                await channel.SendMessageAsync(embed: roll.toEmbed().WithAuthor($"Progress Roll").Build()).ConfigureAwait(false);
+                await channel.SendMessageAsync(embed: roll.ToEmbed().WithAuthor($"Progress Roll").Build()).ConfigureAwait(false);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
 
