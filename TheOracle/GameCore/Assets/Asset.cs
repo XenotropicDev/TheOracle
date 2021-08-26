@@ -23,7 +23,6 @@ namespace TheOracle.GameCore.Assets
         {
             AssetAbilities = new List<IAssetAbility>();
             AssetTextInput = new List<string>();
-            // AssetRadioSelect = null;
             AssetConditionMeter = null;
             AssetCounter = null;
             Arguments = new List<string>();
@@ -65,6 +64,7 @@ namespace TheOracle.GameCore.Assets
         [DefaultValue(null)]
         public IList<string> AssetTextInput { get; set; }
 
+        [DefaultValue(null)]
         public IList<string> Arguments { get; set; } = new List<string>();
 
         public override string ToString()
@@ -91,7 +91,6 @@ namespace TheOracle.GameCore.Assets
         public static IAsset FromEmbed(IServiceProvider Services, IEmbed embed)
         {
             var game = Utilities.GetGameContainedInString(embed.Footer.Value.Text ?? string.Empty);
-            // TODO:
             var asset = Services.GetRequiredService<List<IAsset>>().Single(a => embed.Title.Contains(a.Name) && a.Game == game).DeepCopy();
 
             for (int i = 0; i < asset.AssetAbilities.Count; i++)
