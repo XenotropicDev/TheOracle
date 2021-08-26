@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TheOracle.GameCore.Assets
+﻿namespace TheOracle.GameCore.Assets
 {
     public class AssetConditionMeter : IAssetConditionMeter
     {

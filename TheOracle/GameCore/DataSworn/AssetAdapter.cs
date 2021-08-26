@@ -61,11 +61,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         {
             var asset = (IAsset)this.MemberwiseClone();
 
-            asset.AssetAbilities = this.AssetAbilities?.Select(item => item.ShallowCopy()).ToList();
+            asset.AssetAbilities = this.AssetAbilities?.Select(item => item.ShallowCopy()).ToList() ?? new List<IAssetAbility>();
             asset.AssetCounter = this.AssetCounter?.DeepCopy();
             asset.AssetConditionMeter = this.AssetConditionMeter?.DeepCopy();
-            asset.AssetTextInput = this.AssetTextInput?.Select(item => item).ToList();
-            asset.Arguments = this.Arguments?.Select(item => item).ToList();
+            asset.AssetTextInput = this.AssetTextInput?.Select(item => item).ToList() ?? new List<string>();
+            asset.Arguments = this.Arguments?.Select(item => item).ToList() ?? new List<string>();
 
             return asset;
         }

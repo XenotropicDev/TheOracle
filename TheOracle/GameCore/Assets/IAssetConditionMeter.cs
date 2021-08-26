@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace TheOracle.GameCore.Assets
+﻿namespace TheOracle.GameCore.Assets
 {
     public interface IAssetConditionMeter
     {

@@ -12,14 +12,17 @@ namespace TheOracle.GameCore.Assets
         GameName Game { get; set; }
         string IconUrl { get; set; }
         IList<string> AssetTextInput { get; set; }
+
         // IAssetRadioSelect AssetRadioSelect { get; set; }
         string Name { get; set; }
+
         IAssetConditionMeter AssetConditionMeter { get; set; }
         IList<string> Arguments { get; set; }
         string UserDescription { get; set; }
         SourceInfo Source { get; set; }
 
         IAsset DeepCopy();
+
         Embed GetEmbed();
     }
 }
