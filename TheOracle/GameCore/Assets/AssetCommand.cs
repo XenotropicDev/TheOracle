@@ -195,12 +195,6 @@ namespace TheOracle.GameCore.Assets
                     await message.AddReactionAsync(new Emoji("⬇️"));
                 }
 
-                // if (asset.AssetRadioSelect != null)
-                // {
-                //     await message.AddReactionAsync(new Emoji("⬅️"));
-                //     await message.AddReactionAsync(new Emoji("➡️"));
-                // }
-
                 if (asset.AssetCounter != null)
                 {
                     await message.AddReactionAsync(new Emoji("➖"));
@@ -223,10 +217,10 @@ namespace TheOracle.GameCore.Assets
         public IAsset FindMatchingAsset(string AssetCommand, List<IAsset> assets, GameName game)
         {
             var asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name + @"(\W|\b)", RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game)); //Strong match
-            if (asset.Count() == 0) asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game));
-            if (asset.Count() == 0) asset = assets.Where(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
+            if (!asset.Any()) asset = assets.Where(a => new Regex(@"(\W|\b)" + a.Name, RegexOptions.IgnoreCase).IsMatch(AssetCommand) && (game == GameName.None || game == a.Game));
+            if (!asset.Any()) asset = assets.Where(a => AssetCommand.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && (game == GameName.None || game == a.Game)); //Weakest match - This is mostly for languages that don't have spaces between words
 
-            if (asset.Count() == 0)
+            if (!asset.Any())
             {
                 if (game == GameName.None) return default;
                 return FindMatchingAsset(AssetCommand, assets, GameName.None);

@@ -26,6 +26,7 @@ namespace TheOracle.GameCore.Assets
             // AssetRadioSelect = null;
             AssetConditionMeter = null;
             AssetCounter = null;
+            Arguments = new List<string>();
         }
 
         public IAsset DeepCopy()
@@ -53,10 +54,6 @@ namespace TheOracle.GameCore.Assets
         [JsonConverter(typeof(ConcreteListTypeConverter<IAssetAbility, AssetAbility>))]
         public IList<IAssetAbility> AssetAbilities { get; set; }
 
-        // [DefaultValue(null)]
-        // [JsonConverter(typeof(ConcreteListTypeConverter<IAssetRadioOption, AssetRadioOption>))]
-        // public IList<IAssetRadioOption> AssetRadioSelect { get; set; } = null;
-
         [DefaultValue(null)]
         [JsonConverter(typeof(ConcreteTypeConverter<AssetCounter>))]
         public IAssetCounter AssetCounter { get; set; } = null;
@@ -68,7 +65,6 @@ namespace TheOracle.GameCore.Assets
         [DefaultValue(null)]
         public IList<string> AssetTextInput { get; set; }
 
-        [DefaultValue(null)]
         public IList<string> Arguments { get; set; } = new List<string>();
 
         public override string ToString()
@@ -126,14 +122,6 @@ namespace TheOracle.GameCore.Assets
                 asset.AssetCounter.StartingValue = value;
             }
 
-            // if (asset.AssetRadioSelect != null)
-            // {
-            //     foreach (var radioOption in asset.AssetRadioSelect.Options)
-            //     {
-            //         radioOption.IsActive = embed.Fields.Any(f => radioOption.Name.Contains(f.Name, StringComparison.OrdinalIgnoreCase) && radioOption.ActiveText.Contains(f.Value, StringComparison.OrdinalIgnoreCase));
-            //     }
-            // }
-
             foreach (var input in asset.AssetTextInput ?? new List<string>())
             {
                 string partialFormated = string.Format(AssetResources.UserTextInput, input, ".*");
@@ -188,7 +176,7 @@ namespace TheOracle.GameCore.Assets
             {
                 abilityNumber++;
                 string abilityText = Utilities.FormatMarkdown(abl.Text);
-        string label = $"{abilityNumber}. {(abl.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
+                string label = $"{abilityNumber}. {(abl.Enabled ? AssetEnabledEmoji : AssetDisabledEmoji)}";
 
                 string textInput = string.Empty;
                 if (abl.AssetTextInput?.Count() > 0)
@@ -203,15 +191,6 @@ namespace TheOracle.GameCore.Assets
 
                 builder.AddField(label, abilityText + textInput);
             }
-
-            // if (asset.AssetRadioSelect?.Options != null)
-            // {
-            //     foreach (var radioOption in asset.AssetRadioSelect.Options)
-            //     {
-            //         string text = (radioOption.IsActive) ? radioOption.ActiveText : radioOption.InactiveText;
-            //         builder.AddField(radioOption.Name, text, true);
-            //     }
-            // }
 
             if (asset.AssetCounter?.Name != null)
             {
@@ -244,9 +223,6 @@ namespace TheOracle.GameCore.Assets
                 {
                     AssetList.Add(new AssetAdapter(asset, GameName.Ironsworn, asset.Source ?? ironAssets.Source));
                 }
-                // var ironAssets = JsonConvert.DeserializeObject<List<Asset>>(File.ReadAllText(ironAssetsPath));
-                // ironAssets.ForEach(a => a.Game = GameCore.GameName.Ironsworn);
-                // AssetList.AddRange(ironAssets);
             }
             if (File.Exists(starAssetsPath))
             {
