@@ -127,7 +127,8 @@ namespace TheOracle.GameCore.ProgressTracker
         [Remarks("\u25C0 - Decreases the progress track by the difficulty amount." +
             "\n\u25B6 - Increases the progress track by the difficulty amount." +
             "\n\u0023\u20E3 - Increases the progress track by a single full box (four ticks)." +
-            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker." + "\n:mending_heart: - Recommits to a progress track after a miss (per Starforged), reducing progress by the lower of two challenge dice and increasing the challenge rank.")]
+            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker." + 
+            "\n:mending_heart: - Recommits to a progress track after a miss (per Starforged), reducing progress by the lower of two challenge dice and increasing the challenge rank.")]
         public async Task ProgressTrackerCommand([Remainder] string TrackerArgs)
         {
             //TODO this all needs to be reworked for globalization
@@ -169,7 +170,10 @@ namespace TheOracle.GameCore.ProgressTracker
                 await messageToEdit.AddReactionAsync(IncreaseEmoji);
                 await messageToEdit.AddReactionAsync(FullEmoji);
                 await messageToEdit.AddReactionAsync(RollEmoji);
-                await messageToEdit.AddReactionAsync(RecommitEmoji);
+
+                var cs = await ChannelSettings.GetChannelSettingsAsync(messageToEdit.Channel.Id);
+                if (cs.DefaultGame == GameName.Starforged) await messageToEdit.AddReactionAsync(RecommitEmoji);
+
                 await messageToEdit.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
             }).ConfigureAwait(false);
 
