@@ -19,6 +19,7 @@ namespace TheOracle.GameCore.ProgressTracker
         public Emoji IncreaseEmoji = new Emoji("\u25B6");
         public Emoji oldFullEmoji = new Emoji("\u2714");
         public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
+        public Emoji RecommitEmoji = new Emoji("❤️‍🩹");
 
         public ProgressTrackCommands(IServiceProvider service)
         {
@@ -42,18 +43,20 @@ namespace TheOracle.GameCore.ProgressTracker
                 ReactionEvent fullMark2 = new ReactionEventBuilder().WithEmote(oldFullEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent fullMark = new ReactionEventBuilder().WithEmote(FullEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent roll = new ReactionEventBuilder().WithEmote(RollEmoji).WithEvent(ProgressInteractiveReactions).Build();
-
-                reactionService.reactionList.Add(reaction1);
-                reactionService.reactionList.Add(reaction2);
-                reactionService.reactionList.Add(reaction3);
-                reactionService.reactionList.Add(reaction4);
-                reactionService.reactionList.Add(reaction5);
+                ReactionEvent recommit = new ReactionEventBuilder().WithEmote(RecommitEmoji).WithEvent(ProgressInteractiveReactions).Build();
 
                 reactionService.reactionList.Add(decrease);
                 reactionService.reactionList.Add(increase);
                 reactionService.reactionList.Add(fullMark);
                 reactionService.reactionList.Add(fullMark2);
                 reactionService.reactionList.Add(roll);
+                reactionService.reactionList.Add(recommit);
+
+                reactionService.reactionList.Add(reaction1);
+                reactionService.reactionList.Add(reaction2);
+                reactionService.reactionList.Add(reaction3);
+                reactionService.reactionList.Add(reaction4);
+                reactionService.reactionList.Add(reaction5);
             }
         }
 
@@ -104,6 +107,16 @@ namespace TheOracle.GameCore.ProgressTracker
                 await channel.SendMessageAsync(embed: roll.ToEmbed().WithAuthor($"Progress Roll").Build()).ConfigureAwait(false);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
+            if (reaction.Emote.IsSameAs(RecommitEmoji))
+            {
+                // "Roll both challenge dice, take the lowest value, and clear that number of progress boxes. Then, raise the vow’s rank by one (if not already epic).
+                var roll = new ActionRoll();
+                var amount = roll.ChallengeDie1 < roll.ChallengeDie2 ? roll.ChallengeDie1 : roll.ChallengeDie2;
+                IncreaseRank(message);
+                await message.ReplyAsync($"**Recommit:** rolled {roll.ChallengeDie1}, {roll.ChallengeDie2}; {amount} progress was removed, and its Challenge Rank was increased (if less than Epic).").ConfigureAwait(false);
+                DecreaseProgressFullCheck(message, amount);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+            }
 
             return;
         }
@@ -114,7 +127,8 @@ namespace TheOracle.GameCore.ProgressTracker
         [Remarks("\u25C0 - Decreases the progress track by the difficulty amount." +
             "\n\u25B6 - Increases the progress track by the difficulty amount." +
             "\n\u0023\u20E3 - Increases the progress track by a single full box (four ticks)." +
-            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker.")]
+            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker." + 
+            "\n:mending_heart: - Recommits to a progress track after a miss (per Starforged), reducing progress by the lower of two challenge dice and increasing the challenge rank.")]
         public async Task ProgressTrackerCommand([Remainder] string TrackerArgs)
         {
             //TODO this all needs to be reworked for globalization
@@ -156,6 +170,10 @@ namespace TheOracle.GameCore.ProgressTracker
                 await messageToEdit.AddReactionAsync(IncreaseEmoji);
                 await messageToEdit.AddReactionAsync(FullEmoji);
                 await messageToEdit.AddReactionAsync(RollEmoji);
+
+                var cs = await ChannelSettings.GetChannelSettingsAsync(messageToEdit.Channel.Id);
+                if (cs.DefaultGame == GameName.Starforged) await messageToEdit.AddReactionAsync(RecommitEmoji);
+
                 await messageToEdit.AddReactionAsync(new Emoji(GenericReactions.recreatePostEmoji));
             }).ConfigureAwait(false);
 
@@ -191,6 +209,29 @@ namespace TheOracle.GameCore.ProgressTracker
             return;
         }
 
+        private void IncreaseRank(IUserMessage message)
+        {
+            ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
+            ChallengeRank oldrank = tracker.Rank;
+            if (oldrank == ChallengeRank.Troublesome)
+            {
+                tracker.Rank = ChallengeRank.Dangerous;
+            }
+            else if (oldrank == ChallengeRank.Dangerous)
+            {
+                tracker.Rank = ChallengeRank.Formidable;
+            }
+            else if (oldrank == ChallengeRank.Formidable)
+            {
+                tracker.Rank = ChallengeRank.Extreme;
+            }
+            else if (oldrank == ChallengeRank.Extreme)
+            {
+                tracker.Rank = ChallengeRank.Epic;
+            }
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed);
+        }
+
         private void DecreaseProgress(IUserMessage message)
         {
             ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
@@ -209,12 +250,19 @@ namespace TheOracle.GameCore.ProgressTracker
             message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 
-        private void IncreaseProgressFullCheck(IUserMessage message)
+        private void IncreaseProgressFullCheck(IUserMessage message, int amount = 1)
         {
             ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
 
-            tracker.Ticks += 4;
+            tracker.Ticks += (4 * amount);
 
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
+        }
+
+        private void DecreaseProgressFullCheck(IUserMessage message, int amount = 1)
+        {
+            ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
+            tracker.Ticks -= (4 * amount);
             message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
 

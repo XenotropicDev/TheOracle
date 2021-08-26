@@ -1,7 +1,6 @@
 ﻿using Discord;
 using System;
 using System.Linq;
-using TheOracle.Core;
 
 namespace TheOracle.GameCore.ProgressTracker
 {
@@ -21,9 +20,9 @@ namespace TheOracle.GameCore.ProgressTracker
             Description = description;
             Ticks = startingTicks;
         }
+
         public ProgressTrackerInfo()
         {
-
         }
 
         public ProgressTrackerInfo PopulateFromMessage(IUserMessage message, ChallengeRank challengeRank = ChallengeRank.None)
@@ -53,8 +52,8 @@ namespace TheOracle.GameCore.ProgressTracker
             get => ticks;
             set
             {
-                if (value < 0) value = 0; 
-                if (value > totalTicks) value = totalTicks; 
+                if (value < 0) value = 0;
+                if (value > totalTicks) value = totalTicks;
                 ticks = value;
             }
         }
