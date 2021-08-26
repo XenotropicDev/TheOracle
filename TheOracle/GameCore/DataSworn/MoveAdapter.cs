@@ -13,19 +13,18 @@ namespace TheOracle.GameCore.DataSworn
         {
             this.Name = move.Name;
             this.Game = game;
-            
-            string text = move.Text.Replace("  * ", "  • ");
-            text = Utilities.FormatMarkdownLinks(text);
+
+            string text = Utilities.FormatMarkdown(move.Text);
             if (Regex.IsMatch(text, @"\| ?:?---")) //markdown table
             {
                 /* repair point (up to 3 points).\n\n
-                 * 
+                 *
                  * | Situation     | Strong Hit | Weak Hit |\n
                  * |---------------|------------|----------|\n
                  * | At a facility | 5 points   | 3 points |\n
                  * | In the field  | 3 points   | 1 points |\n
                  * | Under fire    | 2 points   | 0 points |\n\n
-                 * 
+                 *
                  * Spend repair points as follows.
                  */
 

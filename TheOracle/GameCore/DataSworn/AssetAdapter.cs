@@ -21,35 +21,37 @@ namespace TheOracle.GameCore.Oracle.DataSworn
                 {
                     Name = source.Name,
                     Page = source.Page,
-                    Version = source.Version,
+                    Date = source.Date,
+                    Url = source.Url ?? null
                 };
             }
         }
 
-        private IList<IAssetField> assetFields = null;
-        public IList<IAssetField> AssetFields { 
-            get => assetFields ?? new List<IAssetField>(data.Abilities.Select(a => new AbilityAdapter(a)));
-            set => assetFields = value; 
+        private IList<IAssetAbility> assetAbilities = null;
+        public IList<IAssetAbility> AssetAbilities {
+            get => assetAbilities ?? new List<IAssetAbility>(data.Abilities.Select(a => new AbilityAdapter(a)));
+            set => assetAbilities = value;
         }
-        public string AssetType { get => data.Category; set => data.Category = value; }
+        public string Category { get => data.Category; set => data.Category = value; }
 
-        private ICountingAssetTrack countingAssetTrack = null;
-        public ICountingAssetTrack CountingAssetTrack 
-        { 
-            get => countingAssetTrack ?? ((data.Counter != null) ? new CounterAdapter(data.Counter) : null); 
-            set => countingAssetTrack = value;
+        private IAssetCounter assetCounter = null;
+        public IAssetCounter AssetCounter
+        {
+            get => assetCounter ?? ((data.Counter != null) ? new CounterAdapter(data.Counter) : null);
+            set => assetCounter = value;
         }
-        public string Description { get => Utilities.FormatMarkdownLinks(data.Description); set => data.Description = value; }
+        public string Description { get => Utilities.FormatMarkdown(data.Description); set => data.Description = value; }
         public GameName Game { get; set; }
         public string IconUrl { get; set; }
-        public IList<string> InputFields { get => data.Fields; set => data.Fields = value?.ToArray(); }
-        public IMultiFieldAssetTrack MultiFieldAssetTrack { get; set; }
+        public IList<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
+        // private IAssetRadioSelect assetRadioSelect = null;
+        // public IAssetRadioSelect AssetRadioSelect { get; set; }
         public string Name { get => data.Name; set => data.Name = value; }
 
-        private INumericAssetTrack numericAssetTrack = null;
-        public INumericAssetTrack NumericAssetTrack {
-            get => numericAssetTrack ?? ((data.Track != null) ? new TrackAdapter(data.Track) : null);
-            set => numericAssetTrack = value;
+        private IAssetConditionMeter assetConditionMeter = null;
+        public IAssetConditionMeter AssetConditionMeter {
+            get => assetConditionMeter ?? ((data.ConditionMeter != null) ? new MeterAdapter(data.ConditionMeter) : null);
+            set => assetConditionMeter = value;
         }
         public IList<string> Arguments { get; set; }
         public string UserDescription { get; set; }
@@ -59,11 +61,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         {
             var asset = (IAsset)this.MemberwiseClone();
 
-            asset.AssetFields = this.AssetFields?.Select(item => item.ShallowCopy()).ToList();
-            asset.CountingAssetTrack = this.CountingAssetTrack?.DeepCopy();
-            asset.NumericAssetTrack = this.NumericAssetTrack?.DeepCopy();
-            asset.InputFields = this.InputFields?.Select(item => item).ToList();
-            asset.Arguments = this.Arguments?.Select(item => item).ToList();
+            asset.AssetAbilities = this.AssetAbilities?.Select(item => item.ShallowCopy()).ToList() ?? new List<IAssetAbility>();
+            asset.AssetCounter = this.AssetCounter?.DeepCopy();
+            asset.AssetConditionMeter = this.AssetConditionMeter?.DeepCopy();
+            asset.AssetTextInput = this.AssetTextInput?.Select(item => item).ToList() ?? new List<string>();
+            asset.Arguments = this.Arguments?.Select(item => item).ToList() ?? new List<string>();
 
             return asset;
         }
@@ -74,12 +76,12 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         }
     }
 
-    internal class TrackAdapter : INumericAssetTrack
+    internal class MeterAdapter : IAssetConditionMeter
     {
-        private readonly Track data;
-        public TrackAdapter(Track track)
+        private readonly ConditionMeter data;
+        public MeterAdapter(ConditionMeter meter)
         {
-            data = track;
+            data = meter;
         }
 
         public int Min { get; set; } = 0;
@@ -87,13 +89,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public int ActiveNumber { get => data.StartsAt; set => data.StartsAt = value; }
         public string Name { get => data.Name; set => data.Name = value; }
 
-        public INumericAssetTrack DeepCopy()
+        public IAssetConditionMeter DeepCopy()
         {
-            return (INumericAssetTrack)this.MemberwiseClone();
+            return (IAssetConditionMeter)this.MemberwiseClone();
         }
     }
 
-    internal class CounterAdapter : ICountingAssetTrack
+    internal class CounterAdapter : IAssetCounter
     {
         private readonly Counter data;
         public CounterAdapter(Counter counter)
@@ -104,13 +106,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Name { get => data.Name; set => data.Name = value; }
         public int StartingValue { get => data.StartsAt; set => data.StartsAt = value; }
 
-        public ICountingAssetTrack DeepCopy()
+        public IAssetCounter DeepCopy()
         {
-            return (ICountingAssetTrack)this.MemberwiseClone();
+            return (IAssetCounter)this.MemberwiseClone();
         }
     }
 
-    public class AbilityAdapter : IAssetField
+    public class AbilityAdapter : IAssetAbility
     {
         private Ability data;
         public AbilityAdapter(Ability ability)
@@ -118,11 +120,11 @@ namespace TheOracle.GameCore.Oracle.DataSworn
             data = ability;
         }
 
-        public string Text { get => Utilities.FormatMarkdownLinks(data.Text); set => data.Text = value; }
+        public string Text { get => Utilities.FormatMarkdown(data.Text); set => data.Text = value; }
         public bool Enabled { get => data.Enabled; set => data.Enabled = value; }
-        public IEnumerable<string> InputFields { get => data.Fields; set => data.Fields = value?.ToArray(); }
+        public IEnumerable<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
 
-        public IAssetField ShallowCopy()
+        public IAssetAbility ShallowCopy()
         {
             var clone = (AbilityAdapter)this.MemberwiseClone();
             clone.data = this.data.DeepCopy();

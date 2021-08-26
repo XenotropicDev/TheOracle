@@ -17,10 +17,10 @@ namespace TheOracle.StarForged.Settlements
     public class StarSettlement : ISettlement
     {
         public Emoji contactEmoji = new Emoji("☎️");
-
         public Emoji projectEmoji = new Emoji("\uD83D\uDEE0");
-
         public Emoji troubleEmoji = new Emoji("🔥");
+        public Emoji firstLookEmoji = new Emoji("👀");
+
         private bool isGenerated = false;
 
         public StarSettlement(IServiceProvider services, ulong channelId = 0)
@@ -40,6 +40,8 @@ namespace TheOracle.StarForged.Settlements
                 ReactionEvent project = new ReactionEventBuilder().WithEmote(projectEmoji).WithEvent(ProjectReactionHandler).Build();
                 ReactionEvent contact = new ReactionEventBuilder().WithEmote(contactEmoji).WithEvent(ContactReactionHandler).Build();
                 ReactionEvent trouble = new ReactionEventBuilder().WithEmote(troubleEmoji).WithEvent(TroubleReactionHandler).Build();
+                ReactionEvent firstLook = new ReactionEventBuilder().WithEmote(firstLookEmoji).WithEvent(FirstLookReactionHandler).Build();
+
 
                 reactionService.reactionList.Add(reaction1);
                 reactionService.reactionList.Add(reaction2);
@@ -48,6 +50,7 @@ namespace TheOracle.StarForged.Settlements
                 reactionService.reactionList.Add(project);
                 reactionService.reactionList.Add(contact);
                 reactionService.reactionList.Add(trouble);
+                reactionService.reactionList.Add(firstLook);
 
                 hooks.StarSettlementReactions = true;
             }
@@ -105,6 +108,7 @@ namespace TheOracle.StarForged.Settlements
             await msg.AddReactionAsync(projectEmoji);
             await msg.AddReactionAsync(contactEmoji);
             await msg.AddReactionAsync(troubleEmoji);
+            await msg.AddReactionAsync(firstLookEmoji);
 
             return;
         }
@@ -146,12 +150,6 @@ namespace TheOracle.StarForged.Settlements
             Random random = new Random(seed);
 
             this.Authority = oracleService.RandomRow("Settlement Authority", GameName.Starforged, random).Description;
-
-            this.FirstLooksToReveal = random.Next(1, 4);
-            for (int i = 0; i < this.FirstLooksToReveal; i++)
-            {
-                this.FirstLooks.AddRandomOracleRow("Settlement First Look", GameName.Starforged, Services, ChannelId, random);
-            }
 
             if (string.IsNullOrEmpty(this.Location)) this.Location = oracleService.RandomRow("Settlement Location", GameName.Starforged, random).Description;
 
@@ -246,6 +244,22 @@ namespace TheOracle.StarForged.Settlements
 
             await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, message.Author).ConfigureAwait(false);
+            await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
+        }
+
+        private async Task FirstLookReactionHandler(IUserMessage message, ISocketMessageChannel channel, SocketReaction reaction, IUser user)
+        {
+            if (!IsStarSettlement(message)) return;
+
+            var settlmentEmbed = message.Embeds.FirstOrDefault(embed => embed?.Description?.Contains(SettlementResources.Settlement) ?? false);
+            if (settlmentEmbed == null) return;
+
+            var oracles = Services.GetRequiredService<OracleService>();
+            var result = oracles.RandomOracleResult("Settlement First Look", Services, GameName.Starforged);
+
+            var builder = settlmentEmbed.ToEmbedBuilder().AddField(SettlementResources.FirstLook, result, true);
+
+            await message.ModifyAsync(msg => msg.Embed = builder.Build()).ConfigureAwait(false);
             await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
         }
 

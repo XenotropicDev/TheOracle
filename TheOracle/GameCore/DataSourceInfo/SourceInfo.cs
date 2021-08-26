@@ -7,20 +7,19 @@ namespace TheOracle.GameCore
     {
         public string Name { get; set; }
         public string Page { get; set; }
-        public string URL { get; set; }
-        public string Version { get; set; }
+        public string Url { get; set; }
+        public string Date { get; set; }
 
-        public override string ToString()
+    public override string ToString()
         {
             if (Name.Length == 0) Name = SourceInfoResources.Unknown;
 
             string pageDisplay = string.Empty;
-            if (URL?.Length > 0 && Page?.Length > 0) pageDisplay = $"[{Page}]({URL})";
+            if (Url?.Length > 0 && Page?.Length > 0) pageDisplay = $"[{Page}]({Url})";
             if (pageDisplay.Length == 0 && Page?.Length > 0) pageDisplay = string.Format(SourceInfoResources.SourcePageField, Page);
-
-            string versionDisplay = (Version?.Length > 0) ? string.Format(SourceInfoResources.VersionField, Version) : string.Empty;
-
-            return string.Format(SourceInfoResources.SourceField, Name, pageDisplay, versionDisplay);
+            string dateDisplay = string.Empty;
+            if (Date?.Length > 0) dateDisplay = $" ({Date})";
+            return string.Format(SourceInfoResources.SourceField, Name, pageDisplay, dateDisplay);
         }
     }
 }

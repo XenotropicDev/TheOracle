@@ -49,11 +49,20 @@ namespace TheOracle.BotCore
             else
                 return null;
         }
-
-        public static string FormatMarkdownLinks(string text, string replacementFormater = "__$1__")
+    public static string FormatMarkdown(string text)
+    {
+      if (string.IsNullOrEmpty(text)) return text;
+      return FormatMarkdownUnorderedList(FormatMarkdownLinks(text));
+    }
+    public static string FormatMarkdownLinks(string text, string replacementFormatter = "__$1__")
         {
             if (string.IsNullOrEmpty(text)) return text;
-            return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormater);
+            return Regex.Replace(text, @"\[([a-zA-Z ,_-]+)\]\([^)]*\)", replacementFormatter);
+        }
+        public static string FormatMarkdownUnorderedList(string text, string replacementFormatter = "\n  • ")
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            return Regex.Replace(text, @"\n+  \* ", replacementFormatter);
         }
 
         public static decimal ConvertPercentToDecimal(string percentValue, CultureInfo culture = default)
@@ -230,7 +239,7 @@ namespace TheOracle.BotCore
                 foreach (var asset in Assets)
                 {
                     words.Add(asset.Name);
-                    words.Add(asset.AssetType);
+                    words.Add(asset.Category);
                 }
             }
 

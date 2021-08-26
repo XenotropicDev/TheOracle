@@ -15,7 +15,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
         public void TestDesializationTest()
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.MissingMemberHandling = MissingMemberHandling.Error;
+            settings.MissingMemberHandling = MissingMemberHandling.Ignore;
 
             foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data\\oracles").GetFiles("*.json", System.IO.SearchOption.AllDirectories))
             {

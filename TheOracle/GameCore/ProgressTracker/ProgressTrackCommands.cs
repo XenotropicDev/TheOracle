@@ -106,8 +106,8 @@ namespace TheOracle.GameCore.ProgressTracker
             if (reaction.Emote.IsSameAs(RollEmoji))
             {
                 var tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
-                var roll = new ActionRoll(0, tracker.ActionDie, $"{ProgressResources.ProgressRollFor}{tracker.Description}");
-                await channel.SendMessageAsync(roll.ToString()).ConfigureAwait(false);
+                var roll = new ActionRoll(0, tracker.ActionDie, tracker.Description);
+                await channel.SendMessageAsync(embed: roll.ToEmbed().WithAuthor($"Progress Roll").Build()).ConfigureAwait(false);
                 await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
             if (reaction.Emote.IsSameAs(RecommitEmoji))
