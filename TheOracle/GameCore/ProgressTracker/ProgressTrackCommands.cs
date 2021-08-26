@@ -21,8 +21,7 @@ namespace TheOracle.GameCore.ProgressTracker
         public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
         public Emoji RecommitEmoji = new Emoji("❤️‍🩹");
 
-
-    public ProgressTrackCommands(IServiceProvider service)
+        public ProgressTrackCommands(IServiceProvider service)
         {
             Service = service;
             Client = service.GetRequiredService<DiscordSocketClient>();
@@ -38,7 +37,6 @@ namespace TheOracle.GameCore.ProgressTracker
                 ReactionEvent reaction3 = new ReactionEventBuilder().WithEmote(GenericReactions.threeEmoji).WithEvent(ProgressBuilderReactions).Build();
                 ReactionEvent reaction4 = new ReactionEventBuilder().WithEmote(GenericReactions.fourEmoji).WithEvent(ProgressBuilderReactions).Build();
                 ReactionEvent reaction5 = new ReactionEventBuilder().WithEmote(GenericReactions.fiveEmoji).WithEvent(ProgressBuilderReactions).Build();
-                
 
                 ReactionEvent decrease = new ReactionEventBuilder().WithEmote(DecreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
                 ReactionEvent increase = new ReactionEventBuilder().WithEmote(IncreaseEmoji).WithEvent(ProgressInteractiveReactions).Build();
@@ -59,7 +57,6 @@ namespace TheOracle.GameCore.ProgressTracker
                 reactionService.reactionList.Add(reaction3);
                 reactionService.reactionList.Add(reaction4);
                 reactionService.reactionList.Add(reaction5);
-
             }
         }
 
@@ -112,15 +109,13 @@ namespace TheOracle.GameCore.ProgressTracker
             }
             if (reaction.Emote.IsSameAs(RecommitEmoji))
             {
-
-        // "Roll both challenge dice, take the lowest value, and clear that number of progress boxes. Then, raise the vow’s rank by one (if not already epic).
-              var roll = new ActionRoll();
-              var amount = roll.ChallengeDie1 < roll.ChallengeDie2 ? roll.ChallengeDie1 : roll.ChallengeDie2;
-              IncreaseRank(message);
-              await message.ReplyAsync($"**Recommit:** rolled {roll.ChallengeDie1}, {roll.ChallengeDie2}; {amount} progress was removed, and its Challenge Rank was increased (if less than Epic).").ConfigureAwait(false);
-              DecreaseProgressFullCheck(message, amount);
-              await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
-              
+                // "Roll both challenge dice, take the lowest value, and clear that number of progress boxes. Then, raise the vow’s rank by one (if not already epic).
+                var roll = new ActionRoll();
+                var amount = roll.ChallengeDie1 < roll.ChallengeDie2 ? roll.ChallengeDie1 : roll.ChallengeDie2;
+                IncreaseRank(message);
+                await message.ReplyAsync($"**Recommit:** rolled {roll.ChallengeDie1}, {roll.ChallengeDie2}; {amount} progress was removed, and its Challenge Rank was increased (if less than Epic).").ConfigureAwait(false);
+                DecreaseProgressFullCheck(message, amount);
+                await message.RemoveReactionAsync(reaction.Emote, user).ConfigureAwait(false);
             }
 
             return;
@@ -132,7 +127,7 @@ namespace TheOracle.GameCore.ProgressTracker
         [Remarks("\u25C0 - Decreases the progress track by the difficulty amount." +
             "\n\u25B6 - Increases the progress track by the difficulty amount." +
             "\n\u0023\u20E3 - Increases the progress track by a single full box (four ticks)." +
-            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker."+"\n:mending_heart: - Recommits to a progress track after a miss (per Starforged), reducing progress by the lower of two challenge dice and increasing the challenge rank.")]
+            "\n\uD83C\uDFB2 - Rolls the action and challenge die for the progress tracker." + "\n:mending_heart: - Recommits to a progress track after a miss (per Starforged), reducing progress by the lower of two challenge dice and increasing the challenge rank.")]
         public async Task ProgressTrackerCommand([Remainder] string TrackerArgs)
         {
             //TODO this all needs to be reworked for globalization
@@ -209,23 +204,30 @@ namespace TheOracle.GameCore.ProgressTracker
 
             return;
         }
-        private void IncreaseRank(IUserMessage message) {
-          ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
-          ChallengeRank oldrank = tracker.Rank;
-          if (oldrank == ChallengeRank.Troublesome) {
-            tracker.Rank = ChallengeRank.Dangerous;
-          }
-          else if (oldrank == ChallengeRank.Dangerous) {
-            tracker.Rank = ChallengeRank.Formidable;
-          }
-          else if (oldrank == ChallengeRank.Formidable) {
-            tracker.Rank = ChallengeRank.Extreme;
-          }
-          else if (oldrank == ChallengeRank.Extreme) {
-            tracker.Rank = ChallengeRank.Epic;
-          }
-      message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed);
-    }
+
+        private void IncreaseRank(IUserMessage message)
+        {
+            ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
+            ChallengeRank oldrank = tracker.Rank;
+            if (oldrank == ChallengeRank.Troublesome)
+            {
+                tracker.Rank = ChallengeRank.Dangerous;
+            }
+            else if (oldrank == ChallengeRank.Dangerous)
+            {
+                tracker.Rank = ChallengeRank.Formidable;
+            }
+            else if (oldrank == ChallengeRank.Formidable)
+            {
+                tracker.Rank = ChallengeRank.Extreme;
+            }
+            else if (oldrank == ChallengeRank.Extreme)
+            {
+                tracker.Rank = ChallengeRank.Epic;
+            }
+            message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed);
+        }
+
         private void DecreaseProgress(IUserMessage message)
         {
             ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
@@ -234,6 +236,7 @@ namespace TheOracle.GameCore.ProgressTracker
 
             message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
+
         private void IncreaseProgress(IUserMessage message)
         {
             ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
@@ -247,16 +250,18 @@ namespace TheOracle.GameCore.ProgressTracker
         {
             ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
 
-            tracker.Ticks += (4*amount);
+            tracker.Ticks += (4 * amount);
 
             message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
+
         private void DecreaseProgressFullCheck(IUserMessage message, int amount = 1)
         {
             ProgressTrackerInfo tracker = new ProgressTrackerInfo().PopulateFromMessage(message);
-            tracker.Ticks -= (4*amount);
+            tracker.Ticks -= (4 * amount);
             message.ModifyAsync(msg => msg.Embed = tracker.BuildEmbed() as Embed).ConfigureAwait(false);
         }
+
         private bool IsProgressTrackerMessage(IUserMessage message)
         {
             if (message.Embeds == null) return false;
