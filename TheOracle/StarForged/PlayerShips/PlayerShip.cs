@@ -44,9 +44,9 @@ namespace TheOracle.StarForged.PlayerShips
             builder.WithTitle(Name);
             builder.WithDescription(Description);
 
-            builder.AddField(PlayerShipResources.Modules, this.Modules, true);
-            builder.AddField(PlayerShipResources.Impacts, this.Impacts, true);
-            builder.AddField(PlayerShipResources.Vehicles, this.Vehicles, true);
+            builder.AddField(PlayerShipResources.Modules, this.Modules ?? PlayerShipResources.None, true);
+            builder.AddField(PlayerShipResources.Impacts, this.Impacts ?? PlayerShipResources.None, true);
+            builder.AddField(PlayerShipResources.Vehicles, this.Vehicles ?? PlayerShipResources.None, true);
 
             builder.AddField(PlayerShipResources.IntegrityTrack, GetTrackGraphic(Integrity, ":blue_square:", ":ballot_box_with_check:"), true);
             if (this.UseSupply) builder.AddField(PlayerShipResources.SupplyTrack, GetTrackGraphic(Supply, ":green_square:", ":white_check_mark:"), true);
