@@ -10,8 +10,8 @@
 
 namespace TheOracle.StarForged.PlayerShips {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace TheOracle.StarForged.PlayerShips {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class PlayerShipResources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal PlayerShipResources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Reply in this channel with the requested information.
         /// </summary>
@@ -68,7 +68,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("HelperFooter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Do you want to use your starship to keep track of you/your crew&apos;s supply? Reply with `Yes` to enable, or `No` to disable..
         /// </summary>
@@ -77,7 +77,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("HelperIncludeSupply", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Give your starship some history. Type something about how you got the ship, or its history. To use the Ship history oracle table reply with `random`. To leave this blank reply with `skip`..
         /// </summary>
@@ -86,7 +86,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("HelperSetHistory", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Describe what your starship looks like. Type something about how your starship looks, or what gives it character. To use the Envision Your Starship oracle table reply with `random`. To leave this blank reply with `skip`..
         /// </summary>
@@ -95,7 +95,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("HelperSetLooks", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to What&apos;s the name of your ship?.
         /// </summary>
@@ -104,7 +104,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("HelperSetShipName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Command Ship Helper.
         /// </summary>
@@ -113,7 +113,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("HelperTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Impacts.
         /// </summary>
@@ -122,7 +122,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("Impacts", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Integrity.
         /// </summary>
@@ -131,16 +131,16 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("Integrity", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Integrity Track.
+        ///   Looks up a localized string similar to Integrity Meter.
         /// </summary>
-        public static string IntegrityTrack {
+        public static string IntegrityMeter {
             get {
-                return ResourceManager.GetString("IntegrityTrack", resourceCulture);
+                return ResourceManager.GetString("IntegrityMeter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Modules.
         /// </summary>
@@ -149,7 +149,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("Modules", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
@@ -158,7 +158,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("None", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Random, Rand.
         /// </summary>
@@ -167,7 +167,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("RandomWords", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ship So Far.
         /// </summary>
@@ -176,7 +176,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("SelectedItems", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Command Starship.
         /// </summary>
@@ -185,7 +185,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("ShipCardTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to History: {0}.
         /// </summary>
@@ -194,7 +194,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("ShipHistory", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Description: {0}.
         /// </summary>
@@ -203,7 +203,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("ShipLooks", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Skip.
         /// </summary>
@@ -212,7 +212,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("SkipWords", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Supply.
         /// </summary>
@@ -221,16 +221,16 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("Supply", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Supply Track.
+        ///   Looks up a localized string similar to Supply Meter.
         /// </summary>
-        public static string SupplyTrack {
+        public static string SupplyMeter {
             get {
-                return ResourceManager.GetString("SupplyTrack", resourceCulture);
+                return ResourceManager.GetString("SupplyMeter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Vehicles.
         /// </summary>
@@ -239,7 +239,7 @@ namespace TheOracle.StarForged.PlayerShips {
                 return ResourceManager.GetString("Vehicles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yes, True.
         /// </summary>

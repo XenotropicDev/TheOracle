@@ -48,15 +48,15 @@ namespace TheOracle.StarForged.PlayerShips
             builder.AddField(PlayerShipResources.Impacts, this.Impacts ?? PlayerShipResources.None, true);
             builder.AddField(PlayerShipResources.Vehicles, this.Vehicles ?? PlayerShipResources.None, true);
 
-            builder.AddField(PlayerShipResources.IntegrityTrack, GetTrackGraphic(Integrity, ":blue_square:", ":ballot_box_with_check:"), true);
-            if (this.UseSupply) builder.AddField(PlayerShipResources.SupplyTrack, GetTrackGraphic(Supply, ":green_square:", ":white_check_mark:"), true);
+            builder.AddField(PlayerShipResources.IntegrityMeter, GetMeterGraphic(Integrity, ":blue_square:", ":ballot_box_with_check:"), true);
+            if (this.UseSupply) builder.AddField(PlayerShipResources.SupplyMeter, GetMeterGraphic(Supply, ":green_square:", ":white_check_mark:"), true);
 
-            builder.WithFooter(starshipAsset.AssetFields.First().Text.Replace("__", "").Replace("**", ""));
+            builder.WithFooter(starshipAsset.AssetAbilities.First().Text.Replace("__", "").Replace("**", ""));
 
             return builder.Build();
         }
 
-        private string GetTrackGraphic(int value, string emptyGraphic, string fullGraphic)
+        private string GetMeterGraphic(int value, string emptyGraphic, string fullGraphic)
         {
             var graphic = new string('*', value)
                 .PadRight(5, '-')
@@ -73,14 +73,14 @@ namespace TheOracle.StarForged.PlayerShips
 
             this.Name = embed.Title;
             this.Description = embed.Description;
-            if (embed.Fields.FirstOrDefault(fld => fld.Name == PlayerShipResources.IntegrityTrack) is EmbedField integrityField)
+            if (embed.Fields.FirstOrDefault(fld => fld.Name == PlayerShipResources.IntegrityMeter) is EmbedField integrityField)
             {
                 var match = Regex.Match(integrityField.Value, @"-?\d");
                 if (match.Success && int.TryParse(match.Value, out int value)) this.Integrity = value;
             }
             this.ShipImage = embed.Thumbnail.HasValue ? embed.Thumbnail.Value.Url : string.Empty;
 
-            if (embed.Fields.FirstOrDefault(fld => fld.Name == PlayerShipResources.SupplyTrack) is EmbedField supplyField && supplyField.Name != null)
+            if (embed.Fields.FirstOrDefault(fld => fld.Name == PlayerShipResources.SupplyMeter) is EmbedField supplyField && supplyField.Name != null)
             {
                 this.UseSupply = true;
                 var match = Regex.Match(supplyField.Value, @"-?\d");

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using TheOracle.GameCore.Assets;
 
 namespace TheOracle.GameCore.Oracle.DataSworn
 {
@@ -9,7 +10,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public AlterProperties AlterProperties { get; set; }
 
         public bool Enabled { get; set; }
-        public string[] Fields { get; set; }
+
+        [JsonProperty(PropertyName = "Input")]
+        public string[] TextInput { get; set; }
         public string Text { get; set; }
 
         public Ability DeepCopy()
@@ -21,17 +24,23 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         }
 
         public AssetMove Move { get; set; }
-    }
 
+        [JsonProperty(PropertyName = "Alter Moves")]
+        public AlterMove[] AlterMoves { get; set; }
+  }
+
+    public class AlterMove : Move {
+
+    }
     public class AlterProperties
     {
         [JsonProperty(PropertyName = "Condition Meter")]
-        public Track Track { get; set; }
+        public ConditionMeter ConditionMeter { get; set; }
 
         public AlterProperties DeepCopy()
         {
             var clone = (AlterProperties)this.MemberwiseClone();
-            clone.Track = this.Track.DeepCopy();
+            clone.ConditionMeter = this.ConditionMeter.DeepCopy();
             return clone;
         }
     }
@@ -42,11 +51,17 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Category { get; set; }
         public Counter Counter { get; set; }
         public string Description { get; set; }
-        public string[] Fields { get; set; }
+
+        [JsonProperty(PropertyName = "Input")]
+        public string[] TextInput { get; set; }
         public string Name { get; set; }
+
         [JsonProperty(PropertyName = "Condition Meter")]
-        public Track Track { get; set; }
-    }
+        public ConditionMeter ConditionMeter { get; set; }
+        public Source Source { get; set; }
+    // [JsonProperty(PropertyName = "Radio Select")]
+    // public AssetRadioSelect RadioSelect { get; set; }
+  }
 
     public class AssetInfo
     {
@@ -94,19 +109,22 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         [JsonProperty(PropertyName = "Progress Move")]
         public bool ProgressMove { get; set; }
 
-        public Stats[] Stats { get; set; }
-
+        public Trigger[] Triggers { get; set; }
         public string Text { get; set; }
     }
-
-
-    public class AssetMove
+  public class TriggerStat {
+    public string Method { get; set; }
+    public string[] Options { get; set; }
+  }
+  public class Trigger {
+      public string Text { get; set; }
+      public TriggerStat Stat { get; set; }
+  }
+    public class AssetMove : Move
     {
-        public string Name { get; set; }
-        public string Category { get; set; }
-        public string Stat { get; set; }
-        public string Text { get; set; }
-        public AssetMove DeepCopy() => (AssetMove)this.MemberwiseClone();
+      // public Asset Asset { get; set; }
+      public string Asset { get; set; }
+      public AssetMove DeepCopy() => (AssetMove)this.MemberwiseClone();
     }
 
 
@@ -220,12 +238,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         }
     }
 
-    public class Source
+    public class Source : ISourceInfo
     {
         public string Name { get; set; }
         public string Page { get; set; }
-        public string Version { get; set; }
-    }
+        public string Date { get; set; }
+        public string Url { get; set; }
+  }
 
     public class Table
     {
@@ -268,8 +287,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string[] Tags { get; set; }
         public string Thumbnail { get; set; }
     }
-
-    public class Track
+    public class ConditionMeter
     {
         private int? startsAt;
 
@@ -280,9 +298,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public int Value { get; set; }
 
-        public Track DeepCopy()
+        public ConditionMeter DeepCopy()
         {
-            return (Track)this.MemberwiseClone();
+            return (ConditionMeter)this.MemberwiseClone();
         }
     }
 
@@ -292,9 +310,24 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Name { get; set; }
     }
 
-    public class Stats
+
+    public enum Condition {
+      Health,
+      Spirit,
+      Supply,
+      Momentum, // is there some way to indicate/organize this as a non rollable stat? hmm
+      CommandVehicleIntegrity,
+      VehicleIntegrity,
+      CompanionHealth,
+      MechanicalCompanionHealth,
+      AssetCondition
+    }
+    public enum Stat
     {
-        public string Trigger { get; set; }
-        public string Stat { get; set; }
+      Edge,
+      Heart,
+      Iron,
+      Shadow,
+      Wits
     }
 }
