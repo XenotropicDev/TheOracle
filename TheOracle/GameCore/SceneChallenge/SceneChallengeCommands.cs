@@ -17,13 +17,15 @@ namespace TheOracle.GameCore.SceneChallenge
         public Emoji DecreaseEmoji = new Emoji("\u25C0");
         public Emoji emptyChallengeEmoji = new Emoji("🟩");
         public Emoji fullChallengeEmoji = new Emoji("❎");
-        public Emoji FullEmoji = new Emoji("\u0023\u20E3");
+        public IEmote FullEmoji;
         public Emoji IncreaseEmoji = new Emoji("\u25B6");
         public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
 
         public SceneChallengeCommands(IServiceProvider services)
         {
             Services = services;
+            if (!Emote.TryParse("<:progress4:880599822820864060>", out var emote)) FullEmoji = new Emoji("\u0023\u20E3");
+            if (FullEmoji == null) FullEmoji = emote;
 
             var hooks = Services.GetRequiredService<HookedEvents>();
 

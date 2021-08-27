@@ -15,7 +15,7 @@ namespace TheOracle.GameCore.ProgressTracker
     {
         public Emoji DecreaseEmoji = new Emoji("\u25C0");
 
-        public Emoji FullEmoji = new Emoji("\u0023\u20E3");
+        public IEmote FullEmoji;
         public Emoji IncreaseEmoji = new Emoji("\u25B6");
         public Emoji oldFullEmoji = new Emoji("\u2714");
         public Emoji RollEmoji = new Emoji("\uD83C\uDFB2");
@@ -26,6 +26,9 @@ namespace TheOracle.GameCore.ProgressTracker
             Service = service;
             Client = service.GetRequiredService<DiscordSocketClient>();
             var hooks = service.GetRequiredService<HookedEvents>();
+
+            if (!Emote.TryParse("<:progress4:880599822820864060>", out var emote)) FullEmoji = new Emoji("\u0023\u20E3");
+            if (FullEmoji == null) FullEmoji = emote;
 
             if (!hooks.ProgressReactions)
             {

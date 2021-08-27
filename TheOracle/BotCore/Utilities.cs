@@ -117,7 +117,11 @@ namespace TheOracle.BotCore
         {
             if (source.Name == emoteToCheck.Name) return true;
 
-            List<Tuple<IEmote, IEmote>> EmotesThatAreTheSame = new List<Tuple<IEmote, IEmote>>
+            IEmote FullEmote;
+            if (Emote.TryParse("<:progress4:880599822820864060>", out var emote)) FullEmote = emote;
+            else FullEmote = new Emoji("\u0023\u20E3");
+
+            List <Tuple<IEmote, IEmote>> EmotesThatAreTheSame = new List<Tuple<IEmote, IEmote>>
             {
                 new Tuple<IEmote, IEmote>(new Emoji("0️⃣"), new Emoji("\u0030\u20E3")),
                 new Tuple<IEmote, IEmote>(new Emoji("1️⃣"), new Emoji("\u0031\u20E3")),
@@ -130,6 +134,7 @@ namespace TheOracle.BotCore
                 new Tuple<IEmote, IEmote>(new Emoji("8️⃣"), new Emoji("\u0038\u20E3")),
                 new Tuple<IEmote, IEmote>(new Emoji("9️⃣"), new Emoji("\u0039\u20E3")),
                 new Tuple<IEmote, IEmote>(new Emoji("\\⏺️"), new Emoji("⏺️")),
+                new Tuple<IEmote, IEmote>(new Emoji("\u0023\u20E3"), FullEmote),
             };
 
             foreach (var tuple in EmotesThatAreTheSame)

@@ -128,15 +128,16 @@ namespace TheOracle.GameCore.ProgressTracker
             string fill = new string('#', (int)Math.Floor(Ticks / 4d));
             string finalTickMark = ((Ticks % 4) == 1) ? "-" : ((Ticks % 4) == 2) ? "+" : ((Ticks % 4) == 3) ? "*" : string.Empty;
             fill = (fill + finalTickMark).PadRight(10, '·');
+            fill += "\u200C"; //special hidden character for mobile formatting small emojis
 
             fill = String.Join(' ', fill.ToCharArray()); //Add spaces between each character
 
             //Replace all the stand-in characters with emojis
-            fill = fill.Replace("·", "🟦");
-            fill = fill.Replace("-", "\uD83C\uDDEE");
-            fill = fill.Replace("+", "\uD83C\uDDFD");
-            fill = fill.Replace("*", "*️⃣");
-            fill = fill.Replace("#", "\u0023\u20E3");
+            fill = fill.Replace("·", "<:progress0:880599822468534374>");
+            fill = fill.Replace("-", "<:progress1:880599822736965702>");
+            fill = fill.Replace("+", "<:progress2:880599822724390922>");
+            fill = fill.Replace("*", "<:progress3:880599822736957470>");
+            fill = fill.Replace("#", "<:progress4:880599822820864060>");
 
             return fill;
         }
