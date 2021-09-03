@@ -105,7 +105,7 @@ namespace TheOracle.IronSworn.Settlements
             var embed = message?.Embeds?.FirstOrDefault();
             if (embed == default) return false;
 
-            if (!embed.Description.Contains(SettlementResources.Settlement)) return false;
+            if (embed.Description == null || !embed.Description.Contains(SettlementResources.Settlement)) return false;
 
             if (embed.Footer.HasValue && embed.Footer.Value.Text.Equals(GameName.Ironsworn.ToString())) return true;
 
