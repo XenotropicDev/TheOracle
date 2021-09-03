@@ -44,6 +44,16 @@ namespace TheOracle.GameCore.Oracle
             return this;
         }
 
+        public OracleRoller BuildRollResults(OracleTable ot, string[] additionalSearchTerms = null)
+        {
+            RollResultList = new List<RollResult>();
+            if (Game == GameName.None) Game = ot.Game ?? GameName.None;
+
+            RollFacade(ot, additionalSearchTerms: additionalSearchTerms);
+
+            return this;
+        }
+
         public Embed GetEmbed()
         {
             string gameName = (Game != GameName.None) ? Game.ToString() : string.Empty;
@@ -207,7 +217,19 @@ namespace TheOracle.GameCore.Oracle
 
             if (this.Game == GameName.None) this.Game = TablesToRoll?.FirstOrDefault()?.Game ?? GameName.None;
 
-            foreach (var oracleTable in TablesToRoll)
+            GetResults(TablesToRoll, depth, additionalSearchTerms);
+        }
+
+        private void RollFacade(OracleTable table, int depth = 0, string[] additionalSearchTerms = null)
+        {
+            if (this.Game == GameName.None) this.Game = table.Game ?? GameName.None;
+
+            GetResults(new List<OracleTable> { table }, depth, additionalSearchTerms);
+        }
+
+        private void GetResults(List<OracleTable> tablesToRoll, int depth, string[] additionalSearchTerms)
+        {
+            foreach (var oracleTable in tablesToRoll)
             {
                 int roll = RollerRandom.Next(1, oracleTable.d + 1);
                 var oracleResult = oracleTable.Oracles.LookupOracle(roll);
@@ -257,12 +279,6 @@ namespace TheOracle.GameCore.Oracle
                     string newDescription = oracleResult.Description.Substring(0, formatMatch.Index) + replacement + oracleResult.Description.Substring(formatMatch.Index + formatMatch.Length);
                     oracleResult.Description = newDescription;
                 }
-            }
-
-            string output = string.Empty;
-            foreach (var rollResult in RollResultList.Where(rr => rr.Result != null))
-            {
-                output += $"{OracleResources.Roll}: {rollResult.Roll} {OracleResources.Outcome}: {rollResult.Result.Description}\n";
             }
         }
 

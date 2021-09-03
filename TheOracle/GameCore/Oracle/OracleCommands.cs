@@ -99,12 +99,11 @@ namespace TheOracle.GameCore.Oracle
                     if (!int.TryParse(response.Content, out int value)) throw new ArgumentException($"Unknown input value");
 
                     var ot = ex.Tables.ElementAt(value - 1);
-                    string tableLookup = $"{ot.Parent} {ot.Category} {ot.Name} {ot.Requires}\n".Replace("  ", " ").Trim();
 
                     await message.ModifyAsync(msg =>
                     {
                         msg.Content = "";
-                        msg.Embed = roller.BuildRollResults(tableLookup).GetEmbed();
+                        msg.Embed = roller.BuildRollResults(ot).GetEmbed();
                     });
 
                     if (roller.RollResultList.Count == 1 && roller.RollResultList[0].ParentTable.Pair?.Length > 0)

@@ -33,6 +33,26 @@ namespace TheOracle.GameCore.Oracle
                 }
             }
 
+            //DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Data"));
+            //if (starOraclesDir.Exists)
+            //{
+            //    foreach (var file in starOraclesDir.GetFiles("oracle*.json", SearchOption.AllDirectories))
+            //    {
+            //        var oracleInfoFile = JsonConvert.DeserializeObject<List<DataSworn.OracleInfo>>(File.ReadAllText(file.FullName));
+
+            //        foreach(var oracleCat in oracleInfoFile)
+            //        {
+            //            var loader = new DataSwornTableLoader();
+
+            //            foreach (var oracle in oracleCat.Oracles)
+            //            {
+            //                OracleList.AddRange(loader.GetTables(oracleCat, oracle, GameName.Starforged));
+            //            }
+            //            OracleInfo.Add(oracleCat);
+            //        }
+            //    }
+            //}
+
             DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Data", "oracles"));
             if (starOraclesDir.Exists)
             {
@@ -41,8 +61,8 @@ namespace TheOracle.GameCore.Oracle
                     var oracleInfoFile = JsonConvert.DeserializeObject<DataSworn.OracleInfo>(File.ReadAllText(file.FullName));
 
                     var loader = new DataSwornTableLoader();
-                    
-                    foreach(var oracle in oracleInfoFile.Oracles)
+
+                    foreach (var oracle in oracleInfoFile.Oracles)
                     {
                         OracleList.AddRange(loader.GetTables(oracleInfoFile, oracle, GameName.Starforged));
                     }
