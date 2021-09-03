@@ -100,7 +100,7 @@ namespace TheOracle.StarForged.Creatures
 
         [Command("GenerateCreature", ignoreExtraArgs: true)]
         [Summary("Creates an interactive post for a new Starforged creature")]
-        [Remarks("🦋 - Adds a creature aspect")]
+        [Remarks("🦋 - Adds a creature revealed aspect")]
         [Alias("Creature")]
         public async Task CreaturePost([Remainder] string CreatureCommand = "")
         {

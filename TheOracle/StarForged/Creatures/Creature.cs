@@ -51,7 +51,7 @@ namespace TheOracle.StarForged.Creatures
             creature.Environment = environment;
             creature.EncounteredBehavior = oracles.RandomOracleResult("Creature Behavior", serviceProvider, GameName.Starforged, rnd);
 
-            int firstLookCount = rnd.Next(2, 4); //random.Next doesn't include the max value
+            int firstLookCount = 2; // max as of sept 3 2021
             for (int i = 0; i < firstLookCount; i++)
             {
                 creature.FirstLook.AddRandomOracleRow("Creature First Look", GameName.Starforged, serviceProvider, ChannelId, rnd);
