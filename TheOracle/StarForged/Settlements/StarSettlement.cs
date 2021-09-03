@@ -312,6 +312,7 @@ namespace TheOracle.StarForged.Settlements
                 await message.AddReactionAsync(projectEmoji);
                 await message.AddReactionAsync(contactEmoji);
                 await message.AddReactionAsync(troubleEmoji);
+                await message.AddReactionAsync(firstLookEmoji);
             }).ConfigureAwait(false);
 
             return;
