@@ -40,6 +40,11 @@ namespace TheOracle.GameCore.PlayerCard
                 ReactionEvent downReaction = new ReactionEventBuilder().WithEmote(downEmoji).WithEvent(ResourceChangeHandler).Build();
                 ReactionEvent burnReaction = new ReactionEventBuilder().WithEmote(burnEmoji).WithEvent(BurnMomentumReactionHandler).Build();
 
+                ReactionEvent healthReaction = new ReactionEventBuilder().WithEmote(healthEmoji).WithEvent(RemoveOtherReactions).Build();
+                ReactionEvent momentumReaction = new ReactionEventBuilder().WithEmote(momentumEmoji).WithEvent(RemoveOtherReactions).Build();
+                ReactionEvent spiritReaction = new ReactionEventBuilder().WithEmote(spiritEmoji).WithEvent(RemoveOtherReactions).Build();
+                ReactionEvent supplyReaction = new ReactionEventBuilder().WithEmote(supplyEmoji).WithEvent(RemoveOtherReactions).Build();
+
                 reactionService.reactionList.Add(reaction1);
                 reactionService.reactionList.Add(reaction2);
                 reactionService.reactionList.Add(reaction3);
@@ -49,7 +54,27 @@ namespace TheOracle.GameCore.PlayerCard
                 reactionService.reactionList.Add(downReaction);
                 reactionService.reactionList.Add(burnReaction);
 
+                reactionService.reactionList.Add(healthReaction);
+                reactionService.reactionList.Add(momentumReaction);
+                reactionService.reactionList.Add(spiritReaction);
+                reactionService.reactionList.Add(supplyReaction);
+
                 hooks.PlayerCardReactions = true;
+            }
+        }
+
+        private async Task RemoveOtherReactions(IUserMessage message, ISocketMessageChannel channel, SocketReaction triggeringReaction, IUser user)
+        {
+            if (!IsPlayerCardPost(message)) return;
+
+            IEmote[] reactionsToCheck = new IEmote[] { supplyEmoji, spiritEmoji, momentumEmoji, healthEmoji };
+
+            foreach (var reaction in reactionsToCheck)
+            {
+                if (triggeringReaction.Emote.IsSameAs(reaction)) continue;
+
+                if (message.Reactions[reaction].ReactionCount < 2) continue;
+                await message.RemoveReactionAsync(reaction, user);
             }
         }
 
