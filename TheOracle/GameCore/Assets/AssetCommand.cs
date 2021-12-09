@@ -250,13 +250,16 @@ namespace TheOracle.GameCore.Assets
                 game = settings?.DefaultGame ?? GameName.None;
             }
 
-            var sourceList = Services.GetRequiredService<List<IAsset>>().Where(a => a.Game == game || game == GameName.None).ToList();
+            var sourceList = Services.GetRequiredService<List<IAsset>>().Where(a => a.Game == game || game == GameName.None);
             var assetList = new List<IAsset>();
 
             if (AssetListOptions.Length > 0)
             {
-                assetList.AddRange(sourceList.Where(a => a.Category.Contains(AssetListOptions, StringComparison.OrdinalIgnoreCase)));
-                assetList.AddRange(sourceList.Where(a => a.Name.Contains(AssetListOptions, StringComparison.OrdinalIgnoreCase)));
+                var list1 = sourceList.Where(a => a.Category?.Contains(AssetListOptions, StringComparison.OrdinalIgnoreCase) == true
+                    || a.Name.Contains(AssetListOptions, StringComparison.OrdinalIgnoreCase))
+                    ?? new List<Asset>();
+
+                assetList.AddRange(list1);
             }
             else
             {

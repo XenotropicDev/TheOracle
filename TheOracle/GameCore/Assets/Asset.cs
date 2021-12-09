@@ -32,7 +32,7 @@ namespace TheOracle.GameCore.Assets
         {
             var asset = (Asset)this.MemberwiseClone();
 
-            asset.AssetAbilities = asset.AssetAbilities.Select(abl => abl.ShallowCopy()).ToList();
+            asset.AssetAbilities = asset.AssetAbilities?.Select(abl => abl?.ShallowCopy()).ToList() ?? new List<IAssetAbility>();
             // asset.AssetRadioSelect = asset.AssetRadioSelect?.DeepCopy() ?? null;
             asset.AssetConditionMeter = asset.AssetConditionMeter?.DeepCopy() ?? null;
             asset.AssetCounter = asset.AssetCounter?.DeepCopy() ?? null;
@@ -217,18 +217,18 @@ namespace TheOracle.GameCore.Assets
             var AssetList = new List<IAsset>();
             if (File.Exists(ironAssetsPath))
             {
-                var ironAssets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText(ironAssetsPath));
+                var ironAssets = JsonConvert.DeserializeObject<AssetRoot>(File.ReadAllText(ironAssetsPath));
                 foreach (var asset in ironAssets.Assets)
                 {
-                    AssetList.Add(new AssetAdapter(asset, GameName.Ironsworn, asset.Source ?? ironAssets.Source));
+                    AssetList.Add(new AssetAdapter(asset, GameName.Ironsworn, ironAssets.Source));
                 }
             }
             if (File.Exists(starAssetsPath))
             {
-                var starAssets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText(starAssetsPath));
+                var starAssets = JsonConvert.DeserializeObject<AssetRoot>(File.ReadAllText(starAssetsPath));
                 foreach (var asset in starAssets.Assets)
                 {
-                    AssetList.Add(new AssetAdapter(asset, GameName.Starforged, asset.Source ?? starAssets.Source));
+                    AssetList.Add(new AssetAdapter(asset, GameName.Starforged, starAssets.Source));
                 }
             }
 

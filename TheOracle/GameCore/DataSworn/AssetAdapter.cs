@@ -22,7 +22,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
                     Name = source.Name,
                     Page = source.Page,
                     Date = source.Date,
-                    Url = source.Url ?? null
+                    Url = null
                 };
             }
         }
@@ -43,7 +43,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Description { get => Utilities.FormatMarkdown(data.Description); set => data.Description = value; }
         public GameName Game { get; set; }
         public string IconUrl { get; set; }
-        public IList<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
+        public IList<string> AssetTextInput { get => data.Input; set => data.Input = value; }
         // private IAssetRadioSelect assetRadioSelect = null;
         // public IAssetRadioSelect AssetRadioSelect { get; set; }
         public string Name { get => data.Name; set => data.Name = value; }
@@ -85,7 +85,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         }
 
         public int Min { get; set; } = 0;
-        public int Max { get => data.Value; set => data.Value = value; }
+        public int Max { get => data.Max; set => data.Max = value; }
         public int ActiveNumber { get => data.StartsAt; set => data.StartsAt = value; }
         public string Name { get => data.Name; set => data.Name = value; }
 
@@ -122,7 +122,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         public string Text { get => Utilities.FormatMarkdown(data.Text); set => data.Text = value; }
         public bool Enabled { get => data.Enabled; set => data.Enabled = value; }
-        public IEnumerable<string> AssetTextInput { get => data.TextInput; set => data.TextInput = value?.ToArray(); }
+        public IEnumerable<string> AssetTextInput { get => data.Input; set => data.Input = value?.ToList(); }
 
         public IAssetAbility ShallowCopy()
         {
