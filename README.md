@@ -259,3 +259,6 @@ Sets the bot's re-rolling behavior for multiple oracles and game element posts. 
 
 ### Roll multiple oracles with one command
 To roll multiple oracle tables at once use the following command: `!Table [Action/Theme]`. You can even do things like `!Table [Action/Action/Action/Action]`
+
+## Privacy
+TheOracle bot doesn't store any user data of any kind, except for commands that are explictly handeled by the bot. Any data collected will not be sold or used for anything other than further developing and improvment of the bot.
