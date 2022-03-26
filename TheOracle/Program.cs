@@ -1,7 +1,7 @@
 ﻿using Discord;
-using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
+using Fergun.Interactive;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -68,15 +68,15 @@ namespace TheOracle
 
         private Task LogAsync(LogMessage msg)
         {
-            if (msg.Message?.Contains("GUILD_APPLICATION_COMMAND_COUNTS_UPDATE") == true) return Task.CompletedTask; //This is a spammy message that's new to discord and not supported by discord.net yet.
+            //if (msg.Message?.Contains("GUILD_APPLICATION_COMMAND_COUNTS_UPDATE") == true) return Task.CompletedTask; //This is a spammy message that's new to discord and not supported by discord.net yet.
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
 
         private ServiceProvider ConfigureServices(DiscordSocketClient client = null, CommandService command = null)
         {
-            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info };
-            var commandConfig = new CommandServiceConfig { LogLevel = LogSeverity.Info };
+            var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info, GatewayIntents = GatewayIntents.DirectMessages | GatewayIntents.GuildMessages | GatewayIntents.Guilds | GatewayIntents.GuildMessageReactions | GatewayIntents.DirectMessageReactions};
+            var commandConfig = new CommandServiceConfig { LogLevel = LogSeverity.Info};
             client ??= new DiscordSocketClient(clientConfig);
             command ??= new CommandService(commandConfig);
 
@@ -103,6 +103,7 @@ namespace TheOracle
                 .AddSingleton(AssetList)
                 .AddSingleton(delveService)
                 .AddScoped<NpcFactory>()
+                .AddSingleton(new InteractiveConfig { DefaultTimeout = TimeSpan.FromMinutes(5) })
                 .AddSingleton<InteractiveService>()
                 .AddSingleton(spellingDictionary)
                 .BuildServiceProvider();

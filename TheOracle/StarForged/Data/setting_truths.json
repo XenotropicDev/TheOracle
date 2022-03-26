@@ -1,7 +1,10 @@
 {
   "Name": "Setting Truths",
-  "Source": { "Name": "Starforged Backer Preview", "Version": "081921" },
-  "Oracles": [
+  "Source": {
+    "Name": "Starforged Backer Preview",
+    "Date": "101221"
+  },
+  "Setting Truths": [
     {
       "Name": "Cataclysm",
       "Table": [
@@ -14,9 +17,18 @@
               "Chance": 25,
               "Description": "Temporal distortions from a supermassive black hole"
             },
-            { "Chance": 50, "Description": "Sudden dark matter decay" },
-            { "Chance": 75, "Description": "Superweapon run amok" },
-            { "Chance": 100, "Description": "Scientific experiment gone awry" }
+            {
+              "Chance": 50,
+              "Description": "Sudden dark matter decay"
+            },
+            {
+              "Chance": 75,
+              "Description": "Superweapon run amok"
+            },
+            {
+              "Chance": 100,
+              "Description": "Scientific experiment gone awry"
+            }
           ],
           "Quest Starter": "The galaxy your people left behind is a cold, lightless grave. But a solitary star still glows, a beacon in a vast darkness. How did this star survive the plague? Why do you vow to find the means to travel across the immeasurable gulf to this distant light?"
         },
@@ -25,11 +37,26 @@
           "Description": "Interdimensional entities invaded our reality.",
           "Details": "Without warning, these implacable and enigmatic beings ravaged our homeworlds. We could not stand against them. With the last of our defenses destroyed, our hope gone, we cast our fate to the Forge. Here, we can hide. Survive.\n\nThese entities took the form of:",
           "Table": [
-            { "Chance": 15, "Description": "Corrupting biological scourges" },
-            { "Chance": 30, "Description": "Swarming, animalistic creatures" },
-            { "Chance": 44, "Description": "Monstrous humanoids" },
-            { "Chance": 58, "Description": "Spirits of alluring, divine form" },
-            { "Chance": 72, "Description": "Beings of chaotic energy" },
+            {
+              "Chance": 15,
+              "Description": "Corrupting biological scourges"
+            },
+            {
+              "Chance": 30,
+              "Description": "Swarming, animalistic creatures"
+            },
+            {
+              "Chance": 44,
+              "Description": "Monstrous humanoids"
+            },
+            {
+              "Chance": 58,
+              "Description": "Spirits of alluring, divine form"
+            },
+            {
+              "Chance": 72,
+              "Description": "Beings of chaotic energy"
+            },
             {
               "Chance": 86,
               "Description": "Titanic creatures of horrific power"
@@ -46,11 +73,26 @@
           "Description": "We fled the ravages of a catastrophic war.",
           "Details": "Over millennia, we consumed resources and shattered lives as we fueled the engines of industry, expansion, and war. In the end, a powerful foe took advantage of our rivalries in a violent bid for power. Fleeing the devestation, we assembled our fleets and traveled to the Forge. A new home. A fresh start.\n\nIn this final war, we were set upon by:",
           "Table": [
-            { "Chance": 20, "Description": "Artificial intelligence" },
-            { "Chance": 40, "Description": "Religious zealots" },
-            { "Chance": 60, "Description": "Genetically engineered soldiers" },
-            { "Chance": 80, "Description": "Self-replicating nanomachines" },
-            { "Chance": 100, "Description": "A tyrannical faction or leader" }
+            {
+              "Chance": 20,
+              "Description": "Artificial intelligence"
+            },
+            {
+              "Chance": 40,
+              "Description": "Religious zealots"
+            },
+            {
+              "Chance": 60,
+              "Description": "Genetically engineered soldiers"
+            },
+            {
+              "Chance": 80,
+              "Description": "Self-replicating nanomachines"
+            },
+            {
+              "Chance": 100,
+              "Description": "A tyrannical faction or leader"
+            }
           ],
           "Quest Starter": "A delegation of your dreaded foe arrives in the Forge. They claim to represent a rebel force seeking sanctuary. In return, they offer vital information. What news do they carry?"
         }
@@ -191,10 +233,22 @@
           "Description": "Supernatural powers are wielded by those rare people we call paragons.",
           "Details": "While not magic in the truest sense, the abilities of the paragons are as close to magic as we can conjure.\n\nThese powers are born of:",
           "Table": [
-            { "Chance": 20, "Description": "Genetic engineering" },
-            { "Chance": 40, "Description": "Psychic experimentation" },
-            { "Chance": 60, "Description": "Evolutionary mutations" },
-            { "Chance": 80, "Description": "Magitech augmentations" },
+            {
+              "Chance": 20,
+              "Description": "Genetic engineering"
+            },
+            {
+              "Chance": 40,
+              "Description": "Psychic experimentation"
+            },
+            {
+              "Chance": 60,
+              "Description": "Evolutionary mutations"
+            },
+            {
+              "Chance": 80,
+              "Description": "Magitech augmentations"
+            },
             {
               "Chance": 100,
               "Description": "Ancient knowledge held by secretive orders"
@@ -222,9 +276,9 @@
         },
         {
           "Chance": 67,
-          "Description": "Information is life. We rely on a guild of spaceborne couriers—the Heralds—to transport messages and data across the vast distances between settlements.",
-          "Details": "Direct communication and transmissions beyond the near-space of a ship or outpost is impossible due to the chaotic energies of the Forge. Digital archives are available at larger outposts, but the information is not always up-to-date or reliable. Therefore, the most important communications and discoveries are carried by the Heralds, sworn to see that data to its destination.",
-          "Quest Starter": "You discover a crippled Herald ship. The pilot, carrying a critical and time-sensitive message, is dead. Where was the message bound, and why do you swear to see it to its destination?"
+          "Description": "Information is life. We rely on spaceborne couriers to transport messages and data across the vast distances between settlements.",
+          "Details": "Direct communication and transmissions beyond the near-space of a ship or outpost is impossible. Digital archives are available at larger outposts, but the information is not always up-to-date or reliable. Therefore, the most important communications and discoveries are carried by couriers who swear vows to see that data safely to its destination.",
+          "Quest Starter": "You discover a crippled courier ship. The pilot, carrying a critical and time-sensitive message, is dead. Where was the message bound, and why do you swear to see it to its destination?"
         },
         {
           "Chance": 100,
@@ -246,15 +300,15 @@
         },
         {
           "Chance": 67,
-          "Description": "To help offset a scarcity of medical supplies and knowledge, the technicians we call riggers create basic organ and limb replacements.",
+          "Description": "To help offset a scarcity of medical supplies and knowledge, the resourceful technicians we call riggers create basic organ and limb replacements.",
           "Details": "Much was lost in the Exodus, and what remains of our medical technologies and expertise is co-opted by the privileged and powerful. For most, advanced medical care is simply out of reach. When someone suffers a grievous injury, they'll often turn to a rigger for a makeshift mechanical solution.",
           "Quest Starter": "A rigger is in desperate need of a rare technological artifact to create a life-saving medical device. Their patient is someone important to you, and won't survive more than a few days. What is the nature of this artifact, and what protects it?"
         },
         {
           "Chance": 100,
-          "Description": "The Menders are an order of sworn healers who preserve our medical knowledge and train new generations of caregivers.",
-          "Details": "Advanced care is usually available only within the larger settlements, but even remote communities are often served by a novice Mender. Some Menders are travelers who offer preventative care and respond to emergencies in isolated communities.",
-          "Quest Starter": "A reactor exploded at a remote settlement, killing several and exposing many others to lethal radiation. A team of Menders en route to provide aid were captured by raiders. What do the raiders demand for their release?"
+          "Description": "Orders of sworn healers preserve our medical knowledge and train new generations of caregivers.",
+          "Details": "Life-saving advanced care is available within larger communities throughout the settled sectors of the Forge. Even remote communities are often served by a novice healer, or can request help from a healer's guild in an emergency.",
+          "Quest Starter": "A reactor exploded at a remote settlement, killing several and exposing many others to lethal radiation. A team of healers en route to provide aid were captured by raiders. What do the raiders demand for their release?"
         }
       ],
       "Character": "Do you bear any notable scars or prosthetics? Do you have any medical or physical disabilities? These aspects might influence your look or approach. If you are skilled at providing medical care for yourself or others, you might be a HEALER. If you are rigged with advanced prosthetics or cyberware, you might be AUGMENTED."
@@ -264,8 +318,8 @@
       "Table": [
         {
           "Chance": 33,
-          "Description": "We no longer have access to advanced computer systems. Instead, we must rely on the specialists we call Adepts.",
-          "Details": "\"Our computers are limited to simple digital systems and the most basic machine intelligence. This is because: ______. The Adepts serve in place of those advanced systems. They utilize mind-altering drugs to see the universe as a dazzling lattice of data, identifying trends and predicting outcomes with uncanny accuracy. But to gain this insight they sacrifice much of themselves.\"",
+          "Description": "We no longer have access to advanced computer systems. Instead, we must rely on the seers we call Adepts.",
+          "Details": "Our computers are limited to simple digital systems and the most basic machine intelligence. This is because: ______.\n\nThe Adepts serve in place of those advanced systems. They utilize mind-altering drugs to see the universe as a dazzling lattice of data, identifying trends and predicting outcomes with uncanny accuracy. But to gain this insight they sacrifice much of themselves.",
           "Table": [
             {
               "Chance": 33,
@@ -308,9 +362,9 @@
         },
         {
           "Chance": 67,
-          "Description": "Those few with the ability to pay can call on the Legion—a guild of professional soldiers—to defend or expand their holdings. The rest of us are on our own.",
-          "Details": "The Legion deploy skilled fighting forces and well-equipped starships on-demand. But their service always comes at a dire cost, and the members of the Legion are mercenaries who hold no loyalty except to the highest bidder.",
-          "Quest Starter": "A detachment of the Legion was sent to put down a rebellion on a mining settlement. Instead of following their orders, the soldiers now stand with the miners. What forced this sudden reversal? What will you do to aid these renegades as the full force of their former cohorts are arrayed against them?"
+          "Description": "Professional soldiers defend or expand the holdings of those who are able to pay. The rest of us are on our own.",
+          "Details": "Mercenary guilds wield power in the Forge. Some are scrappy outfits of no more than a dozen soldiers. Others are sector-spanning enterprises deploying legions of skilled fighting forces and fleets of powerful starships. Most hold no loyalty except to the highest bidder.",
+          "Quest Starter": "A detachment of mercenaries was sent to put down a rebellion on a mining settlement. Instead of following their orders, the soldiers now stand with the miners. What forced this sudden reversal? What will you do to aid these renegades as the full force of their former cohorts are arrayed against them?"
         },
         {
           "Chance": 100,

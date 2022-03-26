@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using TheOracle.GameCore.Assets;
 
-namespace TheOracle.GameCore.Oracle.DataSworn
+namespace TheOracle.GameCore.Oracle.DataSwornOld
 {
     public class Ability
     {
+
         [JsonProperty(PropertyName = "Alter Properties")]
         public AlterProperties AlterProperties { get; set; }
 
@@ -13,6 +13,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         [JsonProperty(PropertyName = "Input")]
         public string[] TextInput { get; set; }
+
         public string Text { get; set; }
 
         public Ability DeepCopy()
@@ -27,11 +28,12 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         [JsonProperty(PropertyName = "Alter Moves")]
         public AlterMove[] AlterMoves { get; set; }
-  }
-
-    public class AlterMove : Move {
-
     }
+
+    public class AlterMove : Move
+    {
+    }
+
     public class AlterProperties
     {
         [JsonProperty(PropertyName = "Condition Meter")]
@@ -54,14 +56,16 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
         [JsonProperty(PropertyName = "Input")]
         public string[] TextInput { get; set; }
+
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "Condition Meter")]
         public ConditionMeter ConditionMeter { get; set; }
+
         public Source Source { get; set; }
-    // [JsonProperty(PropertyName = "Radio Select")]
-    // public AssetRadioSelect RadioSelect { get; set; }
-  }
+        // [JsonProperty(PropertyName = "Radio Select")]
+        // public AssetRadioSelect RadioSelect { get; set; }
+    }
 
     public class AssetInfo
     {
@@ -112,21 +116,26 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public Trigger[] Triggers { get; set; }
         public string Text { get; set; }
     }
-  public class TriggerStat {
-    public string Method { get; set; }
-    public string[] Options { get; set; }
-  }
-  public class Trigger {
-      public string Text { get; set; }
-      public TriggerStat Stat { get; set; }
-  }
-    public class AssetMove : Move
+
+    public class TriggerStat
     {
-      // public Asset Asset { get; set; }
-      public string Asset { get; set; }
-      public AssetMove DeepCopy() => (AssetMove)this.MemberwiseClone();
+        public string Method { get; set; }
+        public string[] Options { get; set; }
     }
 
+    public class Trigger
+    {
+        public string Text { get; set; }
+        public TriggerStat Stat { get; set; }
+    }
+
+    public class AssetMove : Move
+    {
+        // public Asset Asset { get; set; }
+        public string Asset { get; set; }
+
+        public AssetMove DeepCopy() => (AssetMove)this.MemberwiseClone();
+    }
 
     public class MoveInfo
     {
@@ -244,7 +253,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Page { get; set; }
         public string Date { get; set; }
         public string Url { get; set; }
-  }
+    }
 
     public class Table
     {
@@ -287,6 +296,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string[] Tags { get; set; }
         public string Thumbnail { get; set; }
     }
+
     public class ConditionMeter
     {
         private int? startsAt;
@@ -294,9 +304,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "Starts At")]
-        public int StartsAt { get => startsAt ?? Value; set => startsAt = value; }
+        public int StartsAt { get => startsAt ?? Max; set => startsAt = value; }
 
-        public int Value { get; set; }
+        public int Max { get; set; }
 
         public ConditionMeter DeepCopy()
         {
@@ -310,24 +320,25 @@ namespace TheOracle.GameCore.Oracle.DataSworn
         public string Name { get; set; }
     }
 
-
-    public enum Condition {
-      Health,
-      Spirit,
-      Supply,
-      Momentum, // is there some way to indicate/organize this as a non rollable stat? hmm
-      CommandVehicleIntegrity,
-      VehicleIntegrity,
-      CompanionHealth,
-      MechanicalCompanionHealth,
-      AssetCondition
+    public enum Condition
+    {
+        Health,
+        Spirit,
+        Supply,
+        Momentum, // is there some way to indicate/organize this as a non rollable stat? hmm
+        CommandVehicleIntegrity,
+        VehicleIntegrity,
+        CompanionHealth,
+        MechanicalCompanionHealth,
+        AssetCondition
     }
+
     public enum Stat
     {
-      Edge,
-      Heart,
-      Iron,
-      Shadow,
-      Wits
+        Edge,
+        Heart,
+        Iron,
+        Shadow,
+        Wits
     }
 }

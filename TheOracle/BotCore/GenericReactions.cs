@@ -1,5 +1,4 @@
 ﻿using Discord;
-using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,8 +30,6 @@ namespace TheOracle.BotCore
         }
 
         public DiscordSocketClient Client { get; }
-
-        public InteractiveService Interactive { get; }
 
         public IServiceProvider Service { get; }
 

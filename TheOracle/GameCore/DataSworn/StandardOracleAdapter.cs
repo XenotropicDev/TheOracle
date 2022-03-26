@@ -8,14 +8,13 @@ namespace TheOracle.GameCore.Oracle
 {
     public partial class StandardOracle
     {
-        public StandardOracle(Table table)
+        public StandardOracle(ChanceTable table)
         {
             this.Description = table.Description;
             this.Chance = table.Chance;
             this.Prompt = table.Details;
-            this.QuestStarter = table.QuestStarter;
             this.Thumbnail = table.Thumbnail;
-            this.Oracles = ConverterHelpers.DataSwornTableToStandardOracle(table.ChildTable);
+            this.Oracles = ConverterHelpers.DataSwornTableToStandardOracle(table.Oracles);
         }
     }
 }

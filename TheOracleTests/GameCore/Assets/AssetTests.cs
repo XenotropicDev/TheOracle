@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using TheOracle.BotCore;
 using TheOracle.GameCore.Oracle.DataSworn;
 
@@ -51,14 +52,13 @@ namespace TheOracle.GameCore.Assets.Tests
 
             var jsonSample = new List<Asset> { asset1, asset2, asset3 };
 
-
-            System.Console.WriteLine(JsonConvert.SerializeObject(jsonSample, Formatting.Indented, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore }));
+            System.Console.WriteLine(JsonConvert.SerializeObject(jsonSample, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }
 
         [TestMethod()]
         public void JsonToAssets()
         {
-            var assets = JsonConvert.DeserializeObject<AssetInfo>(File.ReadAllText("IronSworn\\assets.json"));
+            var assets = JsonConvert.DeserializeObject<AssetRoot>(File.ReadAllText("IronSworn\\assets.json"));
             Assert.IsTrue(assets.Assets.Count > 1);
         }
 

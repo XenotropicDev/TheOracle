@@ -1,7 +1,7 @@
 ﻿using Discord;
-using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
+using Fergun.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -11,17 +11,20 @@ using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.StarForged.PlayerShips
 {
-    public class PlayerShipCommands : InteractiveBase
+    public class PlayerShipCommands : ModuleBase
     {
         public Emoji DecreaseIntegrityEmoji = new Emoji("🟦");
         public Emoji IncreaseIntegrityEmoji = new Emoji("☑️");
         public Emoji SupplyDownEmoji = new Emoji("🟩");
         public Emoji SupplyUpEmoji = new Emoji("✅");
 
+        public InteractiveService Interactive { get; set; }
+
         public PlayerShipCommands(IServiceProvider services)
         {
             Services = services;
             OracleService = Services.GetRequiredService<OracleService>();
+            Interactive = services.GetRequiredService<InteractiveService>();
 
             var hooks = services.GetRequiredService<HookedEvents>();
             if (!hooks.PlayerShipReactions)
@@ -127,10 +130,10 @@ namespace TheOracle.StarForged.PlayerShips
             if (ShipNameInput.Length == 0)
             {
                 post = await ReplyAsync(embed: helperEmbed.Build()).ConfigureAwait(false);
-                var shipNameMsg = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-                if (shipNameMsg == null) { await ShipCreationFailed(post); return; }
-                ShipNameInput = shipNameMsg.Content;
-                await shipNameMsg.DeleteAsync();
+                var shipNameMsg = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+                if (!shipNameMsg.IsSuccess) { await ShipCreationFailed(post); return; }
+                ShipNameInput = shipNameMsg.Value.Content;
+                await shipNameMsg.Value.DeleteAsync();
             }
 
             var valuesSoFarField = new EmbedFieldBuilder().WithName(PlayerShipResources.SelectedItems).WithValue(ShipNameInput);
@@ -140,32 +143,32 @@ namespace TheOracle.StarForged.PlayerShips
             if (post != null) await post.ModifyAsync(msg => msg.Embed = helperEmbed.Build()).ConfigureAwait(false);
             else post = await ReplyAsync(embed: helperEmbed.Build()).ConfigureAwait(false);
 
-            var shipHistoryMessage = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (shipHistoryMessage == null) { await ShipCreationFailed(post); return; }
-            string shipHistory = shipHistoryMessage.Content;
+            var shipHistoryMessage = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (!shipHistoryMessage.IsSuccess) { await ShipCreationFailed(post); return; }
+            string shipHistory = shipHistoryMessage.Value.Content;
             if (skipWords.Any(skipWord => shipHistory.Equals(skipWord, StringComparison.OrdinalIgnoreCase))) shipHistory = string.Empty;
             if (randomWords.Any(randWord => shipHistory.Equals(randWord, StringComparison.OrdinalIgnoreCase))) shipHistory = OracleService.RandomOracleResult("Starship History", Services, GameCore.GameName.Starforged);
-            await shipHistoryMessage.DeleteAsync().ConfigureAwait(false);
+            await shipHistoryMessage.Value.DeleteAsync().ConfigureAwait(false);
 
             valuesSoFarField.WithValue($"{valuesSoFarField.Value}\n{shipHistory}".Trim('\n'));
             await post.ModifyAsync(msg => msg.Embed = helperEmbed
                 .WithDescription(PlayerShipResources.HelperSetLooks).Build()).ConfigureAwait(false);
-            var shipLooksMessage = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (shipLooksMessage == null) { await ShipCreationFailed(post); return; }
-            string shipLooks = shipLooksMessage.Content;
+            var shipLooksMessage = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (!shipLooksMessage.IsSuccess) { await ShipCreationFailed(post); return; }
+            string shipLooks = shipLooksMessage.Value.Content;
             if (skipWords.Any(skipWord => shipLooks.Equals(skipWord, StringComparison.OrdinalIgnoreCase))) shipLooks = string.Empty;
             if (randomWords.Any(randWord => shipLooks.Equals(randWord, StringComparison.OrdinalIgnoreCase))) shipLooks = OracleService.RandomOracleResult("Starship Quirks", Services, GameCore.GameName.Starforged);
-            await shipLooksMessage.DeleteAsync().ConfigureAwait(false);
+            await shipLooksMessage.Value.DeleteAsync().ConfigureAwait(false);
 
             valuesSoFarField.WithValue($"{valuesSoFarField.Value}\n{shipLooks}".Trim('\n'));
             await post.ModifyAsync(msg => msg.Embed = helperEmbed.WithDescription(PlayerShipResources.HelperIncludeSupply).Build()).ConfigureAwait(false);
-            var useSupplyMsg = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (useSupplyMsg == null) { await ShipCreationFailed(post); return; }
-            await useSupplyMsg.DeleteAsync().ConfigureAwait(false);
+            var useSupplyMsg = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (!useSupplyMsg.IsSuccess) { await ShipCreationFailed(post); return; }
+            await useSupplyMsg.Value.DeleteAsync().ConfigureAwait(false);
 
             var ship = new PlayerShip(Services);
             ship.Name = ShipNameInput;
-            ship.UseSupply = yesWords.Any(yesWord => useSupplyMsg.Content.Contains(yesWord, StringComparison.OrdinalIgnoreCase));
+            ship.UseSupply = yesWords.Any(yesWord => useSupplyMsg.Value.Content.Contains(yesWord, StringComparison.OrdinalIgnoreCase));
 
             ship.Description = shipHistory.Length > 0 ? string.Format(PlayerShipResources.ShipHistory, shipHistory) : string.Empty;
             if (ship.Description.Length > 0 && shipLooks.Length > 0) ship.Description += "\n";

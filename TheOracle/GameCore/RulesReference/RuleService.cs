@@ -27,7 +27,7 @@ namespace TheOracle.GameCore.RulesReference
 
             if (File.Exists(starRulesPath))
             {
-                var root = JsonConvert.DeserializeObject<MoveInfo>(File.ReadAllText(starRulesPath));
+                var root = JsonConvert.DeserializeObject<MovesInfo>(File.ReadAllText(starRulesPath));
 
                 RuleReference currentCategoy = null;
 

@@ -9,7 +9,7 @@ namespace TheOracle.GameCore.DataSworn
             Name = source.Name;
             Page = source.Page;
             Date = source.Date;
-            Url = source.Url;
+            Url = null;
         }
     }
 }

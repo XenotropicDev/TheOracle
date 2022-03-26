@@ -1,8 +1,8 @@
 ﻿using Discord;
-using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.Net;
 using Discord.WebSocket;
+using Fergun.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,13 +14,14 @@ using WeCantSpell.Hunspell;
 
 namespace TheOracle.GameCore.Oracle
 {
-    public class OracleCommands : InteractiveBase
+    public class OracleCommands : ModuleBase
     {
         //OracleService is loaded from DI
         public OracleCommands(IServiceProvider services)
         {
             _oracleService = services.GetRequiredService<OracleService>();
             _client = services.GetRequiredService<DiscordSocketClient>();
+            Interactive = services.GetRequiredService<InteractiveService>();
 
             if (!services.GetRequiredService<HookedEvents>().OracleTableReactions)
             {
@@ -32,12 +33,14 @@ namespace TheOracle.GameCore.Oracle
                 services.GetRequiredService<HookedEvents>().OracleTableReactions = true;
             }
             Services = services;
+
         }
 
         private readonly OracleService _oracleService;
         private readonly DiscordSocketClient _client;
 
         public IServiceProvider Services { get; }
+        public InteractiveService Interactive { get; set; }
 
         [Command("PayThePrice")]
         [Alias("Ptp")]
@@ -92,10 +95,11 @@ namespace TheOracle.GameCore.Oracle
                 }
 
                 var message = await ReplyAsync($"Multiple possible results. Reply with the number of the table you want:\n{tableOptions}");
-                var response = await NextMessageAsync(timeout: TimeSpan.FromMinutes(60));
+                var interactiveResponse = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(60));
 
-                if (response != null)
+                if (interactiveResponse.IsSuccess)
                 {
+                    var response = interactiveResponse.Value;
                     if (!int.TryParse(response.Content, out int value)) throw new ArgumentException($"Unknown input value");
 
                     var ot = ex.Tables.ElementAt(value - 1);
@@ -220,7 +224,7 @@ namespace TheOracle.GameCore.Oracle
             if (!ShowPostInChannel) await ReplyAsync(OracleResources.ListSentInDM).ConfigureAwait(false);
         }
 
-        private async Task SendDMWithFailover(SocketUser user, ISocketMessageChannel channel, string msg = null, Embed embed = null)
+        private async Task SendDMWithFailover(IUser user, IMessageChannel channel, string msg = null, Embed embed = null)
         {
             try
             {
@@ -228,7 +232,7 @@ namespace TheOracle.GameCore.Oracle
             }
             catch (HttpException ex)
             {
-                if (ex.DiscordCode != 50007) throw;
+                if (ex.DiscordCode != DiscordErrorCode.CannotSendMessageToUser) throw;
 
                 await channel.SendMessageAsync(msg, embed: embed);
             }

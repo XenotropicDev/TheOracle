@@ -1,7 +1,7 @@
 ﻿using Discord;
-using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
+using Fergun.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -12,7 +12,7 @@ using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.IronSworn.Delve
 {
-    public class DelveCommands : InteractiveBase
+    public class DelveCommands : ModuleBase
     {
         public Emoji DangerEmoji = new Emoji("\u26A0");
         public Emoji FeatureEmoji = new Emoji("\uD83C\uDF40");
@@ -26,6 +26,7 @@ namespace TheOracle.IronSworn.Delve
             Services = services;
             DelveService = Services.GetRequiredService<DelveService>();
             OracleService = Services.GetRequiredService<OracleService>();
+            Interactive = services.GetRequiredService<InteractiveService>();
 
             var hooks = services.GetRequiredService<HookedEvents>();
             if (!hooks.DelveReactions)
@@ -53,6 +54,8 @@ namespace TheOracle.IronSworn.Delve
         public DelveService DelveService { get; }
         public OracleService OracleService { get; }
         public IServiceProvider Services { get; }
+        public InteractiveService Interactive { get; set; }
+
 
         [Command("DelveSite", RunMode = RunMode.Async)]
         [Alias("Delve")]
@@ -89,12 +92,12 @@ namespace TheOracle.IronSworn.Delve
                 .WithFooter(DelveResources.HelperFooterThemeDomain)
                 .Build());
 
-            var themeResponse = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (themeResponse != null)
+            var themeResponse = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (themeResponse.IsSuccess)
             {
-                builder.WithThemes(themeResponse.Content);
+                builder.WithThemes(themeResponse.Value.Content);
 
-                await themeResponse.DeleteAsync().ConfigureAwait(false);
+                await themeResponse.Value.DeleteAsync().ConfigureAwait(false);
 
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                 .WithTitle(DelveResources.DomainHelperTitle)
@@ -109,11 +112,11 @@ namespace TheOracle.IronSworn.Delve
                 return;
             }
 
-            var domainResponse = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (domainResponse != null)
+            var domainResponse = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (domainResponse.IsSuccess)
             {
-                builder.WithDomains(domainResponse.Content);
-                await domainResponse.DeleteAsync().ConfigureAwait(false);
+                builder.WithDomains(domainResponse.Value.Content);
+                await domainResponse.Value.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                     .WithTitle(DelveResources.HelperSiteNameTitle)
                     .WithDescription(DelveResources.HelperSiteNameText)
@@ -126,11 +129,11 @@ namespace TheOracle.IronSworn.Delve
                 return;
             }
 
-            var siteName = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (siteName != null)
+            var siteName = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (siteName.IsSuccess)
             {
-                builder.WithName(siteName.Content);
-                await siteName.DeleteAsync().ConfigureAwait(false);
+                builder.WithName(siteName.Value.Content);
+                await siteName.Value.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                     .WithTitle(DelveResources.HelperSiteObjectiveTitle)
                     .WithDescription(DelveResources.HelperSiteObjectiveText)
@@ -143,11 +146,11 @@ namespace TheOracle.IronSworn.Delve
                 return;
             }
 
-            var siteObjective = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (siteObjective != null)
+            var siteObjective = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (siteObjective.IsSuccess)
             {
-                builder.WithObjective(siteObjective.Content);
-                await siteObjective.DeleteAsync().ConfigureAwait(false);
+                builder.WithObjective(siteObjective.Value.Content);
+                await siteObjective.Value.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = new EmbedBuilder()
                     .WithTitle(DelveResources.HelperSiteRankTitle)
                     .WithDescription(DelveResources.HelperSiteRankText)
@@ -160,16 +163,16 @@ namespace TheOracle.IronSworn.Delve
                 return;
             }
 
-            var siteRank = await NextMessageAsync(timeout: TimeSpan.FromMinutes(2));
-            if (siteRank == null)
+            var siteRank = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(2));
+            if (!siteRank.IsSuccess)
             {
-                await siteRank.DeleteAsync().ConfigureAwait(false);
+                await siteRank.Value.DeleteAsync().ConfigureAwait(false);
                 await helperMessage.ModifyAsync(msg => msg.Embed = helperMessage.Embeds.First().ToEmbedBuilder().WithDescription(DelveResources.UserInputTimeoutError).Build());
                 return;
             }
 
-            builder.WithRank(siteRank.Content);
-            await siteRank.DeleteAsync().ConfigureAwait(false);
+            builder.WithRank(siteRank.Value.Content);
+            await siteRank.Value.DeleteAsync().ConfigureAwait(false);
             DelveInfo delve = builder.Build();
             await helperMessage.ModifyAsync(msg => { msg.Content = null; msg.Embed = delve.BuildEmbed() as Embed; });
 

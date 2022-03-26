@@ -42,7 +42,7 @@ namespace TheOracle.GameCore.DataSworn
 
             this.Text = text;
 
-            this.IsProgressMove = move.ProgressMove;
+            this.IsProgressMove = move.IsProgressMove;
 
             this.Source = new SourceAdapter(source);
         }

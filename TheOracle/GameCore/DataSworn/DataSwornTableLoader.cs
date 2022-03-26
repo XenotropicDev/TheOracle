@@ -11,54 +11,24 @@ namespace TheOracle.GameCore.Oracle
         {
             List<OracleTable> tables = new List<OracleTable>();
 
-            if (info.Requires != null)
+            List<string> searchTags = new List<string>() { info.Name };
+            if (info.Aliases != null) searchTags.AddRange(info.Aliases);
+
+            searchTags.AddRange(oracle.Requires?.Life ?? new List<string>());
+            searchTags.AddRange(oracle.Requires?.Location ?? new List<string>());
+
+            tables.Add(new OracleTable()
             {
-                foreach (var prop in typeof(Requires).GetProperties())
-                {
-                    if (prop.GetValue(info.Requires) is IEnumerable<string> values)
-                    {
-                        foreach (var req in values)
-                        {
-
-
-                            tables.Add(new OracleTable()
-                            {
-                                OracleInfo = info,
-                                Aliases = oracle.Aliases,
-                                DisplayName = oracle.DisplayName,
-                                Parent = info.Name,
-                                SearchTags = new List<string>() {info.Name, info.Parent },
-                                Category = info.Category,
-                                Game = game,
-                                Name = oracle.Name,
-                                Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table),
-                                Requires = req
-                            });
-
-
-                        }
-                    }
-                }
-            }
-            else
-            {
-                List<string> searchTags = new List<string>() { info.Name, info.Parent };
-                searchTags.AddRange(info.Requires?.Life ?? Array.Empty<string>());
-                searchTags.AddRange(info.Requires?.Location ?? Array.Empty<string>());
-
-                tables.Add(new OracleTable()
-                {
-                    OracleInfo = info,
-                    Aliases = oracle.Aliases,
-                    DisplayName = oracle.DisplayName,
-                    Parent = info.Name,
-                    Category = info.Category,
-                    Game = game,
-                    Name = oracle.Name,
-                    SearchTags = searchTags,
-                    Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table)
-                });
-            }
+                OracleInfo = info,
+                Aliases = oracle.Aliases,
+                DisplayName = oracle.DisplayName,
+                Parent = info.Name,
+                Category = oracle.Category,
+                Game = game,
+                Name = oracle.Name,
+                SearchTags = searchTags,
+                Oracles = ConverterHelpers.DataSwornTableToStandardOracle(oracle.Table)
+            });
 
             //Todo refactor this
             //This builds a oracle entry for each distinct table and requirement array value
@@ -68,16 +38,16 @@ namespace TheOracle.GameCore.Oracle
                 {
                     if (childTable.Requires == null)
                     {
-                        List<string> searchTags = new List<string>() { info.Name, info.Parent, oracle.Name };
-                        searchTags.AddRange(childTable.Requires?.Life ?? Array.Empty<string>());
-                        searchTags.AddRange(childTable.Requires?.Location ?? Array.Empty<string>());
-                        
+                        searchTags = new List<string>() { info.Name, oracle.Name };
+                        searchTags.AddRange(childTable.Requires?.Life ?? new List<string>());
+                        searchTags.AddRange(childTable.Requires?.Location ?? new List<string>());
+
                         tables.Add(new OracleTable()
                         {
                             OracleInfo = info,
                             Aliases = childTable.Aliases,
                             DisplayName = childTable.DisplayName,
-                            Category = info.Category,
+                            Category = oracle.Category,
                             Parent = info.Name,
                             Game = game,
                             Name = oracle.Name,
@@ -96,16 +66,16 @@ namespace TheOracle.GameCore.Oracle
                         {
                             foreach (var req in values)
                             {
-                                List<string> searchTags = new List<string>() { info.Name, info.Parent, oracle.Name };
-                                searchTags.AddRange(childTable.Requires?.Life ?? Array.Empty<string>());
-                                searchTags.AddRange(childTable.Requires?.Location ?? Array.Empty<string>());
+                                searchTags = new List<string>() { info.Name, oracle.Name };
+                                searchTags.AddRange(childTable.Requires?.Life ?? new List<string>());
+                                searchTags.AddRange(childTable.Requires?.Location ?? new List<string>());
 
                                 tables.Add(new OracleTable()
                                 {
                                     OracleInfo = info,
                                     Aliases = childTable.Aliases,
                                     DisplayName = childTable.DisplayName,
-                                    Category = info.Category,
+                                    Category = oracle.Category,
                                     Parent = info.Name,
                                     Game = game,
                                     Name = oracle.Name,

@@ -24,7 +24,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 4
+        "Max": 4
       }
     },
     {
@@ -44,9 +44,10 @@
           "Text": "**Ensnaring:** When your spider sets a trap, add +1 as you *Enter the Fray* +shadow. On a strong hit, also inflict 2 harm."
         }
       ],
+
       "Condition Meter": {
         "Name": "Health",
-        "Value": 4
+        "Max": 4
       }
     },
     {
@@ -68,7 +69,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 3
+        "Max": 3
       }
     },
     {
@@ -90,7 +91,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 5
+        "Max": 5
       }
     },
     {
@@ -112,7 +113,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 4
+        "Max": 4
       }
     },
     {
@@ -135,7 +136,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 4
+        "Max": 4
       }
     },
     {
@@ -157,7 +158,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 5
+        "Max": 5
       }
     },
     {
@@ -179,7 +180,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 3
+        "Max": 3
       }
     },
     {
@@ -223,7 +224,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 5
+        "Max": 5
       }
     },
     {
@@ -402,8 +403,7 @@
       ],
       "Condition Meter": {
         "Name": "Wealth",
-        "Value": 5,
-        "Starts At": 0
+        "Max": 5
       }
     },
     {
@@ -1113,7 +1113,7 @@
           "Alter Properties": {
             "Condition Meter": {
               "Name": "Health",
-              "Value": 6
+              "Max": 6
             }
           }
         },
@@ -1123,7 +1123,7 @@
       ],
       "Condition Meter": {
         "Name": "Health",
-        "Value": 3
+        "Max": 3
       }
     },
     {
@@ -1195,8 +1195,7 @@
       ],
       "Condition Meter": {
         "Name": "Essence",
-        "Value": 6,
-        "Starts At": 0
+        "Max": 6
       }
     },
     {
@@ -1251,8 +1250,7 @@
       ],
       "Condition Meter": {
         "Name": "Light",
-        "Value": 6,
-        "Starts At": 0
+        "Max": 6
       }
     },
     {
@@ -1414,7 +1412,7 @@
       ],
       "Condition Meter": {
         "Name": "Strength",
-        "Value": 4
+        "Max": 4
       }
     },
     {

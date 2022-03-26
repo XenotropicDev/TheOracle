@@ -28,7 +28,6 @@ namespace TheOracle.GameCore.Oracle
         public int Chance { get; set; }
         public string Description { get; set; }
         public string Prompt { get; set; }
-        public string QuestStarter { get; private set; }
         public List<StandardOracle> Oracles { get; set; }
         public string Thumbnail { get; set; }
 

@@ -53,20 +53,24 @@ namespace TheOracle.GameCore.Oracle
             //    }
             //}
 
-            DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Data", "oracles"));
+            DirectoryInfo starOraclesDir = new DirectoryInfo(Path.Combine("StarForged", "Data"));
             if (starOraclesDir.Exists)
             {
-                foreach (var file in starOraclesDir.GetFiles("*.json", SearchOption.AllDirectories))
+                foreach (var file in starOraclesDir.GetFiles("*oracle*.json", SearchOption.AllDirectories))
                 {
-                    var oracleInfoFile = JsonConvert.DeserializeObject<DataSworn.OracleInfo>(File.ReadAllText(file.FullName));
+                    var oracleInfoFile = JsonConvert.DeserializeObject<List<DataSworn.OracleInfo>>(File.ReadAllText(file.FullName));
 
                     var loader = new DataSwornTableLoader();
 
-                    foreach (var oracle in oracleInfoFile.Oracles)
+                    foreach (var info in oracleInfoFile)
                     {
-                        OracleList.AddRange(loader.GetTables(oracleInfoFile, oracle, GameName.Starforged));
+                        foreach (var oracle in info.Oracles)
+                        {
+                            OracleList.AddRange(loader.GetTables(info, oracle, GameName.Starforged));
+                        }
+                        OracleInfo.Add(info);
                     }
-                    OracleInfo.Add(oracleInfoFile);
+
                 }
             }
 

@@ -7,9 +7,9 @@ namespace TheOracle.GameCore.Oracle
 {
     public partial class OracleTable
     {
-        public List<string> SearchTags { get; set; } = new List<string>();
+        public IList<string> SearchTags { get; set; } = new List<string>();
         public OracleInfo OracleInfo { get; set; }
-        public string[] Aliases { get; set; }
+        public IList<string> Aliases { get; set; }
         public int d { get; set; } = 100;
         public string Category { get; set; }
         public string Parent { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Discord;
-using Discord.Addons.Interactive;
+using Fergun.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,13 +12,16 @@ using TheOracle.GameCore.Oracle;
 
 namespace TheOracle.BotCore
 {
-    public class GenericCommands : InteractiveBase
+    public class GenericCommands : ModuleBase
     {
         public GenericCommands(IServiceProvider services)
         {
             Services = services;
+            Interactive = services.GetRequiredService<InteractiveService>();
+
         }
 
+        public InteractiveService Interactive { get; set; }
         public IServiceProvider Services { get; }
 
         [Command("ReplaceField", RunMode = RunMode.Async)]
@@ -203,15 +206,15 @@ namespace TheOracle.BotCore
                 fieldNumbersAndValues += $"{i + 1} - {matchingFields.ElementAt(i).Name} : {matchingFields.ElementAt(i).Value}\r\n";
             }
             var helperMessage = await ReplyAsync(string.Format(GenericCommandResources.SpecifyField, fieldNumbersAndValues)).ConfigureAwait(false);
-            var userResponse = await NextMessageAsync(false, timeout: TimeSpan.FromMinutes(1));
-            if (userResponse == null) return -1;
-            if (!int.TryParse(userResponse.Content, out fieldToEdit) || fieldToEdit < 1 || fieldToEdit > matchingFields.Count())
+            var userResponse = await Interactive.NextMessageAsync(x => x.Channel.Id == Context.Channel.Id, timeout: TimeSpan.FromMinutes(1));
+            if (!userResponse.IsSuccess) return -1;
+            if (!int.TryParse(userResponse.Value.Content, out fieldToEdit) || fieldToEdit < 1 || fieldToEdit > matchingFields.Count())
             {
-                await ReplyAsync(string.Format(GenericCommandResources.UnknownFieldNumber, userResponse.Content));
+                await ReplyAsync(string.Format(GenericCommandResources.UnknownFieldNumber, userResponse.Value.Content));
                 return -1;
             }
             await helperMessage.DeleteAsync().ConfigureAwait(false);
-            await userResponse.DeleteAsync().ConfigureAwait(false);
+            await userResponse.Value.DeleteAsync().ConfigureAwait(false);
             return fieldToEdit - 1;
         }
     }

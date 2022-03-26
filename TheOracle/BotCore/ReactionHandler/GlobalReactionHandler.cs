@@ -18,7 +18,8 @@ namespace TheOracle.BotCore
         public IServiceProvider Service { get; }
         private DiscordSocketClient Client { get; }
 
-        public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        //Func<Cacheable<IUserMessage, ulong>, Cacheable<IMessageChannel, ulong>, SocketReaction, Task>
+        public async Task ReactionEventHandler(Cacheable<IUserMessage, ulong> userMessage, Cacheable<IMessageChannel, ulong> cachedChannel, SocketReaction reaction)
         {
             var reactionHandler = Service.GetRequiredService<ReactionService>();
             if (!reactionHandler.reactionList.Any(item => item.Emote.IsSameAs(reaction.Emote))) return;
@@ -29,6 +30,7 @@ namespace TheOracle.BotCore
             Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {user} triggered a handled reaction {reaction.Emote}");
 
             var message = await userMessage.GetOrDownloadAsync();
+            var channel = await cachedChannel.GetOrDownloadAsync() as ISocketMessageChannel;
 
             var processList = reactionHandler.reactionList.Where(react => react.Emote.IsSameAs(reaction.Emote));
             Parallel.ForEach(processList, (item) =>
@@ -37,7 +39,7 @@ namespace TheOracle.BotCore
             });
         }
 
-        public async Task RemovedReactionHandler(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction)
+        public async Task RemovedReactionHandler(Cacheable<IUserMessage, ulong> userMessage, Cacheable<IMessageChannel, ulong> cachedChannel, SocketReaction reaction)
         {
             var reactionHandler = Service.GetRequiredService<ReactionService>();
             if (!reactionHandler.reactionRemovedList.Any(item => item.Emote.IsSameAs(reaction.Emote))) return;
@@ -48,6 +50,7 @@ namespace TheOracle.BotCore
             Console.WriteLine($"{DateTime.Now:HH:mm:ss} Reactions   {user} triggered a handled reaction removed event {reaction.Emote}");
 
             var message = await userMessage.GetOrDownloadAsync();
+            var channel = await cachedChannel.GetOrDownloadAsync() as ISocketMessageChannel;
 
             var processList = reactionHandler.reactionRemovedList.Where(react => react.Emote.IsSameAs(reaction.Emote));
             Parallel.ForEach(processList, (item) =>

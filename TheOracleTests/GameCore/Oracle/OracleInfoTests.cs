@@ -17,13 +17,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.MissingMemberHandling = MissingMemberHandling.Ignore;
 
-            foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data\\oracles").GetFiles("*.json", System.IO.SearchOption.AllDirectories))
+            foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data").GetFiles("oracle*.json", System.IO.SearchOption.AllDirectories))
             {
                 try
                 {
                     string json = System.IO.File.ReadAllText(file.FullName);
 
-                    var test = JsonConvert.DeserializeObject<OracleInfo>(json, settings);
+                    var test = JsonConvert.DeserializeObject<List<OracleInfo>>(json, settings);
                 }
                 catch (Exception ex)
                 {
@@ -53,7 +53,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 {
                     string json = System.IO.File.ReadAllText(file.FullName);
 
-                    var test = JsonConvert.DeserializeObject<MoveInfo>(json, settings);
+                    var test = JsonConvert.DeserializeObject<MovesInfo>(json, settings);
                 }
                 catch (Exception ex)
                 {
@@ -68,7 +68,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 {
                     string json = System.IO.File.ReadAllText(file.FullName);
 
-                    var test = JsonConvert.DeserializeObject<GlossaryInfo>(json, settings);
+                    var test = JsonConvert.DeserializeObject<GlossaryRoot>(json, settings);
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +83,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 {
                     string json = System.IO.File.ReadAllText(file.FullName);
 
-                    var test = JsonConvert.DeserializeObject<AssetInfo>(json, settings);
+                    var test = JsonConvert.DeserializeObject<AssetRoot>(json, settings);
                 }
                 catch (Exception ex)
                 {
@@ -95,9 +95,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
             var generator = new JSchemaGenerator();
 
             System.IO.File.WriteAllText("OraclesSchema.json", generator.Generate(typeof(OracleInfo)).ToString());
-            System.IO.File.WriteAllText("MovesSchema.json", generator.Generate(typeof(MoveInfo)).ToString());
-            System.IO.File.WriteAllText("GlossarySchema.json", generator.Generate(typeof(GlossaryInfo)).ToString());
-            System.IO.File.WriteAllText("AssetsSchema.json", generator.Generate(typeof(AssetInfo)).ToString());
+            System.IO.File.WriteAllText("MovesSchema.json", generator.Generate(typeof(MovesInfo)).ToString());
+            System.IO.File.WriteAllText("GlossarySchema.json", generator.Generate(typeof(GlossaryRoot)).ToString());
+            System.IO.File.WriteAllText("AssetsSchema.json", generator.Generate(typeof(AssetRoot)).ToString());
         }
     }
 }
