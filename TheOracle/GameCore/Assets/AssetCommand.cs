@@ -189,7 +189,7 @@ namespace TheOracle.GameCore.Assets
 
             await Task.Run(async () =>
             {
-                if (asset.AssetConditionMeter != null)
+                if (asset.AssetConditionMeter != null && !(asset.AssetConditionMeter.Max == 0 && asset.AssetConditionMeter.Min == 0))
                 {
                     await message.AddReactionAsync(new Emoji("⬆️"));
                     await message.AddReactionAsync(new Emoji("⬇️"));

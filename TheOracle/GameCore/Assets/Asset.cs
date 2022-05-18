@@ -103,9 +103,10 @@ namespace TheOracle.GameCore.Assets
                 asset.AssetAbilities[i].Enabled = embedField.Name.Contains(AssetEnabledEmoji) || embedField.Name.Contains(OldAssetEnabledEmoji);
             }
 
-            if (asset.AssetConditionMeter != null)
+            if (asset.AssetConditionMeter != null && !(asset.AssetConditionMeter.Max == 0 && asset.AssetConditionMeter.Min == 0))
             {
-                var field = embed.Fields.First(f => f.Name == asset.AssetConditionMeter.Name);
+                var field = embed.Fields.FirstOrDefault(f => f.Name == asset.AssetConditionMeter.Name);
+
                 var match = Regex.Match(field.Value, @"__\*\*(\d+)\*\*__");
                 int value = 0;
                 if (match.Success) int.TryParse(match.Groups[1].Value, out value);
