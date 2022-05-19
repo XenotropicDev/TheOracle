@@ -19,17 +19,9 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
 
             foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data").GetFiles("oracle*.json", System.IO.SearchOption.AllDirectories))
             {
-                try
-                {
-                    string json = System.IO.File.ReadAllText(file.FullName);
+                string json = System.IO.File.ReadAllText(file.FullName);
 
-                    var test = JsonConvert.DeserializeObject<List<OracleInfo>>(json, settings);
-                }
-                catch (Exception ex)
-                {
-                    Assert.Fail($"{file.FullName} {ex.Message}");
-                    Console.WriteLine($"{file.Name} {ex.Message}");
-                }
+                var test = JsonConvert.DeserializeObject<List<OracleInfo>>(json, settings);
             }
 
             //foreach (var file in new System.IO.DirectoryInfo("IronSworn\\Data").GetFiles("ironsworn_oracles*.json"))
@@ -68,7 +60,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn.Tests
                 {
                     string json = System.IO.File.ReadAllText(file.FullName);
 
-                    var test = JsonConvert.DeserializeObject<GlossaryRoot>(json, settings);
+                    var test = JsonConvert.DeserializeObject<List<GlossaryRoot>>(json, settings);
                 }
                 catch (Exception ex)
                 {

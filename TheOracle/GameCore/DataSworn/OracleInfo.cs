@@ -14,7 +14,8 @@ namespace TheOracle.GameCore.Oracle.DataSworn
     public partial class Attributes
     {
         [JsonProperty(PropertyName = "Derelict Type")]
-        public string DerelictType { get; set; }
+        [JsonConverter(typeof(SingleOrArrayConverter<string>))]
+        public List<string> DerelictType { get; set; }
 
         [JsonConverter(typeof(SingleOrArrayConverter<string>))]
         public List<string> Location { get; set; }

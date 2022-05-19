@@ -61,25 +61,18 @@ namespace TheOracle.GameCore.Oracle.Tests
         }
 
         [TestMethod()]
-        public void BuildRollResultsTest4()
-        {
-            var roller = new OracleRoller(ServiceProvider, GameName.Starforged);
-            Assert.ThrowsException<MultipleOraclesException>(() => roller.BuildRollResults("!table faction [affiliation/identity]"));
-
-        }
-
-        [TestMethod()]
-        [DataRow("Derelict Operations Feature", GameName.Starforged)]
-        //[DataRow("creature scale", GameName.Starforged)]
-        //[DataRow("Settlement Authority", GameName.Starforged)]
-        [DataRow("access zone feature", GameName.Starforged)]
-        //[DataRow("Character First Look", GameName.Starforged)]
-        [DataRow("Area Access", GameName.Starforged)]
-        //[DataRow("Lifeless Planetside Opportunity", GameName.Starforged)] //Alias value test
-        //[DataRow("Planet Opportunity Lifeless", GameName.Starforged)]
-        //[DataRow("Settlement Name", GameName.Starforged)]
-        [DataRow("Theme Fortified", GameName.Starforged)]
-        [DataRow("Infested Peril", GameName.Starforged)]
+        //[DataRow("Derelict Operations Feature", GameName.Starforged)]
+        [DataRow("creature scale", GameName.Starforged)]
+        [DataRow("Settlement Authority", GameName.Starforged)]
+        //[DataRow("access zone feature", GameName.Starforged)]
+        [DataRow("Character First Look", GameName.Starforged)]
+        //[DataRow("Area Access", GameName.Starforged)]
+        [DataRow("Lifeless Planetside Opportunity", GameName.Starforged)] //Alias value test
+        [DataRow("Planet Opportunity Lifeless", GameName.Starforged)]
+        [DataRow("Settlement Name", GameName.Starforged)]
+        [DataRow("faction [affiliation/identity]", GameName.Starforged)]
+        //[DataRow("Theme Fortified", GameName.Starforged)]
+        //[DataRow("Infested Peril", GameName.Starforged)]
         public void OracleTests(string oracleName, GameName game)
         {
             var roller = new OracleRoller(ServiceProvider, game);

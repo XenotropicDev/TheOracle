@@ -145,8 +145,8 @@
     <Description>A Discord bot the Ironsworn game system</Description>
     <RepositoryUrl>https://github.com/XenotropicDev/TheOracle.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>0.8.23.7</AssemblyVersion>
-    <FileVersion>0.8.23.7</FileVersion>
+    <AssemblyVersion>0.8.24.0</AssemblyVersion>
+    <FileVersion>0.8.24.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -161,8 +161,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="StarForged\Data\assets.json" />
+	  <None Remove="StarForged\Data\encounters.json" />
+	  <None Remove="StarForged\Data\glossary.json" />
 	  <None Remove="StarForged\Data\glossary\glossary.json" />
+	  <None Remove="StarForged\Data\moves.json" />
+	  <None Remove="StarForged\Data\oracles.json" />
 	  <None Remove="StarForged\Data\oracles\oracles.json" />
+	  <None Remove="StarForged\Data\setting_truths.json" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -231,24 +237,9 @@
     <None Update="StarForged\assets.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="StarForged\Data\glossary\glossary_asset_type.json">
+    <Content Update="StarForged\Data\glossary\glossary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="StarForged\Data\glossary\glossary_atmosphere.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="StarForged\Data\glossary\glossary_condition_meter.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="StarForged\Data\glossary\glossary_impact.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="StarForged\Data\glossary\glossary_region.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="StarForged\Data\glossary\glossary_stat.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Update="StarForged\Data\moves\moves_adventure.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -1,9 +1,6 @@
 {
   "Name": "Setting Truths",
-  "Source": {
-    "Name": "Starforged Backer Preview",
-    "Date": "101221"
-  },
+  "Source": { "Name": "Starforged Backer Preview", "Date": "101221" },
   "Setting Truths": [
     {
       "Name": "Cataclysm",
@@ -17,18 +14,9 @@
               "Chance": 25,
               "Description": "Temporal distortions from a supermassive black hole"
             },
-            {
-              "Chance": 50,
-              "Description": "Sudden dark matter decay"
-            },
-            {
-              "Chance": 75,
-              "Description": "Superweapon run amok"
-            },
-            {
-              "Chance": 100,
-              "Description": "Scientific experiment gone awry"
-            }
+            { "Chance": 50, "Description": "Sudden dark matter decay" },
+            { "Chance": 75, "Description": "Superweapon run amok" },
+            { "Chance": 100, "Description": "Scientific experiment gone awry" }
           ],
           "Quest Starter": "The galaxy your people left behind is a cold, lightless grave. But a solitary star still glows, a beacon in a vast darkness. How did this star survive the plague? Why do you vow to find the means to travel across the immeasurable gulf to this distant light?"
         },
@@ -37,26 +25,11 @@
           "Description": "Interdimensional entities invaded our reality.",
           "Details": "Without warning, these implacable and enigmatic beings ravaged our homeworlds. We could not stand against them. With the last of our defenses destroyed, our hope gone, we cast our fate to the Forge. Here, we can hide. Survive.\n\nThese entities took the form of:",
           "Table": [
-            {
-              "Chance": 15,
-              "Description": "Corrupting biological scourges"
-            },
-            {
-              "Chance": 30,
-              "Description": "Swarming, animalistic creatures"
-            },
-            {
-              "Chance": 44,
-              "Description": "Monstrous humanoids"
-            },
-            {
-              "Chance": 58,
-              "Description": "Spirits of alluring, divine form"
-            },
-            {
-              "Chance": 72,
-              "Description": "Beings of chaotic energy"
-            },
+            { "Chance": 15, "Description": "Corrupting biological scourges" },
+            { "Chance": 30, "Description": "Swarming, animalistic creatures" },
+            { "Chance": 44, "Description": "Monstrous humanoids" },
+            { "Chance": 58, "Description": "Spirits of alluring, divine form" },
+            { "Chance": 72, "Description": "Beings of chaotic energy" },
             {
               "Chance": 86,
               "Description": "Titanic creatures of horrific power"
@@ -73,26 +46,11 @@
           "Description": "We fled the ravages of a catastrophic war.",
           "Details": "Over millennia, we consumed resources and shattered lives as we fueled the engines of industry, expansion, and war. In the end, a powerful foe took advantage of our rivalries in a violent bid for power. Fleeing the devestation, we assembled our fleets and traveled to the Forge. A new home. A fresh start.\n\nIn this final war, we were set upon by:",
           "Table": [
-            {
-              "Chance": 20,
-              "Description": "Artificial intelligence"
-            },
-            {
-              "Chance": 40,
-              "Description": "Religious zealots"
-            },
-            {
-              "Chance": 60,
-              "Description": "Genetically engineered soldiers"
-            },
-            {
-              "Chance": 80,
-              "Description": "Self-replicating nanomachines"
-            },
-            {
-              "Chance": 100,
-              "Description": "A tyrannical faction or leader"
-            }
+            { "Chance": 20, "Description": "Artificial intelligence" },
+            { "Chance": 40, "Description": "Religious zealots" },
+            { "Chance": 60, "Description": "Genetically engineered soldiers" },
+            { "Chance": 80, "Description": "Self-replicating nanomachines" },
+            { "Chance": 100, "Description": "A tyrannical faction or leader" }
           ],
           "Quest Starter": "A delegation of your dreaded foe arrives in the Forge. They claim to represent a rebel force seeking sanctuary. In return, they offer vital information. What news do they carry?"
         }
@@ -233,22 +191,10 @@
           "Description": "Supernatural powers are wielded by those rare people we call paragons.",
           "Details": "While not magic in the truest sense, the abilities of the paragons are as close to magic as we can conjure.\n\nThese powers are born of:",
           "Table": [
-            {
-              "Chance": 20,
-              "Description": "Genetic engineering"
-            },
-            {
-              "Chance": 40,
-              "Description": "Psychic experimentation"
-            },
-            {
-              "Chance": 60,
-              "Description": "Evolutionary mutations"
-            },
-            {
-              "Chance": 80,
-              "Description": "Magitech augmentations"
-            },
+            { "Chance": 20, "Description": "Genetic engineering" },
+            { "Chance": 40, "Description": "Psychic experimentation" },
+            { "Chance": 60, "Description": "Evolutionary mutations" },
+            { "Chance": 80, "Description": "Magitech augmentations" },
             {
               "Chance": 100,
               "Description": "Ancient knowledge held by secretive orders"
