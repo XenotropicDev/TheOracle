@@ -38,11 +38,13 @@ namespace TheOracle.GameCore.Oracle.DataSworn
     {
         public string Method { get; set; }
         public IList<string> Stats { get; set; }
+        public IList<string> Resources { get; set; }
 
         internal StatOptions DeepCopy()
         {
             StatOptions clone = (StatOptions)this.MemberwiseClone();
-            clone.Stats = new List<string>(this.Stats);
+            clone.Stats = new List<string>(this.Stats ?? new List<string>());
+            clone.Resources = new List<string>(this.Resources ?? new List<string>());
 
             return clone;
         }

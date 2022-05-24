@@ -9,13 +9,13 @@ using Newtonsoft.Json.Schema.Generation;
 namespace TheOracle.GameCore.Oracle.DataSworn.Tests
 {
     [TestClass()]
-    public class OracleInfoTests
+    public class DataDeserializationTests
     {
         [TestMethod()]
         public void TestDesializationTest()
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.MissingMemberHandling = MissingMemberHandling.Ignore;
+            settings.MissingMemberHandling = MissingMemberHandling.Error;
 
             foreach (var file in new System.IO.DirectoryInfo("StarForged\\Data").GetFiles("oracle*.json", System.IO.SearchOption.AllDirectories))
             {

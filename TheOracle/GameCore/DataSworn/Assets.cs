@@ -185,6 +185,7 @@ namespace TheOracle.GameCore.Oracle.DataSworn
 
     public class AlterMove
     {
+        [Newtonsoft.Json.JsonProperty("Any Move")]
         public bool AnyMove { get; set; }
         public string Name { get; set; }
         public IList<Trigger> Triggers { get; set; }
