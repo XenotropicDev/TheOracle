@@ -2,6 +2,7 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic;
 using System;
 using System.Linq;
 using System.Threading;
@@ -99,10 +100,10 @@ namespace TheOracle.BotCore
             {
                 if (message.Embeds.Count == 0) return;
 
-                if (message.Embeds.Any(NeedsWarning) && !(channel is IDMChannel)) await channel.SendMessageAsync($"{user} moved the following message to the bottom of chat from a message posted on {message.Timestamp.ToLocalTime()}");
+                if (message.Embeds.Any(NeedsWarning) && channel is not IDMChannel) await channel.SendMessageAsync($"{user} moved the following message to the bottom of chat from a message posted on {message.Timestamp.ToLocalTime()}");
 
                 var reactionsToAdd = message.Reactions.Where(item => item.Value.IsMe).Select(item => item.Key);
-                var newMessage = await channel.SendMessageAsync(message.Content, message.IsTTS, message.Embeds.FirstOrDefault() as Embed);
+                var newMessage = await channel.SendMessageAsync(message.Content, message.IsTTS, message.Embeds.FirstOrDefault() as Embed, messageReference: message.Reference, components: ComponentBuilder.FromMessage(message).Build());
 
                 foreach (var reaction in reactionsToAdd)
                 {

@@ -168,7 +168,11 @@ namespace TheOracle.BotCore
                 return;
             }
 
-            var newMsg = await (mentionedChannel as IMessageChannel).SendMessageAsync(message.Content, embed: message.Embeds.FirstOrDefault().ToEmbedBuilder().Build());
+            var newMsg = await (mentionedChannel as IMessageChannel)
+                .SendMessageAsync(message.Content, 
+                    embed: message.Embeds.FirstOrDefault().ToEmbedBuilder().Build(), 
+                    messageReference: message.Reference, 
+                    components: ComponentBuilder.FromMessage(message).Build());
 
             await Task.Run(async () => { 
                 var fetchedMessage = await Context.Channel.GetMessageAsync(message.Id); //This is to get around a bug in discord.net
