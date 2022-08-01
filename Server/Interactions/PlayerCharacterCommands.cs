@@ -29,18 +29,40 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
     [SlashCommand("create", "Create a player character.")]
     public async Task BuildPlayerCard(string name, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits, string? avatarImageURL = null)
     {
-        await DeferAsync();
         var message = await Context.Interaction.GetOriginalResponseAsync();
 
         var pcData = new PlayerCharacter(name, edge, heart, iron, shadow, wits, avatarImageURL, Context.Interaction.User.Id, Context.Interaction.GuildId ?? Context.Interaction.ChannelId, message.Id, message.Channel.Id);
         DbContext.PlayerCharacters.Add(pcData);
-        await DbContext.SaveChangesAsync();
+        await DbContext.SaveChangesAsync().ConfigureAwait(true);
 
         var pcEntity = new PlayerCharacterEntity(pcData, emotes, dataFactory);
         var characterSheet = await pcEntity.EntityAsResponse(FollowupAsync).ConfigureAwait(false);
         pcData.MessageId = characterSheet.Id;
 
-        await DbContext.SaveChangesAsync();
+        await DbContext.SaveChangesAsync().ConfigureAwait(false);
+        return;
+    }
+
+
+    [SlashCommand("change-stats", "Create a player character.")]
+    public async Task EditPCStats([Autocomplete(typeof(CharacterAutocomplete))] string character, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits)
+    {
+        if (!int.TryParse(character, out var id)) return;
+        var pc = await DbContext.PlayerCharacters.FindAsync(id);
+
+        if (pc == null) throw new ArgumentException($"Unknown character: {id}");
+
+        pc.Edge = edge;
+        pc.Heart = heart;
+        pc.Iron = iron;
+        pc.Shadow = shadow;
+        pc.Wits = wits;
+
+        await DbContext.SaveChangesAsync().ConfigureAwait(false);
+
+        await RespondAsync($"Stats updated", ephemeral: true).ConfigureAwait(false);
+
+        await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
         return;
     }
 
@@ -59,7 +81,7 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
         await RespondAsync($"Impact added", ephemeral: true).ConfigureAwait(false);
 
         await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
-        
+
         await saveTask;
     }
 
@@ -72,9 +94,9 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
         pc.Impacts.Add(impact);
 
         var saveTask = DbContext.SaveChangesAsync().ConfigureAwait(false);
-        
+
         await RespondAsync($"Debility added", ephemeral: true).ConfigureAwait(false);
-        
+
         await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
 
         await saveTask;
