@@ -595,4 +595,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties starforged_4data_4oracles_1json__JsonSchema="https://github.com/fbecart/zinoma/releases/latest/download/zinoma-schema.json" /></VisualStudio></ProjectExtensions>
+
 </Project>
