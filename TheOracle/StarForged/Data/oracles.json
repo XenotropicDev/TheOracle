@@ -2675,9 +2675,9 @@
           {
             "Chance": 15,
             "Description": "Exobiologist",
-            "Details": "ARCHIVIST, NATURALIST",
+            "Details": "LORE HUNTER, NATURALIST",
             "Assets": [
-              "ARCHIVIST",
+              "LORE HUNTER",
               "NATURALIST"
             ]
           },
@@ -12431,6 +12431,155 @@
               "Amount": 2,
               "Allow duplicates": false
             }
+          }
+        ]
+      },
+      {
+        "Name": "Story Clue",
+        "Source": {
+          "Name": "Starforged Backer Preview",
+          "Date": "081921"
+        },
+        "Content tags": [
+          "peril",
+          "event",
+          "present"
+        ],
+        "Aliases": [
+          "clue"
+        ],
+        "Part of speech": [
+          "fragment"
+        ],
+        "Description": "When you [Gather Information] to investigate a mystery, you might uncover clues in the form of messages, rumors, eyewitness reports, data, or physical evidence. You can use this oracle to help reveal what this evidence connects to or implicates. Then, use the outcome of the [Gather Information] roll—strong hit, weak hit, or miss—to guide whether the clue brings clarity or complications.",
+        "Table": [
+          {
+            "Chance": 3,
+            "Description": "Affirms a previously understood fact or clue"
+          },
+          {
+            "Chance": 6,
+            "Description": "Connects to a known rumor or scandal"
+          },
+          {
+            "Chance": 9,
+            "Description": "Connects to a previously unrelated mystery or quest"
+          },
+          {
+            "Chance": 12,
+            "Description": "Connects to your own expertise or interests"
+          },
+          {
+            "Chance": 15,
+            "Description": "Contradicts a previously understood fact or clue"
+          },
+          {
+            "Chance": 18,
+            "Description": "Evokes a personal memory"
+          },
+          {
+            "Chance": 21,
+            "Description": "Evokes a remarkable anomaly or phenomenon"
+          },
+          {
+            "Chance": 24,
+            "Description": "Evokes a vision or prophecy"
+          },
+          {
+            "Chance": 27,
+            "Description": "Involves a cultural touchstone"
+          },
+          {
+            "Chance": 30,
+            "Description": "Involves a hidden or mysterious faction"
+          },
+          {
+            "Chance": 33,
+            "Description": "Involves a hidden or mysterious person"
+          },
+          {
+            "Chance": 36,
+            "Description": "Involves a key or means of access"
+          },
+          {
+            "Chance": 39,
+            "Description": "Involves a machine or technology"
+          },
+          {
+            "Chance": 42,
+            "Description": "Involves a non-human being or creature"
+          },
+          {
+            "Chance": 45,
+            "Description": "Involves a notable faction"
+          },
+          {
+            "Chance": 48,
+            "Description": "Involves a notable person"
+          },
+          {
+            "Chance": 51,
+            "Description": "Involves a person or faction from your background"
+          },
+          {
+            "Chance": 54,
+            "Description": "Involves a personal item"
+          },
+          {
+            "Chance": 57,
+            "Description": "Involves an enemy or rival"
+          },
+          {
+            "Chance": 60,
+            "Description": "Involves an organism or biological evidence"
+          },
+          {
+            "Chance": 63,
+            "Description": "Involves an unusual ability or power"
+          },
+          {
+            "Chance": 66,
+            "Description": "Involves someone you trust"
+          },
+          {
+            "Chance": 69,
+            "Description": "Involves something rare, expensive, or precious"
+          },
+          {
+            "Chance": 72,
+            "Description": "Leads to a distant or unfamiliar place"
+          },
+          {
+            "Chance": 75,
+            "Description": "Leads to a hidden or forgotten place"
+          },
+          {
+            "Chance": 78,
+            "Description": "Leads to a nearby or familiar place"
+          },
+          {
+            "Chance": 81,
+            "Description": "Leads to a notable or central place"
+          },
+          {
+            "Chance": 84,
+            "Description": "Suggests a history of similar incidents"
+          },
+          {
+            "Chance": 87,
+            "Description": "Suggests a looming event or deadline"
+          },
+          {
+            "Chance": 90,
+            "Description": "Suggests an imposter or forgery"
+          },
+          {
+            "Chance": 100,
+            "Description": "[⏵Descriptor + Focus](Starforged/Oracles/Core/Descriptor)",
+            "Oracle rolls": [
+              "Starforged/Oracles/Core/Descriptor",
+              "Starforged/Oracles/Core/Focus"
+            ]
           }
         ]
       },
