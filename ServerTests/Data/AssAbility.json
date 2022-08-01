@@ -1,0 +1,35 @@
+  {
+    "$id": "Ironsworn/Assets/Companion/Cave_Lion/Abilities/1",
+    "Name": "Eager",
+    "Text": "When your cat chases down big game, you may [Resupply](Ironsworn/Moves/Adventure/Resupply) with +edge (instead of +wits). If you do, take +1 supply or +1 momentum on a strong hit.",
+    "Enabled": false,
+    "Alter Moves": [
+      {
+        "$id": "Ironsworn/Assets/Companion/Cave_Lion/Abilities/1/Alter_Moves/1",
+        "Moves": [ "Ironsworn/Moves/Adventure/Resupply" ],
+        "Trigger": {
+          "$id": "Ironsworn/Assets/Companion/Cave_Lion/Abilities/1/Alter_Moves/1/Trigger",
+          "By": {
+            "Player": true,
+            "Ally": false
+          },
+          "Options": [
+            {
+              "$id": "Ironsworn/Assets/Companion/Cave_Lion/Abilities/1/Alter_Moves/1/Trigger/Options/1",
+              "Text": "When your cat chases down big game",
+              "Roll type": "Action roll",
+              "Method": "Any",
+              "Using": [ "Edge" ]
+            }
+          ]
+        },
+        "Outcomes": {
+          "$id": "Ironsworn/Assets/Companion/Cave_Lion/Abilities/1/Alter_Moves/1/Outcomes",
+          "Strong Hit": {
+            "Text": "Take +1 supply or +1 momentum.",
+            "$id": "Ironsworn/Assets/Companion/Cave_Lion/Abilities/1/Alter_Moves/1/Outcomes/Strong_Hit"
+          }
+        }
+      }
+    ]
+  }
