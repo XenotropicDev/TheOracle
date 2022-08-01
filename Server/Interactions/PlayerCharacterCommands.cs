@@ -29,7 +29,9 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
     [SlashCommand("create", "Create a player character.")]
     public async Task BuildPlayerCard(string name, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits, string? avatarImageURL = null)
     {
-        var message = await Context.Interaction.GetOriginalResponseAsync();
+        await DeferAsync(); //We have to use defer so that GetOriginalResponse works.
+        IUserMessage? message = await Context.Interaction.GetOriginalResponseAsync();
+        if (message == null) await FollowupAsync("Something went wrong, please try again, and report this error if it keeps happening", ephemeral: true);
 
         var pcData = new PlayerCharacter(name, edge, heart, iron, shadow, wits, avatarImageURL, Context.Interaction.User.Id, Context.Interaction.GuildId ?? Context.Interaction.ChannelId, message.Id, message.Channel.Id);
         DbContext.PlayerCharacters.Add(pcData);
