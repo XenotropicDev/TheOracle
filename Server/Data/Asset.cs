@@ -90,13 +90,13 @@ public class Asset
     public Display Display { get; set; }
 
     [JsonProperty("Usage")]
-    public AssetUsage Usage { get; set; }
+    public AssetUsage? Usage { get; set; }
 
     [JsonProperty("Attachments")]
-    public Attachments Attachments { get; set; }
+    public Attachments? Attachments { get; set; }
 
     [JsonProperty("Inputs")]
-    public List<Input> Inputs { get; set; }
+    public List<Input>? Inputs { get; set; }
 
     [JsonProperty("Condition Meter")]
     public ConditionMeter ConditionMeter { get; set; }

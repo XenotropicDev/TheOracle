@@ -33,7 +33,7 @@ public class AssetCommand : InteractionModuleBase
         db.CharacterAssets.Add(AssetData);
         await db.SaveChangesAsync().ConfigureAwait(false);
 
-        if (assetInfo.Inputs.Count > 0)
+        if (assetInfo.Inputs?.Count > 0)
         {
             var modal = new ModalBuilder().WithTitle($"{assetInfo.Name} Fields").WithCustomId($"Asset-Input-Modal{assetInfo.Inputs.Count}:{AssetData.Id}");
 

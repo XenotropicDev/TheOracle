@@ -27,7 +27,7 @@ internal class DiscordAssetEntity : IDiscordEntity
             builder.WithThumbnailUrl(Data.ThumbnailURL);
         }
 
-        for (var i = 0; i < Asset.Inputs.Count; i++)
+        for (var i = 0; i < Asset.Inputs?.Count; i++)
         {
             builder.AddField(Asset.Inputs[i].Name, Data.Inputs[i]);
         }
