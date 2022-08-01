@@ -171,7 +171,9 @@ public class CommandHandler
         var ctx = new SocketInteractionContext<SocketSlashCommand>(_discord, arg);
         try
         {
-            logger.LogInformation($"{arg.User.Username} is executing Slash Command {arg.Data.Name} with value(s): '{string.Join(", ", arg.Data.Options.Select(o => o.Value))}'.");
+            var withSubOptions = arg.Data.Options?.SelectMany(o => o.Options).Select(o => o.Value.ToString());
+            var options = withSubOptions?.Count() > 0 ? withSubOptions : arg.Data.Options?.Select(o => o.Value?.ToString()) ?? new List<string>();
+            logger.LogInformation($"{arg.User.Username} is executing Slash Command {arg.Data.Name} with value(s): '{string.Join(", ", options)}'.");
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
