@@ -36,7 +36,9 @@ class OracleServer
         try
         {
             Log.Logger = logger;
-            
+
+            logger.Information($"Starting TheOracle v{Assembly.GetEntryAssembly().GetName().Version}");
+
             //db.Database.EnsureDeleted();
             await db.Database.EnsureCreatedAsync();
 
@@ -49,7 +51,7 @@ class OracleServer
 
             await client.StartAsync();
 
-            await client.SetGameAsync("TheOracle v2.1 - Beta", "", ActivityType.Playing).ConfigureAwait(false);
+            await client.SetGameAsync("TheOracle v2.0 - Beta", "", ActivityType.Playing).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -110,10 +112,10 @@ class OracleServer
 
         var dbConn = config.GetSection("dbConnectionString").Value;
         var dbPass = config.GetSection("dbPassword").Value;
-        var dbConnBuilder = new NpgsqlConnectionStringBuilder(dbConn) {Password = dbPass };
+        var dbConnBuilder = new NpgsqlConnectionStringBuilder(dbConn) { Password = dbPass };
 
         var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info, GatewayIntents = GatewayIntents.DirectMessages | GatewayIntents.GuildMessages | GatewayIntents.Guilds };
-        var interactionServiceConfig = new InteractionServiceConfig()  { UseCompiledLambda = true, LogLevel = LogSeverity.Info };
+        var interactionServiceConfig = new InteractionServiceConfig() { UseCompiledLambda = true, LogLevel = LogSeverity.Info };
         logger = new LoggerConfiguration()
                     .WriteTo.Console()
                     .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)

@@ -105,7 +105,7 @@ public class CommandHandler
         try
         {
             logger.LogInformation($"{arg.User.Username} is executing Message Command {arg.CommandName}");
-            
+
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
@@ -171,7 +171,7 @@ public class CommandHandler
         var ctx = new SocketInteractionContext<SocketSlashCommand>(_discord, arg);
         try
         {
-            logger.LogInformation($"{arg.User.Username} is executing Slash Command {arg.Data.Name} with value(s): '{string.Join(", ", arg.Data.Options)}'.");
+            logger.LogInformation($"{arg.User.Username} is executing Slash Command {arg.Data.Name} with value(s): '{string.Join(", ", arg.Data.Options.Select(o => o.Value))}'.");
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
