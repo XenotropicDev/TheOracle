@@ -296,6 +296,7 @@ public class PcCardComponents : InteractionModuleBase<SocketInteractionContext<S
     [ComponentInteraction("delete-player-*")]
     public async Task deletePc(string pcId)
     {
+        await DeferAsync();
         if (!int.TryParse(pcId, out var id))
         {
             throw new ArgumentException($"Unable to parse integer from {pcId}");
@@ -305,7 +306,7 @@ public class PcCardComponents : InteractionModuleBase<SocketInteractionContext<S
 
         if (pc.UserId != Context.User.Id)
         {
-            await RespondAsync($"You can't delete that character", ephemeral: true);
+            await FollowupAsync($"You can't delete that character", ephemeral: true);
             return;
         }
 
