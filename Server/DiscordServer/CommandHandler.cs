@@ -35,9 +35,9 @@ public class CommandHandler
             _discord.SlashCommandExecuted += SlashCommandExecuted;
             _discord.MessageCommandExecuted += MessageCommandExecuted;
             _discord.ModalSubmitted += ModalSubmitted;
-            _discord.Ready += Ready;
             _commands.SlashCommandExecuted += _commands_SlashCommandExecuted;
             _commands.AutocompleteHandlerExecuted += _commands_AutocompleteHandlerExecuted;
+            _discord.Ready += Ready;
         }
         catch (Exception)
         {
@@ -48,6 +48,7 @@ public class CommandHandler
     public async Task RegisterCommands()
     {
         //await _commands.RegisterCommandsToGuildAsync(756890506830807071, true);
+        //await _discord.Rest.BulkOverwriteGuildCommands(Array.Empty<ApplicationCommandProperties>(), 756890506830807071);
         await _commands.RegisterCommandsGloballyAsync(true);
     }
 

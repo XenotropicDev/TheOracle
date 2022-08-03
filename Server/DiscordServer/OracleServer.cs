@@ -38,10 +38,9 @@ class OracleServer
         {
             Log.Logger = logger;
 
-            logger.Information($"Starting TheOracle v{Assembly.GetEntryAssembly().GetName().Version}");
+            logger.Information($"Starting TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version}");
 
-            //db.Database.EnsureDeleted();
-            await db.Database.EnsureCreatedAsync();
+            await db.Database.EnsureCreatedAsync().ConfigureAwait(false);
 
             await handler.Initialize().ConfigureAwait(false);
 
@@ -122,7 +121,8 @@ class OracleServer
         var dbConnBuilder = new NpgsqlConnectionStringBuilder(dbConn) { Password = dbPass };
 
         var clientConfig = new DiscordSocketConfig { MessageCacheSize = 100, LogLevel = LogSeverity.Info, GatewayIntents = GatewayIntents.DirectMessages | GatewayIntents.GuildMessages | GatewayIntents.Guilds };
-        var interactionServiceConfig = new InteractionServiceConfig() { UseCompiledLambda = true, LogLevel = LogSeverity.Info };
+        var interactionServiceConfig = new InteractionServiceConfig() { UseCompiledLambda = true, LogLevel = LogSeverity.Info, AutoServiceScopes = true };
+
         logger = new LoggerConfiguration()
                     .WriteTo.Console()
                     .WriteTo.File(Path.Combine("logs", "log.txt"), rollingInterval: RollingInterval.Day)
@@ -130,6 +130,7 @@ class OracleServer
                     .MinimumLevel.Information()
                     .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
                     .CreateLogger();
+
 
         return new ServiceCollection()
             .AddSingleton<IConfiguration>(config)
@@ -145,6 +146,7 @@ class OracleServer
             .AddSingleton<IEmoteRepository, HardCodedEmoteRepo>()
             .AddSingleton<IMemoryCache, MemoryCache>()
             .AddScoped<PlayerDataFactory>()
+            .AddDbContextFactory<ApplicationContext>()
             .AddLogging(builder => builder.AddSerilog(logger)
                 .AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
                 .AddFilter("Microsoft.EntityFrameworkCore.Infrastructure", LogLevel.Warning)

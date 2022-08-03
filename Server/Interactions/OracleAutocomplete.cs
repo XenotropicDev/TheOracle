@@ -7,18 +7,9 @@ namespace TheOracle2.Commands;
 
 public class OracleAutocomplete : AutocompleteHandler
 {
-    private IOracleRepository OracleRepo;
-    private readonly PlayerDataFactory dataFactory;
-
-    public OracleAutocomplete(IOracleRepository oracles, PlayerDataFactory factory)
+    private Task<AutocompletionResult> GetEmptyOralceResult(IInteractionContext context, PlayerDataFactory dataFactory)
     {
-        OracleRepo = oracles;
-        this.dataFactory = factory;
-    }
-
-    private Task<AutocompletionResult> GetEmptyOralceResult(IInteractionContext context)
-    {
-            var oracles = dataFactory.GetPlayerOracles(context.User.Id).Where(o => o.Name == "Pay the Price" || o.Category.Contains("Action", StringComparison.OrdinalIgnoreCase)).AsEnumerable();
+        var oracles = dataFactory.GetPlayerOracles(context.User.Id).Where(o => o.Name == "Pay the Price" || o.Category.Contains("Action", StringComparison.OrdinalIgnoreCase)).AsEnumerable();
             var list = oracles
                 .SelectMany(x => GetOracleAutocompleteResults(x))
                 .OrderBy(x =>
@@ -31,6 +22,8 @@ public class OracleAutocomplete : AutocompleteHandler
 
     public override Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
     {
+        var dataFactory = services.GetRequiredService<PlayerDataFactory>();
+
         try
         {
             List<AutocompleteResult> successList = new List<AutocompleteResult>();
@@ -39,7 +32,7 @@ public class OracleAutocomplete : AutocompleteHandler
 
             if (String.IsNullOrWhiteSpace(value))
             {
-                return GetEmptyOralceResult(context);
+                return GetEmptyOralceResult(context, dataFactory);
             }
 
             //Match names and aliases first

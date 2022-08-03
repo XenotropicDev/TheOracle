@@ -7,10 +7,9 @@ namespace TheOracle2;
 
 public class CharacterAutocomplete : AutocompleteHandler
 {
-    public ApplicationContext Db { get; set; }
-
     public override Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
     {
+        var db = services.GetRequiredService<ApplicationContext>();
         try
         {
             IEnumerable<AutocompleteResult> successList = new List<AutocompleteResult>();
@@ -23,7 +22,7 @@ public class CharacterAutocomplete : AutocompleteHandler
             {
                 case > 0:
                     {
-                        successList = Db.PlayerCharacters
+                        successList = db.PlayerCharacters
                             .Where((pc) => pc.DiscordGuildId == guildId && pc.Name.Contains(userText, StringComparison.OrdinalIgnoreCase))
                             .OrderBy(pc => pc.UserId != userId).ThenBy(pc => pc.Name)
                             .Take(SelectMenuBuilder.MaxOptionCount)
@@ -34,7 +33,7 @@ public class CharacterAutocomplete : AutocompleteHandler
                 default:
                     {
                         // fallback to list of users own guild PCs, sorted alphabetically
-                        successList = Db.PlayerCharacters
+                        successList = db.PlayerCharacters
                             .Where((pc) => pc.DiscordGuildId == guildId && pc.UserId == userId)
                             .OrderBy(pc => pc.Name)
                             .Take(SelectMenuBuilder.MaxOptionCount)
