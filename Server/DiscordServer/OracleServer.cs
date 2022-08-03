@@ -18,6 +18,7 @@ using Npgsql;
 using TheOracle2;
 using Microsoft.Extensions.Caching.Memory;
 using Discord.Net.Queue;
+using System.Net.Http.Headers;
 
 class OracleServer
 {
@@ -63,19 +64,25 @@ class OracleServer
 
     private static Task LogAsync(LogMessage msg)
     {
-        if (msg.Exception?.GetType() == typeof(System.TimeoutException))
+        switch (msg.Exception)
         {
-            logger.Warning(msg.Exception.Message);
-            return Task.CompletedTask;
+            case GatewayReconnectException gre:
+                logger.Warning(gre.Message);
+                return Task.CompletedTask;
+            case TimeoutException te:
+                logger.Warning(te.Message);
+                return Task.CompletedTask;
+            case Discord.Net.HttpException httpEx:
+                string json = (httpEx.Request is JsonRestRequest jsonRequest) ? $"\n" + jsonRequest.Json : "";
+                logger.Warning(httpEx, httpEx.Reason + json);
+                return Task.CompletedTask;
+            case Exception ex when ex.Message == "WebSocket connection was closed":
+                logger.Warning(ex.Message);
+                return Task.CompletedTask;
+            default:
+                break;
         }
-
-        if (msg.Exception is Discord.Net.HttpException httpEx)
-        {
-            string json = (httpEx.Request is JsonRestRequest jsonRequest) ? $"\n" + jsonRequest.Json : "";
-            logger.Warning(httpEx, httpEx.Reason + json);
-            return Task.CompletedTask;
-        }
-
+        
         switch (msg.Severity)
         {
             case LogSeverity.Critical:
@@ -118,7 +125,7 @@ class OracleServer
         var interactionServiceConfig = new InteractionServiceConfig() { UseCompiledLambda = true, LogLevel = LogSeverity.Info };
         logger = new LoggerConfiguration()
                     .WriteTo.Console()
-                    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                    .WriteTo.File(Path.Combine("logs", "log.txt"), rollingInterval: RollingInterval.Day)
                     .Enrich.FromLogContext()
                     .MinimumLevel.Information()
                     .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
