@@ -35,7 +35,7 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
 
         var pcData = new PlayerCharacter(name, edge, heart, iron, shadow, wits, avatarImageURL, Context.Interaction.User.Id, Context.Interaction.GuildId ?? Context.Interaction.ChannelId, message.Id, message.Channel.Id);
         DbContext.PlayerCharacters.Add(pcData);
-        await DbContext.SaveChangesAsync().ConfigureAwait(true);
+        await DbContext.SaveChangesAsync().ConfigureAwait(false);
 
         var pcEntity = new PlayerCharacterEntity(pcData, emotes, dataFactory);
         var characterSheet = await pcEntity.EntityAsResponse(FollowupAsync).ConfigureAwait(false);
@@ -46,7 +46,7 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
     }
 
 
-    [SlashCommand("change-stats", "Create a player character.")]
+    [SlashCommand("change-stats", "Edits the stats of the specified character")]
     public async Task EditPCStats([Autocomplete(typeof(CharacterAutocomplete))] string character, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits)
     {
         if (!int.TryParse(character, out var id)) return;

@@ -124,7 +124,7 @@ public class RollInteractions : InteractionModuleBase<SocketInteractionContext<S
     [ComponentInteraction("burn-roll:*,*")]
     public async Task BurnRoll(int momentum, int characterId)
     {
-        var getPcTask = db.PlayerCharacters.FindAsync(characterId).ConfigureAwait(true);
+        var getPcTask = db.PlayerCharacters.FindAsync(characterId).ConfigureAwait(false);
         var actionRoll = GetActionRollFromEmbed(Context.Interaction.Message.Embeds.FirstOrDefault()!, characterId);
         if (actionRoll == null || actionRoll is not IBurnable burnableAction) return;
 

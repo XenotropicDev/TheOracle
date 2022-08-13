@@ -83,7 +83,7 @@ public class AssetCommand : InteractionModuleBase
 
     private async Task ProcessAssetModalResponse(int assetDataId, params string[] data)
     {
-        var AssetData = await db.CharacterAssets.FindAsync(assetDataId).ConfigureAwait(true);
+        var AssetData = await db.CharacterAssets.FindAsync(assetDataId).ConfigureAwait(false);
         if (AssetData == null) throw new ArgumentException($"Unknown character asset id: {assetDataId}");
 
         var AssetInfo = assetRepo.GetAsset(AssetData.AssetId!);
@@ -93,7 +93,7 @@ public class AssetCommand : InteractionModuleBase
 
         var discordEntity = new DiscordAssetEntity(AssetInfo, AssetData);
 
-        await discordEntity.EntityAsResponse(RespondAsync).ConfigureAwait(true);
+        await discordEntity.EntityAsResponse(RespondAsync).ConfigureAwait(false);
         await db.SaveChangesAsync().ConfigureAwait(false);
     }
 }

@@ -95,14 +95,14 @@ public class PlayerCharacter
 
     public async Task<IUserMessage?> GetPCMessage(DiscordSocketClient client)
     {
-        if (await client.Rest.GetChannelAsync(ChannelId).ConfigureAwait(true) is not IMessageChannel channel) return null;
+        if (await client.Rest.GetChannelAsync(ChannelId).ConfigureAwait(false) is not IMessageChannel channel) return null;
 
         return await channel.GetMessageAsync(MessageId).ConfigureAwait(false) as IUserMessage;
     }
 
     public async Task UpdateCardDisplay(DiscordSocketClient client, IEmoteRepository emotes, PlayerDataFactory dataFactory)
     {
-        var msg = await GetPCMessage(client).ConfigureAwait(true);
+        var msg = await GetPCMessage(client).ConfigureAwait(false);
         if (msg == null) return;
 
         var entity = new PlayerCharacterEntity(this, emotes, dataFactory);

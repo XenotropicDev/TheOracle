@@ -9,13 +9,6 @@ namespace Server.Interactions;
 
 public class EditEmbed : InteractionModuleBase<SocketInteractionContext<SocketMessageCommand>>
 {
-    private readonly IMemoryCache cache;
-
-    public EditEmbed(IMemoryCache cache)
-    {
-        this.cache = cache;
-    }
-
     [MessageCommand("Edit Embed")]
     public async Task EditEmbedCommand(IMessage msg)
     {
@@ -85,17 +78,10 @@ public class EditEmbed : InteractionModuleBase<SocketInteractionContext<SocketMe
 
 public class EditEmbedComponents : InteractionModuleBase
 {
-    private readonly ApplicationContext db;
-
-    public EditEmbedComponents(ApplicationContext db)
-    {
-        this.db = db;
-    }
-
     [ModalInteraction("edit-embed-main:*")]
     public async Task ModalResponseMain(ulong messageId, GenericInputModal<string, string, string, string, string> modal)
     {
-        var downloadedMsg = await Context.Channel.GetMessageAsync(messageId).ConfigureAwait(true);
+        var downloadedMsg = await Context.Channel.GetMessageAsync(messageId).ConfigureAwait(false);
         if (downloadedMsg is RestUserMessage restMsg)
         {
             
