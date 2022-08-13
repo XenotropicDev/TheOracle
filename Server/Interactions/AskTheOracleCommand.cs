@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Discord.Interactions;
+﻿using Discord.Interactions;
 using TheOracle2.GameObjects;
 
 namespace TheOracle2;
@@ -18,32 +17,25 @@ public class AskTheOracleCommand : InteractionModuleBase
         [Summary(description: "The question to ask the oracle.")]
         string question,
         [Summary(description: "The odds of receiving a 'yes' answer.")]
-        [Choice("Small chance (10 or less)", 10),
-        Choice("Unlikely (25 or less)", 25),
-        Choice("50/50 (50 or less)", 50),
-        Choice("Likely (75 or less)", 75),
-        Choice("Sure thing (90 or less)", 90)]
-        int odds
-    )
+        AskOption odds)
     {
-        /// TODO: once discord display string attributes are available for enums, this can use the AskOption enum directly
-        await RespondAsync(embed: new OracleAnswer(random, (AskOption)odds, question).ToEmbed().Build()).ConfigureAwait(false);
+        await RespondAsync(embed: new OracleAnswer(random, odds, question).ToEmbed().Build()).ConfigureAwait(false);
     }
 }
 
 public enum AskOption
 {
-    [Display(Name = "Sure thing")]
+    [ChoiceDisplay("Sure thing")]
     SureThing = 90,
 
     Likely = 75,
 
-    [Display(Name = "Fifty-fifty")]
+    [ChoiceDisplay("Fifty-fifty")]
     FiftyFifty = 50,
 
     Unlikely = 25,
 
-    [Display(Name = "Small chance")]
+    [ChoiceDisplay("Small chance")]
     SmallChance = 10
 }
 
