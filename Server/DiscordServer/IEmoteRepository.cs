@@ -20,6 +20,7 @@ public interface IEmoteRepository
     IEmote Legacy { get; }
     IEmote LoseMomentum { get; }
     IEmote MarkProgress { get; }
+    IEmote DecreaseProgress { get; }
     IEmote OvercomeDestruction { get; }
     IEmote[] ProgressEmotes { get; }
     IEmote Quest { get; }
@@ -82,6 +83,7 @@ public class HardCodedEmoteRepo : IEmoteRepository
         Suffer = new Emoji("🩸");
         Threshold = new Emoji("🚪");
         WithstandDamage = new Emoji("⚙️");
+        DecreaseProgress = new Emoji("⏮️");
 
         MarkProgress = Emote.TryParse("<:progress4:880599822820864060>", out var progress) ? progress : new Emoji("☑️");
 
@@ -158,6 +160,8 @@ public class HardCodedEmoteRepo : IEmoteRepository
     public IEmote Suffer { get; }
     public IEmote Threshold { get; }
     public IEmote WithstandDamage { get; }
+
+    public IEmote DecreaseProgress { get; }
 
     public Dictionary<string, IEmote> AsDictionary()
     {
