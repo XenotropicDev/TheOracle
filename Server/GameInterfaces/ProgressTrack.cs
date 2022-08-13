@@ -52,7 +52,32 @@ namespace Server.GameInterfaces
 
         public ComponentBuilder? GetComponents()
         {
-            return new ComponentBuilder().WithRows(GetActionRows());
+            var actionRows = new List<ActionRowBuilder>();
+            var actionRow1 = new ActionRowBuilder();
+            ActionRowBuilder? actionRow2 = null;
+
+            actionRow1.WithSelectMenu(new SelectMenuBuilder()
+                .WithCustomId($"progress-main-{TrackData.Id}")
+                .WithPlaceholder("Manage tracker...")
+                .AddOption("Mark Progress", $"track-increase", emote: Emotes.MarkProgress)
+                .AddOption("Remove Progress", $"track-decrease", emote: Emotes.DecreaseProgress)
+                .AddOption("Resolve Progress", $"track-roll", emote: Emotes.Roll));
+
+            actionRows.Add(actionRow1);
+
+            var movesToFind = new string[] { "Swear an Iron Vow", "Reach a Milestone", "Fulfill Your Vow", "Forsake Your Vow" };
+            var vowMoves = factory.GetPlayerMoves(TrackData.PlayerId).Where(m => movesToFind.Any(s => s.Contains(m.Name, StringComparison.OrdinalIgnoreCase)));
+            var referenceSelectBuilder = new SelectMenuBuilder().WithCustomId("move-references").WithPlaceholder("Reference Moves...");
+            foreach (var move in vowMoves)
+            {
+                if (actionRow2 == null) actionRow2 = new ActionRowBuilder();
+
+                referenceSelectBuilder.AddOption(move.MoveAsSelectOption(Emotes));
+            }
+
+            if (actionRow2 != null) actionRows.Add(actionRow2.WithSelectMenu(referenceSelectBuilder));
+
+            return new ComponentBuilder().WithRows(actionRows);
         }
 
         public EmbedBuilder? GetEmbed()
@@ -76,34 +101,6 @@ namespace Server.GameInterfaces
         public IActionRoll Roll()
         {
             return new ProgressRollRandom(Random, GetScore(), $"Progress Roll for {TrackData.Title}");
-        }
-
-        internal  List<ActionRowBuilder> GetActionRows()
-        {
-            var myList = new List<ActionRowBuilder>();
-            var actionRow1 = new ActionRowBuilder();
-            ActionRowBuilder? actionRow2 = null;
-
-            actionRow1.WithSelectMenu(new SelectMenuBuilder()
-                .WithCustomId($"progress-main-{TrackData.Id}")
-                .WithPlaceholder("Manage tracker...")
-                .AddOption("Mark Progress", $"track-increase", emote: Emotes.MarkProgress)
-                .AddOption("Resolve Progress", $"track-roll", emote: Emotes.Roll));
-
-            myList.Add(actionRow1);
-
-            var movesToFind = new string[] { "Swear an Iron Vow", "Reach a Milestone", "Fulfill Your Vow", "Forsake Your Vow" };
-            var vowMoves = factory.GetPlayerMoves(TrackData.PlayerId).Where(m => movesToFind.Any(s => s.Contains(m.Name, StringComparison.OrdinalIgnoreCase)));
-            var referenceSelectBuilder = new SelectMenuBuilder().WithCustomId("move-references").WithPlaceholder("Reference Moves...");
-            foreach (var move in vowMoves)
-            {
-                if (actionRow2 == null) actionRow2 = new ActionRowBuilder();
-
-                referenceSelectBuilder.AddOption(move.MoveAsSelectOption(Emotes));
-            }
-
-            if (actionRow2 != null) myList.Add(actionRow2.WithSelectMenu(referenceSelectBuilder));
-            return myList;
         }
     }
 }

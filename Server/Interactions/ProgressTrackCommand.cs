@@ -126,13 +126,12 @@ public class TrackInteractions : InteractionModuleBase<SocketInteractionContext<
 
     public ApplicationContext Db { get; }
 
-    [ComponentInteraction("track-increase-*")]
-    public async Task TrackIncrease(int trackId)
+    public async Task UpdateTrackWithChange(int trackId, Action<TrackData> action)
     {
         var trackData = Db.ProgressTrackers.Find(trackId);
         if (trackData == null) throw new ArgumentException("Progress track not found");
 
-        trackData.Ticks += trackData.Rank.GetStandardTickAmount();
+        action(trackData);
 
         ITrack track = new ProgressTrack(trackData, random, emotes, moves, playerDataFactory);
 
@@ -142,16 +141,17 @@ public class TrackInteractions : InteractionModuleBase<SocketInteractionContext<
 
         }).ConfigureAwait(false);
 
-        await Db.SaveChangesAsync();
+        await Db.SaveChangesAsync().ConfigureAwait(false);
     }
 
     [ComponentInteraction("progress-main-*")]
-    public async Task TrackIncreaseTest(string arg1, string[] selectedRoles)
+    public async Task TrackIncreaseTest(string trackId, string[] selectedRoles)
     {
-        if (!int.TryParse(arg1, out int id)) throw new ArgumentException("Progress track not found");
+        if (!int.TryParse(trackId, out int id)) throw new ArgumentException("Progress track not found");
         foreach (var role in selectedRoles)
         {
-            if (role == "track-increase") await TrackIncrease(id);
+            if (role == "track-increase") await UpdateTrackWithChange(id, t => t.Ticks += t.Rank.GetStandardTickAmount());
+            if (role == "track-decrease") await UpdateTrackWithChange(id, t => t.Ticks -= t.Rank.GetStandardTickAmount());
             if (role == "track-roll") await TrackRoll(id);
         }
     }
