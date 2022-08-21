@@ -51,7 +51,7 @@ class OracleServer
 
             await client.StartAsync();
 
-            await client.SetGameAsync($"TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version} - Beta", "", ActivityType.Playing).ConfigureAwait(false);
+            await client.SetGameAsync($"TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3)}", "", ActivityType.Playing).ConfigureAwait(false);
         }
         catch (Exception ex)
         {

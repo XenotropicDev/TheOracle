@@ -1,6 +1,6 @@
-﻿using Discord.Interactions;
+﻿using System.Text.RegularExpressions;
+using Discord.Interactions;
 using Server.Data;
-using Server.DiscordServer;
 using TheOracle2.Data;
 
 namespace TheOracle2.Commands;
@@ -9,15 +9,19 @@ public class OracleAutocomplete : AutocompleteHandler
 {
     private Task<AutocompletionResult> GetEmptyOralceResult(IInteractionContext context, PlayerDataFactory dataFactory)
     {
-        var oracles = dataFactory.GetPlayerOracles(context.User.Id).Where(o => o.Name == "Pay the Price" || o.Category.Contains("Action", StringComparison.OrdinalIgnoreCase)).AsEnumerable();
-            var list = oracles
-                .SelectMany(x => GetOracleAutocompleteResults(x))
-                .OrderBy(x =>
-                    x.Name == "Pay the Price" ? 1 :
-                    2)
-                .Take(SelectMenuBuilder.MaxOptionCount);
+        //Todo: remove results like "Faction" from "action"
+        var oracles = dataFactory.GetPlayerOracles(context.User.Id).Where(o => o.Name == "Pay the Price"
+        || Regex.IsMatch(o.Category, @"\bAction", RegexOptions.IgnoreCase)
+        || Regex.IsMatch(o.Category, @"\bCore", RegexOptions.IgnoreCase)).AsEnumerable()
+        ;
+        var list = oracles
+            .SelectMany(x => GetOracleAutocompleteResults(x))
+            .OrderBy(x =>
+                x.Name == "Pay the Price" ? 1 :
+                2)
+            .Take(SelectMenuBuilder.MaxOptionCount);
 
-            return Task.FromResult(AutocompletionResult.FromSuccess(list));
+        return Task.FromResult(AutocompletionResult.FromSuccess(list));
     }
 
     public override Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
@@ -35,13 +39,10 @@ public class OracleAutocomplete : AutocompleteHandler
                 return GetEmptyOralceResult(context, dataFactory);
             }
 
-            //Match names and aliases first
-           successList.AddRange(dataFactory.GetPlayerOracles(context.User.Id)
-                        .Where(x => x.Name.Contains(value, StringComparison.OrdinalIgnoreCase)
-                            || x.Parent?.Name.Contains(value, StringComparison.OrdinalIgnoreCase) == true
-                            || x.Parent?.Aliases?.Any(s => s.Contains(value, StringComparison.OrdinalIgnoreCase)) == true
-                            || x.Aliases?.Any(s => s.Contains(value, StringComparison.OrdinalIgnoreCase)) == true)
-                        .SelectMany(x => GetOracleAutocompleteResults(x)));
+            var oracles = dataFactory.GetPlayerOracles(context.User.Id);
+            
+            successList.AddRange(oracles.GetOraclesFromUserInput(value)
+                         .SelectMany(x => GetOracleAutocompleteResults(x)));
 
             return Task.FromResult(AutocompletionResult.FromSuccess(successList.Take(SelectMenuBuilder.MaxOptionCount)));
         }
@@ -69,13 +70,38 @@ public class OracleAutocomplete : AutocompleteHandler
         return list;
     }
 
-    private string GetOracleDisplayName(Oracle oracle, Oracle t = null)
+    private IEnumerable<AutocompleteResult> GetRootAutoComplete(OracleCategory cat)
     {
-        //return (t != null) ? t.Id : oracle.Id;
+        var list = new List<AutocompleteResult>();
+        if (cat == null) return list;
 
-        string name = oracle.Name;
+        if (cat?.Oracles?.Count > 0)
+        {
+            foreach (var t in cat.Oracles)
+            {
+                list.Add(new AutocompleteResult(GetOracleDisplayName(cat, t), t.Id));
+            }
+        }
+        else
+        {
+            list.Add(new AutocompleteResult(GetOracleDisplayName(cat), cat.Id));
+        }
+        return list;
+    }
+
+    private string GetOracleDisplayName(Oracle oracle, Oracle subTable = null)
+    {
+        string name = oracle.Display?.Title ?? oracle.Name;
         if (oracle.Parent != null) name = $"{oracle.Parent.Name} - {name}";
-        if (t != null) name += $" - {t.Name}";
+        if (subTable != null) name += $" - {subTable.Name}";
+
+        return name;
+    }
+
+    private string GetOracleDisplayName(OracleCategory cat, Oracle subTable = null)
+    {
+        string name = cat.Name;
+        if (subTable != null) name += $" - {subTable.Name}";
 
         return name;
     }

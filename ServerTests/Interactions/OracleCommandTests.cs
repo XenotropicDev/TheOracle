@@ -19,11 +19,25 @@ public class OracleCommandTests
     }
 
     [TestMethod()]
-    [DataRow("Ironsworn/Oracles/Name/Ironlander/A")]
-    [DataRow("Ironsworn/Oracles/Moves/Pay_the_Price")]
+    //[DataRow("Ironsworn/Oracles/Name/Ironlander/A")]
+    //[DataRow("Ironsworn/Oracles/Moves/Pay_the_Price")]
+    //[DataRow("Starforged/Oracles/Vaults/Interior/First_Look")]
+    [DataRow("Starforged/Oracles/Planets/Desert/Settlements/Outlands")]
     public void RollOracleTest(string oracle)
     {
         var firstOracle = oracles.GetOracleById(oracle);
         Assert.IsNotNull(firstOracle);
+    }
+
+    [TestMethod()]
+    [DataRow("Guild", "Starforged/Oracles/Factions/Guild")]
+    [DataRow("Vault", "Starforged/Oracles/Vaults/Interior/First_Look")]
+    public void OracleSearchResultsTest(string query, string desiredOption)
+    {
+        var desiredOracle = oracles.GetOracleById(desiredOption);
+        Assert.IsNotNull(desiredOracle);
+        var searchResults = oracles.GetOracles().GetOraclesFromUserInput(query);
+
+        Assert.IsTrue(searchResults.Any(sr => sr.Id == desiredOption), $"Couldn't find {desiredOption} in {query} results");
     }
 }

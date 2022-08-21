@@ -40,6 +40,25 @@ public class PlayerDataFactory
     {
         using var db = dbFactory.CreateDbContext();
         var playerGame = db.Players.Find(PlayerId)?.Game ?? default;
-        return Oracles.GetOracleRoots().SelectMany(or => or.Oracles).Where(a => a.Id.Contains(playerGame.ToString()));
+        var playerOracles = Oracles.GetOracleRoots()
+            .SelectMany(or => or.Oracles)
+            .Where(a => a.Id.Contains(playerGame.ToString())).ToList();
+
+        foreach(var cat in Oracles.GetOracleRoots().Where(or => or.Categories?.Count > 0).SelectMany(or => or.Categories))
+        {
+            if (cat.Id.Contains(playerGame.ToString()))
+            {
+                playerOracles.AddRange(cat.Oracles);
+            }
+        }
+
+        return playerOracles;
+    }
+
+    public IEnumerable<OracleRoot> GetPlayerOraclesRoots(ulong PlayerId)
+    {
+        using var db = dbFactory.CreateDbContext();
+        var playerGame = db.Players.Find(PlayerId)?.Game ?? default;
+        return Oracles.GetOracleRoots().Where(or => or.Id.Contains(playerGame.ToString()));
     }
 }
