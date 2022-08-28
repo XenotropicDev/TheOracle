@@ -76,6 +76,11 @@ public class MultipleRolls
 
 public class Oracle
 {
+    public override string ToString()
+    {
+        return Id;
+    }
+
     [JsonProperty("Source")]
     public Source Source { get; set; }
 

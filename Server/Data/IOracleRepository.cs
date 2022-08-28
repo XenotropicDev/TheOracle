@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TheOracle2.Data;
+﻿using TheOracle2.Data;
 
 namespace Server.Data;
 
@@ -10,31 +9,25 @@ public interface IOracleRepository
     IEnumerable<OracleRoot> GetOracleRoots();
 
     Oracle? GetOracleById(string id);
-
-    //void CreateOracle(int id);
-    //void UpdateOracle(int id);
-    //void DeleteOracle(int id);
 }
 
 public static class OracleRepositoryExtenstions
 {
     public static IEnumerable<Oracle> GetOraclesFromUserInput(this IEnumerable<Oracle> oracles, string query, StringComparison comparer = StringComparison.OrdinalIgnoreCase)
     {
-        var nameMatch = oracles.Where(x => x.Name.Contains(query, comparer));
+        var nameMatch = oracles.Where(x => x.Name.Contains(query, comparer) || x.Display?.Title?.Contains(query, comparer) == true);
         var parentNameMatch = oracles.Where(x => x.Parent?.Name.Contains(query, comparer) == true).Select(x => x.Parent);
         var parentNameOracles = parentNameMatch.SelectMany(p => p.Oracles);
-        var parentNameCatOracles = parentNameMatch.Where(p => p?.Categories != null).SelectMany(p => p!.Categories.SelectMany(c => c.Oracles));
+        var categoryOracles = oracles.Where(o => o.Category?.Contains(query, comparer) == true);
 
         var parentAliasMatch = oracles.Where(x => x.Parent?.Aliases?.Any(s => s.Contains(query, comparer)) == true);
         var aliasMatch = oracles.Where(x => x.Aliases?.Any(s => s.Contains(query, comparer)) == true);
-        var parentCatMatch = oracles.Where(x => x.Parent?.Categories?.Any(c => c.Name.Contains(query, comparer)) == true);
 
         return nameMatch
             .Concat(parentNameOracles)
-            .Concat(parentNameCatOracles)
+            .Concat(categoryOracles)
             .Concat(parentAliasMatch)
             .Concat(aliasMatch)
-            .Concat(parentCatMatch)
             .DistinctBy(o => o.Id);
     }
 }
@@ -55,7 +48,7 @@ public class JsonOracleRepository : IOracleRepository
         var catOracle = cats.SelectMany(c => c.Oracles).FirstOrDefault(o => o.Id == id);
         if (catOracle != null) return catOracle;
 
-        foreach(var cat in cats)
+        foreach (var cat in cats)
         {
             var oracle = findOracleRecursive(cat.Oracles, id);
             if (oracle != null) return oracle;
