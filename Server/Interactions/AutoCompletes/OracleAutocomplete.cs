@@ -40,7 +40,7 @@ public class OracleAutocomplete : AutocompleteHandler
             }
 
             var oracles = dataFactory.GetPlayerOracles(context.User.Id);
-            
+
             successList.AddRange(oracles.GetOraclesFromUserInput(value)
                          .SelectMany(x => GetOracleAutocompleteResults(x)));
 
@@ -70,29 +70,17 @@ public class OracleAutocomplete : AutocompleteHandler
         return list;
     }
 
-    private IEnumerable<AutocompleteResult> GetRootAutoComplete(OracleCategory cat)
-    {
-        var list = new List<AutocompleteResult>();
-        if (cat == null) return list;
-
-        if (cat?.Oracles?.Count > 0)
-        {
-            foreach (var t in cat.Oracles)
-            {
-                list.Add(new AutocompleteResult(GetOracleDisplayName(cat, t), t.Id));
-            }
-        }
-        else
-        {
-            list.Add(new AutocompleteResult(GetOracleDisplayName(cat), cat.Id));
-        }
-        return list;
-    }
-
     private string GetOracleDisplayName(Oracle oracle, Oracle subTable = null)
     {
         string name = oracle.Display?.Title ?? oracle.Name;
-        if (oracle.Parent != null) name = $"{oracle.Parent.Name} - {name}";
+        var superTypeName = (oracle.Parent != null) ? oracle.Parent.Name : string.Empty;
+        
+        if (!string.IsNullOrWhiteSpace(oracle.Category))
+        {
+            superTypeName = oracle.Category[(oracle.Category.LastIndexOf("/") + 1)..];
+        }
+        name += $" [{superTypeName}]";
+
         if (subTable != null) name += $" - {subTable.Name}";
 
         return name;
