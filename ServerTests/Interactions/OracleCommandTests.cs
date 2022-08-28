@@ -30,8 +30,9 @@ public class OracleCommandTests
     }
 
     [TestMethod()]
-    [DataRow("Guild", "Starforged/Oracles/Factions/Guild")]
-    [DataRow("Vault", "Starforged/Oracles/Vaults/Interior/First_Look")]
+    //[DataRow("Guild", "Starforged/Oracles/Factions/Guild")]
+    //[DataRow("Vault", "Starforged/Oracles/Vaults/Interior/First_Look")]
+    [DataRow("Observed", "Starforged/Oracles/Planets/Desert/Observed_From_Space")]
     public void OracleSearchResultsTest(string query, string desiredOption)
     {
         var desiredOracle = oracles.GetOracleById(desiredOption);
@@ -39,5 +40,6 @@ public class OracleCommandTests
         var searchResults = oracles.GetOracles().GetOraclesFromUserInput(query);
 
         Assert.IsTrue(searchResults.Any(sr => sr.Id == desiredOption), $"Couldn't find {desiredOption} in {query} results");
+        Assert.AreEqual(1, searchResults.Count(sr => sr.Id == desiredOption));
     }
 }
