@@ -36,8 +36,12 @@ public class DiscordOracleBuilder : IDiscordEntity
 
     public static EmbedBuilder AddFieldsToBuilder(OracleRollResult node, EmbedBuilder builder)
     {
-        string rollString = (node.Roll != null) ? $" [{node.Roll}]" : string.Empty;
-        builder.AddField($"{node.Oracle?.Name}{rollString}", node.Description, true);
+        var category = node.Oracle?.Parent?.Categories?.FirstOrDefault(cat => cat.Oracles.Any(o => o.Id == node.Oracle.Id));
+
+        var rollString = (node.Roll != null) ? $" [{node.Roll}]" : string.Empty;
+        var catString = category != null ? $" - {category.Name}" : string.Empty;
+
+        builder.AddField($"{node.Oracle?.Name}{catString}{rollString}", node.Description, true);
 
         if (node.Image != null) builder.WithThumbnailUrl(node.Image);
 
