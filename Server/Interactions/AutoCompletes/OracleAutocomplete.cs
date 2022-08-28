@@ -77,7 +77,7 @@ public class OracleAutocomplete : AutocompleteHandler
         
         if (!string.IsNullOrWhiteSpace(oracle.Category))
         {
-            superTypeName = oracle.Category[(oracle.Category.LastIndexOf("/") + 1)..];
+            superTypeName = oracle.Category[(oracle.Category.LastIndexOf("/") + 1)..].Replace("_", " ");
         }
         name += $" [{superTypeName}]";
 
