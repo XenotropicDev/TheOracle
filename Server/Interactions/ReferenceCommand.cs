@@ -23,7 +23,9 @@ public class ReferenceCommand : InteractionModuleBase
     public IEmoteRepository Emotes { get; }
 
     [SlashCommand("reference", "Posts the rules text for the given topic.")]
-    public async Task GetReferenceMessage([Autocomplete(typeof(ReferenceAutoComplete))] string move, bool ephemeral = true, bool keepMessage = false)
+    public async Task GetReferenceMessage([Autocomplete(typeof(ReferenceAutoComplete))] string move,
+        [Summary(description: "Set this to False to show it to all people in the chat")] bool ephemeral = true,
+        [Summary(description: "Keeps this reference message in chat and doesn't automatically delete it after a few minutes")] bool keepMessage = false)
     {
         var moveInfo = Moves.GetMove(move);
         if (moveInfo == null) return;
