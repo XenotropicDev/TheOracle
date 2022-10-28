@@ -31,6 +31,7 @@ namespace Server.GameInterfaces
                 Description = desc,
                 PlayerId = playerId
             };
+            MaxTicks = TrackSize * BoxSize;
         }
 
         public ProgressTrack(TrackData trackData, Random random, IEmoteRepository emotes, IMoveRepository moves, PlayerDataFactory factory)
@@ -40,6 +41,7 @@ namespace Server.GameInterfaces
             Emotes = emotes;
             this.moves = moves;
             this.factory = factory;
+            MaxTicks = TrackSize * BoxSize;
         }
 
         public TrackData TrackData { get; set; }
@@ -49,8 +51,9 @@ namespace Server.GameInterfaces
         public string TrackDisplayName { get; set; } = "Track";
         public int TrackSize { get; set; } = 10;
         public int Ticks { get => TrackData.Ticks; set => TrackData.Ticks = value; }
+        public int MaxTicks { get; set; }
 
-        public ComponentBuilder? GetComponents()
+        public async Task<ComponentBuilder?> GetComponentsAsync()
         {
             var actionRows = new List<ActionRowBuilder>();
             var actionRow1 = new ActionRowBuilder();
@@ -66,7 +69,7 @@ namespace Server.GameInterfaces
             actionRows.Add(actionRow1);
 
             var movesToFind = new string[] { "Swear an Iron Vow", "Reach a Milestone", "Fulfill Your Vow", "Forsake Your Vow" };
-            var vowMoves = factory.GetPlayerMoves(TrackData.PlayerId).Where(m => movesToFind.Any(s => s.Contains(m.Name, StringComparison.OrdinalIgnoreCase)));
+            var vowMoves = (await factory.GetPlayerMoves(TrackData.PlayerId)).Where(m => movesToFind.Any(s => s.Contains(m.Name, StringComparison.OrdinalIgnoreCase)));
             var referenceSelectBuilder = new SelectMenuBuilder().WithCustomId("move-references").WithPlaceholder("Reference Moves...");
             foreach (var move in vowMoves)
             {

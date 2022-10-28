@@ -144,6 +144,7 @@ class OracleServer
             .AddSingleton<IMoveRepository, JsonMoveRepository>()
             .AddSingleton<IAssetRepository, JsonAssetRepository>()
             .AddSingleton<IEmoteRepository, HardCodedEmoteRepo>()
+            .AddSingleton<IEntityRepository, JsonEntityRepository>()
             .AddSingleton<IMemoryCache, MemoryCache>()
             .AddScoped<PlayerDataFactory>()
             .AddDbContextFactory<ApplicationContext>()

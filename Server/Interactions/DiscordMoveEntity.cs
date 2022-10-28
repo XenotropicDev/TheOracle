@@ -46,10 +46,8 @@ public class DiscordMoveEntity : IDiscordEntity
             .WithDescription(Move.Text);
     }
 
-    public ComponentBuilder? GetComponents()
+    public Task<ComponentBuilder?> GetComponentsAsync()
     {
-        return null;
+        return Task.FromResult<ComponentBuilder?>(null);
     }
-
-
 }

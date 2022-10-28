@@ -1,4 +1,5 @@
-﻿using Discord.Net.Rest;
+﻿using System.Threading.Channels;
+using Discord.Net.Rest;
 using Discord.WebSocket;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
@@ -53,7 +54,6 @@ public class PlayerCharacter
     public int Id { get; set; }
     public ulong UserId { get; set; }
     public ulong? DiscordGuildId { get; set; }
-
     public ulong MessageId { get; set; }
     public ulong ChannelId { get; set; }
     public string Name { get; set; }
@@ -70,6 +70,11 @@ public class PlayerCharacter
     public int XpSpent { get; set; }
     public string? Image { get; set; }
     public IList<string> Impacts { get; set; }
+    
+    public string GetAssumedJumpUrl()
+    {
+        return $"https://discord.com/channels/{DiscordGuildId}/{ChannelId}/{MessageId}";
+    }
 
     internal void BurnMomentum()
     {

@@ -103,8 +103,8 @@ public class DiscordOracleBuilder : IDiscordEntity
         return GetEmbedBuilder(Results);
     }
 
-    public ComponentBuilder? GetComponents()
+    public Task<ComponentBuilder?> GetComponentsAsync()
     {
-        return GetComponentBuilder(Results);
+        return Task.FromResult(GetComponentBuilder(Results));
     }
 }

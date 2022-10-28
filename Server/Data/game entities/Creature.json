@@ -1,0 +1,47 @@
+[
+  {
+    "Id": "Starforged_Creature",
+    "SearchName": "Starforged Creature",
+    "title": "[[Ironsworn/Oracles/Name/Ironlander]]",
+    "author": "Creature",
+    "game": "Starforged",
+    "shortName": "Creature",
+    "InitialOracles": [
+      {
+        "FieldName": "Description",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Descriptor]]",
+        "HasModalOverride": false
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Role",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Role]]",
+        "Emoji": "🎭",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Goal",
+        "FieldValue": "Ironsworn/Oracles/Character/Goal",
+        "Emoji": "❗",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Disposition",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Disposition]]",
+        "Emoji": "👋",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Activity",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Activity]]",
+        "Emoji": "💃",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  }
+]

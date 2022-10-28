@@ -28,7 +28,7 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
 
     [SlashCommand("create", "Create a player character.")]
     public async Task BuildPlayerCard(string name, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits, 
-        [Summary(description:"A direct link to a image that will set an image for the character in the created embed. (This can also be set after the fact with the edit message features)")]string? avatarImageURL = null)
+        [Summary(description:"A direct link to an image used in the created embed. (Or from the edit embed right click menu)")]string? avatarImageURL = null)
     {
         await DeferAsync(); //We have to use defer so that GetOriginalResponse works.
         IUserMessage? message = await Context.Interaction.GetOriginalResponseAsync();

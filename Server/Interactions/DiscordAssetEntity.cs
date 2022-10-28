@@ -50,7 +50,7 @@ internal class DiscordAssetEntity : IDiscordEntity
         return builder;
     }
 
-    public ComponentBuilder? GetComponents()
+    public Task<ComponentBuilder?> GetComponentsAsync()
     {
         ComponentBuilder compBuilder = new ComponentBuilder();
 
@@ -97,6 +97,6 @@ internal class DiscordAssetEntity : IDiscordEntity
             compBuilder.WithSelectMenu(select);
         }
 
-        return compBuilder;
+        return Task.FromResult(compBuilder);
     }
 }

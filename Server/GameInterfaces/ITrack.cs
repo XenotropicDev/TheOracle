@@ -16,7 +16,7 @@ public interface ITrack : IDiscordEntity
     /// <summary>
     /// The number of ticks per progress track.
     /// </summary>
-    public int MaxTicks => BoxSize * TrackSize;
+    public int MaxTicks { get; set; }
 
     /// <summary>
     /// The name of the track, normally "Track" works well.
@@ -32,11 +32,7 @@ public interface ITrack : IDiscordEntity
     /// Calculates a progress score from a given number of ticks, capped by TrackSize.
     /// </summary>
     /// <returns></returns>
-    public int GetScore()
-    {
-        int rawScore = TrackData.Ticks / BoxSize;
-        return Math.Min(rawScore, TrackSize);
-    }
+    public int GetScore();
 
     /// <summary>
     /// Gets or sets the current amount of completed ticks for the track

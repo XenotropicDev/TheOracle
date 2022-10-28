@@ -7,7 +7,7 @@ public interface IDiscordEntity
 {
     EmbedBuilder? GetEmbed();
 
-    ComponentBuilder? GetComponents();
+    Task<ComponentBuilder?> GetComponentsAsync();
 
     bool IsEphemeral { get; set; }
 

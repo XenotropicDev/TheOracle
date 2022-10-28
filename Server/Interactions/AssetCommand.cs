@@ -129,10 +129,10 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
         AddAnyThumbnails(Context.Interaction.Message, data);
         var discordEntity = new DiscordAssetEntity(asset, data);
 
-        await Context.Interaction.UpdateAsync(msg =>
+        await Context.Interaction.UpdateAsync(async msg =>
         {
             msg.Embeds = discordEntity.AsEmbedArray();
-            msg.Components = discordEntity.GetComponents()?.Build();
+            msg.Components = (await discordEntity.GetComponentsAsync())?.Build();
         }).ConfigureAwait(false);
 
         await db.SaveChangesAsync().ConfigureAwait(false);
@@ -158,7 +158,7 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
                 break;
 
             case "asset-condition-roll":
-                var roll = new ActionRollRandom(random, emotes, dataFactory, Context.User.Id, data.ConditionValue, 0);
+                var roll = new ActionRollRandom(random, emotes, dataFactory, db, Context.User.Id, data.ConditionValue, 0);
                 await roll.EntityAsResponse(RespondAsync).ConfigureAwait(false);
                 return;
 
@@ -169,10 +169,10 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
         AddAnyThumbnails(Context.Interaction.Message, data);
 
         var discordEntity = new DiscordAssetEntity(asset, data);
-        await Context.Interaction.UpdateAsync(msg =>
+        await Context.Interaction.UpdateAsync(async msg =>
         {
             msg.Embeds = discordEntity.AsEmbedArray();
-            msg.Components = discordEntity.GetComponents()?.Build();
+            msg.Components = (await discordEntity.GetComponentsAsync())?.Build();
         }).ConfigureAwait(false);
 
         await db.SaveChangesAsync().ConfigureAwait(false);
