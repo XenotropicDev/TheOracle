@@ -4,12 +4,10 @@ namespace TheOracle2.GameObjects;
 
 public class CampaignClock : Clock
 {
-    [SetsRequiredMembers]
     public CampaignClock(Embed embed) : base(embed)
     {
     }
 
-    [SetsRequiredMembers]
     public CampaignClock(ClockSize segments, int filledSegments, string title, string description = "") : base(segments, filledSegments, title, description)
     {
     }

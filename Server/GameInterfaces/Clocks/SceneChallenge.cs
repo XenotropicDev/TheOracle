@@ -10,13 +10,11 @@ namespace TheOracle2.GameObjects;
 
 public class SceneChallenge : Clock, ITrack
 {
-    [SetsRequiredMembers]
     public SceneChallenge(Embed embed, IEmoteRepository emotes) : base(embed)
     {
         Emotes = emotes;
     }
 
-    [SetsRequiredMembers]
     public SceneChallenge(IEmoteRepository emotes, ulong playerId, IMoveRepository moves, PlayerDataFactory dataFactory, ClockSize segments = ClockSize.Six, int filledSegments = 0, int ticks = 0, string title = "", string description = "", ChallengeRank rank = ChallengeRank.Formidable) : base(segments, filledSegments, title, description)
     {
         Emotes = emotes;

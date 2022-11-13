@@ -1,11 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Server.DiscordServer;
+﻿using Server.DiscordServer;
 
 namespace TheOracle2.GameObjects;
 
 public abstract class Clock : IClock, IDiscordEntity
 {
-    [SetsRequiredMembers]
     public Clock(Embed embed)
     {
         var values = ParseClock(embed);
@@ -15,7 +13,6 @@ public abstract class Clock : IClock, IDiscordEntity
         Segments = values.Item2;
     }
 
-    [SetsRequiredMembers]
     public Clock(ClockSize segments = ClockSize.Six, int filledSegments = 0, string title = "", string description = "")
     {
         if (filledSegments < 0 || filledSegments > ((int)segments))
@@ -29,8 +26,8 @@ public abstract class Clock : IClock, IDiscordEntity
         Description = description;
     }
 
-    public required int Segments { get; set; }
-    public required int Filled { get; set; }
+    public int Segments { get; set; }
+    public int Filled { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string? Footer { get; set; }
