@@ -15,6 +15,7 @@ public class ApplicationContext : DbContext
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
     public DbSet<Player> Players { get; set; }
+    public DbSet<Party> Parties { get; set; }
 
     public ApplicationContext()
     {
