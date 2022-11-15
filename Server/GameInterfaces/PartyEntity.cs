@@ -37,9 +37,11 @@ internal class PartyEntity : IDiscordEntity
         var builder = new EmbedBuilder()
         .WithAuthor($"Party Card")
         .WithThumbnailUrl(Party.ImageUrl)
-        .AddField("Supply", Party.Supply, true)
-        .AddField("Characters", string.Join('\n', Party.Characters))
+        .WithTitle(Party.Name)
+        .AddField("Supply", Party.Supply, true)        
         ;
+
+        if (Party.Characters.Any()) builder.AddField("Characters", string.Join('\n', Party.Characters.Select(pc => pc.Name)));
 
         return builder;
     }

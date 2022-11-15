@@ -192,12 +192,62 @@ public class PcCardComponents : InteractionModuleBase<SocketInteractionContext<S
     [ComponentInteraction("lose-supply-*")]
     public async Task loseSupply(string pcId)
     {
+        if (int.TryParse(pcId, out var parsedId))
+        {
+            var party = await DbContext.Parties.FirstOrDefaultAsync(p => p.Characters.Any(c => c.Id == parsedId));
+            if (party != null)
+            {
+                party.Supply--;
+                await party.UpdateCardDisplay(Context.Client, emotes, dataFactory).ConfigureAwait(false);
+                await UpdatePCValue(pcId, pc => pc.Supply = party.Supply).ConfigureAwait(false);
+
+                List<Task> charsToUpdate = new();
+                foreach (var character in party.Characters)
+                {
+                    if (character.Id == parsedId) continue; //this is the one was updated with the discord response.
+                    if (character.Supply == party.Supply) continue;
+
+                    character.Supply = party.Supply;
+                    charsToUpdate.Add(character.UpdateCardDisplay(Context.Client, emotes, dataFactory));
+                }
+
+                await Task.WhenAll(charsToUpdate).ConfigureAwait(false);
+                await DbContext.SaveChangesAsync().ConfigureAwait(false);
+                return;
+            }
+        }
+
         await UpdatePCValue(pcId, pc => pc.Supply--).ConfigureAwait(false);
     }
 
     [ComponentInteraction("add-supply-*")]
     public async Task addSupply(string pcId)
     {
+        if (int.TryParse(pcId, out var parsedId))
+        {
+            var party = await DbContext.Parties.FirstOrDefaultAsync(p => p.Characters.Any(c => c.Id == parsedId));
+            if (party != null)
+            {
+                party.Supply++;
+                await party.UpdateCardDisplay(Context.Client, emotes, dataFactory).ConfigureAwait(false);
+                await UpdatePCValue(pcId, pc => pc.Supply = party.Supply).ConfigureAwait(false);
+
+                List<Task> charsToUpdate = new();
+                foreach (var character in party.Characters)
+                {
+                    if (character.Id == parsedId) continue; //this is the one was updated with the discord response.
+                    if (character.Supply == party.Supply) continue;
+                    
+                    character.Supply = party.Supply;
+                    charsToUpdate.Add(character.UpdateCardDisplay(Context.Client, emotes, dataFactory));
+                }
+
+                await Task.WhenAll(charsToUpdate).ConfigureAwait(false);
+                await DbContext.SaveChangesAsync().ConfigureAwait(false);
+                return;
+            }
+        }
+
         await UpdatePCValue(pcId, pc => pc.Supply++).ConfigureAwait(false);
     }
 

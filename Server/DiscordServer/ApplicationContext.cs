@@ -42,6 +42,8 @@ public class ApplicationContext : DbContext
         modelBuilder.Entity<PlayerCharacter>().Property(pc => pc.Impacts).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
         modelBuilder.Entity<AssetData>().Property(a => a.SelectedAbilities).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
         modelBuilder.Entity<AssetData>().Property(a => a.Inputs).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
+
+        modelBuilder.Entity<Party>().Navigation(p => p.Characters).AutoInclude();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

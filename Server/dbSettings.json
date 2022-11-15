@@ -1,0 +1,6 @@
+{
+    "dbConnectionString":"Host=localhost;Port=5432;Database=OracleDB;Username=OracleUser",
+    "dbConnectionStringWithPort":"host=127.0.0.1 port=5432 dbname=OracleDB connect_timeout=10 user=OracleUser",
+    "dbConnectionStringOff":"postgresql://OracleUser@localhost:5432/OracleDB",
+    "dbPassword":"OracleDBPassword"
+}

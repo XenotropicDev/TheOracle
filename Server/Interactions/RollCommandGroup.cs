@@ -48,7 +48,7 @@ public class RollCommandGroup : InteractionModuleBase
             return;
         }
 
-        var roll = new ActionRollRandom(Random, emotes, dataFactory, db, Context.User.Id, pc.GetStat(stat), adds, pc.GetStat(RollableStat.Momentum), description, actionDie, challengeDie1, challengeDie2, id, statName: stat.ToString());
+        var roll = new ActionRollRandom(Random, emotes, dataFactory, db, Context.User.Id, pc.GetStat(stat, db), adds, pc.GetStat(RollableStat.Momentum, db), description, actionDie, challengeDie1, challengeDie2, id, statName: stat.ToString());
 
         await roll.EntityAsResponse(RespondAsync).ConfigureAwait(false);
     }

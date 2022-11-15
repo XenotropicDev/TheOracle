@@ -1,5 +1,7 @@
 ﻿using Discord.Interactions;
 using Discord.WebSocket;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Server.Data;
 using Server.DiscordServer;
 using Server.GameInterfaces;
@@ -15,6 +17,8 @@ public class PartyCommandsGroup : InteractionModuleBase
     private readonly IEmoteRepository emotes;
     private readonly PlayerDataFactory dataFactory;
     private readonly IOracleRoller oracleRoller;
+
+    public ILogger<PartyCommandsGroup> logger { get; set; }
 
     public PartyCommandsGroup(ApplicationContext dbContext, IEmoteRepository emotes, PlayerDataFactory dataFactory, IOracleRoller oracleRoller)
     {
@@ -42,7 +46,7 @@ public class PartyCommandsGroup : InteractionModuleBase
             var descriptor = oracleRoller.GetRollResult(oracles.FirstOrDefault(o => o.Id.Contains("/Descriptor")));
             var theme = oracleRoller.GetRollResult(oracles.FirstOrDefault(o => o.Id.Contains("/Theme")));
 
-            partyName = $"{descriptor} {theme}";
+            partyName = $"{descriptor.Description} {theme.Description}";
         }
 
         var party = new Party
@@ -65,7 +69,7 @@ public class PartyCommandsGroup : InteractionModuleBase
         return;
     }
 
-    [SlashCommand("add-character", "Adds a character to the party")]
+    [SlashCommand("add-character", "Adds a character to the party. Note: A character can only be in one party.")]
     public async Task AddPlayer([Autocomplete(typeof(PartyAutocomplete))] int partyId, [Autocomplete(typeof(CharacterAutocomplete))] string character)
     {
         if (!int.TryParse(character, out var id)) return;
@@ -74,13 +78,17 @@ public class PartyCommandsGroup : InteractionModuleBase
 
         if (pc == null || party == null) throw new ArgumentException($"Unknown character: {id}, or party:{partyId}");
 
+        await DbContext.Parties.Where(p => p.Characters.Contains(pc)).ForEachAsync(p => p.Characters.Remove(pc)).ConfigureAwait(false);
+
         party.Characters.Add(pc);
 
         await DbContext.SaveChangesAsync().ConfigureAwait(false);
 
         await RespondAsync($"Character Added", ephemeral: true).ConfigureAwait(false);
 
-        await party.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
+        pc.Supply = party.Supply;
+        await pc.UpdateCardDisplay(Context.Client, emotes, dataFactory).ConfigureAwait(false);
+        await party.UpdateCardDisplay(Context.Client, emotes, dataFactory);
         return;
     }
 
@@ -97,7 +105,7 @@ public class PartyCommandsGroup : InteractionModuleBase
 
         await DbContext.SaveChangesAsync().ConfigureAwait(false);
 
-        await RespondAsync($"Character Added", ephemeral: true).ConfigureAwait(false);
+        await RespondAsync($"Character removed", ephemeral: true).ConfigureAwait(false);
 
         await partyObj.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
         return;
@@ -118,5 +126,81 @@ public class PartyCommandsGroup : InteractionModuleBase
 
         await partyObj.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
         return;
+    }
+
+    [SlashCommand("remove-party", "Removes the party from autocomplete results. This cannot be undone.")]
+    public async Task RemoveParty([Autocomplete(typeof(PartyAutocomplete))] string party)
+    {
+        if (!int.TryParse(party, out var parsedId)) throw new ArgumentException("Unknown party");
+        var partyObj = await DbContext.Parties.FindAsync(parsedId);
+
+        if (partyObj == null) throw new ArgumentException($"Unknown party: {party}");
+
+        DbContext.Parties.Remove(partyObj);
+
+        await DbContext.SaveChangesAsync().ConfigureAwait(false);
+
+        await RespondAsync($"Party '{partyObj.Name}' has been removed", ephemeral: true).ConfigureAwait(false);
+
+        try
+        {
+            var channel = await Context.Client.GetChannelAsync(partyObj.ChannelId ?? 0).ConfigureAwait(false) as IMessageChannel;
+            var msg = await channel.GetMessageAsync(partyObj.MessageId ?? 0).ConfigureAwait(false);
+            await msg.DeleteAsync().ConfigureAwait(false);    
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning($"The party message could not be deleted. It was probably deleted already. Exception: {ex.Message}");
+        }
+        
+        return;
+    }
+}
+
+public class PartyComponents : InteractionModuleBase<SocketInteractionContext<SocketMessageComponent>>
+{
+    private ApplicationContext Db;
+    private IEmoteRepository emotes;
+    private PlayerDataFactory playerDataFactory;
+
+    public PartyComponents(ApplicationContext dbContext, IEmoteRepository emotes, PlayerDataFactory dataFactory)
+    {
+        Db = dbContext;
+        this.emotes = emotes;
+        this.playerDataFactory = dataFactory;
+    }
+
+    [ComponentInteraction("add-party-supply-*")]
+    public async Task AddSupply(string partyInput)
+    {
+        if (!int.TryParse(partyInput, out int partyId)) throw new ArgumentException($"Unknown Party ID: {partyInput}");
+        var party = await Db.Parties.FindAsync(partyId);
+        party.Supply++;
+        await Db.SaveChangesAsync();
+
+        var partyEntity = new PartyEntity(party, emotes, playerDataFactory);
+
+        await Context.Interaction.UpdateAsync(async msg =>
+        {
+            msg.Embeds = partyEntity.AsEmbedArray();
+            msg.Components = (await partyEntity.GetComponentsAsync()).Build();
+        }).ConfigureAwait(false);
+    }
+
+    [ComponentInteraction("lose-party-supply-*")]
+    public async Task RemoveSupply(string partyInput)
+    {
+        if (!int.TryParse(partyInput, out int partyId)) throw new ArgumentException($"Unknown Party ID: {partyInput}");
+        var party = await Db.Parties.FindAsync(partyId);
+        party.Supply--;
+        await Db.SaveChangesAsync();
+
+        var partyEntity = new PartyEntity(party, emotes, playerDataFactory);
+
+        await Context.Interaction.UpdateAsync(async msg =>
+        {
+            msg.Embeds = partyEntity.AsEmbedArray();
+            msg.Components = (await partyEntity.GetComponentsAsync()).Build();
+        }).ConfigureAwait(false);
     }
 }
