@@ -1,18 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using Server.Data;
+﻿using Server.Data;
 using Server.DiceRoller;
-using Server.DiscordServer;
 using Server.GameInterfaces;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace TheOracle2.GameObjects;
 
 public class SceneChallenge : Clock, ITrack
 {
-    public SceneChallenge(Embed embed, IEmoteRepository emotes) : base(embed)
+    public SceneChallenge(Embed embed, TrackData track, IEmoteRepository emotes) : base(embed)
     {
         Emotes = emotes;
+        TrackData = track;
     }
 
     public SceneChallenge(IEmoteRepository emotes, ulong playerId, IMoveRepository moves, PlayerDataFactory dataFactory, ClockSize segments = ClockSize.Six, int filledSegments = 0, int ticks = 0, string title = "", string description = "", ChallengeRank rank = ChallengeRank.Formidable) : base(segments, filledSegments, title, description)
@@ -51,8 +48,8 @@ public class SceneChallenge : Clock, ITrack
 
         if (!IsFull)
         {
-            if (GetScore() < TrackSize) 
-            { 
+            if (GetScore() < TrackSize)
+            {
                 string alertLabel = MarkAlertTitle;
                 string description = $"Mark {this.TickString(Rank.GetStandardTickAmount())} of progress";
                 SelectMenuOptionBuilder option = new SelectMenuOptionBuilder().WithEmote(Emotes.ProgressEmotes[(int)Rank - 1]).WithValue($"progress-mark:{Rank.GetStandardTickAmount()}");
@@ -74,19 +71,19 @@ public class SceneChallenge : Clock, ITrack
             .WithLabel(ResolveMoveName)
             .WithDescription("Roll progress")
             .WithValue($"progress-roll");
-        
+
         menu.AddOption(resolveOption);
 
-        if (Ticks > 0) 
+        if (Ticks > 0)
         {
             menu.AddOption(new SelectMenuOptionBuilder()
             .WithLabel($"Clear {this.TickString(Rank.GetStandardTickAmount())} of progress")
             .WithEmote(Emotes.ProgressEmotes[0])
             .WithValue($"progress-clear:{Rank.GetStandardTickAmount()}"));
         }
-        
+
         if (Filled > 0 || Ticks > 0) { menu.AddOption(ResetOption()); }
-        
+
         return menu;
     }
 
@@ -97,9 +94,12 @@ public class SceneChallenge : Clock, ITrack
 
     public new EmbedBuilder? GetEmbed()
     {
-        var builder = ProgressTrack.GetEmbed();
+        var builder = ToEmbed();
 
-        if (builder != null) AddClockTemplate(builder, this);
+        if (builder != null)
+        {
+            AddClockTemplate(builder, this);
+        }
 
         return builder;
     }

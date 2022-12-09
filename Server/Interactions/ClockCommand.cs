@@ -210,8 +210,9 @@ public class CounterComponents : InteractionModuleBase<SocketInteractionContext<
         if (optionValue.StartsWith("progress"))
         {
             var track = await DbContext.ProgressTrackers.FindAsync(trackId);
+
+            var scene = new SceneChallenge(Context.Interaction.Message.Embeds.FirstOrDefault(), track, Emotes);
             
-            //await ProgressMenu(rankString, ticksString, values).ConfigureAwait(false);
             return;
         }
         if (optionValue.StartsWith("clock"))
