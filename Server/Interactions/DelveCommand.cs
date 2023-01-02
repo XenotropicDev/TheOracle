@@ -1,9 +1,11 @@
 ﻿using System.IO;
 using Discord.Interactions;
 using Server.GameInterfaces;
+using Server.Interactions.Helpers;
 
 namespace Server.Interactions
 {
+    [DontAutoRegister]
     public class DelveCommand : InteractionModuleBase
     {
         public Random Random { get; set; }
@@ -13,7 +15,7 @@ namespace Server.Interactions
             Random = random;
         }
 
-        [SlashCommand("Delve", "Creates a delve site")]
+        [SlashCommand("delve", "Creates a delve site")]
         public async Task DiscoverSite(ChallengeRank rank, DelveThemeOption theme, DelveDomainOption domain)
         {
             if (theme == DelveThemeOption.Random) 
@@ -33,6 +35,7 @@ namespace Server.Interactions
 
             var delveInfo = new DelveInfo(rank, theme, domain, sitename, siteObjective);
 
+            await delveInfo.EntityAsResponse(RespondAsync).ConfigureAwait(false);
         }
     }
 

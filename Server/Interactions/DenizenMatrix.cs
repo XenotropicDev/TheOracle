@@ -38,7 +38,7 @@
             }
             else if (roll == 100)
             {
-                return RollMatrix(Unforseen, 1, random)
+                return RollMatrix(Unforseen, 1, random);
             }
 
             return "";
