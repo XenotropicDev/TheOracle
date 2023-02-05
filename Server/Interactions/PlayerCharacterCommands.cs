@@ -3,6 +3,7 @@ using Discord.Net;
 using Discord.WebSocket;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using Server.Data;
 using Server.DiscordServer;
 using Server.Interactions.Helpers;
@@ -99,6 +100,25 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
         var saveTask = DbContext.SaveChangesAsync().ConfigureAwait(false);
 
         await RespondAsync($"Debility added", ephemeral: true).ConfigureAwait(false);
+
+        await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
+
+        await saveTask;
+    }
+
+    [SlashCommand("remove-debility-impact", "Removes the specified debility or impact from the character")]
+    public async Task removeDebility([Autocomplete(typeof(CharacterAutocomplete))] string character, string valueToRemove)
+    {
+        if (!int.TryParse(character, out var id)) return;
+        var pc = await DbContext.PlayerCharacters.FindAsync(id);
+
+        var properSpelling = pc.Impacts.FirstOrDefault(s => s.Equals(valueToRemove, StringComparison.OrdinalIgnoreCase));
+
+        pc.Impacts.Remove(properSpelling);
+
+        var saveTask = DbContext.SaveChangesAsync().ConfigureAwait(false);
+
+        await RespondAsync($"Debility/Impact removed", ephemeral: true).ConfigureAwait(false);
 
         await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
 
