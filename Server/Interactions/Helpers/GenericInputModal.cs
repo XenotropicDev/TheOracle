@@ -17,7 +17,7 @@ public static class GenericInputModal
 
     public static string GetNextCustomId(ModalBuilder modal)
     {
-        int count = modal.Components.ActionRows.Count;
+        int count = modal.Components.ActionRows?.Count ?? 0;
         return GetGenericIdWord(count);
     }
 }
