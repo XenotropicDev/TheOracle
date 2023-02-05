@@ -230,7 +230,7 @@ public abstract class Clock : IClock, IDiscordEntity
         {
             "Campaign Clock" => new CampaignClock(embed),
             "Tension Clock" => new TensionClock(embed),
-            "Scene Challenge" => new SceneChallenge(embed, emotes),
+            //"Scene Challenge" => new SceneChallenge(embed, emotes),
             _ => throw new ArgumentOutOfRangeException(nameof(embed), "Embed must be a 'Campaign Clock', 'Tension Clock', or 'Scene Challenge'"),
         };
     }
