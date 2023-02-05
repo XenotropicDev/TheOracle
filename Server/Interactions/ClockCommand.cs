@@ -29,7 +29,8 @@ public class ClockCommand : InteractionModuleBase
         [Summary(description: "The type of clock: campaign clock (p. 231), tension clock (p. 234), or scene challenge (p. 235).")]
         [Choice("Campaign clock","campaign-clock"),
         Choice("Tension clock", "tension-clock"),
-        Choice("Scene challenge", "scene-challenge")]
+        //Choice("Scene challenge", "scene-challenge")
+        ]
         string clockType,
         [Summary(description: "A title that makes it clear what project is complete or event triggered when the clock is filled.")]
         string title,
