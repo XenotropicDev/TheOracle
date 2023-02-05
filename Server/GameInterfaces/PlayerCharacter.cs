@@ -1,7 +1,9 @@
-﻿using Discord.Net.Rest;
+﻿using System.Threading.Channels;
+using Discord.Net.Rest;
 using Discord.WebSocket;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.DiscordServer;
 using Server.Interactions.Helpers;
 using TheOracle2.UserContent;
 
@@ -53,7 +55,6 @@ public class PlayerCharacter
     public int Id { get; set; }
     public ulong UserId { get; set; }
     public ulong? DiscordGuildId { get; set; }
-
     public ulong MessageId { get; set; }
     public ulong ChannelId { get; set; }
     public string Name { get; set; }
@@ -70,14 +71,25 @@ public class PlayerCharacter
     public int XpSpent { get; set; }
     public string? Image { get; set; }
     public IList<string> Impacts { get; set; }
+    
+    public string GetAssumedJumpUrl()
+    {
+        return $"https://discord.com/channels/{DiscordGuildId}/{ChannelId}/{MessageId}";
+    }
 
     internal void BurnMomentum()
     {
         Momentum = Math.Max(2 - Impacts.Count, 0);
     }
 
-    internal int GetStat(RollableStat stat)
+    internal int GetStat(RollableStat stat, ApplicationContext db)
     {
+        if (stat == RollableStat.Supply)
+        {
+            var party = db.Parties.FirstOrDefault(p => p.Characters.Any(c => c.Id == this.Id));
+            return party.Supply;
+        }
+
         return stat switch
         {
             RollableStat.Edge => Edge,
@@ -93,14 +105,14 @@ public class PlayerCharacter
         };
     }
 
-    public async Task<IUserMessage?> GetPCMessage(DiscordSocketClient client)
+    public async Task<IUserMessage?> GetPCMessage(IDiscordClient client)
     {
-        if (await client.Rest.GetChannelAsync(ChannelId).ConfigureAwait(false) is not IMessageChannel channel) return null;
+        if (await client.GetChannelAsync(ChannelId).ConfigureAwait(false) is not IMessageChannel channel) return null;
 
         return await channel.GetMessageAsync(MessageId).ConfigureAwait(false) as IUserMessage;
     }
 
-    public async Task UpdateCardDisplay(DiscordSocketClient client, IEmoteRepository emotes, PlayerDataFactory dataFactory)
+    public async Task UpdateCardDisplay(IDiscordClient client, IEmoteRepository emotes, PlayerDataFactory dataFactory)
     {
         var msg = await GetPCMessage(client).ConfigureAwait(false);
         if (msg == null) return;

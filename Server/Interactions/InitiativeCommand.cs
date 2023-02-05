@@ -16,7 +16,7 @@ public class InitiativeCommand : InteractionModuleBase
     public ApplicationContext DbContext { get; }
 
     [SlashCommand("initiative", "Creates a post to keep track of combat initiative")]
-    public async Task PostTracker(string trackerDescription = "")
+    public async Task PostTracker([Summary(description: "Details about what this is tracking or anything else you want to appear on the generated embed.")]string trackerDescription = "")
     {
         var initiativeTracker = new EmbedBuilder()
             .WithTitle("Initiative")
@@ -29,10 +29,6 @@ public class InitiativeCommand : InteractionModuleBase
         ComponentBuilder component = new ComponentBuilder()
             .WithButton("In control", "initiative-control:true")
             .WithButton("In a bad spot", "initiative-control:false");
-        //    .WithSelectMenu("In control", "initiative-control:true")
-        //    .WithSelectMenu("In a bad spot", "initiative-control:false")
-        //    .WithSelectMenu("Other character", "initiative-other-helper")
-        //    ;
 
         await RespondAsync(embed: initiativeTracker.Build(), components: component.Build()).ConfigureAwait(false);
     }

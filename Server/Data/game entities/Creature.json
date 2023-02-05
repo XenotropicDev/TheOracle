@@ -1,0 +1,47 @@
+[
+  {
+    "Id": "Starforged_Creature",
+    "SearchName": "Starforged Creature",
+    "title": "Creature",
+    "game": "Starforged",
+    "shortName": "Creature",
+    "InitialOracles": [
+      {
+        "FieldName": "Environment",
+        "FieldValue": "[[Starforged/Oracles/Creatures/Environment]]",
+        "HasModalOverride": false  
+      },
+      {
+        "FieldName": "Scale",
+        "FieldValue": "[[Starforged/Oracles/Creatures/Scale]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Basic Form",
+        "FieldValue": "[[Starforged/Oracles/Creatures/Basic_Form]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "First Look",
+        "FieldValue": "[[Starforged/Oracles/Creatures/First_Look]]",
+        "HasModalOverride": false
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Encountered Behavior",
+        "FieldValue": "[[Starforged/Oracles/Creatures/Encountered_Behavior]]",
+        "Emoji": "👋",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Revealed Aspect",
+        "FieldValue": "Starforged/Oracles/Creatures/Revealed_Aspect",
+        "Emoji": "👁️",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  }
+]

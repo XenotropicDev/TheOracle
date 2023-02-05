@@ -69,4 +69,9 @@ public class DieRandom : IDie
     {
         return this.Value.CompareTo(other);
     }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Sides, Value);
+    }
 }

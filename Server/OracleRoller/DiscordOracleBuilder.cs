@@ -19,7 +19,7 @@ public class DiscordOracleBuilder : IDiscordEntity
     public bool IsEphemeral { get; set; } = false;
     public string? DiscordMessage { get; set; } = null;
 
-    private static EmbedBuilder GetEmbedBuilder(IEnumerable<OracleRollResult> result)
+    private EmbedBuilder GetEmbedBuilder(IEnumerable<OracleRollResult> result)
     {
         var builder = new EmbedBuilder();
 
@@ -59,6 +59,8 @@ public class DiscordOracleBuilder : IDiscordEntity
 
         foreach (var result in root)
         {
+            result.FollowUpTables.RemoveAll(fui => root.Select(ri => ri.Oracle.Id).Contains(fui.Id));
+            
             AddComponents(builder, result, result);
         }
 
@@ -76,6 +78,8 @@ public class DiscordOracleBuilder : IDiscordEntity
     {
         foreach (var item in node.FollowUpTables)
         {
+            if (AddOracleSelect.Options.Any(o => o.Value == item.Id)) continue;
+
             AddOracleSelect.AddOption(item.Name, item.Id, emote: item.Emote);
         }
 
@@ -103,8 +107,8 @@ public class DiscordOracleBuilder : IDiscordEntity
         return GetEmbedBuilder(Results);
     }
 
-    public ComponentBuilder? GetComponents()
+    public Task<ComponentBuilder?> GetComponentsAsync()
     {
-        return GetComponentBuilder(Results);
+        return Task.FromResult(GetComponentBuilder(Results));
     }
 }

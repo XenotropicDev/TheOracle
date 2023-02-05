@@ -48,7 +48,7 @@ public class RollCommandGroup : InteractionModuleBase
             return;
         }
 
-        var roll = new ActionRollRandom(Random, emotes, dataFactory, Context.User.Id, pc.GetStat(stat), adds, pc.GetStat(RollableStat.Momentum), description, actionDie, challengeDie1, challengeDie2, id);
+        var roll = new ActionRollRandom(Random, emotes, dataFactory, db, Context.User.Id, pc.GetStat(stat, db), adds, pc.GetStat(RollableStat.Momentum, db), description, actionDie, challengeDie1, challengeDie2, id, statName: stat.ToString());
 
         await roll.EntityAsResponse(RespondAsync).ConfigureAwait(false);
     }
@@ -57,13 +57,13 @@ public class RollCommandGroup : InteractionModuleBase
     public async Task RollAction(
         [Summary(description: "The stat value to use for the roll")] int stat,
         [Summary(description: "Any adds to the roll")][MinValue(0)] int adds,
-        [Summary(description: "The player character's momentum.")][MinValue(-6)][MaxValue(10)] int momentum,
+        [Summary(description: "The player character's momentum.")][MinValue(-6)][MaxValue(10)] int momentum = 0,
         [Summary(description: "Any notes, fiction, or other text you'd like to include with the roll")] string description = "",
         [Summary(description: "A preset value for the Action Die (d6) to use instead of rolling.")][MinValue(1)][MaxValue(6)] int? actionDie = null,
         [Summary(description: "A preset value for the first Challenge Die (d10) to use instead of rolling.")][MinValue(1)][MaxValue(10)] int? challengeDie1 = null,
         [Summary(description: "A preset value for the second Challenge Die (d10) to use instead of rolling.")][MinValue(1)][MaxValue(10)] int? challengeDie2 = null)
     {
-        var roll = new ActionRollRandom(Random, emotes, dataFactory, Context.User.Id, stat, adds, momentum, description, actionDie, challengeDie1, challengeDie2);
+        var roll = new ActionRollRandom(Random, emotes, dataFactory, db, Context.User.Id, stat, adds, momentum, description, actionDie, challengeDie1, challengeDie2);
         await roll.EntityAsResponse(RespondAsync).ConfigureAwait(false);
     }
 
@@ -76,6 +76,31 @@ public class RollCommandGroup : InteractionModuleBase
     {
         var roll = new ProgressRollRandom(Random, progressScore, description, challengeDie1, challengeDie2);
         await roll.EntityAsResponse(RespondAsync).ConfigureAwait(false);
+    }
+
+    [SlashCommand("game-dice", "Rolls dice")]
+    public async Task RollDie([ComplexParameter] DieNotation first)
+    {
+        List<int> firstRollResults = GenerateRollList(first);
+        //List<int> secondRollResults = GenerateRollList(second);
+
+        var outputString = $"{first.Number}d{first.Sides}: {string.Join(", ", firstRollResults)}";
+        //if (second != null) outputString += $"\n\n{second.Number}d{second.Sides}: {string.Join(", ", secondRollResults)}";
+        await RespondAsync(outputString).ConfigureAwait(false);
+    }
+
+    private List<int> GenerateRollList(DieNotation die)
+    {
+        var rollList = new List<int>();
+        if (die != null)
+        {
+            for (var i = 0; i < die.Number; i++)
+            {
+                var roll = Random.Next(1, die.Sides + 1);
+                rollList.Add(roll);
+            }
+        }
+        return rollList;
     }
 }
 
@@ -118,7 +143,9 @@ public class RollInteractions : InteractionModuleBase<SocketInteractionContext<S
         int.TryParse(match.Groups[1].Value, out int challengeDie1);
         int.TryParse(match.Groups[2].Value, out int challengeDie2);
 
-        return new ActionRollRandom(random, emotes, dataFactory, Context.User.Id, stat, adds, null, builder.Description, d6, challengeDie1, challengeDie2, characterId);
+        string? rolledStat = embed.Author.HasValue ? embed.Author.Value.Name.Substring(embed.Author.Value.Name.IndexOf("+")) : null;
+
+        return new ActionRollRandom(random, emotes, dataFactory, db, Context.User.Id, stat, adds, null, builder.Description, d6, challengeDie1, challengeDie2, characterId, statName: rolledStat);
     }
 
     [ComponentInteraction("burn-roll:*,*")]
@@ -130,10 +157,10 @@ public class RollInteractions : InteractionModuleBase<SocketInteractionContext<S
 
         burnableAction.Burn(momentum, null);
 
-        var updateRollTask = Context!.Interaction.UpdateAsync(msg =>
+        var updateRollTask = Context!.Interaction.UpdateAsync(async msg =>
         {
             msg.Embeds = actionRoll.AsEmbedArray();
-            msg.Components = actionRoll.AsMessageComponent();
+            msg.Components = await actionRoll.AsMessageComponent();
         }).ConfigureAwait(false);
 
         var pc = await getPcTask;

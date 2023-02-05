@@ -40,7 +40,7 @@ public class OracleCommand : InteractionModuleBase
         }
 
         var entityItem = new DiscordOracleBuilder(emotes, rollResult, secondResult);
-        await RespondAsync(embeds: entityItem.AsEmbedArray(), ephemeral: entityItem.IsEphemeral, components: entityItem.AsMessageComponent());
+        await RespondAsync(embeds: entityItem.AsEmbedArray(), ephemeral: entityItem.IsEphemeral, components: await entityItem.AsMessageComponent());
     }
 }
 
@@ -89,6 +89,6 @@ public class OracleComponents : InteractionModuleBase<SocketInteractionContext<S
         var rollResult = roller.GetRollResult(firstOracle);
 
         var entityItem = new DiscordOracleBuilder(emotes, rollResult);
-        await RespondAsync(embeds: entityItem.AsEmbedArray(), ephemeral: entityItem.IsEphemeral, components: entityItem.AsMessageComponent());
+        await RespondAsync(embeds: entityItem.AsEmbedArray(), ephemeral: entityItem.IsEphemeral, components: await entityItem.AsMessageComponent());
     }
 }

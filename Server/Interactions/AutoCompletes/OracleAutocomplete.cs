@@ -7,10 +7,10 @@ namespace TheOracle2.Commands;
 
 public class OracleAutocomplete : AutocompleteHandler
 {
-    private Task<AutocompletionResult> GetEmptyOralceResult(IInteractionContext context, PlayerDataFactory dataFactory)
+    private async Task<AutocompletionResult> GetEmptyOralceResult(IInteractionContext context, PlayerDataFactory dataFactory)
     {
         //Todo: remove results like "Faction" from "action"
-        var oracles = dataFactory.GetPlayerOracles(context.User.Id).Where(o => o.Name == "Pay the Price"
+        var oracles = (await dataFactory.GetPlayerOracles(context.User.Id)).Where(o => o.Name == "Pay the Price"
         || Regex.IsMatch(o.Category, @"\bAction", RegexOptions.IgnoreCase)
         || Regex.IsMatch(o.Category, @"\bCore", RegexOptions.IgnoreCase)).AsEnumerable()
         ;
@@ -21,10 +21,10 @@ public class OracleAutocomplete : AutocompleteHandler
                 2)
             .Take(SelectMenuBuilder.MaxOptionCount);
 
-        return Task.FromResult(AutocompletionResult.FromSuccess(list));
+        return AutocompletionResult.FromSuccess(list);
     }
 
-    public override Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
+    public override async Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
     {
         var dataFactory = services.GetRequiredService<PlayerDataFactory>();
 
@@ -36,19 +36,21 @@ public class OracleAutocomplete : AutocompleteHandler
 
             if (String.IsNullOrWhiteSpace(value))
             {
-                return GetEmptyOralceResult(context, dataFactory);
+                return await GetEmptyOralceResult(context, dataFactory);
             }
 
-            var oracles = dataFactory.GetPlayerOracles(context.User.Id);
+            var game = IronGameExtenstions.GetIronGameInString(value);
+                value = IronGameExtenstions.RemoveIronGameInString(value);
+            var oracles = await dataFactory.GetPlayerOracles(context.User.Id, game);
 
             successList.AddRange(oracles.GetOraclesFromUserInput(value)
                          .SelectMany(x => GetOracleAutocompleteResults(x)));
 
-            return Task.FromResult(AutocompletionResult.FromSuccess(successList.Take(SelectMenuBuilder.MaxOptionCount)));
+            return AutocompletionResult.FromSuccess(successList.Take(SelectMenuBuilder.MaxOptionCount));
         }
         catch (Exception ex)
         {
-            return Task.FromResult(AutocompletionResult.FromError(ex));
+            return AutocompletionResult.FromError(ex);
         }
     }
 

@@ -3,6 +3,7 @@ using Discord.Net;
 using Discord.WebSocket;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using Server.Data;
 using Server.DiscordServer;
 using Server.Interactions.Helpers;
@@ -27,7 +28,8 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
     public ApplicationContext DbContext { get; }
 
     [SlashCommand("create", "Create a player character.")]
-    public async Task BuildPlayerCard(string name, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits, string? avatarImageURL = null)
+    public async Task BuildPlayerCard(string name, [MaxValue(4)][MinValue(1)] int edge, [MaxValue(4)][MinValue(1)] int heart, [MaxValue(4)][MinValue(1)] int iron, [MaxValue(4)][MinValue(1)] int shadow, [MaxValue(4)][MinValue(1)] int wits, 
+        [Summary(description:"A direct link to an image used in the created embed. (Or from the edit embed right click menu)")]string? avatarImageURL = null)
     {
         await DeferAsync(); //We have to use defer so that GetOriginalResponse works.
         IUserMessage? message = await Context.Interaction.GetOriginalResponseAsync();
@@ -98,6 +100,25 @@ public class PlayerCharacterCommandGroup : InteractionModuleBase
         var saveTask = DbContext.SaveChangesAsync().ConfigureAwait(false);
 
         await RespondAsync($"Debility added", ephemeral: true).ConfigureAwait(false);
+
+        await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
+
+        await saveTask;
+    }
+
+    [SlashCommand("remove-debility-impact", "Removes the specified debility or impact from the character")]
+    public async Task removeDebility([Autocomplete(typeof(CharacterAutocomplete))] string character, string valueToRemove)
+    {
+        if (!int.TryParse(character, out var id)) return;
+        var pc = await DbContext.PlayerCharacters.FindAsync(id);
+
+        var properSpelling = pc.Impacts.FirstOrDefault(s => s.Equals(valueToRemove, StringComparison.OrdinalIgnoreCase));
+
+        pc.Impacts.Remove(properSpelling);
+
+        var saveTask = DbContext.SaveChangesAsync().ConfigureAwait(false);
+
+        await RespondAsync($"Debility/Impact removed", ephemeral: true).ConfigureAwait(false);
 
         await pc.UpdateCardDisplay((Context.Client as DiscordSocketClient)!, emotes, dataFactory);
 
@@ -191,12 +212,62 @@ public class PcCardComponents : InteractionModuleBase<SocketInteractionContext<S
     [ComponentInteraction("lose-supply-*")]
     public async Task loseSupply(string pcId)
     {
+        if (int.TryParse(pcId, out var parsedId))
+        {
+            var party = await DbContext.Parties.FirstOrDefaultAsync(p => p.Characters.Any(c => c.Id == parsedId));
+            if (party != null)
+            {
+                party.Supply--;
+                await party.UpdateCardDisplay(Context.Client, emotes, dataFactory).ConfigureAwait(false);
+                await UpdatePCValue(pcId, pc => pc.Supply = party.Supply).ConfigureAwait(false);
+
+                List<Task> charsToUpdate = new();
+                foreach (var character in party.Characters)
+                {
+                    if (character.Id == parsedId) continue; //this is the one was updated with the discord response.
+                    if (character.Supply == party.Supply) continue;
+
+                    character.Supply = party.Supply;
+                    charsToUpdate.Add(character.UpdateCardDisplay(Context.Client, emotes, dataFactory));
+                }
+
+                await Task.WhenAll(charsToUpdate).ConfigureAwait(false);
+                await DbContext.SaveChangesAsync().ConfigureAwait(false);
+                return;
+            }
+        }
+
         await UpdatePCValue(pcId, pc => pc.Supply--).ConfigureAwait(false);
     }
 
     [ComponentInteraction("add-supply-*")]
     public async Task addSupply(string pcId)
     {
+        if (int.TryParse(pcId, out var parsedId))
+        {
+            var party = await DbContext.Parties.FirstOrDefaultAsync(p => p.Characters.Any(c => c.Id == parsedId));
+            if (party != null)
+            {
+                party.Supply++;
+                await party.UpdateCardDisplay(Context.Client, emotes, dataFactory).ConfigureAwait(false);
+                await UpdatePCValue(pcId, pc => pc.Supply = party.Supply).ConfigureAwait(false);
+
+                List<Task> charsToUpdate = new();
+                foreach (var character in party.Characters)
+                {
+                    if (character.Id == parsedId) continue; //this is the one was updated with the discord response.
+                    if (character.Supply == party.Supply) continue;
+                    
+                    character.Supply = party.Supply;
+                    charsToUpdate.Add(character.UpdateCardDisplay(Context.Client, emotes, dataFactory));
+                }
+
+                await Task.WhenAll(charsToUpdate).ConfigureAwait(false);
+                await DbContext.SaveChangesAsync().ConfigureAwait(false);
+                return;
+            }
+        }
+
         await UpdatePCValue(pcId, pc => pc.Supply++).ConfigureAwait(false);
     }
 

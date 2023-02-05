@@ -104,7 +104,7 @@ public class ProgressTrackCommand : InteractionModuleBase
         DbContext.ProgressTrackers.Add(track.TrackData);
         await DbContext.SaveChangesAsync();
 
-        await RespondAsync(embeds: track.AsEmbedArray(), components: track.GetComponents()?.Build());
+        await RespondAsync(embeds: track.AsEmbedArray(), components: (await track.GetComponentsAsync())?.Build());
     }
 }
 

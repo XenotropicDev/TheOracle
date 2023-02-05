@@ -15,6 +15,7 @@ public class ApplicationContext : DbContext
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
     public DbSet<Player> Players { get; set; }
+    public DbSet<Party> Parties { get; set; }
 
     public ApplicationContext()
     {
@@ -41,6 +42,8 @@ public class ApplicationContext : DbContext
         modelBuilder.Entity<PlayerCharacter>().Property(pc => pc.Impacts).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
         modelBuilder.Entity<AssetData>().Property(a => a.SelectedAbilities).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
         modelBuilder.Entity<AssetData>().Property(a => a.Inputs).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
+
+        modelBuilder.Entity<Party>().Navigation(p => p.Characters).AutoInclude();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

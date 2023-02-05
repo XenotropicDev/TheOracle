@@ -1,4 +1,6 @@
-﻿using Server.Data;
+﻿using System.Numerics;
+using Server.Data;
+using Server.DiscordServer;
 using Server.GameInterfaces;
 using TheOracle2;
 using TheOracle2.GameObjects;
@@ -14,19 +16,24 @@ public class ActionRollRandom : IActionRoll, IBurnable
     private List<int> ActionAdds;
     private string description;
     private readonly int? characterId;
+    private readonly string? jumpURL;
     private readonly IEmoteRepository emotes;
     private readonly PlayerDataFactory dataFactory;
+    private readonly ApplicationContext? db;
     private readonly ulong playerId;
     private int? momentum;
 
-    public ActionRollRandom(Random random, IEmoteRepository emotes, PlayerDataFactory pdf, ulong PlayerId, int stat, int adds, int? momentum = null, string description = "", int? actionDie = null, int? challengeDie1 = null, int? challengeDie2 = null, int? characterId = null) : base()
+    public ActionRollRandom(Random random, IEmoteRepository emotes, PlayerDataFactory pdf, ApplicationContext? db, ulong PlayerId, int stat, int adds, int? momentum = null, string description = "", int? actionDie = null, int? challengeDie1 = null, int? challengeDie2 = null, int? characterId = null, string? jumpURL = null, string? statName = null) : base()
     {
         this.emotes = emotes;
         this.dataFactory = pdf;
+        this.db = db;
         playerId = PlayerId;
         this.momentum = momentum;
         this.description = description;
         this.characterId = characterId;
+        this.jumpURL = jumpURL;
+        StatName = statName;
         Name = "Action Roll";
 
         Action = new DieRandom(random, 6, actionDie);
@@ -44,6 +51,8 @@ public class ActionRollRandom : IActionRoll, IBurnable
     public bool IsMatch => Challenge1 != null && Challenge2 != null && Challenge1.CompareTo(Challenge2) == 0;
     public string Name { get; set; }
     public string? DiscordMessage { get; set; } = null;
+    public string? StatName { get; }
+
     private string burnMessage = string.Empty;
 
     public IronswornRollOutcome GetBurnResult()
@@ -61,13 +70,13 @@ public class ActionRollRandom : IActionRoll, IBurnable
         return GetBurnResult() > GetOutcome();
     }
 
-    public ComponentBuilder? GetComponents()
+    public async Task<ComponentBuilder?> GetComponentsAsync()
     {
         var builder = new ComponentBuilder();
         if (GetOutcome() == IronswornRollOutcome.Miss)
         {
-            var assets = dataFactory.GetPlayerAssets(playerId);
-            string ptpId = assets?.FirstOrDefault(a => a.Id.Contains("Oracles/Moves/Pay_the_Price"))?.Id ?? "Ironsworn/Oracles/Moves/Pay_the_Price";
+            var playerOracles = await dataFactory.GetPlayerOracles(playerId);
+            string ptpId = playerOracles?.FirstOrDefault(a => a.Id.Contains("Oracles/Moves/Pay_the_Price"))?.Id ?? "Ironsworn/Oracles/Moves/Pay_the_Price";
             builder.WithButton("Pay the Price", $"roll-oracle:{ptpId}", emote: emotes.Roll);
         }
 
@@ -96,6 +105,22 @@ public class ActionRollRandom : IActionRoll, IBurnable
         string actionScoreDisplay = ActionAdds.Count == 0 ? Action.Value.ToString() : $"{Action.Value} + {String.Join(" + ", ActionAdds)} = {ActionScore}";
         embed.AddField("Action Score", actionScoreDisplay)
             .AddField("Challenge Dice", $"{Challenge1.Value}, {Challenge2.Value}");
+
+        if (jumpURL != null) embed.Author.WithUrl(jumpURL);
+        else if (characterId > 0 && db != null)
+        {
+            var player = db.PlayerCharacters.Find(characterId);
+            if (player != null) 
+            {
+                embed.WithAuthor($"{player.Name} rolls");
+                embed.Author.WithUrl(player.GetAssumedJumpUrl());
+            }
+        }
+
+        if (StatName != null)
+        {
+            embed.Author.Name += $" +{StatName}";
+        }
 
         return embed;
     }
@@ -142,9 +167,9 @@ public class ProgressRollRandom : IActionRoll
     public string Name { get; set; }
     public string? DiscordMessage { get; set; } = null;
 
-    public ComponentBuilder? GetComponents()
+    public Task<ComponentBuilder?> GetComponentsAsync()
     {
-        return null;
+        return Task.FromResult<ComponentBuilder?>(null);
     }
 
     public EmbedBuilder GetEmbed()

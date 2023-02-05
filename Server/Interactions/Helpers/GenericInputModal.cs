@@ -14,6 +14,12 @@ public static class GenericInputModal
             _ => throw new ArgumentOutOfRangeException(),
         };
     }
+
+    public static string GetNextCustomId(ModalBuilder modal)
+    {
+        int count = modal.Components.ActionRows?.Count ?? 0;
+        return GetGenericIdWord(count);
+    }
 }
 
 public interface IGenericInputModal : IModal

@@ -1,0 +1,117 @@
+[
+  {
+    "Id": "Ironsworn_NPC",
+    "SearchName": "Ironsworn NPC",
+    "title": "[[Ironsworn/Oracles/Name/Ironlander]]",
+    "author": "NPC",
+    "game": "Ironsworn",
+    "shortName": "NPC",
+    "InitialOracles": [
+      {
+        "FieldName": "Description",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Descriptor]]",
+        "HasModalOverride": false
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Role",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Role]]",
+        "Emoji": "🎭",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Goal",
+        "FieldValue": "Ironsworn/Oracles/Character/Goal",
+        "Emoji": "❗",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Disposition",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Disposition]]",
+        "Emoji": "👋",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Activity",
+        "FieldValue": "[[Ironsworn/Oracles/Character/Activity]]",
+        "Emoji": "💃",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  },
+  {
+    "Id": "Starforged_NPC_Callsign",
+    "SearchName": "Starforged NPC with Callsign",
+    "title": "NPC",
+    "game": "Starforged",
+    "InitialOracles": [
+      {
+        "FieldName": "Callsign",
+        "FieldValue": "[[Starforged/Oracles/Characters/Name/Callsign]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "First Look",
+        "FieldValue": "[[Starforged/Oracles/Characters/First_Look]]"
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Disposition",
+        "FieldValue": "Starforged/Oracles/Characters/Disposition",
+        "Emoji": "👋",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Revealed Aspect",
+        "FieldValue": "Starforged/Oracles/Characters/Revealed_Aspect",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  },
+  {
+    "Id": "Starforged_NPC_Name",
+    "SearchName": "Starforged NPC with Name",
+    "title": "NPC",
+    "game": "Starforged",
+    "InitialOracles": [
+      {
+        "FieldName": "Name",
+        "FieldValue": "[[Starforged/Oracles/Characters/Name/Given_Name]] [[Starforged/Oracles/Characters/Name/Family_Name]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "First Look",
+        "FieldValue": "[[Starforged/Oracles/Characters/First_Look]]",
+        "AllowFudge": true
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Callsign",
+        "FieldValue": "[[Starforged/Oracles/Characters/Name/Callsign]]",
+        "HasModalOverride": true
+      },
+      {
+        "FieldName": "Disposition",
+        "FieldValue": "[[Starforged/Oracles/Characters/Disposition]]",
+        "Emoji": "👋",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Revealed Aspect",
+        "FieldValue": "[[Starforged/Oracles/Characters/Revealed_Aspect]]",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  }
+]

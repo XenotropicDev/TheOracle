@@ -1,0 +1,166 @@
+[
+  {
+    "Id": "Ironsworn_Settlement",
+    "SearchName": "Ironsworn Settlement",
+    "title": "[[Ironsworn/Oracles/Settlement/Quick_Name/Prefix]] [[Ironsworn/Oracles/Settlement/Quick_Name/Suffix]]",
+    "author": "Ironsworn Settlement",
+    "shortName": "Settlement",
+    "game": "Ironsworn",
+    "InitialOracles": [
+      {
+        "FieldName": "Location Description",
+        "FieldValue": "[[Ironsworn/Oracles/Place/Location_Description]]",
+        "HasModalOverride": false
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Trouble",
+        "FieldValue": "Ironsworn/Oracles/Settlement/Trouble",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  },
+  {
+    "Id": "Starforged_Settlement_Terminus",
+    "SearchName": "Terminus Settlement",
+    "title": "[[Starforged/Oracles/Settlements/Name]]",
+    "shortName": "Settlement",
+    "author": "Terminus Settlement",
+    "game": "Starforged",
+    "InitialOracles": [
+      {
+        "FieldName": "Location",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Location]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Population",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Population/Terminus]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Initial_Contact",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Initial_Contact]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "First Look",
+        "FieldValue": "[[Starforged/Oracles/Settlements/First_Look]]"
+      },
+      {
+        "FieldName": "Authority",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Authority]]"
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Trouble",
+        "FieldValue": "Starforged/Oracles/Settlements/Trouble",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Projects",
+        "FieldValue": "Starforged/Oracles/Settlements/Projects",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  },
+  {
+    "Id": "Starforged_Settlement_Outlands",
+    "SearchName": "Outlands Settlement",
+    "title": "Outlands Settlement - [[Starforged/Oracles/Settlements/Name]]",
+    "shortName": "Settlement",
+    "game": "Starforged",
+    "author": "Outlands Settlement",
+    "InitialOracles": [
+      {
+        "FieldName": "Location",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Location]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Population",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Population/Outlands]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Initial Contact",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Initial_Contact]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "First Look",
+        "FieldValue": "[[Starforged/Oracles/Settlements/First_Look]]"
+      },
+      {
+        "FieldName": "Authority",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Authority]]"
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Trouble",
+        "FieldValue": "Starforged/Oracles/Settlements/Trouble",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Projects",
+        "FieldValue": "Starforged/Oracles/Settlements/Projects",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  },
+  {
+    "Id": "Starforged_Settlement_Expanse",
+    "SearchName": "Expanse Settlement",
+    "title": "Expanse Settlement - [[Starforged/Oracles/Settlements/Name]]",
+    "shortName": "Settlement",
+    "game": "Starforged",
+    "author": "Expanse Settlement",
+    "InitialOracles": [
+      {
+        "FieldName": "Location",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Location]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Population",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Population/Expanse]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "Initial Contact",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Initial_Contact]]",
+        "HasModalOverride": false
+      },
+      {
+        "FieldName": "First Look",
+        "FieldValue": "[[Starforged/Oracles/Settlements/First_Look]]"
+      },
+      {
+        "FieldName": "Authority",
+        "FieldValue": "[[Starforged/Oracles/Settlements/Authority]]"
+      }
+    ],
+    "FollowUpOracles": [
+      {
+        "FieldName": "Trouble",
+        "FieldValue": "Starforged/Oracles/Settlements/Trouble",
+        "AllowReroll": true,
+        "AllowFudge": true
+      },
+      {
+        "FieldName": "Projects",
+        "FieldValue": "Starforged/Oracles/Settlements/Projects",
+        "AllowReroll": true,
+        "AllowFudge": true
+      }
+    ]
+  }
+]
