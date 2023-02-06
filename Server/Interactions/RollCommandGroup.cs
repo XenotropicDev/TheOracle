@@ -3,8 +3,10 @@ using Discord.Interactions;
 using Discord.WebSocket;
 using Server.Data;
 using Server.DiceRoller;
+using Server.DiscordEntities;
 using Server.DiscordServer;
 using Server.Interactions.Helpers;
+using TheOracle2.GameObjects;
 
 namespace TheOracle2;
 
@@ -81,12 +83,15 @@ public class RollCommandGroup : InteractionModuleBase
     [SlashCommand("game-dice", "Rolls dice")]
     public async Task RollDie([ComplexParameter] DieNotation first)
     {
-        List<int> firstRollResults = GenerateRollList(first);
-        //List<int> secondRollResults = GenerateRollList(second);
+        var rollList = new List<IDie>();
+        for (var i = 0; i < first.Number; i++)
+        {
+            rollList.Add(new DieRandom(Random, first.Sides));
+        }
 
-        var outputString = $"{first.Number}d{first.Sides}: {string.Join(", ", firstRollResults)}";
-        //if (second != null) outputString += $"\n\n{second.Number}d{second.Sides}: {string.Join(", ", secondRollResults)}";
-        await RespondAsync(outputString).ConfigureAwait(false);
+        var entity = new GenericDieEntity(rollList, first);
+
+        await entity.EntityAsResponse(RespondAsync).ConfigureAwait(false);
     }
 
     private List<int> GenerateRollList(DieNotation die)
