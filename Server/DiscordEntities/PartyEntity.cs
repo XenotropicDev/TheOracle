@@ -1,6 +1,7 @@
 ﻿using Discord.WebSocket;
 using Server.Data;
 using Server.GameInterfaces;
+using TheOracle2;
 
 namespace TheOracle2.UserContent;
 
@@ -11,7 +12,7 @@ internal class PartyEntity : IDiscordEntity
 
     public PartyEntity(Party party, IEmoteRepository emotes, PlayerDataFactory dataFactory)
     {
-        this.Party = party;
+        Party = party;
         this.emotes = emotes;
         this.dataFactory = dataFactory;
     }
@@ -28,7 +29,7 @@ internal class PartyEntity : IDiscordEntity
     public async Task<IMessage?> GetDiscordMessage(IInteractionContext context)
     {
         if (Party?.ChannelId == null || Party.MessageId == null) throw new NullReferenceException();
-        var channel = (Party.ChannelId == context.Channel.Id) ? context.Channel : await (context.Client as DiscordSocketClient)?.Rest.GetChannelAsync(Party.ChannelId ?? 0) as IMessageChannel;
+        var channel = Party.ChannelId == context.Channel.Id ? context.Channel : await (context.Client as DiscordSocketClient)?.Rest.GetChannelAsync(Party.ChannelId ?? 0) as IMessageChannel;
         return await channel?.GetMessageAsync(Party.MessageId ?? 0);
     }
 
@@ -38,7 +39,7 @@ internal class PartyEntity : IDiscordEntity
         .WithAuthor($"Party Card")
         .WithThumbnailUrl(Party.ImageUrl)
         .WithTitle(Party.Name)
-        .AddField("Supply", Party.Supply, true)        
+        .AddField("Supply", Party.Supply, true)
         ;
 
         if (Party.Characters.Any()) builder.AddField("Characters", string.Join('\n', Party.Characters.Select(pc => pc.Name)));
