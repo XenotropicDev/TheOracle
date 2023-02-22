@@ -49,9 +49,9 @@ class OracleServer
             client.Log += LogAsync;
             commands.Log += LogAsync;
 
-            await client.StartAsync();
+            await client.StartAsync().ConfigureAwait(false);
 
-            await client.SetGameAsync($"TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3)}", "", ActivityType.Playing).ConfigureAwait(false);
+            await client.SetGameAsync($"v{Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3)}", "", ActivityType.Playing).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
