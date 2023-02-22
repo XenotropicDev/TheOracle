@@ -1,6 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using Discord.Interactions;
 using Discord.WebSocket;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Server.Data;
 using Server.DiceRoller;
 using Server.DiscordEntities;
@@ -111,15 +113,15 @@ public class RollCommandGroup : InteractionModuleBase
 
 public class RollInteractions : InteractionModuleBase<SocketInteractionContext<SocketMessageComponent>>
 {
-    private readonly ApplicationContext db;
+    private readonly IDbContextFactory<ApplicationContext> dbFactory;
     private readonly Random random;
     private readonly IEmoteRepository emotes;
     private readonly DiscordSocketClient client;
     private readonly PlayerDataFactory dataFactory;
 
-    public RollInteractions(ApplicationContext db, Random random, IEmoteRepository emotes, DiscordSocketClient client, PlayerDataFactory dataFactory)
+    public RollInteractions(IDbContextFactory<ApplicationContext> dbFactory, Random random, IEmoteRepository emotes, DiscordSocketClient client, PlayerDataFactory dataFactory)
     {
-        this.db = db;
+        this.dbFactory = dbFactory;
         this.random = random;
         this.emotes = emotes;
         this.client = client;
@@ -150,13 +152,19 @@ public class RollInteractions : InteractionModuleBase<SocketInteractionContext<S
 
         string? rolledStat = embed.Author.HasValue ? embed.Author.Value.Name.Substring(embed.Author.Value.Name.IndexOf("+")) : null;
 
-        return new ActionRollRandom(random, emotes, dataFactory, db, Context.User.Id, stat, adds, null, builder.Description, d6, challengeDie1, challengeDie2, characterId, statName: rolledStat);
+        return new ActionRollRandom(random, emotes, dataFactory, dbFactory.CreateDbContext(), Context.User.Id, stat, adds, null, builder.Description, d6, challengeDie1, challengeDie2, characterId, statName: rolledStat);
     }
 
     [ComponentInteraction("burn-roll:*,*")]
     public async Task BurnRoll(int momentum, int characterId)
     {
-        var getPcTask = db.PlayerCharacters.FindAsync(characterId).ConfigureAwait(false);
+        var getDbTask = dbFactory.CreateDbContextAsync();
+        var getPcTask = getDbTask.ContinueWith((dbTask) => 
+        {
+            return dbTask.Result.PlayerCharacters.FindAsync(characterId).AsTask();
+        });
+
+
         var actionRoll = GetActionRollFromEmbed(Context.Interaction.Message.Embeds.FirstOrDefault()!, characterId);
         if (actionRoll == null || actionRoll is not IBurnable burnableAction) return;
 
@@ -168,7 +176,8 @@ public class RollInteractions : InteractionModuleBase<SocketInteractionContext<S
             msg.Components = await actionRoll.AsMessageComponent();
         }).ConfigureAwait(false);
 
-        var pc = await getPcTask;
+        var db = await getDbTask;
+        var pc = await getPcTask.Unwrap().ConfigureAwait(false);
         if (pc != null)
         {
             pc.BurnMomentum();
