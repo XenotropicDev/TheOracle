@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Npgsql;
 using Server.GameInterfaces;
 using TheOracle2;
+using TheOracle2.Data;
 using TheOracle2.GameObjects;
 
 namespace Server.DiscordServer;
@@ -14,6 +15,9 @@ public class ApplicationContext : DbContext
     public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
+    public DbSet<HomebrewAsset> HomebrewAssets { get; set; }
+    public DbSet<UserAssetSubcriptions> AssetSubscriptions { get; set; }
+
     public DbSet<Player> Players { get; set; }
     public DbSet<Party> Parties { get; set; }
 

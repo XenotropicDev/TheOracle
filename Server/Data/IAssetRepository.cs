@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Server.DiscordServer;
 using TheOracle2.Data;
 
 namespace Server.Data;
@@ -10,9 +11,29 @@ namespace Server.Data;
 public interface IAssetRepository
 {
     IEnumerable<Asset> GetAssets();
-    IEnumerable<AssetRoot> GetAssetRoots();
+    //IEnumerable<AssetRoot> GetAssetRoots();
 
     Asset? GetAsset(string id);
+}
+
+public class PlayerAssetRepository : IAssetRepository
+{
+    public PlayerAssetRepository(ApplicationContext playerData)
+    {
+        PlayerData = playerData;
+    }
+
+    public ApplicationContext PlayerData { get; }
+
+    public Asset? GetAsset(string id)
+    {
+        return GetAssets().FirstOrDefault(o => o.Id == id);
+    }
+
+    public IEnumerable<Asset> GetAssets()
+    {
+        return PlayerData.HomebrewAssets.Select(o => o.Asset);
+    }
 }
 
 public class JsonAssetRepository : IAssetRepository

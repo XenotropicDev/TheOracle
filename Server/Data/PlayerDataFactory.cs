@@ -27,10 +27,15 @@ public class PlayerDataFactory
     public async Task<IEnumerable<Asset>> GetPlayerAssets(ulong PlayerId, IronGame? gameOverride = null)
     {
         using var db = dbFactory.CreateDbContext();
+
+        var playerAssets = (await db.AssetSubscriptions.FirstOrDefaultAsync(sub => sub.DiscordId == PlayerId))?.Assets;
+        return playerAssets ?? new List<Asset>();
+
         var playerGame = gameOverride ?? (await db.Players.FindAsync(PlayerId))?.Game ?? default;
-        var assets = Assets.GetAssetRoots().SelectMany(ar => ar.Assets);
+        var assets = Assets.GetAssets();
 
         return assets.Where(a => a.Id.Contains(playerGame.ToString(), StringComparison.OrdinalIgnoreCase));
+
     }
 
     public async Task<IEnumerable<OracleGameEntity>> GetPlayerEntites(ulong PlayerId, IronGame? gameOverride = null)
