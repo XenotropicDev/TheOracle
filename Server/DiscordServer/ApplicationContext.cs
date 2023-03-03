@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
@@ -16,7 +17,9 @@ public class ApplicationContext : DbContext
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
     public DbSet<HomebrewAsset> HomebrewAssets { get; set; }
-    public DbSet<UserAssetSubcriptions> AssetSubscriptions { get; set; }
+
+    public DbSet<Oracle> Oracles { get; set; }
+    public DbSet<Asset> Assets { get; set; }
 
     public DbSet<Player> Players { get; set; }
     public DbSet<Party> Parties { get; set; }
@@ -43,11 +46,19 @@ public class ApplicationContext : DbContext
             c => c.ToList()
             );
 
-        modelBuilder.Entity<PlayerCharacter>().Property(pc => pc.Impacts).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
-        modelBuilder.Entity<AssetData>().Property(a => a.SelectedAbilities).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
-        modelBuilder.Entity<AssetData>().Property(a => a.Inputs).HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
+        modelBuilder.Entity<PlayerCharacter>().Property(pc => pc.Impacts).UseCsvValueConverter();
+        modelBuilder.Entity<AssetData>().Property(a => a.SelectedAbilities).UseCsvValueConverter();
+        modelBuilder.Entity<AssetData>().Property(a => a.Inputs).UseCsvValueConverter();
 
         modelBuilder.Entity<Party>().Navigation(p => p.Characters).AutoInclude();
+
+        modelBuilder.Entity<Asset>().Property(a => a.Aliases).UseCsvValueConverter();
+        modelBuilder.Entity<AlterMove>().Property(a => a.Moves).UseCsvValueConverter();
+        modelBuilder.Entity<AlterMove>().Property(a => a.Alters).UseCsvValueConverter();
+        modelBuilder.Entity<Attachments>().Property(a => a.AssetTypes).UseCsvValueConverter();
+        modelBuilder.Entity<Burn>().Property(a => a.Outcomes).UseCsvValueConverter();
+        modelBuilder.Entity<ConditionMeter>().Property(a => a.Conditions).UseCsvValueConverter();
+        modelBuilder.Entity<ConditionMeter>().Property(a => a.Aliases).UseCsvValueConverter();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -63,7 +74,27 @@ public class ApplicationContext : DbContext
             var dbPass = config.GetSection("dbPassword").Value;
             var dbConnBuilder = new NpgsqlConnectionStringBuilder(dbConn) { Password = dbPass };
 
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseNpgsql(dbConnBuilder.ConnectionString);
         }
+    }
+}
+
+public static class ApplicationContextExtenstions
+{
+    public static ValueConverter<IList<string>, string> stringArrayToCSVConverter = new ValueConverter<IList<string>, string>(
+            v => JsonConvert.SerializeObject(v),
+            v => JsonConvert.DeserializeObject<IList<string>>(v) ?? new List<string>()
+            );
+
+    public static ValueComparer<IList<string>> valueComparer = new ValueComparer<IList<string>>(
+            (c1, c2) => c1.SequenceEqual(c2),
+            c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+            c => c.ToList()
+            );
+
+    public static void UseCsvValueConverter<T>(this PropertyBuilder<T> builder) where T : IEnumerable<string>
+    {
+        builder.HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
     }
 }
