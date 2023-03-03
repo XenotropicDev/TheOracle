@@ -1,4 +1,5 @@
 ﻿using Server.DiscordServer;
+using TheOracle2;
 using TheOracle2.Data;
 
 namespace Server.GameInterfaces;
@@ -19,11 +20,5 @@ public record HomebrewAsset
     public Asset Asset { get; }
     public ulong CreatorDiscordId { get; set; }
     public bool IsPublic { get; set; }
-    public List<UserAssetSubcriptions> Subscribers { get; set; }
-}
-
-public record UserAssetSubcriptions
-{
-    public ulong DiscordId { get; set; }
-    public List<Asset> Assets { get; set; }
+    public List<Player> Subscribers { get; set; }
 }
