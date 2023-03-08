@@ -1,17 +1,22 @@
 ## About
-TheOracle2 is a complete rework of TheOracle using new discord bot features, and more integrated data features
-
-1. This is very much a beta product. Expect things to not work.
-2. If you run into any bugs, have an idea, or want to contribute please make an issue here, or post in the Ironsworn #bot-discussion channel.
+TheOracle2 is a complete rework of TheOracle using new discord bot features, and more integrated data features.
 
 ## Joining the bot to your discord server
 To add TheOracle to a discord server click [this link](https://discord.com/api/oauth2/authorize?client_id=704480988561932389&permissions=431644532800&scope=bot%20applications.commands) and then select the server you wish to add the bot to.
 
 If you need a discord server for your game you can use [this link](https://discord.new/hevebmEhcjCa) to get started with a preexisting discord server template.
 
+## Getting started with bot commands
+1. If you want to get content for a game other than Ironsworn (Starforged or Sundering Isles) set your game with `/set-game`
+2. Create a character with `/player-character create`
+3. Add some assets with `/asset`
+4. Roll some actions with `/roll pc-action`
+5. Get the results from an oracle with `/oracle`
+6. View all the commands available in the bot by typing `/` and scrolling though the options (if you have a lot of bots joined to your server you can click TheOracle bot's icon to show only its commands)
+
 ## Other features
 #### Recreate message:
-You can recreate a message, similar to the old ⏬ reaction method by right clicking a bot message and selecting recreate message from the apps menu. Unfortunately this isn't supported by discord on mobile (at the time of writing this). In the mean time adding an ⏬ reaction should still work on all messages.
+You can recreate a message, similar to the old ⏬ reaction method by right clicking a bot message and selecting recreate message from the apps menu.
 
 ![image](https://user-images.githubusercontent.com/6792312/147948167-a1b67087-5064-40e4-b4e5-9f3738ade82a.png)
 

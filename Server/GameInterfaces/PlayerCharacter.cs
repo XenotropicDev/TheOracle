@@ -87,7 +87,7 @@ public class PlayerCharacter
         if (stat == RollableStat.Supply)
         {
             var party = db.Parties.FirstOrDefault(p => p.Characters.Any(c => c.Id == this.Id));
-            return party.Supply;
+            return party?.Supply ?? Supply;
         }
 
         return stat switch
