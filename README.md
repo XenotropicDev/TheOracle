@@ -9,9 +9,17 @@ To add TheOracle to a discord server click [this link](https://discord.com/api/o
 
 If you need a discord server for your game you can use [this link](https://discord.new/hevebmEhcjCa) to get started with a preexisting discord server template.
 
+## Getting started
+1. If you want to get content for a game other than Ironsworn (Starforged or Sundering Isles) set your game with `/set-game`
+2. Create a character with `/player-character create`
+3. Add some assets with `/asset`
+4. Roll some actions with `/roll pc-action`
+5. Get the results from an oracle with `/oracle`
+6. View all the commands available in the bot by typing `/` and scrolling though the options
+
 ## Other features
 #### Recreate message:
-You can recreate a message, similar to the old ⏬ reaction method by right clicking a bot message and selecting recreate message from the apps menu. Unfortunately this isn't supported by discord on mobile (at the time of writing this). In the mean time adding an ⏬ reaction should still work on all messages.
+You can recreate a message, similar to the old ⏬ reaction method by right clicking a bot message and selecting recreate message from the apps menu.
 
 ![image](https://user-images.githubusercontent.com/6792312/147948167-a1b67087-5064-40e4-b4e5-9f3738ade82a.png)
 
