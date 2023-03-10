@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using Server.Data.homebrew;
 using Server.GameInterfaces;
 using TheOracle2;
 using TheOracle2.Data;
@@ -17,10 +18,9 @@ public class ApplicationContext : DbContext
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
     public DbSet<HomebrewAsset> HomebrewAssets { get; set; }
-
+    public DbSet<GameContentSet> GameContentSets { get; set; }
     public DbSet<Oracle> Oracles { get; set; }
     public DbSet<Asset> Assets { get; set; }
-
     public DbSet<Player> Players { get; set; }
     public DbSet<Party> Parties { get; set; }
 
@@ -35,17 +35,6 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var stringArrayToCSVConverter = new ValueConverter<IList<string>, string>(
-            v => JsonConvert.SerializeObject(v),
-            v => JsonConvert.DeserializeObject<IList<string>>(v) ?? new List<string>()
-            );
-
-        var valueComparer = new ValueComparer<IList<string>>(
-            (c1, c2) => c1.SequenceEqual(c2),
-            c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            c => c.ToList()
-            );
-
         modelBuilder.Entity<PlayerCharacter>().Property(pc => pc.Impacts).UseCsvValueConverter();
         modelBuilder.Entity<AssetData>().Property(a => a.SelectedAbilities).UseCsvValueConverter();
         modelBuilder.Entity<AssetData>().Property(a => a.Inputs).UseCsvValueConverter();

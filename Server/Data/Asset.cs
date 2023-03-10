@@ -169,7 +169,7 @@ public class ConditionMeter
 
     [JsonProperty("Aliases")]
     public List<string> Aliases { get; set; }
-}
+}`
 
 public class Effect
 {

@@ -13,7 +13,7 @@ public class SetGameCommand : InteractionModuleBase
     public ApplicationContext Db { get; }
 
     [SlashCommand("set-game", "Sets the game for your discord Id in all channels/servers.")]
-    public async Task AskTheOracle(IronGame game)
+    public async Task SetGame(IronGame game)
     {
         var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
         if (existing != null) existing.Game = game;
