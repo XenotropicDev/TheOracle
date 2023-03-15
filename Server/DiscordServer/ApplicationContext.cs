@@ -20,6 +20,7 @@ public class ApplicationContext : DbContext
     public DbSet<GameContentSet> GameContentSets { get; set; }
     public DbSet<Oracle> Oracles { get; set; }
     public DbSet<Asset> Assets { get; set; }
+    public DbSet<Move> Moves { get; set; }
     public DbSet<Player> Players { get; set; }
     public DbSet<Party> Parties { get; set; }
 
@@ -47,43 +48,6 @@ public class ApplicationContext : DbContext
         modelBuilder.Entity<Burn>().Property(a => a.Outcomes).UseCsvValueConverter();
         modelBuilder.Entity<ConditionMeter>().Property(a => a.Conditions).UseCsvValueConverter();
         modelBuilder.Entity<ConditionMeter>().Property(a => a.Aliases).UseCsvValueConverter();
-
-        //modelBuilder.Entity<Requires>().OwnsMany(req => req.Attributes, ownedNav =>
-        //{
-        //    ownedNav.ToJson();
-        //    ownedNav.Property(a => a.Values).UseCsvValueConverter();
-        //});
-
-        //modelBuilder.Entity<Table>().OwnsMany(table => table.Attributes, ownedNav =>
-        //{
-        //    ownedNav.ToJson();
-        //    ownedNav.Property(a => a.Values).UseCsvValueConverter();
-        //});
-
-        //modelBuilder.Entity<DisplayTable>().OwnsMany(table => table.Resultcolumns, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<DisplayTable>().OwnsMany(table => table.Rollcolumns, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<Table>().OwnsMany(table => table.ResultColumns, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<Table>().OwnsMany(table => table.RollColumns, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<Table>().OwnsOne(table => table.MultipleRolls, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<Table>().OwnsOne(table => table.RollTemplate, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<Miss>().OwnsOne(miss => miss.Reroll, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<StrongHit>().OwnsOne(strong => strong.Reroll, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<WeakHit>().OwnsOne(weak => weak.Reroll, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<Burn>().OwnsOne(burn => burn.Effect, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<Trigger>().OwnsOne(trigger => trigger.By, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<Asset>().OwnsMany(asset => asset.States, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<Asset>().OwnsOne(asset => asset.Usage, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<Asset>().OwnsOne(asset => asset.Attachments, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<AssetRoot>().OwnsOne(asset => asset.Usage, ownedNav => { ownedNav.ToJson(); });
-
-        //modelBuilder.Entity<AlterProperties>().OwnsOne(alter => alter.Attachments, ownedNav => { ownedNav.ToJson(); });
-        //modelBuilder.Entity<AlterProperties>().OwnsMany(alter => alter.States, ownedNav => { ownedNav.ToJson(); });
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

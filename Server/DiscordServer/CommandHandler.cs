@@ -3,6 +3,8 @@ using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Server.DiscordServer;
+using TheOracle2;
 
 namespace OracleCommands;
 
@@ -13,14 +15,16 @@ public class CommandHandler
     private readonly DiscordSocketClient _discord;
     private readonly IServiceProvider _services;
     private readonly ILogger<CommandHandler> logger;
+    private readonly ApplicationContext db;
 
-    public CommandHandler(InteractionService commands, DiscordSocketClient discord, IConfiguration configuration, IServiceProvider services, ILogger<CommandHandler> logger)
+    public CommandHandler(InteractionService commands, DiscordSocketClient discord, IConfiguration configuration, IServiceProvider services, ILogger<CommandHandler> logger, ApplicationContext db)
     {
         _commands = commands;
         _discord = discord;
         _configuration = configuration;
         _services = services;
         this.logger = logger;
+        this.db = db;
     }
 
     public async Task Initialize()
@@ -76,7 +80,7 @@ public class CommandHandler
 
             if (!ctx.Interaction.HasResponded)
             {
-                await ctx.Interaction.RespondAsync($"An error occoured: {ex.Message}", ephemeral: true);
+                await ctx.Interaction.RespondAsync($"An error occurred: {ex.Message}", ephemeral: true);
             }
         }
     }
@@ -87,6 +91,7 @@ public class CommandHandler
         try
         {
             logger.LogInformation($"{arg.User.Username} is executing Button Interaction {arg.Data.CustomId} with value: '{arg.Data.Value}'.");
+            await CreatePlayer(arg.User.Id);
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
@@ -95,7 +100,7 @@ public class CommandHandler
 
             if (!ctx.Interaction.HasResponded)
             {
-                await ctx.Interaction.RespondAsync($"An error occoured: {ex.Message}", ephemeral: true);
+                await ctx.Interaction.RespondAsync($"An error occurred: {ex.Message}", ephemeral: true);
             }
         }
     }
@@ -106,6 +111,7 @@ public class CommandHandler
         try
         {
             logger.LogInformation($"{arg.User.Username} is executing Message Command {arg.CommandName}");
+            await CreatePlayer(arg.User.Id);
 
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
@@ -116,7 +122,7 @@ public class CommandHandler
 
             if (!ctx.Interaction.HasResponded)
             {
-                await ctx.Interaction.RespondAsync($"An error occoured: {ex.Message}", ephemeral: true);
+                await ctx.Interaction.RespondAsync($"An error occurred: {ex.Message}", ephemeral: true);
             }
         }
     }
@@ -127,6 +133,7 @@ public class CommandHandler
         try
         {
             logger.LogInformation($"{arg.User.Username} is submitting a Modal for {arg.Data.CustomId} with {arg.Data.Components.Count} Components.");
+            await CreatePlayer(arg.User.Id);
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
@@ -154,6 +161,7 @@ public class CommandHandler
         try
         {
             logger.LogInformation($"{arg.User.Username} is executing Select Interaction {arg.Data.CustomId} with value(s): '{string.Join(", ", arg.Data.Values ?? Array.Empty<string>())}'.");
+            await CreatePlayer(arg.User.Id);
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
@@ -162,7 +170,7 @@ public class CommandHandler
 
             if (!ctx.Interaction.HasResponded)
             {
-                await ctx.Interaction.RespondAsync($"An error occoured: {ex.Message}", ephemeral: true);
+                await ctx.Interaction.RespondAsync($"An error occurred: {ex.Message}", ephemeral: true);
             }
         }
     }
@@ -172,6 +180,7 @@ public class CommandHandler
         var ctx = new SocketInteractionContext<SocketSlashCommand>(_discord, arg);
         try
         {
+            await CreatePlayer(arg.User.Id);
             var withSubOptions = arg.Data.Options?.SelectMany(o => o.Options).Select(o => o.Value.ToString());
             var options = withSubOptions?.Count() > 0 ? withSubOptions : arg.Data.Options?.Select(o => o.Value?.ToString()) ?? new List<string>();
             logger.LogInformation($"{arg.User.Username} is executing Slash Command {arg.Data.Name} with value(s): '{string.Join(", ", options)}'.");
@@ -183,7 +192,7 @@ public class CommandHandler
 
             if (!ctx.Interaction.HasResponded)
             {
-                await ctx.Interaction.RespondAsync($"An error occoured: {ex.Message}", ephemeral: true);
+                await ctx.Interaction.RespondAsync($"An error occurred: {ex.Message}", ephemeral: true);
             }
         }
     }
@@ -194,6 +203,7 @@ public class CommandHandler
         try
         {
             logger.LogInformation($"{arg.User.Username} is executing User Command {arg.Data.Name}");
+            await CreatePlayer(arg.User.Id);
             await _commands.ExecuteCommandAsync(ctx, _services);
         }
         catch (Exception ex)
@@ -202,8 +212,15 @@ public class CommandHandler
 
             if (!ctx.Interaction.HasResponded)
             {
-                await ctx.Interaction.RespondAsync($"An error occoured: {ex.Message}", ephemeral: true);
+                await ctx.Interaction.RespondAsync($"An error occurred: {ex.Message}", ephemeral: true);
             }
         }
+    }
+
+    private async Task CreatePlayer(ulong playerId)
+    {
+        if (await db.Players.FindAsync(playerId) != null) return;
+        
+        await Player.CreateDefault(db, playerId);
     }
 }

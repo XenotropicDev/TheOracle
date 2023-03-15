@@ -15,12 +15,17 @@ public class SetGameCommand : InteractionModuleBase
     [SlashCommand("set-game", "Sets the game for your discord Id in all channels/servers.")]
     public async Task SetGame(IronGame game)
     {
-        var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
-        if (existing != null) existing.Game = game;
-        else Db.Players.Add(new Player() { DiscordId = Context.Interaction.User.Id, Game = game });
-
-        await Db.SaveChangesAsync().ConfigureAwait(false);
-
-        await RespondAsync($"Game set to {game}", ephemeral: true).ConfigureAwait(false);
+        try
+        {
+            var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
+            existing.Game = game;
+            await Db.SaveChangesAsync().ConfigureAwait(false);
+            await RespondAsync($"Game set to {game}", ephemeral: true).ConfigureAwait(false);
+        }
+        catch (Exception)
+        {
+            await RespondAsync($"An error occurred setting the default game to {game}", ephemeral: true).ConfigureAwait(false);
+            throw;
+        }
     }
 }
