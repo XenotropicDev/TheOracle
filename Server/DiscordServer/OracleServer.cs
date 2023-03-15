@@ -146,6 +146,7 @@ class OracleServer
             .AddSingleton<IEmoteRepository, HardCodedEmoteRepo>()
             .AddSingleton<IEntityRepository, JsonEntityRepository>()
             .AddSingleton<IMemoryCache, MemoryCache>()
+            .AddSingleton<HttpClient>()
             .AddScoped<PlayerDataFactory>()
             .AddDbContextFactory<ApplicationContext>()
             .AddLogging(builder => builder.AddSerilog(logger)

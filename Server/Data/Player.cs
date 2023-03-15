@@ -16,6 +16,6 @@ public record Player
     public ulong DiscordId { get; set; }
     public IronGame Game { get; set; }
     public bool SubsPerServer { get; set; }
-    public List<GameContentSet> GameDataSets { get; set; }
+    public virtual List<GameContentSet> GameDataSets { get; set; }
 
 }

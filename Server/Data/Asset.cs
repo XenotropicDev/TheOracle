@@ -32,6 +32,9 @@ public class Ability
 
 public class AlterMomentum
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Burn")]
     public virtual List<Burn> Burn { get; set; }
 
@@ -62,6 +65,9 @@ public class AlterMove
 
 public class AlterProperties
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Attachments")]
     public virtual Attachments Attachments { get; set; }
 
@@ -119,15 +125,21 @@ public class Asset
 
 public class Attachments
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Asset Types")]
     public List<string> AssetTypes { get; set; }
 
     [JsonProperty("Max")]
-    public virtual object Max { get; set; }
+    public virtual int? Max { get; set; }
 }
 
 public class Burn
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Trigger")]
     public virtual Trigger Trigger { get; set; }
 
@@ -140,6 +152,9 @@ public class Burn
 
 public class By
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Player")]
     public bool Player { get; set; }
 
@@ -169,10 +184,13 @@ public class ConditionMeter
 
     [JsonProperty("Aliases")]
     public List<string> Aliases { get; set; }
-}`
+}
 
 public class Effect
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Text")]
     public string Text { get; set; }
 }
@@ -204,7 +222,7 @@ public class Input
     public int Min { get; set; }
 
     [JsonProperty("Max")]
-    public virtual object Max { get; set; }
+    public int? Max { get; set; }
 
     [JsonProperty("Value")]
     public int Value { get; set; }
@@ -265,6 +283,9 @@ public class AssetMove
 
 public class Reroll
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Dice")]
     public string Dice { get; set; }
 
@@ -274,6 +295,9 @@ public class Reroll
 
 public class Reset
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Trigger")]
     public virtual Trigger Trigger { get; set; }
 
@@ -307,6 +331,9 @@ public class AssetRoot
 
 public class State
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Name")]
     public string Name { get; set; }
 
@@ -325,6 +352,9 @@ public class State
 
 public class AssetUsage
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Shared")]
     public bool Shared { get; set; }
 }

@@ -32,7 +32,8 @@ public class PlayerAssetRepository : IAssetRepository
 
     public IEnumerable<Asset> GetAssets()
     {
-        return PlayerData.HomebrewAssets.Select(o => o.Asset);
+        throw new NotImplementedException();
+        //return PlayerData.HomebrewAssets.Select(o => o.Asset);
     }
 }
 

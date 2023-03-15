@@ -14,7 +14,7 @@ public class Party
 
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<PlayerCharacter> Characters { get; set; } = new();
+    public virtual List<PlayerCharacter> Characters { get; set; } = new();
     public int Supply { get => supply; set => supply = (value <= 5 && value >= 0) ? value : supply; }
     public string? ImageUrl { get; set; }
     public required ulong? DiscordGuildId { get; set; }

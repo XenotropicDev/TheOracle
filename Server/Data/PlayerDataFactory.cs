@@ -29,8 +29,9 @@ public class PlayerDataFactory
         using var db = dbFactory.CreateDbContext();
 
         //Todo: maybe there's a way to set the default subscription set for a new bot user?
-        var player = await db.Players.Include(p => p.Assets).FirstOrDefaultAsync(p => p.DiscordId == PlayerId);
-        return player.Assets;
+        //Todo: Also just implement this!
+        var player = await db.Players.FirstOrDefaultAsync(p => p.DiscordId == PlayerId);
+        throw new NotImplementedException();
     }
 
     public async Task<IEnumerable<OracleGameEntity>> GetPlayerEntites(ulong PlayerId, IronGame? gameOverride = null)

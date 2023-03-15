@@ -1,6 +1,9 @@
 ﻿namespace TheOracle2.Data;
 public class Attribute
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Key")]
     public string Key { get; set; }
 
@@ -14,7 +17,7 @@ public class Attribute
 public class OracleCategory
 {
     [JsonProperty("Source")]
-    public Source Source { get; set; }
+    public virtual Source Source { get; set; }
 
     [JsonProperty("$id")]
     public string Id { get; set; }
@@ -23,16 +26,16 @@ public class OracleCategory
     public string Name { get; set; }
 
     [JsonProperty("Display")]
-    public Display Display { get; set; }
+    public virtual Display Display { get; set; }
 
     [JsonProperty("Category")]
     public string Category { get; set; }
 
     [JsonProperty("Usage")]
-    public OracleUsage Usage { get; set; }
+    public virtual OracleUsage Usage { get; set; }
 
     [JsonProperty("Oracles")]
-    public List<Oracle> Oracles { get; set; }
+    public virtual List<Oracle> Oracles { get; set; }
 
     [JsonProperty("Description")]
     public string Description { get; set; }
@@ -46,6 +49,9 @@ public class OracleCategory
 
 public class Content
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Part of speech")]
     public List<string> PartOfSpeech { get; set; }
 
@@ -55,15 +61,21 @@ public class Content
 
 public class GameObject
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Object type")]
     public string ObjectType { get; set; }
 
     [JsonProperty("Requires")]
-    public Requires Requires { get; set; }
+    public virtual Requires Requires { get; set; }
 }
 
 public class MultipleRolls
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Amount")]
     public int Amount { get; set; }
 
@@ -82,7 +94,7 @@ public class Oracle
     }
 
     [JsonProperty("Source")]
-    public Source Source { get; set; }
+    public virtual Source Source { get; set; }
 
     [JsonProperty("$id")]
     public string Id { get; set; }
@@ -97,19 +109,19 @@ public class Oracle
     public string Description { get; set; }
 
     [JsonProperty("Display")]
-    public Display Display { get; set; }
+    public virtual Display Display { get; set; }
 
     [JsonProperty("Content")]
-    public Content Content { get; set; }
+    public virtual Content Content { get; set; }
 
     [JsonProperty("Table")]
-    public List<Table> Table { get; set; }
+    public virtual List<Table> Table { get; set; }
 
     [JsonProperty("Usage")]
-    public OracleUsage Usage { get; set; }
+    public virtual OracleUsage Usage { get; set; }
 
     [JsonProperty("Oracles")]
-    public List<Oracle> Oracles { get; set; }
+    public virtual List<Oracle> Oracles { get; set; }
 
     [JsonProperty("Aliases")]
     public List<string> Aliases { get; set; }
@@ -118,38 +130,23 @@ public class Oracle
     public string MemberOf { get; set; }
 
     [JsonIgnore]
-    public OracleRoot? Parent { get; set; }
+    public virtual OracleRoot? Parent { get; set; }
 }
 
 public class Requires
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Attributes")]
-    public List<Attribute> Attributes { get; set; }
-}
-
-public class ResultColumn
-{
-    [JsonProperty("Label")]
-    public string Label { get; set; }
-
-    [JsonProperty("Use content from")]
-    public string UseContentFrom { get; set; }
-
-    [JsonProperty("Key")]
-    public string Key { get; set; }
-}
-
-public class RollColumn
-{
-    [JsonProperty("Label")]
-    public string Label { get; set; }
-
-    [JsonProperty("Use content from")]
-    public string UseContentFrom { get; set; }
+    public virtual List<Attribute> Attributes { get; set; }
 }
 
 public class RollTemplate
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Result")]
     public string Result { get; set; }
 }
@@ -157,7 +154,7 @@ public class RollTemplate
 public class OracleRoot
 {
     [JsonProperty("Source")]
-    public Source Source { get; set; }
+    public virtual Source Source { get; set; }
 
     [JsonProperty("$id")]
     public string Id { get; set; }
@@ -169,27 +166,30 @@ public class OracleRoot
     public List<string> Aliases { get; set; }
 
     [JsonProperty("Display")]
-    public Display Display { get; set; }
+    public virtual Display Display { get; set; }
 
     [JsonProperty("Oracles")]
-    public List<Oracle> Oracles { get; set; }
+    public virtual List<Oracle> Oracles { get; set; }
 
     [JsonProperty("Description")]
     public string Description { get; set; }
 
     [JsonProperty("Categories")]
-    public List<OracleCategory> Categories { get; set; }
+    public virtual List<OracleCategory> Categories { get; set; }
 }
 
 
 
 public class Suggestions
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Assets")]
     public List<string> Assets { get; set; }
 
     [JsonProperty("Game objects")]
-    public List<GameObject> GameObjects { get; set; }
+    public virtual List<GameObject> GameObjects { get; set; }
 
     [JsonProperty("Oracle rolls")]
     public List<string> OracleRolls { get; set; }
@@ -198,10 +198,10 @@ public class Suggestions
 public class Table : IComparable<int>
 {
     [JsonProperty("Result columns")]
-    public List<ResultColumn> ResultColumns { get; set; }
+    public virtual List<ResultColumn> ResultColumns { get; set; }
 
     [JsonProperty("Roll columns")]
-    public List<RollColumn> RollColumns { get; set; }
+    public virtual List<RollColumn> RollColumns { get; set; }
 
     [JsonProperty("Floor")]
     public int? Floor { get; set; }
@@ -219,28 +219,28 @@ public class Table : IComparable<int>
     public string Summary { get; set; }
 
     [JsonProperty("Suggestions")]
-    public Suggestions Suggestions { get; set; }
+    public virtual Suggestions Suggestions { get; set; }
 
     [JsonProperty("Oracle rolls")]
     public List<string> OracleRolls { get; set; }
 
     [JsonProperty("Multiple rolls")]
-    public MultipleRolls MultipleRolls { get; set; }
+    public virtual MultipleRolls MultipleRolls { get; set; }
 
     [JsonProperty("Attributes")]
-    public List<Attribute> Attributes { get; set; }
+    public virtual List<Attribute> Attributes { get; set; }
 
     [JsonProperty("Roll template")]
-    public RollTemplate RollTemplate { get; set; }
+    public virtual RollTemplate RollTemplate { get; set; }
 
     [JsonProperty("Game objects")]
-    public List<GameObject> GameObjects { get; set; }
+    public virtual List<GameObject> GameObjects { get; set; }
 
     [JsonProperty("Display")]
-    public Display Display { get; set; }
+    public virtual Display Display { get; set; }
 
     [JsonProperty("Content")]
-    public Content Content { get; set; }
+    public virtual Content Content { get; set; }
 
     public int CompareTo(int other)
     {
@@ -253,6 +253,9 @@ public class Table : IComparable<int>
 
 public class OracleUsage
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Max rolls")]
     public int MaxRolls { get; set; }
 
@@ -263,13 +266,13 @@ public class OracleUsage
     public bool? Initial { get; set; }
 
     [JsonProperty("Suggestions")]
-    public Suggestions Suggestions { get; set; }
+    public virtual Suggestions Suggestions { get; set; }
 
     [JsonProperty("Sets")]
-    public List<Set> Sets { get; set; }
+    public virtual List<Set> Sets { get; set; }
 
     [JsonProperty("Requires")]
-    public Requires Requires { get; set; }
+    public virtual Requires Requires { get; set; }
 
     [JsonProperty("Repeatable")]
     public bool? Repeatable { get; set; }

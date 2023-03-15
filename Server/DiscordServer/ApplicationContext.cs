@@ -17,7 +17,6 @@ public class ApplicationContext : DbContext
     public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
-    public DbSet<HomebrewAsset> HomebrewAssets { get; set; }
     public DbSet<GameContentSet> GameContentSets { get; set; }
     public DbSet<Oracle> Oracles { get; set; }
     public DbSet<Asset> Assets { get; set; }
@@ -48,6 +47,43 @@ public class ApplicationContext : DbContext
         modelBuilder.Entity<Burn>().Property(a => a.Outcomes).UseCsvValueConverter();
         modelBuilder.Entity<ConditionMeter>().Property(a => a.Conditions).UseCsvValueConverter();
         modelBuilder.Entity<ConditionMeter>().Property(a => a.Aliases).UseCsvValueConverter();
+
+        //modelBuilder.Entity<Requires>().OwnsMany(req => req.Attributes, ownedNav =>
+        //{
+        //    ownedNav.ToJson();
+        //    ownedNav.Property(a => a.Values).UseCsvValueConverter();
+        //});
+
+        //modelBuilder.Entity<Table>().OwnsMany(table => table.Attributes, ownedNav =>
+        //{
+        //    ownedNav.ToJson();
+        //    ownedNav.Property(a => a.Values).UseCsvValueConverter();
+        //});
+
+        //modelBuilder.Entity<DisplayTable>().OwnsMany(table => table.Resultcolumns, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<DisplayTable>().OwnsMany(table => table.Rollcolumns, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<Table>().OwnsMany(table => table.ResultColumns, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<Table>().OwnsMany(table => table.RollColumns, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<Table>().OwnsOne(table => table.MultipleRolls, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<Table>().OwnsOne(table => table.RollTemplate, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<Miss>().OwnsOne(miss => miss.Reroll, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<StrongHit>().OwnsOne(strong => strong.Reroll, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<WeakHit>().OwnsOne(weak => weak.Reroll, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<Burn>().OwnsOne(burn => burn.Effect, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<Trigger>().OwnsOne(trigger => trigger.By, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<Asset>().OwnsMany(asset => asset.States, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<Asset>().OwnsOne(asset => asset.Usage, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<Asset>().OwnsOne(asset => asset.Attachments, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<AssetRoot>().OwnsOne(asset => asset.Usage, ownedNav => { ownedNav.ToJson(); });
+
+        //modelBuilder.Entity<AlterProperties>().OwnsOne(alter => alter.Attachments, ownedNav => { ownedNav.ToJson(); });
+        //modelBuilder.Entity<AlterProperties>().OwnsMany(alter => alter.States, ownedNav => { ownedNav.ToJson(); });
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -76,14 +112,34 @@ public static class ApplicationContextExtenstions
             v => JsonConvert.DeserializeObject<IList<string>>(v) ?? new List<string>()
             );
 
-    public static ValueComparer<IList<string>> valueComparer = new ValueComparer<IList<string>>(
+    public static ValueComparer<IList<string>> iListValueComparer = new ValueComparer<IList<string>>(
             (c1, c2) => c1.SequenceEqual(c2),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
             c => c.ToList()
             );
 
-    public static void UseCsvValueConverter<T>(this PropertyBuilder<T> builder) where T : IEnumerable<string>
+    public static ValueComparer<List<string>> listValueComparer = new ValueComparer<List<string>>(
+        (c1, c2) => c1.SequenceEqual(c2),
+        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+        c => c.ToList()
+        );
+
+    public static ValueConverter<List<string>, string> stringListToCSVConverter = new ValueConverter<List<string>, string>(
+        v => JsonConvert.SerializeObject(v),
+        v => JsonConvert.DeserializeObject<List<string>>(v) ?? new List<string>()
+        );
+
+    public static void UseCsvValueConverter<T>(this PropertyBuilder<T> builder) where T : ICollection<string>
     {
-        builder.HasConversion(stringArrayToCSVConverter).Metadata.SetValueComparer(valueComparer);
+        if (typeof(T) == typeof(List<string>))
+        {
+            builder.HasConversion(stringListToCSVConverter);
+            builder.Metadata.SetValueComparer(listValueComparer);
+        }
+        else
+        {
+            builder.HasConversion(stringArrayToCSVConverter);
+            builder.Metadata.SetValueComparer(iListValueComparer);
+        }
     }
 }

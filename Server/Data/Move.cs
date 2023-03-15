@@ -3,7 +3,7 @@
 public class Move
 {
     [JsonProperty("Source")]
-    public Source Source { get; set; }
+    public virtual Source Source { get; set; }
 
     [JsonProperty("Category")]
     public string Category { get; set; }
@@ -18,10 +18,10 @@ public class Move
     public bool Optional { get; set; }
 
     [JsonProperty("Display")]
-    public Display Display { get; set; }
+    public virtual Display Display { get; set; }
 
     [JsonProperty("Trigger")]
-    public Trigger Trigger { get; set; }
+    public virtual Trigger Trigger { get; set; }
 
     [JsonProperty("Text")]
     public string Text { get; set; }
@@ -30,7 +30,7 @@ public class Move
     public List<string> Oracles { get; set; }
 
     [JsonProperty("Outcomes")]
-    public Outcomes Outcomes { get; set; }
+    public virtual Outcomes Outcomes { get; set; }
 
     [JsonProperty("Progress Move")]
     public bool? ProgressMove { get; set; }
@@ -39,7 +39,7 @@ public class Move
     public string VariantOf { get; set; }
 
     [JsonIgnore]
-    public MoveRoot? Parent { get; set; }
+    public virtual MoveRoot? Parent { get; set; }
 }
 
 public class MoveRoot
@@ -54,15 +54,15 @@ public class MoveRoot
     public string Description { get; set; }
 
     [JsonProperty("Source")]
-    public Source Source { get; set; }
+    public virtual Source Source { get; set; }
 
     [JsonProperty("Display")]
-    public Display Display { get; set; }
+    public virtual Display Display { get; set; }
 
     [JsonProperty("Optional")]
     public bool Optional { get; set; }
 
     [JsonProperty("Moves")]
-    public List<Move> Moves { get; set; }
+    public virtual List<Move> Moves { get; set; }
 }
 
