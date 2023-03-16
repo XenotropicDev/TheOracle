@@ -31,7 +31,7 @@ public class ManageGameContentCommands : InteractionModuleBase
     }
 
     [SlashCommand("rename-set", "Creates an empty game content set that content can be added to")]
-    public async Task RenameSet([Autocomplete(typeof(PrivateSubAutoComplete))] int oldSetName, [MinLength(2)] string newSetName)
+    public async Task RenameSet([Autocomplete(typeof(OwnerSubAutoComplete))] int oldSetName, [MinLength(2)] string newSetName)
     {
         var match = Db.GameContentSets.FirstOrDefault(s => s.CreatorId == Context.Interaction.User.Id && s.Id == oldSetName);
 
@@ -47,7 +47,7 @@ public class ManageGameContentCommands : InteractionModuleBase
     }
 
     [SlashCommand("delete-set", "Deletes a game content set.")]
-    public async Task DeleteSet([Autocomplete(typeof(PrivateSubAutoComplete))] int setName)
+    public async Task DeleteSet([Autocomplete(typeof(OwnerSubAutoComplete))] int setName)
     {
         var set = Db.GameContentSets.FirstOrDefault(s => s.CreatorId == Context.Interaction.User.Id && s.Id == setName);
 

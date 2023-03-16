@@ -33,7 +33,7 @@ public class PublicSubAutoComplete : AutocompleteHandler
     }
 }
 
-public class PrivateSubAutoComplete : AutocompleteHandler
+public class OwnerSubAutoComplete : AutocompleteHandler
 {
     public override async Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
     {

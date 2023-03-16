@@ -1,16 +1,12 @@
 ﻿using Discord.Interactions;
+using Newtonsoft.Json.Linq;
 using Server.Data.homebrew;
 using Server.DiscordServer;
+using TheOracle2.Commands;
 using TheOracle2.Data;
 using TheOracle2.Data.AssetWorkbench;
 
 namespace TheOracle2;
-
-public enum AssetImportFormat
-{
-    Dataforged,
-    AssetWorkbench
-}
 
 [Group("upload", "Add custom game content to the bot.")]
 public class UploadCommands : InteractionModuleBase
@@ -25,8 +21,10 @@ public class UploadCommands : InteractionModuleBase
 
     public ApplicationContext Db { get; }
 
-    [SlashCommand("oracle", "Adds a custom oracle to the bot. Must be in Dataforged format")]
-    public async Task UploadOracle(IAttachment OracleJson, [Autocomplete(typeof(PublicSubAutoComplete))]int? setName = null)
+    [SlashCommand("oracle", "Adds or updates a custom oracle to the bot. Must be in Dataforged format")]
+    public async Task UploadOracle(IAttachment OracleJson,
+                                   [Autocomplete(typeof(OwnerSubAutoComplete))] int? setName = null,
+                                   [Autocomplete(typeof(OracleAutocomplete))] string? OracleToUpdate = null)
     {
         try
         {
@@ -40,6 +38,13 @@ public class UploadCommands : InteractionModuleBase
             var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
 
             var sets = existing.GameDataSets.Where(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
+            
+            if (sets.Count() > 1)
+            {
+                await FollowupAsync($"Error: There was more than one set found, please specify the set you'd like to use.", ephemeral: true).ConfigureAwait(false);
+                return;
+            }
+
             if (!sets.Any())
             {
                 var contentSet = new GameContentSet()
@@ -54,17 +59,28 @@ public class UploadCommands : InteractionModuleBase
 
                 existing.GameDataSets.Add(contentSet);
             }
-            else if (sets.Count() > 1)
-            {
-                await FollowupAsync($"Error: There was more than one set found, please specify the set you'd like to use.", ephemeral: true).ConfigureAwait(false);
-                return;
-            }
+
 
             var set = existing.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
-            set.Oracles.Add(oracle);
+
+            if (OracleToUpdate != null) 
+            {
+                var existingOracle = set.Oracles.FirstOrDefault(o => o.Id == OracleToUpdate);
+                if (existingOracle == null)
+                {
+                    await FollowupAsync($"Error: Couldn't find the specified oracle in the set", ephemeral: true).ConfigureAwait(false);
+                    return;
+                }
+                oracle.Id = existingOracle.Id;
+                existingOracle = oracle;
+            }
+            else
+            {
+                set.Oracles.Add(oracle);
+            }
             await Db.SaveChangesAsync().ConfigureAwait(false);
 
-            await FollowupAsync($"Oracle added", ephemeral: true).ConfigureAwait(false);
+            await FollowupAsync($"Oracle {(OracleToUpdate != null ? "updated" : "added")}", ephemeral: true).ConfigureAwait(false);
         }
         catch (Exception)
         {
@@ -73,10 +89,10 @@ public class UploadCommands : InteractionModuleBase
         }
     }
 
-    [SlashCommand("asset", "Adds a custom asset to the bot. Must be in Dataforged or Asset Workbench format")]
+    [SlashCommand("asset", "Adds or updates custom asset to the bot. Must be in Dataforged or Asset Workbench format")]
     public async Task UploadAsset(IAttachment AssetJson, 
-        [Autocomplete(typeof(PublicSubAutoComplete))]int? setName = null, 
-        AssetImportFormat format = AssetImportFormat.Dataforged)
+        [Autocomplete(typeof(PublicSubAutoComplete))]int? setName = null,
+        [Autocomplete(typeof(AssetAutoComplete))]string? assetToUpdate = null)
     {
         try
         {
@@ -85,11 +101,19 @@ public class UploadCommands : InteractionModuleBase
             await DeferAsync().ConfigureAwait(false);
 
             var file = await fileTask;
-            var asset = (format == AssetImportFormat.Dataforged) ? JsonConvert.DeserializeObject<Asset>(file) : new AssetWorkbenchAdapter(file);
+            var isDataforged = JObject.Parse(file)?["documentFormatVersion"] == null; //check for the Asset-Workbench documentFormatVersion
+            var asset = (isDataforged) ? JsonConvert.DeserializeObject<Asset>(file) : new AssetWorkbenchAdapter(file);
 
             var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
 
             var sets = existing.GameDataSets.Where(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
+            
+            if (sets.Count() > 1)
+            {
+                await FollowupAsync($"Error: There was more than one set found, please specify the set you'd like to use.", ephemeral: true).ConfigureAwait(false);
+                return;
+            }
+
             if (!sets.Any())
             {
                 var contentSet = new GameContentSet()
@@ -104,17 +128,28 @@ public class UploadCommands : InteractionModuleBase
 
                 existing.GameDataSets.Add(contentSet);
             }
-            else if (sets.Count() > 1)
-            {
-                await FollowupAsync($"Error: There was more than one set found, please specify the set you'd like to use.", ephemeral: true).ConfigureAwait(false);
-                return;
-            }
 
             var set = existing.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
-            set.Assets.Add(asset);
+            
+            if (!string.IsNullOrWhiteSpace(assetToUpdate))
+            {
+                var existingAsset = set.Assets.FirstOrDefault(a => a.Id == assetToUpdate);
+                if (existingAsset == null)
+                {
+                    await FollowupAsync($"Error: Couldn't find the specified asset in the set", ephemeral: true).ConfigureAwait(false);
+                    return;
+                }
+                asset.Id = existingAsset.Id;
+                existingAsset = asset;
+            }
+            else
+            {
+                set.Assets.Add(asset);
+            }
+
             await Db.SaveChangesAsync().ConfigureAwait(false);
 
-            await FollowupAsync($"Asset added", ephemeral: true).ConfigureAwait(false);
+            await FollowupAsync($"Asset {(string.IsNullOrWhiteSpace(assetToUpdate) ? "added" : "updated")}", ephemeral: true).ConfigureAwait(false);
         }
         catch (Exception)
         {

@@ -18,7 +18,7 @@ public class RemoveContentCommands : InteractionModuleBase
     public ApplicationContext Db { get; }
 
     [SlashCommand("oracle", "Removes an oracle from the content set")]
-    public async Task UploadOracle([Autocomplete(typeof(PrivateSubAutoComplete))]int setName, [Autocomplete(typeof(OracleAutocomplete))] string oracleName)
+    public async Task RemoveOracle([Autocomplete(typeof(OwnerSubAutoComplete))]int setName, [Autocomplete(typeof(OracleAutocomplete))] string oracleName)
     {
         try
         {
@@ -37,7 +37,7 @@ public class RemoveContentCommands : InteractionModuleBase
     }
 
     [SlashCommand("asset", "Removes an asset from the content set")]
-    public async Task UploadAsset([Autocomplete(typeof(PrivateSubAutoComplete))] int setName, [Autocomplete(typeof(AssetAutoComplete))] string assetName)
+    public async Task RemoveAsset([Autocomplete(typeof(OwnerSubAutoComplete))] int setName, [Autocomplete(typeof(AssetAutoComplete))] string assetName)
     {
         try
         {
