@@ -1,6 +1,6 @@
 ﻿namespace TheOracle2.Data.AssetWorkbench;
 
-internal class AssetWorkbenchAdapter : Asset
+public class AssetWorkbenchAdapter : Asset
 {
     public AssetWorkbenchAdapter(string jsonData)
     {
@@ -30,6 +30,8 @@ internal class AssetWorkbenchAdapter : Asset
                 Enabled = ability.filled
             })
             .ToList();
+        
+        Inputs = new List<Input>();
 
         if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn)) Inputs.Add(new() { InputType = AssetInput.Text, Name = WorkbenchData.writeIn, Adjustable = true });
         if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn2)) Inputs.Add(new() { InputType = AssetInput.Text, Name = WorkbenchData.writeIn2, Adjustable = true });
