@@ -1,0 +1,34 @@
+{
+  "documentFormatVersion": 3,
+  "type": "ritual",
+  "name": "Lightbearer",
+  "writeIn": "write in 1",
+  "track": 6,
+  "description": "desc",
+  "abilities": [
+    {
+      "filled": true,
+      "text": "When you...",
+      "name": "Ability name 1"
+    },
+    {
+      "text": "You may use your light to <em>Strike</em> or <em>Clash</em>...",
+      "name": "AB name 2"
+    },
+    {
+      "text": "When you perform this ritual, add +1 and take +1 momentum on a hit."
+    }
+  ],
+  "fonts": {
+    "assetTypeFontSize": "1.03em",
+    "assetNameFontSize": "1.26em",
+    "detailsFontSize": "0.97em",
+    "trackFontSize": "1.42em"
+  },
+  "icon": {
+    "name": "Explosion Rays icon",
+    "author": "Lorc",
+    "dataUri": "data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iaGVpZ2h0OiA1MTJweDsgd2lkdGg6IDUxMnB4OyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PGc+PHBhdGggZD0iTTU0LjE4NCAxOS41MTJsMTE2LjAyIDE0NC44MzhjLTExLjgwNiA5Ljc0LTIxLjQgMjIuMDY2LTI3LjkyMyAzNi4wOTVMMjAuNDkzIDE0Mi43M3Y2Mi45OTNsMTEzLjk4MyAxOS4xNzJjLTEuMTIgNi4wNTYtMS43MDcgMTIuMjk1LTEuNzA3IDE4LjY3IDAgMy41MDIuMTc3IDYuOTY1LjUyIDEwLjM3OGwtNzIuMzc2IDI3LjcgNzkuNDY3LjY4N2M0LjE2NSAxMC4xNzMgOS45MTcgMTkuNTM0IDE2Ljk0OCAyNy43NzVMMjAuNDkyIDQ0MS43djUyLjQ4NGg0Ny4zMzZsMTA1Ljg3LTE2OC42NWMxMS42NDQgOC43OTUgMjUuMjEyIDE1LjE2NSAzOS45NDUgMTguMzY2bC0yMy43IDE1MC4yODRIMjk0LjIyTDI1My4yNSAzNDQuNjljOC42NjgtMS41MjQgMTYuOTY0LTQuMTQgMjQuNzQ0LTcuN2wzNy4yNjIgNDIuMjY4LTIxLjMyNi01MS4zNjVjNi44ODUtNC43OTIgMTMuMTYtMTAuNDAyIDE4LjY4LTE2LjY5MmwxODIuNTMzIDE0Ni42MVYzNDguNTU2TDMyOS40MyAyODQuODY1YzQuMjktOS43MjIgNy4xMTgtMjAuMjI3IDguMTk1LTMxLjIzOGw4NC43LTI1LjkzLTg2Ljc4LTcuMDA4Yy0yLjI2LTkuODktNS45NTUtMTkuMjQyLTEwLjg1Mi0yNy44MjVsMTcwLjQ1Mi04Ny4zOThWMjMuOTI0TDMxMS45MTggMTc1LjE1Yy01LjMzLTUuOTUtMTEuMzQyLTExLjI4LTE3LjkxMi0xNS44NmwxNS41MzMtMzguMzgyLTI5Ljk2OCAyOS45NjdjLTkuNjA4LTQuNTk1LTIwLjAzNC03Ljc0LTMwLjk5Ni05LjE0OEwyNjkuODkgMTkuNTEyaC00MC4xMmwxLjI3IDEyMS40NzhjLTE5LjAxNy44MDgtMzYuNzE2IDYuODE2LTUxLjcwNiAxNi42NEw5NC4xMDIgMTkuNTFINTQuMTg0eiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIxIiA+PC9wYXRoPjwvZz48L3N2Zz4="
+  },
+  "writeIn2": "write in 2"
+}
