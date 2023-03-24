@@ -29,9 +29,9 @@ public class RandomOracleRoller : IOracleRoller
             Oracle = oracle
         };
 
-        foreach (var followUpId in oracle.Usage?.Suggestions?.OracleRolls ?? new List<string>())
+        foreach (var followUpId in oracle.Usage?.Suggestions?.OracleRolls ?? new())
         {
-            var followUpOracle = oracleRepo.GetOracleById(followUpId);
+            var followUpOracle = oracleRepo.GetOracleById(followUpId.Oracle);
             if (followUpOracle?.Oracles?.Count > 0)
             {
                 foreach (var subTable in followUpOracle.Oracles)
@@ -41,7 +41,7 @@ public class RandomOracleRoller : IOracleRoller
             }
             else if (followUpOracle != null)
             {
-                results.FollowUpTables.Add(new FollowUpItem(followUpId, followUpOracle.Name, emotes));
+                results.FollowUpTables.Add(new FollowUpItem(followUpId.Oracle, followUpOracle.Name, emotes));
             }
         }
 

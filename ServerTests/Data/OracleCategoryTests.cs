@@ -16,7 +16,7 @@ public class OracleCategoryTests
 {
     [TestMethod()]
     [DataRow(typeof(List<OracleRoot>), "*oracle*.json")]
-    [DataRow(typeof(List<AssetRoot>), "*asset*.json")]
+    [DataRow(typeof(List<AssetRoot>), "*assets.json")]
     [DataRow(typeof(List<MoveRoot>), "*moves*.json")]
     public void LoadAndGenerateTest(Type T, string searchOption)
     {
