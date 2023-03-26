@@ -82,4 +82,8 @@
     <Folder Include="GameInterfaces\Delve\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataswornPoco\DataswornPoco.csproj" />
+  </ItemGroup>
+
 </Project>
