@@ -60,9 +60,9 @@ public class JsonOracleRepository : IOracleRepository
         return partial;
     }
 
-    private Oracle? findOracleRecursive(List<Oracle> oracles, string id)
+    private Oracle? findOracleRecursive(IEnumerable<Oracle> oracles, string id)
     {
-        if (oracles.Count == 0) return null;
+        if (oracles.Count() == 0) return null;
         foreach (var oracle in oracles)
         {
             if (oracle.Id == id) return oracle;

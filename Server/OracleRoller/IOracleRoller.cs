@@ -56,7 +56,7 @@ public class RandomOracleRoller : IOracleRoller
             }
         }
 
-        foreach (var subOracle in oracle.Oracles ?? new List<Oracle>())
+        foreach (var subOracle in oracle.Oracles ?? new())
         {
             results.ChildResults.Add(GetRollResult(subOracle));
         }
