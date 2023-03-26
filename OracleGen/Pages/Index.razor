@@ -8,7 +8,8 @@
         <MudPaper Class="pa-4">
             <MudText Typo="Typo.h3" GutterBottom="true">OracleGen</MudText>
             <MudStack Row="true">
-                <MudButton Variant="Variant.Filled" OnClick="LoadOracle1">Load Template (Action)</MudButton>
+                <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Outlined.Download" @onclick="DownloadJson">Download Json File</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="LoadOracle1">Reset Template</MudButton>
             </MudStack>
 
             <MudForm>
@@ -16,6 +17,7 @@
                 <MudTextField T="string" Label="Oracle Category" @bind-Value="@oracle.Category" />
                 <MudTextField T="string" Label="Oracle Description" @bind-Value="@oracle.Description" Lines="4" />
                 <MudText>Follow up/pair oracles</MudText>
+                
                 <MudTable @bind-SelectedItem="selectedPair" Items="@oracle.Usage.Suggestions.OracleRolls" ReadOnly="false">
                     <RowTemplate>
                         <MudTd DataLabel="Pair">@context.Oracle</MudTd>                        
@@ -29,10 +31,11 @@
                         </MudTd>
                     </RowEditingTemplate>
                     <FooterContent>
-                        <MudButton Variant="Variant.Filled" OnClick="AddSuggestionRow">Add Row</MudButton>
+                        <MudButton Variant="Variant.Filled" OnClick="AddSuggestionRow">Add Follow Up Row</MudButton>
                     </FooterContent>
                 </MudTable>
-                <MudTable Items="@oracle.Table" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" ReadOnly="false">
+                
+                <MudTable Class="pt-4" Items="@oracle.Table" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" ReadOnly="false">
                     <HeaderContent>
                         <MudTh>Floor</MudTh>
                         <MudTh>Ceiling</MudTh>
