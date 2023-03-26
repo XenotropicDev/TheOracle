@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 using Discord.Interactions;
+using Microsoft.VisualBasic.FileIO;
 
 namespace TheOracle2.Data.Tests;
 
@@ -70,5 +71,32 @@ public class OracleCategoryTests
         var reSerialized = JsonConvert.SerializeObject(ability);
 
         Assert.AreEqual("Ironsworn/Assets/Companion/Cave_Lion/Abilities/1", ability.Id);
+    }
+
+    [TestMethod()]
+    public void SerializeOracleTest()
+    {
+        var baseDir = new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory(), "Data"));
+        var files = baseDir.GetFiles("*oracle*.json");
+
+        Assert.IsTrue(files.Length >= 1, $"No files found in {baseDir} for *oracle*.json");
+
+        foreach (var file in files)
+        {
+            string text = file.OpenText().ReadToEnd();
+
+            var jsonSettings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error };
+
+            var root = JsonConvert.DeserializeObject<List<OracleRoot>>(text, jsonSettings);
+
+            Assert.IsNotNull(root);
+
+            var oracle = root.FirstOrDefault().Oracles.FirstOrDefault();
+            oracle.Usage.Suggestions.OracleRolls.Add(new("Suggestion for Oracle Rolls"));
+
+            var jsonSer = JsonConvert.SerializeObject(oracle.Usage);
+            Assert.IsNotNull(jsonSer);
+            
+        }
     }
 }
