@@ -1,89 +1,99 @@
 ﻿@page "/"
+@page "/Oracle"
 @using TheOracle2.Data;
 @using Newtonsoft.Json;
 @using System.Linq;
 
 <MudGrid Class="pa-4">
     <MudItem xs="6">
-        <MudTextField T="string" Label="Client Id" @bind-Value="@DiscordOauth.clientId" />
-        <MudTextField T="string" Label="Client Secret" @bind-Value="@DiscordOauth.clientSecret" />
-        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Outlined.Download" @onclick="DiscordAuth">Discord Login</MudButton>
-
         <MudPaper Class="pa-4">
             <MudText Typo="Typo.h3" GutterBottom="true">OracleGen</MudText>
             <MudStack Row="true">
                 <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Outlined.Download" @onclick="DownloadJson">Download Json File</MudButton>
                 <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Outlined.RestartAlt" OnClick="LoadOracle1">Reset Template</MudButton>
+                <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Outlined.Clear" OnClick="ClearData">Clear</MudButton>
             </MudStack>
 
-            <MudForm>
-                <MudGrid Class="pa-4">
-                    <MudItem xs="12">
-                        <MudPaper Class="pa-4">
-                            <MudStack Row="true">
-                                <MudTextField T="string" Label="Oracle Name" @bind-Value="@oracle.Name" Required="true" RequiredError="Name is required!" />
-                                <MudTextField T="string" Label="Oracle Category" @bind-Value="@oracle.Category" />
-                            </MudStack>
-                            <MudTextField T="string" Label="Oracle Description" @bind-Value="@oracle.Description" Lines="2" Variant="Variant.Text" />
-                        </MudPaper>
-                    </MudItem>
+            <MudGrid Class="pa-4">
+                <MudItem xs="12">
+                    <MudPaper Class="pa-4">
+                        <MudStack Row="true">
+                            <MudTextField T="string" Label="Oracle Name" @bind-Value="@oracle.Name" Required="true" RequiredError="Name is required!" />
+                            <MudTextField T="string" Label="Oracle Category" @bind-Value="@oracle.Category" />
+                        </MudStack>
+                        <MudTextField T="string" Label="Oracle Description" @bind-Value="@oracle.Description" Lines="2" Variant="Variant.Text" />
+                    </MudPaper>
+                </MudItem>
 
-                    <MudItem xs="12">
-                        <MudPaper Class="pa-4">
-                            <MudText Typo="Typo.h6">Roll Table</MudText>
-                            <MudTable Items="@oracle.Table" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" ReadOnly="false" Striped="true" Dense="true">
-                                <HeaderContent>
-                                    <MudTh>Floor</MudTh>
-                                    <MudTh>Ceiling</MudTh>
-                                    <MudTh>Result</MudTh>
-                                </HeaderContent>
-                                <RowTemplate>
-                                    <MudTd DataLabel="Floor">@context.Floor</MudTd>
-                                    <MudTd DataLabel="Ceiling">@context.Ceiling</MudTd>
-                                    <MudTd DataLabel="Result">@context.Result</MudTd>
-                                </RowTemplate>
-                                <RowEditingTemplate>
-                                    <MudTd DataLabel="Floor">
-                                        <MudNumericField @bind-Value="@context.Floor" Required="true" Min="1" />
-                                    </MudTd>
-                                    <MudTd DataLabel="Ceiling">
-                                        <MudNumericField @bind-Value="@context.Ceiling" Required="true" Min="1" />
-                                    </MudTd>
-                                    <MudTd DataLabel="Result">
-                                        <MudTextField @bind-Value="@context.Result" />
-                                    </MudTd>
-                                </RowEditingTemplate>
-                                <FooterContent>
-                                    <MudButton Variant="Variant.Filled" OnClick="AddTableRow">Add Row</MudButton>
-                                </FooterContent>
-                            </MudTable>
-                        </MudPaper>
-                    </MudItem>
-                    <MudItem xs="12">
-                        <MudPaper Class="pa-4">
-                            <MudStack Row="true">
-                                <MudText Typo="Typo.h6">Follow up/pair oracles</MudText>
-                                <MudIconButton Class="object-right" OnClick="AddSuggestionRow" Size="@Size.Small" Icon="@Icons.Material.Outlined.Add"></MudIconButton>
-                            </MudStack>
-                            <MudTable @bind-SelectedItem="selectedPair" Items="@oracle.Usage.Suggestions.OracleRolls" ReadOnly="false">
-                                <RowTemplate>
-                                    <MudTd DataLabel="Pair">@context.Oracle</MudTd>
-                                    <MudTd>
-                                        <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Delete" Class="pa-0" OnClick="deleteSuggestion" />
-                                    </MudTd>
-                                </RowTemplate>
-                                <RowEditingTemplate>
-                                    <MudTd DataLabel="Pair">
-                                        <MudTextField @bind-Value="@context.Oracle" />
-                                    </MudTd>
-                                </RowEditingTemplate>
-                                <FooterContent>
-                                </FooterContent>
-                            </MudTable>
-                        </MudPaper>
-                    </MudItem>
-                </MudGrid>
-            </MudForm>
+                <MudItem xs="12">
+                    <MudPaper Class="pa-4">
+                        <MudText Typo="Typo.h6">Roll Table</MudText>
+                        <MudTable Items="@oracle.Table" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" ReadOnly="false" Striped="true" Dense="true" @ref="OracleResultTable">
+                            <HeaderContent>
+                                <MudTh>Floor</MudTh>
+                                <MudTh>Ceiling</MudTh>
+                                <MudTh>Result</MudTh>
+                            </HeaderContent>
+                            <RowTemplate>
+                                <MudTd DataLabel="Floor">@context.Floor</MudTd>
+                                <MudTd DataLabel="Ceiling">@context.Ceiling</MudTd>
+                                <MudTd DataLabel="Result">@context.Result</MudTd>
+                                <MudTd>
+                                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Delete" OnClick="() => RemoveFromTable(context)"></MudIconButton>
+                                </MudTd>
+                            </RowTemplate>
+                            <RowEditingTemplate>
+                                <MudTd DataLabel="Floor">
+                                    <MudNumericField @bind-Value="@context.Floor" Required="true" Min="1" />
+                                </MudTd>
+                                <MudTd DataLabel="Ceiling">
+                                    <MudNumericField @bind-Value="@context.Ceiling" Required="true" Min="1" />
+                                </MudTd>
+                                <MudTd DataLabel="Result">
+                                    <MudTextField @bind-Value="@context.Result" Required="true" />
+                                </MudTd>
+                            </RowEditingTemplate>
+                            <FooterContent>
+                                <MudTd DataLabel="Floor">
+                                    <MudNumericField @bind-Value="@tableRowToAdd.Floor" Required="true" Min="1" HelperText="Floor" />
+                                </MudTd>
+                                <MudTd DataLabel="Ceiling">
+                                    <MudNumericField @bind-Value="@tableRowToAdd.Ceiling" Required="true" Min="1" HelperText="Ceiling" @ref="CeilingAddInput" />
+                                </MudTd>
+                                <MudTd DataLabel="Result">
+                                    <MudTextField OnKeyDown="EnterOnAddTableRow" @bind-Value="@tableRowToAdd.Result" Required="true" HelperText="Result" @ref="addTableResultText" />
+                                </MudTd>
+                                <MudTd DataLabel="Add">
+                                    <MudIconButton Size="@Size.Small" OnClick="AddTableRow" Icon="@Icons.Material.Filled.Add"></MudIconButton>
+                                </MudTd>
+                            </FooterContent>
+                        </MudTable>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Class="pa-4">
+                        <MudStack Row="true">
+                            <MudText Typo="Typo.h6">Follow up/pair oracles</MudText>
+                            <MudIconButton Class="object-right" OnClick="AddSuggestionRow" Size="@Size.Small" Icon="@Icons.Material.Outlined.Add"></MudIconButton>
+                        </MudStack>
+                        <MudTable @bind-SelectedItem="selectedPair" Items="@oracle.Usage.Suggestions.OracleRolls" ReadOnly="false">
+                            <RowTemplate>
+                                <MudTd DataLabel="Pair">@context.Oracle</MudTd>
+                                <MudTd>
+                                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Delete" Class="pa-0" OnClick="deleteSuggestion" />
+                                </MudTd>
+                            </RowTemplate>
+                            <RowEditingTemplate>
+                                <MudTd DataLabel="Pair">
+                                    <MudTextField @bind-Value="@context.Oracle" />
+                                </MudTd>
+                            </RowEditingTemplate>
+                            <FooterContent>
+                            </FooterContent>
+                        </MudTable>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
         </MudPaper>
     </MudItem>
 </MudGrid>

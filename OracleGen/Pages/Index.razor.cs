@@ -18,6 +18,9 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Text;
 using System.Net;
+using DataswornPoco;
+using System.Reflection.Metadata;
+using System.ComponentModel;
 
 namespace OracleGen.Pages;
 
@@ -27,6 +30,11 @@ public partial class Index
 
     Oracle oracle = new();
     OracleRoll selectedPair = null;
+    Table tableRowToAdd = new() {Floor = 101, Ceiling = 101 };
+
+    MudTextField<string> addTableResultText;
+    MudNumericField<int?> CeilingAddInput;
+    MudTable<Table> OracleResultTable;
 
     [Inject]
     public IJSRuntime JS { get; set; }
@@ -34,32 +42,6 @@ public partial class Index
     public Index()
     {
         LoadOracle1();
-    }
-
-    void DiscordAuth()
-    {
-        string redirect_url = "http://www.demo.yogihosting.com/mvc/discordapi/";
-        string code = Request.QueryString["code"];
-
-        /*Get Access Token from authorization code by making http post request*/
-
-        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("https://discordapp.com/api/oauth2/token");
-        webRequest.Method = "POST";
-        string parameters = "client_id=" + DiscordOauth.clientId + "&client_secret=" + DiscordOauth.clientSecret + "&grant_type=authorization_code&code=" + code + "&redirect_uri=" + redirect_url + "";
-        byte[] byteArray = Encoding.UTF8.GetBytes(parameters);
-        webRequest.ContentType = "application/x-www-form-urlencoded";
-        webRequest.ContentLength = byteArray.Length;
-        Stream postStream = webRequest.GetRequestStream();
-
-        postStream.Write(byteArray, 0, byteArray.Length);
-        postStream.Close();
-        WebResponse response = webRequest.GetResponse();
-        postStream = response.GetResponseStream();
-        StreamReader reader = new StreamReader(postStream);
-        string responseFromServer = reader.ReadToEnd();
-
-        string tokenInfo = responseFromServer.Split(',')[0].Split(':')[1];
-        string access_token = tokenInfo.Trim().Substring(1, tokenInfo.Length - 3);
     }
 
     void LoadOracle1()
@@ -102,10 +84,17 @@ public partial class Index
         }
     }
 
+    void ClearData()
+    {
+        oracle = new();
+        tableRowToAdd = new() {Ceiling = 1, Floor = 1 };
+    }
+
     void AddTableRow()
     {
-        var max = oracle.Table.Max(t => t.Ceiling);
-        oracle.Table.Add(new Table { Floor = max + 1, Ceiling = max + 1, Result = "New Result" });
+        oracle.Table.Add(tableRowToAdd.CloneJson() ?? new());
+        var newMax = oracle.Table.Max(t => t.Ceiling) + 1;
+        tableRowToAdd = new() {Ceiling =  newMax, Floor = newMax};
     }
 
     void AddSuggestionRow()
@@ -117,5 +106,22 @@ public partial class Index
     {
         if (selectedPair != null)
             oracle.Usage.Suggestions.OracleRolls.Remove(selectedPair);
+    }
+
+    async Task EnterOnAddTableRow(KeyboardEventArgs args)
+    {
+        if (args.Code == "Enter" || args.Code == "NumpadEnter")
+        {
+            //set the focus to another element to force the value to update
+            await CeilingAddInput.FocusAsync();
+            AddTableRow();
+            await addTableResultText.FocusAsync();
+        }
+    }
+
+    void RemoveFromTable(Table value)
+    {
+        var removed = oracle.Table.Remove(oracle.Table.FirstOrDefault(t => t == value));
+        oracle.Table = new(oracle.Table);
     }
 }

@@ -7,14 +7,18 @@
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        @*<MudSpacer />*@
+        @*<MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />*@
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
         <MudDrawerHeader>
-            <MudText Typo="Typo.h5" Class="mt-1">Application</MudText>
+            <MudText Typo="Typo.h5" Class="mt-1">Dataforged Generators</MudText>
         </MudDrawerHeader>
-        @*NavMenu*@
+        <MudNavMenu>
+            <MudNavLink Href="/Oracle">OracleGen</MudNavLink>
+            <MudNavLink Href="/Asset">AssetGen</MudNavLink>
+            <MudNavLink Href="/Move">MoveGen</MudNavLink>
+        </MudNavMenu>
     </MudDrawer>
     <MudMainContent>
         @Body
