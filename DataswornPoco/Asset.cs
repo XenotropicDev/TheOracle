@@ -1,34 +1,38 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 namespace TheOracle2.Data;
 
 public class Ability
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Text")]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Enabled")]
     public bool Enabled { get; set; }
 
     [JsonProperty("Alter Moves")]
-    public virtual List<AlterMove> AlterMoves { get; set; }
+    public virtual ObservableCollection<AlterMove>? AlterMoves { get; set; }
 
     [JsonProperty("Moves")]
-    public virtual List<AssetMove> Moves { get; set; }
+    public virtual ObservableCollection<AssetMove>? Moves { get; set; }
 
     [JsonProperty("Alter Momentum")]
-    public virtual AlterMomentum AlterMomentum { get; set; }
+    public virtual AlterMomentum? AlterMomentum { get; set; }
 
     [JsonProperty("Alter Properties")]
-    public virtual AlterProperties AlterProperties { get; set; }
+    public virtual AlterProperties? AlterProperties { get; set; }
 
     [JsonProperty("Inputs")]
-    public virtual List<Input> Inputs { get; set; }
+    public virtual ObservableCollection<Input>? Inputs { get; set; }
 }
 
 public class AlterMomentum
@@ -37,31 +41,34 @@ public class AlterMomentum
     public uint Id { get; set; }
 
     [JsonProperty("Burn")]
-    public virtual List<Burn> Burn { get; set; }
+    public virtual ObservableCollection<Burn>? Burn { get; set; }
 
     [JsonProperty("Reset")]
-    public virtual List<Reset> Reset { get; set; }
+    public virtual ObservableCollection<Reset>? Reset { get; set; }
 }
 
 public class AlterMove
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Moves")]
-    public List<string> Moves { get; set; }
+    public ObservableCollection<string>? Moves { get; set; }
 
     [JsonProperty("Trigger")]
-    public virtual Trigger Trigger { get; set; }
+    public virtual Trigger? Trigger { get; set; }
 
     [JsonProperty("Text")]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 
     [JsonProperty("Outcomes")]
-    public virtual Outcomes Outcomes { get; set; }
+    public virtual Outcomes? Outcomes { get; set; }
 
     [JsonProperty("Alters")]
-    public List<string> Alters { get; set; }
+    public ObservableCollection<string>? Alters { get; set; }
 }
 
 public class AlterProperties
@@ -70,31 +77,34 @@ public class AlterProperties
     public uint Id { get; set; }
 
     [JsonProperty("Attachments")]
-    public virtual Attachments Attachments { get; set; }
+    public virtual Attachments? Attachments { get; set; }
 
     [JsonProperty("States")]
-    public virtual List<State> States { get; set; }
+    public virtual ObservableCollection<State>? States { get; set; }
 
     [JsonProperty("Condition Meter")]
-    public virtual ConditionMeter ConditionMeter { get; set; }
+    public virtual ConditionMeter? ConditionMeter { get; set; }
 }
 
 public class Asset
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Source")]
-    public virtual Source Source { get; set; }
+    public virtual Source? Source { get; set; }
 
     [JsonProperty("Asset Type")]
-    public string AssetType { get; set; }
+    public string? AssetType { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Usage")]
     public virtual AssetUsage? Usage { get; set; }
@@ -103,22 +113,22 @@ public class Asset
     public virtual Attachments? Attachments { get; set; }
 
     [JsonProperty("Inputs")]
-    public virtual List<Input>? Inputs { get; set; }
+    public virtual ObservableCollection<Input>? Inputs { get; set; }
 
     [JsonProperty("Condition Meter")]
-    public virtual ConditionMeter ConditionMeter { get; set; }
+    public virtual ConditionMeter? ConditionMeter { get; set; }
 
     [JsonProperty("Abilities")]
-    public virtual List<Ability> Abilities { get; set; }
+    public virtual ObservableCollection<Ability>? Abilities { get; set; }
 
     [JsonProperty("States")]
-    public virtual List<State> States { get; set; }
+    public virtual ObservableCollection<State>? States { get; set; }
 
     [JsonProperty("Requirement")]
-    public string Requirement { get; set; }
+    public string? Requirement { get; set; }
 
     [JsonProperty("Aliases")]
-    public List<string> Aliases { get; set; }
+    public ObservableCollection<string>? Aliases { get; set; }
 
     [JsonIgnore]
     public virtual AssetRoot? Parent { get; set; }
@@ -130,7 +140,7 @@ public class Attachments
     public uint Id { get; set; }
 
     [JsonProperty("Asset Types")]
-    public List<string> AssetTypes { get; set; }
+    public ObservableCollection<string>? AssetTypes { get; set; }
 
     [JsonProperty("Max")]
     public virtual int? Max { get; set; }
@@ -142,13 +152,13 @@ public class Burn
     public uint Id { get; set; }
 
     [JsonProperty("Trigger")]
-    public virtual Trigger Trigger { get; set; }
+    public virtual Trigger? Trigger { get; set; }
 
     [JsonProperty("Effect")]
-    public virtual Effect Effect { get; set; }
+    public virtual Effect? Effect { get; set; }
 
     [JsonProperty("Outcomes")]
-    public List<string> Outcomes { get; set; }
+    public ObservableCollection<string>? Outcomes { get; set; }
 }
 
 public class By
@@ -157,34 +167,37 @@ public class By
     public uint Id { get; set; }
 
     [JsonProperty("Player")]
-    public bool Player { get; set; }
+    public bool? Player { get; set; }
 
     [JsonProperty("Ally")]
-    public bool Ally { get; set; }
+    public bool? Ally { get; set; }
 }
 
 public class ConditionMeter
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Min")]
-    public int Min { get; set; }
+    public int? Min { get; set; }
 
     [JsonProperty("Value")]
-    public int Value { get; set; }
+    public int? Value { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string? JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Max")]
-    public int Max { get; set; }
+    public int? Max { get; set; }
 
     [JsonProperty("Conditions")]
-    public List<string> Conditions { get; set; }
+    public ObservableCollection<string>? Conditions { get; set; }
 
     [JsonProperty("Aliases")]
-    public List<string> Aliases { get; set; }
+    public ObservableCollection<string>? Aliases { get; set; }
 }
 
 public class Effect
@@ -193,43 +206,46 @@ public class Effect
     public uint Id { get; set; }
 
     [JsonProperty("Text")]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 }
 
 public class Input
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Input Type")]
-    public virtual AssetInput InputType { get; set; }
+    public virtual AssetInput? InputType { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Adjustable")]
-    public bool Adjustable { get; set; }
+    public bool? Adjustable { get; set; }
 
     [JsonProperty("Sets")]
-    public virtual List<Set> Sets { get; set; }
+    public virtual ObservableCollection<Set>? Sets { get; set; }
 
     [JsonProperty("Options")]
-    public virtual List<Option> Options { get; set; }
+    public virtual ObservableCollection<Option>? Options { get; set; }
 
     [JsonProperty("Step")]
-    public int Step { get; set; }
+    public int? Step { get; set; }
 
     [JsonProperty("Min")]
-    public int Min { get; set; }
+    public int? Min { get; set; }
 
     [JsonProperty("Max")]
     public int? Max { get; set; }
 
     [JsonProperty("Value")]
-    public int Value { get; set; }
+    public int? Value { get; set; }
 
     [JsonProperty("Clock Type")]
-    public string ClockType { get; set; }
+    public string? ClockType { get; set; }
 
     [JsonProperty("Segments")]
     public int? Segments { get; set; }
@@ -248,35 +264,38 @@ public enum AssetInput
 
 public class AssetMove
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Source")]
-    public virtual Source Source { get; set; }
+    public virtual Source? Source { get; set; }
 
     [JsonProperty("Category")]
-    public string Category { get; set; }
+    public string? Category { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Optional")]
-    public bool Optional { get; set; }
+    public bool? Optional { get; set; }
 
     [JsonProperty("Asset")]
-    public string Asset { get; set; }
+    public string? Asset { get; set; }
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Trigger")]
-    public virtual Trigger Trigger { get; set; }
+    public virtual Trigger? Trigger { get; set; }
 
     [JsonProperty("Text")]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 
     [JsonProperty("Outcomes")]
-    public virtual Outcomes Outcomes { get; set; }
+    public virtual Outcomes? Outcomes { get; set; }
 
     [JsonProperty("Progress Move")]
     public bool? ProgressMove { get; set; }
@@ -288,10 +307,10 @@ public class Reroll
     public uint Id { get; set; }
 
     [JsonProperty("Dice")]
-    public string Dice { get; set; }
+    public string? Dice { get; set; }
 
     [JsonProperty("Text")]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 }
 
 public class Reset
@@ -300,34 +319,37 @@ public class Reset
     public uint Id { get; set; }
 
     [JsonProperty("Trigger")]
-    public virtual Trigger Trigger { get; set; }
+    public virtual Trigger? Trigger { get; set; }
 
     [JsonProperty("Value")]
-    public int Value { get; set; }
+    public int? Value { get; set; }
 }
 
 public class AssetRoot
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Source")]
-    public virtual Source Source { get; set; }
+    public virtual Source? Source { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Usage")]
-    public virtual AssetUsage Usage { get; set; }
+    public virtual AssetUsage? Usage { get; set; }
 
     [JsonProperty("Assets")]
-    public virtual List<Asset> Assets { get; set; }
+    public virtual ObservableCollection<Asset>? Assets { get; set; }
 }
 
 public class State
@@ -336,19 +358,19 @@ public class State
     public uint Id { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Enabled")]
-    public bool Enabled { get; set; }
+    public bool? Enabled { get; set; }
 
     [JsonProperty("Disables asset")]
-    public bool DisablesAsset { get; set; }
+    public bool? DisablesAsset { get; set; }
 
     [JsonProperty("Impact")]
-    public bool Impact { get; set; }
+    public bool? Impact { get; set; }
 
     [JsonProperty("Permanent")]
-    public bool Permanent { get; set; }
+    public bool? Permanent { get; set; }
 }
 
 public class AssetUsage
@@ -357,5 +379,5 @@ public class AssetUsage
     public uint Id { get; set; }
 
     [JsonProperty("Shared")]
-    public bool Shared { get; set; }
+    public bool? Shared { get; set; }
 }

@@ -8,46 +8,49 @@ public class Attribute
     public uint Id { get; set; }
 
     [JsonProperty("Key")]
-    public string Key { get; set; }
+    public string? Key { get; set; }
 
     [JsonProperty("Values")]
-    public ObservableCollection<string> Values { get; set; } = new();
+    public ObservableCollection<string>? Values { get; set; } = new();
 
     [JsonProperty("Value")]
-    public string Value { get; set; }
+    public string? Value { get; set; }
 }
 
 public class OracleCategory
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Source")]
-    public virtual Source Source { get; set; }
+    public virtual Source? Source { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Category")]
-    public string Category { get; set; }
+    public string? Category { get; set; }
 
     [JsonProperty("Usage")]
-    public virtual OracleUsage Usage { get; set; }
+    public virtual OracleUsage? Usage { get; set; }
 
     [JsonProperty("Oracles")]
-    public virtual ObservableCollection<Oracle> Oracles { get; set; }
+    public virtual ObservableCollection<Oracle>? Oracles { get; set; }
 
     [JsonProperty("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonProperty("Aliases")]
-    public ObservableCollection<string> Aliases { get; set; } = new();
+    public ObservableCollection<string>? Aliases { get; set; } = new();
 
     [JsonProperty("Sample Names")]
-    public ObservableCollection<string> SampleNames { get; set; } = new();
+    public ObservableCollection<string>? SampleNames { get; set; } = new();
 }
 
 public class Content
@@ -56,10 +59,10 @@ public class Content
     public uint Id { get; set; }
 
     [JsonProperty("Part of speech")]
-    public ObservableCollection<string> PartOfSpeech { get; set; } = new();
+    public ObservableCollection<string>? PartOfSpeech { get; set; } = new();
 
     [JsonProperty("Tags")]
-    public ObservableCollection<string> Tags { get; set; } = new();
+    public ObservableCollection<string>? Tags { get; set; } = new();
 }
 
 public class GameObject
@@ -68,10 +71,10 @@ public class GameObject
     public uint Id { get; set; }
 
     [JsonProperty("Object type")]
-    public string ObjectType { get; set; }
+    public string? ObjectType { get; set; }
 
     [JsonProperty("Requires")]
-    public virtual Requires Requires { get; set; }
+    public virtual Requires? Requires { get; set; }
 }
 
 public class MultipleRolls
@@ -80,57 +83,60 @@ public class MultipleRolls
     public uint Id { get; set; }
 
     [JsonProperty("Amount")]
-    public int Amount { get; set; }
+    public int? Amount { get; set; }
 
     [JsonProperty("Allow duplicates")]
-    public bool AllowDuplicates { get; set; }
+    public bool? AllowDuplicates { get; set; }
 
     [JsonProperty("Make it worse")]
-    public bool MakeItWorse { get; set; }
+    public bool? MakeItWorse { get; set; }
 }
 
 public class Oracle
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     public override string ToString()
     {
-        return Id;
+        return JsonId;
     }
 
     [JsonProperty("Source")]
-    public virtual Source Source { get; set; }
+    public virtual Source? Source { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Category")]
-    public string Category { get; set; }
+    public string? Category { get; set; }
 
     [JsonProperty("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Content")]
-    public virtual Content Content { get; set; }
+    public virtual Content? Content { get; set; }
 
     [JsonProperty("Table")]
-    public virtual ObservableCollection<Table> Table { get; set; } = new();
+    public virtual ObservableCollection<Table>? Table { get; set; } = new();
 
     [JsonProperty("Usage")]
-    public virtual OracleUsage Usage { get; set; }
+    public virtual OracleUsage? Usage { get; set; }
 
     [JsonProperty("Oracles")]
-    public virtual ObservableCollection<Oracle> Oracles { get; set; } = new();
+    public virtual ObservableCollection<Oracle>? Oracles { get; set; } = new();
 
     [JsonProperty("Aliases")]
-    public ObservableCollection<string> Aliases { get; set; } = new();
+    public ObservableCollection<string>? Aliases { get; set; } = new();
 
     [JsonProperty("Member of")]
-    public string MemberOf { get; set; }
+    public string? MemberOf { get; set; }
 
     [JsonIgnore]
     public virtual OracleRoot? Parent { get; set; }
@@ -142,7 +148,7 @@ public class Requires
     public uint Id { get; set; }
 
     [JsonProperty("Attributes")]
-    public virtual ObservableCollection<Attribute> Attributes { get; set; }
+    public virtual ObservableCollection<Attribute>? Attributes { get; set; }
 }
 
 public class RollTemplate
@@ -151,34 +157,37 @@ public class RollTemplate
     public uint Id { get; set; }
 
     [JsonProperty("Result")]
-    public string Result { get; set; }
+    public string? Result { get; set; }
 }
 
 public class OracleRoot
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Source")]
-    public virtual Source Source { get; set; }
+    public virtual Source? Source { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonProperty("Aliases")]
-    public ObservableCollection<string> Aliases { get; set; } = new();
+    public ObservableCollection<string>? Aliases { get; set; } = new();
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Oracles")]
-    public virtual ObservableCollection<Oracle> Oracles { get; set; } = new();
+    public virtual ObservableCollection<Oracle>? Oracles { get; set; } = new();
 
     [JsonProperty("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonProperty("Categories")]
-    public virtual ObservableCollection<OracleCategory> Categories { get; set; } = new();
+    public virtual ObservableCollection<OracleCategory>? Categories { get; set; } = new();
 }
 
 public class Suggestions
@@ -187,37 +196,25 @@ public class Suggestions
     public uint Id { get; set; }
 
     [JsonProperty("Assets")]
-    public ObservableCollection<string> Assets { get; set; }
+    public ObservableCollection<string>? Assets { get; set; }
 
     [JsonProperty("Game objects")]
-    public virtual ObservableCollection<GameObject> GameObjects { get; set; } = new();
+    public virtual ObservableCollection<GameObject>? GameObjects { get; set; } = new();
 
-    [JsonProperty("Oracle rolls", ItemConverterType = typeof(ReferenceStringConverter))]
-    public ObservableCollection<OracleRoll> OracleRolls { get; set; } = new();
-}
-
-public class OracleRoll
-{
-    public OracleRoll()
-    {
-
-    }
-
-    public OracleRoll(string oracle)
-    {
-        Oracle = oracle;
-    }
-
-    public string Oracle { get; set; }
+    [JsonProperty("Oracle rolls")] //ItemConverterType = typeof(ReferenceStringConverter)
+    public virtual ObservableCollection<string>? OracleRolls { get; set; } = new();
 }
 
 public class Table : IComparable<int>
 {
+    [JsonIgnore]
+    public uint Id { get; set; }
+
     [JsonProperty("Result columns")]
-    public virtual ObservableCollection<ResultColumn> ResultColumns { get; set; } = new();
+    public virtual ObservableCollection<ResultColumn>? ResultColumns { get; set; } = new();
 
     [JsonProperty("Roll columns")]
-    public virtual ObservableCollection<RollColumn> RollColumns { get; set; } = new();
+    public virtual ObservableCollection<RollColumn>? RollColumns { get; set; } = new();
 
     [JsonProperty("Floor")]
     public int? Floor { get; set; }
@@ -226,37 +223,37 @@ public class Table : IComparable<int>
     public int? Ceiling { get; set; }
 
     [JsonProperty("$id")]
-    public string Id { get; set; }
+    public string? JsonId { get; set; }
 
     [JsonProperty("Result")]
-    public string Result { get; set; }
+    public string? Result { get; set; }
 
     [JsonProperty("Summary")]
-    public string Summary { get; set; }
+    public string? Summary { get; set; }
 
     [JsonProperty("Suggestions")]
-    public virtual Suggestions Suggestions { get; set; }
+    public virtual Suggestions? Suggestions { get; set; }
 
     [JsonProperty("Oracle rolls")]
-    public ObservableCollection<string> OracleRolls { get; set; } = new();
+    public ObservableCollection<string>? OracleRolls { get; set; } = new();
 
     [JsonProperty("Multiple rolls")]
-    public virtual MultipleRolls MultipleRolls { get; set; }
+    public virtual MultipleRolls? MultipleRolls { get; set; }
 
     [JsonProperty("Attributes")]
-    public virtual ObservableCollection<Attribute> Attributes { get; set; } = new();
+    public virtual ObservableCollection<Attribute>? Attributes { get; set; } = new();
 
     [JsonProperty("Roll template")]
-    public virtual RollTemplate RollTemplate { get; set; }
+    public virtual RollTemplate? RollTemplate { get; set; }
 
     [JsonProperty("Game objects")]
-    public virtual ObservableCollection<GameObject> GameObjects { get; set; } = new();
+    public virtual ObservableCollection<GameObject>? GameObjects { get; set; } = new();
 
     [JsonProperty("Display")]
-    public virtual Display Display { get; set; }
+    public virtual Display? Display { get; set; }
 
     [JsonProperty("Content")]
-    public virtual Content Content { get; set; }
+    public virtual Content? Content { get; set; }
 
     public int CompareTo(int other)
     {
@@ -273,22 +270,22 @@ public class OracleUsage
     public uint Id { get; set; }
 
     [JsonProperty("Max rolls")]
-    public int MaxRolls { get; set; }
+    public int? MaxRolls { get; set; }
 
     [JsonProperty("Allow duplicates")]
-    public bool AllowDuplicates { get; set; }
+    public bool? AllowDuplicates { get; set; }
 
     [JsonProperty("Initial")]
     public bool? Initial { get; set; }
 
     [JsonProperty("Suggestions")]
-    public virtual Suggestions Suggestions { get; set; }
+    public virtual Suggestions? Suggestions { get; set; }
 
     [JsonProperty("Sets")]
-    public virtual ObservableCollection<Set> Sets { get; set; } = new();
+    public virtual ObservableCollection<Set>? Sets { get; set; } = new();
 
     [JsonProperty("Requires")]
-    public virtual Requires Requires { get; set; }
+    public virtual Requires? Requires { get; set; }
 
     [JsonProperty("Repeatable")]
     public bool? Repeatable { get; set; }
