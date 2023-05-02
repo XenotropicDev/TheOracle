@@ -958,16 +958,16 @@
                   "Strong Hit": {
                     "Text": "Reroll any dice and take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Medbay/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Medbay/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Reroll any dice and take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Medbay/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Medbay/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Medbay/Abilities/3/Alter_Moves/2/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Medbay/Abilities/3/Alter_Moves/1/Outcomes/Miss"
                   }
                 }
               },
@@ -1226,11 +1226,11 @@
                   "$id": "Starforged/Assets/Module/Overseer/Abilities/1/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Module/Overseer/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Overseer/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Module/Overseer/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Overseer/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -1286,7 +1286,7 @@
                   "$id": "Starforged/Assets/Module/Overseer/Abilities/3/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Module/Overseer/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Overseer/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -1517,15 +1517,15 @@
                   "$id": "Starforged/Assets/Module/Research_Lab/Abilities/2/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/2/Alter_Moves/1/Outcomes/Miss"
                   }
                 }
               }
@@ -1557,11 +1557,11 @@
                   "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Research_Lab/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
@@ -1737,11 +1737,11 @@
                   "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               },
@@ -1766,7 +1766,7 @@
                   "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/2/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/2/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -1802,16 +1802,16 @@
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/2/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/1/Outcomes/Miss"
                   }
                 }
               },
@@ -1839,7 +1839,7 @@
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Module/Sensor_Array/Abilities/3/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -3250,11 +3250,11 @@
                   "$id": "Starforged/Assets/Support_Vehicle/Skiff/Abilities/1/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Support_Vehicle/Skiff/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Support_Vehicle/Skiff/Abilities/1/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Support_Vehicle/Skiff/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Support_Vehicle/Skiff/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -3490,11 +3490,11 @@
                   "$id": "Starforged/Assets/Path/Ace/Abilities/1/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Ace/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
+                    "$id": "Starforged/Assets/Path/Ace/Abilities/1/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Ace/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
+                    "$id": "Starforged/Assets/Path/Ace/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -5479,11 +5479,11 @@
                   "$id": "Starforged/Assets/Path/Explorer/Abilities/1/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Explorer/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Explorer/Abilities/1/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Explorer/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Explorer/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               },
@@ -5934,10 +5934,10 @@
                   "Strong Hit": {
                     "With a Match": {
                       "Text": "You reveal an unexpected function, capability, or danger; mark 1 tick on your discoveries legacy track.",
-                      "$id": "Starforged/Assets/Path/Gearhead/Abilities/2/Alter_Moves/1/Outcomes/Miss/With_a_Match"
+                      "$id": "Starforged/Assets/Path/Gearhead/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit/With_a_Match"
                     },
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Path/Gearhead/Abilities/2/Alter_Moves/1/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Path/Gearhead/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
@@ -6034,11 +6034,11 @@
                   "$id": "Starforged/Assets/Path/Gunner/Abilities/1/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Gunner/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Gunner/Abilities/1/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Gunner/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Gunner/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               },
@@ -6062,7 +6062,7 @@
                   "$id": "Starforged/Assets/Path/Gunner/Abilities/1/Alter_Moves/2/Outcomes",
                   "Strong Hit": {
                     "Text": "Mark progress.",
-                    "$id": "Starforged/Assets/Path/Gunner/Abilities/1/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Gunner/Abilities/1/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Mark progress.",
@@ -6244,7 +6244,7 @@
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Gunslinger/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Gunslinger/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -6314,7 +6314,7 @@
                   "$id": "Starforged/Assets/Path/Gunslinger/Abilities/3/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Gunslinger/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Gunslinger/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -7104,7 +7104,7 @@
                     },
                     "With a Match": {
                       "Text": "You piece together an extraordinary or harrowing new theory; envision the nature of this revelation and mark 1 tick on your discoveries legacy track.",
-                      "$id": "Starforged/Assets/Path/Lore_Hunter/Abilities/2/Alter_Moves/1/Outcomes/Miss/With_a_Match"
+                      "$id": "Starforged/Assets/Path/Lore_Hunter/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit/With_a_Match"
                     },
                     "$id": "Starforged/Assets/Path/Lore_Hunter/Abilities/2/Alter_Moves/1/Outcomes/Miss"
                   },
@@ -7478,7 +7478,7 @@
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Naturalist/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Naturalist/Abilities/1/Alter_Moves/2/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -7589,7 +7589,7 @@
                   "$id": "Starforged/Assets/Path/Naturalist/Abilities/3/Alter_Moves/2/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Naturalist/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Naturalist/Abilities/3/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -7664,11 +7664,11 @@
                   "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               },
@@ -7696,11 +7696,11 @@
                   "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/2/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/2/Outcomes/Weak_Hit"
                   }
                 }
               },
@@ -7725,7 +7725,7 @@
                   "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Navigator/Abilities/2/Alter_Moves/3/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -7938,7 +7938,7 @@
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Scavenger/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Path/Scavenger/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -8206,16 +8206,16 @@
                   "Strong Hit": {
                     "With a Match": {
                       "Text": "You may envision gaining sudden and unbidden insight about the location. If you do, take +2 momentum.",
-                      "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Miss/With_a_Match"
+                      "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit/With_a_Match"
                     },
-                    "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Miss": {
                     "With a Match": {
                       "Text": "You may envision gaining sudden and unbidden insight about the location. If you do, take +2 momentum.",
-                      "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Miss/With_a_Match"
+                      "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/1/Outcomes/Miss/With_a_Match"
                     },
-                    "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/1/Outcomes/Miss"
                   }
                 }
               },
@@ -8231,7 +8231,7 @@
                   "Strong Hit": {
                     "With a Match": {
                       "Text": "You may envision gaining sudden and unbidden insight about the location. If you do, take +2 momentum.",
-                      "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Miss/With_a_Match"
+                      "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Strong_Hit/With_a_Match"
                     },
                     "$id": "Starforged/Assets/Path/Seer/Abilities/3/Alter_Moves/2/Outcomes/Miss"
                   },
@@ -8286,7 +8286,7 @@
                   "$id": "Starforged/Assets/Path/Shade/Abilities/1/Alter_Moves/1/Outcomes",
                   "Miss": {
                     "Text": "In addition to any other cost, you are revealed and can’t veil yourself again until the current situation is resolved.",
-                    "$id": "Starforged/Assets/Path/Shade/Abilities/1/Alter_Moves/2/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Path/Shade/Abilities/1/Alter_Moves/1/Outcomes/Miss"
                   }
                 }
               },
@@ -8748,7 +8748,7 @@
                   "$id": "Starforged/Assets/Path/Sniper/Abilities/3/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Path/Sniper/Abilities/3/Alter_Moves/2/Outcomes/Strong_Hit"
+                    "$id": "Starforged/Assets/Path/Sniper/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   }
                 }
               },
@@ -9943,11 +9943,11 @@
                   "$id": "Starforged/Assets/Companion/Combat_Bot/Abilities/1/Alter_Moves/2/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Combat_Bot/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Combat_Bot/Abilities/2/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Combat_Bot/Abilities/2/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Combat_Bot/Abilities/2/Alter_Moves/2/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -10813,11 +10813,11 @@
                   "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               },
@@ -10846,7 +10846,7 @@
                   "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/2/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/2/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Survey_Bot/Abilities/3/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -11019,7 +11019,7 @@
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Utility_Bot/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Utility_Bot/Abilities/1/Alter_Moves/1/Outcomes/Weak_Hit"
                   }
                 }
               }
@@ -11087,7 +11087,7 @@
                   "$id": "Starforged/Assets/Companion/Utility_Bot/Abilities/3/Alter_Moves/1/Outcomes",
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
-                    "$id": "Starforged/Assets/Companion/Utility_Bot/Abilities/3/Alter_Moves/1/Outcomes/Weak_Hit"
+                    "$id": "Starforged/Assets/Companion/Utility_Bot/Abilities/3/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Text": "Take +1 momentum.",
@@ -11281,15 +11281,15 @@
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Strong_Hit"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/1/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/1/Outcomes/Weak_hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/1/Outcomes/Miss"
                   }
                 }
               },
@@ -11314,15 +11314,15 @@
                   "Strong Hit": {
                     "Text": "Take +1 momentum.",
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Strong_Hit"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/2/Outcomes/Strong_Hit"
                   },
                   "Weak Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/2/Outcomes/Weak_Hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/2/Outcomes/Miss"
                   }
                 }
               },
@@ -11354,7 +11354,7 @@
                   },
                   "Weak Hit": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
-                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Miss"
+                    "$id": "Starforged/Assets/Deed/Bonded/Abilities/1/Alter_Moves/3/Outcomes/Weak_Hit"
                   },
                   "Miss": {
                     "Reroll": { "Dice": "Any", "Text": "Reroll any dice." },
