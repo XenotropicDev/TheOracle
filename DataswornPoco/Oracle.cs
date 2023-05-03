@@ -226,7 +226,7 @@ public class Table : IComparable<int>
     public string? JsonId { get; set; }
 
     [JsonProperty("Result")]
-    public string? Result { get; set; }
+    public string Result { get; set; }
 
     [JsonProperty("Summary")]
     public string? Summary { get; set; }
