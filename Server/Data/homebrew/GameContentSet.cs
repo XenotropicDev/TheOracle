@@ -1,4 +1,5 @@
-﻿using TheOracle2.Data;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using TheOracle2.Data;
 
 namespace Server.Data.homebrew;
 

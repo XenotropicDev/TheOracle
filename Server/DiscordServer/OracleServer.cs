@@ -19,6 +19,8 @@ using TheOracle2;
 using Microsoft.Extensions.Caching.Memory;
 using Discord.Net.Queue;
 using System.Net.Http.Headers;
+using System.Diagnostics;
+using TheOracle2.Data;
 
 class OracleServer
 {
@@ -27,6 +29,7 @@ class OracleServer
     public static async Task Main()
     {
         using var services = ConfigureServices();
+        JsonConvert.DefaultSettings = () => new JsonSerializerSettings() { Formatting = Formatting.Indented, MetadataPropertyHandling = MetadataPropertyHandling.Ignore };
 
         var client = services.GetRequiredService<DiscordSocketClient>();
         var commands = services.GetRequiredService<InteractionService>();
@@ -40,7 +43,9 @@ class OracleServer
 
             logger.Information($"Starting TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version}");
 
+            db.Database.EnsureDeleted();
             await db.Database.EnsureCreatedAsync().ConfigureAwait(false);
+            await addDataForged(db, services);
 
             await handler.Initialize().ConfigureAwait(false);
 
@@ -52,6 +57,7 @@ class OracleServer
             await client.StartAsync().ConfigureAwait(false);
 
             await client.SetGameAsync($"v{Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3)}", "", ActivityType.Playing).ConfigureAwait(false);
+
         }
         catch (Exception ex)
         {
@@ -59,6 +65,50 @@ class OracleServer
         }
 
         await Task.Delay(Timeout.Infinite);
+    }
+
+    private static async Task addDataForged(ApplicationContext db, ServiceProvider services)
+    {
+        var oracles = services.GetRequiredService<IOracleRepository>().GetOracles().ToList();
+        var moves = services.GetRequiredService<IMoveRepository>().GetMoves().ToList();
+        var assets = services.GetRequiredService<IAssetRepository>().GetAssets().ToList();
+
+        var ironSet = new Server.Data.homebrew.GameContentSet() { CreatorId = 1, SetName = "Ironsworn", IsPublic = true  };
+        foreach (var oracle in oracles.Where(o => o.JsonId.StartsWith("Ironsworn")))
+        {
+            ironSet.Oracles.Add(oracle);
+        }
+
+        foreach (var asset in assets.Where(a => a.JsonId.StartsWith("Ironsworn")))
+        {
+            ironSet.Assets.Add(asset);
+        }
+
+        foreach (var move in moves.Where(a => a.JsonId.StartsWith("Ironsworn")))
+        {
+            ironSet.Moves.Add(move);
+        }
+
+        var starSet = new Server.Data.homebrew.GameContentSet() { CreatorId = 1, SetName = "Starforged", IsPublic = true };
+        foreach (var oracle in oracles.Where(o => o.JsonId.StartsWith("Starforged")))
+        {
+            starSet.Oracles.Add(oracle);
+        }
+
+        foreach (var asset in assets.Where(a => a.JsonId.StartsWith("Starforged")))
+        {
+            starSet.Assets.Add(asset);
+        }
+
+        foreach (var move in moves.Where(a => a.JsonId.StartsWith("Starforged")))
+        {
+            starSet.Moves.Add(move);
+        }
+
+        await db.GameContentSets.AddAsync(ironSet);
+        await db.GameContentSets.AddAsync(starSet);
+
+        await db.SaveChangesAsync();
     }
 
     private static Task LogAsync(LogMessage msg)
@@ -130,7 +180,6 @@ class OracleServer
                     .MinimumLevel.Information()
                     .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
                     .CreateLogger();
-
 
         return new ServiceCollection()
             .AddSingleton<IConfiguration>(config)

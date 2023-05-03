@@ -59,15 +59,15 @@ public class OracleAutocomplete : AutocompleteHandler
         var list = new List<AutocompleteResult>();
         if (oracle.Oracles?.Count > 0)
         {
-            if (oracle.Table?.Count > 0) list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.Id));
+            if (oracle.Table?.Count > 0) list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.JsonId));
             foreach (var t in oracle.Oracles)
             {
-                list.Add(new AutocompleteResult(GetOracleDisplayName(oracle, t), t.Id));
+                list.Add(new AutocompleteResult(GetOracleDisplayName(oracle, t), t.JsonId));
             }
         }
         else
         {
-            list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.Id));
+            list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.JsonId));
         }
         return list;
     }

@@ -23,7 +23,7 @@ public class OracleRollResult
     {
         Roll = roll;
         Description = table.Result;
-        ResultId = table.Id;
+        ResultId = table.JsonId;
         return this;
     }
 }

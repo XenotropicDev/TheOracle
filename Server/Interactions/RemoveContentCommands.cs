@@ -23,7 +23,7 @@ public class RemoveContentCommands : InteractionModuleBase
         try
         {
             var set = Db.GameContentSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && gs.Id == setName);
-            var oracle = set.Oracles.FirstOrDefault(o => o.Id == oracleName);
+            var oracle = set.Oracles.FirstOrDefault(o => o.JsonId == oracleName);
             set.Oracles.Remove(oracle);
             await Db.SaveChangesAsync().ConfigureAwait(false);
 
@@ -42,7 +42,7 @@ public class RemoveContentCommands : InteractionModuleBase
         try
         {
             var set = Db.GameContentSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && gs.Id == setName);
-            var asset = set.Assets.FirstOrDefault(o => o.Id == assetName);
+            var asset = set.Assets.FirstOrDefault(o => o.JsonId == assetName);
             set.Assets.Remove(asset);
             await Db.SaveChangesAsync().ConfigureAwait(false);
 

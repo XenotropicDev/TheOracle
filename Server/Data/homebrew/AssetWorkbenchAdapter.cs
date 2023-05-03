@@ -1,4 +1,6 @@
-﻿namespace TheOracle2.Data.AssetWorkbench;
+﻿using System.Collections.ObjectModel;
+
+namespace TheOracle2.Data.AssetWorkbench;
 
 public class AssetWorkbenchAdapter : Asset
 {
@@ -22,16 +24,18 @@ public class AssetWorkbenchAdapter : Asset
         Name = WorkbenchData.name;
         Display = new Display { Title = WorkbenchData.name, Icon = WorkbenchData.icon?.dataUri };
         if (WorkbenchData.track != null) ConditionMeter = new ConditionMeter { Min = 0, Value = WorkbenchData.track ?? 0, Max = WorkbenchData.track ?? 0};
-        Abilities = WorkbenchData.abilities
+        Abilities = new ObservableCollection<Data.Ability>(
+            WorkbenchData.abilities
             .Select(ability => new TheOracle2.Data.Ability
             {
                 Text = ability.text,
                 Name = ability.name,
                 Enabled = ability.filled
             })
-            .ToList();
+            .ToList()
+            );
         
-        Inputs = new List<Input>();
+        Inputs = new();
 
         if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn)) Inputs.Add(new() { InputType = AssetInput.Text, Name = WorkbenchData.writeIn, Adjustable = true });
         if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn2)) Inputs.Add(new() { InputType = AssetInput.Text, Name = WorkbenchData.writeIn2, Adjustable = true });

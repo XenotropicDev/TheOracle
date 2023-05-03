@@ -28,7 +28,7 @@ public class ReferenceAutoComplete : AutocompleteHandler
                         .Where(m => m.Name.Contains(userText, StringComparison.OrdinalIgnoreCase) || m.Category.Contains(userText, StringComparison.OrdinalIgnoreCase))
                         .OrderBy(m => m.Name)
                         .Take(SelectMenuBuilder.MaxOptionCount)
-                        .Select(m => new AutocompleteResult($"{m.Name} [{m.Parent?.Name ?? m.Category}]", m.Id.ToString())).AsEnumerable();
+                        .Select(m => new AutocompleteResult($"{m.Name} [{m.Parent?.Name ?? m.Category}]", m.JsonId.ToString())).AsEnumerable();
             }
             else
             {
@@ -36,7 +36,7 @@ public class ReferenceAutoComplete : AutocompleteHandler
                 successList = (await factory.GetPlayerMoves(context.User.Id)).Where(m => initialMoves.Any(im => m.Name.Contains(im, StringComparison.OrdinalIgnoreCase)))
                     .OrderBy(m => m.Name)
                     .Take(SelectMenuBuilder.MaxOptionCount)
-                    .Select(m => new AutocompleteResult($"{m.Name} [{m.Parent?.Name ?? m.Category}]", m.Id.ToString())).AsEnumerable();
+                    .Select(m => new AutocompleteResult($"{m.Name} [{m.Parent?.Name ?? m.Category}]", m.JsonId.ToString())).AsEnumerable();
             }
 
             return AutocompletionResult.FromSuccess(successList);

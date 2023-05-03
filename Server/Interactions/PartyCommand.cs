@@ -43,8 +43,8 @@ public class PartyCommandsGroup : InteractionModuleBase
         {
             var oracles = await dataFactory.GetPlayerOracles(Context.User.Id);
 
-            var descriptor = oracleRoller.GetRollResult(oracles.FirstOrDefault(o => o.Id.Contains("/Descriptor")));
-            var theme = oracleRoller.GetRollResult(oracles.FirstOrDefault(o => o.Id.Contains("/Theme")));
+            var descriptor = oracleRoller.GetRollResult(oracles.FirstOrDefault(o => o.JsonId.Contains("/Descriptor")));
+            var theme = oracleRoller.GetRollResult(oracles.FirstOrDefault(o => o.JsonId.Contains("/Theme")));
 
             partyName = $"{descriptor.Description} {theme.Description}";
         }

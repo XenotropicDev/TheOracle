@@ -11,12 +11,12 @@ public record AssetData
 
     public AssetData(Asset asset, ulong id)
     {
-        AssetId = asset.Id;
-        SelectedAbilities = asset.Abilities.Where(a => a.Enabled).Select(a => a.Id).ToList();
+        AssetId = asset.JsonId;
+        SelectedAbilities = asset.Abilities.Where(a => a.Enabled).Select(a => a.JsonId).ToList();
         CreatorDiscordId = id;
         if (asset.ConditionMeter?.Value > 0)
         {
-            ConditionValue = asset.ConditionMeter.Value;
+            ConditionValue = asset.ConditionMeter.Value ?? 0;
         }
     }
 

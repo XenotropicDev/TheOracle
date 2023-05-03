@@ -76,7 +76,7 @@ public class ActionRollRandom : IActionRoll, IBurnable
         if (GetOutcome() == IronswornRollOutcome.Miss)
         {
             var playerOracles = await dataFactory.GetPlayerOracles(playerId);
-            string ptpId = playerOracles?.FirstOrDefault(a => a.Id.Contains("Oracles/Moves/Pay_the_Price"))?.Id ?? "Ironsworn/Oracles/Moves/Pay_the_Price";
+            string ptpId = playerOracles?.FirstOrDefault(a => a.JsonId.Contains("Oracles/Moves/Pay_the_Price"))?.JsonId ?? "Ironsworn/Oracles/Moves/Pay_the_Price";
             builder.WithButton("Pay the Price", $"roll-oracle:{ptpId}", emote: emotes.Roll);
         }
 

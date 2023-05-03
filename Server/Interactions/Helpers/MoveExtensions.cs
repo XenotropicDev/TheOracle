@@ -19,7 +19,7 @@ public static class MoveExtensions
         var closingBolds = move.Text.IndexOf("**", move.Text.IndexOf("**") + 2);
         var desc = (closingBolds > 0 && closingBolds < 70) ? move.Text.Replace("**", "")[..closingBolds] : move.Text.Replace("**", "")[..67] + "...";
 
-        builder.WithValue(move.Id).WithDescription(desc).WithEmote(emotes.Reference).WithLabel(move.Name);
+        builder.WithValue(move.JsonId).WithDescription(desc).WithEmote(emotes.Reference).WithLabel(move.Name);
 
         return builder;
     }

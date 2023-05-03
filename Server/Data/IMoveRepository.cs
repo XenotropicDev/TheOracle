@@ -23,7 +23,7 @@ public class JsonMoveRepository : IMoveRepository
 
     public Move? GetMove(string id)
     {
-        return GetMoves().FirstOrDefault(o => o.Id == id);
+        return GetMoves().FirstOrDefault(o => o.JsonId == id);
     }
 
     public IEnumerable<MoveRoot> GetMoveRoots()

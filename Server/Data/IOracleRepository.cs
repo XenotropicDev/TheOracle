@@ -28,7 +28,7 @@ public static class OracleRepositoryExtenstions
             .Concat(categoryOracles)
             .Concat(parentAliasMatch)
             .Concat(aliasMatch)
-            .DistinctBy(o => o.Id);
+            .DistinctBy(o => o.JsonId);
     }
 }
 
@@ -38,14 +38,14 @@ public class JsonOracleRepository : IOracleRepository
 
     public Oracle? GetOracleById(string id)
     {
-        var topLevelOracle = GetOracles().FirstOrDefault(o => o.Id == id);
+        var topLevelOracle = GetOracles().FirstOrDefault(o => o.JsonId == id);
         if (topLevelOracle != null) return topLevelOracle;
 
-        var subOracle = GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.Id == id) ?? Array.Empty<Oracle>()).FirstOrDefault();
+        var subOracle = GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.JsonId == id) ?? Array.Empty<Oracle>()).FirstOrDefault();
         if (subOracle != null) return subOracle;
 
         var cats = GetOracleRoots().Where(or => or.Categories != null).SelectMany(or => or.Categories);
-        var catOracle = cats.SelectMany(c => c.Oracles).FirstOrDefault(o => o.Id == id);
+        var catOracle = cats.SelectMany(c => c.Oracles).FirstOrDefault(o => o.JsonId == id);
         if (catOracle != null) return catOracle;
 
         foreach (var cat in cats)
@@ -54,8 +54,8 @@ public class JsonOracleRepository : IOracleRepository
             if (oracle != null) return oracle;
         }
 
-        var partial = GetOracles().SingleOrDefault(o => o.Id.Contains(id))
-            ?? GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.Id.Contains(id)) ?? Array.Empty<Oracle>()).SingleOrDefault();
+        var partial = GetOracles().SingleOrDefault(o => o.JsonId.Contains(id))
+            ?? GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.JsonId.Contains(id)) ?? Array.Empty<Oracle>()).SingleOrDefault();
 
         return partial;
     }
@@ -65,7 +65,7 @@ public class JsonOracleRepository : IOracleRepository
         if (oracles.Count() == 0) return null;
         foreach (var oracle in oracles)
         {
-            if (oracle.Id == id) return oracle;
+            if (oracle.JsonId == id) return oracle;
 
             if (oracle.Oracles != null)
             {
