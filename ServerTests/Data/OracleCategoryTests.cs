@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Discord.Interactions;
 using Microsoft.VisualBasic.FileIO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TheOracle2.Data.Tests;
 
@@ -70,7 +71,32 @@ public class OracleCategoryTests
         Assert.IsNotNull(ability);
         var reSerialized = JsonConvert.SerializeObject(ability);
 
-        Assert.AreEqual("Ironsworn/Assets/Companion/Cave_Lion/Abilities/1", ability.Id);
+        Assert.AreEqual("Ironsworn/Assets/Companion/Cave_Lion/Abilities/1", ability.JsonId);
+    }
+
+    [TestMethod()]
+    public void AbilityTest2()
+    {
+        JsonConvert.DefaultSettings = () => new JsonSerializerSettings() { Formatting = Formatting.Indented, MetadataPropertyHandling = MetadataPropertyHandling.Ignore };
+
+        var json = """
+            {
+              "$id": "Ironsworn/Assets/Companion/Test_Lion/Inescapable",
+              "Text": "When you [Enter the Fray](Ironsworn/Moves/Combat/Enter_the_Fray) or [Strike](Ironsworn/Moves/Combat/Strike) by sending your cat to attack, roll +edge. On a hit, take +2 momentum.",
+              "Name": "Inescapable",
+              "Enabled": false,
+              "Alter Moves": null,
+              "Moves": null,
+              "Alter Momentum": null,
+              "Alter Properties": null,
+              "Inputs": null
+            } 
+            """
+        ;
+
+        var ability = JsonConvert.DeserializeObject<Ability>(json);
+        Assert.IsNotNull(ability);
+        Assert.IsNotNull(ability.JsonId);
     }
 
     [TestMethod()]
