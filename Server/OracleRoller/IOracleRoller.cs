@@ -31,17 +31,17 @@ public class RandomOracleRoller : IOracleRoller
 
         foreach (var followUpId in oracle.Usage?.Suggestions?.OracleRolls ?? new())
         {
-            var followUpOracle = oracleRepo.GetOracleById(followUpId.Oracle);
+            var followUpOracle = oracleRepo.GetOracleById(followUpId);
             if (followUpOracle?.Oracles?.Count > 0)
             {
                 foreach (var subTable in followUpOracle.Oracles)
                 {
-                    results.FollowUpTables.Add(new FollowUpItem(subTable.Id, subTable.Name, emotes));
+                    results.FollowUpTables.Add(new FollowUpItem(subTable.JsonId, subTable.Name, emotes));
                 }
             }
             else if (followUpOracle != null)
             {
-                results.FollowUpTables.Add(new FollowUpItem(followUpId.Oracle, followUpOracle.Name, emotes));
+                results.FollowUpTables.Add(new FollowUpItem(followUpId, followUpOracle.Name, emotes));
             }
         }
 

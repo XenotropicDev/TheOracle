@@ -1,4 +1,5 @@
-﻿using Server.GameInterfaces;
+﻿using System.Collections.ObjectModel;
+using Server.GameInterfaces;
 using TheOracle2.Data;
 
 namespace TheOracle2.UserContent;
@@ -38,9 +39,9 @@ internal class DiscordAssetEntity : IDiscordEntity
         }
 
         string description = string.Empty;
-        foreach (var ability in Asset.Abilities ?? new List<Ability>())
+        foreach (var ability in Asset.Abilities ?? new ObservableCollection<Ability>())
         {
-            if (Data.SelectedAbilities.Contains(ability.Id))
+            if (Data.SelectedAbilities.Contains(ability.JsonId))
             {
                 description += $"⬢ {ability.Text}\n\n";
             }
@@ -62,12 +63,12 @@ internal class DiscordAssetEntity : IDiscordEntity
                 .WithMinValues(0)
                 .WithMaxValues(Asset.Abilities.Count);
 
-            foreach (var ability in Asset.Abilities ?? new List<Ability>())
+            foreach (var ability in Asset.Abilities ?? new ObservableCollection<Ability>())
             {
                 select.AddOption(new SelectMenuOptionBuilder()
                 .WithLabel($"Ability {Asset.Abilities!.IndexOf(ability) + 1}")
-                .WithValue(ability.Id)
-                .WithDefault(Data.SelectedAbilities.Contains(ability.Id))
+                .WithValue(ability.JsonId)
+                .WithDefault(Data.SelectedAbilities.Contains(ability.JsonId))
                 );
             }
 

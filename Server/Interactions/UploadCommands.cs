@@ -65,13 +65,13 @@ public class UploadCommands : InteractionModuleBase
 
             if (OracleToUpdate != null) 
             {
-                var existingOracle = set.Oracles.FirstOrDefault(o => o.Id == OracleToUpdate);
+                var existingOracle = set.Oracles.FirstOrDefault(o => o.JsonId == OracleToUpdate);
                 if (existingOracle == null)
                 {
                     await FollowupAsync($"Error: Couldn't find the specified oracle in the set", ephemeral: true).ConfigureAwait(false);
                     return;
                 }
-                oracle.Id = existingOracle.Id;
+                oracle.JsonId = existingOracle.JsonId;
                 existingOracle = oracle;
             }
             else
@@ -133,13 +133,13 @@ public class UploadCommands : InteractionModuleBase
             
             if (!string.IsNullOrWhiteSpace(assetToUpdate))
             {
-                var existingAsset = set.Assets.FirstOrDefault(a => a.Id == assetToUpdate);
+                var existingAsset = set.Assets.FirstOrDefault(a => a.JsonId == assetToUpdate);
                 if (existingAsset == null)
                 {
                     await FollowupAsync($"Error: Couldn't find the specified asset in the set", ephemeral: true).ConfigureAwait(false);
                     return;
                 }
-                asset.Id = existingAsset.Id;
+                asset.JsonId = existingAsset.JsonId;
                 existingAsset = asset;
             }
             else

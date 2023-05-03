@@ -36,7 +36,7 @@ public class DiscordOracleBuilder : IDiscordEntity
 
     public static EmbedBuilder AddFieldsToBuilder(OracleRollResult node, EmbedBuilder builder)
     {
-        var category = node.Oracle?.Parent?.Categories?.FirstOrDefault(cat => cat.Oracles.Any(o => o.Id == node.Oracle.Id));
+        var category = node.Oracle?.Parent?.Categories?.FirstOrDefault(cat => cat.Oracles.Any(o => o.JsonId == node.Oracle.JsonId));
 
         var rollString = (node.Roll != null) ? $" [{node.Roll}]" : string.Empty;
         var catString = category != null ? $" - {category.Name}" : string.Empty;
@@ -59,7 +59,7 @@ public class DiscordOracleBuilder : IDiscordEntity
 
         foreach (var result in root)
         {
-            result.FollowUpTables.RemoveAll(fui => root.Select(ri => ri.Oracle.Id).Contains(fui.Id));
+            result.FollowUpTables.RemoveAll(fui => root.Select(ri => ri.Oracle.JsonId).Contains(fui.Id));
             
             AddComponents(builder, result, result);
         }
