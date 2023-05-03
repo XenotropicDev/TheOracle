@@ -27,13 +27,13 @@ public class PlayerAssetRepository : IAssetRepository
 
     public Asset? GetAsset(string id)
     {
-        return GetAssets().FirstOrDefault(o => o.Id == id);
+        return GetAssets().FirstOrDefault(o => o.JsonId == id);
     }
 
     public IEnumerable<Asset> GetAssets()
     {
         throw new NotImplementedException();
-        //return PlayerData.HomebrewAssets.Select(o => o.Asset);
+        //return PlayerData.Players.Find().Select(o => o.Asset);
     }
 }
 
@@ -43,7 +43,7 @@ public class JsonAssetRepository : IAssetRepository
 
     public Asset? GetAsset(string id)
     {
-        return GetAssets().FirstOrDefault(o => o.Id == id);
+        return GetAssets().FirstOrDefault(o => o.JsonId == id);
     }
 
     public IEnumerable<AssetRoot> GetAssetRoots()
