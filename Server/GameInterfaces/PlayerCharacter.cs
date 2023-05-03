@@ -35,6 +35,7 @@ public class PlayerCharacter
         MessageId = messageId;
         ChannelId = channelId;
         Image = AvatarImageUrl;
+        Impacts = new List<string>();
     }
 
     /// <summary>

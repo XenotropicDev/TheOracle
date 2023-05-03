@@ -14,7 +14,7 @@ public class OracleGameEntity
 
     public string Id { get; set; }
     public string DisplayedDescription { get; set; }
-    public List<object> ModalInputs { get; set; }
+    public List<object> ModalInputs { get; set; } = new();
     public string SearchName { get; set; }
     public IronGame Game { get; set; }
     public string Title { get; set; }
@@ -78,8 +78,8 @@ public class OracleEntityData
     public OracleGameEntity Entity { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    public List<OracleEntityAction> InitialOracleData { get; set; }
-    public List<FollowUpItem> FollowupOracleData { get; set; }
+    public List<OracleEntityAction> InitialOracleData { get; set; } = new();
+    public List<FollowUpItem> FollowupOracleData { get; set; } = new();
 }
 
 internal class FollowUpItemAdapter : FollowUpItem

@@ -18,7 +18,7 @@ public class Display
     public string? Icon { get; set; }
 
     [JsonProperty("Images")]
-    public ObservableCollection<string>? Images { get; set; }
+    public ObservableCollection<string>? Images { get; set; } = new();
 
     [JsonProperty("Column of")]
     public string? ColumnOf { get; set; }
@@ -45,13 +45,13 @@ public class ResultColumn
     public uint Id { get; set; }
 
     [JsonProperty("Label")]
-    public string? Label { get; set; }
+    public string Label { get; set; }
 
     [JsonProperty("Use content from")]
-    public string? UseContentFrom { get; set; }
+    public string UseContentFrom { get; set; }
 
     [JsonProperty("Key")]
-    public string? Key { get; set; }
+    public string Key { get; set; }
 }
 
 public class RollColumn
@@ -60,10 +60,10 @@ public class RollColumn
     public uint Id { get; set; }
 
     [JsonProperty("Label")]
-    public string? Label { get; set; }
+    public string Label { get; set; }
 
     [JsonProperty("Use content from")]
-    public string? UseContentFrom { get; set; }
+    public string UseContentFrom { get; set; }
 }
 
 public class Set
@@ -78,7 +78,7 @@ public class Set
     public string? Type { get; set; }
 
     [JsonProperty("Key")]
-    public string? Key { get; set; }
+    public string Key { get; set; }
 
     [JsonProperty("Value")]
     public string? Value { get; set; }
@@ -90,7 +90,7 @@ public class Source
     public uint Id { get; set; }
 
     [JsonProperty("Title")]
-    public string? Title { get; set; }
+    public string Title { get; set; }
 
     [JsonProperty("Url")]
     public string? Url { get; set; }
@@ -102,7 +102,7 @@ public class Source
     public int? Page { get; set; }
 
     [JsonProperty("Authors")]
-    public ObservableCollection<string>? Authors { get; set; }
+    public ObservableCollection<string> Authors { get; set; } = new();
 }
 
 public class Miss
@@ -135,10 +135,10 @@ public class CustomStat
     public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("Options")]
-    public virtual ObservableCollection<Option>? Options { get; set; }
+    public virtual ObservableCollection<Option>? Options { get; set; } = new();
 }
 
 public class Trigger
@@ -153,7 +153,7 @@ public class Trigger
     public virtual By? By { get; set; }
 
     [JsonProperty("Options")]
-    public virtual ObservableCollection<Option>? Options { get; set; }
+    public virtual ObservableCollection<Option>? Options { get; set; } = new();
 
     [JsonProperty("Text")]
     public string? Text { get; set; }
@@ -207,7 +207,7 @@ public class WithAMatch
     public uint Id { get; set; }
 
     [JsonProperty("Text")]
-    public string? Text { get; set; }
+    public string Text { get; set; }
 
     [JsonProperty("$id")]
     public string JsonId { get; set; }
@@ -225,7 +225,7 @@ public class Option
     public string? Name { get; set; }
 
     [JsonProperty("Set")]
-    public virtual ObservableCollection<Set>? Set { get; set; }
+    public virtual ObservableCollection<Set>? Set { get; set; } = new();
 
     [JsonProperty("Text")]
     public string? Text { get; set; }
@@ -237,7 +237,7 @@ public class Option
     public string? Method { get; set; }
 
     [JsonProperty("Using")]
-    public ObservableCollection<string>? Using { get; set; }
+    public ObservableCollection<string>? Using { get; set; } = new();
 
     [JsonProperty("Custom stat")]
     public virtual CustomStat? CustomStat { get; set; }

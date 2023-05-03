@@ -12,16 +12,16 @@ public class Move
     public virtual Source? Source { get; set; }
 
     [JsonProperty("Category")]
-    public string? Category { get; set; }
+    public string Category { get; set; }
 
     [JsonProperty("$id")]
     public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("Optional")]
-    public bool? Optional { get; set; }
+    public bool Optional { get; set; }
 
     [JsonProperty("Display")]
     public virtual Display? Display { get; set; }
@@ -30,10 +30,10 @@ public class Move
     public virtual Trigger? Trigger { get; set; }
 
     [JsonProperty("Text")]
-    public string? Text { get; set; }
+    public string Text { get; set; }
 
     [JsonProperty("Oracles")]
-    public ObservableCollection<string>? Oracles { get; set; }
+    public ObservableCollection<string> Oracles { get; set; } = new();
 
     [JsonProperty("Outcomes")]
     public virtual Outcomes? Outcomes { get; set; }
@@ -57,10 +57,10 @@ public class MoveRoot
     public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("Description")]
-    public string? Description { get; set; }
+    public string Description { get; set; }
 
     [JsonProperty("Source")]
     public virtual Source? Source { get; set; }
@@ -69,9 +69,9 @@ public class MoveRoot
     public virtual Display? Display { get; set; }
 
     [JsonProperty("Optional")]
-    public bool? Optional { get; set; }
+    public bool Optional { get; set; }
 
     [JsonProperty("Moves")]
-    public virtual ObservableCollection<Move>? Moves { get; set; }
+    public virtual ObservableCollection<Move> Moves { get; set; } = new();
 }
 

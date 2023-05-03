@@ -8,10 +8,10 @@ public class Attribute
     public uint Id { get; set; }
 
     [JsonProperty("Key")]
-    public string? Key { get; set; }
+    public string Key { get; set; }
 
     [JsonProperty("Values")]
-    public ObservableCollection<string>? Values { get; set; } = new();
+    public ObservableCollection<string> Values { get; set; } = new();
 
     [JsonProperty("Value")]
     public string? Value { get; set; }
@@ -29,19 +29,19 @@ public class OracleCategory
     public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("Display")]
     public virtual Display? Display { get; set; }
 
     [JsonProperty("Category")]
-    public string? Category { get; set; }
+    public string Category { get; set; }
 
     [JsonProperty("Usage")]
     public virtual OracleUsage? Usage { get; set; }
 
     [JsonProperty("Oracles")]
-    public virtual ObservableCollection<Oracle>? Oracles { get; set; }
+    public virtual ObservableCollection<Oracle>? Oracles { get; set; } = new();
 
     [JsonProperty("Description")]
     public string? Description { get; set; }
@@ -59,10 +59,10 @@ public class Content
     public uint Id { get; set; }
 
     [JsonProperty("Part of speech")]
-    public ObservableCollection<string>? PartOfSpeech { get; set; } = new();
+    public ObservableCollection<string> PartOfSpeech { get; set; } = new();
 
     [JsonProperty("Tags")]
-    public ObservableCollection<string>? Tags { get; set; } = new();
+    public ObservableCollection<string> Tags { get; set; } = new();
 }
 
 public class GameObject
@@ -83,13 +83,13 @@ public class MultipleRolls
     public uint Id { get; set; }
 
     [JsonProperty("Amount")]
-    public int? Amount { get; set; }
+    public int Amount { get; set; }
 
     [JsonProperty("Allow duplicates")]
-    public bool? AllowDuplicates { get; set; }
+    public bool AllowDuplicates { get; set; }
 
     [JsonProperty("Make it worse")]
-    public bool? MakeItWorse { get; set; }
+    public bool MakeItWorse { get; set; }
 }
 
 public class Oracle
@@ -109,10 +109,10 @@ public class Oracle
     public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("Category")]
-    public string? Category { get; set; }
+    public string Category { get; set; }
 
     [JsonProperty("Description")]
     public string? Description { get; set; }
@@ -148,7 +148,7 @@ public class Requires
     public uint Id { get; set; }
 
     [JsonProperty("Attributes")]
-    public virtual ObservableCollection<Attribute>? Attributes { get; set; }
+    public virtual ObservableCollection<Attribute>? Attributes { get; set; } = new();
 }
 
 public class RollTemplate
@@ -157,7 +157,7 @@ public class RollTemplate
     public uint Id { get; set; }
 
     [JsonProperty("Result")]
-    public string? Result { get; set; }
+    public string Result { get; set; }
 }
 
 public class OracleRoot
@@ -172,7 +172,7 @@ public class OracleRoot
     public string JsonId { get; set; }
 
     [JsonProperty("Name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("Aliases")]
     public ObservableCollection<string>? Aliases { get; set; } = new();
@@ -196,7 +196,7 @@ public class Suggestions
     public uint Id { get; set; }
 
     [JsonProperty("Assets")]
-    public ObservableCollection<string>? Assets { get; set; }
+    public ObservableCollection<string> Assets { get; set; } = new();
 
     [JsonProperty("Game objects")]
     public virtual ObservableCollection<GameObject>? GameObjects { get; set; } = new();
@@ -235,7 +235,7 @@ public class Table : IComparable<int>
     public virtual Suggestions? Suggestions { get; set; }
 
     [JsonProperty("Oracle rolls")]
-    public ObservableCollection<string>? OracleRolls { get; set; } = new();
+    public ObservableCollection<string> OracleRolls { get; set; } = new();
 
     [JsonProperty("Multiple rolls")]
     public virtual MultipleRolls? MultipleRolls { get; set; }
