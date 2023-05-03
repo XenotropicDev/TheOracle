@@ -39,7 +39,7 @@ public class OracleCommandTests
         Assert.IsNotNull(desiredOracle);
         var searchResults = oracles.GetOracles().GetOraclesFromUserInput(query);
 
-        Assert.IsTrue(searchResults.Any(sr => sr.Id == desiredOption), $"Couldn't find {desiredOption} in {query} results");
-        Assert.AreEqual(1, searchResults.Count(sr => sr.Id == desiredOption));
+        Assert.IsTrue(searchResults.Any(sr => sr.JsonId == desiredOption), $"Couldn't find {desiredOption} in {query} results");
+        Assert.AreEqual(1, searchResults.Count(sr => sr.JsonId == desiredOption));
     }
 }
