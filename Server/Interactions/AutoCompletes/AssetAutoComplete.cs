@@ -8,7 +8,7 @@ public class AssetAutoComplete : AutocompleteHandler
 {
     public override async Task<AutocompletionResult> GenerateSuggestionsAsync(IInteractionContext context, IAutocompleteInteraction autocompleteInteraction, IParameterInfo parameter, IServiceProvider services)
     {
-        using var playerData = services.GetRequiredService<PlayerDataFactory>();
+        var playerData = services.GetRequiredService<PlayerDataFactory>();
         try
         {
             IEnumerable<AutocompleteResult> successList = new List<AutocompleteResult>();
