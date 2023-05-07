@@ -7,7 +7,7 @@ using TheOracle2.Data;
 
 namespace Server.Data;
 
-public class PlayerDataFactory : IDisposable
+public class PlayerDataFactory
 {
     private readonly ApplicationContext db;
     private bool disposedValue;
@@ -17,13 +17,13 @@ public class PlayerDataFactory : IDisposable
     private IOracleRepository Oracles { get; }
     public IEntityRepository Entities { get; }
 
-    public PlayerDataFactory(IAssetRepository assets, IMoveRepository moves, IOracleRepository oracles, IEntityRepository entities, IDbContextFactory<ApplicationContext> dbFactory)
+    public PlayerDataFactory(IAssetRepository assets, IMoveRepository moves, IOracleRepository oracles, IEntityRepository entities, ApplicationContext dbFactory)
     {
         Assets = assets;
         Moves = moves;
         Oracles = oracles;
         Entities = entities;
-        db = dbFactory.CreateDbContext();
+        db = dbFactory;
     }
 
     public async Task<IEnumerable<Asset>> GetPlayerAssets(ulong PlayerId, IronGame? gameOverride = null)
@@ -69,25 +69,5 @@ public class PlayerDataFactory : IDisposable
     {
         var playerGame = gameOverride ?? (await db.Players.FindAsync(PlayerId))?.Game ?? default;
         return Oracles.GetOracleRoots().Where(or => or.JsonId.Contains(playerGame.ToString()));
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!disposedValue)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-
-            disposedValue = true;
-        }
-    }
-
-    public void Dispose()
-    {
-        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
     }
 }
