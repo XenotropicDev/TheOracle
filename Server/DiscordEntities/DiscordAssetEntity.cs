@@ -1,9 +1,10 @@
-﻿using Server.GameInterfaces;
+﻿using Server.DiscordServer;
+using Server.GameInterfaces;
 using TheOracle2.Data;
 
 namespace TheOracle2.UserContent;
 
-internal class DiscordAssetEntity : IDiscordEntity
+public class DiscordAssetEntity : IDiscordEntity
 {
     public DiscordAssetEntity(Asset asset, AssetData data)
     {
@@ -45,7 +46,7 @@ internal class DiscordAssetEntity : IDiscordEntity
                 description += $"⬢ {ability.Text}\n\n";
             }
         }
-        builder.WithDescription(description);
+        builder.WithDescription(DiscordHelpers.FormatMarkdownLinks(description));
 
         return builder;
     }
