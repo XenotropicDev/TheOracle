@@ -2,34 +2,29 @@
 global using Discord;
 global using Microsoft.Extensions.DependencyInjection;
 global using Newtonsoft.Json;
-
+using System.Reflection;
 using Discord.Interactions;
+using Discord.Net.Queue;
 using Discord.WebSocket;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Serilog;
-using System.Reflection;
-using OracleCommands;
-using Server.Data;
-using Server.OracleRoller;
-using Server.DiscordServer;
-using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using OracleCommands;
+using Serilog;
+using Server.Data;
+using Server.DiscordServer;
+using Server.OracleRoller;
 using TheOracle2;
-using Microsoft.Extensions.Caching.Memory;
-using Discord.Net.Queue;
-using System.Net.Http.Headers;
-using System.Diagnostics;
-using TheOracle2.Data;
 
-class OracleServer
+internal class OracleServer
 {
     internal static Serilog.ILogger logger = new LoggerConfiguration().WriteTo.Console().CreateLogger(); //This gets overwritten by the ConfiguredServices
 
     public static async Task Main()
     {
         using var services = ConfigureServices();
-        JsonConvert.DefaultSettings = () => new JsonSerializerSettings() { Formatting = Formatting.Indented, MetadataPropertyHandling = MetadataPropertyHandling.Ignore };
 
         var client = services.GetRequiredService<DiscordSocketClient>();
         var commands = services.GetRequiredService<InteractionService>();
@@ -43,9 +38,9 @@ class OracleServer
 
             logger.Information($"Starting TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version}");
 
-            db.Database.EnsureDeleted();
+            //db.Database.EnsureDeleted();
             await db.Database.EnsureCreatedAsync().ConfigureAwait(false);
-            await addDataForged(db, services);
+            //await addDataForged(db, services);
 
             await handler.Initialize().ConfigureAwait(false);
 
@@ -57,7 +52,6 @@ class OracleServer
             await client.StartAsync().ConfigureAwait(false);
 
             await client.SetGameAsync($"v{Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3)}", "", ActivityType.Playing).ConfigureAwait(false);
-
         }
         catch (Exception ex)
         {
@@ -73,7 +67,7 @@ class OracleServer
         var moves = services.GetRequiredService<IMoveRepository>().GetMoves().ToList();
         var assets = services.GetRequiredService<IAssetRepository>().GetAssets().ToList();
 
-        var ironSet = new Server.Data.homebrew.GameContentSet() { CreatorId = 1, SetName = "Ironsworn", IsPublic = true  };
+        var ironSet = new Server.Data.homebrew.GameContentSet() { CreatorId = 1, SetName = "Ironsworn", IsPublic = true };
         foreach (var oracle in oracles.Where(o => o.JsonId.StartsWith("Ironsworn")))
         {
             ironSet.Oracles.Add(oracle);
@@ -118,47 +112,57 @@ class OracleServer
             case GatewayReconnectException gre:
                 logger.Warning(gre.Message);
                 return Task.CompletedTask;
+
             case TimeoutException te:
                 logger.Warning(te.Message);
                 return Task.CompletedTask;
+
             case Discord.Net.HttpException httpEx:
                 string json = (httpEx.Request is JsonRestRequest jsonRequest) ? $"\n" + jsonRequest.Json : "";
                 logger.Warning(httpEx, httpEx.Reason + json);
                 return Task.CompletedTask;
+
             case Exception ex when ex.Message == "WebSocket connection was closed":
                 logger.Warning(ex.Message);
                 return Task.CompletedTask;
+
             default:
                 break;
         }
-        
+
         switch (msg.Severity)
         {
             case LogSeverity.Critical:
                 logger.Fatal(msg.ToString());
                 break;
+
             case LogSeverity.Error:
                 logger.Error(msg.ToString());
                 break;
+
             case LogSeverity.Warning:
                 logger.Warning(msg.ToString());
                 break;
+
             case LogSeverity.Info:
                 logger.Information(msg.ToString());
                 break;
+
             case LogSeverity.Verbose:
                 logger.Verbose(msg.ToString());
                 break;
+
             case LogSeverity.Debug:
                 logger.Debug(msg.ToString());
                 break;
+
             default:
                 break;
         }
         return Task.CompletedTask;
     }
 
-    static ServiceProvider ConfigureServices()
+    private static ServiceProvider ConfigureServices()
     {
         var config = new ConfigurationBuilder()
             .AddJsonFile("token.json", optional: true, reloadOnChange: true)
@@ -180,6 +184,13 @@ class OracleServer
                     .MinimumLevel.Information()
                     .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
                     .CreateLogger();
+
+        JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+        {
+            Formatting = Formatting.Indented,
+            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+            NullValueHandling = NullValueHandling.Ignore
+        };
 
         return new ServiceCollection()
             .AddSingleton<IConfiguration>(config)
@@ -222,5 +233,4 @@ class OracleServer
 
         return token ?? String.Empty;
     }
-
 }
