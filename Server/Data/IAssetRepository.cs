@@ -27,13 +27,17 @@ public class PlayerAssetRepository : IAssetRepository
 
     public Asset? GetAsset(string id)
     {
+        if (int.TryParse(id, out var assetId))
+        {
+            return GetAssets().FirstOrDefault(o => o.Id == assetId);
+        }
+
         return GetAssets().FirstOrDefault(o => o.JsonId == id);
     }
 
     public IEnumerable<Asset> GetAssets()
     {
-        throw new NotImplementedException();
-        //return PlayerData.Players.Find().Select(o => o.Asset);
+        return PlayerData.Assets;
     }
 }
 
