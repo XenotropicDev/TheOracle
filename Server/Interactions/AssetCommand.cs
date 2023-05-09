@@ -86,12 +86,9 @@ public class AssetCommand : InteractionModuleBase
         var AssetData = await db.CharacterAssets.FindAsync(assetDataId).ConfigureAwait(false);
         if (AssetData == null) throw new ArgumentException($"Unknown character asset id: {assetDataId}");
 
-        var AssetInfo = assetRepo.GetAsset(AssetData.AssetId!);
-        if (AssetInfo == null) throw new ArgumentException($"Unknown asset id: {AssetData.AssetId}");
-
         AssetData.Inputs = data;
 
-        var discordEntity = new DiscordAssetEntity(AssetInfo, AssetData);
+        var discordEntity = new DiscordAssetEntity(AssetData.Asset, AssetData);
 
         await discordEntity.EntityAsResponse(RespondAsync).ConfigureAwait(false);
         await db.SaveChangesAsync().ConfigureAwait(false);
@@ -121,13 +118,10 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
         var data = db.CharacterAssets.Find(characterAssetId);
         if (data == null) return;
 
-        var asset = assetRepo.GetAsset(data.AssetId);
-        if (asset == null) return;
-
         data.SelectedAbilities = selections.ToList();
 
         AddAnyThumbnails(Context.Interaction.Message, data);
-        var discordEntity = new DiscordAssetEntity(asset, data);
+        var discordEntity = new DiscordAssetEntity(data.Asset, data);
 
         await Context.Interaction.UpdateAsync(async msg =>
         {
@@ -144,17 +138,14 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
         var data = db.CharacterAssets.Find(characterAssetId);
         if (data == null) return;
 
-        var asset = assetRepo.GetAsset(data.AssetId);
-        if (asset == null) return;
-
         switch (values.FirstOrDefault())
         {
             case "asset-condition-up":
-                data.ChangeConditionValue(+1, asset);
+                data.ChangeConditionValue(+1, data.Asset);
                 break;
 
             case "asset-condition-down":
-                data.ChangeConditionValue(-1, asset);
+                data.ChangeConditionValue(-1, data.Asset);
                 break;
 
             case "asset-condition-roll":
@@ -168,7 +159,7 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
 
         AddAnyThumbnails(Context.Interaction.Message, data);
 
-        var discordEntity = new DiscordAssetEntity(asset, data);
+        var discordEntity = new DiscordAssetEntity(data.Asset, data);
         await Context.Interaction.UpdateAsync(async msg =>
         {
             msg.Embeds = discordEntity.AsEmbedArray();
