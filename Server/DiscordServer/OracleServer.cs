@@ -38,9 +38,9 @@ internal class OracleServer
 
             logger.Information($"Starting TheOracle v{Assembly.GetEntryAssembly()?.GetName().Version}");
 
-            //db.Database.EnsureDeleted();
+            db.Database.EnsureDeleted();
             await db.Database.EnsureCreatedAsync().ConfigureAwait(false);
-            //await addDataForged(db, services);
+            await addDataForged(db, services);
 
             await handler.Initialize().ConfigureAwait(false);
 
@@ -65,7 +65,7 @@ internal class OracleServer
     {
         var oracles = services.GetRequiredService<IOracleRepository>().GetOracles().ToList();
         var moves = services.GetRequiredService<IMoveRepository>().GetMoves().ToList();
-        var assets = services.GetRequiredService<IAssetRepository>().GetAssets().ToList();
+        var assets = new JsonAssetRepository().GetAssets();
 
         var ironSet = new Server.Data.homebrew.GameContentSet() { CreatorId = 1, SetName = "Ironsworn", IsPublic = true };
         foreach (var oracle in oracles.Where(o => o.JsonId.StartsWith("Ironsworn")))
@@ -202,7 +202,7 @@ internal class OracleServer
             .AddSingleton<IOracleRoller, RandomOracleRoller>()
             .AddSingleton<IOracleRepository, JsonOracleRepository>()
             .AddSingleton<IMoveRepository, JsonMoveRepository>()
-            .AddSingleton<IAssetRepository, JsonAssetRepository>()
+            .AddSingleton<IAssetRepository, PlayerAssetRepository>()
             .AddSingleton<IEmoteRepository, HardCodedEmoteRepo>()
             .AddSingleton<IEntityRepository, JsonEntityRepository>()
             .AddSingleton<IMemoryCache, MemoryCache>()
