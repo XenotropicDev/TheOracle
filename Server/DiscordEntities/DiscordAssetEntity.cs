@@ -1,4 +1,5 @@
-﻿using Server.DiscordServer;
+﻿using System.Collections.ObjectModel;
+using Server.DiscordServer;
 using Server.GameInterfaces;
 using TheOracle2.Data;
 
@@ -20,7 +21,7 @@ public class DiscordAssetEntity : IDiscordEntity
     public EmbedBuilder? GetEmbed()
     {
         EmbedBuilder builder = new EmbedBuilder()
-            .WithAuthor($"Asset: {Asset.Parent?.Name ?? Asset.AssetType}")
+            .WithAuthor($"Asset: {Asset.Parent?.Name ?? Asset.AssetType[Asset.AssetType.LastIndexOf("/")..]}")
             .WithTitle(Asset.Name);
 
         if (Data.ThumbnailURL != null)
