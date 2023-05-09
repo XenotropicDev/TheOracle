@@ -30,7 +30,7 @@ public record Player
         {
             Game = IronGame.Ironsworn,
             SubsPerServer = false,
-            GameDataSets = new List<Server.Data.homebrew.GameContentSet>() { db.GameContentSets.FirstOrDefault() },
+            GameDataSets = new List<GameContentSet>() { db.GameContentSets.FirstOrDefault() },
             DiscordId = playerId
         };
 
