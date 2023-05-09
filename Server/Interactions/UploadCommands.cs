@@ -131,15 +131,15 @@ public class UploadCommands : InteractionModuleBase
 
             var set = existing.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
             
-            if (!string.IsNullOrWhiteSpace(assetToUpdate))
+            if (!string.IsNullOrWhiteSpace(assetToUpdate) && int.TryParse(assetToUpdate, out var assetId))
             {
-                var existingAsset = set.Assets.FirstOrDefault(a => a.JsonId == assetToUpdate);
+                var existingAsset = set.Assets.FirstOrDefault(a => a.Id == assetId);
                 if (existingAsset == null)
                 {
                     await FollowupAsync($"Error: Couldn't find the specified asset in the set", ephemeral: true).ConfigureAwait(false);
                     return;
                 }
-                asset.JsonId = existingAsset.JsonId;
+                asset.Id = existingAsset.Id;
                 existingAsset = asset;
             }
             else
@@ -148,6 +148,9 @@ public class UploadCommands : InteractionModuleBase
             }
 
             await Db.SaveChangesAsync().ConfigureAwait(false);
+
+            //reload the player data so that the new game content sets get loaded in
+            Db.Dispose();
 
             await FollowupAsync($"Asset {(string.IsNullOrWhiteSpace(assetToUpdate) ? "added" : "updated")}", ephemeral: true).ConfigureAwait(false);
         }

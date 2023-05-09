@@ -42,7 +42,10 @@ public class RemoveContentCommands : InteractionModuleBase
         try
         {
             var set = Db.GameContentSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && gs.Id == setName);
-            var asset = set.Assets.FirstOrDefault(o => o.JsonId == assetName);
+
+            Func<Asset, bool> assetResolver = int.TryParse(assetName, out var assetId) ? a => a.Id == assetId : a => a.JsonId == assetName;
+
+            var asset =  set.Assets.FirstOrDefault(assetResolver);
             set.Assets.Remove(asset);
             await Db.SaveChangesAsync().ConfigureAwait(false);
 
