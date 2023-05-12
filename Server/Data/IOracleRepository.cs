@@ -1,12 +1,11 @@
-﻿using TheOracle2.Data;
+﻿using Server.DiscordServer;
+using TheOracle2.Data;
 
 namespace Server.Data;
 
 public interface IOracleRepository
 {
     IEnumerable<Oracle> GetOracles();
-
-    IEnumerable<OracleRoot> GetOracleRoots();
 
     Oracle? GetOracleById(string id);
 }
@@ -28,7 +27,32 @@ public static class OracleRepositoryExtenstions
             .Concat(categoryOracles)
             .Concat(parentAliasMatch)
             .Concat(aliasMatch)
-            .DistinctBy(o => o.JsonId);
+            .DistinctBy(o => o.Id);
+    }
+}
+
+public class PlayerOracleRepository : IOracleRepository
+{
+    public PlayerOracleRepository(ApplicationContext playerData)
+    {
+        PlayerData = playerData;
+    }
+
+    public ApplicationContext PlayerData { get; }
+
+    public Oracle? GetOracleById(string id)
+    {
+        if (int.TryParse(id, out var oracleId))
+        {
+            return GetOracles().FirstOrDefault(o => o.Id == oracleId);
+        }
+
+        return GetOracles().FirstOrDefault(o => o.JsonId == id);
+    }
+
+    public IEnumerable<Oracle> GetOracles()
+    {
+        return PlayerData.Oracles;
     }
 }
 
@@ -63,8 +87,10 @@ public class JsonOracleRepository : IOracleRepository
     private Oracle? findOracleRecursive(IEnumerable<Oracle> oracles, string id)
     {
         if (oracles.Count() == 0) return null;
+        uint.TryParse(id, out uint intId);
         foreach (var oracle in oracles)
         {
+            if (intId != 0 && oracle.Id == intId) return oracle;
             if (oracle.JsonId == id) return oracle;
 
             if (oracle.Oracles != null)

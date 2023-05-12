@@ -36,12 +36,12 @@ public class RandomOracleRoller : IOracleRoller
             {
                 foreach (var subTable in followUpOracle.Oracles)
                 {
-                    results.FollowUpTables.Add(new FollowUpItem(subTable.JsonId, subTable.Name, emotes));
+                    results.FollowUpTables.Add(new FollowUpItem(subTable.Id, subTable.Name, emotes));
                 }
             }
             else if (followUpOracle != null)
             {
-                results.FollowUpTables.Add(new FollowUpItem(followUpId, followUpOracle.Name, emotes));
+                results.FollowUpTables.Add(new FollowUpItem(followUpOracle.Id, followUpOracle.Name, emotes));
             }
         }
 

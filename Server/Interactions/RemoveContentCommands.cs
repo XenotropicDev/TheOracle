@@ -18,12 +18,14 @@ public class RemoveContentCommands : InteractionModuleBase
     public ApplicationContext Db { get; }
 
     [SlashCommand("oracle", "Removes an oracle from the content set")]
-    public async Task RemoveOracle([Autocomplete(typeof(OwnerSubAutoComplete))]int setName, [Autocomplete(typeof(OracleAutocomplete))] string oracleName)
+    public async Task RemoveOracle([Autocomplete(typeof(OwnerSubAutoComplete))]int setName, 
+        [Autocomplete(typeof(OracleAutocomplete)), Summary("Oracle Name")] string oracleId)
     {
         try
         {
             var set = Db.GameContentSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && gs.Id == setName);
-            var oracle = set.Oracles.FirstOrDefault(o => o.JsonId == oracleName);
+            Func<Oracle, bool> oracleResolver = int.TryParse(oracleId, out var parsedId) ? o => o.Id == parsedId : o => o.JsonId == oracleId;
+            var oracle = set.Oracles.FirstOrDefault(oracleResolver);
             set.Oracles.Remove(oracle);
             await Db.SaveChangesAsync().ConfigureAwait(false);
 
@@ -37,7 +39,8 @@ public class RemoveContentCommands : InteractionModuleBase
     }
 
     [SlashCommand("asset", "Removes an asset from the content set")]
-    public async Task RemoveAsset([Autocomplete(typeof(OwnerSubAutoComplete))] int setName, [Autocomplete(typeof(AssetAutoComplete))] string assetName)
+    public async Task RemoveAsset([Autocomplete(typeof(OwnerSubAutoComplete))] int setName, 
+        [Autocomplete(typeof(AssetAutoComplete))] string assetName)
     {
         try
         {

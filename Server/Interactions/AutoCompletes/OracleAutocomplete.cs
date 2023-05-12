@@ -39,9 +39,7 @@ public class OracleAutocomplete : AutocompleteHandler
                 return await GetEmptyOralceResult(context, dataFactory);
             }
 
-            var game = IronGameExtenstions.GetIronGameInString(value);
-                value = IronGameExtenstions.RemoveIronGameInString(value);
-            var oracles = await dataFactory.GetPlayerOracles(context.User.Id, game);
+            var oracles = await dataFactory.GetPlayerOracles(context.User.Id);
 
             successList.AddRange(oracles.GetOraclesFromUserInput(value)
                          .SelectMany(x => GetOracleAutocompleteResults(x)));
@@ -59,15 +57,15 @@ public class OracleAutocomplete : AutocompleteHandler
         var list = new List<AutocompleteResult>();
         if (oracle.Oracles?.Count > 0)
         {
-            if (oracle.Table?.Count > 0) list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.JsonId));
+            if (oracle.Table?.Count > 0) list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.Id));
             foreach (var t in oracle.Oracles)
             {
-                list.Add(new AutocompleteResult(GetOracleDisplayName(oracle, t), t.JsonId));
+                list.Add(new AutocompleteResult(GetOracleDisplayName(oracle, t), t.Id));
             }
         }
         else
         {
-            list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.JsonId));
+            list.Add(new AutocompleteResult(GetOracleDisplayName(oracle), oracle.Id));
         }
         return list;
     }

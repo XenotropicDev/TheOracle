@@ -59,7 +59,7 @@ public class DiscordOracleBuilder : IDiscordEntity
 
         foreach (var result in root)
         {
-            result.FollowUpTables.RemoveAll(fui => root.Select(ri => ri.Oracle.JsonId).Contains(fui.Id));
+            result.FollowUpTables.RemoveAll(fui => root.Select(ri => ri.Oracle.Id).Contains(fui.Id));
             
             AddComponents(builder, result, result);
         }
@@ -78,9 +78,9 @@ public class DiscordOracleBuilder : IDiscordEntity
     {
         foreach (var item in node.FollowUpTables)
         {
-            if (AddOracleSelect.Options.Any(o => o.Value == item.Id)) continue;
+            if (AddOracleSelect.Options.Any(o => o.Value == item.Id.ToString())) continue;
 
-            AddOracleSelect.AddOption(item.Name, item.Id, emote: item.Emote);
+            AddOracleSelect.AddOption(item.Name, item.Id.ToString(), emote: item.Emote);
         }
 
         foreach (var child in node.ChildResults)

@@ -1,4 +1,5 @@
 ﻿using Discord.Interactions;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Server.Data.homebrew;
 using Server.DiscordServer;
@@ -23,7 +24,7 @@ public class UploadCommands : InteractionModuleBase
 
     [SlashCommand("oracle", "Adds or updates a custom oracle to the bot. Must be in Dataforged format")]
     public async Task UploadOracle(IAttachment OracleJson,
-                                   [Autocomplete(typeof(OwnerSubAutoComplete))] int? setName = null,
+                                   [Autocomplete(typeof(OwnerSubAutoComplete)), Summary("Set Name")] int? setId = null,
                                    [Autocomplete(typeof(OracleAutocomplete))] string? OracleToUpdate = null)
     {
         try
@@ -37,7 +38,7 @@ public class UploadCommands : InteractionModuleBase
 
             var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
 
-            var sets = existing.GameDataSets.Where(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
+            var sets = existing.GameDataSets.Where(gs => gs.CreatorId == Context.Interaction.User.Id && (setId == null || gs.Id == setId));
             
             if (sets.Count() > 1)
             {
@@ -61,17 +62,18 @@ public class UploadCommands : InteractionModuleBase
             }
 
 
-            var set = existing.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
+            var set = existing.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setId == null || gs.Id == setId));
 
-            if (OracleToUpdate != null) 
+            if (int.TryParse(OracleToUpdate, out int updateId)) 
             {
-                var existingOracle = set.Oracles.FirstOrDefault(o => o.JsonId == OracleToUpdate);
+                var existingOracle = set.Oracles.FirstOrDefault(o => o.Id == updateId);
                 if (existingOracle == null)
                 {
                     await FollowupAsync($"Error: Couldn't find the specified oracle in the set", ephemeral: true).ConfigureAwait(false);
                     return;
                 }
-                oracle.JsonId = existingOracle.JsonId;
+                //Db.Entry(oracle).CurrentValues.SetValues(existingOracle); //not sure if this is needed or not.
+                oracle.Id = existingOracle.Id;
                 existingOracle = oracle;
             }
             else
@@ -91,7 +93,7 @@ public class UploadCommands : InteractionModuleBase
 
     [SlashCommand("asset", "Adds or updates custom asset to the bot. Must be in Dataforged or Asset Workbench format")]
     public async Task UploadAsset(IAttachment AssetJson, 
-        [Autocomplete(typeof(PublicSubAutoComplete))]int? setName = null,
+        [Autocomplete(typeof(PublicSubAutoComplete)), Summary("Set Name")]int? setId = null,
         [Autocomplete(typeof(AssetAutoComplete))]string? assetToUpdate = null)
     {
         try
@@ -104,9 +106,9 @@ public class UploadCommands : InteractionModuleBase
             var isDataforged = JObject.Parse(file)?["documentFormatVersion"] == null; //check for the Asset-Workbench documentFormatVersion
             var asset = (isDataforged) ? JsonConvert.DeserializeObject<Asset>(file) : new AssetWorkbenchAdapter(file);
 
-            var existing = await Db.Players.FindAsync(Context.Interaction.User.Id).ConfigureAwait(false);
+            var player = await Db.Players.Include(p => p.GameDataSets).FirstOrDefaultAsync(p => p.DiscordId == Context.Interaction.User.Id).ConfigureAwait(false);
 
-            var sets = existing.GameDataSets.Where(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
+            var sets = player.GameDataSets.Where(gs => gs.CreatorId == Context.Interaction.User.Id && (setId == null || gs.Id == setId));
             
             if (sets.Count() > 1)
             {
@@ -126,10 +128,11 @@ public class UploadCommands : InteractionModuleBase
                     Oracles = new List<Oracle>(),
                 };
 
-                existing.GameDataSets.Add(contentSet);
+                Db.GameContentSets.Attach(contentSet);
+                player.GameDataSets.Add(contentSet);
             }
 
-            var set = existing.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setName == null || gs.Id == setName));
+            var set = player.GameDataSets.SingleOrDefault(gs => gs.CreatorId == Context.Interaction.User.Id && (setId == null || gs.Id == setId));
             
             if (!string.IsNullOrWhiteSpace(assetToUpdate) && int.TryParse(assetToUpdate, out var assetId))
             {

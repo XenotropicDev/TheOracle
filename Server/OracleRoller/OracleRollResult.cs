@@ -24,9 +24,21 @@ public class OracleRollResult
 
 public class FollowUpItem : SelectMenuOptionBuilder
 {
-    public FollowUpItem(string id, string name, IEmoteRepository emotes)
+    public FollowUpItem(uint id, string name, IEmoteRepository emotes)
     {
         Id = id;
+        Name = name;
+
+        Description = name;
+        Value = id.ToString();
+        Emote = emotes.Roll;
+    }
+
+    public FollowUpItem(string id, string name, IEmoteRepository emotes)
+    {
+        if (!uint.TryParse(id, out var uintId)) throw new ArgumentException($"Unknown follow up item {id}");
+
+        Id = uintId;
         Name = name;
 
         Description = name;
@@ -34,8 +46,6 @@ public class FollowUpItem : SelectMenuOptionBuilder
         Emote = emotes.Roll;
     }
 
-    public string Id { get; set; }
+    public uint Id { get; set; }
     public string Name { get; set; }
-
-    
 }

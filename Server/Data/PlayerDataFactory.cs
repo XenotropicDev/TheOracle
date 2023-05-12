@@ -10,18 +10,12 @@ namespace Server.Data;
 public class PlayerDataFactory
 {
     private readonly ApplicationContext db;
-    private bool disposedValue;
-
-    private IAssetRepository Assets { get; }
     private IMoveRepository Moves { get; }
-    private IOracleRepository Oracles { get; }
     public IEntityRepository Entities { get; }
 
-    public PlayerDataFactory(IAssetRepository assets, IMoveRepository moves, IOracleRepository oracles, IEntityRepository entities, ApplicationContext dbFactory)
+    public PlayerDataFactory(IMoveRepository moves, IEntityRepository entities, ApplicationContext dbFactory)
     {
-        Assets = assets;
         Moves = moves;
-        Oracles = oracles;
         Entities = entities;
         db = dbFactory;
     }
@@ -47,27 +41,9 @@ public class PlayerDataFactory
         return Moves.GetMoveRoots().SelectMany(mr => mr.Moves).Where(a => a.JsonId.Contains(playerGame.ToString()));
     }
 
-    public async Task<IEnumerable<Oracle>> GetPlayerOracles(ulong PlayerId, IronGame? gameOverride = null)
+    public async Task<IEnumerable<Oracle>> GetPlayerOracles(ulong PlayerId)
     {
-        var playerGame = gameOverride ?? (await db.Players.FindAsync(PlayerId))?.Game ?? default;
-        var playerOracles = Oracles.GetOracleRoots()
-            .SelectMany(or => or.Oracles)
-            .Where(a => a.JsonId.Contains(playerGame.ToString())).ToList();
-
-        foreach(var cat in Oracles.GetOracleRoots().Where(or => or.Categories?.Count > 0).SelectMany(or => or.Categories))
-        {
-            if (cat.JsonId.Contains(playerGame.ToString()))
-            {
-                playerOracles.AddRange(cat.Oracles);
-            }
-        }
-
-        return playerOracles;
-    }
-
-    public async Task<IEnumerable<OracleRoot>> GetPlayerOraclesRoots(ulong PlayerId, IronGame? gameOverride = null)
-    {
-        var playerGame = gameOverride ?? (await db.Players.FindAsync(PlayerId))?.Game ?? default;
-        return Oracles.GetOracleRoots().Where(or => or.JsonId.Contains(playerGame.ToString()));
+        var player = await db.Players.FindAsync(PlayerId);
+        return player.GameDataSets.SelectMany(gds => gds.Oracles);
     }
 }
