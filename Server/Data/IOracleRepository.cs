@@ -29,6 +29,11 @@ public static class OracleRepositoryExtenstions
             .Concat(aliasMatch)
             .DistinctBy(o => o.Id);
     }
+
+    public static IDictionary<string, OracleCollection> GetOracleCollection(this OracleTable oracle, IOracleRepository repo)
+    {
+        return repo.
+    }
 }
 
 public class PlayerOracleRepository : IOracleRepository

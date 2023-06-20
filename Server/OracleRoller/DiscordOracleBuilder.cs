@@ -23,7 +23,7 @@ public class DiscordOracleBuilder : IDiscordEntity
     {
         var builder = new EmbedBuilder();
 
-        builder.WithAuthor(result.FirstOrDefault()?.Oracle?.Parent?.Name)
+        builder.WithAuthor(GetOracleParent(result.FirstOrDefault()?.Oracle).Name)
             .WithTitle("Oracle Result");
 
         foreach (var node in result)
