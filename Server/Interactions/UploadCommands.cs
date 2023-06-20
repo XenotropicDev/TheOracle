@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using Server.Data.homebrew;
 using Server.DiscordServer;
 using TheOracle2.Commands;
-using TheOracle2.Data;
+using Dataforged;
 using TheOracle2.Data.AssetWorkbench;
 
 namespace TheOracle2;

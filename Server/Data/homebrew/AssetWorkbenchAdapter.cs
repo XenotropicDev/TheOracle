@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Dataforged;
 
 namespace TheOracle2.Data.AssetWorkbench;
 
@@ -24,9 +25,9 @@ public class AssetWorkbenchAdapter : Asset
         Name = WorkbenchData.name;
         Display = new Display { Title = WorkbenchData.name, Icon = WorkbenchData.icon?.dataUri };
         if (WorkbenchData.track != null) ConditionMeter = new ConditionMeter { Min = 0, Value = WorkbenchData.track ?? 0, Max = WorkbenchData.track ?? 0};
-        Abilities = new ObservableCollection<Data.Ability>(
+        Abilities = new ObservableCollection<AssetAbility>(
             WorkbenchData.abilities
-            .Select(ability => new TheOracle2.Data.Ability
+            .Select(ability => new AssetAbility
             {
                 Text = ability.text,
                 Name = ability.name,

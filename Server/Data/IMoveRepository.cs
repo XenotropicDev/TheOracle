@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dataforged;
 using Server.DiscordServer;
 using TheOracle2;
-using TheOracle2.Data;
 
 namespace Server.Data;
 
 public interface IMoveRepository
 {
     IEnumerable<Move> GetMoves();
-    IEnumerable<MoveRoot> GetMoveRoots();
+    IEnumerable<MoveCategory> GetMoveRoots();
 
     Move? GetMove(string id);
 }
 
 public class JsonMoveRepository : IMoveRepository
 {
-    private List<MoveRoot>? _moves;
+    private List<MoveCategory>? _moves;
 
     public Move? GetMove(string id)
     {
         return GetMoves().FirstOrDefault(o => o.JsonId == id);
     }
 
-    public IEnumerable<MoveRoot> GetMoveRoots()
+    public IEnumerable<MoveCategory> GetMoveRoots()
     {
         if (_moves == null)
         {
-            _moves = new List<MoveRoot>();
+            _moves = new List<MoveCategory>();
             var files = new DirectoryInfo(Path.Combine("Data", "ironsworn")).GetFiles("*moves*.json").ToList();
             files.AddRange(new DirectoryInfo(Path.Combine("Data", "starforged")).GetFiles("*moves*.json").ToList());
 
@@ -39,17 +39,9 @@ public class JsonMoveRepository : IMoveRepository
                 using var fileStream = file.OpenText();
                 string text = fileStream.ReadToEnd();
 
-                var root = JsonConvert.DeserializeObject<List<MoveRoot>>(text, new JsonSerializerSettings() { MetadataPropertyHandling = MetadataPropertyHandling.Ignore });
+                var root = JsonConvert.DeserializeObject<List<MoveCategory>>(text, new JsonSerializerSettings() { MetadataPropertyHandling = MetadataPropertyHandling.Ignore });
 
                 if (root != null) _moves.AddRange(root);
-            }
-
-            foreach (var node in _moves)
-            {
-                foreach (var Move in node.Moves)
-                {
-                    Move.Parent = node;
-                }
             }
         }
 

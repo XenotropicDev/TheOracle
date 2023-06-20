@@ -1,18 +1,18 @@
-﻿using Server.DiscordServer;
-using TheOracle2.Data;
+﻿using Dataforged;
+using Server.DiscordServer;
 
 namespace Server.Data;
 
 public interface IOracleRepository
 {
-    IEnumerable<Oracle> GetOracles();
+    IEnumerable<OracleTable> GetOracles();
 
-    Oracle? GetOracleById(string id);
+    OracleTable? GetOracleById(string id);
 }
 
 public static class OracleRepositoryExtenstions
 {
-    public static IEnumerable<Oracle> GetOraclesFromUserInput(this IEnumerable<Oracle> oracles, string query, StringComparison comparer = StringComparison.OrdinalIgnoreCase)
+    public static IEnumerable<OracleTable> GetOraclesFromUserInput(this IEnumerable<OracleTable> oracles, string query, StringComparison comparer = StringComparison.OrdinalIgnoreCase)
     {
         var nameMatch = oracles.Where(x => x.Name.Contains(query, comparer) || x.Display?.Title?.Contains(query, comparer) == true);
         var parentNameMatch = oracles.Where(x => x.Parent?.Name.Contains(query, comparer) == true).Select(x => x.Parent);
@@ -40,7 +40,7 @@ public class PlayerOracleRepository : IOracleRepository
 
     public ApplicationContext PlayerData { get; }
 
-    public Oracle? GetOracleById(string id)
+    public OracleTable? GetOracleById(string id)
     {
         if (int.TryParse(id, out var oracleId))
         {
@@ -50,7 +50,7 @@ public class PlayerOracleRepository : IOracleRepository
         return GetOracles().FirstOrDefault(o => o.JsonId == id);
     }
 
-    public IEnumerable<Oracle> GetOracles()
+    public IEnumerable<OracleTable> GetOracles()
     {
         return PlayerData.Oracles;
     }
@@ -58,14 +58,14 @@ public class PlayerOracleRepository : IOracleRepository
 
 public class JsonOracleRepository : IOracleRepository
 {
-    private List<OracleRoot>? _oracles;
+    private List<OracleCollection>? _oracles;
 
-    public Oracle? GetOracleById(string id)
+    public OracleTable? GetOracleById(string id)
     {
         var topLevelOracle = GetOracles().FirstOrDefault(o => o.JsonId == id);
         if (topLevelOracle != null) return topLevelOracle;
 
-        var subOracle = GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.JsonId == id) ?? Array.Empty<Oracle>()).FirstOrDefault();
+        var subOracle = GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.JsonId == id) ?? Array.Empty<OracleTable>()).FirstOrDefault();
         if (subOracle != null) return subOracle;
 
         var cats = GetOracleRoots().Where(or => or.Categories != null).SelectMany(or => or.Categories);
@@ -79,12 +79,12 @@ public class JsonOracleRepository : IOracleRepository
         }
 
         var partial = GetOracles().SingleOrDefault(o => o.JsonId.Contains(id))
-            ?? GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.JsonId.Contains(id)) ?? Array.Empty<Oracle>()).SingleOrDefault();
+            ?? GetOracles().SelectMany(o => o.Oracles?.Where(sub => sub.JsonId.Contains(id)) ?? Array.Empty<OracleTable>()).SingleOrDefault();
 
         return partial;
     }
 
-    private Oracle? findOracleRecursive(IEnumerable<Oracle> oracles, string id)
+    private OracleTable? findOracleRecursive(IEnumerable<OracleTable> oracles, string id)
     {
         if (oracles.Count() == 0) return null;
         uint.TryParse(id, out uint intId);
@@ -103,11 +103,11 @@ public class JsonOracleRepository : IOracleRepository
         return null;
     }
 
-    public IEnumerable<OracleRoot> GetOracleRoots()
+    public IEnumerable<OracleCollection> GetOracleRoots()
     {
         if (_oracles == null)
         {
-            _oracles = new List<OracleRoot>();
+            _oracles = new List<OracleCollection>();
             var files = new DirectoryInfo(Path.Combine("Data", "ironsworn")).GetFiles("*oracle*.json").ToList();
             files.AddRange(new DirectoryInfo(Path.Combine("Data", "starforged")).GetFiles("*oracle*.json").ToList());
 
@@ -116,7 +116,7 @@ public class JsonOracleRepository : IOracleRepository
                 using var fileStream = file.OpenText();
                 string text = fileStream.ReadToEnd();
 
-                var root = JsonConvert.DeserializeObject<List<OracleRoot>>(text, new JsonSerializerSettings() { MetadataPropertyHandling = MetadataPropertyHandling.Ignore });
+                var root = JsonConvert.DeserializeObject<List<OracleCollection>>(text, new JsonSerializerSettings() { MetadataPropertyHandling = MetadataPropertyHandling.Ignore });
 
                 if (root != null) _oracles.AddRange(root);
             }
@@ -144,7 +144,7 @@ public class JsonOracleRepository : IOracleRepository
         return _oracles;
     }
 
-    public IEnumerable<Oracle> GetOracles()
+    public IEnumerable<OracleTable> GetOracles()
     {
         return GetOracleRoots().SelectMany(root => root.Oracles);
     }

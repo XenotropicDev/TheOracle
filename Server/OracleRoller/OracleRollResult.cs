@@ -1,4 +1,4 @@
-﻿using TheOracle2.Data;
+﻿using Dataforged;
 
 namespace TheOracle2;
 
@@ -7,13 +7,13 @@ public class OracleRollResult
     public int? Roll { get; internal set; }
     public string? Description { get; set; }
     public string? Image { get; set; }
-    public Oracle? Oracle { get; set; }
+    public OracleTable? Oracle { get; set; }
     public string ResultId { get; set; }
 
     public List<OracleRollResult> ChildResults { get; set; } = new();
     public List<FollowUpItem> FollowUpTables { get; internal set; } = new();
 
-    public OracleRollResult WithTableResult(Table table, int roll)
+    public OracleRollResult WithTableResult(OracleTableRow table, int roll)
     {
         Roll = roll;
         Description = table.Result;

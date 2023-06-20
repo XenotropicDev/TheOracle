@@ -4,7 +4,7 @@ using Server.Data;
 using Server.Interactions.Helpers;
 using Server.OracleRoller;
 using TheOracle2.Commands;
-using TheOracle2.Data;
+using Dataforged;
 
 namespace TheOracle2;
 

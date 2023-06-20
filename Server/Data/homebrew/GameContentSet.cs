@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using TheOracle2;
-using TheOracle2.Data;
+using Dataforged;
+using Dataforged;
 
 namespace Server.Data.homebrew;
 
@@ -11,7 +12,7 @@ public class GameContentSet
     public bool IsPublic { get; set; }
     public string SetName { get; set; }
     public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
-    public virtual ICollection<Oracle> Oracles { get; set; } = new List<Oracle>();
+    public virtual ICollection<OracleTable> Oracles { get; set; } = new List<OracleTable>();
     public virtual ICollection<Move> Moves { get; set; } = new List<Move>();
     public virtual ICollection<Player> Players { get; set; } = new List<Player>();
 }

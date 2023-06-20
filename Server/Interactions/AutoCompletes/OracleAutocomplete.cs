@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using Dataforged;
 using Discord.Interactions;
 using Server.Data;
-using TheOracle2.Data;
 
 namespace TheOracle2.Commands;
 
@@ -52,7 +52,7 @@ public class OracleAutocomplete : AutocompleteHandler
         }
     }
 
-    private IEnumerable<AutocompleteResult> GetOracleAutocompleteResults(Oracle oracle)
+    private IEnumerable<AutocompleteResult> GetOracleAutocompleteResults(OracleTable oracle)
     {
         var list = new List<AutocompleteResult>();
         if (oracle.Oracles?.Count > 0)
@@ -70,7 +70,7 @@ public class OracleAutocomplete : AutocompleteHandler
         return list;
     }
 
-    private string GetOracleDisplayName(Oracle oracle, Oracle subTable = null)
+    private string GetOracleDisplayName(OracleTable oracle, OracleTable subTable = null)
     {
         string name = oracle.Display?.Title ?? oracle.Name;
         var superTypeName = (oracle.Parent != null) ? oracle.Parent.Name : string.Empty;
@@ -86,9 +86,9 @@ public class OracleAutocomplete : AutocompleteHandler
         return name;
     }
 
-    private string GetOracleDisplayName(OracleCategory cat, Oracle subTable = null)
+    private string GetOracleDisplayName(OracleCollection cat, OracleTable subTable = null)
     {
-        string name = cat.Name;
+        string name = cat.Name.Value;
         if (subTable != null) name += $" - {subTable.Name}";
 
         return name;

@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dataforged;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Server.DiscordServer;
 using Server.GameInterfaces;
 using TheOracle2;
-using TheOracle2.Data;
+using Dataforged;
 
 namespace Server.Data;
 
@@ -41,7 +42,7 @@ public class PlayerDataFactory
         return Moves.GetMoveRoots().SelectMany(mr => mr.Moves).Where(a => a.JsonId.Contains(playerGame.ToString()));
     }
 
-    public async Task<IEnumerable<Oracle>> GetPlayerOracles(ulong PlayerId)
+    public async Task<IEnumerable<OracleTable>> GetPlayerOracles(ulong PlayerId)
     {
         var player = await db.Players.FindAsync(PlayerId);
         return player.GameDataSets.SelectMany(gds => gds.Oracles);

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TheOracle2;
-using TheOracle2.Data;
+using Dataforged;
 
 namespace Server.Interactions.Helpers;
 

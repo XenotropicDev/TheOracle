@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using Dataforged;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -9,7 +10,6 @@ using Npgsql;
 using Server.Data.homebrew;
 using Server.GameInterfaces;
 using TheOracle2;
-using TheOracle2.Data;
 using TheOracle2.GameObjects;
 
 namespace Server.DiscordServer;
@@ -20,7 +20,7 @@ public class ApplicationContext : DbContext
     public DbSet<TrackData> ProgressTrackers { get; set; }
     public DbSet<AssetData> CharacterAssets { get; set; }
     public DbSet<GameContentSet> GameContentSets { get; set; }
-    public DbSet<Oracle> Oracles { get; set; }
+    public DbSet<OracleTable> Oracles { get; set; }
     public DbSet<Asset> Assets { get; set; }
     public DbSet<Move> Moves { get; set; }
     public DbSet<Player> Players { get; set; }

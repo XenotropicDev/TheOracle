@@ -1,4 +1,4 @@
-﻿using TheOracle2.Data;
+﻿using Dataforged;
 
 namespace TheOracle2;
 
@@ -91,7 +91,7 @@ public class DiscordOracleBuilder : IDiscordEntity
         return builder;
     }
 
-    private bool IsInResultSet(OracleRollResult result, Oracle oracle)
+    private bool IsInResultSet(OracleRollResult result, OracleTable oracle)
     {
         if (result.Oracle == oracle) return true;
 

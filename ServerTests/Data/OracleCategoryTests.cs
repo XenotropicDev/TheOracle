@@ -10,6 +10,9 @@ using System.IO;
 using Discord.Interactions;
 using Microsoft.VisualBasic.FileIO;
 using static System.Net.Mime.MediaTypeNames;
+using Newtonsoft.Json.Schema;
+using NJsonSchema.CodeGeneration.CSharp;
+using Dataforged;
 
 namespace TheOracle2.Data.Tests;
 
@@ -17,9 +20,9 @@ namespace TheOracle2.Data.Tests;
 public class OracleCategoryTests
 {
     [TestMethod()]
-    [DataRow(typeof(List<OracleRoot>), "*oracle*.json")]
-    [DataRow(typeof(List<AssetRoot>), "*assets.json")]
-    [DataRow(typeof(List<MoveRoot>), "*moves*.json")]
+    [DataRow(typeof(List<OracleCollection>), "*oracle*.json")]
+    [DataRow(typeof(List<Asset>), "*assets.json")]
+    [DataRow(typeof(List<MoveCategory>), "*moves*.json")]
     public void LoadAndGenerateTest(Type T, string searchOption)
     {
         var baseDir = new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory(), "Data"));
@@ -43,10 +46,10 @@ public class OracleCategoryTests
                     Console.WriteLine($"there are {assetList.Sum(i => i.Assets.Count)} assets in {file.Name}");
                     //Assert.IsTrue(assetList.Any(ar => ar.Assets.Any(a => a.Abilities.Any(ab => ab.Id != null))));
                     break;
-                case List<MoveRoot> m:
+                case List<MoveCategory> m:
                     Console.WriteLine($"there are {m.Sum(i => i.Moves.Count)} moves in {file.Name}");
                     break;
-                case List<OracleRoot> o:
+                case List<OracleCollection> o:
                     Console.WriteLine($"there are {o.Sum(i => i.Oracles.Count)} in {file.Name}");
                     break;
                 default:
@@ -67,7 +70,7 @@ public class OracleCategoryTests
 
         var jsonSettings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error, MetadataPropertyHandling = MetadataPropertyHandling.Ignore };
 
-        var ability = JsonConvert.DeserializeObject<Ability>(text, jsonSettings);
+        var ability = JsonConvert.DeserializeObject<AssetAbility>(text, jsonSettings);
         Assert.IsNotNull(ability);
         var reSerialized = JsonConvert.SerializeObject(ability);
 
@@ -113,7 +116,7 @@ public class OracleCategoryTests
 
             var jsonSettings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error };
 
-            var root = JsonConvert.DeserializeObject<List<OracleRoot>>(text, jsonSettings);
+            var root = JsonConvert.DeserializeObject<List<OracleCollection>>(text, jsonSettings);
 
             Assert.IsNotNull(root);
 
@@ -124,5 +127,15 @@ public class OracleCategoryTests
             Assert.IsNotNull(jsonSer);
             
         }
+    }
+
+    [TestMethod()]
+    public async Task MakeClassesFromSchemaAsync()
+    {
+        var path = Path.Combine("Schema", "index.ts");
+        var schema = await NJsonSchema.JsonSchema.FromFileAsync(path);
+        
+        var gen = new CSharpGenerator(schema);
+        var file = gen.GenerateFile();
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Server.Data.homebrew;
 using Server.DiscordServer;
-using TheOracle2.Data;
+using Dataforged;
 
 namespace TheOracle2;
 

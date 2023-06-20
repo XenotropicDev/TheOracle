@@ -1,12 +1,12 @@
-﻿using Server.Data;
+﻿using Dataforged;
+using Server.Data;
 using TheOracle2;
-using TheOracle2.Data;
 
 namespace Server.OracleRoller;
 
 public interface IOracleRoller
 {
-    OracleRollResult GetRollResult(Oracle oracle);
+    OracleRollResult GetRollResult(OracleTable oracle);
 }
 
 public class RandomOracleRoller : IOracleRoller
@@ -22,7 +22,7 @@ public class RandomOracleRoller : IOracleRoller
         this.emotes = emotes;
     }
 
-    public OracleRollResult GetRollResult(Oracle oracle)
+    public OracleRollResult GetRollResult(OracleTable oracle)
     {
         var results = new OracleRollResult
         {

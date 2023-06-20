@@ -1,5 +1,6 @@
-﻿using Server.DiscordServer;
-using TheOracle2.Data;
+﻿using Dataforged;
+using Server.DiscordServer;
+using Dataforged;
 
 namespace Server.GameInterfaces;
 

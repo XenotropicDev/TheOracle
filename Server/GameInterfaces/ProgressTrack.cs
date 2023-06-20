@@ -3,7 +3,7 @@ using Server.DiceRoller;
 using Server.DiscordServer;
 using Server.Interactions.Helpers;
 using TheOracle2;
-using TheOracle2.Data;
+using Dataforged;
 using TheOracle2.GameObjects;
 
 namespace Server.GameInterfaces

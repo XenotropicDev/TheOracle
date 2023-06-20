@@ -1,4 +1,4 @@
-﻿using TheOracle2.Data;
+﻿using Dataforged;
 
 namespace Server.DiceRoller;
 

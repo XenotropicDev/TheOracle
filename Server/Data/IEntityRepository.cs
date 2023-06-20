@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.GameInterfaces;
-using TheOracle2.Data;
+using Dataforged;
 
 namespace Server.Data;
 
