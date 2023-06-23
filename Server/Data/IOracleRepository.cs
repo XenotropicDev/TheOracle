@@ -12,15 +12,15 @@ public interface IOracleRepository
 
 public static class OracleRepositoryExtenstions
 {
-    public static IEnumerable<OracleTable> GetOraclesFromUserInput(this IEnumerable<OracleTable> oracles, string query, StringComparison comparer = StringComparison.OrdinalIgnoreCase)
+    public static IEnumerable<OracleTable> GetOraclesFromUserInput(this IEnumerable<OracleCollection> oracles, string query, StringComparison comparer = StringComparison.OrdinalIgnoreCase)
     {
-        var nameMatch = oracles.Where(x => x.Name.Contains(query, comparer) || x.Display?.Title?.Contains(query, comparer) == true);
-        var parentNameMatch = oracles.Where(x => x.Parent?.Name.Contains(query, comparer) == true).Select(x => x.Parent);
-        var parentNameOracles = parentNameMatch.SelectMany(p => p.Oracles);
-        var categoryOracles = oracles.Where(o => o.Category?.Contains(query, comparer) == true);
+        var parentNameOracles = oracles.Where(x => x.Name.Contains(query, comparer));
+        var nameMatch = oracles.Where(oc => oc.Contents.Any(o => o.Key.Contains(query, comparer)));
+        //var parentNameOracles = parentNameMatch.SelectMany(p => p.Oracles);
+        //var categoryOracles = oracles.Where(o => o.Category?.Contains(query, comparer) == true);
 
-        var parentAliasMatch = oracles.Where(x => x.Parent?.Aliases?.Any(s => s.Contains(query, comparer)) == true);
-        var aliasMatch = oracles.Where(x => x.Aliases?.Any(s => s.Contains(query, comparer)) == true);
+        //var parentAliasMatch = oracles.Where(x => x.Parent?.Aliases?.Any(s => s.Contains(query, comparer)) == true);
+        //var aliasMatch = oracles.Where(x => x.Aliases?.Any(s => s.Contains(query, comparer)) == true);
 
         return nameMatch
             .Concat(parentNameOracles)
@@ -28,11 +28,6 @@ public static class OracleRepositoryExtenstions
             .Concat(parentAliasMatch)
             .Concat(aliasMatch)
             .DistinctBy(o => o.Id);
-    }
-
-    public static IDictionary<string, OracleCollection> GetOracleCollection(this OracleTable oracle, IOracleRepository repo)
-    {
-        return repo.
     }
 }
 
