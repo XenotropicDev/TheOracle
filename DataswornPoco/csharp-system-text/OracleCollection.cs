@@ -11,10 +11,10 @@ namespace Dataforged
     public class OracleCollection
     {
         [JsonPropertyName("id")]
-        public OracleCollectionId Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("name")]
-        public Label Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("source")]
         public Source Source { get; set; }
@@ -24,7 +24,7 @@ namespace Dataforged
 
         [JsonPropertyName("canonical_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public Label? CanonicalName { get; set; }
+        public string? CanonicalName { get; set; }
 
         /// <summary>
         /// This is where sub-oracles seem to be defined recursively
@@ -50,7 +50,7 @@ namespace Dataforged
 
         [JsonPropertyName("extends")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public OracleCollectionId? Extends { get; set; }
+        public string? Extends { get; set; }
 
         [JsonPropertyName("rendering")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -58,7 +58,7 @@ namespace Dataforged
 
         [JsonPropertyName("sample_names")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public IList<Label> SampleNames { get; set; }
+        public IList<string> SampleNames { get; set; }
 
         [JsonPropertyName("suggestions")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

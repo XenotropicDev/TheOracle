@@ -10,7 +10,7 @@ namespace Dataforged
         public string Using { get => "custom"; }
 
         [JsonPropertyName("label")]
-        public Label Label { get; set; }
+        public string Label { get; set; }
 
         [JsonPropertyName("value")]
         public sbyte Value { get; set; }

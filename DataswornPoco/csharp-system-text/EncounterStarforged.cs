@@ -17,10 +17,10 @@ namespace Dataforged
         public IList<MarkdownString> Features { get; set; }
 
         [JsonPropertyName("id")]
-        public Id Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("name")]
-        public Label Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("nature")]
         public EncounterNatureStarforged Nature { get; set; }

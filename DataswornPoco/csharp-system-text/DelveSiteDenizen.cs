@@ -17,10 +17,10 @@ namespace Dataforged
 
         [JsonPropertyName("encounter")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public Id? Encounter { get; set; }
+        public string? Encounter { get; set; }
 
         [JsonPropertyName("name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public Label? Name { get; set; }
+        public string? Name { get; set; }
     }
 }

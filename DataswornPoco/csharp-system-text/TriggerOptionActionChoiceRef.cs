@@ -10,7 +10,7 @@ namespace Dataforged
         public string Using { get => "ref"; }
 
         [JsonPropertyName("label")]
-        public Label Label { get; set; }
+        public string Label { get; set; }
 
         [JsonPropertyName("ref")]
         public string Ref { get; set; }

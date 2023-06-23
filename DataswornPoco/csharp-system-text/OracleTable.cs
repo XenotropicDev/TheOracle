@@ -8,10 +8,10 @@ namespace Dataforged
     public class OracleTable
     {
         [JsonPropertyName("id")]
-        public OracleTableId Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("name")]
-        public Label Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("source")]
         public Source Source { get; set; }
@@ -21,7 +21,7 @@ namespace Dataforged
 
         [JsonPropertyName("canonical_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public Label? CanonicalName { get; set; }
+        public string? CanonicalName { get; set; }
 
         [JsonPropertyName("description")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

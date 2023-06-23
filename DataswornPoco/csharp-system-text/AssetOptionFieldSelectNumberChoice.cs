@@ -7,7 +7,7 @@ namespace Dataforged
     public class AssetOptionFieldSelectNumberChoice
     {
         [JsonPropertyName("label")]
-        public Label Label { get; set; }
+        public string Label { get; set; }
 
         [JsonPropertyName("value")]
         public sbyte Value { get; set; }
