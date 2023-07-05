@@ -21,10 +21,8 @@ public class AssetWorkbenchAdapter : Asset
 
     private Asset Convert()
     {
-        AssetType = WorkbenchData.type;
         Name = WorkbenchData.name;
-        Display = new Display { Title = WorkbenchData.name, Icon = WorkbenchData.icon?.dataUri };
-        if (WorkbenchData.track != null) ConditionMeter = new ConditionMeter { Min = 0, Value = WorkbenchData.track ?? 0, Max = WorkbenchData.track ?? 0};
+        if (WorkbenchData.track != null) ConditionMeter = new AssetConditionMeter { Min = 0, Value = WorkbenchData.track ?? 0, Max = WorkbenchData.track ?? 0};
         Abilities = new ObservableCollection<AssetAbility>(
             WorkbenchData.abilities
             .Select(ability => new AssetAbility
@@ -36,10 +34,10 @@ public class AssetWorkbenchAdapter : Asset
             .ToList()
             );
         
-        Inputs = new();
+        Options = new Dictionary<string, AssetOptionField>();
 
-        if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn)) Inputs.Add(new() { InputType = AssetInput.Text, Name = WorkbenchData.writeIn, Adjustable = true });
-        if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn2)) Inputs.Add(new() { InputType = AssetInput.Text, Name = WorkbenchData.writeIn2, Adjustable = true });
+        if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn)) Options.Add("Name", new AssetOptionFieldText() { Value = WorkbenchData.writeIn});
+        if (!string.IsNullOrWhiteSpace(WorkbenchData.writeIn2)) Options.Add("Name2", new AssetOptionFieldText() { Value = WorkbenchData.writeIn2});
 
         return this;
     }
