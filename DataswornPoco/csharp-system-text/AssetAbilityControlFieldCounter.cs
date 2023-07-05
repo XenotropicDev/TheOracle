@@ -16,13 +16,13 @@ namespace Dataforged
         public string Label { get; set; }
 
         [JsonPropertyName("max")]
-        public sbyte? Max { get; set; }
+        public int? Max { get; set; }
 
         [JsonPropertyName("min")]
-        public sbyte Min { get; set; }
+        public int Min { get; set; }
 
         [JsonPropertyName("value")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public sbyte? Value { get; set; }
+        public int? Value { get; set; }
     }
 }

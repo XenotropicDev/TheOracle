@@ -9,12 +9,6 @@ namespace Dataforged
         [JsonPropertyName("field_type")]
         public string FieldType { get => "text"; }
 
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("label")]
-        public string Label { get; set; }
-
         [JsonPropertyName("value")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Value { get; set; }

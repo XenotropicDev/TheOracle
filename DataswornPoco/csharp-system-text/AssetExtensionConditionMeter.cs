@@ -13,10 +13,10 @@ namespace Dataforged
 
         [JsonPropertyName("max")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public sbyte? Max { get; set; }
+        public int? Max { get; set; }
 
         [JsonPropertyName("min")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public sbyte? Min { get; set; }
+        public int? Min { get; set; }
     }
 }

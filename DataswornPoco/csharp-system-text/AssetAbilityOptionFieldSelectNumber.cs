@@ -21,6 +21,6 @@ namespace Dataforged
 
         [JsonPropertyName("value")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public sbyte? Value { get; set; }
+        public int? Value { get; set; }
     }
 }

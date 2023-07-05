@@ -13,14 +13,8 @@ namespace Dataforged
         [JsonPropertyName("choices")]
         public IDictionary<string, AssetOptionFieldSelectNumberChoice> Choices { get; set; }
 
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("label")]
-        public string Label { get; set; }
-
         [JsonPropertyName("value")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public sbyte? Value { get; set; }
+        public int? Value { get; set; }
     }
 }

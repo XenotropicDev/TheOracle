@@ -13,6 +13,6 @@ namespace Dataforged
         public string Label { get; set; }
 
         [JsonPropertyName("value")]
-        public sbyte Value { get; set; }
+        public int Value { get; set; }
     }
 }
