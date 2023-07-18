@@ -21,7 +21,7 @@ public class ApplicationContext : DbContext
     public DbSet<AssetData> CharacterAssets { get; set; }
     public DbSet<GameContentSet> GameContentSets { get; set; }
     public DbSet<OracleCollection> Oracles { get; set; }
-    public DbSet<Asset> Assets { get; set; }
+    public DbSet<AssetCategory> Assets { get; set; }
     public DbSet<MoveCategory> Moves { get; set; }
     public DbSet<Player> Players { get; set; }
     public DbSet<Party> Parties { get; set; }

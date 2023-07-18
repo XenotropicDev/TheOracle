@@ -23,8 +23,8 @@ public class AssetAutoComplete : AutocompleteHandler
                 var game = IronGameExtenstions.GetIronGameInString(userText);
                 userText = IronGameExtenstions.RemoveIronGameInString(userText);
                 successList = (await playerData.GetPlayerAssets(context.User.Id, game))
-                        .Where(m => m.Name.Contains(userText, StringComparison.OrdinalIgnoreCase) || m.Parent?.Name.Contains(userText, StringComparison.OrdinalIgnoreCase) == true)
-                        .OrderBy(m => m.Name)
+                        .Where(a => a.Name.Contains(userText, StringComparison.OrdinalIgnoreCase) || a.Parent?.Name.Contains(userText, StringComparison.OrdinalIgnoreCase) == true)
+                        .OrderBy(a => a.Name)
                         .Take(SelectMenuBuilder.MaxOptionCount)
                         .Select(m => new AutocompleteResult($"{m.Name} [{m.Parent?.Name}]", m.Id.ToString())).AsEnumerable();
             }
