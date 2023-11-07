@@ -37,8 +37,9 @@ public static class DiscordEntityExtensions
         return await respondFunc(entity.DiscordMessage, entity.AsEmbedArray(), false, entity.IsEphemeral, null, null, await entity.AsMessageComponent(), null);
     }
 
-    public static async Task<IUserMessage> EntityAsReply(this IDiscordEntity entity, Func<string?, bool, Embed?, RequestOptions?, AllowedMentions?, MessageReference?, MessageComponent?, Task<IUserMessage>> replyFunc)
+    //string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null, AllowedMentions allowedMentions = null, MessageReference messageReference = null, MessageComponent components = null, ISticker[] stickers = null, Embed[] embeds = null, MessageFlags flags = MessageFlags.None
+    public static async Task<IUserMessage> EntityAsReply(this IDiscordEntity entity, Func<string?, bool, Embed?, RequestOptions?, AllowedMentions?, MessageReference?, MessageComponent?, ISticker[], Embed[], MessageFlags, Task<IUserMessage>> replyFunc)
     {
-        return await replyFunc(entity.DiscordMessage, false, entity.GetEmbed()?.Build(), null, null, null, await entity.AsMessageComponent());
+        return await replyFunc(entity.DiscordMessage, false, entity.GetEmbed()?.Build(), null, null, null, await entity.AsMessageComponent(), null, null, MessageFlags.None);
     }
 }
