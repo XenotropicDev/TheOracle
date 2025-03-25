@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Discord.Interactions;
-using TheOracle2;
+﻿using TheOracle2;
 
 namespace Server.Interactions.Helpers;
 
@@ -27,18 +20,18 @@ public static class DiscordEntityExtensions
         return comp.Build();
     }
 
-    public static async Task EntityAsResponse(this IDiscordEntity entity, Func<string?, Embed[]?, bool, bool, AllowedMentions?, RequestOptions?, MessageComponent?, Embed?, Task> respondFunc)
+    public static async Task EntityAsResponse(this IDiscordEntity entity, Func<string?, Embed[]?, bool, bool, AllowedMentions?, RequestOptions?, MessageComponent?, Embed?, PollProperties, Task> respondFunc)
     {
-        await respondFunc(entity.DiscordMessage, entity.AsEmbedArray(), false, entity.IsEphemeral, null, null, await entity.AsMessageComponent(), null);
+        await respondFunc(entity.DiscordMessage, entity.AsEmbedArray(), false, entity.IsEphemeral, null, null, await entity.AsMessageComponent(), null, null);
     }
 
-    public static async Task<IUserMessage> EntityAsResponse(this IDiscordEntity entity, Func<string?, Embed[]?, bool, bool, AllowedMentions?, RequestOptions?, MessageComponent?, Embed?, Task<IUserMessage>> respondFunc)
+    public static async Task<IUserMessage> EntityAsResponse(this IDiscordEntity entity, Func<string?, Embed[]?, bool, bool, AllowedMentions?, RequestOptions?, MessageComponent?, Embed?, PollProperties, Task<IUserMessage>> respondFunc)
     {
-        return await respondFunc(entity.DiscordMessage, entity.AsEmbedArray(), false, entity.IsEphemeral, null, null, await entity.AsMessageComponent(), null);
+        return await respondFunc(entity.DiscordMessage, entity.AsEmbedArray(), false, entity.IsEphemeral, null, null, await entity.AsMessageComponent(), null, null);
     }
 
-    public static async Task<IUserMessage> EntityAsReply(this IDiscordEntity entity, Func<string?, bool, Embed?, RequestOptions?, AllowedMentions?, MessageReference?, MessageComponent?, ISticker[], Embed[], MessageFlags, Task<IUserMessage>> replyFunc)
+    public static async Task<IUserMessage> EntityAsReply(this IDiscordEntity entity, Func<string?, bool, Embed?, RequestOptions?, AllowedMentions?, MessageReference?, MessageComponent?, ISticker[], Embed[], MessageFlags, PollProperties, Task<IUserMessage>> replyFunc)
     {
-        return await replyFunc(entity.DiscordMessage, false, entity.GetEmbed()?.Build(), null, null, null, await entity.AsMessageComponent(), null, null, MessageFlags.None);
+        return await replyFunc(entity.DiscordMessage, false, entity.GetEmbed()?.Build(), null, null, null, await entity.AsMessageComponent(), null, null, MessageFlags.None, null);
     }
 }
