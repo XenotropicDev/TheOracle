@@ -2,8 +2,9 @@
 using Microsoft.EntityFrameworkCore.Internal;
 using Server.DiscordServer;
 using Server.GameInterfaces;
+using Server.GameInterfaces.DTOs; // Added for AssetDTO
 using TheOracle2;
-using TheOracle2.Data;
+using TheOracle2.Data; // Kept because Move, Oracle, OracleRoot are still used
 
 namespace Server.Data;
 
@@ -24,11 +25,11 @@ public class PlayerDataFactory
         this.dbFactory = dbFactory;
     }
 
-    public async Task<IEnumerable<Asset>> GetPlayerAssets(ulong PlayerId, IronGame? gameOverride = null)
+    public async Task<IEnumerable<AssetDTO>> GetPlayerAssets(ulong PlayerId, IronGame? gameOverride = null) // Changed return type
     {
         using var db = dbFactory.CreateDbContext();
         var playerGame = gameOverride ?? (await db.Players.FindAsync(PlayerId))?.Game ?? default;
-        var assets = Assets.GetAssetRoots().SelectMany(ar => ar.Assets);
+        var assets = Assets.GetAssets(); // Changed to use GetAssets() which returns IEnumerable<AssetDTO>
 
         return assets.Where(a => a.Id.Contains(playerGame.ToString(), StringComparison.OrdinalIgnoreCase));
     }

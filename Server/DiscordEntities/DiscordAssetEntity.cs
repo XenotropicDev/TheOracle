@@ -1,18 +1,20 @@
 ﻿using Server.DiscordServer;
 using Server.GameInterfaces;
-using TheOracle2.Data;
+using Server.GameInterfaces.DTOs; // Added for DTOs
+using System.Collections.Generic; // Required for List
+using System.Linq; // Required for .IndexOf
 
 namespace TheOracle2.UserContent;
 
 public class DiscordAssetEntity : IDiscordEntity
 {
-    public DiscordAssetEntity(Asset asset, AssetData data)
+    public DiscordAssetEntity(AssetDTO assetDto, AssetData data) // Changed parameter to AssetDTO
     {
-        Asset = asset;
+        AssetDto = assetDto; // Assign to the new field
         Data = data;
     }
 
-    public Asset Asset { get; }
+    public AssetDTO AssetDto { get; } // Renamed field and changed type to AssetDTO
     public AssetData Data { get; }
     public bool IsEphemeral { get; set; } = false;
     public string? DiscordMessage { get; set; }
@@ -20,26 +22,29 @@ public class DiscordAssetEntity : IDiscordEntity
     public EmbedBuilder? GetEmbed()
     {
         EmbedBuilder builder = new EmbedBuilder()
-            .WithAuthor($"Asset: {Asset.Parent?.Name ?? Asset.AssetType}")
-            .WithTitle(Asset.Name);
+            // Use AssetDto.Source.Name or AssetDto.AssetType for author
+            .WithAuthor($"Asset: {AssetDto.Source?.Name ?? AssetDto.AssetType}") 
+            .WithTitle(AssetDto.Name); // Use AssetDto
 
         if (Data.ThumbnailURL != null)
         {
             builder.WithThumbnailUrl(Data.ThumbnailURL);
         }
 
-        for (var i = 0; i < Asset.Inputs?.Count; i++)
+        // Use AssetDto.Inputs. Assuming Data.Inputs corresponds by index.
+        for (var i = 0; i < AssetDto.Inputs?.Count; i++) 
         {
-            builder.AddField(Asset.Inputs[i].Name, Data.Inputs[i]);
+            builder.AddField(AssetDto.Inputs[i].Name, Data.Inputs[i]);
         }
 
-        if (Asset.ConditionMeter != null)
+        if (AssetDto.ConditionMeter != null) // Use AssetDto
         {
-            builder.AddField(Asset.ConditionMeter.Name, Data.ConditionValue, false);
+            builder.AddField(AssetDto.ConditionMeter.Name, Data.ConditionValue, false);
         }
 
         string description = string.Empty;
-        foreach (var ability in Asset.Abilities ?? new List<Ability>())
+        // Use AssetDto.Abilities and AbilityDTO
+        foreach (var ability in AssetDto.Abilities ?? new List<AbilityDTO>()) 
         {
             if (Data.SelectedAbilities.Contains(ability.Id))
             {
@@ -55,18 +60,20 @@ public class DiscordAssetEntity : IDiscordEntity
     {
         ComponentBuilder compBuilder = new ComponentBuilder();
 
-        if (Asset.Abilities != null)
+        if (AssetDto.Abilities != null && AssetDto.Abilities.Any()) // Use AssetDto
         {
             var select = new SelectMenuBuilder()
                 .WithCustomId($"asset-ability-select:{Data.Id}")
                 .WithPlaceholder($"Ability Selection")
                 .WithMinValues(0)
-                .WithMaxValues(Asset.Abilities.Count);
+                .WithMaxValues(AssetDto.Abilities.Count); // Use AssetDto
 
-            foreach (var ability in Asset.Abilities ?? new List<Ability>())
+            // Use AssetDto.Abilities and AbilityDTO
+            foreach (var ability in AssetDto.Abilities ?? new List<AbilityDTO>()) 
             {
                 select.AddOption(new SelectMenuOptionBuilder()
-                .WithLabel($"Ability {Asset.Abilities!.IndexOf(ability) + 1}")
+                // Using IndexOf requires AssetDto.Abilities to be a List or array.
+                .WithLabel($"Ability {AssetDto.Abilities.IndexOf(ability) + 1}") 
                 .WithValue(ability.Id)
                 .WithDefault(Data.SelectedAbilities.Contains(ability.Id))
                 );
@@ -75,25 +82,20 @@ public class DiscordAssetEntity : IDiscordEntity
             compBuilder.WithSelectMenu(select);
         }
 
-        if (Asset.ConditionMeter != null)
+        if (AssetDto.ConditionMeter != null) // Use AssetDto
         {
-            //todo: show condition in select?
             var select = new SelectMenuBuilder()
                 .WithCustomId($"asset-condition-select:{Data.Id}")
-                .WithPlaceholder($"{Asset.ConditionMeter.Name} actions")
+                .WithPlaceholder($"{AssetDto.ConditionMeter.Name} actions") // Use AssetDto
                 .WithMinValues(1)
                 .WithMaxValues(1)
-                .AddOption(new SelectMenuOptionBuilder().WithLabel($"+1 {Asset.ConditionMeter.Name}").WithValue("asset-condition-up"))
-                .AddOption(new SelectMenuOptionBuilder().WithLabel($"-1 {Asset.ConditionMeter.Name}").WithValue("asset-condition-down"))
-                .AddOption(new SelectMenuOptionBuilder().WithLabel($"Roll {Asset.ConditionMeter.Name}").WithValue("asset-condition-roll"));
-
-            if (Asset.ConditionMeter.Conditions?.Count > 0)
-            {
-                foreach (var condition in Asset.ConditionMeter.Conditions)
-                {
-                    select.AddOption(new SelectMenuOptionBuilder().WithLabel($"Toggle Condition: {condition}").WithValue($"condition:{condition}"));
-                }
-            }
+                // Use AssetDto.ConditionMeter.Name
+                .AddOption(new SelectMenuOptionBuilder().WithLabel($"+1 {AssetDto.ConditionMeter.Name}").WithValue("asset-condition-up"))
+                .AddOption(new SelectMenuOptionBuilder().WithLabel($"-1 {AssetDto.ConditionMeter.Name}").WithValue("asset-condition-down"))
+                .AddOption(new SelectMenuOptionBuilder().WithLabel($"Roll {AssetDto.ConditionMeter.Name}").WithValue("asset-condition-roll"));
+            
+            // ConditionMeterDTO does not have a 'Conditions' list like the original Asset.ConditionMeter.
+            // The loop for Asset.ConditionMeter.Conditions has been removed.
 
             compBuilder.WithSelectMenu(select);
         }

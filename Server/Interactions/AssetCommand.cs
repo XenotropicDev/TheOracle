@@ -5,6 +5,7 @@ using Server.Data;
 using Server.DiceRoller;
 using Server.DiscordServer;
 using Server.GameInterfaces;
+using Server.GameInterfaces.DTOs; // Added for DTOs
 using Server.Interactions.Helpers;
 using Server.OracleRoller;
 using TheOracle2.GameObjects;
@@ -145,16 +146,22 @@ public class AssetInteractions : InteractionModuleBase<SocketInteractionContext<
         if (data == null) return;
 
         var asset = assetRepo.GetAsset(data.AssetId);
-        if (asset == null) return;
+        if (asset == null) return; // Existing null check for asset is good.
 
         switch (values.FirstOrDefault())
         {
             case "asset-condition-up":
-                data.ChangeConditionValue(+1, asset);
+                if (asset.ConditionMeter != null) // Check if ConditionMeter itself is not null
+                {
+                    data.ChangeConditionValue(+1, asset.ConditionMeter); // Pass ConditionMeterDTO
+                }
                 break;
 
             case "asset-condition-down":
-                data.ChangeConditionValue(-1, asset);
+                if (asset.ConditionMeter != null) // Check if ConditionMeter itself is not null
+                {
+                    data.ChangeConditionValue(-1, asset.ConditionMeter); // Pass ConditionMeterDTO
+                }
                 break;
 
             case "asset-condition-roll":
