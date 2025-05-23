@@ -4,7 +4,12 @@ using Server.Data;
 using Server.Interactions.Helpers;
 using Server.OracleRoller;
 using TheOracle2.Commands;
-using TheOracle2.Data;
+// using TheOracle2.Data; // Removed as Oracle entity is replaced by OracleDTO
+using Server.GameInterfaces.DTOs; // Added for OracleDTO
+using System; // For IServiceProvider, ArgumentException
+using Microsoft.Extensions.DependencyInjection; // For GetRequiredService
+using System.Linq; // For FirstOrDefault
+using Discord; // For Embed
 
 namespace TheOracle2;
 

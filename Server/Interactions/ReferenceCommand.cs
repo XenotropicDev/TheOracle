@@ -5,6 +5,9 @@ using Server.Data;
 using Server.DiscordServer;
 using Server.Interactions.Helpers;
 using TheOracle2.UserContent;
+using Server.GameInterfaces.DTOs; // Added for MoveDTO
+using System; // For IServiceProvider, ArgumentException, etc.
+using Microsoft.Extensions.DependencyInjection; // For GetRequiredService
 
 namespace TheOracle2;
 
@@ -27,10 +30,10 @@ public class ReferenceCommand : InteractionModuleBase
         [Summary(description: "Set this to False to show it to all people in the chat")] bool ephemeral = true,
         [Summary(description: "Keeps this reference message in chat and doesn't automatically delete it after a few minutes")] bool keepMessage = false)
     {
-        var moveInfo = Moves.GetMove(move);
+        var moveInfo = Moves.GetMove(move); // Returns MoveDTO?
         if (moveInfo == null) return;
 
-        var moveItems = new DiscordMoveEntity(moveInfo, Emotes, ephemeral);
+        var moveItems = new DiscordMoveEntity(moveInfo, Emotes, ephemeral); // Expects MoveDTO
 
         await moveItems.EntityAsResponse(RespondAsync);
 
@@ -51,7 +54,7 @@ public class ReferenceCommand : InteractionModuleBase
     }
 }
 
-public class MoveReferenceInteractions : InteractionModuleBase<SocketInteractionContext<SocketMessageComponent>> //InteractionModuleBase<SocketInteractionContext<SocketMessageComponent>>
+public class MoveReferenceInteractions : InteractionModuleBase<SocketInteractionContext<SocketMessageComponent>>
 {
     private readonly IEmoteRepository emotes;
     private readonly IMoveRepository moves;
@@ -73,12 +76,12 @@ public class MoveReferenceInteractions : InteractionModuleBase<SocketInteraction
         var taskList = new List<Task>();
         foreach (var move in selectedMoves)
         {
-            var moveInfo = moves.GetMove(move);
+            var moveInfo = moves.GetMove(move); // Returns MoveDTO?
             if (moveInfo == null) return;
 
-            var moveItems = new DiscordMoveEntity(moveInfo, emotes);
+            var moveItems = new DiscordMoveEntity(moveInfo, emotes); // Expects MoveDTO
 
-            if (!Context.Interaction.HasResponded) await Context.Interaction.UpdateAsync(msg => { }).ConfigureAwait(false); //empty update to clear the selection and respond to the interaction
+            if (!Context.Interaction.HasResponded) await Context.Interaction.UpdateAsync(msg => { }).ConfigureAwait(false); 
 
             var msg = await moveItems.EntityAsReply(ReplyAsync).ConfigureAwait(false);
 
