@@ -1,6 +1,9 @@
 ﻿using Server.Data;
 using Server.OracleRoller;
 using TheOracle2;
+using Server.GameInterfaces.DTOs; // Added for DTOs
+using System.Collections.Generic; // For List
+using Discord; // For TextInputStyle (used in ModalOverrideSettings)
 
 namespace Server.GameInterfaces;
 
@@ -42,14 +45,14 @@ public class OracleEntityData
 
         foreach (var o in entity.InitialOracles)
         {
-            var oracle = oracles.GetOracleById(o.FieldValue);
-            if (oracle == null)
+            var oracleDto = oracles.GetOracleById(o.FieldValue); // Returns OracleDTO?
+            if (oracleDto == null)
             {
                 InitialOracleData.Add(o.ShallowCopy());
                 continue;
             }
 
-            var result = roller.GetRollResult(oracle);
+            var result = roller.GetRollResult(oracleDto); // Pass OracleDTO
             this.AddOracleResult(result, o);
 
             foreach (var followupItem in result.FollowUpTables)
@@ -69,7 +72,8 @@ public class OracleEntityData
         InitialOracleData.Add(new() {FieldName = o.FieldName, FieldValue = result.Description ?? "Unknown oracle result value"});
         foreach(var childResult in result.ChildResults)
         {
-            InitialOracleData.Add(new() {FieldName = childResult.Oracle?.Name ?? o.FieldName, FieldValue = childResult.Description! });
+            // Use childResult.OracleDto.Name
+            InitialOracleData.Add(new() {FieldName = childResult.OracleDto?.Name ?? o.FieldName, FieldValue = childResult.Description! }); 
 
             FollowupOracleData.AddRange(childResult.FollowUpTables);
         }

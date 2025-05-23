@@ -2,8 +2,12 @@
 using Server.Data;
 using Server.OracleRoller;
 using TheOracle2;
+using Server.GameInterfaces.DTOs; // Added for OracleDTO
+using System.Linq; // For .Cast<Match>() and .ElementAt()
+using Discord; // For Emoji, SelectMenuBuilder, ComponentBuilder, EmbedBuilder
+using System; // For Random
 
-namespace Server.GameInterfaces;
+namespace Server.GameInterfaces; // Assuming this namespace as per prompt
 
 public class OracleEntityAdapter : IDiscordEntity
 {
@@ -67,17 +71,24 @@ public class OracleEntityAdapter : IDiscordEntity
 
         foreach (var capturedOracle in oracleMatch.Cast<Match>())
         {
-            var oracle = oracles.GetOracleById(capturedOracle.Groups[1].Value);
-            if (oracle == null)
+            var oracleDto = oracles.GetOracleById(capturedOracle.Groups[1].Value); // Returns OracleDTO?
+            if (oracleDto == null) // Check if DTO is null
             {
                 continue;
             }
-            var result = roller.GetRollResult(oracle);
+            var result = roller.GetRollResult(oracleDto); // Pass OracleDTO
 
             var location = value.IndexOf(capturedOracle.Value);
+            
+            string replacementText = result.Description;
+            if (string.IsNullOrEmpty(replacementText) && result.ChildResults.Any())
+            {
+                replacementText = result.ChildResults.ElementAt(Random.Shared.Next(0, result.ChildResults.Count)).Description;
+            }
+            replacementText ??= ""; // Ensure not null if both are empty/null
 
             //replace only the first occurrence of the matching value (just incase people want to make a field that uses multiple values from the same oracle table)
-            value = value.Remove(location, capturedOracle.Value.Length).Insert(location, result.Description ?? result.ChildResults.ElementAt(Random.Shared.Next(0, result.ChildResults.Count)).Description ?? "");
+            value = value.Remove(location, capturedOracle.Value.Length).Insert(location, replacementText);
         }
 
         return value;
